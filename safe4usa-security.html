@@ -38,7 +38,16 @@
   }
   .slide.active { display:flex; }
 
-  .bg-cover { background:#091428; }
+  .bg-cover {
+    background:#091428;
+    background-image:
+      radial-gradient(ellipse 80% 60% at 70% 20%, rgba(1,162,249,.12) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 40% at 20% 80%, rgba(0,82,204,.1) 0%, transparent 50%),
+      radial-gradient(ellipse 30% 30% at 90% 70%, rgba(24,112,212,.08) 0%, transparent 40%),
+      linear-gradient(180deg, rgba(1,162,249,.03) 0%, transparent 40%),
+      repeating-linear-gradient(90deg, rgba(1,162,249,.02) 0px, rgba(1,162,249,.02) 1px, transparent 1px, transparent 80px),
+      repeating-linear-gradient(0deg, rgba(1,162,249,.02) 0px, rgba(1,162,249,.02) 1px, transparent 1px, transparent 80px);
+  }
   .bg-dark { background:#071020; }
   .bg-mid { background:#0c1a33; }
   .bg-blue { background:#0a1630; }
@@ -286,7 +295,7 @@
   <!-- ===== SLIDE 2: CHATGPT RESULTS ===== -->
   <div class="slide bg-mid" id="slide-2">
     <div class="eyebrow">ChatGPT Audit &bull; Real Searches &bull; March 2026</div>
-    <h2>What ChatGPT Says When Someone Asks for a Security Company in Hallandale Beach</h2>
+    <h2>What <span style="color:#ffffff">ChatGPT</span> Says When Someone Asks for a Security Company</h2>
     <div class="divline"></div>
     <div class="cols c3" style="margin-top:14px">
 
@@ -346,7 +355,7 @@
   <!-- ===== SLIDE 3: PERPLEXITY RESULTS ===== -->
   <div class="slide bg-dark" id="slide-3">
     <div class="eyebrow">Perplexity Results</div>
-    <h2>What Perplexity Recommends - Your Competitors, Not You</h2>
+    <h2>What <span style="color:#ffffff">Perplexity</span> Recommends - Your Competitors, Not You</h2>
     <div class="divline"></div>
     <div class="cols c3" style="margin-top:14px">
 
@@ -406,7 +415,7 @@
   <!-- ===== SLIDE 4: GOOGLE AI OVERVIEWS ===== -->
   <div class="slide bg-blue" id="slide-4">
     <div class="eyebrow">Google AI Overviews &bull; Live Results &bull; March 2026</div>
-    <h2>What Google AI Overviews Show for Hallandale Beach Security</h2>
+    <h2>What <span style="color:#ffffff">Google AI Overviews</span> Show for Hallandale Beach Security</h2>
     <div class="divline"></div>
     <div class="cols c3" style="margin-top:14px">
 
