@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Poirier Technical Solutions AI Visibility Audit | Online Optimisers</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  :root {
+    --bg:#060f1e; --bg2:#0d1b2e; --card:#111f35; --card-border:#1a2d4a;
+    --primary:#01a2f9; --dark-blue:#0052cc; --mid-blue:#1870d4; --light-blue:#8cc7f3;
+    --text:#e8edf4; --text-dim:#7a90aa; --text-bright:#ffffff;
+    --red:#ef4444; --yellow:#f59e0b; --green:#22c55e;
+    --chatgpt:#7CB89E; --perplexity:#8B7EC2; --google:#4285F4;
+  }
+
+  body {
+    font-family:'Manrope',system-ui,-apple-system,sans-serif;
+    background:var(--bg); color:var(--text);
+    overflow:hidden; height:100vh;
+  }
+
+  .deck { width:100vw; height:100vh; position:relative; z-index:1; }
+  .slide {
+    display:none; width:100%; height:100%;
+    padding:48px 64px 56px;
+    position:absolute; top:0; left:0;
+    flex-direction:column; justify-content:center;
+    overflow-y:auto;
+  }
+  .slide.active { display:flex; }
+
+  .bg-cover { background:radial-gradient(ellipse at 70% 30%,rgba(1,162,249,.12) 0%,transparent 60%),radial-gradient(ellipse at 20% 80%,rgba(0,82,204,.08) 0%,transparent 50%),var(--bg); }
+  .bg-dark { background:var(--bg); }
+  .bg-mid { background:var(--bg2); }
+  .bg-warm { background:linear-gradient(135deg,#060f1e 0%,#0d1b2e 100%); }
+  .bg-proof { background:linear-gradient(135deg,#060f1e 0%,#0d1a2e 100%); }
+  .bg-close { background:radial-gradient(ellipse at 50% 0%,rgba(1,162,249,.15) 0%,transparent 60%),var(--bg); }
+  .bg-engine { background:linear-gradient(180deg,#040c18 0%,#060f1e 50%,#0d1a2e 100%); }
+
+  .logo { position:fixed;top:20px;left:28px;font-size:12px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:rgba(1,162,249,.7);z-index:100; }
+  .hint { position:fixed;top:18px;right:22px;font-size:10px;color:rgba(255,255,255,.15);z-index:100; }
+  .slide-cta { position:fixed;top:14px;right:120px;z-index:100;display:none; }
+  .slide-cta a { display:inline-block;padding:12px 28px;background:var(--primary);color:#ffffff;font-weight:800;font-size:14px;border-radius:10px;text-decoration:none;letter-spacing:.5px;transition:all .2s;box-shadow:0 0 20px rgba(1,162,249,.3); }
+  .slide-cta a:hover { opacity:.9; }
+  .progress-bar { position:fixed;top:0;left:0;height:3px;background:var(--primary);transition:width .35s ease;z-index:200; }
+
+  .nav {
+    position:fixed;bottom:18px;left:50%;transform:translateX(-50%);
+    display:flex;align-items:center;gap:16px;
+    background:rgba(1,162,249,.12);border:1px solid rgba(1,162,249,.3);
+    border-radius:40px;padding:10px 28px;z-index:100;
+    backdrop-filter:blur(10px);
+  }
+  .nav button { background:none;border:none;color:#ffffff;font-size:20px;cursor:pointer;opacity:.7;transition:all .2s;padding:4px 12px; }
+  .nav button:hover { opacity:1; }
+  .nav button:disabled { opacity:.2;cursor:default; }
+  #sc { font-size:13px;font-weight:700;color:#ffffff;min-width:56px;text-align:center;letter-spacing:1px; }
+
+  .eyebrow { font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--primary);margin-bottom:12px;font-weight:700; }
+  h1 { font-family:'Manrope',sans-serif;font-size:clamp(32px,4.2vw,48px);font-weight:800;line-height:1.08;letter-spacing:-.5px;color:#ffffff; }
+  h2 { font-family:'Manrope',sans-serif;font-size:clamp(24px,3.2vw,36px);font-weight:800;line-height:1.1;letter-spacing:-.3px;color:#ffffff; }
+  h3 { font-size:17px;font-weight:700;color:var(--text-bright); }
+  p { font-size:14px;line-height:1.65;color:rgba(255,255,255,.7); }
+  strong { color:#fff; }
+
+  .accent { color:var(--primary); }
+  .divline { width:50px;height:3px;background:var(--primary);border-radius:2px;margin:12px 0; }
+
+  .cols { display:grid;gap:16px;margin-top:20px; }
+  .c2 { grid-template-columns:1fr 1fr; }
+  .c3 { grid-template-columns:1fr 1fr 1fr; }
+  .c4 { grid-template-columns:1fr 1fr 1fr 1fr; }
+  .c21 { grid-template-columns:2fr 1fr; }
+
+  .card {
+    background:var(--card);
+    border:1px solid var(--card-border);border-radius:14px;padding:20px;
+    position:relative;overflow:hidden;transition:border-color .3s ease;
+  }
+  .card::before { content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--primary);opacity:1; }
+  .card:hover { border-color:var(--primary); }
+
+  .card.glow-cyan { border-color:rgba(1,162,249,.3);background:rgba(1,162,249,.04); }
+  .card.glow-green { border-color:rgba(34,197,94,.3);background:rgba(34,197,94,.04); }
+  .card.glow-red { border-color:rgba(239,68,68,.3);background:rgba(239,68,68,.04); }
+  .card.glow-amber { border-color:rgba(245,158,11,.3);background:rgba(245,158,11,.04); }
+  .card.accent-red::before { background:var(--red); }
+  .card.accent-amber::before { background:var(--yellow); }
+  .card.accent-green::before { background:var(--green); }
+  .card.accent-cyan::before { background:var(--primary); }
+  .card.accent-blue::before { background:var(--dark-blue); }
+
+  .big-metric { text-align:center; }
+  .big-n { font-size:56px;font-weight:900;line-height:1;letter-spacing:-2px; }
+  .big-l { font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:rgba(255,255,255,.4);margin-top:6px; }
+
+  .ai-chat {
+    background:var(--card);
+    border:1px solid var(--card-border);border-radius:14px;
+    padding:16px 18px;font-family:'Manrope',monospace;
+    transition:border-color .3s;position:relative;
+  }
+  .ai-chat::before { content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--primary); }
+  .ai-chat:hover { border-color:var(--primary); }
+  .ai-chat .query { font-size:12px;color:rgba(255,255,255,.45);margin-bottom:10px;padding-bottom:10px;border-bottom:1px solid rgba(1,162,249,.1); }
+  .ai-chat .query span { color:rgba(255,255,255,.8);font-style:italic; }
+  .ai-chat .platform-badge { display:inline-block;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;letter-spacing:1px;margin-bottom:8px; }
+  .chatgpt-badge { background:rgba(124,184,158,.12);color:var(--chatgpt);border:1px solid rgba(124,184,158,.3); }
+  .perplexity-badge { background:rgba(139,126,194,.12);color:var(--perplexity);border:1px solid rgba(139,126,194,.3); }
+  .google-badge { background:rgba(66,133,244,.12);color:var(--google);border:1px solid rgba(66,133,244,.3); }
+  .ai-chat .answer { font-size:12px;line-height:1.65;color:rgba(255,255,255,.7); }
+  .ai-chat .cited { color:var(--primary);font-weight:600; }
+  .ai-chat .not-cited { color:var(--red);font-weight:600; }
+  .ai-chat .result-tag { display:inline-block;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;letter-spacing:.5px;margin-top:8px; }
+  .tag-found { background:rgba(34,197,94,.12);color:var(--green);border:1px solid rgba(34,197,94,.25); }
+  .tag-missing { background:rgba(239,68,68,.12);color:var(--red);border:1px solid rgba(239,68,68,.2); }
+  .tag-warning { background:rgba(245,158,11,.12);color:var(--yellow);border:1px solid rgba(245,158,11,.2); }
+  .tag-early { background:rgba(1,162,249,.12);color:var(--primary);border:1px solid rgba(1,162,249,.25); }
+
+  .cp { position:absolute;top:8px;right:8px;background:rgba(1,162,249,.08);border:1px solid rgba(1,162,249,.2);color:rgba(1,162,249,.6);border-radius:5px;padding:3px 9px;font-size:10px;cursor:pointer;transition:all .15s;z-index:10; }
+  .cp:hover { background:rgba(1,162,249,.15);color:var(--primary); }
+  .cp.done { background:rgba(34,197,94,.15);border-color:rgba(34,197,94,.3);color:var(--green); }
+
+  .badge { display:inline-block;padding:3px 10px;border-radius:99px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px; }
+  .b-red { background:rgba(239,68,68,.12);color:var(--red);border:1px solid rgba(239,68,68,.2); }
+  .b-green { background:rgba(34,197,94,.1);color:var(--green);border:1px solid rgba(34,197,94,.2); }
+  .b-amber { background:rgba(245,158,11,.12);color:var(--yellow);border:1px solid rgba(245,158,11,.2); }
+  .b-gold { background:rgba(1,162,249,.12);color:var(--primary);border:1px solid rgba(1,162,249,.25); }
+  .b-blue { background:rgba(0,82,204,.12);color:var(--dark-blue);border:1px solid rgba(0,82,204,.25); }
+
+  .hook-box { border-left:3px solid var(--primary);padding:12px 18px;margin:16px 0;font-size:17px;font-weight:700;line-height:1.45;color:rgba(255,255,255,.95);position:relative;background:rgba(1,162,249,.03);border-radius:0 8px 8px 0; }
+
+  .pain-list { list-style:none;margin-top:16px;display:flex;flex-direction:column;gap:12px; }
+  .pain-list li { display:flex;align-items:flex-start;gap:12px;font-size:14px;color:rgba(255,255,255,.8); }
+  .pain-icon { width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0; }
+
+  .schema-row { display:flex;justify-content:space-between;align-items:center;font-size:13px;padding:8px 0;border-bottom:1px solid rgba(1,162,249,.06); }
+  .schema-row:last-child { border-bottom:none; }
+
+  .comp-card { background:var(--card);border:1px solid var(--card-border);border-radius:14px;padding:18px;position:relative;overflow:hidden;transition:border-color .3s; }
+  .comp-card:hover { border-color:var(--primary); }
+  .comp-card.is-you { border-color:rgba(239,68,68,.3);opacity:.75; }
+  .comp-card.is-you::before { content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--red); }
+  .comp-card.is-leader::before { content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--green); }
+  .comp-label { font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim);margin-bottom:4px; }
+  .comp-name { font-size:15px;font-weight:800;color:var(--text-bright);margin-bottom:2px; }
+  .comp-domain { font-size:11px;color:var(--primary);margin-bottom:12px; }
+  .comp-stats { display:grid;grid-template-columns:1fr 1fr;gap:8px; }
+  .comp-stat-n { font-size:20px;font-weight:900;letter-spacing:-1px; }
+  .comp-stat-l { font-size:9px;text-transform:uppercase;letter-spacing:.5px;color:var(--text-dim); }
+
+  .obj { background:var(--card);border:1px solid var(--card-border);border-radius:12px;padding:16px 18px;display:flex;gap:12px;align-items:flex-start;transition:border-color .3s; }
+  .obj:hover { border-color:var(--primary); }
+  .obj .q { font-size:16px;font-weight:800;color:rgba(255,255,255,.95);margin-bottom:4px; }
+  .obj .a { font-size:12.5px;color:rgba(255,255,255,.55);line-height:1.5; }
+  .obj-icon { width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0; }
+
+  .cs-card { background:var(--card);border:1px solid rgba(1,162,249,.2);border-radius:16px;padding:24px;color:var(--text); }
+  .cs-name { font-size:18px;font-weight:800;color:var(--text-bright); }
+  .cs-biz { font-size:12px;font-weight:600;margin-top:2px; }
+  .cs-divider { border:none;border-top:1px solid rgba(1,162,249,.1);margin:14px 0; }
+  .cs-stats { display:flex;gap:24px; }
+  .cs-stat .n { font-size:32px;font-weight:900;line-height:1;letter-spacing:-1px; }
+  .cs-stat .l { font-size:10px;text-transform:uppercase;letter-spacing:.5px;color:var(--text-dim);margin-top:3px; }
+
+  .bar-row { display:flex;align-items:center;gap:12px;margin-bottom:8px; }
+  .bar-label { width:140px;font-size:11px;color:rgba(255,255,255,.6);text-align:right; }
+  .bar-track { flex:1;height:22px;background:rgba(255,255,255,.04);border-radius:4px;overflow:hidden; }
+  .bar-fill { height:100%;border-radius:4px;display:flex;align-items:center;padding-left:8px;font-size:11px;font-weight:700;color:#fff;min-width:fit-content; }
+
+  .cta-strengths { list-style:none;display:flex;flex-direction:column;gap:6px; }
+  .cta-strengths li { font-size:13px;color:rgba(255,255,255,.7);display:flex;align-items:center;gap:8px; }
+  .cta-strengths li::before { content:''; display:inline-block;width:6px;height:6px;background:var(--primary);border-radius:50%;flex-shrink:0; }
+
+  .cta-btn { display:inline-block;padding:14px 36px;border-radius:8px;font-size:16px;font-weight:700;background:var(--primary);color:#060f1e;text-decoration:none;margin-top:16px;transition:all .3s;border:none;cursor:pointer; }
+  .cta-btn:hover { opacity:.9; }
+
+  .kw-table { width:100%;border-collapse:collapse;font-size:12px;margin-top:12px; }
+  .kw-table th { text-align:left;padding:6px 8px;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--text-dim);border-bottom:1px solid rgba(1,162,249,.1); }
+  .kw-table td { padding:5px 8px;border-bottom:1px solid rgba(255,255,255,.03); }
+  .kw-table tr:hover { background:rgba(1,162,249,.03); }
+  .kw-row-miss { color:rgba(255,255,255,.4); }
+
+  @media (max-width:900px) {
+    .slide { padding:36px 24px 68px; }
+    .c2,.c3,.c4 { grid-template-columns:1fr; }
+    h1 { font-size:28px; }
+    h2 { font-size:22px; }
+    .big-n { font-size:40px; }
+    .cs-stats { flex-wrap:wrap; }
+    .comp-stats { grid-template-columns:1fr; }
+  }
+  @media (max-width:600px) {
+    .slide { padding:24px 16px 68px; }
+    h1 { font-size:22px; }
+    h2 { font-size:18px; }
+    .big-n { font-size:32px; }
+    .nav { padding:6px 16px;gap:10px; }
+    .cols { gap:10px; }
+    .card { padding:14px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="slide-cta" id="slideCta"><a href="https://calendly.com/info-yg4/strategy-call" target="_blank">Book a Call</a></div>
+<div class="logo">Online Optimisers</div>
+<div class="hint">&larr; &rarr; arrow keys</div>
+<div class="progress-bar" id="pb"></div>
+
+<div class="deck">
+
+  <!-- ===== SLIDE 1: COVER ===== -->
+  <div class="slide bg-cover active" id="slide-1" style="justify-content:center;align-items:center;text-align:center">
+    <div style="max-width:700px">
+      <div style="margin-bottom:32px">
+        <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+      </div>
+      <div style="font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--primary);font-weight:700;margin-bottom:18px">AI Visibility Audit</div>
+      <h1 style="font-size:clamp(38px,5vw,56px);line-height:1.1;margin-bottom:20px">Poirier Technical Solutions</h1>
+      <div style="width:60px;height:2px;background:var(--primary);margin:0 auto 24px"></div>
+      <p style="font-size:17px;color:var(--text-dim);max-width:520px;margin:0 auto;line-height:1.6">How visible is your business when project managers and telecom companies ask AI for fibre optic contractors in Ontario?</p>
+      <div style="margin-top:40px;display:flex;gap:20px;justify-content:center;flex-wrap:wrap">
+        <div style="font-size:12px;color:var(--text-dim)">
+          <span style="color:var(--primary);font-weight:700">Prepared by</span> Online Optimisers
+        </div>
+        <div style="font-size:12px;color:var(--text-dim)">&bull;</div>
+        <div style="font-size:12px;color:var(--text-dim)">April 2026</div>
+        <div style="font-size:12px;color:var(--text-dim)">&bull;</div>
+        <div style="font-size:12px;color:var(--text-dim)">Quinte West, Ontario</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SLIDE 2: OVERVIEW & KEY FINDINGS ===== -->
+  <div class="slide bg-mid" id="slide-2">
+    <div class="eyebrow">Audit Overview</div>
+    <h2>Key Findings at a Glance</h2>
+    <div class="divline"></div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:22px;flex:1">
+      <!-- Left: Key metrics -->
+      <div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+          <div class="card" style="text-align:center;padding:24px">
+            <div style="font-size:48px;font-weight:900;color:var(--red)">8<span style="font-size:22px;color:var(--text-dim)">/100</span></div>
+            <div style="font-size:11px;color:var(--text-dim);text-transform:uppercase;letter-spacing:1.5px;margin-top:6px">AI Visibility Score</div>
+          </div>
+          <div class="card" style="text-align:center;padding:24px">
+            <div style="font-size:48px;font-weight:900;color:var(--red)">0<span style="font-size:22px;color:var(--text-dim)">/30</span></div>
+            <div style="font-size:11px;color:var(--text-dim);text-transform:uppercase;letter-spacing:1.5px;margin-top:6px">AI Queries Cited</div>
+          </div>
+          <div class="card" style="text-align:center;padding:24px">
+            <div style="font-size:48px;font-weight:900;color:var(--red)">10+</div>
+            <div style="font-size:11px;color:var(--text-dim);text-transform:uppercase;letter-spacing:1.5px;margin-top:6px">Competitors Cited</div>
+          </div>
+          <div class="card" style="text-align:center;padding:24px">
+            <div style="font-size:42px;font-weight:900;color:var(--red)">$100K+</div>
+            <div style="font-size:11px;color:var(--text-dim);text-transform:uppercase;letter-spacing:1.5px;margin-top:6px">Est. Lost Rev / Year</div>
+          </div>
+        </div>
+        <div class="card" style="margin-top:12px;padding:14px 18px;border-left:3px solid var(--red)">
+          <div style="font-size:13px;color:rgba(255,255,255,.8);line-height:1.5"><strong style="color:var(--red)">Critical finding:</strong> Your entire website is <strong>3 pages</strong> with almost no written content. AI has nothing to read, nothing to cite, and nothing to recommend. You are invisible to every AI search engine.</div>
+        </div>
+      </div>
+
+      <!-- Right: Table of contents -->
+      <div class="card" style="padding:24px;display:flex;flex-direction:column;justify-content:center">
+        <h3 style="font-size:16px;margin-bottom:18px;color:var(--text-bright)">What This Audit Covers</h3>
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text)">
+            <span style="width:24px;height:24px;border-radius:6px;background:rgba(1,162,249,.1);border:1px solid rgba(1,162,249,.3);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:var(--primary);flex-shrink:0">1</span>
+            <span><strong style="color:#fff">Market Landscape</strong> - why AI search changes everything for telecom contractors</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text)">
+            <span style="width:24px;height:24px;border-radius:6px;background:rgba(124,184,158,.1);border:1px solid rgba(124,184,158,.3);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:var(--chatgpt);flex-shrink:0">2</span>
+            <span><strong style="color:#fff">ChatGPT Results</strong> - who AI recommends instead of you</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text)">
+            <span style="width:24px;height:24px;border-radius:6px;background:rgba(139,126,194,.1);border:1px solid rgba(139,126,194,.3);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:var(--perplexity);flex-shrink:0">3</span>
+            <span><strong style="color:#fff">Perplexity Results</strong> - second AI platform check</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text)">
+            <span style="width:24px;height:24px;border-radius:6px;background:rgba(66,133,244,.1);border:1px solid rgba(66,133,244,.3);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:var(--google);flex-shrink:0">4</span>
+            <span><strong style="color:#fff">Google AI Overviews</strong> - Google's AI answer layer</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text)">
+            <span style="width:24px;height:24px;border-radius:6px;background:rgba(1,162,249,.1);border:1px solid rgba(1,162,249,.3);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:var(--primary);flex-shrink:0">5</span>
+            <span><strong style="color:#fff">Competitor Analysis</strong> - who is winning and why</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text)">
+            <span style="width:24px;height:24px;border-radius:6px;background:rgba(1,162,249,.1);border:1px solid rgba(1,162,249,.3);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:var(--primary);flex-shrink:0">6</span>
+            <span><strong style="color:#fff">SEO, Schema, Reviews</strong> - technical foundation gaps</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text)">
+            <span style="width:24px;height:24px;border-radius:6px;background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.3);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:var(--green);flex-shrink:0">7</span>
+            <span><strong style="color:#fff">Roadmap</strong> - the path to visibility</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SLIDE 3: MARKET SHIFT ===== -->
+  <div class="slide bg-mid" id="slide-3">
+    <div class="eyebrow">The Search Landscape Is Changing</div>
+    <h2>The Shift Is Happening</h2>
+    <div class="divline"></div>
+    <div class="cols c2" style="margin-top:16px;align-items:start">
+      <div class="card" style="text-align:center;padding:24px">
+        <h3 style="font-size:14px;margin-bottom:16px">Search Market Share Today</h3>
+        <div style="position:relative;width:200px;height:200px;margin:0 auto">
+          <svg viewBox="0 0 36 36" style="width:200px;height:200px;transform:rotate(-90deg)">
+            <circle cx="18" cy="18" r="15.9" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="3.5"/>
+            <circle cx="18" cy="18" r="15.9" fill="none" stroke="#4285F4" stroke-width="3.5" stroke-dasharray="88 12" stroke-dashoffset="0" stroke-linecap="round"/>
+            <circle cx="18" cy="18" r="15.9" fill="none" stroke="#10B981" stroke-width="3.5" stroke-dasharray="3 97" stroke-dashoffset="-88" stroke-linecap="round"/>
+            <circle cx="18" cy="18" r="15.9" fill="none" stroke="#FF6D00" stroke-width="3.5" stroke-dasharray="4 96" stroke-dashoffset="-91" stroke-linecap="round"/>
+            <circle cx="18" cy="18" r="15.9" fill="none" stroke="#A855F7" stroke-width="3.5" stroke-dasharray="1.5 98.5" stroke-dashoffset="-95" stroke-linecap="round"/>
+          </svg>
+          <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center">
+            <div style="font-size:28px;font-weight:900;color:#4285F4">88%</div>
+            <div style="font-size:9px;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px">Google</div>
+          </div>
+        </div>
+        <div style="display:flex;gap:12px;justify-content:center;margin-top:14px;flex-wrap:wrap">
+          <div style="display:flex;align-items:center;gap:4px;font-size:10px;color:rgba(255,255,255,.6)"><span style="width:8px;height:8px;border-radius:50%;background:#4285F4;display:inline-block"></span> Google 88%</div>
+          <div style="display:flex;align-items:center;gap:4px;font-size:10px;color:rgba(255,255,255,.6)"><span style="width:8px;height:8px;border-radius:50%;background:#FF6D00;display:inline-block"></span> Bing 4%</div>
+          <div style="display:flex;align-items:center;gap:4px;font-size:10px;color:rgba(255,255,255,.6)"><span style="width:8px;height:8px;border-radius:50%;background:#10B981;display:inline-block"></span> ChatGPT 3%</div>
+          <div style="display:flex;align-items:center;gap:4px;font-size:10px;color:rgba(255,255,255,.6)"><span style="width:8px;height:8px;border-radius:50%;background:#A855F7;display:inline-block"></span> Perplexity 1.5%</div>
+        </div>
+      </div>
+      <div class="card" style="padding:24px">
+        <h3 style="font-size:14px;margin-bottom:16px">Projected: Where Search Is Heading</h3>
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <div>
+            <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text-dim);margin-bottom:4px;text-transform:uppercase;letter-spacing:1px"><span>2026 (Now)</span><span>Google: 88%</span></div>
+            <div style="height:28px;background:rgba(255,255,255,.04);border-radius:6px;overflow:hidden;position:relative">
+              <div style="height:100%;width:88%;background:linear-gradient(90deg,#4285F4,#5B9CF6);border-radius:6px;display:flex;align-items:center;padding-left:10px;font-size:11px;font-weight:700;color:#fff">Google</div>
+              <div style="position:absolute;right:0;top:0;height:100%;width:5%;background:linear-gradient(90deg,var(--green),var(--primary));border-radius:0 6px 6px 0"></div>
+            </div>
+          </div>
+          <div>
+            <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text-dim);margin-bottom:4px;text-transform:uppercase;letter-spacing:1px"><span>2028</span><span>Google: ~75%</span></div>
+            <div style="height:28px;background:rgba(255,255,255,.04);border-radius:6px;overflow:hidden;position:relative">
+              <div style="height:100%;width:75%;background:linear-gradient(90deg,#4285F4,#5B9CF6);border-radius:6px 0 0 6px;display:flex;align-items:center;padding-left:10px;font-size:11px;font-weight:700;color:#fff">Google</div>
+              <div style="position:absolute;right:0;top:0;height:100%;width:18%;background:linear-gradient(90deg,var(--green),var(--primary));border-radius:0 6px 6px 0;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff">AI Search</div>
+            </div>
+          </div>
+          <div>
+            <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text-dim);margin-bottom:4px;text-transform:uppercase;letter-spacing:1px"><span>2031</span><span>Google: ~60%</span></div>
+            <div style="height:28px;background:rgba(255,255,255,.04);border-radius:6px;overflow:hidden;position:relative">
+              <div style="height:100%;width:60%;background:linear-gradient(90deg,#4285F4,#5B9CF6);border-radius:6px 0 0 6px;display:flex;align-items:center;padding-left:10px;font-size:11px;font-weight:700;color:#fff">Google</div>
+              <div style="position:absolute;right:0;top:0;height:100%;width:35%;background:linear-gradient(90deg,var(--green),var(--primary));border-radius:0 6px 6px 0;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff">AI Search 35%</div>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:16px;padding:10px 14px;background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.15);border-radius:8px;font-size:12px;color:rgba(255,255,255,.65);line-height:1.5">
+          <strong style="color:var(--red)">The trend is clear.</strong> Google is losing market share to AI search every quarter. Businesses not visible in AI answers will lose customers to those who are.
+        </div>
+      </div>
+    </div>
+    <div class="hook-box" style="margin-top:14px;font-size:14px">Telecom project managers and general contractors are already asking AI to find fibre optic specialists. If you are not in those answers, your competitors are getting the call.</div>
+  </div>
+
+  <!-- ===== SLIDE 4: WHAT THIS AUDIT COVERS ===== -->
+  <div class="slide bg-dark" id="slide-4">
+    <div class="eyebrow">Audit Overview</div>
+    <h2>What This Audit Covers</h2>
+    <div class="divline"></div>
+    <p style="margin-top:6px;font-size:13px;color:rgba(255,255,255,.5)">Every result below is live data pulled from multiple sources. You can verify any of it yourself.</p>
+    <div class="cols c3" style="margin-top:16px">
+      <div class="card" style="padding:28px;text-align:center">
+        <div style="width:52px;height:52px;border-radius:12px;background:rgba(124,184,158,.08);border:1px solid rgba(124,184,158,.2);display:flex;align-items:center;justify-content:center;margin:0 auto 14px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--chatgpt)" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+        <h3 style="font-size:14px;color:var(--chatgpt);margin-bottom:10px">AI Search Visibility</h3>
+        <p style="font-size:11px;line-height:1.5;color:rgba(255,255,255,.5)">10 real queries tested on <strong style="color:#fff">ChatGPT</strong>, <strong style="color:#fff">Perplexity</strong>, and <strong style="color:#fff">Google AI Overviews</strong>. Who does AI recommend for fibre optic work in Ontario?</p>
+      </div>
+      <div class="card" style="padding:28px;text-align:center">
+        <div style="width:52px;height:52px;border-radius:12px;background:rgba(1,162,249,.08);border:1px solid rgba(1,162,249,.2);display:flex;align-items:center;justify-content:center;margin:0 auto 14px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></div>
+        <h3 style="font-size:14px;color:var(--primary);margin-bottom:10px">SEO Foundation</h3>
+        <p style="font-size:11px;line-height:1.5;color:rgba(255,255,255,.5)">Backlink profile, domain authority, ranked keywords, and on-page technical health. The digital foundation AI uses to decide who to recommend.</p>
+      </div>
+      <div class="card" style="padding:28px;text-align:center">
+        <div style="width:52px;height:52px;border-radius:12px;background:rgba(140,199,243,.08);border:1px solid rgba(140,199,243,.2);display:flex;align-items:center;justify-content:center;margin:0 auto 14px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--light-blue)" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <h3 style="font-size:14px;color:var(--light-blue);margin-bottom:10px">Entity and Trust Signals</h3>
+        <p style="font-size:11px;line-height:1.5;color:rgba(255,255,255,.5)">Schema markup, Google Maps listing, directory presence, and review analysis. The signals AI uses to verify a business is real and worth recommending.</p>
+      </div>
+    </div>
+    <div class="card" style="margin-top:16px;padding:16px 22px;border-left:3px solid var(--primary)">
+      <div style="font-size:13px;color:rgba(255,255,255,.7);line-height:1.6"><strong style="color:#fff">How to read this audit:</strong> Every data point is pulled from live sources. The competitor names, rankings, and citations are all real. You can verify any query yourself by copying it into ChatGPT or Perplexity right now.</div>
+    </div>
+  </div>
+
+  <!-- ===== SLIDE 5: CHATGPT RESULTS ===== -->
+  <div class="slide bg-mid" id="slide-5">
+    <div class="eyebrow">ChatGPT Audit &bull; Real Searches &bull; April 2026</div>
+    <h2>What <span style="color:var(--chatgpt)">ChatGPT</span> Says When Someone Asks for a Fibre Optic Contractor</h2>
+    <div class="divline"></div>
+    <div class="cols c3" style="margin-top:14px">
+      <div class="ai-chat">
+        <button class="cp" onclick="copyQuery(this,'best fibre optic installation company Ontario')">Copy</button>
+        <div class="platform-badge chatgpt-badge">CHATGPT</div>
+        <div class="query">Query: <span>"best fibre optic installation company Ontario"</span></div>
+        <div class="answer">Here are some of the top fibre optic installation companies in Ontario:<br><br><strong>1. <span class="cited">ExcelLinx Communications</span></strong> - Toronto-based, design, installation, consulting for fibre optic cabling.<br><strong>2. <span class="cited">Roberts Onsite</span></strong> - Certified technicians, fibre optic cable and structured cabling services.<br><strong>3. <span class="cited">DigiCam Inc.</span></strong> - Expert fibre optic installation from Barrie to Northern Ontario.<br><strong>4. <span class="cited">Fibre Optic Cable Solutions Inc.</span></strong> - Network cabling and fibre optic services in Toronto area.<br><strong>5. <span class="cited">Panopticon</span></strong> - Professional network data cabling across GTA and Ontario.<br><br><span class="not-cited">Poirier Technical Solutions - not mentioned.</span></div>
+        <div class="result-tag tag-missing" style="margin-top:8px">&#10007; NOT FOUND</div>
+      </div>
+      <div class="ai-chat">
+        <button class="cp" onclick="copyQuery(this,'fibre optic splicing contractor Ontario Canada')">Copy</button>
+        <div class="platform-badge chatgpt-badge">CHATGPT</div>
+        <div class="query">Query: <span>"fibre optic splicing contractor Ontario Canada"</span></div>
+        <div class="answer">Here are fibre optic splicing contractors serving Ontario, Canada:<br><br><strong>1. <span class="cited">JcoM Communications</span></strong> - Focused on fibre optic and copper network cabling.<br><strong>2. <span class="cited">Optipow</span></strong> - Certified fibre optic splicing, 24/7 emergency repair, Toronto.<br><strong>3. <span class="cited">Montgomery Industrial</span></strong> - Fibre splicing, trenching, telecom infrastructure across Ontario.<br><strong>4. <span class="cited">Finest Telecommunication Inc.</span></strong> - Experienced professional splicers.<br><strong>5. <span class="cited">Smart Growth Solutions</span></strong> - OSP/ISP splicing, FTTH installation.<br><br><span class="not-cited">Poirier Technical Solutions - not mentioned.</span></div>
+        <div class="result-tag tag-missing" style="margin-top:8px">&#10007; NOT FOUND</div>
+      </div>
+      <div class="ai-chat">
+        <button class="cp" onclick="copyQuery(this,'FTTH installation contractor Eastern Ontario')">Copy</button>
+        <div class="platform-badge chatgpt-badge">CHATGPT</div>
+        <div class="query">Query: <span>"FTTH installation contractor Eastern Ontario"</span></div>
+        <div class="answer">Here are FTTH (Fibre to the Home) installation contractors in Eastern Ontario:<br><br><strong>1. <span class="cited">Link-On Communications</span></strong> - Residential fibre and cable installation, 7 days a week coverage.<br><strong>2. <span class="cited">Roberts Onsite</span></strong> - Communications systems specialists, fibre optic cable expertise.<br><strong>3. <span class="cited">Axis Fiber Solutions</span></strong> - Custom drilling, wiring, and splicing services.<br><strong>4. <span class="cited">Pickard Utility Services</span></strong> - Specialized splicing equipment and cable expertise.<br><br><span class="not-cited">Poirier Technical Solutions - not mentioned.</span><br><span style="font-size:11px;color:rgba(255,255,255,.35)">(PT Corp specializes in FTTH/FTTX and serves clients nationally, but AI cannot find them)</span></div>
+        <div class="result-tag tag-missing" style="margin-top:8px">&#10007; NOT FOUND</div>
+      </div>
+    </div>
+    <p style="margin-top:14px;font-size:12px;color:rgba(255,255,255,.25);text-align:center">Real ChatGPT queries run April 2026. Poirier Technical Solutions was not recommended in any of these searches.</p>
+  </div>
+
+  <!-- ===== SLIDE 6: PERPLEXITY RESULTS ===== -->
+  <div class="slide bg-dark" id="slide-6">
+    <div class="eyebrow">Perplexity Results</div>
+    <h2>What <span style="color:var(--perplexity)">Perplexity</span> Recommends - Your Competitors, Not You</h2>
+    <div class="divline"></div>
+    <div class="cols c3" style="margin-top:14px">
+      <div class="ai-chat">
+        <button class="cp" onclick="copyQuery(this,'best fibre optic installation company Ontario')">Copy</button>
+        <div class="platform-badge perplexity-badge">PERPLEXITY</div>
+        <div class="query">Query: <span>"best fibre optic installation company Ontario"</span></div>
+        <div class="answer"><strong>1. <span class="cited">ExcelLinx Communications</span></strong> - Full-service fibre optic design and installation, Toronto.<br><strong>2. <span class="cited">DigiCam Inc.</span></strong> - Barrie to Northern Ontario fibre optic specialists.<br><strong>3. <span class="cited">Fibre Optic Cable Solutions</span></strong> - Network cabling and fusion splicing, Toronto.<br><strong>4. <span class="cited">Panopticon</span></strong> - Network cabling for businesses, GTA and Ontario.<br><strong>5. <span class="cited">JcoM Communications</span></strong> - Ontario telecom and networking solutions.<br><br><span class="not-cited">Poirier Technical Solutions - not mentioned.</span></div>
+        <div class="result-tag tag-missing" style="margin-top:8px">&#10007; NOT CITED</div>
+      </div>
+      <div class="ai-chat">
+        <button class="cp" onclick="copyQuery(this,'telecom infrastructure contractor Quinte West Ontario')">Copy</button>
+        <div class="platform-badge perplexity-badge">PERPLEXITY</div>
+        <div class="query">Query: <span>"telecom infrastructure contractor Quinte West Ontario"</span></div>
+        <div class="answer"><strong>1. <span class="cited">Roberts Onsite</span></strong> - Communications systems specialists, Ontario coverage.<br><strong>2. <span class="cited">Link-On Communications</span></strong> - Residential telecom installation services.<br><strong>3. <span class="cited">Pickard Utility Services</span></strong> - Telecom infrastructure and splicing.<br><br><span class="not-cited">Poirier Technical Solutions - not mentioned.</span><br><span style="font-size:11px;color:rgba(255,255,255,.35)">(PT Corp is physically located in Quinte West but is invisible to AI even for their home market)</span></div>
+        <div class="result-tag tag-missing" style="margin-top:8px">&#10007; NOT CITED</div>
+      </div>
+      <div class="ai-chat">
+        <button class="cp" onclick="copyQuery(this,'MDU fibre optic installation company Ontario Canada')">Copy</button>
+        <div class="platform-badge perplexity-badge">PERPLEXITY</div>
+        <div class="query">Query: <span>"MDU fibre optic installation company Ontario Canada"</span></div>
+        <div class="answer"><strong>1. <span class="cited">ExcelLinx Communications</span></strong> - Multi-dwelling unit fibre optic cabling, Toronto.<br><strong>2. <span class="cited">Canada Techs</span></strong> - Fibre optic installation for commercial and residential.<br><strong>3. <span class="cited">Smart Growth Solutions</span></strong> - Optical fibre solutions, FTTH installations, Ontario.<br><strong>4. <span class="cited">Optipow</span></strong> - Fibre optic splicing and structured cabling, Toronto/GTA.<br><br><span class="not-cited">Poirier Technical Solutions - not mentioned.</span></div>
+        <div class="result-tag tag-missing" style="margin-top:8px">&#10007; NOT CITED</div>
+      </div>
+    </div>
+    <p style="margin-top:14px;font-size:12px;color:rgba(255,255,255,.25);text-align:center">Real Perplexity queries run April 2026. Your competitors dominate every result.</p>
+  </div>
+
+  <!-- ===== SLIDE 7: GOOGLE AI OVERVIEWS ===== -->
+  <div class="slide bg-warm" id="slide-7">
+    <div class="eyebrow">Google AI Overviews &bull; Live Results &bull; April 2026</div>
+    <h2>What <span style="color:var(--google)">Google AI Overviews</span> Show for Fibre Optic</h2>
+    <div class="divline"></div>
+    <div class="cols c3" style="margin-top:14px">
+      <div class="ai-chat">
+        <button class="cp" onclick="copyQuery(this,'best fibre optic installation company Ontario')">Copy</button>
+        <div class="platform-badge google-badge">GOOGLE AIO</div>
+        <div class="query">Query: <span>"best fibre optic installation company Ontario"</span></div>
+        <div class="answer"><span class="badge b-green" style="margin-bottom:8px;display:inline-block">AIO TRIGGERED</span><br>Google AI Overview recommends:<br><br><strong>1. <span class="cited">ExcelLinx Communications</span></strong> - cited prominently in the overview.<br><strong>2. <span class="cited">DigiCam Inc.</span></strong> - fibre optic installation across Ontario.<br><strong>3. <span class="cited">Fibre Optic Cable Solutions</span></strong> - Toronto-based specialist.<br><strong>4. <span class="cited">Roberts Onsite</span></strong> - communications systems contractor.<br><br><span class="not-cited">Poirier Technical Solutions - not cited.</span></div>
+        <div class="result-tag tag-missing" style="margin-top:8px">&#10007; NOT CITED</div>
+      </div>
+      <div class="ai-chat" style="border-color:rgba(239,68,68,.15)">
+        <div class="platform-badge google-badge">GOOGLE AIO</div>
+        <div class="query">7 out of 10 queries tested:</div>
+        <div class="answer"><span class="badge b-red" style="margin-bottom:8px;display:inline-block">NO AIO TRIGGERED</span><br><br>The following queries did <strong>not generate</strong> an AI Overview:<br><br><span style="font-size:11px;color:rgba(255,255,255,.4);line-height:1.8">"fibre optic splicing contractor Ontario"<br>"FTTH installation contractor Eastern Ontario"<br>"telecom infrastructure contractor Quinte West"<br>"structured cabling company Ontario"<br>"emergency fibre optic repair Ontario"<br>"MDU fibre optic installation Ontario"<br>"commercial fibre optic contractor Canada"</span></div>
+      </div>
+      <div class="ai-chat" style="border-color:rgba(245,158,11,.15)">
+        <div class="platform-badge google-badge">GOOGLE AIO</div>
+        <div class="query">What This Means</div>
+        <div class="answer"><strong style="color:var(--yellow)">Only 30% of fibre optic queries trigger AI Overviews today.</strong><br><br>Google is rapidly expanding AIO coverage. When more telecom queries start triggering AI Overviews, the companies with strong entity signals will dominate.<br><br><strong>Top organic results across all queries:</strong><br>ExcelLinx, DigiCam, Fibre Optic Cable Solutions, JcoM, Roberts Onsite, Smart Growth Solutions, Panopticon<br><br><span class="not-cited">PT Corp: not in top 10 for any query.</span></div>
+        <div class="result-tag tag-missing" style="margin-top:8px">&#10007; NOT RANKED</div>
+      </div>
+    </div>
+    <p style="margin-top:14px;font-size:12px;color:rgba(255,255,255,.25);text-align:center">Google AI Overviews are expanding rapidly. Poirier Technical Solutions has zero presence in the queries that triggered an AIO.</p>
+  </div>
+
+  <!-- ===== SLIDE 8: FULL KEYWORD TRACKER ===== -->
+  <div class="slide bg-warm" id="slide-8">
+    <div class="eyebrow">Full Keyword Audit &bull; 10 Queries Tested &bull; 3 Platforms</div>
+    <h2>Full AI Search Tracker</h2>
+    <p style="font-size:16px;color:rgba(255,255,255,.45);margin-top:4px;font-weight:600">10 queries tested across 3 AI platforms - 0 citations found</p>
+    <div class="divline"></div>
+    <div style="margin-top:10px;overflow-x:auto">
+      <table class="kw-table" style="min-width:700px">
+        <tr><th style="width:35%">Query</th><th style="width:12%">Contract Value</th><th style="width:18%">ChatGPT</th><th style="width:18%">Perplexity</th><th style="width:17%">Google AIO</th></tr>
+        <tr class="kw-row-miss"><td>best fibre optic installation company Ontario</td><td style="color:var(--yellow);font-size:10px">$50K-250K</td><td style="color:var(--red)">&#10007; Not Found</td><td style="color:var(--red)">&#10007; Not Found</td><td style="color:var(--red)">&#10007; Not Cited</td></tr>
+        <tr class="kw-row-miss"><td>fibre optic splicing contractor Ontario Canada</td><td style="color:var(--yellow);font-size:10px">$10K-100K</td><td style="color:var(--red)">&#10007; Not Found</td><td style="color:var(--red)">&#10007; Not Found</td><td style="color:var(--text-dim);font-size:10px">No AIO</td></tr>
+        <tr class="kw-row-miss"><td>FTTH installation contractor Eastern Ontario</td><td style="color:var(--yellow);font-size:10px">$50K-500K</td><td style="color:var(--red)">&#10007; Not Found</td><td style="color:var(--red)">&#10007; Not Found</td><td style="color:var(--text-dim);font-size:10px">No AIO</td></tr>
+        <tr class="kw-row-miss"><td>telecom infrastructure contractor Quinte West Ontario</td><td style="color:var(--yellow);font-size:10px">$25K-200K</td><td style="color:var(--red)">&#10007; Not Found</td><td style="color:var(--red)">&#10007; Not Found</td><td style="color:var(--text-dim);font-size:10px">No AIO</td></tr>
+        <tr class="kw-row-miss"><td>structured cabling company Ontario</td><td style="color:var(--yellow);font-size:10px">$5K-50K</td><td style="color:var(--red)">&#10007; Not Found</td><td style="color:var(--red)">&#10007; Not Found</td><td style="color:var(--text-dim);font-size:10px">No AIO</td></tr>
+        <tr class="kw-row-miss"><td>MDU fibre optic installation Ontario Canada</td><td style="color:var(--yellow);font-size:10px">$25K-150K</td><td style="color:var(--red)">&#10007; Not Found</td><td style="color:var(--red)">&#10007; Not Found</td><td style="color:var(--text-dim);font-size:10px">No AIO</td></tr>
+        <tr class="kw-row-miss"><td>fibre optic fusion splicing services Canada</td><td style="color:var(--yellow);font-size:10px">$10K-75K</td><td style="color:var(--red)">&#10007; Not Found</td><td style="color:var(--red)">&#10007; Not Found</td><td style="color:var(--red)">&#10007; Not Cited</td></tr>
+        <tr class="kw-row-miss"><td>emergency fibre optic cable repair Ontario</td><td style="color:var(--yellow);font-size:10px">$2K-15K</td><td style="color:var(--red)">&#10007; Not Found</td><td style="color:var(--red)">&#10007; Not Found</td><td style="color:var(--text-dim);font-size:10px">No AIO</td></tr>
+        <tr class="kw-row-miss"><td>commercial fibre optic contractor Canada</td><td style="color:var(--yellow);font-size:10px">$50K-500K+</td><td style="color:var(--red)">&#10007; Not Found</td><td style="color:var(--red)">&#10007; Not Found</td><td style="color:var(--red)">&#10007; Not Cited</td></tr>
+        <tr class="kw-row-miss"><td>security camera installation Quinte West Ontario</td><td style="color:var(--yellow);font-size:10px">$5K-25K</td><td style="color:var(--red)">&#10007; Not Found</td><td style="color:var(--red)">&#10007; Not Found</td><td style="color:var(--text-dim);font-size:10px">No AIO</td></tr>
+      </table>
+    </div>
+    <div style="margin-top:16px;display:flex;gap:12px;flex-wrap:wrap">
+      <div class="card accent-red" style="flex:1;text-align:center;padding:10px;min-width:120px"><div style="font-size:24px;font-weight:900;color:var(--red)">0/10</div><div style="font-size:9px;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px;margin-top:2px">ChatGPT</div></div>
+      <div class="card accent-red" style="flex:1;text-align:center;padding:10px;min-width:120px"><div style="font-size:24px;font-weight:900;color:var(--red)">0/10</div><div style="font-size:9px;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px;margin-top:2px">Perplexity</div></div>
+      <div class="card accent-red" style="flex:1;text-align:center;padding:10px;min-width:120px"><div style="font-size:24px;font-weight:900;color:var(--red)">0/10</div><div style="font-size:9px;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px;margin-top:2px">Google AIO</div></div>
+      <div class="card accent-red" style="flex:1;text-align:center;padding:10px;min-width:120px"><div style="font-size:24px;font-weight:900;color:var(--red)">0%</div><div style="font-size:9px;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px;margin-top:2px">Overall</div></div>
+    </div>
+  </div>
+
+  <!-- ===== SLIDE 9: COMPETITOR COMPARISON ===== -->
+  <div class="slide bg-dark" id="slide-9">
+    <div class="eyebrow">Competitor Comparison</div>
+    <h2>Who AI Is Recommending Instead of You</h2>
+    <div class="divline"></div>
+    <div class="cols c4" style="margin-top:14px">
+      <div class="comp-card is-leader" style="border-color:rgba(34,197,94,.25);"><div style="position:absolute;top:0;left:0;right:0;height:2px;background:var(--green)"></div><div class="comp-label" style="color:var(--green)">Most Cited</div><div class="comp-name">ExcelLinx Communications</div><div class="comp-domain">excellinx.com - Toronto, ON</div><div class="comp-stats"><div><div class="comp-stat-n" style="color:var(--green)">8/30</div><div class="comp-stat-l">AI Citations</div></div><div><div class="comp-stat-n">Full</div><div class="comp-stat-l">Service Pages</div></div><div><div class="comp-stat-n">50+</div><div class="comp-stat-l">Content Pages</div></div><div><div class="comp-stat-n">Pro</div><div class="comp-stat-l">Schema Markup</div></div></div><div style="margin-top:8px;font-size:10px;color:rgba(255,255,255,.4)">Complete website with case studies, service pages, certifications</div></div>
+      <div class="comp-card" style="border-color:rgba(1,162,249,.2);"><div style="position:absolute;top:0;left:0;right:0;height:2px;background:var(--primary);opacity:.7"></div><div class="comp-label">Strong Digital Presence</div><div class="comp-name">DigiCam Inc.</div><div class="comp-domain">digicam.ca - Ontario</div><div class="comp-stats"><div><div class="comp-stat-n" style="color:var(--primary)">5/30</div><div class="comp-stat-l">AI Citations</div></div><div><div class="comp-stat-n">Full</div><div class="comp-stat-l">Service Pages</div></div><div><div class="comp-stat-n">30+</div><div class="comp-stat-l">Content Pages</div></div><div><div class="comp-stat-n">Yes</div><div class="comp-stat-l">Google Reviews</div></div></div><div style="margin-top:8px;font-size:10px;color:rgba(255,255,255,.4)">Barrie to Northern Ontario, detailed service descriptions</div></div>
+      <div class="comp-card" style="border-color:rgba(0,82,204,.2);"><div style="position:absolute;top:0;left:0;right:0;height:2px;background:var(--dark-blue);opacity:.7"></div><div class="comp-label">Ontario-Wide Coverage</div><div class="comp-name">Roberts Onsite</div><div class="comp-domain">robertsonsite.ca</div><div class="comp-stats"><div><div class="comp-stat-n" style="color:var(--dark-blue)">4/30</div><div class="comp-stat-l">AI Citations</div></div><div><div class="comp-stat-n">Full</div><div class="comp-stat-l">Service Pages</div></div><div><div class="comp-stat-n">40+</div><div class="comp-stat-l">Content Pages</div></div><div><div class="comp-stat-n">Yes</div><div class="comp-stat-l">Google Reviews</div></div></div><div style="margin-top:8px;font-size:10px;color:rgba(255,255,255,.4)">Certified technicians, fibre optic and structured cabling specialists</div></div>
+      <div class="comp-card is-you"><div class="comp-label" style="color:var(--red)">You</div><div class="comp-name">Poirier Technical</div><div class="comp-domain">ptcorp.ca - Quinte West, ON</div><div class="comp-stats"><div><div class="comp-stat-n" style="color:var(--red)">0/30</div><div class="comp-stat-l">AI Citations</div></div><div><div class="comp-stat-n" style="color:var(--red)">3</div><div class="comp-stat-l">Total Pages</div></div><div><div class="comp-stat-n" style="color:var(--red)">~50</div><div class="comp-stat-l">Words of Content</div></div><div><div class="comp-stat-n" style="color:var(--red)">0</div><div class="comp-stat-l">Google Reviews</div></div></div><div style="margin-top:8px;font-size:10px;color:var(--yellow)">3-page website &bull; No case studies &bull; No service descriptions &bull; No blog</div></div>
+    </div>
+    <p style="margin-top:14px;font-size:12px;color:var(--text-dim)">Your competitors have 10x-50x the content. ExcelLinx alone has more content on a single service page than your entire website combined.</p>
+  </div>
+
+  <!-- ===== SLIDE 10: PAIN / REVENUE GAP ===== -->
+  <div class="slide bg-mid" id="slide-10">
+    <div class="cols c21" style="margin-top:0;align-items:center;height:100%">
+      <div>
+        <div class="eyebrow">What This Is Costing You</div>
+        <h2>A 3-Page Website Cannot Win Contracts in 2026</h2>
+        <div class="divline"></div>
+        <ul class="pain-list">
+          <li><div class="pain-icon" style="background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.2)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><span><strong style="color:var(--red)">Your Entire Website Is 3 Pages.</strong> Home, About, Services. That is it. Competitors have 30-50+ pages with detailed service descriptions, case studies, project portfolios, and FAQ content. AI recommends businesses that give it content to work with.</span></li>
+          <li><div class="pain-icon" style="background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.2)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--yellow)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg></div><span><strong style="color:var(--yellow)">Zero Google Reviews.</strong> No reviews means no social proof for AI to evaluate. When a project manager asks AI for a fibre optic contractor, review count and rating are primary ranking signals.</span></li>
+          <li><div class="pain-icon" style="background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.2)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div><span><strong style="color:var(--green)">Name Confusion With Poirier Telecom.</strong> poiriertelecom.ca is a separate company offering similar fibre optic services. Without strong entity signals, AI may confuse the two or default to the competitor with better digital presence.</span></li>
+          <li><div class="pain-icon" style="background:rgba(1,162,249,.12);border:1px solid rgba(1,162,249,.2)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><span><strong style="color:var(--primary)">High-Value Contracts Are Decided Online Now.</strong> FTTH builds = $50K-500K+. MDU projects = $25K-150K. A single missed contract from AI invisibility could cost more than 10 years of marketing investment.</span></li>
+        </ul>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div class="card glow-red" style="text-align:center;padding:18px"><div style="font-size:38px;font-weight:900;color:var(--red)">$50K-500K</div><div style="font-size:10px;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.4);margin-top:4px">Single FTTH Contract Value</div></div>
+        <div class="card glow-amber" style="text-align:center;padding:18px"><div style="font-size:34px;font-weight:900;color:var(--yellow)">$100K-500K+</div><div style="font-size:10px;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.4);margin-top:4px">Estimated Annual Revenue Gap</div></div>
+        <div class="card glow-cyan" style="text-align:center;padding:14px"><div style="font-size:13px;font-weight:700;color:var(--primary)">6 Services, Zero AI Visibility</div><div style="font-size:11px;color:rgba(255,255,255,.4);margin-top:4px">FTTH, MDU, splicing, structured cabling, security cameras, consulting - none appear in any AI result.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SLIDE 11: SEO FOUNDATION ===== -->
+  <div class="slide bg-dark" id="slide-11">
+    <div class="eyebrow">Your SEO Foundation</div>
+    <h2>The Technical Gaps Behind Your Invisibility</h2>
+    <div class="divline"></div>
+    <div style="margin-top:16px">
+      <div class="bar-row"><div class="bar-label">ExcelLinx</div><div class="bar-track"><div class="bar-fill" style="width:100%;background:linear-gradient(90deg,var(--dark-blue),var(--primary))">50+ pages, full schema, case studies</div></div></div>
+      <div class="bar-row"><div class="bar-label">DigiCam Inc.</div><div class="bar-track"><div class="bar-fill" style="width:65%;background:linear-gradient(90deg,var(--primary),var(--light-blue))">30+ pages, service detail, reviews</div></div></div>
+      <div class="bar-row"><div class="bar-label">Roberts Onsite</div><div class="bar-track"><div class="bar-fill" style="width:50%;background:linear-gradient(90deg,var(--light-blue),var(--primary))">40+ pages, certifications, portfolio</div></div></div>
+      <div class="bar-row"><div class="bar-label" style="color:var(--yellow);font-weight:700">PT Corp (You)</div><div class="bar-track"><div class="bar-fill" style="width:4%;background:linear-gradient(90deg,var(--red),rgba(239,68,68,.6));min-width:120px">3 pages, ~50 words</div></div></div>
+    </div>
+    <div class="cols c3" style="margin-top:18px">
+      <div class="card accent-red"><div style="font-size:32px;font-weight:900;color:var(--red)">3</div><div style="font-size:10px;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px;margin-top:4px">Total Website Pages</div><div style="font-size:11px;color:rgba(255,255,255,.5);margin-top:6px">Home, About, Services. That is the entire site. No individual service pages, no blog, no portfolio, no FAQ. AI needs content to cite - you have almost none.</div></div>
+      <div class="card accent-amber"><div style="font-size:32px;font-weight:900;color:var(--yellow)">~50</div><div style="font-size:10px;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px;margin-top:4px">Words of Actual Content</div><div style="font-size:11px;color:rgba(255,255,255,.5);margin-top:6px">Your services page is a bullet list with zero descriptions. "FTTH/FTTX, MDU, Install/Repair, Consulting, Structured Cabling, Security Camera/Systems" - that is the entire page.</div></div>
+      <div class="card accent-red"><div style="font-size:32px;font-weight:900;color:var(--red)">0</div><div style="font-size:10px;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px;margin-top:4px">Ranked Keywords</div><div style="font-size:11px;color:rgba(255,255,255,.5);margin-top:6px">With so little content, Google has almost nothing to rank you for. Your site does not appear in search results for any fibre optic related queries.</div></div>
+    </div>
+    <div class="hook-box" style="margin-top:18px;font-size:15px"><strong>The core issue:</strong> You say you serve clients nationally - but your digital footprint is smaller than a one-person freelancer's portfolio site. The gap between your real-world capability and your online presence is costing you contracts every month.</div>
+  </div>
+
+  <!-- ===== SLIDE 12: ENTITY & SCHEMA GAPS ===== -->
+  <div class="slide bg-mid" id="slide-12">
+    <div class="eyebrow">Entity &amp; Schema Gaps</div>
+    <h2>AI Cannot Recommend What It Cannot Structure</h2>
+    <div class="divline"></div>
+    <div class="cols c2" style="margin-top:14px">
+      <div class="card"><h3 style="margin-bottom:12px">Schema Markup Scorecard</h3><div style="font-size:11px;color:var(--text-dim);margin-bottom:10px">Score: 0/20</div><div class="schema-row"><span style="color:rgba(255,255,255,.7)">LocalBusiness</span><span style="color:var(--red)">&#10007; MISSING (Critical)</span></div><div class="schema-row"><span style="color:rgba(255,255,255,.7)">Organization</span><span style="color:var(--red)">&#10007; MISSING</span></div><div class="schema-row"><span style="color:rgba(255,255,255,.7)">Person (Brad Poirier)</span><span style="color:var(--red)">&#10007; MISSING</span></div><div class="schema-row"><span style="color:rgba(255,255,255,.7)">Service Schema</span><span style="color:var(--red)">&#10007; MISSING</span></div><div class="schema-row"><span style="color:rgba(255,255,255,.7)">FAQ Schema</span><span style="color:var(--red)">&#10007; MISSING</span></div><div class="schema-row"><span style="color:rgba(255,255,255,.7)">HowTo Schema</span><span style="color:var(--red)">&#10007; MISSING</span></div><div style="margin-top:12px;font-size:11px;color:rgba(255,255,255,.4);line-height:1.5">Without any schema markup, AI has no structured way to identify Poirier Technical Solutions as a fibre optic contractor in Ontario. Zero structured data means zero entity recognition.</div></div>
+      <div class="card"><h3 style="margin-bottom:12px">Directory &amp; Knowledge Presence</h3><div style="font-size:11px;color:var(--text-dim);margin-bottom:10px">Score: 3/30</div><div class="schema-row"><span style="color:rgba(255,255,255,.7)">Google Maps / GBP</span><span style="color:var(--red)">&#10007; NOT FOUND</span></div><div class="schema-row"><span style="color:rgba(255,255,255,.7)">Quinte West Chamber</span><span style="color:var(--green)">&#10003; Listed</span></div><div class="schema-row"><span style="color:rgba(255,255,255,.7)">Yellow Pages Canada</span><span style="color:var(--red)">&#10007; NOT LISTED</span></div><div class="schema-row"><span style="color:rgba(255,255,255,.7)">Yelp</span><span style="color:var(--red)">&#10007; NOT LISTED</span></div><div class="schema-row"><span style="color:rgba(255,255,255,.7)">BBB Canada</span><span style="color:var(--red)">&#10007; NOT LISTED</span></div><div class="schema-row"><span style="color:rgba(255,255,255,.7)">Fibre Connect Council</span><span style="color:var(--red)">&#10007; NOT LISTED</span></div><div class="schema-row"><span style="color:rgba(255,255,255,.7)">LinkedIn (Company)</span><span style="color:var(--yellow)">~ Minimal</span></div><div class="schema-row"><span style="color:rgba(255,255,255,.7)">Facebook</span><span style="color:var(--red)">&#10007; NOT FOUND</span></div><div class="schema-row"><span style="color:rgba(255,255,255,.7)">Indeed / Hiring</span><span style="color:var(--red)">&#10007; NOT LISTED</span></div><div style="margin-top:12px;font-size:11px;color:rgba(255,255,255,.4);line-height:1.5">Only found on Quinte West Chamber of Commerce business directory. No Google Business Profile means no map visibility, no reviews, and no trust signals for AI.</div></div>
+    </div>
+    <div class="cols c4" style="margin-top:12px">
+      <div class="card accent-red" style="text-align:center;padding:12px"><div style="font-size:24px;font-weight:900;color:var(--red)">3<span style="font-size:14px;color:var(--text-dim)">/30</span></div><div style="font-size:9px;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px;margin-top:3px">KG Presence</div></div>
+      <div class="card accent-red" style="text-align:center;padding:12px"><div style="font-size:24px;font-weight:900;color:var(--red)">0<span style="font-size:14px;color:var(--text-dim)">/20</span></div><div style="font-size:9px;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px;margin-top:3px">Schema</div></div>
+      <div class="card accent-red" style="text-align:center;padding:12px"><div style="font-size:24px;font-weight:900;color:var(--red)">1<span style="font-size:14px;color:var(--text-dim)">/25</span></div><div style="font-size:9px;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px;margin-top:3px">Content</div></div>
+      <div class="card accent-red" style="text-align:center;padding:12px"><div style="font-size:24px;font-weight:900;color:var(--red)">0<span style="font-size:14px;color:var(--text-dim)">/25</span></div><div style="font-size:9px;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px;margin-top:3px">AI Citations</div></div>
+    </div>
+  </div>
+
+  <!-- ===== SLIDE 13: REVIEW INTEL ===== -->
+  <div class="slide bg-dark" id="slide-13">
+    <div class="eyebrow">Review Intelligence</div>
+    <h2>Zero Reviews. Your Competitors Have Social Proof - You Do Not.</h2>
+    <div class="divline"></div>
+    <div class="cols c2" style="margin-top:14px">
+      <div class="card">
+        <h3 style="margin-bottom:14px">The Review Gap in Ontario Fibre Optic</h3>
+        <div class="bar-row"><div class="bar-label" style="color:var(--red);font-weight:700">PT Corp (You)</div><div class="bar-track"><div class="bar-fill" style="width:2%;background:linear-gradient(90deg,var(--red),rgba(239,68,68,.4));min-width:140px;white-space:nowrap">0 reviews - No GBP</div></div></div>
+        <div class="bar-row"><div class="bar-label">ExcelLinx</div><div class="bar-track"><div class="bar-fill" style="width:30%;background:linear-gradient(90deg,var(--dark-blue),var(--primary));min-width:120px">Active GBP, reviews</div></div></div>
+        <div class="bar-row"><div class="bar-label">DigiCam Inc.</div><div class="bar-track"><div class="bar-fill" style="width:35%;background:linear-gradient(90deg,var(--primary),var(--dark-blue));min-width:120px">Active GBP, reviews</div></div></div>
+        <div class="bar-row"><div class="bar-label">Roberts Onsite</div><div class="bar-track"><div class="bar-fill" style="width:45%;background:linear-gradient(90deg,var(--green),var(--primary))">Established reviews</div></div></div>
+        <div class="bar-row"><div class="bar-label">JcoM Communications</div><div class="bar-track"><div class="bar-fill" style="width:25%;background:linear-gradient(90deg,var(--primary),var(--light-blue));min-width:120px">Active GBP listing</div></div></div>
+        <div style="margin-top:14px;padding:10px 14px;background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.15);border-radius:8px;font-size:12px;color:rgba(255,255,255,.6);line-height:1.5"><strong style="color:var(--red)">Critical gap:</strong> Without a Google Business Profile, you cannot collect reviews. Without reviews, AI has no third-party validation to justify recommending you. This is the foundation of trust in AI recommendations.</div>
+      </div>
+      <div>
+        <div class="card glow-amber"><h3 style="margin-bottom:10px;color:var(--yellow)">What Reviews Would Do For You</h3><ul style="list-style:none;display:flex;flex-direction:column;gap:8px;font-size:12px;color:rgba(255,255,255,.6)"><li style="display:flex;align-items:flex-start;gap:8px"><span style="color:var(--yellow);flex-shrink:0">&#9654;</span><span>Client reviews mentioning "fibre optic splicing" and "Ontario" create direct keyword signals for AI</span></li><li style="display:flex;align-items:flex-start;gap:8px"><span style="color:var(--yellow);flex-shrink:0">&#9654;</span><span>Project-specific reviews ("FTTH build", "MDU installation") help AI match you to technical queries</span></li><li style="display:flex;align-items:flex-start;gap:8px"><span style="color:var(--yellow);flex-shrink:0">&#9654;</span><span>Reviews from telecom companies and municipalities build B2B credibility signals</span></li><li style="display:flex;align-items:flex-start;gap:8px"><span style="color:var(--yellow);flex-shrink:0">&#9654;</span><span>Even 10-15 detailed reviews would put you ahead of most competitors in this niche</span></li></ul></div>
+        <div style="margin-top:10px;padding:10px 14px;background:rgba(1,162,249,.04);border:1px solid rgba(1,162,249,.12);border-radius:8px;font-size:12px;color:rgba(255,255,255,.5);line-height:1.5"><strong style="color:var(--primary)">Step 1:</strong> Claim or create your Google Business Profile. Step 2: Ask your best clients for reviews mentioning the specific work you did. Target 15+ reviews in the first 90 days.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SLIDE 14: CASE STUDY - ACCD ===== -->
+  <div class="slide bg-proof" id="slide-14">
+    <div class="eyebrow">Proof - Same System, Different Industry</div>
+    <h2>Our Client Ranks <span style="color:var(--green)">#1 in ChatGPT</span></h2>
+    <div class="divline"></div>
+    <div class="cols c2" style="margin-top:14px;align-items:start">
+      <div>
+        <div class="cs-card" style="border-color:rgba(1,162,249,.25)"><div class="cs-name" style="color:var(--primary)">Advanced Center for Cosmetic Dentistry</div><div class="cs-biz">St. Petersburg, FL - Cosmetic &amp; Restorative Dentistry</div><hr class="cs-divider"><div class="cs-stats"><div class="cs-stat"><div class="n" style="color:var(--primary)">#1</div><div class="l">ChatGPT Ranking</div></div><div class="cs-stat"><div class="n" style="color:var(--green)">193%</div><div class="l">Traffic Increase</div></div><div class="cs-stat"><div class="n" style="color:var(--primary)">5</div><div class="l">Months</div></div></div></div>
+        <div class="card" style="margin-top:12px"><h3 style="font-size:14px;color:var(--primary);margin-bottom:10px">What we built for them</h3><ul style="list-style:none;display:flex;flex-direction:column;gap:8px;font-size:12px;color:rgba(255,255,255,.6)"><li style="display:flex;align-items:center;gap:8px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Entity signal building across all major directories</li><li style="display:flex;align-items:center;gap:8px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> FAQ + Service schema on every service page</li><li style="display:flex;align-items:center;gap:8px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> AI-trusted citation building</li><li style="display:flex;align-items:center;gap:8px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Location-specific content targeting</li><li style="display:flex;align-items:center;gap:8px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Google Maps optimization + ongoing monthly work</li></ul></div>
+      </div>
+      <div>
+        <div class="card" style="border-left:3px solid var(--yellow);margin-top:0"><div style="font-size:13px;color:rgba(255,255,255,.7);line-height:1.6"><strong style="color:var(--yellow)">PT Corp's opportunity:</strong> Fibre optic is a niche where very few competitors are doing any AI optimization. The bar is low right now. The same framework that got a dentist to #1 in ChatGPT can get a telecom contractor visible in AI recommendations - and in a niche with far higher contract values.</div></div>
+        <div class="card" style="margin-top:12px"><h3 style="font-size:14px;margin-bottom:10px">Why This Matters for Telecom</h3><p style="font-size:12px;color:rgba(255,255,255,.5);line-height:1.6">When someone asks ChatGPT "who does fibre optic splicing in Ontario?", the companies that appear first get the RFP. A single FTTH contract can be worth $50K-500K+. The cost of being invisible is measured in lost contracts, not lost clicks.</p><p style="font-size:12px;color:rgba(255,255,255,.5);line-height:1.6;margin-top:8px">Your competitors are not doing this yet. That is the window. Early movers in AI visibility win the market while others wait.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SLIDE 15: CASE STUDY - FRAMEWORK ===== -->
+  <div class="slide bg-mid" id="slide-15">
+    <div class="eyebrow">Case Study: Methodology Proof</div>
+    <h2>The Framework Works Across Industries</h2>
+    <div class="divline"></div>
+    <div class="cols c2" style="margin-top:14px;align-items:start">
+      <div class="cs-card" style="border-color:rgba(34,197,94,.25)"><div class="cs-name">3 Clients Now Ranking #1 in ChatGPT</div><div class="cs-biz" style="color:var(--green)">Dentist, Moving Company, Moving Company - Different industries, same framework</div><hr class="cs-divider"><div class="cs-stats"><div class="cs-stat"><div class="n" style="color:var(--green)">3</div><div class="l">Clients at #1</div></div><div class="cs-stat"><div class="n" style="color:var(--green)">100%</div><div class="l">Success Rate</div></div><div class="cs-stat"><div class="n" style="color:var(--primary)">3-5</div><div class="l">Months to #1</div></div></div><div style="font-size:12px;color:rgba(255,255,255,.55);margin-top:14px;line-height:1.55;border-left:2px solid var(--green);padding-left:12px">Different industries, different markets, same 5-step framework producing the same outcome. Telecom is next.</div></div>
+      <div class="card"><h3 style="margin-bottom:14px">The 5-Step Framework</h3><div style="display:flex;flex-direction:column;gap:8px"><div style="display:flex;gap:10px;font-size:13px;color:rgba(255,255,255,.7);align-items:center"><span style="width:24px;height:24px;border-radius:6px;background:rgba(1,162,249,.1);border:1px solid rgba(1,162,249,.2);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--primary);flex-shrink:0">1</span><span><strong>AI Visibility Audit</strong> - find the gaps (where you are now)</span></div><div style="display:flex;gap:10px;font-size:13px;color:rgba(255,255,255,.7);align-items:center"><span style="width:24px;height:24px;border-radius:6px;background:rgba(1,162,249,.1);border:1px solid rgba(1,162,249,.2);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--primary);flex-shrink:0">2</span><span><strong>Entity &amp; Schema Foundation</strong> - make AI understand you</span></div><div style="display:flex;gap:10px;font-size:13px;color:rgba(255,255,255,.7);align-items:center"><span style="width:24px;height:24px;border-radius:6px;background:rgba(1,162,249,.1);border:1px solid rgba(1,162,249,.2);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--primary);flex-shrink:0">3</span><span><strong>Content Optimization</strong> - give AI something to cite</span></div><div style="display:flex;gap:10px;font-size:13px;color:rgba(255,255,255,.7);align-items:center"><span style="width:24px;height:24px;border-radius:6px;background:rgba(1,162,249,.1);border:1px solid rgba(1,162,249,.2);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--primary);flex-shrink:0">4</span><span><strong>Citation Building</strong> - appear in AI's trusted sources</span></div><div style="display:flex;gap:10px;font-size:13px;color:rgba(255,255,255,.7);align-items:center"><span style="width:24px;height:24px;border-radius:6px;background:rgba(1,162,249,.1);border:1px solid rgba(1,162,249,.2);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--primary);flex-shrink:0">5</span><span><strong>Monitoring &amp; Optimization</strong> - stay ahead of competitors</span></div></div><div style="margin-top:14px;padding:10px 14px;background:rgba(34,197,94,.04);border:1px solid rgba(34,197,94,.12);border-radius:8px;font-size:12px;color:rgba(255,255,255,.6)">3 clients now ranking #1 in ChatGPT across different industries. The methodology is proven and repeatable.</div></div>
+    </div>
+  </div>
+
+  <!-- ===== SLIDE 16: ROADMAP ===== -->
+  <div class="slide bg-dark" id="slide-16">
+    <div class="eyebrow">Your Roadmap</div>
+    <h2>From Invisible to Recommended in 3 Phases</h2>
+    <div class="divline"></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:24px">
+      <div><div style="display:flex;align-items:center;gap:10px;margin-bottom:12px"><div style="width:14px;height:14px;border-radius:50%;background:var(--primary);box-shadow:0 0 12px rgba(1,162,249,.4);flex-shrink:0"></div><div style="font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-dim)">Month 1</div></div><div class="card" style="padding:18px;height:calc(100% - 36px)"><h3 style="font-size:14px;color:var(--primary);margin-bottom:10px">Foundation (Critical Fixes)</h3><ul style="list-style:none;display:flex;flex-direction:column;gap:7px;font-size:12px;color:rgba(255,255,255,.6)"><li style="display:flex;align-items:center;gap:6px"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="3"><path d="M12 9v4M12 17h.01"/><circle cx="12" cy="12" r="10"/></svg> Claim Google Business Profile (CRITICAL - Day 1)</li><li style="display:flex;align-items:center;gap:6px"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Add LocalBusiness + Organization + Service schema</li><li style="display:flex;align-items:center;gap:6px"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Build 6 individual service pages with real content</li><li style="display:flex;align-items:center;gap:6px"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> List on Yellow Pages, BBB Canada, industry directories</li><li style="display:flex;align-items:center;gap:6px"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Start collecting client reviews (target 10+)</li></ul></div></div>
+      <div><div style="display:flex;align-items:center;gap:10px;margin-bottom:12px"><div style="width:14px;height:14px;border-radius:50%;background:var(--dark-blue);box-shadow:0 0 12px rgba(0,82,204,.4);flex-shrink:0"></div><div style="font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-dim)">Month 2-3</div></div><div class="card" style="padding:18px;height:calc(100% - 36px)"><h3 style="font-size:14px;color:var(--mid-blue);margin-bottom:10px">Content &amp; Citations</h3><ul style="list-style:none;display:flex;flex-direction:column;gap:7px;font-size:12px;color:rgba(255,255,255,.6)"><li style="display:flex;align-items:center;gap:6px"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--mid-blue)" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Project portfolio / case study pages</li><li style="display:flex;align-items:center;gap:6px"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--mid-blue)" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> FAQ content targeting AI query patterns</li><li style="display:flex;align-items:center;gap:6px"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--mid-blue)" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Telecom industry directory listings</li><li style="display:flex;align-items:center;gap:6px"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--mid-blue)" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Location pages (Ontario service areas)</li><li style="display:flex;align-items:center;gap:6px"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--mid-blue)" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Proof-driven content leveraging decades of experience</li></ul></div></div>
+      <div><div style="display:flex;align-items:center;gap:10px;margin-bottom:12px"><div style="width:14px;height:14px;border-radius:50%;background:var(--green);box-shadow:0 0 12px rgba(34,197,94,.4);flex-shrink:0"></div><div style="font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-dim)">Ongoing</div></div><div class="card" style="padding:18px;height:calc(100% - 36px)"><h3 style="font-size:14px;color:var(--green);margin-bottom:10px">Authority &amp; Expansion</h3><ul style="list-style:none;display:flex;flex-direction:column;gap:7px;font-size:12px;color:rgba(255,255,255,.6)"><li style="display:flex;align-items:center;gap:6px"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Quarterly AI re-audits</li><li style="display:flex;align-items:center;gap:6px"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Monitor competitor AI citations</li><li style="display:flex;align-items:center;gap:6px"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Ongoing review building to 25+</li><li style="display:flex;align-items:center;gap:6px"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Content for high-value queries</li><li style="display:flex;align-items:center;gap:6px"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> AI-weighted backlink building</li></ul></div></div>
+    </div>
+    <div class="hook-box" style="margin-top:18px;font-size:14px">The Google Business Profile setup is day 1. Content expansion in weeks 2-4. First AI citations typically appear within 60-90 days. Your competitors are not doing this yet - that is the window.</div>
+  </div>
+
+  <!-- ===== SLIDE 17: SERVICES ECOSYSTEM ===== -->
+  <div class="slide bg-engine" id="slide-17" style="padding:40px 56px 72px">
+    <div style="text-align:center;margin-bottom:6px"><div class="eyebrow">Where We Are Taking This</div><h2>AI Ranking Is Just the Start. <span class="accent">This Is the Full Engine.</span></h2><p style="font-size:13px;color:rgba(255,255,255,.4);margin-top:4px">One agency. One system. Every AI touchpoint covered.</p></div>
+    <div style="display:flex;align-items:center;justify-content:center;gap:0;margin-top:16px">
+      <div style="text-align:center;flex:1"><div style="width:68px;height:68px;border-radius:50%;background:rgba(17,31,53,.8);border:2px solid var(--primary);display:flex;align-items:center;justify-content:center;margin:0 auto;box-shadow:0 0 12px rgba(1,162,249,.1)"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div><div style="margin-top:8px;font-size:13px;font-weight:800;color:var(--primary)">AI Ranking</div><div style="font-size:10px;color:rgba(255,255,255,.4);margin-top:2px;line-height:1.3">Get found in ChatGPT,<br>Perplexity, Google AI</div><div style="margin-top:4px"><span class="badge b-gold" style="font-size:9px">PHASE 1 - NOW</span></div></div>
+      <div style="font-size:14px;color:rgba(1,162,249,.2);margin-top:-24px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></div>
+      <div style="text-align:center;flex:1"><div style="width:68px;height:68px;border-radius:50%;background:rgba(17,31,53,.8);border:2px solid rgba(0,82,204,.5);display:flex;align-items:center;justify-content:center;margin:0 auto"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--dark-blue)" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div><div style="margin-top:8px;font-size:13px;font-weight:800;color:var(--dark-blue)">AI Receptionist</div><div style="font-size:10px;color:rgba(255,255,255,.4);margin-top:2px;line-height:1.3">24/7 booking, answers<br>calls, captures leads</div><div style="margin-top:4px"><span class="badge b-blue" style="font-size:9px">PHASE 2</span></div></div>
+      <div style="font-size:14px;color:rgba(1,162,249,.2);margin-top:-24px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></div>
+      <div style="text-align:center;flex:1"><div style="width:68px;height:68px;border-radius:50%;background:rgba(17,31,53,.8);border:2px solid rgba(0,82,204,.4);display:flex;align-items:center;justify-content:center;margin:0 auto"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--dark-blue)" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 10h.01M12 10h.01M16 10h.01"/></svg></div><div style="margin-top:8px;font-size:13px;font-weight:800;color:var(--dark-blue)">AI Follow-up</div><div style="font-size:10px;color:rgba(255,255,255,.4);margin-top:2px;line-height:1.3">Automated SMS &amp; email<br>nurture sequences</div><div style="margin-top:4px"><span class="badge b-blue" style="font-size:9px">PHASE 2</span></div></div>
+      <div style="font-size:14px;color:rgba(1,162,249,.2);margin-top:-24px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></div>
+      <div style="text-align:center;flex:1"><div style="width:68px;height:68px;border-radius:50%;background:rgba(17,31,53,.8);border:2px solid rgba(0,82,204,.3);display:flex;align-items:center;justify-content:center;margin:0 auto"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(0,82,204,.6)" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg></div><div style="margin-top:8px;font-size:13px;font-weight:800;color:rgba(0,82,204,.6)">Paid Lead Gen</div><div style="font-size:10px;color:rgba(255,255,255,.3);margin-top:2px;line-height:1.3">Google Ads, LinkedIn,<br>targeted campaigns</div><div style="margin-top:4px"><span class="badge" style="font-size:9px;background:rgba(255,255,255,.04);color:var(--text-dim);border:1px solid rgba(255,255,255,.08)">PHASE 3</span></div></div>
+      <div style="font-size:14px;color:rgba(1,162,249,.2);margin-top:-24px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></div>
+      <div style="text-align:center;flex:1"><div style="width:68px;height:68px;border-radius:50%;background:rgba(17,31,53,.8);border:2px solid var(--primary);display:flex;align-items:center;justify-content:center;margin:0 auto;box-shadow:0 0 12px rgba(1,162,249,.08)"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M18 20V10M12 20V4M6 20v-6"/></svg></div><div style="margin-top:8px;font-size:13px;font-weight:800;color:var(--primary)">Live Dashboard</div><div style="font-size:10px;color:rgba(255,255,255,.4);margin-top:2px;line-height:1.3">Real-time ROI tracking<br>tied to project revenue</div><div style="margin-top:4px"><span class="badge" style="font-size:9px;background:rgba(255,255,255,.04);color:var(--text-dim);border:1px solid rgba(255,255,255,.08)">PHASE 3</span></div></div>
+    </div>
+    <div style="display:flex;gap:14px;margin-top:18px"><div class="card" style="flex:1;padding:14px 18px"><p style="font-size:14px;font-weight:800;color:#fff;margin-bottom:4px">Why this matters for telecom contractors</p><p style="font-size:12px;color:rgba(255,255,255,.6);line-height:1.5">Telecom is a trust and capability industry. When a project manager or general contractor asks AI for a fibre optic specialist, AI recommends the companies it can verify. Right now, it cannot verify you exist. Your competitors are getting those RFPs by default.</p></div><div class="card" style="flex:0.5;padding:14px 18px;display:flex;flex-direction:column;justify-content:center;gap:6px"><div style="display:flex;align-items:center;gap:8px"><div style="width:8px;height:8px;border-radius:50%;background:var(--primary);box-shadow:0 0 6px var(--primary)"></div><span style="font-size:11px;color:rgba(255,255,255,.6)"><strong style="color:var(--primary)">Phase 1</strong> - AI Ranking (starting now)</span></div><div style="display:flex;align-items:center;gap:8px"><div style="width:8px;height:8px;border-radius:50%;background:var(--dark-blue)"></div><span style="font-size:11px;color:rgba(255,255,255,.6)"><strong style="color:var(--dark-blue)">Phase 2</strong> - AI automation</span></div><div style="display:flex;align-items:center;gap:8px"><div style="width:8px;height:8px;border-radius:50%;background:var(--text-dim)"></div><span style="font-size:11px;color:rgba(255,255,255,.6)"><strong style="color:var(--text-dim)">Phase 3</strong> - Full growth engine</span></div></div></div>
+  </div>
+
+  <!-- ===== SLIDE 18: OBJECTIONS ===== -->
+  <div class="slide bg-dark" id="slide-18">
+    <div class="eyebrow">Common Questions</div>
+    <h2>What You Might Be Thinking</h2>
+    <div class="divline"></div>
+    <div class="cols c2" style="margin-top:14px">
+      <div class="obj" style="border-left:3px solid var(--red)"><div class="obj-icon" style="background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.2)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div><div><div class="q">"We get our work through relationships, not websites."</div><div class="a">That was true 5 years ago. Today, even referral partners Google you before picking up the phone. And the next generation of project managers ask ChatGPT first. If AI cannot find you, you are losing contracts you never knew existed.</div></div></div>
+      <div class="obj" style="border-left:3px solid var(--yellow)"><div class="obj-icon" style="background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.2)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--yellow)" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div><div class="q">"Can you guarantee results?"</div><div class="a">We cannot guarantee a specific ranking. We CAN guarantee that right now, AI literally cannot find your business. Fixing that is the first step. 3 clients are already ranking #1 in ChatGPT using this exact framework.</div></div></div>
+      <div class="obj" style="border-left:3px solid var(--primary)"><div class="obj-icon" style="background:rgba(1,162,249,.1);border:1px solid rgba(1,162,249,.2)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div><div class="q">"How long does this take?"</div><div class="a">Google Business Profile claim is day 1. Schema and directory presence within 2 weeks. Content build-out in month 1. First AI citations typically appear within 60-90 days. Your competitors have not started - that is why now is the time.</div></div></div>
+      <div class="obj" style="border-left:3px solid var(--green)"><div class="obj-icon" style="background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.2)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><div><div class="q">"What does this cost?"</div><div class="a">Less than one missed FTTH contract. A single project AI sends your way would cover the investment many times over. We start with a foundation package that builds your AI presence from the ground up.</div></div></div>
+    </div>
+  </div>
+
+  <!-- ===== SLIDE 19: CTA ===== -->
+  <div class="slide bg-close" id="slide-19" style="justify-content:center">
+    <div style="max-width:580px;margin:0 auto;text-align:center">
+      <div class="eyebrow">Next Steps</div>
+      <h2>Make AI Work For You, Not Against You</h2>
+      <div class="divline" style="margin:12px auto"></div>
+      <p style="font-size:17px;color:rgba(255,255,255,.65);max-width:500px;margin:20px auto;line-height:1.6">You have decades of fibre optic expertise, national service capability, and a strong reputation in the field. AI should be sending every telecom RFP in Ontario your way.</p>
+      <p style="font-size:17px;color:#ffffff;font-weight:700;max-width:500px;margin:8px auto 24px">Right now, it does not even know you exist.</p>
+      <div style="margin-top:24px"><a href="https://calendly.com/info-yg4/strategy-call" target="_blank" class="cta-btn" style="font-size:18px;padding:16px 48px">Schedule a Call with Tomas</a></div>
+      <div style="margin-top:32px;font-size:11px;color:rgba(255,255,255,.2)">Prepared by Online Optimisers &bull; AI Visibility Specialists &bull; April 2026</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Nav -->
+<div class="nav">
+  <button id="pb-btn" onclick="go(-1)">&larr;</button>
+  <span id="sc">1 / 19</span>
+  <button id="nf-btn" onclick="go(1)">&rarr;</button>
+</div>
+
+<script>
+  const T=19; let cur=1;
+  function go(d){
+    const n=cur+d; if(n<1||n>T) return;
+    document.getElementById('slide-'+cur).classList.remove('active');
+    cur=n;
+    document.getElementById('slide-'+cur).classList.add('active');
+    document.getElementById('sc').textContent=cur+' / '+T;
+    document.getElementById('pb').style.width=(cur/T*100)+'%';
+    document.getElementById('pb-btn').disabled=(cur===1);
+    document.getElementById('nf-btn').disabled=(cur===T);
+    document.getElementById('slideCta').style.display=(cur>=2)?'block':'none';
+  }
+  document.addEventListener('keydown',e=>{
+    if(e.key==='ArrowRight'||e.key===' ')go(1);
+    if(e.key==='ArrowLeft')go(-1);
+  });
+  go(0);
+
+  function copyQuery(btn,text){
+    navigator.clipboard.writeText(text);
+    btn.textContent='Copied!'; btn.classList.add('done');
+    setTimeout(()=>{btn.textContent='Copy';btn.classList.remove('done')},1500);
+  }
+</script>
+</body>
+</html>
