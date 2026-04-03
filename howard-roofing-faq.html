@@ -361,7 +361,7 @@
         <ul>
           <li><strong>Domain:</strong> Stays on your Namecheap account. We never touch it. You control DNS.</li>
           <li><strong>Website content:</strong> Every page, image, blog post, and project write-up you've built belongs to you. You get full access to the site code and content at all times.</li>
-          <li><strong>If you leave:</strong> You get the complete site as a folder of files. Point your DNS to any hosting provider. Takes 15 minutes. Hosting cost: $0-20/month (static hosting is free on most platforms, or pennies on premium CDNs).</li>
+          <li><strong>If you leave:</strong> You download the complete site as a ZIP file - every page, every image, every line of code. Point your DNS to any hosting provider. Takes 15 minutes. Hosting is included in your retainer, and if you ever leave, hosting a static site is cheap and easy.</li>
           <li><strong>Nothing proprietary:</strong> Your site is built on open web standards - pure HTML, CSS, and a modern build framework. No plugins to break, no database to maintain, no license fees. Any web developer on earth can pick it up and keep going.</li>
         </ul>
         <div class="highlight-box green">
@@ -500,53 +500,76 @@
     </div>
     <div class="accordion-body">
       <div class="accordion-body-inner">
-        <p><strong>Modern static-site architecture. The fastest, most secure way to build a website in 2026.</strong></p>
-        <p>WordPress made sense 10 years ago. In 2026, starting a site from scratch on WordPress is deadweight - slow page loads, constant plugin updates, security vulnerabilities, database maintenance. We build on modern web standards that eliminate all of that.</p>
+        <p><strong>We don't build on WordPress. We use something better.</strong></p>
+        <p>WordPress made sense 10 years ago. In 2026, starting a site from scratch on WordPress is deadweight - slow page loads, constant plugin updates, security vulnerabilities, database maintenance. We build on Astro, a modern framework used by companies like Porsche, Google, and Microsoft. It outputs pure, clean HTML - the fastest and most secure way to build a website today.</p>
         <ul>
-          <li><strong>Platform:</strong> Your site is built with Astro, a modern static-site framework that outputs pure HTML. No database, no PHP, no plugins to break or update. Just clean, fast, search-engine-optimized code.</li>
-          <li><strong>You have full access:</strong> You get a login to view and manage your site content. We handle all the building, updating, and publishing - but you always have visibility and control.</li>
-          <li><strong>Another company can take over easily:</strong> The site is standard HTML files. Any web developer in the world can work with it. Zero vendor lock-in - even more portable than WordPress.</li>
-          <li><strong>Hosting included:</strong> Static sites can be hosted for free or near-free on premium CDNs (global content delivery networks). No separate hosting bill. If you leave, hosting costs $0-20/month.</li>
+          <li><strong>Platform:</strong> Your site is built with Astro and outputs pure HTML. No database, no PHP, no plugins to break or update. Just clean, fast, search-engine-optimized code that loads instantly.</li>
+          <li><strong>Full admin access:</strong> You get a password-protected login to view and manage all your site content. You can see every page, every image, every file. We handle all the building, updating, and publishing - but you always have full visibility and control.</li>
+          <li><strong>Full site download anytime:</strong> You can download the complete site as a ZIP at any time. Every page, every image, every line of code - it's just a folder of files. No export tools needed, no database dumps, no migration headaches.</li>
+          <li><strong>Another company can take over easily:</strong> The site is standard HTML. Any web developer in the world can work with it. Zero vendor lock-in. Even more portable than WordPress because there's no database or plugins to worry about.</li>
+          <li><strong>Hosting and maintenance included:</strong> All hosting, maintenance, and upkeep is included in your retainer. No separate bill, no surprise charges. We handle everything.</li>
           <li><strong>No performance limits:</strong> Static sites with 500+ pages load instantly. There is no database to slow down, no server-side processing. Every page is pre-built and ready to serve.</li>
         </ul>
+
+        <h4 style="margin-top:20px;margin-bottom:12px;font-size:14px;color:var(--text);">Why Not WordPress?</h4>
         <table class="compare-table">
           <tr>
             <th>Feature</th>
+            <th>WordPress</th>
             <th>Thrive (Current)</th>
-            <th>Modern Static Site (With Us)</th>
+            <th>Astro (With Us)</th>
           </tr>
           <tr>
             <td>Page load speed</td>
+            <td class="col-thrive">2-5 seconds</td>
             <td class="col-thrive">Slow (server-rendered)</td>
-            <td class="col-oo">Near-instant (pre-built HTML)</td>
+            <td class="col-oo">Under 1 second</td>
           </tr>
           <tr>
-            <td>Security vulnerabilities</td>
-            <td class="col-thrive">Database + plugins = attack surface</td>
+            <td>Security</td>
+            <td class="col-thrive">Plugins get hacked constantly</td>
+            <td class="col-thrive">Database = attack surface</td>
             <td class="col-oo">No database, nothing to hack</td>
           </tr>
           <tr>
-            <td>Export your entire site</td>
+            <td>Maintenance</td>
+            <td class="col-thrive">Constant plugin/PHP updates</td>
+            <td class="col-thrive">Platform dependent</td>
+            <td class="col-oo">Zero maintenance</td>
+          </tr>
+          <tr>
+            <td>Full admin access</td>
+            <td>Yes</td>
+            <td>Limited</td>
+            <td class="col-oo">Yes - full access + download</td>
+          </tr>
+          <tr>
+            <td>Export your site</td>
+            <td>Database export needed</td>
             <td class="col-thrive">Platform locked</td>
-            <td class="col-oo">It's already just files - take them</td>
+            <td class="col-oo">Download ZIP - done</td>
           </tr>
           <tr>
             <td>Another company can take over</td>
+            <td>Yes (WP developers)</td>
             <td class="col-thrive">Difficult/impossible</td>
-            <td class="col-oo">Any web developer, anywhere</td>
+            <td class="col-oo">Any web developer</td>
           </tr>
           <tr>
-            <td>Hosting if you leave</td>
+            <td>Hosting</td>
+            <td>$30-50/month</td>
             <td class="col-thrive">Tied to Thrive</td>
-            <td class="col-oo">Free - $20/mo anywhere</td>
+            <td class="col-oo">Included in retainer</td>
           </tr>
           <tr>
-            <td>Maintenance / updates</td>
-            <td class="col-thrive">Constant plugin updates</td>
-            <td class="col-oo">Zero maintenance needed</td>
+            <td>Google Core Web Vitals</td>
+            <td class="col-thrive">Often fails without optimization</td>
+            <td class="col-thrive">Unknown</td>
+            <td class="col-oo">Near-perfect by default</td>
           </tr>
           <tr>
             <td>Page limits</td>
+            <td>Unlimited</td>
             <td>Platform dependent</td>
             <td class="col-oo">Unlimited</td>
           </tr>
@@ -715,7 +738,7 @@
           <li><strong>Notice required:</strong> 30 days (end of current billing period). You say "I'm done," we work through the end of that paid month.</li>
           <li><strong>Full handover on cancellation:</strong>
             <ul>
-              <li>Complete site exported as a folder of files (no database to worry about)</li>
+              <li>Download your complete site as a ZIP - every page, image, and file (no database, no export tools needed)</li>
               <li>Domain stays on your Namecheap - you just point DNS to your new host</li>
               <li>All CRM data (contacts, pipeline, call recordings) exported as CSV</li>
               <li>Google Search Console, Analytics, and GBP - you're already the owner, we just remove our access</li>
