@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Howard Roofing - Call Briefing | Internal</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800;900&family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  :root {
+    --bg:#0c1a33; --bg2:#111f35; --card:#152240; --card-border:#1a3258;
+    --accent:#01a2f9; --accent-dark:#0052cc;
+    --text:#e8edf4; --text-dim:#8899b3; --text-body:#a8b8cf;
+    --red:#ef4444; --yellow:#f59e0b; --green:#16a34a;
+  }
+  body {
+    font-family:'Inter',system-ui,sans-serif;
+    background:var(--bg); color:var(--text);
+    line-height:1.6; padding:0;
+  }
+
+  /* Header */
+  .header {
+    background:radial-gradient(ellipse at 70% 30%,rgba(1,162,249,.12) 0%,transparent 60%),var(--bg);
+    padding:40px 32px 32px;
+    border-bottom:1px solid var(--card-border);
+    text-align:center;
+  }
+  .header .tag {
+    display:inline-block;padding:4px 14px;border-radius:99px;
+    font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2px;
+    color:var(--accent);background:rgba(1,162,249,.08);border:1px solid rgba(1,162,249,.15);
+    margin-bottom:16px;
+  }
+  .header h1 {
+    font-family:'Manrope',sans-serif;font-size:28px;font-weight:800;
+    color:#fff;margin-bottom:8px;
+  }
+  .header .meta {
+    font-size:13px;color:var(--text-dim);
+  }
+  .header .meta strong { color:var(--accent); }
+
+  /* Main */
+  .main { max-width:780px;margin:0 auto;padding:32px 24px 80px; }
+
+  /* Section */
+  .section {
+    background:var(--card);border:1px solid var(--card-border);
+    border-radius:14px;padding:24px;margin-bottom:20px;
+    position:relative;overflow:hidden;
+  }
+  .section::before {
+    content:'';position:absolute;top:0;left:0;right:0;height:3px;
+    background:var(--accent);opacity:.6;
+  }
+  .section.red::before { background:var(--red); }
+  .section.green::before { background:var(--green); }
+  .section.yellow::before { background:var(--yellow); }
+
+  .section h2 {
+    font-family:'Manrope',sans-serif;font-size:18px;font-weight:800;
+    color:#fff;margin-bottom:16px;
+  }
+  .section h3 {
+    font-size:14px;font-weight:700;color:var(--accent);margin:16px 0 8px;
+  }
+  .section p { font-size:13px;color:var(--text-body);margin-bottom:10px; }
+  .section strong { color:var(--text); }
+  .section ul { margin:6px 0 12px 18px; }
+  .section li { font-size:13px;color:var(--text-body);margin-bottom:5px; }
+  .section li strong { color:var(--text); }
+
+  /* Numbered items */
+  .numbered { counter-reset:item; list-style:none;margin-left:0; }
+  .numbered li {
+    counter-increment:item;padding-left:28px;position:relative;margin-bottom:12px;
+  }
+  .numbered li::before {
+    content:counter(item);position:absolute;left:0;top:0;
+    width:20px;height:20px;border-radius:6px;
+    background:rgba(1,162,249,.12);border:1px solid rgba(1,162,249,.2);
+    font-size:11px;font-weight:800;color:var(--accent);
+    display:flex;align-items:center;justify-content:center;
+    text-align:center;line-height:20px;
+  }
+
+  /* Key stat table */
+  table { width:100%;border-collapse:collapse;margin:12px 0;font-size:13px; }
+  th {
+    text-align:left;padding:8px 12px;
+    background:rgba(1,162,249,.06);font-size:10px;font-weight:700;
+    text-transform:uppercase;letter-spacing:1px;color:var(--accent);
+    border-bottom:2px solid rgba(1,162,249,.15);
+  }
+  td {
+    padding:8px 12px;border-bottom:1px solid var(--card-border);
+    color:var(--text-body);vertical-align:top;
+  }
+  tr:last-child td { border-bottom:none; }
+
+  /* Quote box */
+  .quote {
+    border-left:3px solid var(--accent);padding:12px 16px;margin:12px 0;
+    background:rgba(1,162,249,.04);border-radius:0 8px 8px 0;
+    font-size:13px;color:var(--text);font-style:italic;line-height:1.6;
+  }
+  .quote.red { border-left-color:var(--red);background:rgba(239,68,68,.04); }
+  .quote.green { border-left-color:var(--green);background:rgba(22,163,74,.04); }
+  .quote.yellow { border-left-color:var(--yellow);background:rgba(245,158,11,.04); }
+
+  /* Badge */
+  .badge { display:inline-block;padding:3px 10px;border-radius:99px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px; }
+  .b-red { background:rgba(239,68,68,.12);color:var(--red);border:1px solid rgba(239,68,68,.2); }
+  .b-green { background:rgba(22,163,74,.12);color:var(--green);border:1px solid rgba(22,163,74,.2); }
+  .b-amber { background:rgba(245,158,11,.12);color:var(--yellow);border:1px solid rgba(245,158,11,.2); }
+
+  /* Divider */
+  .divider { height:1px;background:var(--card-border);margin:16px 0; }
+
+  /* Copy button */
+  .cp {
+    position:absolute;top:10px;right:10px;
+    background:rgba(1,162,249,.08);border:1px solid rgba(1,162,249,.15);
+    color:rgba(1,162,249,.5);border-radius:6px;padding:4px 10px;
+    font-size:10px;cursor:pointer;transition:all .15s;z-index:10;
+  }
+  .cp:hover { background:rgba(1,162,249,.15);color:var(--accent); }
+  .cp.done { background:rgba(22,163,74,.12);border-color:rgba(22,163,74,.2);color:var(--green); }
+
+  /* Footer */
+  .footer { text-align:center;padding:24px;font-size:11px;color:var(--text-dim); }
+
+  @media (max-width:768px) {
+    .main { padding:20px 14px 60px; }
+    .section { padding:18px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="tag">Internal - Thonty Only</div>
+  <h1>Howard Roofing - Friday Call Briefing</h1>
+  <div class="meta">
+    <strong>Lead:</strong> Chris Howard (Owner) | Wilmington, NC<br>
+    <strong>Call:</strong> Friday April 4 (closing follow-up)<br>
+    <strong>Deck:</strong> onlineoptimisers.github.io/audits/howard-roofing.html<br>
+    <strong>FAQ sent:</strong> onlineoptimisers.github.io/audits/howard-roofing-faq.html
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- QUICK CONTEXT -->
+  <div class="section">
+    <h2>Quick Context (10 things to know)</h2>
+    <ol class="numbered">
+      <li><strong>Chris gets jobs from ChatGPT - but ONLY for metal roofing.</strong> 2/6 AI queries found. AI Visibility Score: 33/100. For general roofing, AI recommends 8+ other companies instead.</li>
+      <li><strong>Thrive shut down his Wilmington Google Maps listing.</strong> Biggest damage. He had Wilmington + Rocky Point listings. Thrive told him to kill Wilmington. Google re-verification started after Thrive got involved.</li>
+      <li><strong>Paying Thrive $650/mo for CRM + website, but built site himself.</strong> 160-180 pages, all Chris. Thrive's designs had no content. He wants out.</li>
+      <li><strong>Workers' comp killing his backlink profile.</strong> $34K audit, policy cancelled, lost GAF/CertainTeed/Fortified certifications (those were backlinks).</li>
+      <li><strong>All 59 backlinks are nofollow.</strong> Zero dofollow. DR 67 vs competitors: Harbor 147, Province 208, Flores & Foley 144.</li>
+      <li><strong>Ranking #12 for "roofing wilmington"</strong> - edge of page 1. With dofollow links + on-page fixes, page 1 is achievable.</li>
+      <li><strong>Wants 2-4 roofing jobs/week.</strong> 8-16 signed/month. At 30-50% close rate, only needs 20-30 leads.</li>
+      <li><strong>Google Ads expensive, poor conversions.</strong> He knows it. Bridge to organic/SEO.</li>
+      <li><strong>Dad potentially diagnosed with cancer.</strong> Chris running everything solo. Be sensitive. He needs tech/marketing off his plate.</li>
+      <li><strong>Wants e-commerce store (gazebos, pavilions, metal buildings).</strong> Park it. Focus on roofing first.</li>
+    </ol>
+  </div>
+
+  <!-- FRIDAY FOLLOW-UP: THE 3 CLOSERS -->
+  <div class="section green">
+    <h2>Friday Follow-Up - The 3 Answers That Close This</h2>
+    <button class="cp" onclick="copySection(this)">Copy</button>
+    <p>Chris sent 10 categories of concerns. We've emailed him a full FAQ document. These are the three that matter most:</p>
+
+    <h3>1. CRM (His #1 Worry)</h3>
+    <div class="quote green">
+      "GoHighLevel replaces everything Thrive does - scheduling, lead inbox, call tracking, review automation. We set up a local 910 number, speed-to-lead SMS, missed-call text-back. All included in the retainer. You keep QuickBooks for invoicing. Cost: zero extra."
+    </div>
+
+    <h3>2. Ownership / Lock-In (His #2 Worry)</h3>
+    <div class="quote green">
+      "WordPress is open source. You own everything - domain, content, design, code. Full admin login. If you leave, you take the entire site. Any developer in the world can pick it up. Hosting costs $10-30 a month. Nothing proprietary."
+    </div>
+
+    <h3>3. URLs / SEO Preservation (His #3 Worry)</h3>
+    <div class="quote green">
+      "We crawl your entire site before touching anything. Full URL mapping document you approve. Same URLs, same slugs. Built on staging first - you review. DNS rollback in minutes if anything goes wrong."
+    </div>
+  </div>
+
+  <!-- QUICK-FIRE ANSWERS -->
+  <div class="section">
+    <h2>Quick-Fire Answers for the Rest</h2>
+    <table>
+      <tr><th>Topic</th><th>Answer</th></tr>
+      <tr><td><strong>Pages</strong></td><td>Unlimited. WordPress has no cap. 4-15 new pages/month included. He can still add his own.</td></tr>
+      <tr><td><strong>Content</strong></td><td>Not generic AI. Written for buyer-intent + AI citation. He reviews before publish. He owns all content.</td></tr>
+      <tr><td><strong>Backlinks</strong></td><td>10-15 quality dofollow links/month. Monthly report showing exactly what was built and where it points. Inner pages too.</td></tr>
+      <tr><td><strong>Speed/Tech</strong></td><td>Rank Math handles sitemaps/canonicals/indexing. Core Web Vitals optimized. Mobile tested before launch.</td></tr>
+      <tr><td><strong>Support</strong></td><td>Text or call us directly. 24hr edits, same-day urgent. No ticket queue. No account manager handoff.</td></tr>
+      <tr><td><strong>Contract</strong></td><td>Month-to-month. Zero penalties. 30-day notice. Full handover of everything.</td></tr>
+    </table>
+  </div>
+
+  <!-- THE $650 CLOSER -->
+  <div class="section red">
+    <h2>The $650 Closer</h2>
+    <button class="cp" onclick="copySection(this)">Copy</button>
+    <div class="quote red">
+      "Chris, you're paying Thrive $650 a month for a CRM and website maintenance on a site you built yourself. Cancel Thrive, that $650 savings covers a big chunk of our retainer. Same money, but now you're actually getting SEO, backlinks, AI ranking, a proper CRM, and a team doing the work."
+    </div>
+  </div>
+
+  <!-- KEY NUMBERS -->
+  <div class="section">
+    <h2>Key Numbers to Hit</h2>
+    <table>
+      <tr><th>Stat</th><th>What to Say</th></tr>
+      <tr><td>2/6 AI queries</td><td>"We tested 6 queries. You showed up in 2 - both metal roofing only."</td></tr>
+      <tr><td>33/100 AI visibility</td><td>"Your AI visibility score is 33 out of 100. Critical range."</td></tr>
+      <tr><td>8+ competitors cited</td><td>"8 other companies get recommended by AI instead of you."</td></tr>
+      <tr><td>DR 67 vs 147-208</td><td>"Your competitors have 2-3x your domain authority."</td></tr>
+      <tr><td>0 dofollow backlinks</td><td>"Every single one of your backlinks is nofollow. None are helping you rank."</td></tr>
+      <tr><td>#12 "roofing wilmington"</td><td>"You're on the edge of page 1. A push gets you there."</td></tr>
+      <tr><td>84 keywords, 12 lost</td><td>"You're losing ground - 12 keywords dropped in the last month."</td></tr>
+      <tr><td>$650/mo to Thrive</td><td>"You're paying $650 a month and building the site yourself."</td></tr>
+      <tr><td>2-4 jobs/wk = 20-30 leads</td><td>"At your close rate, we only need 20-30 leads a month."</td></tr>
+    </table>
+  </div>
+
+  <!-- COMPETITOR FOMO -->
+  <div class="section yellow">
+    <h2>Competitor FOMO</h2>
+    <ul>
+      <li><strong>Province Roofing - DR 208, 141 referring domains.</strong> "Province has triple your domain authority. They're the dominant player online in Wilmington roofing right now."</li>
+      <li><strong>Harbor Roofing - DR 147, 172 referring domains.</strong> "Harbor has more than double your authority and twice your referring domains."</li>
+      <li><strong>Flores & Foley - DR 144, 170 referring domains.</strong> "Flores & Foley have 170 referring domains to your 83."</li>
+    </ul>
+  </div>
+
+  <!-- PAIN POINTS -->
+  <div class="section red">
+    <h2>Pain Points to Press</h2>
+    <ol class="numbered">
+      <li><strong>"Thrive cost you your Wilmington listing"</strong> - They had him shut down his Wilmington GMB. "That listing was driving leads. Shutting it down was the wrong call."</li>
+      <li><strong>"You're paying $650/month and doing the work yourself"</strong> - Thrive's designs had no content. He built 160+ pages. "You're paying for maintenance on a site you maintain."</li>
+      <li><strong>"Workers' comp took your certifications offline"</strong> - GAF, CertainTeed, Fortified listings were backlinks. "Those weren't just certifications - they were backlinks helping you rank."</li>
+      <li><strong>"Google Ads is a money pit without SEO underneath"</strong> - "Ads stop the moment you stop paying. SEO compounds."</li>
+      <li><strong>"You're running everything solo"</strong> - Dad facing health issues. "You need to be running your business, not fighting with website code."</li>
+    </ol>
+  </div>
+
+  <!-- OBJECTION HANDLERS -->
+  <div class="section">
+    <h2>Objection Handlers</h2>
+
+    <h3>"I've been burned before"</h3>
+    <div class="quote">
+      "I hear you. You paid $650 a month and ended up building the site yourself. We take the tech and marketing completely off your plate. You own the site, you own the domain, and we show you results monthly."
+    </div>
+
+    <h3>"I need to get out of Thrive first"</h3>
+    <div class="quote">
+      "We handle the website rebuild as part of onboarding. Same domain, same URLs, no lost momentum. You just point the DNS to us and cancel Thrive. That $650 savings nearly covers our fee."
+    </div>
+
+    <h3>"How much does it cost?"</h3>
+    <div class="quote">
+      "Less than what you're paying Thrive plus Google Ads combined - and you're actually getting results."
+    </div>
+
+    <h3>"Workers' comp issue right now"</h3>
+    <div class="quote">
+      "SEO doesn't depend on your workers' comp status. We can start building authority now so when those certifications come back, you're in an even stronger position."
+    </div>
+
+    <h3>"ChatGPT already sends me jobs"</h3>
+    <div class="quote">
+      "You're right - but only for metal roofing. When someone asks for a general roofer in Wilmington, Flores & Foley, Province, Harbor get recommended instead. We get you showing up for ALL roofing queries."
+    </div>
+  </div>
+
+  <!-- IF HE MENTIONS DAD -->
+  <div class="section">
+    <h2>If He Mentions His Dad</h2>
+    <div class="quote yellow">
+      Be gentle but practical: "We understand you've got a lot going on. That's exactly why we take the tech and marketing completely off your plate. You focus on running the business and being with your family. We handle the rest."
+    </div>
+  </div>
+
+  <!-- CLOSE -->
+  <div class="section green">
+    <h2>Close</h2>
+    <button class="cp" onclick="copySection(this)">Copy</button>
+    <div class="quote green">
+      "Chris, you're closer than you think. You're already ranking for 84 keywords, ChatGPT is already sending you jobs, and you're at position 12 for your main keyword. The problem isn't your business - it's that nobody's doing the technical work to push you over the line. We take the website, the SEO, and the AI visibility off your plate completely. You focus on roofing. Can we get started this month?"
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  Internal - Online Optimisers | Prepared April 2026 | Do not share with prospect
+</div>
+
+<script>
+function copySection(btn) {
+  const section = btn.closest('.section');
+  const quotes = section.querySelectorAll('.quote');
+  let text = '';
+  quotes.forEach(q => { text += q.innerText.trim() + '\n\n'; });
+  navigator.clipboard.writeText(text.trim()).then(() => {
+    btn.textContent = 'Copied';
+    btn.classList.add('done');
+    setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('done'); }, 2000);
+  });
+}
+</script>
+</body>
+</html>
