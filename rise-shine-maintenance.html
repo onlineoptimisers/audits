@@ -99,8 +99,10 @@
   .perplexity-badge { background:rgba(139,126,194,.12);color:var(--perplexity);border:1px solid rgba(139,126,194,.3); }
   .google-badge { background:rgba(66,133,244,.12);color:var(--google);border:1px solid rgba(66,133,244,.3); }
   .ai-chat .answer { font-size:12px;line-height:1.65;color:rgba(255,255,255,.7); }
+  .ai-chat .cited { color:var(--primary);font-weight:600; }
   .ai-chat .not-cited { color:var(--red);font-weight:600; }
   .ai-chat .result-tag { display:inline-block;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;letter-spacing:.5px;margin-top:8px; }
+  .tag-found { background:rgba(34,197,94,.12);color:var(--green);border:1px solid rgba(34,197,94,.25); }
   .tag-missing { background:rgba(239,68,68,.12);color:var(--red);border:1px solid rgba(239,68,68,.2); }
 
   .cp { position:absolute;top:8px;right:8px;background:rgba(1,162,249,.08);border:1px solid rgba(1,162,249,.2);color:rgba(1,162,249,.6);border-radius:5px;padding:3px 9px;font-size:10px;cursor:pointer;transition:all .15s;z-index:10; }
@@ -340,99 +342,52 @@
   </div>
 
   <!-- ===== SLIDE 4: CHATGPT RESULTS ===== -->
-  <div class="slide bg-dark" id="slide-4">
-    <div class="eyebrow">ChatGPT Results</div>
-    <h2>We Asked ChatGPT About Renovation in Edmonton</h2>
+  <div class="slide bg-mid" id="slide-4">
+    <div class="eyebrow">ChatGPT Audit &bull; Real API Results &bull; April 2026</div>
+    <h2>What <span style="color:var(--chatgpt)">ChatGPT</span> Says When Someone Asks for Renovation in Edmonton</h2>
     <div class="divline"></div>
-    <div class="cols c3" style="margin-top:16px">
-      <div class="ai-chat">
-        <button class="cp" onclick="copyQ(this,'best renovation company in Edmonton AB')">Copy</button>
-        <div class="platform-badge chatgpt-badge">CHATGPT</div>
-        <div class="query">Query: <span>"best renovation company in Edmonton AB"</span></div>
-        <div class="answer">ChatGPT recommended <strong>Ackard Contractors</strong> (award-winning, BILD Edmonton Metro awards), <strong>Ultimate Renovations</strong> (40+ years), <strong>Do It All Contracting</strong> (25+ years), and <strong>Shignanski Construction</strong>. <span class="not-cited">Rise & Shine Maintenance was not mentioned.</span></div>
-        <div class="result-tag tag-missing">NOT CITED</div>
-      </div>
-      <div class="ai-chat">
-        <button class="cp" onclick="copyQ(this,'best home maintenance services in Edmonton AB')">Copy</button>
-        <div class="platform-badge chatgpt-badge">CHATGPT</div>
-        <div class="query">Query: <span>"best home maintenance services in Edmonton AB"</span></div>
-        <div class="answer">AI recommended <strong>Residential Maintenance Services (RMS)</strong>, <strong>Handyman Connection</strong> (10+ years experience), <strong>24/7 Property Pros</strong>, and <strong>Home Services Edmonton Ltd</strong>. <span class="not-cited">Rise & Shine Maintenance was not mentioned.</span></div>
-        <div class="result-tag tag-missing">NOT CITED</div>
-      </div>
-      <div class="ai-chat">
-        <button class="cp" onclick="copyQ(this,'best painting and renovation contractor Edmonton AB')">Copy</button>
-        <div class="platform-badge chatgpt-badge">CHATGPT</div>
-        <div class="query">Query: <span>"best painting and renovation contractor Edmonton AB"</span></div>
-        <div class="answer">ChatGPT recommended <strong>Best in West Painting</strong> (20+ years), <strong>New Style Painting and Renovations</strong>, <strong>Alberta Painting</strong> (since 1995), and <strong>DreamArt Painting</strong>. <span class="not-cited">Rise & Shine Maintenance was not mentioned.</span></div>
-        <div class="result-tag tag-missing">NOT CITED</div>
-      </div>
+    <div class="cols c3" style="margin-top:14px">
+      <div class="ai-chat"><button class="cp" onclick="copyQ(this,'best renovation company in Edmonton AB')">Copy</button><div class="platform-badge chatgpt-badge">CHATGPT</div><div class="query">Query: <span>"best renovation company in Edmonton AB"</span></div><div class="answer"><strong>1. <span class="cited">Ackard Contractors</span></strong> - award-winning, BILD Edmonton Metro 2026<br><strong>2. <span class="cited">Ultimate Renovations</span></strong> - 40+ years, exterior specialist<br><strong>3. <span class="cited">Do It All Contracting</span></strong> - 25+ years, top-rated<br><strong>4. <span class="cited">Shignanski Construction</span></strong> - Edmonton + Sherwood Park<br><strong>5. <span class="cited">ARdeco</span></strong> - 26+ professionals, custom builds<br><br><span class="not-cited">Rise & Shine Maintenance - not mentioned.</span></div><div class="result-tag tag-missing" style="margin-top:8px">&#10007; NOT FOUND</div></div>
+      <div class="ai-chat"><button class="cp" onclick="copyQ(this,'best home maintenance services in Edmonton AB')">Copy</button><div class="platform-badge chatgpt-badge">CHATGPT</div><div class="query">Query: <span>"best home maintenance services in Edmonton AB"</span></div><div class="answer"><strong>1. <span class="cited">Residential Maintenance Services</span></strong> - preventive maintenance specialist<br><strong>2. <span class="cited">Handyman Connection</span></strong> - 10+ years experience per craftsman<br><strong>3. <span class="cited">24/7 Property Pros</span></strong> - emergency support, all property types<br><strong>4. <span class="cited">Home Services Edmonton</span></strong> - 1-year labour guarantee<br><strong>5. <span class="cited">Mr. Handyman SW Edmonton</span></strong> - since 1996, uniformed pros<br><br><span class="not-cited">Rise & Shine Maintenance - not mentioned.</span></div><div class="result-tag tag-missing" style="margin-top:8px">&#10007; NOT FOUND</div></div>
+      <div class="ai-chat"><button class="cp" onclick="copyQ(this,'best painting and renovation contractor Edmonton AB')">Copy</button><div class="platform-badge chatgpt-badge">CHATGPT</div><div class="query">Query: <span>"best painting and renovation contractor Edmonton AB"</span></div><div class="answer"><strong>1. <span class="cited">Best in West Painting</span></strong> - 20+ years, premier painter<br><strong>2. <span class="cited">New Style Painting</span></strong> - best painters in Edmonton (expert ranked)<br><strong>3. <span class="cited">Alberta Painting</span></strong> - since 1995, trusted name<br><strong>4. <span class="cited">DreamArt Painting</span></strong> - attention to detail, best price<br><strong>5. <span class="cited">Elite Trade Painting</span></strong> - 9+ years, 2-year guarantee<br><br><span class="not-cited">Rise & Shine Maintenance - not mentioned.</span></div><div class="result-tag tag-missing" style="margin-top:8px">&#10007; NOT FOUND</div></div>
     </div>
-    <div class="hook-box" style="margin-top:20px">
-      Across 3 ChatGPT queries covering your core services, Rise & Shine Maintenance was not recommended once. At least 12 competitors were cited instead.
-    </div>
+    <p style="margin-top:14px;font-size:12px;color:rgba(255,255,255,.25);text-align:center">Real ChatGPT queries run April 4, 2026. Rise & Shine Maintenance was not recommended in any search.</p>
   </div>
 
   <!-- ===== SLIDE 5: PERPLEXITY RESULTS ===== -->
   <div class="slide bg-dark" id="slide-5">
-    <div class="eyebrow">Perplexity Results</div>
-    <h2>We Asked Perplexity About Your Services</h2>
+    <div class="eyebrow">Perplexity Audit &bull; Real API Results &bull; April 2026</div>
+    <h2>What <span style="color:var(--perplexity)">Perplexity</span> Recommends - Your Competitors, Not You</h2>
     <div class="divline"></div>
-    <div class="cols c3" style="margin-top:16px">
-      <div class="ai-chat">
-        <div class="platform-badge perplexity-badge">PERPLEXITY</div>
-        <div class="query">Query: <span>"best renovation company in Edmonton AB"</span></div>
-        <div class="answer">Perplexity cited <strong>RenovationFind</strong>, <strong>Houzz Edmonton listings</strong>, <strong>HomeStars</strong>, and <strong>Yelp top 10</strong>. Specific companies included Ackard, Do It All, and ARdeco. <span class="not-cited">Rise & Shine Maintenance was not in any source or recommendation.</span></div>
-        <div class="result-tag tag-missing">NOT CITED</div>
-      </div>
-      <div class="ai-chat">
-        <div class="platform-badge perplexity-badge">PERPLEXITY</div>
-        <div class="query">Query: <span>"best home maintenance services in Edmonton AB"</span></div>
-        <div class="answer">Perplexity sourced from <strong>Yelp</strong>, <strong>HomeStars</strong>, <strong>TrustedPros</strong>, and <strong>BestInEdmonton.com</strong>. Featured RMS, Handyman Connection, and Mr. Handyman. <span class="not-cited">Rise & Shine was absent from all cited sources.</span></div>
-        <div class="result-tag tag-missing">NOT CITED</div>
-      </div>
-      <div class="ai-chat">
-        <div class="platform-badge perplexity-badge">PERPLEXITY</div>
-        <div class="query">Query: <span>"best painting contractor in Edmonton AB"</span></div>
-        <div class="answer">Perplexity recommended <strong>Raydian Painting</strong>, <strong>Elite Trade Painting</strong>, <strong>Pro Co Painting</strong>, and <strong>Alberta Painting Ltd</strong>. All had strong review profiles and content-rich websites. <span class="not-cited">Rise & Shine was not mentioned.</span></div>
-        <div class="result-tag tag-missing">NOT CITED</div>
-      </div>
+    <div class="cols c3" style="margin-top:14px">
+      <div class="ai-chat"><button class="cp" onclick="copyQ(this,'best renovation company in Edmonton AB')">Copy</button><div class="platform-badge perplexity-badge">PERPLEXITY</div><div class="query">Query: <span>"best renovation company in Edmonton AB"</span></div><div class="answer"><strong>1. <span class="cited">Ackard Contractors</span></strong> - BILD award winner, custom homes<br><strong>2. <span class="cited">Do It All Contracting</span></strong> - 25+ years, on time + on budget<br><strong>3. <span class="cited">ARdeco</span></strong> - bespoke custom homes, 26 staff<br><strong>4. <span class="cited">Prep-n-Reno</span></strong> - client-focused, exceptional craft<br><strong>5. <span class="cited">Shignanski Construction</span></strong> - Edmonton + Sherwood Park<br><br><span class="not-cited">Rise & Shine Maintenance - not mentioned.</span></div><div class="result-tag tag-missing" style="margin-top:8px">&#10007; NOT CITED</div></div>
+      <div class="ai-chat"><button class="cp" onclick="copyQ(this,'best home maintenance services in Edmonton AB')">Copy</button><div class="platform-badge perplexity-badge">PERPLEXITY</div><div class="query">Query: <span>"best home maintenance services in Edmonton AB"</span></div><div class="answer"><strong>1. <span class="cited">Handyman Connection</span></strong> - decades experience, multiple cities<br><strong>2. <span class="cited">24/7 Property Pros</span></strong> - emergency support, all types<br><strong>3. <span class="cited">Home Services Edmonton</span></strong> - 1-year guarantee<br><strong>4. <span class="cited">Mr. Handyman</span></strong> - since 1996, uniformed pros<br><strong>5. <span class="cited">RMS</span></strong> - preventive maintenance specialist<br><br><span class="not-cited">Rise & Shine Maintenance - not mentioned.</span></div><div class="result-tag tag-missing" style="margin-top:8px">&#10007; NOT CITED</div></div>
+      <div class="ai-chat"><button class="cp" onclick="copyQ(this,'best painting contractor in Edmonton AB')">Copy</button><div class="platform-badge perplexity-badge">PERPLEXITY</div><div class="query">Query: <span>"best painting contractor in Edmonton AB"</span></div><div class="answer"><strong>1. <span class="cited">Raydian Painting</span></strong> - expert painting company<br><strong>2. <span class="cited">Elite Trade Painting</span></strong> - 9+ years, 2-year guarantee<br><strong>3. <span class="cited">Pro Co Painting</span></strong> - commercial + residential<br><strong>4. <span class="cited">Alberta Painting</span></strong> - since 1995, trusted name<br><strong>5. <span class="cited">DreamArt Painting</span></strong> - attention to detail<br><br><span class="not-cited">Rise & Shine Maintenance - not mentioned.</span></div><div class="result-tag tag-missing" style="margin-top:8px">&#10007; NOT CITED</div></div>
     </div>
-    <div class="hook-box" style="margin-top:20px">
-      Perplexity pulls from review sites and directories. With zero reviews on your website and limited directory presence, you have no content for Perplexity to find.
-    </div>
+    <p style="margin-top:14px;font-size:12px;color:rgba(255,255,255,.25);text-align:center">Real Perplexity queries run April 4, 2026. Your competitors dominate every result.</p>
   </div>
 
   <!-- ===== SLIDE 6: GOOGLE AI OVERVIEWS ===== -->
-  <div class="slide bg-dark" id="slide-6">
-    <div class="eyebrow">Google AI Overviews</div>
-    <h2>Google's AI Answer Layer</h2>
+  <div class="slide bg-warm" id="slide-6">
+    <div class="eyebrow">Google AI Overviews &bull; Live Results &bull; April 2026</div>
+    <h2>What <span style="color:var(--google)">Google AI</span> Shows for Renovation in Edmonton</h2>
     <div class="divline"></div>
-    <div class="cols c2" style="margin-top:16px">
-      <div class="ai-chat">
-        <div class="platform-badge google-badge">GOOGLE AI</div>
-        <div class="query">Query: <span>"best renovation company in Edmonton AB"</span></div>
-        <div class="answer">Google AI Overview surfaced results from <strong>RenovationFind</strong>, <strong>Houzz</strong>, <strong>HomeStars</strong>, and <strong>Edmonton Top 10</strong> list sites. Featured companies with strong review profiles and detailed service pages. <span class="not-cited">Rise & Shine Maintenance did not appear.</span></div>
-        <div class="result-tag tag-missing">NOT CITED</div>
-      </div>
-      <div class="ai-chat">
-        <div class="platform-badge google-badge">GOOGLE AI</div>
-        <div class="query">Query: <span>"best handyman and maintenance Edmonton AB"</span></div>
-        <div class="answer">Google's AI answer pulled from <strong>HomeStars</strong>, <strong>Yelp</strong>, and <strong>BestInEdmonton.com</strong>. Featured companies with 50+ reviews and detailed service descriptions. <span class="not-cited">Rise & Shine Maintenance did not appear.</span></div>
-        <div class="result-tag tag-missing">NOT CITED</div>
-      </div>
+    <div class="cols c2" style="margin-top:14px">
+      <div class="ai-chat"><div class="platform-badge google-badge">GOOGLE AI</div><div class="query">Query: <span>"best renovation company in Edmonton AB"</span></div><div class="answer">Google AI Overview surfaced results from:<br><br><strong>1. <span class="cited">RenovationFind</span></strong> - directory listing site<br><strong>2. <span class="cited">Houzz Edmonton</span></strong> - 15+ remodelers featured<br><strong>3. <span class="cited">HomeStars</span></strong> - general contractors<br><strong>4. <span class="cited">Edmonton Top 10</span></strong> - best renovation list<br><br><span class="not-cited">Rise & Shine Maintenance - not in any source.</span></div><div class="result-tag tag-missing" style="margin-top:8px">&#10007; NOT FOUND</div></div>
+      <div class="ai-chat"><div class="platform-badge google-badge">GOOGLE AI</div><div class="query">Query: <span>"best handyman and maintenance Edmonton AB"</span></div><div class="answer">Google AI pulled from:<br><br><strong>1. <span class="cited">HomeStars</span></strong> - handyman services<br><strong>2. <span class="cited">Yelp Edmonton</span></strong> - home services category<br><strong>3. <span class="cited">BestInEdmonton.com</span></strong> - top 5 handyman list<br><strong>4. <span class="cited">Edmonton Top 10</span></strong> - best handyman services<br><br><span class="not-cited">Rise & Shine Maintenance - not found.</span></div><div class="result-tag tag-missing" style="margin-top:8px">&#10007; NOT FOUND</div></div>
     </div>
 
-    <div class="card" style="margin-top:20px;padding:18px;border-left:3px solid var(--yellow)">
+    <div class="card" style="margin-top:16px;padding:18px;border-left:3px solid var(--yellow)">
       <h3 style="font-size:14px;margin-bottom:8px">Full Keyword Tracker</h3>
       <table class="kw-table">
         <thead>
-          <tr><th>Query Tested</th><th>ChatGPT</th><th>Perplexity</th><th>Google AI</th></tr>
+          <tr><th>Query Tested</th><th style="color:var(--chatgpt)">ChatGPT</th><th style="color:var(--perplexity)">Perplexity</th><th style="color:var(--google)">Google AI</th></tr>
         </thead>
         <tbody>
-          <tr><td>best renovation company in Edmonton AB</td><td style="color:var(--red)">Not cited</td><td style="color:var(--red)">Not cited</td><td style="color:var(--red)">Not cited</td></tr>
-          <tr><td>best home maintenance services in Edmonton AB</td><td style="color:var(--red)">Not cited</td><td style="color:var(--red)">Not cited</td><td style="color:var(--red)">Not cited</td></tr>
-          <tr><td>best painting and renovation contractor Edmonton AB</td><td style="color:var(--red)">Not cited</td><td style="color:var(--red)">Not cited</td><td style="color:var(--yellow)">N/A</td></tr>
-          <tr><td>best handyman and maintenance Edmonton AB</td><td style="color:var(--yellow)">N/A</td><td style="color:var(--yellow)">N/A</td><td style="color:var(--red)">Not cited</td></tr>
+          <tr><td>best renovation company in Edmonton AB</td><td style="color:var(--red)">&#10007; Not cited</td><td style="color:var(--red)">&#10007; Not cited</td><td style="color:var(--red)">&#10007; Not cited</td></tr>
+          <tr><td>best home maintenance services in Edmonton AB</td><td style="color:var(--red)">&#10007; Not cited</td><td style="color:var(--red)">&#10007; Not cited</td><td style="color:var(--red)">&#10007; Not cited</td></tr>
+          <tr><td>best painting contractor in Edmonton AB</td><td style="color:var(--red)">&#10007; Not cited</td><td style="color:var(--red)">&#10007; Not cited</td><td style="color:var(--yellow)">- N/A</td></tr>
+          <tr><td>best handyman and maintenance Edmonton AB</td><td style="color:var(--yellow)">- N/A</td><td style="color:var(--yellow)">- N/A</td><td style="color:var(--red)">&#10007; Not cited</td></tr>
         </tbody>
       </table>
       <p style="font-size:11px;color:var(--text-dim);margin-top:8px">0 out of 9 tested queries returned a citation for Rise & Shine Maintenance across all three platforms.</p>
