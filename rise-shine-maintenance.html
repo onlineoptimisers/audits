@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rise &amp; Shine Maintenance AI Visibility Audit | Online Optimisers</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  :root {
+    --bg:#060f1e; --bg2:#0d1b2e; --card:#111f35; --card-border:#1a2d4a;
+    --primary:#01a2f9; --dark-blue:#0052cc; --mid-blue:#1870d4; --light-blue:#8cc7f3;
+    --text:#e8edf4; --text-dim:#7a90aa; --text-bright:#ffffff;
+    --red:#ef4444; --yellow:#f59e0b; --green:#22c55e;
+    --chatgpt:#7CB89E; --perplexity:#8B7EC2; --google:#4285F4;
+  }
+
+  body {
+    font-family:'Manrope',system-ui,-apple-system,sans-serif;
+    background:var(--bg); color:var(--text);
+    overflow:hidden; height:100vh;
+  }
+
+  .deck { width:100vw; height:100vh; position:relative; z-index:1; }
+  .slide {
+    display:none; width:100%; height:100%;
+    padding:48px 64px 56px;
+    position:absolute; top:0; left:0;
+    flex-direction:column; justify-content:center;
+    overflow-y:auto;
+  }
+  .slide.active { display:flex; }
+
+  .bg-cover { background:radial-gradient(ellipse at 70% 30%,rgba(1,162,249,.12) 0%,transparent 60%),radial-gradient(ellipse at 20% 80%,rgba(0,82,204,.08) 0%,transparent 50%),var(--bg); }
+  .bg-dark { background:var(--bg); }
+  .bg-mid { background:var(--bg2); }
+  .bg-warm { background:linear-gradient(135deg,#060f1e 0%,#0d1b2e 100%); }
+  .bg-close { background:radial-gradient(ellipse at 50% 0%,rgba(1,162,249,.15) 0%,transparent 60%),var(--bg); }
+
+  .logo { position:fixed;top:20px;left:28px;font-size:12px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:rgba(1,162,249,.7);z-index:100; }
+  .hint { position:fixed;top:18px;right:22px;font-size:10px;color:rgba(255,255,255,.15);z-index:100; }
+  .slide-cta { position:fixed;top:14px;right:120px;z-index:100;display:none; }
+  .slide-cta a { display:inline-block;padding:12px 28px;background:var(--primary);color:#ffffff;font-weight:800;font-size:14px;border-radius:10px;text-decoration:none;letter-spacing:.5px;transition:all .2s;box-shadow:0 0 20px rgba(1,162,249,.3); }
+  .slide-cta a:hover { opacity:.9; }
+  .progress-bar { position:fixed;top:0;left:0;height:3px;background:var(--primary);transition:width .35s ease;z-index:200; }
+
+  .nav {
+    position:fixed;bottom:18px;left:50%;transform:translateX(-50%);
+    display:flex;align-items:center;gap:16px;
+    background:rgba(1,162,249,.12);border:1px solid rgba(1,162,249,.3);
+    border-radius:40px;padding:10px 28px;z-index:100;
+    backdrop-filter:blur(10px);
+  }
+  .nav button { background:none;border:none;color:#ffffff;font-size:20px;cursor:pointer;opacity:.7;transition:all .2s;padding:4px 12px; }
+  .nav button:hover { opacity:1; }
+  .nav button:disabled { opacity:.2;cursor:default; }
+  #sc { font-size:13px;font-weight:700;color:#ffffff;min-width:56px;text-align:center;letter-spacing:1px; }
+
+  .eyebrow { font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--primary);margin-bottom:12px;font-weight:700; }
+  h1 { font-family:'Manrope',sans-serif;font-size:clamp(32px,4.2vw,48px);font-weight:800;line-height:1.08;letter-spacing:-.5px;color:#ffffff; }
+  h2 { font-family:'Manrope',sans-serif;font-size:clamp(24px,3.2vw,36px);font-weight:800;line-height:1.1;letter-spacing:-.3px;color:#ffffff; }
+  h3 { font-size:17px;font-weight:700;color:var(--text-bright); }
+  p { font-size:14px;line-height:1.65;color:rgba(255,255,255,.7); }
+  strong { color:#fff; }
+
+  .accent { color:var(--primary); }
+  .divline { width:50px;height:3px;background:var(--primary);border-radius:2px;margin:12px 0; }
+
+  .cols { display:grid;gap:16px;margin-top:20px; }
+  .c2 { grid-template-columns:1fr 1fr; }
+  .c3 { grid-template-columns:1fr 1fr 1fr; }
+  .c4 { grid-template-columns:1fr 1fr 1fr 1fr; }
+
+  .card {
+    background:var(--card);
+    border:1px solid var(--card-border);border-radius:14px;padding:20px;
+    position:relative;overflow:hidden;transition:border-color .3s ease;
+  }
+  .card::before { content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--primary);opacity:1; }
+  .card:hover { border-color:var(--primary); }
+
+  .card.accent-red::before { background:var(--red); }
+  .card.accent-amber::before { background:var(--yellow); }
+  .card.accent-green::before { background:var(--green); }
+
+  .ai-chat {
+    background:var(--card);
+    border:1px solid var(--card-border);border-radius:14px;
+    padding:16px 18px;font-family:'Manrope',monospace;
+    transition:border-color .3s;position:relative;
+  }
+  .ai-chat::before { content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--primary); }
+  .ai-chat:hover { border-color:var(--primary); }
+  .ai-chat .query { font-size:12px;color:rgba(255,255,255,.45);margin-bottom:10px;padding-bottom:10px;border-bottom:1px solid rgba(1,162,249,.1); }
+  .ai-chat .query span { color:rgba(255,255,255,.8);font-style:italic; }
+  .ai-chat .platform-badge { display:inline-block;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;letter-spacing:1px;margin-bottom:8px; }
+  .chatgpt-badge { background:rgba(124,184,158,.12);color:var(--chatgpt);border:1px solid rgba(124,184,158,.3); }
+  .perplexity-badge { background:rgba(139,126,194,.12);color:var(--perplexity);border:1px solid rgba(139,126,194,.3); }
+  .google-badge { background:rgba(66,133,244,.12);color:var(--google);border:1px solid rgba(66,133,244,.3); }
+  .ai-chat .answer { font-size:12px;line-height:1.65;color:rgba(255,255,255,.7); }
+  .ai-chat .not-cited { color:var(--red);font-weight:600; }
+  .ai-chat .result-tag { display:inline-block;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;letter-spacing:.5px;margin-top:8px; }
+  .tag-missing { background:rgba(239,68,68,.12);color:var(--red);border:1px solid rgba(239,68,68,.2); }
+
+  .cp { position:absolute;top:8px;right:8px;background:rgba(1,162,249,.08);border:1px solid rgba(1,162,249,.2);color:rgba(1,162,249,.6);border-radius:5px;padding:3px 9px;font-size:10px;cursor:pointer;transition:all .15s;z-index:10; }
+  .cp:hover { background:rgba(1,162,249,.15);color:var(--primary); }
+  .cp.done { background:rgba(34,197,94,.15);border-color:rgba(34,197,94,.3);color:var(--green); }
+
+  .badge { display:inline-block;padding:3px 10px;border-radius:99px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px; }
+  .b-red { background:rgba(239,68,68,.12);color:var(--red);border:1px solid rgba(239,68,68,.2); }
+  .b-green { background:rgba(34,197,94,.1);color:var(--green);border:1px solid rgba(34,197,94,.2); }
+  .b-amber { background:rgba(245,158,11,.12);color:var(--yellow);border:1px solid rgba(245,158,11,.2); }
+
+  .hook-box { border-left:3px solid var(--primary);padding:12px 18px;margin:16px 0;font-size:17px;font-weight:700;line-height:1.45;color:rgba(255,255,255,.95);position:relative;background:rgba(1,162,249,.03);border-radius:0 8px 8px 0; }
+
+  .pain-list { list-style:none;margin-top:16px;display:flex;flex-direction:column;gap:12px; }
+  .pain-list li { display:flex;align-items:flex-start;gap:12px;font-size:14px;color:rgba(255,255,255,.8); }
+  .pain-icon { width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0; }
+
+  .schema-row { display:flex;justify-content:space-between;align-items:center;font-size:13px;padding:8px 0;border-bottom:1px solid rgba(1,162,249,.06); }
+  .schema-row:last-child { border-bottom:none; }
+
+  .comp-card { background:var(--card);border:1px solid var(--card-border);border-radius:14px;padding:18px;position:relative;overflow:hidden;transition:border-color .3s; }
+  .comp-card:hover { border-color:var(--primary); }
+  .comp-card.is-you { border-color:rgba(239,68,68,.3);opacity:.75; }
+  .comp-card.is-you::before { content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--red); }
+  .comp-card.is-leader::before { content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--green); }
+  .comp-label { font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim);margin-bottom:4px; }
+  .comp-name { font-size:15px;font-weight:800;color:var(--text-bright);margin-bottom:2px; }
+  .comp-domain { font-size:11px;color:var(--primary);margin-bottom:12px; }
+  .comp-stats { display:grid;grid-template-columns:1fr 1fr;gap:8px; }
+  .comp-stat-n { font-size:20px;font-weight:900;letter-spacing:-1px; }
+  .comp-stat-l { font-size:9px;text-transform:uppercase;letter-spacing:.5px;color:var(--text-dim); }
+
+  .obj { background:var(--card);border:1px solid var(--card-border);border-radius:12px;padding:16px 18px;display:flex;gap:12px;align-items:flex-start;transition:border-color .3s; }
+  .obj:hover { border-color:var(--primary); }
+  .obj .q { font-size:16px;font-weight:800;color:rgba(255,255,255,.95);margin-bottom:4px; }
+  .obj .a { font-size:12.5px;color:rgba(255,255,255,.55);line-height:1.5; }
+  .obj-icon { width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0; }
+
+  .cs-card { background:var(--card);border:1px solid rgba(1,162,249,.2);border-radius:16px;padding:24px;color:var(--text); }
+  .cs-name { font-size:18px;font-weight:800;color:var(--text-bright); }
+  .cs-biz { font-size:12px;font-weight:600;margin-top:2px; }
+  .cs-divider { border:none;border-top:1px solid rgba(1,162,249,.1);margin:14px 0; }
+  .cs-stats { display:flex;gap:24px; }
+  .cs-stat .n { font-size:32px;font-weight:900;line-height:1;letter-spacing:-1px; }
+  .cs-stat .l { font-size:10px;text-transform:uppercase;letter-spacing:.5px;color:var(--text-dim);margin-top:3px; }
+
+  .bar-row { display:flex;align-items:center;gap:12px;margin-bottom:8px; }
+  .bar-label { width:130px;font-size:11px;color:rgba(255,255,255,.6);text-align:right; }
+  .bar-track { flex:1;height:22px;background:rgba(255,255,255,.04);border-radius:4px;overflow:hidden; }
+  .bar-fill { height:100%;border-radius:4px;display:flex;align-items:center;padding-left:8px;font-size:11px;font-weight:700;color:#fff;min-width:fit-content; }
+
+  .cta-strengths { list-style:none;display:flex;flex-direction:column;gap:6px; }
+  .cta-strengths li { font-size:13px;color:rgba(255,255,255,.7);display:flex;align-items:center;gap:8px; }
+  .cta-strengths li::before { content:''; display:inline-block;width:6px;height:6px;background:var(--primary);border-radius:50%;flex-shrink:0; }
+
+  .cta-btn { display:inline-block;padding:14px 36px;border-radius:8px;font-size:16px;font-weight:700;background:var(--primary);color:#060f1e;text-decoration:none;margin-top:16px;transition:all .3s;border:none;cursor:pointer; }
+  .cta-btn:hover { opacity:.9; }
+
+  .kw-table { width:100%;border-collapse:collapse;font-size:12px;margin-top:12px; }
+  .kw-table th { text-align:left;padding:6px 8px;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--text-dim);border-bottom:1px solid rgba(1,162,249,.1); }
+  .kw-table td { padding:5px 8px;border-bottom:1px solid rgba(255,255,255,.03); }
+  .kw-table tr:hover { background:rgba(1,162,249,.03); }
+
+  @media (max-width:900px) {
+    .slide { padding:36px 24px 68px; }
+    .c2,.c3,.c4 { grid-template-columns:1fr; }
+    h1 { font-size:28px; }
+    h2 { font-size:22px; }
+  }
+  @media (max-width:600px) {
+    .slide { padding:24px 16px 68px; }
+    h1 { font-size:22px; }
+    h2 { font-size:18px; }
+    .nav { padding:6px 16px;gap:10px; }
+    .cols { gap:10px; }
+    .card { padding:14px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="slide-cta" id="slideCta"><a href="https://calendly.com/info-yg4/strategy-call" target="_blank">Book a Call</a></div>
+<div class="logo">Online Optimisers</div>
+<div class="hint">&larr; &rarr; arrow keys</div>
+<div class="progress-bar" id="pb"></div>
+
+<div class="deck">
+
+  <!-- ===== SLIDE 1: COVER ===== -->
+  <div class="slide bg-cover active" id="slide-1" style="justify-content:center;align-items:center;text-align:center">
+    <div style="max-width:700px">
+      <div style="margin-bottom:32px">
+        <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+      </div>
+      <div style="font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--primary);font-weight:700;margin-bottom:18px">AI Visibility Audit</div>
+      <h1 style="font-size:clamp(38px,5vw,56px);line-height:1.1;margin-bottom:20px">Rise & Shine Maintenance</h1>
+      <div style="width:60px;height:2px;background:var(--primary);margin:0 auto 24px"></div>
+      <p style="font-size:17px;color:var(--text-dim);max-width:520px;margin:0 auto;line-height:1.6">How visible is your business when homeowners ask AI for renovation and maintenance recommendations in Edmonton?</p>
+      <div style="margin-top:40px;display:flex;gap:20px;justify-content:center;flex-wrap:wrap">
+        <div style="font-size:12px;color:var(--text-dim)">
+          <span style="color:var(--primary);font-weight:700">Prepared by</span> Online Optimisers
+        </div>
+        <div style="font-size:12px;color:var(--text-dim)">&bull;</div>
+        <div style="font-size:12px;color:var(--text-dim)">April 2026</div>
+        <div style="font-size:12px;color:var(--text-dim)">&bull;</div>
+        <div style="font-size:12px;color:var(--text-dim)">Edmonton, AB</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SLIDE 2: KEY FINDINGS ===== -->
+  <div class="slide bg-mid" id="slide-2">
+    <div class="eyebrow">Audit Overview</div>
+    <h2>Key Findings at a Glance</h2>
+    <div class="divline"></div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:22px;flex:1">
+      <div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+          <div class="card" style="text-align:center;padding:24px">
+            <div style="font-size:48px;font-weight:900;color:var(--red)">12<span style="font-size:22px;color:var(--text-dim)">/100</span></div>
+            <div style="font-size:11px;color:var(--text-dim);text-transform:uppercase;letter-spacing:1.5px;margin-top:6px">AI Visibility Score</div>
+          </div>
+          <div class="card" style="text-align:center;padding:24px">
+            <div style="font-size:48px;font-weight:900;color:var(--red)">0<span style="font-size:22px;color:var(--text-dim)">/9</span></div>
+            <div style="font-size:11px;color:var(--text-dim);text-transform:uppercase;letter-spacing:1.5px;margin-top:6px">AI Queries Cited</div>
+          </div>
+          <div class="card" style="text-align:center;padding:24px">
+            <div style="font-size:48px;font-weight:900;color:var(--red)">12+</div>
+            <div style="font-size:11px;color:var(--text-dim);text-transform:uppercase;letter-spacing:1.5px;margin-top:6px">Competitors Cited</div>
+          </div>
+          <div class="card" style="text-align:center;padding:24px">
+            <div style="font-size:42px;font-weight:900;color:var(--red)">$50K+</div>
+            <div style="font-size:11px;color:var(--text-dim);text-transform:uppercase;letter-spacing:1.5px;margin-top:6px">Est. Lost Rev / Year</div>
+          </div>
+        </div>
+        <div class="card" style="margin-top:12px;padding:14px 18px;border-left:3px solid var(--red)">
+          <div style="font-size:13px;color:rgba(255,255,255,.8);line-height:1.5"><strong style="color:var(--red)">Critical finding:</strong> Your website is built on GoDaddy Website Builder with <strong>a single page, no real service descriptions, no address, no phone number, and stock photos</strong>. AI systems have almost nothing to read, cite, or recommend. Competitors with content-rich websites are getting every AI referral in your market.</div>
+        </div>
+      </div>
+
+      <div class="card" style="padding:24px;display:flex;flex-direction:column;justify-content:center">
+        <h3 style="font-size:16px;margin-bottom:18px;color:var(--text-bright)">What This Audit Covers</h3>
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text)">
+            <span style="width:24px;height:24px;border-radius:6px;background:rgba(1,162,249,.1);border:1px solid rgba(1,162,249,.3);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:var(--primary);flex-shrink:0">1</span>
+            <span><strong style="color:#fff">Market Landscape</strong> - why AI search changes everything</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text)">
+            <span style="width:24px;height:24px;border-radius:6px;background:rgba(124,184,158,.1);border:1px solid rgba(124,184,158,.3);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:var(--chatgpt);flex-shrink:0">2</span>
+            <span><strong style="color:#fff">ChatGPT Results</strong> - who AI recommends instead of you</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text)">
+            <span style="width:24px;height:24px;border-radius:6px;background:rgba(139,126,194,.1);border:1px solid rgba(139,126,194,.3);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:var(--perplexity);flex-shrink:0">3</span>
+            <span><strong style="color:#fff">Perplexity Results</strong> - second AI platform check</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text)">
+            <span style="width:24px;height:24px;border-radius:6px;background:rgba(66,133,244,.1);border:1px solid rgba(66,133,244,.3);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:var(--google);flex-shrink:0">4</span>
+            <span><strong style="color:#fff">Google AI Overviews</strong> - Google's AI answer layer</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text)">
+            <span style="width:24px;height:24px;border-radius:6px;background:rgba(1,162,249,.1);border:1px solid rgba(1,162,249,.3);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:var(--primary);flex-shrink:0">5</span>
+            <span><strong style="color:#fff">Competitor Analysis</strong> - who is winning and why</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text)">
+            <span style="width:24px;height:24px;border-radius:6px;background:rgba(1,162,249,.1);border:1px solid rgba(1,162,249,.3);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:var(--primary);flex-shrink:0">6</span>
+            <span><strong style="color:#fff">Website, Schema & Reviews</strong> - technical foundation gaps</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text)">
+            <span style="width:24px;height:24px;border-radius:6px;background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.3);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:var(--green);flex-shrink:0">7</span>
+            <span><strong style="color:#fff">Roadmap to Success</strong> - the path to visibility</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SLIDE 3: MARKET SHIFT ===== -->
+  <div class="slide bg-mid" id="slide-3">
+    <div class="eyebrow">The Search Landscape Is Changing</div>
+    <h2>The Shift Is Happening</h2>
+    <div class="divline"></div>
+    <div class="cols c2" style="margin-top:16px;align-items:start">
+      <div class="card" style="text-align:center;padding:24px">
+        <h3 style="font-size:14px;margin-bottom:16px">Search Market Share Today</h3>
+        <div style="position:relative;width:200px;height:200px;margin:0 auto">
+          <svg viewBox="0 0 36 36" style="width:200px;height:200px;transform:rotate(-90deg)">
+            <circle cx="18" cy="18" r="15.9" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="3.5"/>
+            <circle cx="18" cy="18" r="15.9" fill="none" stroke="#4285F4" stroke-width="3.5" stroke-dasharray="88 12" stroke-dashoffset="0" stroke-linecap="round"/>
+            <circle cx="18" cy="18" r="15.9" fill="none" stroke="#10B981" stroke-width="3.5" stroke-dasharray="3 97" stroke-dashoffset="-88" stroke-linecap="round"/>
+            <circle cx="18" cy="18" r="15.9" fill="none" stroke="#FF6D00" stroke-width="3.5" stroke-dasharray="4 96" stroke-dashoffset="-91" stroke-linecap="round"/>
+            <circle cx="18" cy="18" r="15.9" fill="none" stroke="#A855F7" stroke-width="3.5" stroke-dasharray="1.5 98.5" stroke-dashoffset="-95" stroke-linecap="round"/>
+          </svg>
+          <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center">
+            <div style="font-size:28px;font-weight:900;color:#4285F4">88%</div>
+            <div style="font-size:9px;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px">Google</div>
+          </div>
+        </div>
+        <div style="display:flex;gap:12px;justify-content:center;margin-top:14px;flex-wrap:wrap">
+          <div style="display:flex;align-items:center;gap:4px;font-size:10px;color:rgba(255,255,255,.6)"><span style="width:8px;height:8px;border-radius:50%;background:#4285F4;display:inline-block"></span> Google 88%</div>
+          <div style="display:flex;align-items:center;gap:4px;font-size:10px;color:rgba(255,255,255,.6)"><span style="width:8px;height:8px;border-radius:50%;background:#FF6D00;display:inline-block"></span> Bing 4%</div>
+          <div style="display:flex;align-items:center;gap:4px;font-size:10px;color:rgba(255,255,255,.6)"><span style="width:8px;height:8px;border-radius:50%;background:#10B981;display:inline-block"></span> ChatGPT 3%</div>
+          <div style="display:flex;align-items:center;gap:4px;font-size:10px;color:rgba(255,255,255,.6)"><span style="width:8px;height:8px;border-radius:50%;background:#A855F7;display:inline-block"></span> Perplexity 1.5%</div>
+        </div>
+      </div>
+      <div class="card" style="padding:24px">
+        <h3 style="font-size:14px;margin-bottom:16px">Projected: Where Search Is Heading</h3>
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <div>
+            <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text-dim);margin-bottom:4px;text-transform:uppercase;letter-spacing:1px"><span>2026 (Now)</span><span>Google: 88%</span></div>
+            <div style="height:28px;background:rgba(255,255,255,.04);border-radius:6px;overflow:hidden;position:relative">
+              <div style="height:100%;width:88%;background:linear-gradient(90deg,#4285F4,#5B9CF6);border-radius:6px;display:flex;align-items:center;padding-left:10px;font-size:11px;font-weight:700;color:#fff">Google</div>
+              <div style="position:absolute;right:0;top:0;height:100%;width:5%;background:linear-gradient(90deg,var(--green),var(--primary));border-radius:0 6px 6px 0"></div>
+            </div>
+          </div>
+          <div>
+            <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text-dim);margin-bottom:4px;text-transform:uppercase;letter-spacing:1px"><span>2028</span><span>Google: ~75%</span></div>
+            <div style="height:28px;background:rgba(255,255,255,.04);border-radius:6px;overflow:hidden;position:relative">
+              <div style="height:100%;width:75%;background:linear-gradient(90deg,#4285F4,#5B9CF6);border-radius:6px 0 0 6px;display:flex;align-items:center;padding-left:10px;font-size:11px;font-weight:700;color:#fff">Google</div>
+              <div style="position:absolute;right:0;top:0;height:100%;width:18%;background:linear-gradient(90deg,var(--green),var(--primary));border-radius:0 6px 6px 0;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff">AI Search</div>
+            </div>
+          </div>
+          <div>
+            <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text-dim);margin-bottom:4px;text-transform:uppercase;letter-spacing:1px"><span>2030</span><span>Google: ~60%</span></div>
+            <div style="height:28px;background:rgba(255,255,255,.04);border-radius:6px;overflow:hidden;position:relative">
+              <div style="height:100%;width:60%;background:linear-gradient(90deg,#4285F4,#5B9CF6);border-radius:6px 0 0 6px;display:flex;align-items:center;padding-left:10px;font-size:11px;font-weight:700;color:#fff">Google</div>
+              <div style="position:absolute;right:0;top:0;height:100%;width:32%;background:linear-gradient(90deg,var(--green),var(--primary));border-radius:0 6px 6px 0;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff">AI Search ~30%</div>
+            </div>
+          </div>
+        </div>
+        <p style="font-size:11px;color:var(--text-dim);margin-top:16px;line-height:1.5">By 2028, an estimated <strong style="color:var(--primary)">25% of all local searches</strong> will flow through AI platforms. Businesses without AI visibility will lose leads to competitors who show up in those answers.</p>
+      </div>
+    </div>
+    <div class="hook-box" style="margin-top:16px">
+      When a homeowner in Edmonton asks ChatGPT "who should I call for a home renovation?" - your competitors already show up. You don't.
+    </div>
+  </div>
+
+  <!-- ===== SLIDE 4: CHATGPT RESULTS ===== -->
+  <div class="slide bg-dark" id="slide-4">
+    <div class="eyebrow">ChatGPT Results</div>
+    <h2>We Asked ChatGPT About Renovation in Edmonton</h2>
+    <div class="divline"></div>
+    <div class="cols c3" style="margin-top:16px">
+      <div class="ai-chat">
+        <button class="cp" onclick="copyQ(this,'best renovation company in Edmonton AB')">Copy</button>
+        <div class="platform-badge chatgpt-badge">CHATGPT</div>
+        <div class="query">Query: <span>"best renovation company in Edmonton AB"</span></div>
+        <div class="answer">ChatGPT recommended <strong>Ackard Contractors</strong> (award-winning, BILD Edmonton Metro awards), <strong>Ultimate Renovations</strong> (40+ years), <strong>Do It All Contracting</strong> (25+ years), and <strong>Shignanski Construction</strong>. <span class="not-cited">Rise & Shine Maintenance was not mentioned.</span></div>
+        <div class="result-tag tag-missing">NOT CITED</div>
+      </div>
+      <div class="ai-chat">
+        <button class="cp" onclick="copyQ(this,'best home maintenance services in Edmonton AB')">Copy</button>
+        <div class="platform-badge chatgpt-badge">CHATGPT</div>
+        <div class="query">Query: <span>"best home maintenance services in Edmonton AB"</span></div>
+        <div class="answer">AI recommended <strong>Residential Maintenance Services (RMS)</strong>, <strong>Handyman Connection</strong> (10+ years experience), <strong>24/7 Property Pros</strong>, and <strong>Home Services Edmonton Ltd</strong>. <span class="not-cited">Rise & Shine Maintenance was not mentioned.</span></div>
+        <div class="result-tag tag-missing">NOT CITED</div>
+      </div>
+      <div class="ai-chat">
+        <button class="cp" onclick="copyQ(this,'best painting and renovation contractor Edmonton AB')">Copy</button>
+        <div class="platform-badge chatgpt-badge">CHATGPT</div>
+        <div class="query">Query: <span>"best painting and renovation contractor Edmonton AB"</span></div>
+        <div class="answer">ChatGPT recommended <strong>Best in West Painting</strong> (20+ years), <strong>New Style Painting and Renovations</strong>, <strong>Alberta Painting</strong> (since 1995), and <strong>DreamArt Painting</strong>. <span class="not-cited">Rise & Shine Maintenance was not mentioned.</span></div>
+        <div class="result-tag tag-missing">NOT CITED</div>
+      </div>
+    </div>
+    <div class="hook-box" style="margin-top:20px">
+      Across 3 ChatGPT queries covering your core services, Rise & Shine Maintenance was not recommended once. At least 12 competitors were cited instead.
+    </div>
+  </div>
+
+  <!-- ===== SLIDE 5: PERPLEXITY RESULTS ===== -->
+  <div class="slide bg-dark" id="slide-5">
+    <div class="eyebrow">Perplexity Results</div>
+    <h2>We Asked Perplexity About Your Services</h2>
+    <div class="divline"></div>
+    <div class="cols c3" style="margin-top:16px">
+      <div class="ai-chat">
+        <div class="platform-badge perplexity-badge">PERPLEXITY</div>
+        <div class="query">Query: <span>"best renovation company in Edmonton AB"</span></div>
+        <div class="answer">Perplexity cited <strong>RenovationFind</strong>, <strong>Houzz Edmonton listings</strong>, <strong>HomeStars</strong>, and <strong>Yelp top 10</strong>. Specific companies included Ackard, Do It All, and ARdeco. <span class="not-cited">Rise & Shine Maintenance was not in any source or recommendation.</span></div>
+        <div class="result-tag tag-missing">NOT CITED</div>
+      </div>
+      <div class="ai-chat">
+        <div class="platform-badge perplexity-badge">PERPLEXITY</div>
+        <div class="query">Query: <span>"best home maintenance services in Edmonton AB"</span></div>
+        <div class="answer">Perplexity sourced from <strong>Yelp</strong>, <strong>HomeStars</strong>, <strong>TrustedPros</strong>, and <strong>BestInEdmonton.com</strong>. Featured RMS, Handyman Connection, and Mr. Handyman. <span class="not-cited">Rise & Shine was absent from all cited sources.</span></div>
+        <div class="result-tag tag-missing">NOT CITED</div>
+      </div>
+      <div class="ai-chat">
+        <div class="platform-badge perplexity-badge">PERPLEXITY</div>
+        <div class="query">Query: <span>"best painting contractor in Edmonton AB"</span></div>
+        <div class="answer">Perplexity recommended <strong>Raydian Painting</strong>, <strong>Elite Trade Painting</strong>, <strong>Pro Co Painting</strong>, and <strong>Alberta Painting Ltd</strong>. All had strong review profiles and content-rich websites. <span class="not-cited">Rise & Shine was not mentioned.</span></div>
+        <div class="result-tag tag-missing">NOT CITED</div>
+      </div>
+    </div>
+    <div class="hook-box" style="margin-top:20px">
+      Perplexity pulls from review sites and directories. With zero reviews on your website and limited directory presence, you have no content for Perplexity to find.
+    </div>
+  </div>
+
+  <!-- ===== SLIDE 6: GOOGLE AI OVERVIEWS ===== -->
+  <div class="slide bg-dark" id="slide-6">
+    <div class="eyebrow">Google AI Overviews</div>
+    <h2>Google's AI Answer Layer</h2>
+    <div class="divline"></div>
+    <div class="cols c2" style="margin-top:16px">
+      <div class="ai-chat">
+        <div class="platform-badge google-badge">GOOGLE AI</div>
+        <div class="query">Query: <span>"best renovation company in Edmonton AB"</span></div>
+        <div class="answer">Google AI Overview surfaced results from <strong>RenovationFind</strong>, <strong>Houzz</strong>, <strong>HomeStars</strong>, and <strong>Edmonton Top 10</strong> list sites. Featured companies with strong review profiles and detailed service pages. <span class="not-cited">Rise & Shine Maintenance did not appear.</span></div>
+        <div class="result-tag tag-missing">NOT CITED</div>
+      </div>
+      <div class="ai-chat">
+        <div class="platform-badge google-badge">GOOGLE AI</div>
+        <div class="query">Query: <span>"best handyman and maintenance Edmonton AB"</span></div>
+        <div class="answer">Google's AI answer pulled from <strong>HomeStars</strong>, <strong>Yelp</strong>, and <strong>BestInEdmonton.com</strong>. Featured companies with 50+ reviews and detailed service descriptions. <span class="not-cited">Rise & Shine Maintenance did not appear.</span></div>
+        <div class="result-tag tag-missing">NOT CITED</div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:20px;padding:18px;border-left:3px solid var(--yellow)">
+      <h3 style="font-size:14px;margin-bottom:8px">Full Keyword Tracker</h3>
+      <table class="kw-table">
+        <thead>
+          <tr><th>Query Tested</th><th>ChatGPT</th><th>Perplexity</th><th>Google AI</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>best renovation company in Edmonton AB</td><td style="color:var(--red)">Not cited</td><td style="color:var(--red)">Not cited</td><td style="color:var(--red)">Not cited</td></tr>
+          <tr><td>best home maintenance services in Edmonton AB</td><td style="color:var(--red)">Not cited</td><td style="color:var(--red)">Not cited</td><td style="color:var(--red)">Not cited</td></tr>
+          <tr><td>best painting and renovation contractor Edmonton AB</td><td style="color:var(--red)">Not cited</td><td style="color:var(--red)">Not cited</td><td style="color:var(--yellow)">N/A</td></tr>
+          <tr><td>best handyman and maintenance Edmonton AB</td><td style="color:var(--yellow)">N/A</td><td style="color:var(--yellow)">N/A</td><td style="color:var(--red)">Not cited</td></tr>
+        </tbody>
+      </table>
+      <p style="font-size:11px;color:var(--text-dim);margin-top:8px">0 out of 9 tested queries returned a citation for Rise & Shine Maintenance across all three platforms.</p>
+    </div>
+  </div>
+
+  <!-- ===== SLIDE 7: COMPETITOR COMPARISON ===== -->
+  <div class="slide bg-mid" id="slide-7">
+    <div class="eyebrow">Competitor Analysis</div>
+    <h2>Who AI Recommends Instead of You</h2>
+    <div class="divline"></div>
+    <div class="cols c4" style="margin-top:16px">
+      <div class="comp-card is-you">
+        <div class="comp-label">Your Business</div>
+        <div class="comp-name">Rise & Shine Maintenance</div>
+        <div class="comp-domain">riseshinemaintenance.com</div>
+        <div class="comp-stats">
+          <div><div class="comp-stat-n" style="color:var(--red)">0</div><div class="comp-stat-l">AI Citations</div></div>
+          <div><div class="comp-stat-n" style="color:var(--red)">~0</div><div class="comp-stat-l">Reviews</div></div>
+          <div><div class="comp-stat-n" style="color:var(--red)">1</div><div class="comp-stat-l">Pages</div></div>
+          <div><div class="comp-stat-n" style="color:var(--red)">GoDaddy</div><div class="comp-stat-l">Platform</div></div>
+        </div>
+      </div>
+      <div class="comp-card is-leader">
+        <div class="comp-label">Top Competitor</div>
+        <div class="comp-name">Ackard Contractors</div>
+        <div class="comp-domain">ackard.com</div>
+        <div class="comp-stats">
+          <div><div class="comp-stat-n" style="color:var(--green)">3+</div><div class="comp-stat-l">AI Citations</div></div>
+          <div><div class="comp-stat-n">100+</div><div class="comp-stat-l">Reviews</div></div>
+          <div><div class="comp-stat-n">20+</div><div class="comp-stat-l">Pages</div></div>
+          <div><div class="comp-stat-n" style="color:var(--green)">Award</div><div class="comp-stat-l">BILD Winner</div></div>
+        </div>
+      </div>
+      <div class="comp-card">
+        <div class="comp-label">Competitor</div>
+        <div class="comp-name">Ultimate Renovations</div>
+        <div class="comp-domain">ultimaterenovations.com</div>
+        <div class="comp-stats">
+          <div><div class="comp-stat-n" style="color:var(--green)">2+</div><div class="comp-stat-l">AI Citations</div></div>
+          <div><div class="comp-stat-n">200+</div><div class="comp-stat-l">Reviews</div></div>
+          <div><div class="comp-stat-n">30+</div><div class="comp-stat-l">Pages</div></div>
+          <div><div class="comp-stat-n">40+</div><div class="comp-stat-l">Years</div></div>
+        </div>
+      </div>
+      <div class="comp-card">
+        <div class="comp-label">Competitor</div>
+        <div class="comp-name">Do It All Contracting</div>
+        <div class="comp-domain">doitallcontracting.ca</div>
+        <div class="comp-stats">
+          <div><div class="comp-stat-n" style="color:var(--green)">2+</div><div class="comp-stat-l">AI Citations</div></div>
+          <div><div class="comp-stat-n">150+</div><div class="comp-stat-l">Reviews</div></div>
+          <div><div class="comp-stat-n">15+</div><div class="comp-stat-l">Pages</div></div>
+          <div><div class="comp-stat-n">25+</div><div class="comp-stat-l">Years</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="hook-box" style="margin-top:16px">
+      The difference is clear: your competitors have content-rich websites, hundreds of reviews, and deep service pages. AI recommends the businesses it can verify.
+    </div>
+  </div>
+
+  <!-- ===== SLIDE 8: WEBSITE ISSUES ===== -->
+  <div class="slide bg-mid" id="slide-8">
+    <div class="eyebrow">Website & Technical Gaps</div>
+    <h2>Why AI Can't Find You</h2>
+    <div class="divline"></div>
+    <div class="cols c2" style="margin-top:16px">
+      <div>
+        <h3 style="margin-bottom:14px;font-size:15px">Critical Website Issues</h3>
+        <ul class="pain-list">
+          <li>
+            <div class="pain-icon" style="background:rgba(239,68,68,.12);color:var(--red)">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+            </div>
+            <div><strong style="color:var(--red)">GoDaddy Website Builder</strong> - extremely limited for SEO. No custom schema, no blog, no URL control. AI systems struggle to crawl and index GoDaddy sites.</div>
+          </li>
+          <li>
+            <div class="pain-icon" style="background:rgba(239,68,68,.12);color:var(--red)">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+            </div>
+            <div><strong style="color:var(--red)">No address or phone number</strong> on your website. AI uses NAP (Name, Address, Phone) to verify and recommend local businesses.</div>
+          </li>
+          <li>
+            <div class="pain-icon" style="background:rgba(239,68,68,.12);color:var(--red)">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+            </div>
+            <div><strong style="color:var(--red)">Single-page site with zero real content.</strong> No service descriptions, no project case studies, no FAQ, no blog posts. AI needs text to cite.</div>
+          </li>
+          <li>
+            <div class="pain-icon" style="background:rgba(245,158,11,.12);color:var(--yellow)">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            </div>
+            <div><strong style="color:var(--yellow)">Stock photos only.</strong> No real project images. Homeowners and AI both value proof of real work.</div>
+          </li>
+          <li>
+            <div class="pain-icon" style="background:rgba(245,158,11,.12);color:var(--yellow)">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            </div>
+            <div><strong style="color:var(--yellow)">Typo: "Panting services"</strong> instead of "Painting services" on your booking page.</div>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <h3 style="margin-bottom:14px;font-size:15px">Schema & Entity Gaps</h3>
+        <div class="card" style="padding:18px">
+          <div class="schema-row"><span>LocalBusiness Schema</span><span class="badge b-red">Missing</span></div>
+          <div class="schema-row"><span>Service Schema</span><span class="badge b-red">Missing</span></div>
+          <div class="schema-row"><span>FAQ Schema</span><span class="badge b-red">Missing</span></div>
+          <div class="schema-row"><span>Review Schema</span><span class="badge b-red">Missing</span></div>
+          <div class="schema-row"><span>Organization Schema</span><span class="badge b-red">Missing</span></div>
+        </div>
+        <h3 style="margin-top:18px;margin-bottom:14px;font-size:15px">Directory Presence</h3>
+        <div class="card" style="padding:18px">
+          <div class="schema-row"><span>BBB Canada</span><span class="badge b-green">Found</span></div>
+          <div class="schema-row"><span>Yelp</span><span class="badge b-green">Found</span></div>
+          <div class="schema-row"><span>HomeStars</span><span class="badge b-amber">Partial</span></div>
+          <div class="schema-row"><span>Google Maps</span><span class="badge b-amber">Unverified</span></div>
+          <div class="schema-row"><span>Houzz</span><span class="badge b-red">Missing</span></div>
+          <div class="schema-row"><span>RenovationFind</span><span class="badge b-red">Missing</span></div>
+          <div class="schema-row"><span>TrustedPros</span><span class="badge b-red">Missing</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SLIDE 9: REVIEWS ===== -->
+  <div class="slide bg-dark" id="slide-9">
+    <div class="eyebrow">Review Intelligence</div>
+    <h2>Reviews Are the Currency of Trust</h2>
+    <div class="divline"></div>
+    <div class="cols c2" style="margin-top:16px">
+      <div>
+        <div class="card accent-red" style="padding:24px;text-align:center;margin-bottom:16px">
+          <div style="font-size:56px;font-weight:900;color:var(--red)">0</div>
+          <div style="font-size:12px;color:var(--text-dim);text-transform:uppercase;letter-spacing:1.5px;margin-top:4px">Reviews on Your Website</div>
+          <p style="margin-top:12px;font-size:13px">"Reviews coming soon!" is currently displayed on your site. AI systems rely heavily on reviews to validate and recommend businesses.</p>
+        </div>
+        <div class="card" style="padding:18px">
+          <h3 style="font-size:14px;margin-bottom:12px">Your Competitors' Review Profiles</h3>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <div class="bar-row">
+              <div class="bar-label">Ackard Contractors</div>
+              <div class="bar-track"><div class="bar-fill" style="width:80%;background:var(--green)">100+ reviews</div></div>
+            </div>
+            <div class="bar-row">
+              <div class="bar-label">Ultimate Renos</div>
+              <div class="bar-track"><div class="bar-fill" style="width:95%;background:var(--green)">200+ reviews</div></div>
+            </div>
+            <div class="bar-row">
+              <div class="bar-label">Do It All</div>
+              <div class="bar-track"><div class="bar-fill" style="width:85%;background:var(--green)">150+ reviews</div></div>
+            </div>
+            <div class="bar-row">
+              <div class="bar-label" style="color:var(--red)">Rise & Shine</div>
+              <div class="bar-track"><div class="bar-fill" style="width:2%;background:var(--red)">0</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="card" style="padding:24px">
+          <h3 style="font-size:15px;margin-bottom:16px">Why Reviews Matter for AI</h3>
+          <ul class="pain-list" style="gap:14px">
+            <li>
+              <div class="pain-icon" style="background:rgba(1,162,249,.12);color:var(--primary)">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2z"/></svg>
+              </div>
+              <div><strong>AI cross-references reviews</strong> across Google, Yelp, and BBB to validate recommendations. Zero reviews = zero trust signal.</div>
+            </li>
+            <li>
+              <div class="pain-icon" style="background:rgba(1,162,249,.12);color:var(--primary)">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+              </div>
+              <div><strong>Review keywords matter.</strong> When customers mention "renovation", "painting", "Edmonton" in reviews, AI connects those signals to your business.</div>
+            </li>
+            <li>
+              <div class="pain-icon" style="background:rgba(1,162,249,.12);color:var(--primary)">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              </div>
+              <div><strong>Volume and recency.</strong> Competitors with 100+ recent reviews get prioritized by AI. You need to start building this foundation immediately.</div>
+            </li>
+          </ul>
+        </div>
+        <div class="hook-box" style="margin-top:16px">
+          With 20+ years of happy customers, you likely have dozens of great stories. But if they're not online, AI doesn't know they exist.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SLIDE 10: CASE STUDY ===== -->
+  <div class="slide bg-warm" id="slide-10">
+    <div class="eyebrow">Case Study</div>
+    <h2>From Invisible to #1 in AI Search</h2>
+    <div class="divline"></div>
+    <div class="cols c2" style="margin-top:16px">
+      <div class="cs-card">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <div>
+            <div class="cs-name">Advanced Center for Cosmetic Dentistry</div>
+            <div class="cs-biz" style="color:var(--primary)">St. Petersburg, FL</div>
+          </div>
+        </div>
+        <hr class="cs-divider">
+        <div class="cs-stats" style="margin-bottom:16px">
+          <div class="cs-stat"><div class="n" style="color:var(--green)">193%</div><div class="l">Traffic Increase</div></div>
+          <div class="cs-stat"><div class="n" style="color:var(--primary)">#1</div><div class="l">ChatGPT Ranking</div></div>
+          <div class="cs-stat"><div class="n" style="color:var(--green)">5</div><div class="l">Months</div></div>
+        </div>
+        <p style="font-size:12px;line-height:1.6">Started with a similar profile to yours: limited AI visibility and competitors dominating AI search. After building their entity presence, schema markup, and content depth, they now appear as the #1 recommendation when someone asks ChatGPT for a cosmetic dentist in St. Petersburg.</p>
+      </div>
+      <div class="cs-card">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.5"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          <div>
+            <div class="cs-name">Elite Movers & Packing</div>
+            <div class="cs-biz" style="color:var(--primary)">Ventura, CA</div>
+          </div>
+        </div>
+        <hr class="cs-divider">
+        <div class="cs-stats" style="margin-bottom:16px">
+          <div class="cs-stat"><div class="n" style="color:var(--green)">130%</div><div class="l">Revenue Growth</div></div>
+          <div class="cs-stat"><div class="n" style="color:var(--primary)">#1</div><div class="l">ChatGPT Ranking</div></div>
+          <div class="cs-stat"><div class="n" style="color:var(--green)">8</div><div class="l">Months</div></div>
+        </div>
+        <p style="font-size:12px;line-height:1.6">A local moving company in a competitive market. After building their digital entity presence and optimizing for AI search, they became the top AI recommendation for movers in Ventura County. Revenue grew 130%+ in 8 months.</p>
+      </div>
+    </div>
+    <div class="hook-box" style="margin-top:16px">
+      Both businesses started exactly where Rise & Shine is today. The difference is they took action before their competitors did.
+    </div>
+  </div>
+
+  <!-- ===== SLIDE 11: ROADMAP ===== -->
+  <div class="slide bg-mid" id="slide-11">
+    <div class="eyebrow">Roadmap to Success</div>
+    <h2>The Path to AI Visibility</h2>
+    <div class="divline"></div>
+    <div class="cols c3" style="margin-top:18px">
+      <div class="card accent-red" style="padding:22px">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
+          <div style="width:36px;height:36px;border-radius:8px;background:rgba(239,68,68,.12);display:flex;align-items:center;justify-content:center;color:var(--red);font-size:16px;font-weight:900">1</div>
+          <div>
+            <h3 style="font-size:15px">Month 1: Foundation</h3>
+            <div class="badge b-red" style="margin-top:4px">Critical</div>
+          </div>
+        </div>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:10px;font-size:13px;color:rgba(255,255,255,.7)">
+          <li style="display:flex;align-items:flex-start;gap:8px"><span style="color:var(--red);font-weight:800;flex-shrink:0">01</span> Replace GoDaddy with a proper website platform (real pages, real content, real SEO)</li>
+          <li style="display:flex;align-items:flex-start;gap:8px"><span style="color:var(--red);font-weight:800;flex-shrink:0">02</span> Add NAP (address + phone) to every page</li>
+          <li style="display:flex;align-items:flex-start;gap:8px"><span style="color:var(--red);font-weight:800;flex-shrink:0">03</span> Implement LocalBusiness + Service schema markup</li>
+          <li style="display:flex;align-items:flex-start;gap:8px"><span style="color:var(--red);font-weight:800;flex-shrink:0">04</span> Verify and optimize Google Maps listing</li>
+          <li style="display:flex;align-items:flex-start;gap:8px"><span style="color:var(--red);font-weight:800;flex-shrink:0">05</span> Fix "Panting services" typo</li>
+        </ul>
+      </div>
+      <div class="card accent-amber" style="padding:22px">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
+          <div style="width:36px;height:36px;border-radius:8px;background:rgba(245,158,11,.12);display:flex;align-items:center;justify-content:center;color:var(--yellow);font-size:16px;font-weight:900">2</div>
+          <div>
+            <h3 style="font-size:15px">Months 2-3: Evidence Building</h3>
+            <div class="badge b-amber" style="margin-top:4px">Growth</div>
+          </div>
+        </div>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:10px;font-size:13px;color:rgba(255,255,255,.7)">
+          <li style="display:flex;align-items:flex-start;gap:8px"><span style="color:var(--yellow);font-weight:800;flex-shrink:0">01</span> Build 9+ individual service pages with real project photos and detailed descriptions</li>
+          <li style="display:flex;align-items:flex-start;gap:8px"><span style="color:var(--yellow);font-weight:800;flex-shrink:0">02</span> Launch review collection campaign (target 20+ Google reviews in 60 days)</li>
+          <li style="display:flex;align-items:flex-start;gap:8px"><span style="color:var(--yellow);font-weight:800;flex-shrink:0">03</span> Register on HomeStars, Houzz, RenovationFind, TrustedPros</li>
+          <li style="display:flex;align-items:flex-start;gap:8px"><span style="color:var(--yellow);font-weight:800;flex-shrink:0">04</span> Create FAQ content answering common renovation questions for Edmonton homeowners</li>
+        </ul>
+      </div>
+      <div class="card accent-green" style="padding:22px">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
+          <div style="width:36px;height:36px;border-radius:8px;background:rgba(34,197,94,.12);display:flex;align-items:center;justify-content:center;color:var(--green);font-size:16px;font-weight:900">3</div>
+          <div>
+            <h3 style="font-size:15px">Ongoing: Domination</h3>
+            <div class="badge b-green" style="margin-top:4px">Compound</div>
+          </div>
+        </div>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:10px;font-size:13px;color:rgba(255,255,255,.7)">
+          <li style="display:flex;align-items:flex-start;gap:8px"><span style="color:var(--green);font-weight:800;flex-shrink:0">01</span> Publish monthly project case studies with before/after photos</li>
+          <li style="display:flex;align-items:flex-start;gap:8px"><span style="color:var(--green);font-weight:800;flex-shrink:0">02</span> Build local backlinks from Edmonton business directories and press</li>
+          <li style="display:flex;align-items:flex-start;gap:8px"><span style="color:var(--green);font-weight:800;flex-shrink:0">03</span> Maintain review velocity (2-4 new reviews per month)</li>
+          <li style="display:flex;align-items:flex-start;gap:8px"><span style="color:var(--green);font-weight:800;flex-shrink:0">04</span> Monitor AI citation performance quarterly and adjust content strategy</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SLIDE 12: OBJECTIONS ===== -->
+  <div class="slide bg-dark" id="slide-12">
+    <div class="eyebrow">Common Questions</div>
+    <h2>What You Might Be Thinking</h2>
+    <div class="divline"></div>
+    <div class="cols c2" style="margin-top:16px">
+      <div class="obj">
+        <div class="obj-icon" style="background:rgba(1,162,249,.1);color:var(--primary)">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        </div>
+        <div>
+          <div class="q">"How is this different from regular SEO?"</div>
+          <div class="a">Traditional SEO focuses on Google's 10 blue links. AI visibility is about getting cited in ChatGPT, Perplexity, and Google AI Overviews. Different signals, different strategy. We handle both.</div>
+        </div>
+      </div>
+      <div class="obj">
+        <div class="obj-icon" style="background:rgba(1,162,249,.1);color:var(--primary)">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <div>
+          <div class="q">"How long before I see results?"</div>
+          <div class="a">Most clients see initial AI citations within 60-90 days of implementing the foundation phase. Full visibility compounds over 4-6 months as your entity signals strengthen across the web.</div>
+        </div>
+      </div>
+      <div class="obj">
+        <div class="obj-icon" style="background:rgba(1,162,249,.1);color:var(--primary)">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div>
+          <div class="q">"Can you guarantee I'll show up in AI?"</div>
+          <div class="a">No one can guarantee specific AI citations. What we do is build every signal that AI systems use to evaluate and recommend businesses. Clients who follow the full process see consistent results.</div>
+        </div>
+      </div>
+      <div class="obj">
+        <div class="obj-icon" style="background:rgba(1,162,249,.1);color:var(--primary)">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+        </div>
+        <div>
+          <div class="q">"What about my current website?"</div>
+          <div class="a">GoDaddy Website Builder is one of the weakest platforms for SEO and AI visibility. Replacing it with a proper website is the single highest-impact move you can make. We build sites designed for AI from day one.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SLIDE 13: CTA ===== -->
+  <div class="slide bg-close" id="slide-13" style="justify-content:center;align-items:center;text-align:center">
+    <div style="max-width:640px">
+      <div class="eyebrow">Next Steps</div>
+      <h1 style="font-size:clamp(32px,4vw,44px);margin-bottom:16px">Your Competitors Won't Wait.<br>Neither Should You.</h1>
+      <div class="divline" style="margin:16px auto"></div>
+
+      <div class="card" style="text-align:left;padding:20px;margin-bottom:24px">
+        <h3 style="font-size:14px;margin-bottom:12px">What You Already Have Going For You</h3>
+        <ul class="cta-strengths">
+          <li>20+ years of experience in maintenance and renovation</li>
+          <li>BBB accredited business with established reputation</li>
+          <li>Wide service range (9 services from painting to plumbing)</li>
+          <li>Active social presence (Facebook, Instagram, TikTok, YouTube)</li>
+          <li>Online booking system already in place</li>
+        </ul>
+      </div>
+
+      <p style="font-size:16px;color:rgba(255,255,255,.8);margin-bottom:24px;line-height:1.6">
+        You've built a real business over 20+ years. The only thing missing is making AI systems aware of what Edmonton homeowners already know.
+      </p>
+
+      <a href="https://calendly.com/info-yg4/strategy-call" target="_blank" class="cta-btn">Book Your Free Strategy Call</a>
+      <p style="font-size:11px;color:var(--text-dim);margin-top:12px">15-minute call. No obligation. We'll walk through your specific situation.</p>
+    </div>
+  </div>
+
+</div>
+
+<div class="nav">
+  <button id="pb2" onclick="go(-1)" aria-label="Previous slide">&#8592;</button>
+  <span id="sc">1 / 13</span>
+  <button id="nb" onclick="go(1)" aria-label="Next slide">&#8594;</button>
+</div>
+
+<script>
+let c=0;const ss=document.querySelectorAll('.slide'),t=ss.length;
+function go(d){
+  ss[c].classList.remove('active');
+  c=Math.max(0,Math.min(t-1,c+d));
+  ss[c].classList.add('active');
+  document.getElementById('sc').textContent=(c+1)+' / '+t;
+  document.getElementById('pb').style.width=((c+1)/t*100)+'%';
+  document.getElementById('pb2').disabled=c===0;
+  document.getElementById('nb').disabled=c===t-1;
+  document.getElementById('slideCta').style.display=c>=1?'block':'none';
+}
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key===' ')go(1);if(e.key==='ArrowLeft')go(-1);});
+let tx=0;document.addEventListener('touchstart',e=>{tx=e.changedTouches[0].screenX;});
+document.addEventListener('touchend',e=>{const d=e.changedTouches[0].screenX-tx;if(d<-50)go(1);if(d>50)go(-1);});
+go(0);
+
+function copyQ(btn,text){
+  navigator.clipboard.writeText(text).then(()=>{
+    btn.textContent='Copied!';btn.classList.add('done');
+    setTimeout(()=>{btn.textContent='Copy';btn.classList.remove('done');},1500);
+  });
+}
+</script>
+</body>
+</html>
