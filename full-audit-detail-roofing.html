@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Full AI & SEO Audit - Detail Roofing | Online Optimisers</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#060f1e;--bg2:#0d1b2e;--card:#111f35;--card-border:#1a2d4a;
+  --primary:#01a2f9;--dark-blue:#0052cc;--mid-blue:#1870d4;--light-blue:#8cc7f3;
+  --text:#c8d6e5;--text-dim:#7a90aa;--text-bright:#ffffff;
+  --red:#ef4444;--yellow:#f59e0b;--green:#22c55e;--orange:#f97316;
+  --chatgpt:#7CB89E;--perplexity:#8B7EC2;--google:#4285F4;
+}
+html{scroll-behavior:smooth;}
+body{font-family:'Manrope',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;}
+
+/* ---- NAV ---- */
+.top-bar{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(6,15,30,.92);backdrop-filter:blur(16px);border-bottom:1px solid rgba(1,162,249,.1);padding:0 32px;display:flex;align-items:center;justify-content:space-between;height:56px;}
+.top-bar .logo{font-size:11px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:rgba(1,162,249,.8);}
+.top-bar .cta-btn{display:inline-block;padding:10px 24px;background:var(--primary);color:#fff;font-weight:800;font-size:13px;border-radius:8px;text-decoration:none;letter-spacing:.3px;transition:all .2s;box-shadow:0 0 16px rgba(1,162,249,.25);}
+.top-bar .cta-btn:hover{opacity:.85;transform:translateY(-1px);}
+
+/* ---- TOC sidebar ---- */
+.toc{position:fixed;left:0;top:56px;bottom:0;width:260px;background:rgba(6,15,30,.95);backdrop-filter:blur(12px);border-right:1px solid rgba(1,162,249,.08);padding:24px 16px;overflow-y:auto;z-index:900;transition:transform .3s;}
+.toc a{display:block;padding:8px 12px;font-size:12px;font-weight:600;color:var(--text-dim);text-decoration:none;border-radius:6px;transition:all .15s;margin-bottom:2px;}
+.toc a:hover,.toc a.active{color:var(--primary);background:rgba(1,162,249,.06);}
+.toc a.active{border-left:2px solid var(--primary);padding-left:10px;}
+.toc .toc-label{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(1,162,249,.5);padding:16px 12px 6px;font-weight:700;}
+.toc-toggle{display:none;position:fixed;top:60px;left:8px;z-index:1001;background:var(--card);border:1px solid var(--card-border);border-radius:8px;padding:8px 12px;color:var(--primary);font-size:18px;cursor:pointer;}
+
+/* ---- MAIN ---- */
+.main{margin-left:260px;padding:80px 48px 80px;max-width:1100px;}
+
+/* ---- HERO ---- */
+.hero{padding:64px 0 48px;border-bottom:1px solid rgba(1,162,249,.08);margin-bottom:48px;}
+.hero .eyebrow{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--primary);font-weight:700;margin-bottom:12px;}
+.hero h1{font-size:clamp(32px,4vw,48px);font-weight:900;line-height:1.08;letter-spacing:-.5px;color:#fff;margin-bottom:8px;}
+.hero h1 .accent{color:var(--primary);}
+.hero .subtitle{font-size:15px;color:var(--text-dim);margin-bottom:24px;}
+.hero .meta-row{display:flex;flex-wrap:wrap;gap:24px;font-size:12px;color:var(--text-dim);}
+.hero .meta-row span{display:flex;align-items:center;gap:6px;}
+.hero .meta-row .val{color:var(--text-bright);font-weight:700;}
+
+/* ---- SECTIONS ---- */
+.section{margin-bottom:48px;scroll-margin-top:72px;}
+.section-header{display:flex;align-items:center;justify-content:space-between;cursor:pointer;padding:16px 20px;background:var(--bg2);border:1px solid var(--card-border);border-radius:12px;transition:all .2s;user-select:none;}
+.section-header:hover{border-color:rgba(1,162,249,.3);}
+.section-header h2{font-size:18px;font-weight:800;color:#fff;display:flex;align-items:center;gap:12px;}
+.section-header .sec-num{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:8px;background:rgba(1,162,249,.1);color:var(--primary);font-size:12px;font-weight:800;}
+.section-header .chevron{font-size:20px;color:var(--text-dim);transition:transform .3s;}
+.section-header.open .chevron{transform:rotate(180deg);}
+.section-body{overflow:hidden;max-height:0;transition:max-height .4s ease;padding:0 4px;}
+.section-body.open{max-height:none;padding:24px 4px;}
+
+/* ---- EXECUTIVE SUMMARY (always open, special) ---- */
+.exec-summary{background:linear-gradient(135deg,rgba(1,162,249,.04) 0%,rgba(0,82,204,.02) 100%);border:1px solid rgba(1,162,249,.15);border-radius:16px;padding:32px;margin-bottom:48px;}
+.exec-summary h2{font-size:20px;font-weight:800;color:#fff;margin-bottom:20px;display:flex;align-items:center;gap:10px;}
+.metric-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;margin-bottom:24px;}
+.metric-card{background:var(--card);border:1px solid var(--card-border);border-radius:12px;padding:16px;text-align:center;position:relative;overflow:hidden;}
+.metric-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;}
+.metric-card.mc-red::before{background:var(--red);}
+.metric-card.mc-green::before{background:var(--green);}
+.metric-card.mc-amber::before{background:var(--yellow);}
+.metric-card.mc-blue::before{background:var(--primary);}
+.metric-card .mc-val{font-size:32px;font-weight:900;letter-spacing:-1px;line-height:1;}
+.metric-card .mc-label{font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--text-dim);margin-top:6px;}
+
+.findings-list{list-style:none;display:flex;flex-direction:column;gap:10px;}
+.findings-list li{display:flex;gap:12px;align-items:flex-start;font-size:14px;padding:12px 16px;background:rgba(239,68,68,.04);border:1px solid rgba(239,68,68,.1);border-radius:10px;}
+.findings-list .fn{font-size:18px;line-height:1;}
+
+/* ---- TABLES ---- */
+table{width:100%;border-collapse:collapse;font-size:13px;margin:12px 0;}
+th{text-align:left;padding:10px 12px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text-dim);border-bottom:1px solid var(--card-border);background:rgba(1,162,249,.03);}
+td{padding:10px 12px;border-bottom:1px solid rgba(1,162,249,.04);color:var(--text);}
+tr:hover td{background:rgba(1,162,249,.02);}
+.val-good{color:var(--green);font-weight:700;}
+.val-bad{color:var(--red);font-weight:700;}
+.val-warn{color:var(--yellow);font-weight:700;}
+.val-info{color:var(--primary);font-weight:700;}
+
+/* ---- BADGES ---- */
+.badge{display:inline-block;padding:3px 10px;border-radius:99px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;}
+.b-red{background:rgba(239,68,68,.1);color:var(--red);border:1px solid rgba(239,68,68,.2);}
+.b-green{background:rgba(34,197,94,.1);color:var(--green);border:1px solid rgba(34,197,94,.2);}
+.b-amber{background:rgba(245,158,11,.1);color:var(--yellow);border:1px solid rgba(245,158,11,.2);}
+.b-blue{background:rgba(1,162,249,.1);color:var(--primary);border:1px solid rgba(1,162,249,.2);}
+
+/* ---- SCORE BAR ---- */
+.score-bar-wrap{margin:16px 0;}
+.score-bar{height:10px;background:rgba(255,255,255,.06);border-radius:99px;overflow:hidden;position:relative;}
+.score-fill{height:100%;border-radius:99px;transition:width .6s ease;}
+
+/* ---- CARDS ---- */
+.card{background:var(--card);border:1px solid var(--card-border);border-radius:12px;padding:20px;margin:12px 0;position:relative;overflow:hidden;}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--primary);}
+.card h3{font-size:14px;font-weight:800;color:var(--text-bright);margin-bottom:10px;}
+.card-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.card-grid.c3{grid-template-columns:1fr 1fr 1fr;}
+
+/* ---- CHECKLIST ---- */
+.check-list{list-style:none;display:flex;flex-direction:column;gap:6px;}
+.check-list li{display:flex;align-items:center;gap:8px;font-size:13px;padding:6px 0;}
+.check-pass{color:var(--green);}
+.check-fail{color:var(--red);}
+.check-na{color:var(--text-dim);}
+
+/* ---- AI RESULT CARDS ---- */
+.ai-result{background:var(--card);border:1px solid var(--card-border);border-radius:12px;padding:16px;margin:8px 0;position:relative;}
+.ai-result .platform{display:inline-block;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;letter-spacing:.5px;margin-bottom:8px;}
+.plat-chatgpt{background:rgba(124,184,158,.1);color:var(--chatgpt);border:1px solid rgba(124,184,158,.2);}
+.plat-perplexity{background:rgba(139,126,194,.1);color:var(--perplexity);border:1px solid rgba(139,126,194,.2);}
+.plat-google{background:rgba(66,133,244,.1);color:var(--google);border:1px solid rgba(66,133,244,.2);}
+.ai-result .query-text{font-size:12px;color:var(--text-dim);margin-bottom:8px;font-style:italic;}
+.ai-result .cited-list{font-size:12px;color:rgba(255,255,255,.7);line-height:1.7;}
+
+/* ---- ACTION PLAN ---- */
+.action-phase{margin:16px 0;}
+.action-phase h3{font-size:14px;font-weight:800;margin-bottom:10px;display:flex;align-items:center;gap:8px;}
+.action-phase h3 .phase-dot{width:10px;height:10px;border-radius:50%;}
+.action-list{list-style:none;counter-reset:action;}
+.action-list li{counter-increment:action;display:flex;gap:12px;padding:10px 0;border-bottom:1px solid rgba(1,162,249,.04);font-size:13px;align-items:flex-start;}
+.action-list li::before{content:counter(action);display:flex;align-items:center;justify-content:center;min-width:24px;height:24px;border-radius:6px;background:rgba(1,162,249,.1);color:var(--primary);font-size:11px;font-weight:800;}
+
+/* ---- FOOTER ---- */
+.footer{border-top:1px solid rgba(1,162,249,.08);padding:32px 0;margin-top:48px;text-align:center;font-size:11px;color:var(--text-dim);}
+.footer a{color:var(--primary);text-decoration:none;}
+
+/* ---- RESPONSIVE ---- */
+@media(max-width:900px){
+  .toc{transform:translateX(-100%);}
+  .toc.show{transform:translateX(0);}
+  .toc-toggle{display:block;}
+  .main{margin-left:0;padding:80px 20px 60px;}
+  .card-grid{grid-template-columns:1fr;}
+  .card-grid.c3{grid-template-columns:1fr;}
+  .metric-grid{grid-template-columns:repeat(2,1fr);}
+}
+@media(max-width:600px){
+  .metric-grid{grid-template-columns:1fr 1fr;}
+  .hero h1{font-size:28px;}
+}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+  <div class="logo">Online Optimisers</div>
+  <a href="https://calendly.com/onlineoptimisers/ai-visibility" target="_blank" class="cta-btn">Book a Call</a>
+</div>
+
+<!-- TOC SIDEBAR -->
+<button class="toc-toggle" onclick="document.querySelector('.toc').classList.toggle('show')">&#9776;</button>
+<nav class="toc" id="toc">
+  <div class="toc-label">Audit Report</div>
+  <a href="#exec" class="active">Executive Summary</a>
+  <a href="#tech">1. Technical SEO</a>
+  <a href="#seo">2. SEO Foundation</a>
+  <a href="#ai-score">3. AI Visibility Score</a>
+  <a href="#ai-results">4. AI Platform Results</a>
+  <a href="#serp">5. Google SERP Analysis</a>
+  <a href="#entity">6. Entity & Schema Gaps</a>
+  <a href="#content">7. Content Citability</a>
+  <a href="#competitors">8. Competitive Landscape</a>
+  <a href="#action">9. Action Plan</a>
+</nav>
+
+<!-- MAIN CONTENT -->
+<div class="main">
+
+  <!-- HERO -->
+  <div class="hero" id="top">
+    <div class="eyebrow">Full AI & SEO Audit</div>
+    <h1>Detail Roofing & Sheet Metal Ltd. <span class="accent">is invisible to AI.</span></h1>
+    <p class="subtitle">Comprehensive audit across 15 AI queries, 8 DataForSEO endpoints, and full technical SEO analysis.</p>
+    <div class="meta-row">
+      <span>URL <span class="val">detailroof.ca</span></span>
+      <span>Location <span class="val">Mississauga, ON</span></span>
+      <span>Niche <span class="val">Commercial Roofing</span></span>
+      <span>Date <span class="val">April 5, 2026</span></span>
+      <span>Cost <span class="val">$0.32</span></span>
+    </div>
+  </div>
+
+  <!-- EXECUTIVE SUMMARY -->
+  <div class="exec-summary" id="exec">
+    <h2><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg> Executive Summary</h2>
+
+    <div class="metric-grid">
+      <div class="metric-card mc-red">
+        <div class="mc-val" style="color:var(--red);">18<span style="font-size:18px;color:var(--text-dim);">/100</span></div>
+        <div class="mc-label">AI Visibility Score</div>
+      </div>
+      <div class="metric-card mc-green">
+        <div class="mc-val" style="color:var(--green);">B</div>
+        <div class="mc-label">Technical Health</div>
+      </div>
+      <div class="metric-card mc-amber">
+        <div class="mc-val" style="color:var(--yellow);">42</div>
+        <div class="mc-label">Keywords Top 20</div>
+      </div>
+      <div class="metric-card mc-blue">
+        <div class="mc-val" style="color:var(--primary);">$476</div>
+        <div class="mc-label">Organic Traffic Value/mo</div>
+      </div>
+      <div class="metric-card mc-red">
+        <div class="mc-val" style="color:var(--red);">0<span style="font-size:18px;color:var(--text-dim);">/15</span></div>
+        <div class="mc-label">AI Citations</div>
+      </div>
+      <div class="metric-card mc-blue">
+        <div class="mc-val" style="color:var(--primary);">186</div>
+        <div class="mc-label">Domain Rank</div>
+      </div>
+    </div>
+
+    <h3 style="font-size:14px;font-weight:800;color:#fff;margin-bottom:12px;">Top 3 Critical Findings</h3>
+    <ul class="findings-list">
+      <li><span class="fn">&#x26A0;</span><div><strong style="color:var(--red);">Zero AI visibility</strong> - Not cited in a single ChatGPT, Perplexity, or Google AI Overview result across 15 queries. PWCR, Empire Roofing, and Viana Roofing are being recommended instead.</div></li>
+      <li><span class="fn">&#x26A0;</span><div><strong style="color:var(--red);">No structured data (schema)</strong> - Zero JSON-LD markup on any page. AI systems cannot categorize or cite the business without structured entity signals.</div></li>
+      <li><span class="fn">&#x26A0;</span><div><strong style="color:var(--red);">6 H1 tags on homepage</strong> - Should be 1. Confuses search engines about the page's primary topic. Biggest on-page SEO issue.</div></li>
+    </ul>
+  </div>
+
+  <!-- SECTION 1: TECHNICAL SEO -->
+  <div class="section" id="tech">
+    <div class="section-header open" onclick="toggleSection(this)">
+      <h2><span class="sec-num">1</span> Technical SEO Audit</h2>
+      <span class="chevron">&#9662;</span>
+    </div>
+    <div class="section-body open">
+
+      <div class="card" style="margin-top:16px;">
+        <h3>On-Page Health <span class="badge b-green" style="margin-left:8px;">97/100</span></h3>
+        <table>
+          <tr><th>Metric</th><th>Value</th><th>Status</th></tr>
+          <tr><td>Page Load Time</td><td>1.1s</td><td class="val-good">OK</td></tr>
+          <tr><td>DOM Complete</td><td>1.4s</td><td class="val-good">OK</td></tr>
+          <tr><td>Time to Interactive</td><td>1.2s</td><td class="val-good">OK</td></tr>
+          <tr><td>H1 Tags</td><td><strong>6</strong></td><td class="val-bad">CRITICAL (should be 1)</td></tr>
+          <tr><td>H2 Tags</td><td>3</td><td class="val-warn">Non-semantic (Flyout Menu, Newsletter, Footer)</td></tr>
+          <tr><td>Meta Title</td><td>50 chars</td><td class="val-good">OK</td></tr>
+          <tr><td>Meta Description</td><td><strong>289 chars</strong></td><td class="val-bad">TOO LONG (should be 150-160)</td></tr>
+          <tr><td>Canonical Tag</td><td>Self-referencing</td><td class="val-good">OK</td></tr>
+          <tr><td>HTTPS</td><td>Yes (Cloudflare)</td><td class="val-good">OK</td></tr>
+          <tr><td>Image Alt Tags</td><td>Missing</td><td class="val-bad">FAIL</td></tr>
+          <tr><td>Image Title Tags</td><td>Missing</td><td class="val-bad">FAIL</td></tr>
+          <tr><td>Content Rate</td><td>6.6%</td><td class="val-warn">Low text-to-HTML ratio</td></tr>
+          <tr><td>Render-Blocking</td><td>1 script</td><td class="val-warn">Minor</td></tr>
+          <tr><td>CMS</td><td>Drupal 11</td><td class="val-info">-</td></tr>
+          <tr><td>Word Count</td><td>810 words</td><td class="val-good">OK</td></tr>
+        </table>
+      </div>
+
+      <div class="card-grid" style="margin-top:16px;">
+        <div class="card">
+          <h3 style="color:var(--green);">Passing Checks</h3>
+          <ul class="check-list">
+            <li class="check-pass">&#10003; HTTPS enabled</li>
+            <li class="check-pass">&#10003; SEO-friendly URLs</li>
+            <li class="check-pass">&#10003; Mobile-friendly (viewport meta)</li>
+            <li class="check-pass">&#10003; Fast loading (1.1s)</li>
+            <li class="check-pass">&#10003; Canonical tags present</li>
+            <li class="check-pass">&#10003; No noindex directives</li>
+            <li class="check-pass">&#10003; No broken links</li>
+            <li class="check-pass">&#10003; No duplicate meta tags</li>
+            <li class="check-pass">&#10003; Privacy Policy exists</li>
+            <li class="check-pass">&#10003; Terms of Service exists</li>
+            <li class="check-pass">&#10003; Favicon present</li>
+            <li class="check-pass">&#10003; Good content encoding (zstd)</li>
+          </ul>
+        </div>
+        <div class="card" style="--card-border:rgba(239,68,68,.2);">
+          <h3 style="color:var(--red);">Failing Checks</h3>
+          <ul class="check-list">
+            <li class="check-fail">&#10007; 6 H1 tags (should be 1)</li>
+            <li class="check-fail">&#10007; Meta description 289 chars (max 160)</li>
+            <li class="check-fail">&#10007; Missing image alt tags</li>
+            <li class="check-fail">&#10007; Missing image title tags</li>
+            <li class="check-fail">&#10007; Low content rate (6.6%)</li>
+            <li class="check-fail">&#10007; No social media meta tags</li>
+            <li class="check-na">? GA/GTM not detected</li>
+            <li class="check-na">? GSC verification not detected</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:16px;">
+        <h3>Site Architecture <span class="badge b-blue" style="margin-left:8px;">52 pages</span></h3>
+        <p style="margin-bottom:12px;">Well-organized Drupal 11 site with clear hierarchy:</p>
+        <div class="card-grid c3">
+          <div><strong style="color:var(--primary);">/services/</strong><br><span style="font-size:12px;color:var(--text-dim);">8 service pages - roof inspections, commercial, industrial, institutional, condo, emergency, leak investigations</span></div>
+          <div><strong style="color:var(--primary);">/about/</strong><br><span style="font-size:12px;color:var(--text-dim);">Mission & values, affiliates & certifications</span></div>
+          <div><strong style="color:var(--primary);">/why-hire-us/</strong><br><span style="font-size:12px;color:var(--text-dim);">Expertise, safety standards, commitment</span></div>
+          <div><strong style="color:var(--primary);">/resources/</strong><br><span style="font-size:12px;color:var(--text-dim);">7 bulletin articles, flat sheets, billing</span></div>
+          <div><strong style="color:var(--primary);">/contact/</strong><br><span style="font-size:12px;color:var(--text-dim);">FAQ (12 questions), service area map</span></div>
+          <div><strong style="color:var(--primary);">/events/</strong><br><span style="font-size:12px;color:var(--text-dim);">Industry events, education sessions, past events</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 2: SEO FOUNDATION -->
+  <div class="section" id="seo">
+    <div class="section-header" onclick="toggleSection(this)">
+      <h2><span class="sec-num">2</span> SEO Foundation</h2>
+      <span class="chevron">&#9662;</span>
+    </div>
+    <div class="section-body">
+
+      <div class="card" style="margin-top:16px;">
+        <h3>Domain Authority & Backlinks</h3>
+        <table>
+          <tr><th>Domain</th><th>Domain Rank</th><th>Backlinks</th><th>Referring Domains</th><th>Spam Score</th></tr>
+          <tr style="background:rgba(239,68,68,.03);"><td><strong>Detail Roofing</strong></td><td>186</td><td>434</td><td class="val-warn">75</td><td>23</td></tr>
+          <tr><td>The Roof Whisperer</td><td class="val-good">216</td><td>104,139</td><td class="val-good">489</td><td>18</td></tr>
+          <tr><td>Avenue Road Roofing</td><td>190</td><td>576</td><td>260</td><td>25</td></tr>
+          <tr><td>PWCR</td><td>200</td><td>468</td><td>126</td><td>18</td></tr>
+        </table>
+        <p style="margin-top:12px;font-size:12px;">Domain rank (186) is reasonable, but referring domains (75) is significantly behind. The Roof Whisperer has <strong style="color:var(--primary);">6.5x more</strong> referring domains. Domain first seen: April 2019.</p>
+      </div>
+
+      <div class="card">
+        <h3>Top Ranked Keywords <span class="badge b-amber" style="margin-left:8px;">42 in Top 20</span></h3>
+        <table>
+          <tr><th>Keyword</th><th>Pos</th><th>Volume</th><th>CPC</th><th>ETV</th></tr>
+          <tr><td>roofing and repair</td><td>14</td><td>4,400</td><td>$8.11</td><td>$24.64</td></tr>
+          <tr><td>roof repair toronto</td><td class="val-good">7</td><td>2,900</td><td>$11.09</td><td>$74.24</td></tr>
+          <tr><td>service roof</td><td>11</td><td>1,000</td><td>$8.20</td><td>$9.10</td></tr>
+          <tr><td>emergency roof repair</td><td class="val-good">5</td><td>480</td><td>$13.89</td><td>$22.51</td></tr>
+          <tr><td>industrial roofing</td><td>10</td><td>480</td><td>$36.69</td><td>$5.42</td></tr>
+          <tr><td>detail roofing <span class="badge b-blue">branded</span></td><td class="val-good">1</td><td>320</td><td>$8.33</td><td>$97.28</td></tr>
+          <tr><td>roof leak repair toronto</td><td class="val-good">8</td><td>210</td><td>$7.66</td><td>$4.14</td></tr>
+          <tr><td>commercial roofing toronto</td><td>11</td><td>210</td><td>$13.40</td><td>$1.91</td></tr>
+          <tr><td>commercial roof contractor</td><td class="val-good">5</td><td>90</td><td>-</td><td>$4.22</td></tr>
+          <tr><td>roofing detail <span class="badge b-blue">branded</span></td><td class="val-good">1</td><td>140</td><td>$3.16</td><td>$42.56</td></tr>
+        </table>
+        <div class="metric-grid" style="margin-top:16px;">
+          <div class="metric-card mc-green"><div class="mc-val" style="font-size:24px;color:var(--green);">5</div><div class="mc-label">Position #1</div></div>
+          <div class="metric-card mc-blue"><div class="mc-val" style="font-size:24px;color:var(--primary);">4</div><div class="mc-label">Position #2-3</div></div>
+          <div class="metric-card mc-amber"><div class="mc-val" style="font-size:24px;color:var(--yellow);">14</div><div class="mc-label">Position #4-10</div></div>
+          <div class="metric-card mc-red"><div class="mc-val" style="font-size:24px;color:var(--text-dim);">19</div><div class="mc-label">Position #11-20</div></div>
+        </div>
+        <p style="margin-top:12px;font-size:12px;">Keyword trends: <span class="val-good">20 moving up</span>, 9 new, <span class="val-bad">9 declining</span>. Estimated paid traffic equivalent: <strong>$4,273/mo</strong>.</p>
+      </div>
+
+      <div class="card">
+        <h3>Anchor Text Health <span class="badge b-amber" style="margin-left:8px;">Needs Work</span></h3>
+        <table>
+          <tr><th>Anchor Type</th><th>Count</th><th>%</th><th>Status</th></tr>
+          <tr><td>Naked URL (http://detailroof.ca/)</td><td>167</td><td>38.5%</td><td class="val-warn">HIGH</td></tr>
+          <tr><td>Branded (Detail Roofing GTA)</td><td>137</td><td>31.6%</td><td class="val-good">OK</td></tr>
+          <tr><td>Naked URL (detailroof.ca)</td><td>24</td><td>5.5%</td><td>-</td></tr>
+          <tr><td>Branded (Detail Roofing)</td><td>12</td><td>2.8%</td><td>-</td></tr>
+          <tr style="background:rgba(239,68,68,.05);"><td><strong>SPAM (Telegram links)</strong></td><td>17</td><td>3.9%</td><td class="val-bad">WARNING</td></tr>
+          <tr><td>Generic (Visit website)</td><td>10</td><td>2.3%</td><td class="val-good">OK</td></tr>
+          <tr><td>Image (no anchor text)</td><td>32</td><td>7.4%</td><td>-</td></tr>
+        </table>
+        <p style="margin-top:12px;font-size:12px;color:var(--red);">Telegram spam anchors detected with spam scores 22-50. Disavow recommended.</p>
+      </div>
+
+      <div class="card">
+        <h3>Top Referring Domains</h3>
+        <table>
+          <tr><th>Domain</th><th>Rank</th><th>Backlinks</th><th>Spam</th><th>Type</th></tr>
+          <tr><td>designroofing.ca</td><td class="val-good">174</td><td>139</td><td class="val-good">0</td><td>Sister site (BC)</td></tr>
+          <tr><td>cci-ghc.ca</td><td>75</td><td>11</td><td class="val-good">5</td><td>Industry association</td></tr>
+          <tr><td>email-verifier.io</td><td>59</td><td>6</td><td class="val-bad">40</td><td>Spam/scraper</td></tr>
+          <tr><td>businesslistings.net.au</td><td>51</td><td>1</td><td class="val-warn">35</td><td>Directory</td></tr>
+          <tr><td>getemail.io</td><td>51</td><td>3</td><td class="val-warn">30</td><td>Spam/scraper</td></tr>
+        </table>
+        <p style="margin-top:12px;font-size:12px;">Link profile is <strong style="color:var(--red);">weak</strong>. Only designroofing.ca (sister company) and cci-ghc.ca (industry association) are meaningful links. Most domains have rank 0 or are spam.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 3: AI VISIBILITY SCORE -->
+  <div class="section" id="ai-score">
+    <div class="section-header" onclick="toggleSection(this)">
+      <h2><span class="sec-num">3</span> AI Visibility Score</h2>
+      <span class="chevron">&#9662;</span>
+    </div>
+    <div class="section-body">
+      <div style="text-align:center;padding:32px 0;">
+        <div style="font-size:72px;font-weight:900;color:var(--red);letter-spacing:-3px;line-height:1;">18<span style="font-size:28px;color:var(--text-dim);">/100</span></div>
+        <div class="badge b-red" style="font-size:14px;padding:6px 20px;margin-top:12px;">CRITICAL - Invisible to AI</div>
+      </div>
+
+      <div class="card-grid" style="margin-top:8px;">
+        <div class="card" style="text-align:center;">
+          <div style="font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--text-dim);margin-bottom:8px;">Knowledge Graph / Directories</div>
+          <div style="font-size:28px;font-weight:900;color:var(--yellow);">10<span style="font-size:14px;color:var(--text-dim);">/25</span></div>
+          <div class="score-bar-wrap"><div class="score-bar"><div class="score-fill" style="width:40%;background:var(--yellow);"></div></div></div>
+          <p style="font-size:11px;margin-top:6px;">GBP found (4.5 stars). Weak directory presence.</p>
+        </div>
+        <div class="card" style="text-align:center;">
+          <div style="font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--text-dim);margin-bottom:8px;">Content Citability</div>
+          <div style="font-size:28px;font-weight:900;color:var(--yellow);">5<span style="font-size:14px;color:var(--text-dim);">/25</span></div>
+          <div class="score-bar-wrap"><div class="score-bar"><div class="score-fill" style="width:20%;background:var(--orange);"></div></div></div>
+          <p style="font-size:11px;margin-top:6px;">FAQ exists but no schema. Weak proof blocks.</p>
+        </div>
+        <div class="card" style="text-align:center;">
+          <div style="font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--text-dim);margin-bottom:8px;">Schema Markup</div>
+          <div style="font-size:28px;font-weight:900;color:var(--red);">0<span style="font-size:14px;color:var(--text-dim);">/25</span></div>
+          <div class="score-bar-wrap"><div class="score-bar"><div class="score-fill" style="width:0%;background:var(--red);"></div></div></div>
+          <p style="font-size:11px;margin-top:6px;">Zero JSON-LD on any page. Critical gap.</p>
+        </div>
+        <div class="card" style="text-align:center;">
+          <div style="font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--text-dim);margin-bottom:8px;">AI-Weighted Backlinks</div>
+          <div style="font-size:28px;font-weight:900;color:var(--red);">3<span style="font-size:14px;color:var(--text-dim);">/25</span></div>
+          <div class="score-bar-wrap"><div class="score-bar"><div class="score-fill" style="width:12%;background:var(--red);"></div></div></div>
+          <p style="font-size:11px;margin-top:6px;">Low DR, spam anchors, minimal authority links.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 4: AI PLATFORM RESULTS -->
+  <div class="section" id="ai-results">
+    <div class="section-header" onclick="toggleSection(this)">
+      <h2><span class="sec-num">4</span> AI Platform Results <span class="badge b-red" style="margin-left:12px;">0/15 Citations</span></h2>
+      <span class="chevron">&#9662;</span>
+    </div>
+    <div class="section-body">
+
+      <div class="card">
+        <h3><span class="platform plat-chatgpt">ChatGPT</span> Search Results</h3>
+        <p style="font-size:12px;margin-bottom:12px;">Query: "best flat roof repair company in Mississauga ON" (combined search with web results)</p>
+        <table>
+          <tr><th>Business Recommended</th><th>Location</th><th>Rating</th><th>Reviews</th></tr>
+          <tr><td>Best Flat Roof</td><td>Vaughan, ON</td><td>5.0</td><td>13</td></tr>
+          <tr><td>WM Roofing (WM Services)</td><td>Mississauga, ON</td><td>5.0</td><td>13</td></tr>
+          <tr><td>All Stars Roofing</td><td>Burlington, ON</td><td>4.9</td><td>379</td></tr>
+          <tr><td>Olympia Roofing</td><td>Mississauga, ON</td><td>5.0</td><td>411</td></tr>
+          <tr style="background:rgba(239,68,68,.05);"><td><strong>Detail Roofing</strong></td><td>Mississauga, ON</td><td colspan="2" class="val-bad">NOT MENTIONED</td></tr>
+        </table>
+      </div>
+
+      <div class="card">
+        <h3><span class="platform plat-perplexity">Perplexity</span> AI Results <span class="badge b-red" style="margin-left:8px;">0/5</span></h3>
+        <table>
+          <tr><th>Query</th><th>Detail Roofing?</th><th>Top Businesses Cited</th></tr>
+          <tr><td>"best commercial roofing company in Mississauga ON"</td><td class="val-bad">NO</td><td>PWCR, CentiMark, Country Roofing, Empire, Viana</td></tr>
+          <tr><td>"top commercial roofing contractors in Toronto ON"</td><td class="val-bad">NO</td><td>PWCR, Empire, Coverall, Integrity Roofers</td></tr>
+          <tr><td>"best industrial roofing near Mississauga Ontario"</td><td class="val-bad">NO</td><td>Empire, Viana, Gentech, TD Roofing, Cox</td></tr>
+          <tr><td>"commercial roofing Mississauga ON recommendations"</td><td class="val-bad">NO</td><td>Viana, Country Roofing, CentiMark, Trusted Pro</td></tr>
+          <tr><td>"best flat roof repair in Mississauga ON"</td><td class="val-bad">NO</td><td>Roof Whisperer, Best Flat Roof, BRENO Roofing</td></tr>
+        </table>
+      </div>
+
+      <div class="card">
+        <h3><span class="platform plat-google">Google</span> AI Overviews <span class="badge b-red" style="margin-left:8px;">0/5</span></h3>
+        <table>
+          <tr><th>Query</th><th>AIO Present?</th><th>Detail Roofing?</th><th>Domains Cited</th></tr>
+          <tr><td>"best commercial roofing Mississauga ON"</td><td class="val-warn">No AIO</td><td>-</td><td>-</td></tr>
+          <tr><td>"top commercial roofing Toronto ON"</td><td class="val-good">YES</td><td class="val-bad">NO</td><td>pwcr.ca, vianaroofing.com, coverallroofing.ca, eliteroofing.com + 6 more</td></tr>
+          <tr><td>"best industrial roofing Mississauga"</td><td class="val-warn">No AIO</td><td>-</td><td>-</td></tr>
+          <tr><td>"commercial roofing Mississauga recs"</td><td class="val-good">YES</td><td class="val-bad">NO</td><td>trustedproroofers.ca, pwcr.ca, videlroofing.ca, homestars.com + 6 more</td></tr>
+          <tr><td>"best flat roof repair Mississauga ON"</td><td class="val-warn">No AIO</td><td>-</td><td>-</td></tr>
+        </table>
+        <p style="margin-top:12px;font-size:12px;">Only 2/5 queries triggered an AI Overview. 3 queries represent an <strong style="color:var(--primary);">early mover window</strong> where no AI results exist yet.</p>
+      </div>
+
+      <div class="card" style="text-align:center;padding:24px;">
+        <h3>Cross-Platform Summary</h3>
+        <div class="metric-grid" style="margin-top:12px;">
+          <div class="metric-card mc-red"><div class="mc-val" style="font-size:28px;color:var(--chatgpt);">0/5</div><div class="mc-label">ChatGPT</div></div>
+          <div class="metric-card mc-red"><div class="mc-val" style="font-size:28px;color:var(--perplexity);">0/5</div><div class="mc-label">Perplexity</div></div>
+          <div class="metric-card mc-red"><div class="mc-val" style="font-size:28px;color:var(--google);">0/5</div><div class="mc-label">Google AIO</div></div>
+          <div class="metric-card mc-red"><div class="mc-val" style="font-size:28px;color:var(--red);">0%</div><div class="mc-label">Overall</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 5: GOOGLE SERP -->
+  <div class="section" id="serp">
+    <div class="section-header" onclick="toggleSection(this)">
+      <h2><span class="sec-num">5</span> Google SERP Analysis</h2>
+      <span class="chevron">&#9662;</span>
+    </div>
+    <div class="section-body">
+      <div class="card" style="margin-top:16px;">
+        <h3>Money Keyword SERP Positions</h3>
+        <table>
+          <tr><th>Query</th><th>Detail Roofing Pos</th><th>Top 3 Organic</th><th>Local Pack?</th></tr>
+          <tr><td>best commercial roofing Mississauga</td><td class="val-bad">NOT IN TOP 20</td><td>pwcr.ca, empireroofing, trustedproroofers</td><td class="val-good">Yes</td></tr>
+          <tr><td>top commercial roofing Toronto</td><td class="val-bad">NOT IN TOP 20</td><td>homestars, spirosaluminum, pwcr.ca</td><td class="val-good">Yes</td></tr>
+          <tr><td>best industrial roofing Mississauga</td><td class="val-bad">NOT IN TOP 20</td><td>vianaroofing, homestars, pwcr.ca</td><td class="val-good">Yes</td></tr>
+          <tr><td>commercial roofing Mississauga recs</td><td class="val-bad">NOT IN TOP 20</td><td>pwcr.ca, coxroofing, bbb.org</td><td class="val-good">Yes</td></tr>
+          <tr><td>best flat roof repair Mississauga</td><td class="val-bad">NOT IN TOP 20</td><td>homestars, dangeloandsons, vianaroofing</td><td class="val-good">Yes</td></tr>
+        </table>
+        <p style="margin-top:12px;font-size:12px;">Detail Roofing ranks for 42 generic keywords but NOT for any high-intent "best/top/recommendations" queries that trigger AI citations. The keywords they rank for are informational, not commercial-intent.</p>
+      </div>
+
+      <div class="card">
+        <h3>People Also Ask <span class="badge b-blue" style="margin-left:8px;">Free Content Opportunities</span></h3>
+        <ul class="check-list">
+          <li class="check-pass" style="color:var(--primary);">&#10148; Who is the biggest roofing company in Canada?</li>
+          <li class="check-pass" style="color:var(--primary);">&#10148; What is the best roofing for commercial buildings?</li>
+          <li class="check-pass" style="color:var(--primary);">&#10148; How much does it cost to replace a 2000 sq ft roof in Ontario?</li>
+          <li class="check-pass" style="color:var(--primary);">&#10148; How long does an industrial roof last?</li>
+          <li class="check-pass" style="color:var(--primary);">&#10148; How to choose the best roofing company?</li>
+          <li class="check-pass" style="color:var(--primary);">&#10148; What is the average cost to repair a flat roof?</li>
+          <li class="check-pass" style="color:var(--primary);">&#10148; Is it better to repair or replace a flat roof?</li>
+          <li class="check-pass" style="color:var(--primary);">&#10148; What is the best material to repair a flat roof?</li>
+        </ul>
+        <p style="margin-top:12px;font-size:12px;">Each PAA question is a content brief waiting to happen. Answer these directly on your site to trigger featured snippets and AI citations.</p>
+      </div>
+
+      <div class="card">
+        <h3>Dominant Organic Competitors</h3>
+        <table>
+          <tr><th>Domain</th><th>Appears in X/5 SERPs</th><th>Threat Level</th></tr>
+          <tr><td>pwcr.ca</td><td class="val-bad">4/5</td><td><span class="badge b-red">Dominant</span></td></tr>
+          <tr><td>empireroofingcorporation.com</td><td class="val-warn">3/5</td><td><span class="badge b-amber">Strong</span></td></tr>
+          <tr><td>vianaroofing.com</td><td class="val-warn">3/5</td><td><span class="badge b-amber">Strong</span></td></tr>
+          <tr><td>homestars.com</td><td class="val-warn">3/5</td><td><span class="badge b-blue">Directory</span></td></tr>
+          <tr><td>trustedproroofers.ca</td><td>2/5</td><td><span class="badge b-amber">Moderate</span></td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 6: ENTITY & SCHEMA -->
+  <div class="section" id="entity">
+    <div class="section-header" onclick="toggleSection(this)">
+      <h2><span class="sec-num">6</span> Entity & Schema Gaps</h2>
+      <span class="chevron">&#9662;</span>
+    </div>
+    <div class="section-body">
+      <div class="card-grid" style="margin-top:16px;">
+        <div class="card">
+          <h3>Schema Scorecard <span class="badge b-red" style="margin-left:8px;">0/25</span></h3>
+          <table>
+            <tr><th>Schema Type</th><th>Status</th><th>Points</th></tr>
+            <tr><td>LocalBusiness</td><td class="val-bad">MISSING</td><td>0/6</td></tr>
+            <tr><td>Person (Owner)</td><td class="val-bad">MISSING</td><td>0/4</td></tr>
+            <tr><td>FAQPage</td><td class="val-bad">MISSING (content exists!)</td><td>0/5</td></tr>
+            <tr><td>Service</td><td class="val-bad">MISSING</td><td>0/3</td></tr>
+            <tr><td>HowTo</td><td class="val-bad">MISSING</td><td>0/2</td></tr>
+            <tr><td>Review/AggregateRating</td><td class="val-bad">MISSING</td><td>0/3</td></tr>
+            <tr><td>Product</td><td class="val-info">N/A</td><td>0/2</td></tr>
+          </table>
+          <p style="margin-top:12px;font-size:12px;color:var(--yellow);">The FAQ page has 12 Q&As ready for FAQPage schema. The services page has 15+ services ready for Service schema. This is the <strong>single biggest fixable gap</strong>.</p>
+        </div>
+        <div class="card">
+          <h3>Directory Presence</h3>
+          <table>
+            <tr><th>Platform</th><th>Status</th><th>Details</th></tr>
+            <tr><td>Google Business Profile</td><td class="val-good">FOUND</td><td>4.5 stars, Open 24hrs</td></tr>
+            <tr><td>BBB</td><td class="val-warn">Not checked</td><td>-</td></tr>
+            <tr><td>Yelp</td><td class="val-warn">Not checked</td><td>-</td></tr>
+            <tr><td>Homestars</td><td class="val-warn">Not visible in results</td><td>Key Canadian directory</td></tr>
+            <tr><td>HomeAdvisor/Angi</td><td class="val-warn">Not checked</td><td>-</td></tr>
+          </table>
+          <p style="margin-top:12px;font-size:12px;">GBP is claimed and active - the strongest entity signal. But directory presence beyond GBP is thin.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 7: CONTENT CITABILITY -->
+  <div class="section" id="content">
+    <div class="section-header" onclick="toggleSection(this)">
+      <h2><span class="sec-num">7</span> Content Citability Assessment</h2>
+      <span class="chevron">&#9662;</span>
+    </div>
+    <div class="section-body">
+      <div class="card" style="margin-top:16px;">
+        <h3>Citability Score <span class="badge b-amber" style="margin-left:8px;">10/25</span></h3>
+        <table>
+          <tr><th>Factor</th><th>Score</th><th>Notes</th></tr>
+          <tr><td>Quotable Proof Blocks</td><td class="val-warn">2/5</td><td>"Proudly served since 1984" is the main one. Lacking specific stats (jobs completed, sq ft, etc.)</td></tr>
+          <tr><td>FAQ Sections</td><td class="val-good">3/5</td><td>12 FAQ questions at /contact/faq - well-written but no schema markup</td></tr>
+          <tr><td>Unique Claims</td><td class="val-warn">2/5</td><td>"Shifted focus to repairs, not replacements" is genuinely unique. In-house sheet metal. But buried.</td></tr>
+          <tr><td>Service Page Depth</td><td class="val-warn">2/5</td><td>Broad coverage (15+ services) but thin individual depth. A few sentences each.</td></tr>
+          <tr><td>Content Differentiation</td><td class="val-bad">1/5</td><td>Professional but generic. Reads like every other roofing site. Niche positioning is buried.</td></tr>
+        </table>
+      </div>
+
+      <div class="card">
+        <h3>The Buried Differentiator</h3>
+        <div style="border-left:3px solid var(--primary);padding:16px 20px;background:rgba(1,162,249,.03);border-radius:0 10px 10px 0;margin:12px 0;">
+          <p style="font-size:15px;font-weight:700;color:var(--text-bright);line-height:1.5;">"We've shifted our focus away from full replacements to fill a gap in the market, providing quick response for leak investigations, maintenance, and localized repairs - an area where many owners/residents go underserved."</p>
+          <p style="font-size:12px;color:var(--primary);margin-top:8px;">This is buried in the FAQ page. It should be the lead message across the entire site. This is the kind of unique positioning AI can cite.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 8: COMPETITIVE LANDSCAPE -->
+  <div class="section" id="competitors">
+    <div class="section-header" onclick="toggleSection(this)">
+      <h2><span class="sec-num">8</span> Competitive Landscape</h2>
+      <span class="chevron">&#9662;</span>
+    </div>
+    <div class="section-body">
+      <div class="card" style="margin-top:16px;">
+        <h3>Who AI Recommends Instead</h3>
+        <table>
+          <tr><th>Competitor</th><th style="text-align:center;">ChatGPT</th><th style="text-align:center;">Perplexity</th><th style="text-align:center;">Google AIO</th><th style="text-align:center;">Total</th></tr>
+          <tr><td>PWCR</td><td style="text-align:center;">0</td><td style="text-align:center;">2</td><td style="text-align:center;">2</td><td class="val-bad" style="text-align:center;"><strong>4</strong></td></tr>
+          <tr><td>Viana Roofing</td><td style="text-align:center;">0</td><td style="text-align:center;">3</td><td style="text-align:center;">1</td><td class="val-bad" style="text-align:center;"><strong>4</strong></td></tr>
+          <tr><td>Empire Roofing</td><td style="text-align:center;">0</td><td style="text-align:center;">3</td><td style="text-align:center;">0</td><td class="val-warn" style="text-align:center;"><strong>3</strong></td></tr>
+          <tr><td>CentiMark</td><td style="text-align:center;">0</td><td style="text-align:center;">2</td><td style="text-align:center;">0</td><td style="text-align:center;">2</td></tr>
+          <tr><td>Country Roofing</td><td style="text-align:center;">0</td><td style="text-align:center;">2</td><td style="text-align:center;">0</td><td style="text-align:center;">2</td></tr>
+          <tr style="background:rgba(239,68,68,.05);"><td><strong>Detail Roofing</strong></td><td style="text-align:center;" class="val-bad">0</td><td style="text-align:center;" class="val-bad">0</td><td style="text-align:center;" class="val-bad">0</td><td class="val-bad" style="text-align:center;"><strong>0</strong></td></tr>
+        </table>
+      </div>
+
+      <div class="card">
+        <h3>Algorithmic Competitors (Keyword Overlap)</h3>
+        <p style="font-size:12px;margin-bottom:12px;">3,027 competing domains found. Top roofing-specific competitors:</p>
+        <table>
+          <tr><th>Domain</th><th>Shared Keywords</th><th>Avg Position</th><th>Traffic Value</th></tr>
+          <tr><td>theroofwhisperer.ca</td><td class="val-info">85</td><td>20.9</td><td>$18,738</td></tr>
+          <tr><td>royalroofinginc.ca</td><td>74</td><td>45.7</td><td>$4,967</td></tr>
+          <tr><td>avenueroadroofing.com</td><td>71</td><td>19.6</td><td>$9,932</td></tr>
+          <tr><td>toronto-roofer.com</td><td>69</td><td>54.8</td><td>$835</td></tr>
+          <tr><td>professionalroofers.com</td><td>59</td><td>37.0</td><td>$4,991</td></tr>
+        </table>
+      </div>
+
+      <div class="card">
+        <h3>AI vs Organic Split</h3>
+        <div class="card-grid c3" style="margin-top:12px;">
+          <div style="padding:16px;background:rgba(239,68,68,.04);border:1px solid rgba(239,68,68,.1);border-radius:10px;">
+            <div style="font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--red);margin-bottom:8px;font-weight:700;">In AI + Organic</div>
+            <p style="font-size:13px;color:var(--text-bright);">PWCR, Empire Roofing, Viana Roofing</p>
+            <p style="font-size:11px;color:var(--text-dim);margin-top:4px;">Full-spectrum competitors. Most dangerous.</p>
+          </div>
+          <div style="padding:16px;background:rgba(245,158,11,.04);border:1px solid rgba(245,158,11,.1);border-radius:10px;">
+            <div style="font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--yellow);margin-bottom:8px;font-weight:700;">In AI Only</div>
+            <p style="font-size:13px;color:var(--text-bright);">CentiMark, Country Roofing, Olympia, Best Flat Roof</p>
+            <p style="font-size:11px;color:var(--text-dim);margin-top:4px;">AI-optimized or review-rich. Watch these.</p>
+          </div>
+          <div style="padding:16px;background:rgba(1,162,249,.04);border:1px solid rgba(1,162,249,.1);border-radius:10px;">
+            <div style="font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--primary);margin-bottom:8px;font-weight:700;">In Organic Only</div>
+            <p style="font-size:13px;color:var(--text-bright);">Homestars, Spiros Aluminum</p>
+            <p style="font-size:11px;color:var(--text-dim);margin-top:4px;">Traditional SEO. Vulnerable to AI disruption.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 9: ACTION PLAN -->
+  <div class="section" id="action">
+    <div class="section-header open" onclick="toggleSection(this)">
+      <h2><span class="sec-num">9</span> Action Plan</h2>
+      <span class="chevron">&#9662;</span>
+    </div>
+    <div class="section-body open">
+
+      <div class="action-phase">
+        <h3><span class="phase-dot" style="background:var(--red);"></span> Critical Fixes (This Week)</h3>
+        <ol class="action-list">
+          <li>Fix 6 H1 tags on homepage - reduce to 1 primary H1 with "commercial roofing Mississauga" or "roof repair GTA"</li>
+          <li>Trim meta description to 150-160 chars (currently 289)</li>
+          <li>Add image alt tags to every image with location + service keywords</li>
+          <li>Implement LocalBusiness JSON-LD schema on homepage (name, address, phone, hours, founding date 1984)</li>
+          <li>Implement FAQPage schema on /contact/faq - 12 Q&As are ready to go</li>
+        </ol>
+      </div>
+
+      <div class="action-phase">
+        <h3><span class="phase-dot" style="background:var(--yellow);"></span> Quick Wins (Month 1)</h3>
+        <ol class="action-list" style="counter-reset:action 5;">
+          <li>Add Service schema for each service page (roof inspections, leak investigations, emergency, commercial, industrial, condo)</li>
+          <li>Add Person schema for the owner/founder</li>
+          <li>Create location-specific service pages: "commercial roofing Mississauga", "roof repair Toronto", "industrial roofing GTA"</li>
+          <li>Expand service page content to 500+ words each with pricing ranges, response times, project examples</li>
+          <li>Submit to Homestars, BBB, Yelp - key Canadian contractor directories</li>
+          <li>Surface the unique positioning as the lead message: "We specialize in repairs and maintenance, not replacements"</li>
+        </ol>
+      </div>
+
+      <div class="action-phase">
+        <h3><span class="phase-dot" style="background:var(--green);"></span> Medium-Term (Months 2-3)</h3>
+        <ol class="action-list" style="counter-reset:action 11;">
+          <li>Build citation-trigger content matching PAA questions: "How much does commercial roof repair cost in Toronto?"</li>
+          <li>Backlink building - target CCI, ACMO (they attend events), local business directories, supplier partner pages</li>
+          <li>Review collection campaign - leverage 40+ years of clients. Target 50+ Google reviews in 3 months.</li>
+          <li>Disavow Telegram spam backlinks and scraper site links</li>
+          <li>Optimize existing blog bulletins for citation triggers (add stats, specific answers, expert quotes)</li>
+        </ol>
+      </div>
+
+      <div class="action-phase">
+        <h3><span class="phase-dot" style="background:var(--primary);"></span> Ongoing</h3>
+        <ol class="action-list" style="counter-reset:action 16;">
+          <li>Quarterly AI visibility re-audits - track citation progress across all 3 platforms</li>
+          <li>Monitor PWCR and Viana Roofing (most AI-visible competitors) - study their content and schema</li>
+          <li>Content expansion targeting PAA questions as blog posts or FAQ additions</li>
+          <li>Entity signal building: consistent NAP, owner LinkedIn profile, industry publication mentions</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <p>Prepared by <a href="https://onlineoptimisers.net" target="_blank">Online Optimisers</a> &bull; AI Visibility Specialists &bull; April 2026</p>
+    <p style="margin-top:8px;">Audit powered by DataForSEO, OpenAI, Perplexity AI, Firecrawl &bull; Total cost: $0.32</p>
+  </div>
+
+</div>
+
+<script>
+function toggleSection(header){
+  header.classList.toggle('open');
+  const body=header.nextElementSibling;
+  body.classList.toggle('open');
+}
+
+// TOC active state on scroll
+const sections=document.querySelectorAll('.section, .exec-summary');
+const tocLinks=document.querySelectorAll('.toc a');
+window.addEventListener('scroll',()=>{
+  let current='exec';
+  sections.forEach(s=>{
+    const top=s.offsetTop-100;
+    if(window.scrollY>=top) current=s.id;
+  });
+  tocLinks.forEach(a=>{
+    a.classList.remove('active');
+    if(a.getAttribute('href')==='#'+current) a.classList.add('active');
+  });
+});
+
+// Close mobile TOC on link click
+tocLinks.forEach(a=>a.addEventListener('click',()=>{
+  document.querySelector('.toc').classList.remove('show');
+}));
+</script>
+</body>
+</html>
