@@ -150,7 +150,7 @@ tr:hover td{background:rgba(1,162,249,.02);}
 <!-- TOP BAR -->
 <div class="top-bar">
   <div class="logo">Online Optimisers</div>
-  <a href="https://calendly.com/onlineoptimisers/ai-visibility" target="_blank" class="cta-btn">Book a Call</a>
+  <a href="https://calendly.com/info-yg4/strategy-call" target="_blank" class="cta-btn">Book a Call</a>
 </div>
 
 <!-- TOC SIDEBAR -->
@@ -427,16 +427,17 @@ tr:hover td{background:rgba(1,162,249,.02);}
     <div class="section-body">
 
       <div class="card">
-        <h3><span class="platform plat-chatgpt">ChatGPT</span> Search Results</h3>
-        <p style="font-size:12px;margin-bottom:12px;">Query: "best flat roof repair company in Mississauga ON" (combined search with web results)</p>
+        <h3><span class="platform plat-chatgpt">ChatGPT</span> Search Results <span class="badge b-red" style="margin-left:8px;">0/5</span></h3>
+        <p style="font-size:12px;margin-bottom:12px;">5 individual queries via gpt-4o-search-preview with web search enabled. Detail Roofing not cited in any.</p>
         <table>
-          <tr><th>Business Recommended</th><th>Location</th><th>Rating</th><th>Reviews</th></tr>
-          <tr><td>Best Flat Roof</td><td>Vaughan, ON</td><td>5.0</td><td>13</td></tr>
-          <tr><td>WM Roofing (WM Services)</td><td>Mississauga, ON</td><td>5.0</td><td>13</td></tr>
-          <tr><td>All Stars Roofing</td><td>Burlington, ON</td><td>4.9</td><td>379</td></tr>
-          <tr><td>Olympia Roofing</td><td>Mississauga, ON</td><td>5.0</td><td>411</td></tr>
-          <tr style="background:rgba(239,68,68,.05);"><td><strong>Detail Roofing</strong></td><td>Mississauga, ON</td><td colspan="2" class="val-bad">NOT MENTIONED</td></tr>
+          <tr><th>Query</th><th>Detail Roofing?</th><th>Top Businesses Recommended</th></tr>
+          <tr><td>"best commercial roofing company in Mississauga ON"</td><td class="val-bad">NO</td><td>Tactic Roofing (5.0/158), All Stars Roofing (4.9/379), AZ Roofers (4.6/52), Tops Roofing (4.5/94), Ontario Tech Roofing (4.9/75)</td></tr>
+          <tr><td>"top commercial roofing contractors in Toronto ON"</td><td class="val-bad">NO</td><td>Crown Industrial (4.7/87), Cadillacs Roofing (4.9/52), PWCR (5.0/25), Professional Roofers (4.6/523), Hudson Roofing</td></tr>
+          <tr><td>"best industrial roofing near Mississauga Ontario"</td><td class="val-bad">NO</td><td>BR Industrial (2.3/3), WM Roofing (5.0/13), Vassa Metal (5.0/7), Maura Roofing (5.0/3)</td></tr>
+          <tr><td>"commercial roofing Mississauga ON recommendations"</td><td class="val-bad">NO</td><td>Tactic Roofing (5.0/158), Country Roofing (5.0/61), AZ Roofers (4.6/52), AAA Roofmasters (4.4/80)</td></tr>
+          <tr><td>"best flat roof repair in Mississauga ON"</td><td class="val-bad">NO</td><td>Best Flat Roof (5.0/13), AAA Roofmasters (4.4/80), WM Roofing (5.0/13), Olympia Roofing (5.0/411), All Stars (4.9/379)</td></tr>
         </table>
+        <p style="margin-top:12px;font-size:12px;">ChatGPT pulls heavily from Google Maps listings with ratings and reviews. Detail Roofing's 4.5 star GBP was not surfaced in any query - likely due to low review count and missing schema signals.</p>
       </div>
 
       <div class="card">
@@ -566,10 +567,11 @@ tr:hover td{background:rgba(1,162,249,.02);}
   <!-- SECTION 7: CONTENT CITABILITY -->
   <div class="section" id="content">
     <div class="section-header" onclick="toggleSection(this)">
-      <h2><span class="sec-num">7</span> Content Citability Assessment</h2>
+      <h2><span class="sec-num">7</span> Content & On-Page Analysis</h2>
       <span class="chevron">&#9662;</span>
     </div>
     <div class="section-body">
+
       <div class="card" style="margin-top:16px;">
         <h3>Citability Score <span class="badge b-amber" style="margin-left:8px;">10/25</span></h3>
         <table>
@@ -583,11 +585,125 @@ tr:hover td{background:rgba(1,162,249,.02);}
       </div>
 
       <div class="card">
+        <h3>Page-by-Page Content Audit</h3>
+        <p style="font-size:12px;margin-bottom:12px;">Analysis of key pages for depth, keyword optimization, and AI citability signals.</p>
+        <table>
+          <tr><th>Page</th><th>Est. Words</th><th>H1 Count</th><th>Meta Desc</th><th>Schema</th><th>Target Keyword</th><th>Grade</th></tr>
+          <tr>
+            <td><strong>Homepage</strong><br><span style="font-size:10px;color:var(--text-dim);">detailroof.ca/</span></td>
+            <td>810</td>
+            <td class="val-bad">6 (critical)</td>
+            <td class="val-bad">289 chars</td>
+            <td class="val-bad">None</td>
+            <td class="val-warn">Unfocused</td>
+            <td><span class="badge b-amber">C</span></td>
+          </tr>
+          <tr>
+            <td><strong>Commercial Roofing</strong><br><span style="font-size:10px;color:var(--text-dim);">/services/commercial-roofing-services</span></td>
+            <td>~450</td>
+            <td class="val-good">1</td>
+            <td class="val-bad">509 chars</td>
+            <td class="val-bad">None</td>
+            <td class="val-warn">"commercial roofing" present but not in H1</td>
+            <td><span class="badge b-amber">C+</span></td>
+          </tr>
+          <tr>
+            <td><strong>Industrial Roofing</strong><br><span style="font-size:10px;color:var(--text-dim);">/services/industrial-site-roofing-services</span></td>
+            <td>~300</td>
+            <td class="val-good">1</td>
+            <td class="val-good">OK</td>
+            <td class="val-bad">None</td>
+            <td class="val-warn">"industrial" in H1 but no city</td>
+            <td><span class="badge b-amber">C</span></td>
+          </tr>
+          <tr>
+            <td><strong>Emergency Services</strong><br><span style="font-size:10px;color:var(--text-dim);">/services/emergency-services</span></td>
+            <td>~500</td>
+            <td class="val-good">1</td>
+            <td class="val-good">OK</td>
+            <td class="val-bad">None</td>
+            <td class="val-warn">"emergency" present, no city in H1</td>
+            <td><span class="badge b-amber">C+</span></td>
+          </tr>
+          <tr>
+            <td><strong>Condo/Multi-Unit</strong><br><span style="font-size:10px;color:var(--text-dim);">/services/condo-multi-unit-residential-roofing</span></td>
+            <td>~350</td>
+            <td class="val-good">1</td>
+            <td class="val-good">OK</td>
+            <td class="val-bad">None</td>
+            <td class="val-warn">CCI/ACMO mentioned (good authority signal)</td>
+            <td><span class="badge b-amber">C+</span></td>
+          </tr>
+          <tr>
+            <td><strong>Services Hub</strong><br><span style="font-size:10px;color:var(--text-dim);">/services</span></td>
+            <td>~1,200</td>
+            <td class="val-good">1</td>
+            <td class="val-good">OK</td>
+            <td class="val-bad">None</td>
+            <td class="val-warn">15+ services listed but no deep content</td>
+            <td><span class="badge b-blue">B-</span></td>
+          </tr>
+          <tr>
+            <td><strong>FAQ</strong><br><span style="font-size:10px;color:var(--text-dim);">/contact/frequently-asked-questions-faqs</span></td>
+            <td>~800</td>
+            <td class="val-good">1</td>
+            <td class="val-good">OK</td>
+            <td class="val-bad">None (but FAQPage schema ready!)</td>
+            <td class="val-good">12 Q&As, direct answers, good structure</td>
+            <td><span class="badge b-green">B+</span></td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="card">
+        <h3>Key Content Issues</h3>
+        <div class="card-grid">
+          <div>
+            <h3 style="color:var(--red);font-size:13px;">What's Missing</h3>
+            <ul class="check-list">
+              <li class="check-fail">&#10007; No city name ("Mississauga", "Toronto", "GTA") in any H1 tag</li>
+              <li class="check-fail">&#10007; No specific stats (projects completed, sq ft serviced, years in GTA)</li>
+              <li class="check-fail">&#10007; No pricing ranges or cost guidance anywhere</li>
+              <li class="check-fail">&#10007; No case studies or project showcases with measurable results</li>
+              <li class="check-fail">&#10007; Service pages under 500 words (target: 800+)</li>
+              <li class="check-fail">&#10007; No internal linking between related service pages</li>
+              <li class="check-fail">&#10007; Meta descriptions too long or generic</li>
+            </ul>
+          </div>
+          <div>
+            <h3 style="color:var(--green);font-size:13px;">What's Working</h3>
+            <ul class="check-list">
+              <li class="check-pass">&#10003; FAQ page with 12 well-structured Q&As</li>
+              <li class="check-pass">&#10003; Clear service categorization (commercial, industrial, condo, emergency)</li>
+              <li class="check-pass">&#10003; Professional tone and clean writing</li>
+              <li class="check-pass">&#10003; "2-4 hour response time" - specific, citable claim</li>
+              <li class="check-pass">&#10003; CCI & ACMO membership mentioned (authority signal)</li>
+              <li class="check-pass">&#10003; Past project photos (Lafarge, Port of Vancouver)</li>
+              <li class="check-pass">&#10003; Blog with 7 educational articles</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
         <h3>The Buried Differentiator</h3>
         <div style="border-left:3px solid var(--primary);padding:16px 20px;background:rgba(1,162,249,.03);border-radius:0 10px 10px 0;margin:12px 0;">
           <p style="font-size:15px;font-weight:700;color:var(--text-bright);line-height:1.5;">"We've shifted our focus away from full replacements to fill a gap in the market, providing quick response for leak investigations, maintenance, and localized repairs - an area where many owners/residents go underserved."</p>
           <p style="font-size:12px;color:var(--primary);margin-top:8px;">This is buried in the FAQ page. It should be the lead message across the entire site. This is the kind of unique positioning AI can cite.</p>
         </div>
+      </div>
+
+      <div class="card">
+        <h3>Content Optimization Priorities</h3>
+        <table>
+          <tr><th>Page</th><th>Priority Fix</th><th>Impact</th></tr>
+          <tr><td>Homepage</td><td>Reduce to 1 H1 with city keyword. Add specific stats (years, projects, fleet size).</td><td class="val-bad">Critical</td></tr>
+          <tr><td>Commercial Roofing</td><td>Add "Mississauga" / "GTA" to H1. Expand to 800+ words. Add pricing guidance, project types, response times.</td><td class="val-bad">High</td></tr>
+          <tr><td>Industrial Roofing</td><td>Add city to H1. Expand content. List notable projects (Lafarge, Port of Vancouver) with details.</td><td class="val-warn">High</td></tr>
+          <tr><td>Emergency Services</td><td>Add "Toronto" / "GTA" to H1. "2-4 hour response" is great - make it the headline.</td><td class="val-warn">Medium</td></tr>
+          <tr><td>FAQ Page</td><td>Add FAQPage schema (instant win). Add 5-10 more questions targeting PAA queries from Google.</td><td class="val-good">Quick Win</td></tr>
+          <tr><td>NEW: Location pages</td><td>Create dedicated pages: "Commercial Roofing Mississauga", "Roof Repair Toronto", "Industrial Roofing GTA"</td><td class="val-bad">Critical</td></tr>
+        </table>
       </div>
     </div>
   </div>
