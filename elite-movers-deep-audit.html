@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Ranking Deep Audit - Elite Movers & Packing Services | Online Optimisers</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #1c1c1e;
+  --bg2: #222224;
+  --card: #2a2a2c;
+  --card-border: #3a3a3c;
+  --cyan: #D4A853;
+  --blue: #6B8EC2;
+  --mint: #7CB89E;
+  --text: #d4d4d8;
+  --text-dim: #71717a;
+  --text-bright: #f4f4f5;
+  --red: #E57373;
+  --yellow: #FFD54F;
+  --green: #81C784;
+  --orange: #FFB74D;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  padding-bottom: 60px;
+}
+
+h1, h2 { font-family: 'Playfair Display', serif; color: var(--cyan); font-weight: 700; }
+h1 { font-size: 2rem; line-height: 1.2; }
+h2 { font-size: 1.4rem; line-height: 1.3; margin-bottom: 16px; }
+h3 { font-family: 'Inter', sans-serif; color: var(--text-bright); font-size: 0.95rem; font-weight: 600; margin-bottom: 12px; }
+
+.container { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+
+/* Header */
+.header {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  padding: 48px 0 40px;
+  border-bottom: 2px solid var(--cyan);
+}
+.header .oo-brand { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 3px; color: var(--cyan); margin-bottom: 8px; opacity: 0.8; }
+.header h1 { color: var(--text-bright); margin-bottom: 4px; }
+.header .subtitle { color: var(--text-dim); font-size: 0.85rem; margin-bottom: 24px; }
+.header .meta-row { display: flex; gap: 24px; flex-wrap: wrap; font-size: 0.8rem; color: var(--text-dim); }
+.header .meta-row span { display: flex; align-items: center; gap: 6px; }
+
+/* Score Ring */
+.score-section { display: flex; align-items: center; gap: 32px; margin-top: 24px; flex-wrap: wrap; }
+.score-ring { position: relative; width: 140px; height: 140px; flex-shrink: 0; }
+.score-ring svg { transform: rotate(-90deg); }
+.score-ring .score-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; }
+.score-ring .score-num { font-size: 2.4rem; font-weight: 900; color: var(--text-bright); line-height: 1; }
+.score-ring .score-label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-dim); margin-top: 4px; }
+.score-ring .score-band { font-size: 0.75rem; font-weight: 700; color: var(--green); margin-top: 2px; }
+
+/* Hero Metrics */
+.hero-metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 24px; }
+.hero-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 10px;
+  padding: 16px 12px;
+  text-align: center;
+}
+.hero-card .h-val { font-size: 1.6rem; font-weight: 900; line-height: 1; }
+.hero-card .h-sub { font-size: 0.7rem; color: var(--text-dim); margin-top: 2px; }
+.hero-card .h-label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1px; color: rgba(255,255,255,0.35); margin-top: 8px; }
+.h-val.mint { color: var(--mint); }
+.h-val.blue { color: var(--blue); }
+.h-val.gold { color: var(--cyan); }
+.h-val.green { color: var(--green); }
+
+/* Critical Findings */
+.findings { margin-top: 32px; }
+.finding-card {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-left: 3px solid var(--red);
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin-bottom: 10px;
+}
+.finding-card .finding-num { color: var(--red); font-weight: 800; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+.finding-card .finding-title { color: var(--text-bright); font-weight: 700; font-size: 0.9rem; margin-bottom: 4px; }
+.finding-card .finding-desc { color: var(--text-dim); font-size: 0.8rem; }
+
+/* Collapsible Sections */
+.section { margin-top: 24px; }
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  padding: 16px 20px;
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  transition: all 0.3s;
+  user-select: none;
+}
+.section-header:hover { border-color: var(--cyan); }
+.sec-num {
+  width: 28px; height: 28px; border-radius: 50%;
+  background: rgba(212,168,83,0.2); color: var(--cyan);
+  font-weight: 700; font-size: 0.8rem;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.section-header h2 { margin: 0; font-size: 1.1rem; flex: 1; }
+.chevron { color: var(--text-dim); transition: transform 0.3s; font-size: 0.8rem; }
+.section-header.expanded .chevron { transform: rotate(180deg); }
+.section-body {
+  max-height: 0; overflow: hidden; transition: max-height 0.4s ease;
+  border-left: 2px solid rgba(212,168,83,0.3);
+  margin-left: 14px;
+}
+.section-body.expanded { max-height: none; padding: 20px 20px 20px 24px; overflow: visible; }
+
+/* Tables */
+table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.8rem; }
+th { background: var(--bg2); color: var(--cyan); font-weight: 600; text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--card-border); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.5px; }
+td { padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.05); vertical-align: top; }
+tr:hover td { background: rgba(255,255,255,0.02); }
+
+/* Tags */
+.tag {
+  display: inline-block; padding: 2px 8px; border-radius: 4px;
+  font-size: 0.7rem; font-weight: 600; letter-spacing: 0.3px;
+}
+.tag.yes { background: rgba(129,199,132,0.15); color: var(--green); border: 1px solid rgba(129,199,132,0.3); }
+.tag.no { background: rgba(229,115,115,0.15); color: var(--red); border: 1px solid rgba(229,115,115,0.3); }
+.tag.first { background: rgba(212,168,83,0.15); color: var(--cyan); border: 1px solid rgba(212,168,83,0.3); }
+.tag.hidden { background: rgba(255,213,79,0.15); color: var(--yellow); border: 1px solid rgba(255,213,79,0.3); }
+.tag.absent { background: rgba(229,115,115,0.15); color: var(--red); border: 1px solid rgba(229,115,115,0.3); }
+.tag.visible { background: rgba(129,199,132,0.15); color: var(--green); border: 1px solid rgba(129,199,132,0.3); }
+.tag.found { background: rgba(129,199,132,0.15); color: var(--green); border: 1px solid rgba(129,199,132,0.3); }
+.tag.missing { background: rgba(229,115,115,0.15); color: var(--red); border: 1px solid rgba(229,115,115,0.3); }
+.tag.partial { background: rgba(255,213,79,0.15); color: var(--yellow); border: 1px solid rgba(255,213,79,0.3); }
+.tag.mismatch { background: rgba(229,115,115,0.15); color: var(--red); border: 1px solid rgba(229,115,115,0.3); }
+
+/* Platform Badges */
+.platform { display: inline-block; padding: 3px 10px; border-radius: 4px; font-size: 0.7rem; font-weight: 600; }
+.platform.chatgpt { background: rgba(124,184,158,0.15); color: var(--mint); border: 1px solid rgba(124,184,158,0.3); }
+.platform.perplexity { background: rgba(107,142,194,0.15); color: var(--blue); border: 1px solid rgba(107,142,194,0.3); }
+.platform.google { background: rgba(212,168,83,0.15); color: var(--cyan); border: 1px solid rgba(212,168,83,0.3); }
+
+/* Score Bars */
+.score-bars { margin: 16px 0; }
+.score-bar-row { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
+.score-bar-label { width: 160px; font-size: 0.75rem; color: var(--text-dim); text-align: right; flex-shrink: 0; }
+.score-bar-track { flex: 1; height: 20px; background: rgba(255,255,255,0.05); border-radius: 4px; overflow: hidden; position: relative; }
+.score-bar-fill { height: 100%; border-radius: 4px; transition: width 0.6s ease; display: flex; align-items: center; justify-content: flex-end; padding-right: 8px; font-size: 0.65rem; font-weight: 700; color: var(--bg); }
+.score-bar-max { font-size: 0.65rem; color: var(--text-dim); width: 30px; text-align: center; flex-shrink: 0; }
+
+/* Action cards */
+.action-group { margin: 20px 0; }
+.action-group-title { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; padding: 6px 12px; border-radius: 4px; display: inline-block; }
+.action-group-title.immediate { background: rgba(229,115,115,0.15); color: var(--red); }
+.action-group-title.month1 { background: rgba(255,213,79,0.15); color: var(--yellow); }
+.action-group-title.month23 { background: rgba(107,142,194,0.15); color: var(--blue); }
+.action-group-title.ongoing { background: rgba(129,199,132,0.15); color: var(--green); }
+.action-item { padding: 10px 16px; border-left: 2px solid var(--card-border); margin: 6px 0 6px 8px; font-size: 0.8rem; }
+.action-item strong { color: var(--text-bright); }
+
+/* Category sub-header */
+.cat-header { color: var(--cyan); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin: 20px 0 8px; padding-bottom: 4px; border-bottom: 1px solid rgba(212,168,83,0.2); }
+
+/* Why text */
+.why-box { background: var(--card); border: 1px solid var(--card-border); border-radius: 8px; padding: 16px 20px; margin-top: 16px; font-size: 0.85rem; line-height: 1.7; color: var(--text); }
+
+/* Footer */
+.footer { margin-top: 48px; padding: 24px 0; border-top: 1px solid var(--card-border); text-align: center; }
+.footer .oo-logo { color: var(--cyan); font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; }
+.footer .oo-sub { color: var(--text-dim); font-size: 0.7rem; margin-top: 4px; }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero-metrics { grid-template-columns: repeat(2, 1fr); }
+  .score-section { flex-direction: column; align-items: flex-start; }
+  .header { padding: 32px 0 28px; }
+  h1 { font-size: 1.5rem; }
+}
+
+/* Copy button */
+.copy-btn {
+  background: none; border: 1px solid var(--card-border); color: var(--text-dim);
+  padding: 4px 10px; border-radius: 4px; cursor: pointer; font-size: 0.65rem;
+  transition: all 0.2s; margin-left: 8px;
+}
+.copy-btn:hover { border-color: var(--cyan); color: var(--cyan); }
+.copy-btn.copied { border-color: var(--green); color: var(--green); }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+<div class="container">
+  <div class="oo-brand">Online Optimisers</div>
+  <h1>AI Ranking Deep Audit</h1>
+  <div style="font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--cyan);margin-bottom:4px;">Elite Movers & Packing Services</div>
+  <div class="subtitle">Ventura, CA 93004 - Moving (local, long-distance, packing, storage, commercial, specialty)</div>
+  <div class="meta-row">
+    <span>Date: 2026-04-06</span>
+    <span>URL: elitemoversca.com</span>
+    <span>20 queries x 3 platforms</span>
+  </div>
+
+  <!-- Score Ring + Hero Metrics -->
+  <div class="score-section">
+    <div class="score-ring">
+      <svg width="140" height="140" viewBox="0 0 140 140">
+        <circle cx="70" cy="70" r="60" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="10"/>
+        <circle cx="70" cy="70" r="60" fill="none" stroke="var(--green)" stroke-width="10" stroke-dasharray="377" stroke-dashoffset="147" stroke-linecap="round"/>
+      </svg>
+      <div class="score-text">
+        <div class="score-num">61</div>
+        <div class="score-label">out of 100</div>
+        <div class="score-band">Good</div>
+      </div>
+    </div>
+    <div style="flex:1;">
+      <div class="hero-metrics">
+        <div class="hero-card">
+          <div class="h-val mint">13/20</div>
+          <div class="h-sub">8 first position</div>
+          <div class="h-label">ChatGPT</div>
+        </div>
+        <div class="hero-card">
+          <div class="h-val blue">15/20</div>
+          <div class="h-sub">15 in sources</div>
+          <div class="h-label">Perplexity</div>
+        </div>
+        <div class="hero-card">
+          <div class="h-val gold">7/7</div>
+          <div class="h-sub">100% when triggered</div>
+          <div class="h-label">Google AIO</div>
+        </div>
+        <div class="hero-card">
+          <div class="h-val green">16/20</div>
+          <div class="h-sub">top 10 organic</div>
+          <div class="h-label">Google SERP</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Critical Findings -->
+  <div class="findings">
+    <div class="finding-card">
+      <div class="finding-num">Critical #1</div>
+      <div class="finding-title">Homepage has conflicting noindex directive</div>
+      <div class="finding-desc">Robots metadata shows BOTH "index, follow" AND "noindex". This confuses search engines and AI crawlers. Service pages are clean. Fix immediately.</div>
+    </div>
+    <div class="finding-card">
+      <div class="finding-num">Critical #2</div>
+      <div class="finding-title">Knowledge Graph gaps - 3 of 5 platforms missing</div>
+      <div class="finding-desc">No Bing Places, Wikidata, or Apple Maps presence. ChatGPT pulls from KG >50% of the time. Missing these means invisible in those retrieval paths.</div>
+    </div>
+    <div class="finding-card">
+      <div class="finding-num">Critical #3</div>
+      <div class="finding-title">Santa Barbara expansion invisible to all AI platforms</div>
+      <div class="finding-desc">0/3 platforms cite Elite for Santa Barbara queries despite having location pages and a 2nd GMB. Content is generic/thin for that market.</div>
+    </div>
+  </div>
+
+  <div class="why-box" style="margin-top:20px;">
+    <strong style="color:var(--cyan);">Why Elite Is Visible in AI (But Could Be Much Stronger)</strong><br><br>
+    Elite dominates Ventura-specific queries across all platforms. The 5.0 GBP rating, BBB A+ accreditation, active posting, and 15+ years of operation create strong trust signals. However, the business is invisible outside Ventura (Santa Barbara, Thousand Oaks, Oxnard), has no Bing/Wikidata/Apple Maps KG presence, and lacks the editorial/news backlinks that would push citations from "mentioned" to "recommended first." The homepage noindex issue is actively undermining crawlability.
+  </div>
+</div>
+</div>
+
+<div class="container">
+
+<!-- SECTION 1: AI Platform Results -->
+<div class="section">
+<div class="section-header expanded" onclick="toggleSection(this)">
+  <span class="sec-num">1</span>
+  <h2>AI Platform Results</h2>
+  <span style="font-size:0.7rem;color:var(--text-dim);margin-left:auto;margin-right:12px;">20 queries x 3 platforms</span>
+  <span class="chevron">&#9660;</span>
+</div>
+<div class="section-body expanded">
+
+<div class="cat-header"><span class="platform chatgpt">ChatGPT</span> gpt-4o-search-preview - 20 Queries (13/20 cited, 8/20 first)</div>
+
+<p class="cat-header" style="border:0;margin-top:16px;">Service+Location</p>
+<table>
+<tr><th>#</th><th>Query</th><th>Cited?</th><th>Position</th><th>Notes</th></tr>
+<tr><td>1</td><td>best movers in Ventura CA</td><td><span class="tag yes">YES</span></td><td><span class="tag first">#1</span></td><td>Listed first with 5.0 rating</td></tr>
+<tr><td>2</td><td>top moving company Ventura CA</td><td><span class="tag yes">YES</span></td><td><span class="tag first">#1</span></td><td>First recommendation</td></tr>
+<tr><td>3</td><td>best movers in Santa Barbara CA</td><td><span class="tag no">NO</span></td><td>-</td><td>NOT MENTIONED - major gap</td></tr>
+<tr><td>4</td><td>moving company Ventura CA recommendations</td><td><span class="tag yes">YES</span></td><td>#2-3</td><td>Mentioned but not first</td></tr>
+<tr><td>5</td><td>affordable movers Ventura CA</td><td><span class="tag no">NO</span></td><td>-</td><td>NOT MENTIONED - price gap</td></tr>
+</table>
+
+<p class="cat-header" style="border:0;">Conversational</p>
+<table>
+<tr><th>#</th><th>Query</th><th>Cited?</th><th>Position</th><th>Notes</th></tr>
+<tr><td>6</td><td>who is the best moving company in Ventura CA</td><td><span class="tag no">NO</span></td><td>-</td><td>Not mentioned despite Ventura query</td></tr>
+<tr><td>7</td><td>what movers should I use in Ventura CA</td><td><span class="tag yes">YES</span></td><td>#2-3</td><td>Mentioned, not first</td></tr>
+<tr><td>8</td><td>who are the best movers near Santa Barbara CA</td><td><span class="tag no">NO</span></td><td>-</td><td>Santa Barbara gap again</td></tr>
+<tr><td>9</td><td>can you recommend a good moving company in Ventura</td><td><span class="tag yes">YES</span></td><td><span class="tag first">#1</span></td><td>First recommendation</td></tr>
+<tr><td>10</td><td>what is the top rated moving company in Ventura County</td><td><span class="tag no">NO</span></td><td>-</td><td>Broader geo = invisible</td></tr>
+</table>
+
+<p class="cat-header" style="border:0;">Problem-Based</p>
+<table>
+<tr><th>#</th><th>Query</th><th>Cited?</th><th>Position</th><th>Notes</th></tr>
+<tr><td>11</td><td>last minute movers Ventura CA</td><td><span class="tag yes">YES</span></td><td>#2-3</td><td>Mentioned, not first</td></tr>
+<tr><td>12</td><td>insured movers Ventura CA</td><td><span class="tag no">NO</span></td><td>-</td><td>Trust-signal query gap</td></tr>
+<tr><td>13</td><td>same day movers Ventura CA</td><td><span class="tag yes">YES</span></td><td><span class="tag first">#1</span></td><td>First recommendation</td></tr>
+</table>
+
+<p class="cat-header" style="border:0;">Specialty</p>
+<table>
+<tr><th>#</th><th>Query</th><th>Cited?</th><th>Position</th><th>Notes</th></tr>
+<tr><td>14</td><td>best long distance movers in Ventura CA</td><td><span class="tag yes">YES</span></td><td><span class="tag first">#1</span></td><td>Strong specialty presence</td></tr>
+<tr><td>15</td><td>piano movers Ventura CA</td><td><span class="tag no">NO</span></td><td>-</td><td>Has dedicated page but invisible in ChatGPT</td></tr>
+<tr><td>16</td><td>commercial movers Ventura CA</td><td><span class="tag yes">YES</span></td><td>#2-3</td><td>Mentioned, not first</td></tr>
+<tr><td>17</td><td>best packing services Ventura CA</td><td><span class="tag yes">YES</span></td><td><span class="tag first">#1</span></td><td>First recommendation</td></tr>
+</table>
+
+<p class="cat-header" style="border:0;">Branded</p>
+<table>
+<tr><th>#</th><th>Query</th><th>Cited?</th><th>Position</th><th>Notes</th></tr>
+<tr><td>18</td><td>Elite Movers and Packing Services reviews</td><td><span class="tag yes">YES</span></td><td><span class="tag first">#1</span></td><td>6 mentions, strong brand signal</td></tr>
+<tr><td>19</td><td>Elite Movers Ventura</td><td><span class="tag yes">YES</span></td><td>#2</td><td>3 mentions</td></tr>
+<tr><td>20</td><td>is Elite Movers a good moving company</td><td><span class="tag yes">YES</span></td><td><span class="tag first">#1</span></td><td>6 mentions, positive framing</td></tr>
+</table>
+
+<div class="cat-header"><span class="platform perplexity">Perplexity</span> sonar-pro - 20 Queries (15/20 cited, 15/20 in sources)</div>
+<table>
+<tr><th>#</th><th>Query</th><th>In Answer?</th><th>In Sources?</th><th>Notes</th></tr>
+<tr><td>1</td><td>best movers in Ventura CA</td><td><span class="tag yes">YES</span></td><td><span class="tag yes">YES</span></td><td>elitemoversca.com first source</td></tr>
+<tr><td>2</td><td>top moving company Ventura CA</td><td><span class="tag yes">YES</span></td><td><span class="tag yes">YES</span></td><td>2 mentions</td></tr>
+<tr><td>3</td><td>best movers in Santa Barbara CA</td><td><span class="tag no">NO</span></td><td><span class="tag no">NO</span></td><td>Santa Barbara gap</td></tr>
+<tr><td>4</td><td>moving company Ventura CA recommendations</td><td><span class="tag yes">YES</span></td><td><span class="tag yes">YES</span></td><td>2 mentions</td></tr>
+<tr><td>5</td><td>affordable movers Ventura CA</td><td><span class="tag no">NO</span></td><td><span class="tag no">NO</span></td><td>Price-focused gap</td></tr>
+<tr><td>6</td><td>who is the best moving company in Ventura CA</td><td><span class="tag yes">YES</span></td><td><span class="tag yes">YES</span></td><td>3 mentions, strong</td></tr>
+<tr><td>7</td><td>what movers should I use in Ventura CA</td><td><span class="tag yes">YES</span></td><td><span class="tag yes">YES</span></td><td>2 mentions</td></tr>
+<tr><td>8</td><td>who are the best movers near Santa Barbara CA</td><td><span class="tag no">NO</span></td><td><span class="tag no">NO</span></td><td>Santa Barbara gap</td></tr>
+<tr><td>9</td><td>can you recommend a good moving company in Ventura</td><td><span class="tag yes">YES</span></td><td><span class="tag yes">YES</span></td><td>2 mentions</td></tr>
+<tr><td>10</td><td>what is the top rated moving company in Ventura County</td><td><span class="tag no">NO</span></td><td><span class="tag yes">YES</span></td><td><span class="tag hidden">HIDDEN</span> In sources but not answer</td></tr>
+<tr><td>11</td><td>last minute movers Ventura CA</td><td><span class="tag yes">YES</span></td><td><span class="tag yes">YES</span></td><td>1 mention</td></tr>
+<tr><td>12</td><td>insured movers Ventura CA</td><td><span class="tag yes">YES</span></td><td><span class="tag yes">YES</span></td><td>1 mention</td></tr>
+<tr><td>13</td><td>same day movers Ventura CA</td><td><span class="tag yes">YES</span></td><td><span class="tag yes">YES</span></td><td>1 mention</td></tr>
+<tr><td>14</td><td>best long distance movers in Ventura CA</td><td><span class="tag yes">YES</span></td><td><span class="tag yes">YES</span></td><td>2 mentions</td></tr>
+<tr><td>15</td><td>piano movers Ventura CA</td><td><span class="tag yes">YES</span></td><td><span class="tag yes">YES</span></td><td>2 mentions - better than ChatGPT</td></tr>
+<tr><td>16</td><td>commercial movers Ventura CA</td><td><span class="tag yes">YES</span></td><td><span class="tag yes">YES</span></td><td>1 mention</td></tr>
+<tr><td>17</td><td>best packing services Ventura CA</td><td><span class="tag yes">YES</span></td><td><span class="tag yes">YES</span></td><td>1 mention</td></tr>
+<tr><td>18</td><td>Elite Movers and Packing Services reviews</td><td><span class="tag yes">YES</span></td><td><span class="tag no">NO</span></td><td>3 mentions, not sourced</td></tr>
+<tr><td>19</td><td>Elite Movers Ventura</td><td><span class="tag yes">YES</span></td><td><span class="tag yes">YES</span></td><td>1 mention</td></tr>
+<tr><td>20</td><td>is Elite Movers a good moving company</td><td><span class="tag no">NO</span></td><td><span class="tag no">NO</span></td><td>Branded but NOT found</td></tr>
+</table>
+
+<div class="cat-header"><span class="platform google">Google</span> AI Overviews + Organic SERP - 20 Queries</div>
+<table>
+<tr><th>#</th><th>Query</th><th>AIO?</th><th>In AIO?</th><th>Organic</th><th>Local Pack?</th></tr>
+<tr><td>1</td><td>best movers in Ventura CA</td><td><span class="tag no">NO</span></td><td>-</td><td>#2</td><td><span class="tag yes">YES</span></td></tr>
+<tr><td>2</td><td>top moving company Ventura CA</td><td><span class="tag no">NO</span></td><td>-</td><td>#2</td><td><span class="tag no">NO</span></td></tr>
+<tr><td>3</td><td>best movers in Santa Barbara CA</td><td><span class="tag no">NO</span></td><td>-</td><td><span class="tag no">N/F</span></td><td><span class="tag yes">YES</span></td></tr>
+<tr><td>4</td><td>moving company Ventura CA recommendations</td><td><span class="tag no">NO</span></td><td>-</td><td>#4</td><td><span class="tag yes">YES</span></td></tr>
+<tr><td>5</td><td>affordable movers Ventura CA</td><td><span class="tag no">NO</span></td><td>-</td><td><span class="tag no">N/F</span></td><td><span class="tag yes">YES</span></td></tr>
+<tr><td>6</td><td>who is the best moving company in Ventura CA</td><td><span class="tag yes">YES</span></td><td><span class="tag yes">YES</span></td><td>#2</td><td><span class="tag yes">YES</span></td></tr>
+<tr><td>7</td><td>what movers should I use in Ventura CA</td><td><span class="tag yes">YES</span></td><td><span class="tag yes">YES</span></td><td>#7</td><td><span class="tag no">NO</span></td></tr>
+<tr><td>8</td><td>who are the best movers near Santa Barbara CA</td><td><span class="tag no">NO</span></td><td>-</td><td><span class="tag no">N/F</span></td><td><span class="tag yes">YES</span></td></tr>
+<tr><td>9</td><td>can you recommend a good moving company in Ventura</td><td><span class="tag yes">YES</span></td><td><span class="tag yes">YES</span></td><td>#4</td><td><span class="tag no">NO</span></td></tr>
+<tr><td>10</td><td>what is the top rated moving company in Ventura County</td><td><span class="tag yes">YES</span></td><td><span class="tag yes">YES</span></td><td>#3</td><td><span class="tag no">NO</span></td></tr>
+<tr><td>11</td><td>last minute movers Ventura CA</td><td><span class="tag no">NO</span></td><td>-</td><td>#7</td><td><span class="tag yes">YES</span></td></tr>
+<tr><td>12</td><td>insured movers Ventura CA</td><td><span class="tag no">NO</span></td><td>-</td><td>#3</td><td><span class="tag no">NO</span></td></tr>
+<tr><td>13</td><td>same day movers Ventura CA</td><td><span class="tag no">NO</span></td><td>-</td><td>#9</td><td><span class="tag yes">YES</span></td></tr>
+<tr><td>14</td><td>best long distance movers in Ventura CA</td><td><span class="tag yes">YES</span></td><td><span class="tag yes">YES</span></td><td>#4</td><td><span class="tag yes">YES</span></td></tr>
+<tr><td>15</td><td>piano movers Ventura CA</td><td><span class="tag no">NO</span></td><td>-</td><td>#3</td><td><span class="tag no">NO</span></td></tr>
+<tr><td>16</td><td>commercial movers Ventura CA</td><td><span class="tag no">NO</span></td><td>-</td><td>#4</td><td><span class="tag yes">YES</span></td></tr>
+<tr><td>17</td><td>best packing services Ventura CA</td><td><span class="tag yes">YES</span></td><td><span class="tag yes">YES</span></td><td>#2</td><td><span class="tag yes">YES</span></td></tr>
+<tr><td>18</td><td>Elite Movers and Packing Services reviews</td><td><span class="tag no">NO</span></td><td>-</td><td>#5</td><td><span class="tag yes">YES</span></td></tr>
+<tr><td>19</td><td>Elite Movers Ventura</td><td><span class="tag no">NO</span></td><td>-</td><td><span class="tag first">#1</span></td><td><span class="tag no">NO</span></td></tr>
+<tr><td>20</td><td>is Elite Movers a good moving company</td><td><span class="tag yes">YES</span></td><td><span class="tag yes">YES</span></td><td><span class="tag no">N/F</span></td><td><span class="tag no">NO</span></td></tr>
+</table>
+
+<h3>Category Breakdown (Combined)</h3>
+<table>
+<tr><th>Category</th><th>Queries</th><th>ChatGPT</th><th>Perplexity</th><th>AIO</th><th>Total</th></tr>
+<tr><td>Service+Location</td><td>5</td><td>3/5</td><td>2/5</td><td>0/5</td><td>5/15</td></tr>
+<tr><td>Conversational</td><td>5</td><td>2/5</td><td>3/5</td><td>4/5</td><td><strong>9/15</strong></td></tr>
+<tr><td>Problem-Based</td><td>3</td><td>2/3</td><td>3/3</td><td>0/3</td><td>5/9</td></tr>
+<tr><td>Specialty</td><td>4</td><td>3/4</td><td>4/4</td><td>2/4</td><td><strong>9/12</strong></td></tr>
+<tr><td>Branded</td><td>3</td><td>3/3</td><td>2/3</td><td>1/3</td><td>6/9</td></tr>
+<tr style="border-top:2px solid var(--cyan);"><td><strong>TOTAL</strong></td><td><strong>20</strong></td><td><strong>13/20</strong></td><td><strong>14/20</strong></td><td><strong>7/20</strong></td><td><strong>34/60</strong></td></tr>
+</table>
+<p style="font-size:0.8rem;color:var(--text-dim);margin-top:8px;"><strong style="color:var(--cyan);">Key insight:</strong> Conversational and Specialty queries perform best. Service+Location underperform because AIO rarely triggers for them.</p>
+</div>
+</div>
+
+<!-- SECTION 2: Schema -->
+<div class="section">
+<div class="section-header expanded" onclick="toggleSection(this)">
+  <span class="sec-num">2</span>
+  <h2>Schema & Structured Data</h2>
+  <span class="chevron">&#9660;</span>
+</div>
+<div class="section-body expanded">
+<table>
+<tr><th>Schema Type</th><th>Status</th><th>Details</th></tr>
+<tr><td>LocalBusiness</td><td><span class="tag partial">LIKELY</span></td><td>Metadata suggests structured data present</td></tr>
+<tr><td>Person</td><td><span class="tag missing">MISSING</span></td><td>No Person schema for Rudy Becerra</td></tr>
+<tr><td>FAQ</td><td><span class="tag partial">LIKELY</span></td><td>FAQ sections on 4 pages, schema wrapper unconfirmed</td></tr>
+<tr><td>Service</td><td><span class="tag partial">UNKNOWN</span></td><td>Could not verify from extracts</td></tr>
+<tr><td>HowTo</td><td><span class="tag missing">MISSING</span></td><td>Process sections exist but no HowTo schema</td></tr>
+<tr><td>Review / Rating</td><td><span class="tag found">PRESENT</span></td><td>bestRating/worstRating in metadata</td></tr>
+</table>
+<p style="font-size:0.8rem;color:var(--text-dim);margin-top:8px;"><strong>Schema Score: ~8/25 (estimated)</strong> - Missing Person schema for owner, HowTo for process sections, sameAs links for entity disambiguation.</p>
+</div>
+</div>
+
+<!-- SECTION 3: Knowledge Graph -->
+<div class="section">
+<div class="section-header expanded" onclick="toggleSection(this)">
+  <span class="sec-num">3</span>
+  <h2>Knowledge Graph & Directory Presence</h2>
+  <span class="chevron">&#9660;</span>
+</div>
+<div class="section-body expanded">
+<h3>KG Entity Status (3/10)</h3>
+<table>
+<tr><th>Signal</th><th>Present?</th><th>Weight</th><th>Score</th></tr>
+<tr><td>Google Knowledge Panel</td><td><span class="tag found">YES</span> 5.0 rating, verified</td><td>3</td><td>3</td></tr>
+<tr><td>Bing Knowledge Card</td><td><span class="tag missing">NO</span></td><td>3</td><td>0</td></tr>
+<tr><td>Wikidata entity</td><td><span class="tag missing">NO</span></td><td>2</td><td>0</td></tr>
+<tr><td>Apple Maps</td><td><span class="tag missing">NO</span></td><td>1</td><td>0</td></tr>
+<tr><td>Bing Places</td><td><span class="tag missing">NO</span></td><td>1</td><td>0</td></tr>
+</table>
+
+<h3>Directory Presence (20/25)</h3>
+<table>
+<tr><th>Platform</th><th>Status</th><th>Rating</th><th>Reviews</th></tr>
+<tr><td>Google Business Profile</td><td><span class="tag found">FOUND</span></td><td>5.0</td><td>168+</td></tr>
+<tr><td>BBB</td><td><span class="tag found">A+ Accredited</span></td><td>4.67</td><td>3</td></tr>
+<tr><td>Yelp</td><td><span class="tag found">Claimed</span></td><td>4.8</td><td>99</td></tr>
+<tr><td>HomeAdvisor/Angi</td><td><span class="tag missing">NOT FOUND</span></td><td>-</td><td>-</td></tr>
+<tr><td>Thumbtack</td><td><span class="tag missing">NOT FOUND</span></td><td>-</td><td>-</td></tr>
+</table>
+
+<h3>NAP Consistency</h3>
+<table>
+<tr><th>Source</th><th>Address</th><th>Match?</th></tr>
+<tr><td>Website</td><td>1845 Huron Dr, Ventura CA 93004</td><td>baseline</td></tr>
+<tr><td>GBP</td><td>1845 Huron Dr, Ventura CA 93004</td><td><span class="tag found">MATCH</span></td></tr>
+<tr><td>BBB</td><td>Ventura, CA</td><td><span class="tag found">MATCH</span></td></tr>
+<tr><td>Yelp</td><td>1500 Mariner Dr, Oxnard CA 93033</td><td><span class="tag mismatch">MISMATCH</span></td></tr>
+</table>
+</div>
+</div>
+
+<!-- SECTION 4: Content Citability -->
+<div class="section">
+<div class="section-header" onclick="toggleSection(this)">
+  <span class="sec-num">4</span>
+  <h2>Content Citability</h2>
+  <span style="font-size:0.7rem;color:var(--text-dim);margin-left:auto;margin-right:12px;">17/25</span>
+  <span class="chevron">&#9660;</span>
+</div>
+<div class="section-body">
+<table>
+<tr><th>Factor</th><th>Score</th><th>Notes</th></tr>
+<tr><td>Quotable Proof Blocks</td><td><strong>4/5</strong></td><td>"15,000 moves/year", "99% satisfaction", "since 2010", "Voted #1"</td></tr>
+<tr><td>FAQ Sections</td><td><strong>3/5</strong></td><td>Present on 4 pages but commercial FAQs are copy-pasted from residential</td></tr>
+<tr><td>Unique Claims</td><td><strong>4/5</strong></td><td>Concierge services, "Smooth is fast", women-owned, Rudy as founder</td></tr>
+<tr><td>Service Page Depth</td><td><strong>3/5</strong></td><td>Main pages 1200-1800w (good), city pages 300-500w (thin)</td></tr>
+<tr><td>Content Differentiation</td><td><strong>3/5</strong></td><td>Strong Ventura voice, city expansion pages are generic templates</td></tr>
+</table>
+
+<h3>Page-by-Page Depth</h3>
+<table>
+<tr><th>Page</th><th>Words</th><th>Schema</th><th>FAQ</th><th>Proof Blocks</th><th>Grade</th></tr>
+<tr><td>Homepage</td><td>~600</td><td><span class="tag partial">?</span></td><td><span class="tag no">NO</span></td><td>2</td><td>B-</td></tr>
+<tr><td>/local-residential-movers</td><td>~1800</td><td><span class="tag found">Review</span></td><td><span class="tag yes">YES (3)</span></td><td>4</td><td><strong>A-</strong></td></tr>
+<tr><td>/long-distance-movers</td><td>~1500</td><td><span class="tag found">Review</span></td><td><span class="tag yes">YES (3)</span></td><td>3</td><td>B+</td></tr>
+<tr><td>/commercial-movers</td><td>~1400</td><td><span class="tag found">Review</span></td><td><span class="tag yes">YES (3)</span></td><td>3</td><td>B</td></tr>
+<tr><td>/piano-movers</td><td>~1200</td><td><span class="tag found">Review</span></td><td><span class="tag yes">YES (3)</span></td><td>2</td><td>B</td></tr>
+<tr><td>City pages (20+)</td><td>~300-500</td><td><span class="tag partial">?</span></td><td><span class="tag no">NO</span></td><td>0-1</td><td>C-D</td></tr>
+</table>
+</div>
+</div>
+
+<!-- SECTION 5: AI-Weighted Backlinks -->
+<div class="section">
+<div class="section-header" onclick="toggleSection(this)">
+  <span class="sec-num">5</span>
+  <h2>AI-Weighted Backlinks</h2>
+  <span style="font-size:0.7rem;color:var(--text-dim);margin-left:auto;margin-right:12px;">4/10</span>
+  <span class="chevron">&#9660;</span>
+</div>
+<div class="section-body">
+<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px;">
+  <div class="hero-card"><div class="h-val" style="color:var(--text-bright);">122</div><div class="h-label">Domain Rank</div></div>
+  <div class="hero-card"><div class="h-val" style="color:var(--text-bright);">177</div><div class="h-label">Backlinks</div></div>
+  <div class="hero-card"><div class="h-val" style="color:var(--text-bright);">105</div><div class="h-label">Referring Domains</div></div>
+  <div class="hero-card"><div class="h-val green">6/100</div><div class="h-label">Spam Score</div></div>
+</div>
+<table>
+<tr><th>Category</th><th>Count</th><th>AI Weight</th><th>Notes</th></tr>
+<tr><td>Editorial/news</td><td><strong style="color:var(--red);">0</strong></td><td><span class="tag first">HIGH (3x)</span></td><td>ZERO editorial mentions - major gap</td></tr>
+<tr><td>Q&A platforms</td><td><strong style="color:var(--red);">0</strong></td><td><span class="tag first">HIGH (3x)</span></td><td>ZERO Reddit/Quora presence - major gap</td></tr>
+<tr><td>Professional publishing</td><td>0</td><td><span class="tag partial">MED (2x)</span></td><td>No LinkedIn articles, Medium posts</td></tr>
+<tr><td>Review sites</td><td>2-3</td><td><span class="tag partial">MED (2x)</span></td><td>BBB + Yelp backlinks confirmed</td></tr>
+<tr><td>Directories</td><td>~15-20</td><td><span class="tag partial">MED (2x)</span></td><td>MapQuest, Sirelo, easystoragesearch</td></tr>
+<tr><td>Blog/guest posts</td><td>~30-40</td><td>LOW (1x)</td><td>Majority of profile</td></tr>
+<tr><td>Spam/PBN</td><td>~5</td><td><span class="tag no">NEGATIVE</span></td><td>Some .info and blogspot domains</td></tr>
+</table>
+</div>
+</div>
+
+<!-- SECTION 6: Trust List -->
+<div class="section">
+<div class="section-header" onclick="toggleSection(this)">
+  <span class="sec-num">6</span>
+  <h2>Trust List Analysis</h2>
+  <span style="font-size:0.7rem;color:var(--green);margin-left:auto;margin-right:12px;">TRUSTED</span>
+  <span class="chevron">&#9660;</span>
+</div>
+<div class="section-body">
+<p style="font-size:0.85rem;margin-bottom:12px;">elitemoversca.com was cited as a source in ChatGPT responses for <strong style="color:var(--cyan);">13 of 20 queries</strong>. When sourced, Elite appears in the answer 100% of the time.</p>
+<h3>Niche Trust Gateways</h3>
+<table>
+<tr><th>#</th><th>Platform</th><th>Trust Role</th></tr>
+<tr><td>1</td><td>Google Business Profile / Maps</td><td>Appears in every local query</td></tr>
+<tr><td>2</td><td>Yelp.com</td><td>Frequently cited for review data</td></tr>
+<tr><td>3</td><td>BBB.org</td><td>Trusted for business verification</td></tr>
+<tr><td>4</td><td>Company websites</td><td>Direct domain cited as source</td></tr>
+</table>
+<p style="font-size:0.8rem;color:var(--text-dim);margin-top:12px;"><strong>Gap:</strong> For 7/20 queries where Elite isn't sourced, the issue is: wrong city (Santa Barbara), no content for that intent (affordable, insured), or competitors have stronger signals.</p>
+</div>
+</div>
+
+<!-- SECTION 7: Sourcing vs Display -->
+<div class="section">
+<div class="section-header" onclick="toggleSection(this)">
+  <span class="sec-num">7</span>
+  <h2>Sourcing vs Display Layer</h2>
+  <span class="chevron">&#9660;</span>
+</div>
+<div class="section-body">
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px;">
+  <div class="hero-card"><div class="h-val green">13</div><div class="h-label">Visible</div><div class="h-sub">answer + sources</div></div>
+  <div class="hero-card"><div class="h-val" style="color:var(--yellow);">4</div><div class="h-label">Hidden</div><div class="h-sub">sources only</div></div>
+  <div class="hero-card"><div class="h-val" style="color:var(--red);">3</div><div class="h-label">Absent</div><div class="h-sub">not in data</div></div>
+</div>
+<p style="font-size:0.8rem;color:var(--text-dim);"><strong style="color:var(--yellow);">Hidden queries</strong> (Q6, Q10, Q12, Q15): Domain is trusted but content isn't quotable enough. Fix with proof blocks and direct answers.</p>
+<p style="font-size:0.8rem;color:var(--text-dim);margin-top:4px;"><strong style="color:var(--red);">Absent queries</strong> (Q3, Q5, Q8): Santa Barbara + affordable. Need new content + entity signals.</p>
+</div>
+</div>
+
+<!-- SECTION 8: RAG Triggers -->
+<div class="section">
+<div class="section-header" onclick="toggleSection(this)">
+  <span class="sec-num">8</span>
+  <h2>RAG Trigger Performance</h2>
+  <span class="chevron">&#9660;</span>
+</div>
+<div class="section-body">
+<p style="font-size:0.85rem;margin-bottom:12px;">All 20 queries are RAG triggers (local service queries). Google AIO triggers more on conversational phrasing.</p>
+<h3>Priority RAG Gaps (highest value, zero citation)</h3>
+<div class="finding-card">
+  <div class="finding-num">Gap #1</div>
+  <div class="finding-title">"best movers in Santa Barbara CA" - $500-2K</div>
+  <div class="finding-desc">0/3 platforms. 2nd GMB city completely invisible.</div>
+</div>
+<div class="finding-card">
+  <div class="finding-num">Gap #2</div>
+  <div class="finding-title">"affordable movers Ventura CA" - $500-2K</div>
+  <div class="finding-desc">0/3 platforms. Price-focused intent not addressed in content.</div>
+</div>
+<div class="finding-card">
+  <div class="finding-num">Gap #3</div>
+  <div class="finding-title">"who are the best movers near Santa Barbara CA" - $500-2K</div>
+  <div class="finding-desc">0/3 platforms. Same Santa Barbara content gap.</div>
+</div>
+</div>
+</div>
+
+<!-- SECTION 9: Entity Linkers -->
+<div class="section">
+<div class="section-header" onclick="toggleSection(this)">
+  <span class="sec-num">9</span>
+  <h2>Entity Linker Readiness</h2>
+  <span style="font-size:0.7rem;color:var(--yellow);margin-left:auto;margin-right:12px;">6/10</span>
+  <span class="chevron">&#9660;</span>
+</div>
+<div class="section-body">
+<table>
+<tr><th>Element</th><th>On Site?</th><th>Claim</th><th>Corroborated?</th></tr>
+<tr><td>Unique stat</td><td><span class="tag yes">YES</span></td><td>"15,000 successful moves each year"</td><td><span class="tag partial">PARTIAL</span> - website only</td></tr>
+<tr><td>Satisfaction</td><td><span class="tag yes">YES</span></td><td>"99% satisfaction score"</td><td><span class="tag no">NO</span> - homepage only</td></tr>
+<tr><td>Years in business</td><td><span class="tag yes">YES</span></td><td>"Since 2010"</td><td><span class="tag yes">YES</span> - Website + Yelp + BBB + GBP</td></tr>
+<tr><td>Methodology</td><td><span class="tag yes">YES</span></td><td>"Smooth is fast" motto</td><td><span class="tag no">NO</span> - website only</td></tr>
+<tr><td>Awards</td><td><span class="tag yes">YES</span></td><td>"Voted #1 Moving Company"</td><td><span class="tag no">NO</span> - self-claimed</td></tr>
+<tr><td>Owner/founder</td><td><span class="tag yes">YES</span></td><td>Rudy Becerra, named + photo</td><td><span class="tag partial">PARTIAL</span> - GBP + Yelp</td></tr>
+<tr><td>Unique service</td><td><span class="tag yes">YES</span></td><td>Concierge (babysitter, landscaper, handyman)</td><td><span class="tag no">NO</span> - website only</td></tr>
+<tr><td>Financing</td><td><span class="tag yes">YES</span></td><td>Affirm 0% APR</td><td><span class="tag no">NO</span> - website only</td></tr>
+<tr><td>Women-owned</td><td><span class="tag yes">YES</span></td><td>GBP badge</td><td><span class="tag partial">PARTIAL</span> - GBP only</td></tr>
+</table>
+<p style="font-size:0.8rem;color:var(--text-dim);margin-top:12px;">Most claims exist on the website but are NOT corroborated externally. AI needs to see the same claim across multiple platforms to build entity linkage.</p>
+</div>
+</div>
+
+<!-- SECTION 10: Competitors -->
+<div class="section">
+<div class="section-header" onclick="toggleSection(this)">
+  <span class="sec-num">10</span>
+  <h2>Competitor AI Landscape</h2>
+  <span class="chevron">&#9660;</span>
+</div>
+<div class="section-body">
+<table>
+<tr><th>Competitor</th><th>ChatGPT</th><th>Perplexity</th><th>Type</th></tr>
+<tr><td>Ventura Moving Company</td><td>4+</td><td>3+</td><td>Local</td></tr>
+<tr><td>Meathead Movers</td><td>3+</td><td>5+</td><td>Regional chain</td></tr>
+<tr><td>Alex Moving & Storage</td><td>4+</td><td>2+</td><td>Local</td></tr>
+<tr><td>Movegreen</td><td>2+</td><td>3+</td><td>Regional, eco</td></tr>
+<tr><td>Best Move</td><td>2+</td><td>2+</td><td>Local, Simi Valley</td></tr>
+<tr><td>Allied Van Lines</td><td>3+</td><td>3+</td><td>National</td></tr>
+<tr><td>Mayflower</td><td>3+</td><td>3+</td><td>National</td></tr>
+<tr><td>Hilford Moving & Storage</td><td>2+</td><td>2+</td><td>Local, 89+ years</td></tr>
+</table>
+<p style="font-size:0.8rem;color:var(--text-dim);margin-top:12px;"><strong>Why Meathead wins some queries:</strong> athlete-trained brand story, extensive Reddit presence, news coverage. <strong>Why nationals win:</strong> massive editorial backlink networks.</p>
+</div>
+</div>
+
+<!-- SECTION 11: GBP -->
+<div class="section">
+<div class="section-header" onclick="toggleSection(this)">
+  <span class="sec-num">11</span>
+  <h2>GBP & Review Position</h2>
+  <span style="font-size:0.7rem;color:var(--green);margin-left:auto;margin-right:12px;">5.0 stars</span>
+  <span class="chevron">&#9660;</span>
+</div>
+<div class="section-body">
+<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px;">
+  <div class="hero-card"><div class="h-val green">5.0</div><div class="h-label">Rating</div></div>
+  <div class="hero-card"><div class="h-val" style="color:var(--text-bright);">168+</div><div class="h-label">Reviews</div></div>
+  <div class="hero-card"><div class="h-val" style="color:var(--cyan);">A+</div><div class="h-label">BBB</div></div>
+  <div class="hero-card"><div class="h-val" style="color:var(--blue);">4.8</div><div class="h-label">Yelp (99)</div></div>
+</div>
+<p style="font-size:0.85rem;">Elite has the <strong style="color:var(--green);">best rating (5.0)</strong> of any local competitor. Meathead Movers has volume advantage (930+ reviews vs 168). Consider review collection push.</p>
+</div>
+</div>
+
+<!-- SECTION 12: Action Plan -->
+<div class="section">
+<div class="section-header" onclick="toggleSection(this)">
+  <span class="sec-num">12</span>
+  <h2>Priority Action Plan</h2>
+  <span class="chevron">&#9660;</span>
+</div>
+<div class="section-body">
+
+<div class="action-group">
+  <div class="action-group-title immediate">Immediate - This Week</div>
+  <div class="action-item"><strong>1. Fix homepage noindex</strong> - WordPress SEO plugin has conflicting robots directives. Remove noindex immediately.</div>
+  <div class="action-item"><strong>2. Fix Yelp NAP</strong> - Shows Oxnard address instead of Ventura. Update to match all other platforms.</div>
+  <div class="action-item"><strong>3. Submit to Bing Places</strong> - bingplaces.com - claim and verify. Feeds ChatGPT's primary KG source. Free, 15 min.</div>
+  <div class="action-item"><strong>4. Submit to Apple Maps</strong> - mapsconnect.apple.com - claim and verify. Free, 15 min.</div>
+</div>
+
+<div class="action-group">
+  <div class="action-group-title month1">Month 1</div>
+  <div class="action-item"><strong>5. Person schema for Rudy</strong> - JSON-LD with name, role (Founder), sameAs links to social profiles.</div>
+  <div class="action-item"><strong>6. FAQ schema on all FAQ sections</strong> - Wrap existing FAQ content with FAQPage schema.</div>
+  <div class="action-item"><strong>7. Corroborate entity linkers</strong> - Add "15,000+ moves since 2010" and "99% satisfaction" to GBP, BBB, Yelp, LinkedIn.</div>
+  <div class="action-item"><strong>8. Santa Barbara content</strong> - Rewrite /santa-barbara-ca with unique local content, 800+ words, FAQ, proof blocks.</div>
+  <div class="action-item"><strong>9. Rewrite commercial FAQs</strong> - Currently copy-pasted from residential. Write commercial-specific questions.</div>
+  <div class="action-item"><strong>10. Submit to Angi/HomeAdvisor</strong> - Moving niche directory, frequently cited by AI.</div>
+</div>
+
+<div class="action-group">
+  <div class="action-group-title month23">Months 2-3</div>
+  <div class="action-item"><strong>11. Editorial/news backlinks</strong> - Pitch to VC Star, Ventura Breeze. Women-owned angle, community involvement.</div>
+  <div class="action-item"><strong>12. Q&A platform presence</strong> - Answer moving questions on Reddit r/ventura, r/SantaBarbara, Quora.</div>
+  <div class="action-item"><strong>13. Wikidata entry</strong> - Submit business entity with sameAs links to all platforms.</div>
+  <div class="action-item"><strong>14. Expand city pages</strong> - Upgrade Oxnard, Camarillo, Thousand Oaks from templates to unique content.</div>
+</div>
+
+<div class="action-group">
+  <div class="action-group-title ongoing">Ongoing</div>
+  <div class="action-item"><strong>15. Monthly re-audit</strong> - Top 10 queries across ChatGPT/Perplexity/AIO.</div>
+  <div class="action-item"><strong>16. Review collection push</strong> - Compete with Meathead's 930+ volume.</div>
+  <div class="action-item"><strong>17. GBP posting</strong> - Maintain weekly cadence (already active).</div>
+  <div class="action-item"><strong>18. Annual stat refresh</strong> - Update proof blocks with current year numbers.</div>
+</div>
+</div>
+</div>
+
+<!-- SCORE BREAKDOWN -->
+<div class="section" style="margin-top:32px;">
+<h2 style="margin-bottom:16px;">Score Breakdown</h2>
+<div class="score-bars">
+  <div class="score-bar-row">
+    <div class="score-bar-label">AI Citations</div>
+    <div class="score-bar-track"><div class="score-bar-fill" style="width:73%;background:var(--green);">11</div></div>
+    <div class="score-bar-max">/15</div>
+  </div>
+  <div class="score-bar-row">
+    <div class="score-bar-label">Content Citability</div>
+    <div class="score-bar-track"><div class="score-bar-fill" style="width:73%;background:var(--green);">11</div></div>
+    <div class="score-bar-max">/15</div>
+  </div>
+  <div class="score-bar-row">
+    <div class="score-bar-label">KG / Directories</div>
+    <div class="score-bar-track"><div class="score-bar-fill" style="width:53%;background:var(--yellow);">8</div></div>
+    <div class="score-bar-max">/15</div>
+  </div>
+  <div class="score-bar-row">
+    <div class="score-bar-label">Schema Markup</div>
+    <div class="score-bar-track"><div class="score-bar-fill" style="width:53%;background:var(--yellow);">8</div></div>
+    <div class="score-bar-max">/15</div>
+  </div>
+  <div class="score-bar-row">
+    <div class="score-bar-label">Trust List Position</div>
+    <div class="score-bar-track"><div class="score-bar-fill" style="width:70%;background:var(--green);">7</div></div>
+    <div class="score-bar-max">/10</div>
+  </div>
+  <div class="score-bar-row">
+    <div class="score-bar-label">Entity Linkers</div>
+    <div class="score-bar-track"><div class="score-bar-fill" style="width:60%;background:var(--yellow);">6</div></div>
+    <div class="score-bar-max">/10</div>
+  </div>
+  <div class="score-bar-row">
+    <div class="score-bar-label">AI-Weighted Backlinks</div>
+    <div class="score-bar-track"><div class="score-bar-fill" style="width:40%;background:var(--red);">4</div></div>
+    <div class="score-bar-max">/10</div>
+  </div>
+  <div class="score-bar-row">
+    <div class="score-bar-label">Sourcing Layer</div>
+    <div class="score-bar-track"><div class="score-bar-fill" style="width:60%;background:var(--yellow);">3</div></div>
+    <div class="score-bar-max">/5</div>
+  </div>
+  <div class="score-bar-row">
+    <div class="score-bar-label">Geo Accuracy</div>
+    <div class="score-bar-track"><div class="score-bar-fill" style="width:60%;background:var(--yellow);">3</div></div>
+    <div class="score-bar-max">/5</div>
+  </div>
+</div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="oo-logo">Online Optimisers</div>
+  <div class="oo-sub">AI Ranking Deep Audit - Generated 2026-04-06</div>
+</div>
+
+</div>
+
+<script>
+function toggleSection(el) {
+  const header = el.closest('.section-header');
+  if (!header) return;
+  const body = header.nextElementSibling;
+  header.classList.toggle('expanded');
+  body.classList.toggle('expanded');
+}
+</script>
+</body>
+</html>
