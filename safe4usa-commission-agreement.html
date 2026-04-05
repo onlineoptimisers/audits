@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Commission Partnership Agreement - Safe 4 USA Security LLC</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #ffffff;
+    --bg-alt: #f5f7fa;
+    --bg-blue: #071383;
+    --bg-blue-light: #e8eaf6;
+    --text: #1a1a2e;
+    --text-dim: #5f6578;
+    --accent: #071383;
+    --border: #e0e4ea;
+    --green: #16a34a;
+    --yellow: #ca8a04;
+    --red: #dc2626;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    font-size: 15px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ---- HEADER ---- */
+  .header {
+    background: var(--bg-blue);
+    color: #ffffff;
+    padding: 48px 40px 40px;
+    text-align: center;
+  }
+  .header-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    opacity: 0.6;
+    margin-bottom: 12px;
+  }
+  .header h1 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 32px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .header-line {
+    width: 60px;
+    height: 2px;
+    background: rgba(255,255,255,0.3);
+    margin: 0 auto;
+  }
+
+  /* ---- META STRIP ---- */
+  .meta-strip {
+    background: var(--bg-alt);
+    border-bottom: 1px solid var(--border);
+    padding: 16px 40px;
+  }
+  .meta-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px 32px;
+  }
+  .meta-item {
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+  .meta-item strong {
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  /* ---- CONTAINER ---- */
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 40px 60px;
+  }
+
+  /* ---- TABLE OF CONTENTS ---- */
+  .toc {
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 28px 32px;
+    margin-bottom: 48px;
+  }
+  .toc-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+  .toc ol {
+    list-style: none;
+    counter-reset: toc-counter;
+    columns: 2;
+    column-gap: 32px;
+  }
+  .toc li {
+    counter-increment: toc-counter;
+    margin-bottom: 8px;
+    break-inside: avoid;
+  }
+  .toc li a {
+    color: var(--text);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    transition: color 0.2s;
+  }
+  .toc li a:hover {
+    color: var(--accent);
+  }
+  .toc li a::before {
+    content: counter(toc-counter);
+    font-family: 'Oswald', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    color: #ffffff;
+    background: var(--accent);
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  /* ---- SECTIONS ---- */
+  .section {
+    margin-bottom: 48px;
+    scroll-margin-top: 24px;
+  }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--border);
+    border-left: 4px solid var(--accent);
+    padding-left: 16px;
+  }
+  .section-number {
+    font-family: 'Oswald', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: #ffffff;
+    background: var(--accent);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .section-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  /* ---- TYPOGRAPHY ---- */
+  p { margin-bottom: 14px; }
+  .section > p:last-child { margin-bottom: 0; }
+
+  strong { font-weight: 600; }
+
+  .subsection-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 28px 0 14px;
+  }
+
+  /* ---- SERVICE LIST ---- */
+  .service-list {
+    list-style: none;
+    padding: 0;
+  }
+  .service-list li {
+    position: relative;
+    padding: 8px 0 8px 32px;
+    border-bottom: 1px solid var(--border);
+  }
+  .service-list li:last-child { border-bottom: none; }
+  .service-list li::before {
+    content: '';
+    position: absolute;
+    left: 8px;
+    top: 15px;
+    width: 8px;
+    height: 8px;
+    background: var(--accent);
+    border-radius: 50%;
+  }
+
+  /* ---- COMMISSION TABLE ---- */
+  .table-card {
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 24px;
+    margin: 20px 0;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+  thead th {
+    background: var(--bg-blue);
+    color: #ffffff;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 500;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    font-size: 13px;
+    padding: 12px 16px;
+    text-align: left;
+  }
+  thead th:first-child { border-radius: 6px 0 0 0; }
+  thead th:last-child { border-radius: 0 6px 0 0; }
+  tbody td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  tbody tr:nth-child(even) { background: rgba(7,19,131,0.03); }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:last-child td:first-child { border-radius: 0 0 0 6px; }
+  tbody tr:last-child td:last-child { border-radius: 0 0 6px 0; }
+
+  .commission-highlight {
+    background: var(--bg-blue-light);
+    border-left: 4px solid var(--accent);
+    border-radius: 0 8px 8px 0;
+    padding: 16px 20px;
+    margin: 20px 0;
+    font-size: 14px;
+  }
+  .commission-highlight strong {
+    color: var(--accent);
+  }
+
+  /* ---- ATTRIBUTION CARDS ---- */
+  .attr-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin: 20px 0;
+  }
+  .attr-card {
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+  }
+  .attr-icon {
+    width: 40px;
+    height: 40px;
+    background: var(--bg-blue-light);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .attr-icon svg {
+    width: 20px;
+    height: 20px;
+    stroke: var(--accent);
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .attr-card h4 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
+  .attr-card p {
+    font-size: 13px;
+    color: var(--text-dim);
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  /* ---- RULES CARD ---- */
+  .rules-card {
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 24px;
+    margin: 20px 0;
+  }
+  .rules-card .rules-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+  }
+  .rule-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 6px 0;
+    font-size: 14px;
+  }
+  .rule-bullet {
+    width: 6px;
+    height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 8px;
+  }
+
+  /* ---- NOT ATTRIBUTABLE ---- */
+  .not-attr-list {
+    list-style: none;
+    padding: 0;
+    margin: 16px 0;
+  }
+  .not-attr-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 8px 0;
+    font-size: 14px;
+    color: var(--text-dim);
+  }
+  .x-mark {
+    color: var(--red);
+    font-weight: 700;
+    font-size: 16px;
+    flex-shrink: 0;
+    line-height: 1.5;
+  }
+
+  /* ---- OBLIGATION COLUMNS ---- */
+  .obligations-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 20px;
+  }
+  .obligation-col {
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 24px;
+  }
+  .obligation-col-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--accent);
+  }
+  .obligation-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13.5px;
+    line-height: 1.6;
+  }
+  .obligation-item:last-child { border-bottom: none; }
+  .ob-num {
+    font-family: 'Oswald', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    color: #ffffff;
+    background: var(--accent);
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  /* ---- TERM SECTION ---- */
+  .term-list {
+    list-style: none;
+    padding: 0;
+    margin: 16px 0;
+  }
+  .term-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+  }
+  .term-item:last-child { border-bottom: none; }
+  .term-label {
+    font-family: 'Oswald', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: #ffffff;
+    background: var(--accent);
+    padding: 3px 10px;
+    border-radius: 4px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  /* ---- COMPACT LEGAL SECTIONS ---- */
+  .legal-text {
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--text);
+  }
+  .legal-text p {
+    margin-bottom: 12px;
+  }
+
+  /* ---- SEPARATOR ---- */
+  .section-divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 48px 0;
+  }
+
+  /* ---- SIGNATURE SECTION ---- */
+  .signature-area {
+    margin-top: 60px;
+    padding-top: 40px;
+    border-top: 2px solid var(--border);
+  }
+  .signature-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--accent);
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  .signature-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+  }
+  .signature-block {
+    padding: 24px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--bg-alt);
+  }
+  .sig-party {
+    font-family: 'Oswald', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 24px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--accent);
+  }
+  .sig-field {
+    margin-bottom: 20px;
+  }
+  .sig-field:last-child { margin-bottom: 0; }
+  .sig-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 8px;
+  }
+  .sig-line {
+    border-bottom: 1px solid var(--text);
+    height: 28px;
+    position: relative;
+  }
+  .sig-prefill {
+    position: absolute;
+    bottom: 4px;
+    left: 0;
+    font-size: 14px;
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  /* ---- FOOTER ---- */
+  .footer {
+    background: var(--bg-alt);
+    border-top: 1px solid var(--border);
+    padding: 24px 40px;
+    text-align: center;
+  }
+  .footer-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-brand {
+    font-family: 'Oswald', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+  .footer-note {
+    font-size: 12px;
+    color: var(--text-dim);
+  }
+
+  /* ---- PRINT ---- */
+  @media print {
+    .header { padding: 32px 24px; }
+    .container { padding: 24px; }
+    .section { page-break-inside: avoid; }
+    .signature-area { page-break-before: always; }
+  }
+
+  /* ---- RESPONSIVE ---- */
+  @media (max-width: 768px) {
+    .header h1 { font-size: 22px; letter-spacing: 1.5px; }
+    .meta-inner { flex-direction: column; gap: 4px; }
+    .toc ol { columns: 1; }
+    .attr-grid { grid-template-columns: 1fr; }
+    .obligations-grid { grid-template-columns: 1fr; }
+    .signature-grid { grid-template-columns: 1fr; gap: 24px; }
+    .container { padding: 24px 20px; }
+    .footer-inner { flex-direction: column; gap: 8px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-label">Legal Agreement</div>
+  <h1>Commission Partnership Agreement</h1>
+  <div class="header-line"></div>
+</div>
+
+<!-- META STRIP -->
+<div class="meta-strip">
+  <div class="meta-inner">
+    <div class="meta-item"><strong>Between:</strong> Online Optimisers ("Agency") and Safe 4 USA Security LLC ("Client")</div>
+    <div class="meta-item"><strong>Effective Date:</strong> [DATE]</div>
+    <div class="meta-item"><strong>Term:</strong> 12 months</div>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="container">
+
+  <!-- TABLE OF CONTENTS -->
+  <div class="toc">
+    <div class="toc-title">Table of Contents</div>
+    <ol>
+      <li><a href="#s1">Services Provided by Agency</a></li>
+      <li><a href="#s2">Commission Structure</a></li>
+      <li><a href="#s3">Lead Attribution</a></li>
+      <li><a href="#s4">Client Obligations</a></li>
+      <li><a href="#s5">Agency Obligations</a></li>
+      <li><a href="#s6">Term and Termination</a></li>
+      <li><a href="#s7">Audit Rights</a></li>
+      <li><a href="#s8">Confidentiality</a></li>
+      <li><a href="#s9">Limitation of Liability</a></li>
+      <li><a href="#s10">Signatures</a></li>
+    </ol>
+  </div>
+
+  <!-- SECTION 1 -->
+  <div class="section" id="s1">
+    <div class="section-header">
+      <div class="section-number">1</div>
+      <div class="section-title">Services Provided by Agency</div>
+    </div>
+    <p>Agency will provide the following at no upfront cost to Client:</p>
+    <ul class="service-list">
+      <li>Custom 18-page website built on modern infrastructure (Astro/Cloudflare Pages)</li>
+      <li>Search engine optimization foundation (technical SEO, schema markup, directory submissions)</li>
+      <li>AI visibility optimization (structured data, entity building, content optimization)</li>
+      <li>Lead tracking system (forms, call tracking, attribution reporting)</li>
+      <li>Google Business Profile optimization</li>
+      <li>Monthly performance reporting</li>
+    </ul>
+    <p style="margin-top: 16px;">Agency will also set up and manage paid advertising campaigns (Google Ads, Facebook/Instagram) if Client elects to fund ad spend. Ad spend is paid directly to platforms by Client.</p>
+  </div>
+
+  <!-- SECTION 2 -->
+  <div class="section" id="s2">
+    <div class="section-header">
+      <div class="section-number">2</div>
+      <div class="section-title">Commission Structure</div>
+    </div>
+
+    <div class="commission-highlight">
+      Agency earns <strong>10% of first-year contract value</strong> on every deal attributable to Agency's system.
+    </div>
+
+    <div class="subsection-title">How Commission is Calculated</div>
+    <div class="table-card">
+      <table>
+        <thead>
+          <tr>
+            <th>Contract Type</th>
+            <th>Commission Basis</th>
+            <th>Example</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>One-time project</strong><br><span style="color:var(--text-dim); font-size:12px;">event security, risk assessment</span></td>
+            <td>10% of total contract value</td>
+            <td>$10,000 contract = <strong>$1,000</strong> commission</td>
+          </tr>
+          <tr>
+            <td><strong>Recurring service</strong><br><span style="color:var(--text-dim); font-size:12px;">monitoring, guard service</span></td>
+            <td>10% of first 12 months of payments</td>
+            <td>$2,000/month contract = <strong>$2,400</strong> commission</td>
+          </tr>
+          <tr>
+            <td><strong>Multi-year contract</strong><br><span style="color:var(--text-dim); font-size:12px;">long-term agreements</span></td>
+            <td>10% of first-year value only</td>
+            <td>$100,000/year for 3 years = <strong>$10,000</strong> commission</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="subsection-title">When Commission is Due</div>
+    <p>Commission is payable within 30 days of Client receiving payment from the end customer. If the end customer pays in installments, commission is due on each installment as received.</p>
+  </div>
+
+  <!-- SECTION 3 -->
+  <div class="section" id="s3">
+    <div class="section-header">
+      <div class="section-number">3</div>
+      <div class="section-title">Lead Attribution</div>
+    </div>
+    <p>A lead is attributable to Agency if it arrives through any of these channels:</p>
+
+    <div class="attr-grid">
+      <div class="attr-card">
+        <div class="attr-icon">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 12h6M9 16h4M9 8h6"/></svg>
+        </div>
+        <div>
+          <h4>Website Form Submission</h4>
+          <p>Any form on the Agency-built website</p>
+        </div>
+      </div>
+      <div class="attr-card">
+        <div class="attr-icon">
+          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        </div>
+        <div>
+          <h4>Tracking Phone Number</h4>
+          <p>Calls to the dedicated tracking number displayed on the website</p>
+        </div>
+      </div>
+      <div class="attr-card">
+        <div class="attr-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        </div>
+        <div>
+          <h4>Paid Advertising</h4>
+          <p>Any lead generated through Agency-managed ad campaigns</p>
+        </div>
+      </div>
+      <div class="attr-card">
+        <div class="attr-icon">
+          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        </div>
+        <div>
+          <h4>Organic / AI Search</h4>
+          <p>Leads who found Client through Google, ChatGPT, Perplexity, or similar platforms</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="rules-card">
+      <div class="rules-title">Attribution Rules</div>
+      <div class="rule-item">
+        <div class="rule-bullet"></div>
+        <div>Before this engagement, Client's website generates zero digital leads (site is noindexed). Any digital lead after launch is incremental.</div>
+      </div>
+      <div class="rule-item">
+        <div class="rule-bullet"></div>
+        <div>Both parties have access to the same lead tracking dashboard.</div>
+      </div>
+      <div class="rule-item">
+        <div class="rule-bullet"></div>
+        <div>Client must update lead status (contacted, quoted, won, lost) and deal value within 7 days of status change.</div>
+      </div>
+      <div class="rule-item">
+        <div class="rule-bullet"></div>
+        <div>Agency provides monthly attribution report by the 5th of each month.</div>
+      </div>
+      <div class="rule-item">
+        <div class="rule-bullet"></div>
+        <div>Client has 30 days from report date to dispute any attribution.</div>
+      </div>
+      <div class="rule-item">
+        <div class="rule-bullet"></div>
+        <div>Call recordings are available for review in case of disputes.</div>
+      </div>
+    </div>
+
+    <div class="subsection-title">What is NOT Attributable</div>
+    <ul class="not-attr-list">
+      <li><span class="x-mark">&#10005;</span> Leads from Client's existing relationships or referrals predating this agreement</li>
+      <li><span class="x-mark">&#10005;</span> Leads from Client's own direct outreach (cold calls, in-person networking)</li>
+      <li><span class="x-mark">&#10005;</span> Leads from channels not built or managed by Agency</li>
+      <li><span class="x-mark">&#10005;</span> Walk-in business not driven by digital channels</li>
+    </ul>
+  </div>
+
+  <!-- SECTIONS 4 & 5 - SIDE BY SIDE -->
+  <div class="section" id="s4">
+    <div class="section-header">
+      <div class="section-number">4</div>
+      <div class="section-title">Client Obligations</div>
+    </div>
+  </div>
+
+  <div class="section" id="s5" style="margin-top: -28px;">
+    <div class="section-header">
+      <div class="section-number">5</div>
+      <div class="section-title">Agency Obligations</div>
+    </div>
+  </div>
+
+  <div class="obligations-grid" style="margin-top: -20px; margin-bottom: 48px;">
+    <!-- Client Obligations -->
+    <div class="obligation-col">
+      <div class="obligation-col-title">Client Agrees To</div>
+      <div class="obligation-item">
+        <span class="ob-num">1</span>
+        <div><strong>Respond to leads within 24 hours</strong> - faster response = higher close rates for both parties</div>
+      </div>
+      <div class="obligation-item">
+        <span class="ob-num">2</span>
+        <div><strong>Update deal status in the tracking system</strong> - won/lost/value, within 7 days of change</div>
+      </div>
+      <div class="obligation-item">
+        <span class="ob-num">3</span>
+        <div><strong>Provide honest deal value reporting</strong> - commission is based on trust; Agency has audit rights (see Section 7)</div>
+      </div>
+      <div class="obligation-item">
+        <span class="ob-num">4</span>
+        <div><strong>Provide content and assets</strong> - team photos, testimonials, operation photos for website</div>
+      </div>
+      <div class="obligation-item">
+        <span class="ob-num">5</span>
+        <div><strong>Grant DNS access</strong> - when ready to point domain to the new website</div>
+      </div>
+      <div class="obligation-item">
+        <span class="ob-num">6</span>
+        <div><strong>Grant Google Business Profile access</strong> - for optimization</div>
+      </div>
+      <div class="obligation-item">
+        <span class="ob-num">7</span>
+        <div><strong>Fund ad spend</strong> - if electing to run paid campaigns (minimum recommended: $1,500/month)</div>
+      </div>
+      <div class="obligation-item">
+        <span class="ob-num">8</span>
+        <div><strong>Request Google reviews</strong> - from satisfied clients (target 3-5 per month)</div>
+      </div>
+    </div>
+
+    <!-- Agency Obligations -->
+    <div class="obligation-col">
+      <div class="obligation-col-title">Agency Agrees To</div>
+      <div class="obligation-item">
+        <span class="ob-num">1</span>
+        <div><strong>Build and maintain the website</strong> at no upfront cost</div>
+      </div>
+      <div class="obligation-item">
+        <span class="ob-num">2</span>
+        <div><strong>Implement SEO and AI optimization</strong> as described in Section 1</div>
+      </div>
+      <div class="obligation-item">
+        <span class="ob-num">3</span>
+        <div><strong>Provide monthly performance reports</strong> by the 5th of each month</div>
+      </div>
+      <div class="obligation-item">
+        <span class="ob-num">4</span>
+        <div><strong>Not sell or share Client's lead data</strong> with any third party</div>
+      </div>
+      <div class="obligation-item">
+        <span class="ob-num">5</span>
+        <div><strong>Maintain website uptime</strong> on reliable hosting infrastructure</div>
+      </div>
+      <div class="obligation-item">
+        <span class="ob-num">6</span>
+        <div><strong>Provide transparent attribution</strong> - both parties see the same data</div>
+      </div>
+      <div class="obligation-item">
+        <span class="ob-num">7</span>
+        <div><strong>Respond to Client questions</strong> within 48 business hours</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 6 -->
+  <div class="section" id="s6">
+    <div class="section-header">
+      <div class="section-number">6</div>
+      <div class="section-title">Term and Termination</div>
+    </div>
+    <ul class="term-list">
+      <li class="term-item">
+        <span class="term-label">Initial Term</span>
+        <div>12 months from effective date</div>
+      </li>
+      <li class="term-item">
+        <span class="term-label">Early Exit</span>
+        <div>Either party may terminate with 30 days written notice after the first 90 days</div>
+      </li>
+      <li class="term-item">
+        <span class="term-label">Commission Tail</span>
+        <div>Agency earns commission on any lead attributed during the agreement term that closes within 60 days after termination</div>
+      </li>
+      <li class="term-item">
+        <span class="term-label">Website Transfer</span>
+        <div>Upon completion of 12-month term or mutual agreement, full website IP and hosting transfers to Client at no additional cost</div>
+      </li>
+      <li class="term-item">
+        <span class="term-label">Early Exit Site</span>
+        <div>If Client terminates before 12 months, website remains Agency property. Client may purchase the website at fair market value.</div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- SECTION 7 -->
+  <div class="section" id="s7">
+    <div class="section-header">
+      <div class="section-number">7</div>
+      <div class="section-title">Audit Rights</div>
+    </div>
+    <div class="legal-text">
+      <p>Agency reserves the right to request documentation (invoices, contracts, payment receipts) for any deal where commission is owed, up to once per quarter. Client will provide requested documentation within 14 days.</p>
+      <p>If audit reveals underreported revenue exceeding 10% of actual revenue, Client owes the difference plus a 15% late fee.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 8 -->
+  <div class="section" id="s8">
+    <div class="section-header">
+      <div class="section-number">8</div>
+      <div class="section-title">Confidentiality</div>
+    </div>
+    <div class="legal-text">
+      <p>Both parties agree to keep the terms of this agreement confidential. Neither party will disclose commission rates, revenue figures, or lead data to third parties without written consent.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 9 -->
+  <div class="section" id="s9">
+    <div class="section-header">
+      <div class="section-number">9</div>
+      <div class="section-title">Limitation of Liability</div>
+    </div>
+    <div class="legal-text">
+      <p>Agency does not guarantee any specific number of leads, deals, or revenue. Agency's services increase the likelihood of digital lead generation but cannot guarantee outcomes. Agency's total liability under this agreement is limited to the total commission earned in the preceding 3 months.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 10 - SIGNATURES -->
+  <div class="signature-area" id="s10">
+    <div class="signature-title">Signatures</div>
+    <div class="signature-grid">
+      <div class="signature-block">
+        <div class="sig-party">Online Optimisers</div>
+        <div class="sig-field">
+          <div class="sig-label">Name</div>
+          <div class="sig-line"></div>
+        </div>
+        <div class="sig-field">
+          <div class="sig-label">Title</div>
+          <div class="sig-line"></div>
+        </div>
+        <div class="sig-field">
+          <div class="sig-label">Date</div>
+          <div class="sig-line"></div>
+        </div>
+        <div class="sig-field">
+          <div class="sig-label">Signature</div>
+          <div class="sig-line"></div>
+        </div>
+      </div>
+      <div class="signature-block">
+        <div class="sig-party">Safe 4 USA Security LLC</div>
+        <div class="sig-field">
+          <div class="sig-label">Name</div>
+          <div class="sig-line">
+            <span class="sig-prefill">Denis Voit</span>
+          </div>
+        </div>
+        <div class="sig-field">
+          <div class="sig-label">Title</div>
+          <div class="sig-line">
+            <span class="sig-prefill">Founder</span>
+          </div>
+        </div>
+        <div class="sig-field">
+          <div class="sig-label">Date</div>
+          <div class="sig-line"></div>
+        </div>
+        <div class="sig-field">
+          <div class="sig-label">Signature</div>
+          <div class="sig-line"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">Online Optimisers</div>
+    <div class="footer-note">Commission Partnership Agreement - Confidential</div>
+    <div class="footer-brand">Safe 4 USA Security LLC</div>
+  </div>
+</div>
+
+</body>
+</html>

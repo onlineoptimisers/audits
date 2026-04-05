@@ -1,0 +1,1460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Safe 4 USA Security - Paid Advertising Strategy</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #ffffff;
+    --bg-alt: #f5f7fa;
+    --bg-blue: #071383;
+    --bg-blue-light: #e8eaf6;
+    --text: #1a1a2e;
+    --text-dim: #5f6578;
+    --accent: #071383;
+    --border: #e0e4ea;
+    --green: #16a34a;
+    --yellow: #ca8a04;
+    --red: #dc2626;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    font-size: 15px;
+  }
+
+  /* ---- HEADER ---- */
+  .header {
+    background: var(--bg-blue);
+    color: #fff;
+    padding: 48px 0 40px;
+    text-align: center;
+  }
+  .header h1 {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 42px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .header .subtitle {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: 0.85;
+  }
+
+  /* ---- META STRIP ---- */
+  .meta-strip {
+    background: var(--bg-alt);
+    border-bottom: 1px solid var(--border);
+    padding: 12px 0;
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+  .meta-strip span { margin: 0 20px; }
+
+  /* ---- CONTAINER ---- */
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 32px; }
+
+  /* ---- TABLE OF CONTENTS ---- */
+  .toc-section {
+    padding: 40px 0 32px;
+  }
+  .toc-title {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--text-dim);
+    margin-bottom: 20px;
+  }
+  .toc-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .toc-pill {
+    display: inline-block;
+    padding: 8px 20px;
+    background: var(--bg-blue-light);
+    color: var(--accent);
+    border-radius: 24px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s;
+    border: 1px solid transparent;
+  }
+  .toc-pill:hover {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+  }
+
+  /* ---- CONTEXT CARD ---- */
+  .context-section { padding: 0 0 40px; }
+  .context-card {
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px 32px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  }
+  .context-card p { margin-bottom: 12px; color: var(--text); }
+  .context-card p:last-child { margin-bottom: 0; }
+  .context-card strong { color: var(--accent); }
+
+  .key-rule {
+    background: var(--bg-blue-light);
+    border-left: 4px solid var(--accent);
+    padding: 14px 20px;
+    border-radius: 0 8px 8px 0;
+    margin-top: 16px;
+    font-weight: 600;
+    color: var(--accent);
+  }
+
+  /* ---- BLUE DIVIDER STRIP ---- */
+  .blue-divider {
+    background: var(--bg-blue);
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+  }
+  .blue-divider h2 {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 28px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+  }
+
+  /* ---- SECTION ---- */
+  .section { padding: 48px 0; }
+  .section-alt { background: var(--bg-alt); }
+
+  .section-header {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--text);
+    border-left: 4px solid var(--accent);
+    padding-left: 16px;
+    margin-bottom: 28px;
+  }
+
+  .sub-header {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    font-size: 17px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--accent);
+    margin-bottom: 16px;
+    margin-top: 32px;
+  }
+  .sub-header:first-child { margin-top: 0; }
+
+  /* ---- PRIORITY BADGE ---- */
+  .priority-badge {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 4px 14px;
+    border-radius: 4px;
+    margin-left: 12px;
+    vertical-align: middle;
+  }
+
+  /* ---- CARDS ---- */
+  .card {
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  }
+  .section-alt .card {
+    background: var(--bg);
+  }
+
+  .card-title {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  /* ---- CALLOUT ---- */
+  .callout {
+    background: var(--bg-blue-light);
+    border-left: 4px solid var(--accent);
+    padding: 16px 20px;
+    border-radius: 0 8px 8px 0;
+    margin: 20px 0;
+    color: var(--text);
+  }
+  .callout strong { color: var(--accent); }
+
+  /* ---- KEYWORD PILLS ---- */
+  .keyword-group { margin-bottom: 16px; }
+  .keyword-group-title {
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+  }
+  .keyword-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+  .kw-pill {
+    display: inline-block;
+    padding: 5px 14px;
+    background: var(--bg-blue-light);
+    color: var(--accent);
+    border-radius: 6px;
+    font-size: 13px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    border: 1px solid rgba(7,19,131,0.12);
+  }
+  .kw-pill.negative {
+    background: #fef2f2;
+    color: var(--red);
+    border-color: rgba(220,38,38,0.15);
+  }
+
+  /* ---- STAT GRID ---- */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+    margin: 20px 0;
+  }
+  .stat-box {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+  }
+  .section-alt .stat-box { background: var(--bg-alt); }
+  .stat-number {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 32px;
+    color: var(--accent);
+    line-height: 1.1;
+  }
+  .stat-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-top: 6px;
+  }
+
+  /* ---- AD COPY QUOTES ---- */
+  .ad-copy-block {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 16px 0;
+  }
+  .ad-quote {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+    font-style: italic;
+  }
+  .section-alt .ad-quote { background: var(--bg-alt); }
+
+  /* ---- LISTS ---- */
+  ul.blue-list {
+    list-style: none;
+    padding: 0;
+  }
+  ul.blue-list li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 8px;
+    line-height: 1.6;
+  }
+  ul.blue-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 9px;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  /* ---- TABLES ---- */
+  .styled-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  }
+  .styled-table thead th {
+    background: var(--bg-blue);
+    color: #fff;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 14px 18px;
+    text-align: left;
+  }
+  .styled-table tbody td {
+    padding: 13px 18px;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+  }
+  .styled-table tbody tr:nth-child(odd) { background: var(--bg); }
+  .styled-table tbody tr:nth-child(even) { background: var(--bg-alt); }
+  .styled-table tbody tr:last-child td { border-bottom: none; }
+  .styled-table .total-row {
+    font-weight: 700;
+    background: var(--bg-blue-light) !important;
+    color: var(--accent);
+  }
+  .styled-table .total-row td { font-size: 15px; }
+
+  /* ---- REVENUE CARDS ---- */
+  .revenue-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin: 24px 0;
+  }
+  .revenue-card {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .revenue-card-header {
+    padding: 16px 24px;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    text-align: center;
+  }
+  .revenue-card-header.conservative {
+    background: var(--bg-blue-light);
+    color: var(--accent);
+  }
+  .revenue-card-header.optimistic {
+    background: var(--accent);
+    color: #fff;
+  }
+  .revenue-card-body {
+    padding: 24px;
+    background: var(--bg);
+  }
+  .revenue-card-body ul { list-style: none; padding: 0; }
+  .revenue-card-body li {
+    padding: 6px 0;
+    font-size: 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  .revenue-card-body li:last-child { border-bottom: none; }
+  .revenue-highlight {
+    background: var(--bg-blue-light);
+    border-radius: 8px;
+    padding: 16px;
+    margin-top: 16px;
+    text-align: center;
+  }
+  .revenue-highlight .stat-number { font-size: 28px; }
+  .revenue-highlight .stat-label { margin-top: 4px; }
+
+  /* ---- RISK TABLE ---- */
+  .risk-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  }
+  .risk-table thead th {
+    padding: 14px 18px;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align: left;
+  }
+  .risk-table thead th:first-child {
+    background: #fef2f2;
+    color: var(--red);
+    width: 40%;
+  }
+  .risk-table thead th:last-child {
+    background: #f0fdf4;
+    color: var(--green);
+  }
+  .risk-table tbody td {
+    padding: 13px 18px;
+    font-size: 14px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  .risk-table tbody td:first-child {
+    background: #fffbfb;
+    font-weight: 500;
+  }
+  .risk-table tbody td:last-child {
+    background: #fafff9;
+  }
+  .risk-table tbody tr:last-child td { border-bottom: none; }
+
+  /* ---- TIMELINE ---- */
+  .timeline {
+    position: relative;
+    padding: 20px 0;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 28px;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: var(--bg-blue-light);
+  }
+  .timeline-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 24px;
+    position: relative;
+  }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot {
+    flex-shrink: 0;
+    width: 56px;
+    height: 56px;
+    background: var(--accent);
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    z-index: 1;
+    box-shadow: 0 2px 8px rgba(7,19,131,0.3);
+    line-height: 1;
+    text-align: center;
+  }
+  .timeline-content {
+    margin-left: 20px;
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 20px;
+    flex: 1;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .timeline-content h4 {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
+  .timeline-content p {
+    font-size: 14px;
+    color: var(--text-dim);
+  }
+
+  /* ---- CHECKLIST ---- */
+  .checklist {
+    list-style: none;
+    padding: 0;
+  }
+  .checklist li {
+    padding: 10px 0 10px 32px;
+    position: relative;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+  }
+  .checklist li:last-child { border-bottom: none; }
+  .checklist li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 12px;
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--accent);
+    border-radius: 4px;
+  }
+
+  /* ---- TWO COL ---- */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  /* ---- FOOTER ---- */
+  .footer {
+    background: var(--bg-blue);
+    color: #fff;
+    padding: 36px 0;
+    text-align: center;
+  }
+  .footer-brand {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .footer-sub {
+    font-size: 13px;
+    opacity: 0.7;
+  }
+  .footer-divider {
+    width: 60px;
+    height: 2px;
+    background: rgba(255,255,255,0.3);
+    margin: 16px auto;
+  }
+
+  /* ---- TARGETING LIST ---- */
+  .targeting-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 12px 0;
+  }
+  .targeting-item {
+    padding: 8px 14px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 500;
+  }
+  .section-alt .targeting-item { background: var(--bg-alt); }
+
+  /* ---- SEGMENT CARDS ---- */
+  .segment-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 20px;
+  }
+  .segment-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 22px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  }
+  .section-alt .segment-card { background: var(--bg-alt); }
+  .segment-card h4 {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .segment-card .segment-headline {
+    font-style: italic;
+    font-size: 13px;
+    color: var(--text-dim);
+    margin-bottom: 8px;
+    padding-left: 12px;
+    border-left: 2px solid var(--accent);
+  }
+  .segment-card .segment-meta {
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+  .segment-budget {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 4px 12px;
+    background: var(--bg-blue-light);
+    color: var(--accent);
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 13px;
+  }
+
+  /* ---- LOCATION PILLS ---- */
+  .location-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 12px 0;
+  }
+  .loc-pill {
+    padding: 5px 14px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text);
+  }
+  .section-alt .loc-pill { background: var(--bg-alt); }
+
+  /* ---- AI MANAGEMENT ---- */
+  .mgmt-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin: 20px 0;
+  }
+  .mgmt-card {
+    border-radius: 12px;
+    padding: 24px;
+    border: 1px solid var(--border);
+  }
+  .mgmt-card.ai {
+    background: var(--bg-blue-light);
+    border-color: rgba(7,19,131,0.15);
+  }
+  .mgmt-card.human {
+    background: var(--bg-alt);
+  }
+  .mgmt-card h4 {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+  }
+  .mgmt-card.ai h4 { color: var(--accent); }
+  .mgmt-card.human h4 { color: var(--text); }
+
+  /* ---- RESPONSIVE ---- */
+  @media (max-width: 768px) {
+    .container { padding: 0 16px; }
+    .header h1 { font-size: 28px; }
+    .two-col, .revenue-grid, .ad-copy-block, .segment-grid, .mgmt-grid, .targeting-grid {
+      grid-template-columns: 1fr;
+    }
+    .stat-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="container">
+    <h1>Safe 4 USA Security</h1>
+    <div class="subtitle">Paid Advertising Strategy - Google Ads &amp; Facebook/Instagram</div>
+  </div>
+</div>
+
+<!-- META STRIP -->
+<div class="meta-strip">
+  <span>Prepared: April 2026</span>
+  <span>|</span>
+  <span>Prepared by Online Optimisers</span>
+  <span>|</span>
+  <span>Hallandale Beach, FL</span>
+</div>
+
+<!-- TABLE OF CONTENTS -->
+<div class="container">
+  <div class="toc-section">
+    <div class="toc-title">Contents</div>
+    <div class="toc-grid">
+      <a href="#context" class="toc-pill">Strategic Context</a>
+      <a href="#google-search" class="toc-pill">Google Search Ads</a>
+      <a href="#google-lsa" class="toc-pill">Google LSA</a>
+      <a href="#google-remarketing" class="toc-pill">Google Remarketing</a>
+      <a href="#fb-awareness" class="toc-pill">FB Brand Awareness</a>
+      <a href="#fb-leadgen" class="toc-pill">FB Lead Generation</a>
+      <a href="#fb-segments" class="toc-pill">FB Specialty Segments</a>
+      <a href="#budget" class="toc-pill">Budget Summary</a>
+      <a href="#revenue" class="toc-pill">Revenue Math</a>
+      <a href="#tracking" class="toc-pill">Tracking &amp; Attribution</a>
+      <a href="#ai-management" class="toc-pill">AI Management</a>
+      <a href="#risks" class="toc-pill">Risks</a>
+      <a href="#getting-started" class="toc-pill">Getting Started</a>
+    </div>
+  </div>
+
+  <!-- CONTEXT CARD -->
+  <div id="context" class="context-section">
+    <h2 class="section-header">Strategic Context</h2>
+    <div class="context-card">
+      <p>SEO will take 3-6 months to produce consistent organic leads. Paid ads can produce leads in <strong>week 1</strong>, which is critical for three reasons:</p>
+      <ul class="blue-list" style="margin: 12px 0;">
+        <li>Proving the commission model works</li>
+        <li>Building trust with Denis</li>
+        <li>Generating commission revenue while organic builds</li>
+      </ul>
+      <div class="key-rule">Key Rule: Denis pays all ad spend directly to platforms. We set up, track, and optimize. We earn commission only on closed deals.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ========================================== -->
+<!-- GOOGLE ADS DIVIDER -->
+<!-- ========================================== -->
+<div class="blue-divider">
+  <div class="container">
+    <h2>Google Ads</h2>
+  </div>
+</div>
+
+<!-- CAMPAIGN 1: GOOGLE SEARCH -->
+<div id="google-search" class="section">
+  <div class="container">
+    <h2 class="section-header">Campaign 1: Search (High Intent) <span class="priority-badge">Priority #1</span></h2>
+
+    <div class="callout">
+      <strong>Why:</strong> People searching "security company near me" or "armed guards Fort Lauderdale" have immediate need. These are the highest-converting leads.
+    </div>
+
+    <div class="sub-header">Keywords (Phrase + Exact Match)</div>
+
+    <div class="keyword-group">
+      <div class="keyword-group-title">Core Terms</div>
+      <div class="keyword-pills">
+        <span class="kw-pill">security company [city]</span>
+        <span class="kw-pill">security guard service [city]</span>
+        <span class="kw-pill">armed security guards [city]</span>
+        <span class="kw-pill">security services near me</span>
+        <span class="kw-pill">hire security guards [city]</span>
+      </div>
+    </div>
+
+    <div class="keyword-group">
+      <div class="keyword-group-title">Service-Specific (High Value)</div>
+      <div class="keyword-pills">
+        <span class="kw-pill">executive protection Florida</span>
+        <span class="kw-pill">event security [city]</span>
+        <span class="kw-pill">school security company Florida</span>
+        <span class="kw-pill">K9 security service [city]</span>
+        <span class="kw-pill">commercial security [city]</span>
+        <span class="kw-pill">CCTV monitoring service [city]</span>
+      </div>
+    </div>
+
+    <div class="keyword-group">
+      <div class="keyword-group-title">Negative Keywords (Avoid Wasted Spend)</div>
+      <div class="keyword-pills">
+        <span class="kw-pill negative">jobs</span>
+        <span class="kw-pill negative">careers</span>
+        <span class="kw-pill negative">salary</span>
+        <span class="kw-pill negative">hiring</span>
+        <span class="kw-pill negative">employment</span>
+        <span class="kw-pill negative">indeed</span>
+        <span class="kw-pill negative">glassdoor</span>
+        <span class="kw-pill negative">DIY</span>
+        <span class="kw-pill negative">home security system</span>
+        <span class="kw-pill negative">Ring</span>
+        <span class="kw-pill negative">SimpliSafe</span>
+        <span class="kw-pill negative">ADT</span>
+        <span class="kw-pill negative">Vivint</span>
+        <span class="kw-pill negative">alarm system</span>
+        <span class="kw-pill negative">free</span>
+        <span class="kw-pill negative">cheap</span>
+        <span class="kw-pill negative">low cost</span>
+        <span class="kw-pill negative">training</span>
+        <span class="kw-pill negative">movie</span>
+        <span class="kw-pill negative">film</span>
+        <span class="kw-pill negative">TV</span>
+        <span class="kw-pill negative">game</span>
+        <span class="kw-pill negative">cyber security</span>
+        <span class="kw-pill negative">IT security</span>
+      </div>
+    </div>
+
+    <div class="sub-header">Target Locations</div>
+    <div class="location-pills">
+      <span class="loc-pill">Hallandale Beach</span>
+      <span class="loc-pill">Fort Lauderdale</span>
+      <span class="loc-pill">Miami</span>
+      <span class="loc-pill">Hollywood FL</span>
+      <span class="loc-pill">Pompano Beach</span>
+      <span class="loc-pill">Boca Raton</span>
+      <span class="loc-pill">Coral Gables</span>
+      <span class="loc-pill">Miami Beach</span>
+    </div>
+    <p style="font-size:13px; color:var(--text-dim); margin-top:4px;">25-mile radius from Hallandale Beach</p>
+
+    <div class="sub-header">Expected Performance</div>
+    <div class="stat-grid">
+      <div class="stat-box">
+        <div class="stat-number">$500-1K</div>
+        <div class="stat-label">Monthly Budget</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number">$8-25</div>
+        <div class="stat-label">Expected CPC</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number">3-5%</div>
+        <div class="stat-label">Expected CTR</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number">5-8%</div>
+        <div class="stat-label">Conversion Rate</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number">3-8</div>
+        <div class="stat-label">Leads per $1,000</div>
+      </div>
+    </div>
+
+    <p style="font-size:14px; margin-top:8px;"><strong>Landing page:</strong> /free-consultation (dedicated CRO page, not homepage)</p>
+
+    <div class="sub-header">Ad Copy Angles</div>
+    <div class="ad-copy-block">
+      <div class="ad-quote">"Former Special Forces Team | Licensed FL Security"</div>
+      <div class="ad-quote">"Green Beret-Led Security | Armed Guards, K9, CCTV"</div>
+      <div class="ad-quote">"5.0 Google Rating | 75+ Years Military Experience"</div>
+      <div class="ad-quote">"Free Security Assessment | 24/7 Response"</div>
+    </div>
+
+    <div class="sub-header">Ad Extensions</div>
+    <div class="card">
+      <ul class="blue-list">
+        <li><strong>Sitelinks:</strong> Armed Guards, Event Security, K9 Units, Free Assessment</li>
+        <li><strong>Callout:</strong> Licensed &amp; Insured, 24/7 Response, Veteran Owned</li>
+        <li><strong>Call extension:</strong> GHL tracking number</li>
+        <li><strong>Location extension:</strong> Linked to Google Business Profile</li>
+        <li><strong>Structured snippet:</strong> Services: Armed Guards, K9, CCTV, Executive Protection</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- CAMPAIGN 2: GOOGLE LSA -->
+<div id="google-lsa" class="section section-alt">
+  <div class="container">
+    <h2 class="section-header">Campaign 2: Google Local Services Ads (LSA) <span class="priority-badge">Priority #2</span></h2>
+
+    <div class="callout">
+      <strong>Why:</strong> LSAs appear ABOVE regular search ads with a "Google Guaranteed" badge. Pay per lead, not per click. Military backgrounds make the vetting and background check process trivial.
+    </div>
+
+    <div class="two-col">
+      <div class="card">
+        <div class="card-title">How It Works</div>
+        <ul class="blue-list">
+          <li>Denis submits license, insurance, and background checks</li>
+          <li>Google verifies and awards the "Google Guaranteed" badge</li>
+          <li>Ads appear at the very top of search results</li>
+          <li>Pay only when someone calls or messages through the ad</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">Setup Details</div>
+        <ul class="blue-list">
+          <li><strong>Services to list:</strong> Security Guard Service, Event Security, Commercial Security</li>
+          <li><strong>Budget:</strong> $300-500/month (pay per lead, controlled spend)</li>
+        </ul>
+        <div style="margin-top:16px;">
+          <div class="stat-number" style="font-size:24px; text-align:center;">$15-50</div>
+          <div class="stat-label" style="text-align:center;">Expected Cost Per Lead</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout" style="margin-top:24px;">
+      <strong>Why this is perfect for Safe4USA:</strong> The Google Guaranteed badge is a massive trust signal. With Denis's team credentials, the verification process is a formality. Most competitors may not have LSAs set up yet.
+    </div>
+  </div>
+</div>
+
+<!-- CAMPAIGN 3: REMARKETING -->
+<div id="google-remarketing" class="section">
+  <div class="container">
+    <h2 class="section-header">Campaign 3: Remarketing / Display (Month 2+) <span class="priority-badge">Priority #6</span></h2>
+
+    <div class="callout">
+      <strong>Why:</strong> People researching security don't always convert on first visit. Remarketing keeps Safe4USA visible while they compare options.
+    </div>
+
+    <div class="card">
+      <ul class="blue-list">
+        <li><strong>Audience:</strong> Website visitors who did not submit a form (pixel-based)</li>
+        <li><strong>Budget:</strong> $200-300/month</li>
+      </ul>
+    </div>
+
+    <div class="sub-header">Creative Examples</div>
+    <div class="ad-copy-block">
+      <div class="ad-quote">"Still Looking for Security? Our Team Includes Former Special Forces."</div>
+      <div class="ad-quote">"Get a Free Security Risk Assessment - Safe 4 USA"</div>
+    </div>
+
+    <div class="stat-grid" style="max-width:300px;">
+      <div class="stat-box">
+        <div class="stat-number">15-30%</div>
+        <div class="stat-label">Expected Conversion Lift</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========================================== -->
+<!-- FACEBOOK / INSTAGRAM DIVIDER -->
+<!-- ========================================== -->
+<div class="blue-divider">
+  <div class="container">
+    <h2>Facebook / Instagram</h2>
+  </div>
+</div>
+
+<!-- FB CAMPAIGN 1: BRAND AWARENESS -->
+<div id="fb-awareness" class="section section-alt">
+  <div class="container">
+    <h2 class="section-header">Campaign 1: Brand Awareness Video <span class="priority-badge">Priority #3</span></h2>
+
+    <div class="callout">
+      <strong>Why:</strong> Security buyers research before they buy. Brand awareness positions Safe4USA as the premium option before they start searching Google.
+    </div>
+
+    <div class="two-col">
+      <div class="card">
+        <div class="card-title">Video Creative (30-60 sec)</div>
+        <ul class="blue-list">
+          <li>Team credentials (text overlay: Green Beret, Special Forces, Secret Service)</li>
+          <li>K9 units in action</li>
+          <li>Professional guard operations</li>
+          <li>Client testimonials</li>
+          <li>CTA: "Get a free security assessment"</li>
+        </ul>
+        <p style="font-size:13px; color:var(--text-dim); margin-top:12px;"><strong>If no video available:</strong> Carousel ad with team photos + credential badges + service icons</p>
+      </div>
+      <div class="card">
+        <div class="card-title">Campaign Details</div>
+        <div style="text-align:center; margin:16px 0;">
+          <div class="stat-number" style="font-size:24px;">$500/mo</div>
+          <div class="stat-label">Budget</div>
+        </div>
+        <div style="text-align:center; margin:16px 0;">
+          <div class="stat-number" style="font-size:24px;">15-30K</div>
+          <div class="stat-label">People Reached / Month</div>
+        </div>
+        <p style="font-size:13px; color:var(--text-dim); text-align:center;"><strong>Objective:</strong> Reach / Video Views (top of funnel)</p>
+      </div>
+    </div>
+
+    <div class="sub-header">Targeting</div>
+    <div class="targeting-grid">
+      <div class="targeting-item">Broward County, Miami-Dade, Palm Beach County</div>
+      <div class="targeting-item">Business owners (FB page admins)</div>
+      <div class="targeting-item">Property managers</div>
+      <div class="targeting-item">School administrators (job title)</div>
+      <div class="targeting-item">Event planners (interest/job title)</div>
+      <div class="targeting-item">Religious leaders (interest targeting)</div>
+      <div class="targeting-item">Age 30-65</div>
+      <div class="targeting-item" style="color:var(--red); font-weight:600;">Exclude: security industry workers</div>
+    </div>
+  </div>
+</div>
+
+<!-- FB CAMPAIGN 2: LEAD GEN -->
+<div id="fb-leadgen" class="section">
+  <div class="container">
+    <h2 class="section-header">Campaign 2: Lead Generation <span class="priority-badge">Priority #4</span></h2>
+
+    <div class="callout">
+      <strong>Why:</strong> Capture warm leads directly on Facebook without requiring them to visit the website.
+    </div>
+
+    <div class="two-col">
+      <div class="card">
+        <div class="card-title" style="color:var(--accent);">Option A: Facebook Lead Forms (Recommended)</div>
+        <p style="font-size:14px; margin-bottom:12px; color:var(--green); font-weight:600;">Lower friction - user never leaves Facebook</p>
+        <ul class="blue-list">
+          <li><strong>Fields:</strong> Name, Email, Phone, Service Needed (dropdown), Best Time to Call</li>
+          <li>Auto-fill from Facebook profile reduces friction</li>
+          <li>Webhook to GHL for instant notification</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">Option B: Traffic to /free-consultation</div>
+        <p style="font-size:14px; margin-bottom:12px; color:var(--text-dim);">Higher quality - more intent required, but fewer conversions</p>
+        <ul class="blue-list">
+          <li>Better for qualification</li>
+          <li>Requires website visit</li>
+          <li>Consider testing in Month 2+</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout" style="margin-top:20px;">
+      <strong>Offer:</strong> "Free Security Risk Assessment - We'll evaluate your property and recommend the right security solution. No obligation."
+    </div>
+
+    <div class="sub-header">Narrower Targeting</div>
+    <div class="targeting-grid">
+      <div class="targeting-item">Business owners with 10+ employees</div>
+      <div class="targeting-item">Property managers</div>
+      <div class="targeting-item">School and institutional decision-makers</div>
+      <div class="targeting-item">People who recently engaged with security-related content</div>
+    </div>
+
+    <div class="stat-grid" style="margin-top:24px;">
+      <div class="stat-box">
+        <div class="stat-number">$500/mo</div>
+        <div class="stat-label">Budget</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number">$15-40</div>
+        <div class="stat-label">Expected CPL</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number">12-33</div>
+        <div class="stat-label">Expected Leads / Month</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FB CAMPAIGN 3: SPECIALTY SEGMENTS -->
+<div id="fb-segments" class="section section-alt">
+  <div class="container">
+    <h2 class="section-header">Campaign 3: Specialty Segment Ads (Month 2+) <span class="priority-badge">Priority #5</span></h2>
+
+    <p style="margin-bottom:20px;">Separate ad sets targeting high-value verticals with tailored messaging:</p>
+
+    <div class="segment-grid">
+      <div class="segment-card">
+        <h4>Schools &amp; Educational Institutions</h4>
+        <div class="segment-headline">"Is Your School Prepared? Security Assessment by Former Green Beret"</div>
+        <div class="segment-meta">Target: school administrators, principals, school board members</div>
+        <div class="segment-budget">$200/month</div>
+      </div>
+      <div class="segment-card">
+        <h4>Religious Institutions</h4>
+        <div class="segment-headline">"Protect Your Congregation - Specialist Security for Houses of Worship"</div>
+        <div class="segment-meta">Target: religious leaders, church/synagogue/mosque admins<br>Note: Denis specializes in Jewish community security</div>
+        <div class="segment-budget">$200/month</div>
+      </div>
+      <div class="segment-card">
+        <h4>Corporate / Commercial</h4>
+        <div class="segment-headline">"Executive Protection &amp; Commercial Security - Military-Grade, Florida-Licensed"</div>
+        <div class="segment-meta">Target: C-suite, office managers, property management companies</div>
+        <div class="segment-budget">$200/month</div>
+      </div>
+      <div class="segment-card">
+        <h4>Events</h4>
+        <div class="segment-headline">"Professional Event Security - From Private Parties to Major Events"</div>
+        <div class="segment-meta">Target: event planners, wedding planners, venue managers</div>
+        <div class="segment-budget">$200/month</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========================================== -->
+<!-- BUDGET & REVENUE DIVIDER -->
+<!-- ========================================== -->
+<div class="blue-divider">
+  <div class="container">
+    <h2>Budget &amp; Revenue Projections</h2>
+  </div>
+</div>
+
+<!-- BUDGET SUMMARY -->
+<div id="budget" class="section">
+  <div class="container">
+    <h2 class="section-header">Budget Summary</h2>
+
+    <div class="two-col">
+      <div>
+        <div class="sub-header">Recommended Starting Budget (Month 1)</div>
+        <table class="styled-table">
+          <thead>
+            <tr>
+              <th>Channel</th>
+              <th>Campaign</th>
+              <th>Monthly Budget</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Google Search</td>
+              <td>High-intent keywords</td>
+              <td><strong>$750</strong></td>
+            </tr>
+            <tr>
+              <td>Google LSA</td>
+              <td>Pay per lead</td>
+              <td><strong>$400</strong></td>
+            </tr>
+            <tr>
+              <td>Facebook</td>
+              <td>Brand awareness video</td>
+              <td><strong>$500</strong></td>
+            </tr>
+            <tr>
+              <td>Facebook</td>
+              <td>Lead generation</td>
+              <td><strong>$500</strong></td>
+            </tr>
+            <tr class="total-row">
+              <td colspan="2">Total</td>
+              <td>$2,150/month</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <div class="sub-header">Scaled Budget (Month 3+, After Proving ROI)</div>
+        <table class="styled-table">
+          <thead>
+            <tr>
+              <th>Channel</th>
+              <th>Campaign</th>
+              <th>Monthly Budget</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Google Search</td>
+              <td>Expanded keywords</td>
+              <td><strong>$1,500</strong></td>
+            </tr>
+            <tr>
+              <td>Google LSA</td>
+              <td>Increased budget</td>
+              <td><strong>$600</strong></td>
+            </tr>
+            <tr>
+              <td>Google Remarketing</td>
+              <td>Display/YouTube</td>
+              <td><strong>$300</strong></td>
+            </tr>
+            <tr>
+              <td>Facebook</td>
+              <td>Brand awareness</td>
+              <td><strong>$500</strong></td>
+            </tr>
+            <tr>
+              <td>Facebook</td>
+              <td>Lead gen + segments</td>
+              <td><strong>$800</strong></td>
+            </tr>
+            <tr class="total-row">
+              <td colspan="2">Total</td>
+              <td>$3,700/month</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- REVENUE MATH -->
+<div id="revenue" class="section section-alt">
+  <div class="container">
+    <h2 class="section-header">Revenue Math</h2>
+
+    <div class="revenue-grid">
+      <div class="revenue-card">
+        <div class="revenue-card-header conservative">Conservative Scenario (Month 1)</div>
+        <div class="revenue-card-body">
+          <ul>
+            <li>Google Search: <strong>4 leads</strong> at $750 spend</li>
+            <li>Google LSA: <strong>8 leads</strong> at $400 spend</li>
+            <li>Facebook: <strong>15 leads</strong> at $1,000 spend</li>
+            <li><strong>Total leads: 27</strong></li>
+            <li>Qualified (50%): <strong>13-14</strong></li>
+            <li>Closed (25% of qualified): <strong>3-4 deals</strong></li>
+            <li>Average contract value: <strong>$8,000</strong></li>
+          </ul>
+          <div class="revenue-highlight">
+            <div class="stat-number">$24K-32K</div>
+            <div class="stat-label">Revenue Generated</div>
+          </div>
+          <div style="display:flex; gap:12px; margin-top:12px;">
+            <div style="flex:1; text-align:center; padding:10px; background:var(--bg-alt); border-radius:8px;">
+              <div style="font-family:'Oswald'; font-weight:700; font-size:20px; color:var(--accent);">$2.4K-3.2K</div>
+              <div class="stat-label">Our Commission (10%)</div>
+            </div>
+            <div style="flex:1; text-align:center; padding:10px; background:var(--bg-alt); border-radius:8px;">
+              <div style="font-family:'Oswald'; font-weight:700; font-size:20px; color:var(--green);">10-14x</div>
+              <div class="stat-label">Denis's Ad ROI</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="revenue-card">
+        <div class="revenue-card-header optimistic">Optimistic Scenario (Month 6, Optimized)</div>
+        <div class="revenue-card-body">
+          <ul>
+            <li>Total leads: <strong>45-60/month</strong></li>
+            <li>Qualified: <strong>22-30</strong></li>
+            <li>Closed: <strong>6-8 deals</strong></li>
+            <li>Average contract value: <strong>$12,000</strong></li>
+          </ul>
+          <div class="revenue-highlight" style="background:var(--accent);">
+            <div class="stat-number" style="color:#fff;">$72K-96K</div>
+            <div class="stat-label" style="color:rgba(255,255,255,0.8);">Revenue Generated</div>
+          </div>
+          <div style="display:flex; gap:12px; margin-top:12px;">
+            <div style="flex:1; text-align:center; padding:10px; background:var(--bg-alt); border-radius:8px;">
+              <div style="font-family:'Oswald'; font-weight:700; font-size:20px; color:var(--accent);">$7.2K-9.6K</div>
+              <div class="stat-label">Our Commission (10%)</div>
+            </div>
+            <div style="flex:1; text-align:center; padding:10px; background:var(--bg-alt); border-radius:8px;">
+              <div style="font-family:'Oswald'; font-weight:700; font-size:20px; color:var(--green);">18-25x</div>
+              <div class="stat-label">Denis's Ad ROI</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========================================== -->
+<!-- OPERATIONS DIVIDER -->
+<!-- ========================================== -->
+<div class="blue-divider">
+  <div class="container">
+    <h2>Operations &amp; Risk Management</h2>
+  </div>
+</div>
+
+<!-- TRACKING -->
+<div id="tracking" class="section">
+  <div class="container">
+    <h2 class="section-header">Tracking &amp; Attribution</h2>
+
+    <div class="two-col">
+      <div>
+        <div class="sub-header">Setup Required</div>
+        <div class="card">
+          <ul class="checklist">
+            <li>Google Ads conversion tracking - fire on GHL form submission + call tracking</li>
+            <li>Facebook Pixel - install on all website pages</li>
+            <li>Facebook Conversions API - server-side tracking via GHL webhook</li>
+            <li>UTM parameters on every ad URL: source, medium, campaign, content</li>
+            <li>GHL pipeline - all ad leads enter with source tagged</li>
+            <li>Call tracking - GHL tracking number in all ad extensions</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div class="sub-header">Monthly Reporting</div>
+        <div class="card">
+          <ul class="blue-list">
+            <li>Spend by channel</li>
+            <li>Leads by channel</li>
+            <li>Cost per lead by channel</li>
+            <li>Leads qualified</li>
+            <li>Deals closed with values</li>
+            <li>Commission earned</li>
+            <li>ROAS by channel</li>
+            <li>Recommendations for next month (shift budget to what's working)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- AI MANAGEMENT -->
+<div id="ai-management" class="section section-alt">
+  <div class="container">
+    <h2 class="section-header">What We Can Manage With Alex (AI Operator)</h2>
+
+    <div class="mgmt-grid">
+      <div class="mgmt-card ai">
+        <h4>Alex Handles</h4>
+        <ul class="blue-list">
+          <li>Campaign setup and initial keyword research</li>
+          <li>Ad copy drafts and variations</li>
+          <li>Negative keyword management</li>
+          <li>Monthly reporting and analysis</li>
+          <li>Budget allocation recommendations</li>
+          <li>Landing page optimization suggestions</li>
+        </ul>
+      </div>
+      <div class="mgmt-card human">
+        <h4>Needs Human Review</h4>
+        <ul class="blue-list">
+          <li>Budget changes over 20%</li>
+          <li>New campaign launches</li>
+          <li>Creative approval (especially video)</li>
+          <li>Bid strategy changes</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- RISKS -->
+<div id="risks" class="section">
+  <div class="container">
+    <h2 class="section-header">Risks &amp; Mitigation</h2>
+
+    <table class="risk-table">
+      <thead>
+        <tr>
+          <th>Risk</th>
+          <th>Mitigation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>High CPC in South Florida security</td>
+          <td>Start with long-tail keywords, use LSA for pay-per-lead</td>
+        </tr>
+        <tr>
+          <td>Low conversion on landing page</td>
+          <td>A/B test headlines, form length, trust signals</td>
+        </tr>
+        <tr>
+          <td>Denis doesn't follow up fast</td>
+          <td>GHL instant notification + 24-hour SLA in agreement</td>
+        </tr>
+        <tr>
+          <td>Ad account restrictions</td>
+          <td>Follow Google/Meta policies strictly, no misleading claims</td>
+        </tr>
+        <tr>
+          <td>Competitor click fraud</td>
+          <td>Monitor CTR anomalies, use Google's invalid click protection</td>
+        </tr>
+        <tr>
+          <td>Seasonal fluctuations</td>
+          <td>Security is relatively consistent, but events peak in season</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- GETTING STARTED -->
+<div id="getting-started" class="section section-alt">
+  <div class="container">
+    <h2 class="section-header">Getting Started</h2>
+
+    <div class="sub-header">Before Ads Can Run</div>
+    <div class="card">
+      <ul class="checklist">
+        <li>New website live with /free-consultation landing page</li>
+        <li>GHL forms and call tracking configured</li>
+        <li>Google Ads account created (under Denis's billing)</li>
+        <li>Facebook Business Manager access</li>
+        <li>Facebook Pixel installed on website</li>
+        <li>Denis approves ad copy and creative</li>
+        <li>Monthly ad budget confirmed</li>
+      </ul>
+    </div>
+
+    <div class="sub-header" style="margin-top:36px;">Launch Sequence</div>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot">WK 1</div>
+        <div class="timeline-content">
+          <h4>Google Search Campaign</h4>
+          <p>High intent keywords, immediate leads from day one</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot">WK 2</div>
+        <div class="timeline-content">
+          <h4>Google LSA Application</h4>
+          <p>Submit license, insurance, and background checks for Google Guaranteed badge</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot">WK 3</div>
+        <div class="timeline-content">
+          <h4>Facebook Lead Gen Campaign</h4>
+          <p>Launch lead forms with auto-fill for maximum conversions</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot">WK 4</div>
+        <div class="timeline-content">
+          <h4>Facebook Brand Awareness Video</h4>
+          <p>Top-of-funnel video ads to build brand recognition across South Florida</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot">MO 2+</div>
+        <div class="timeline-content">
+          <h4>Remarketing + Specialty Segments</h4>
+          <p>Add display remarketing and launch targeted ads for schools, religious institutions, corporate, and events</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="container">
+    <div class="footer-brand">Online Optimisers</div>
+    <div class="footer-sub">Local SEO &amp; AI Visibility</div>
+    <div class="footer-divider"></div>
+    <div class="footer-brand" style="font-size:15px; opacity:0.85;">Safe 4 USA Security</div>
+    <div class="footer-sub">Paid Advertising Strategy</div>
+  </div>
+</div>
+
+</body>
+</html>

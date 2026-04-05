@@ -1,0 +1,1313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Safe 4 USA Security - SEO &amp; AI Visibility Roadmap</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #ffffff;
+    --bg-alt: #f5f7fa;
+    --bg-blue: #071383;
+    --bg-blue-light: #e8eaf6;
+    --text: #1a1a2e;
+    --text-dim: #5f6578;
+    --accent: #071383;
+    --border: #e0e4ea;
+    --green: #16a34a;
+    --yellow: #ca8a04;
+    --red: #dc2626;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    font-size: 15px;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    background: var(--bg-blue);
+    color: #fff;
+    padding: 48px 0 40px;
+    text-align: center;
+  }
+  .header h1 {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 38px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .header .subtitle {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: 0.85;
+  }
+
+  /* ── META STRIP ── */
+  .meta-strip {
+    background: var(--bg-alt);
+    border-bottom: 1px solid var(--border);
+    padding: 10px 0;
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-dim);
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+  .meta-strip span { display: inline-flex; align-items: center; gap: 6px; }
+
+  /* ── CONTAINER ── */
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+  /* ── TABLE OF CONTENTS ── */
+  .toc {
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 32px 40px;
+    margin: 40px auto;
+    max-width: 1100px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  }
+  .toc h2 {
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+    font-size: 20px;
+    letter-spacing: 1.5px;
+    color: var(--accent);
+    margin-bottom: 20px;
+    padding-left: 16px;
+    border-left: 4px solid var(--accent);
+  }
+  .toc ol {
+    list-style: none;
+    counter-reset: toc-counter;
+    columns: 2;
+    column-gap: 48px;
+  }
+  .toc ol li {
+    counter-increment: toc-counter;
+    margin-bottom: 10px;
+    break-inside: avoid;
+  }
+  .toc ol li a {
+    text-decoration: none;
+    color: var(--text);
+    font-weight: 500;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: color 0.2s;
+  }
+  .toc ol li a:hover { color: var(--accent); }
+  .toc ol li a::before {
+    content: counter(toc-counter, decimal-leading-zero);
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    color: #fff;
+    background: var(--accent);
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  /* ── STARTING POINT BADGES ── */
+  .starting-point {
+    margin: 0 auto 48px;
+    max-width: 1100px;
+    padding: 0 24px;
+  }
+  .starting-point .section-header {
+    margin-bottom: 20px;
+  }
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 14px;
+  }
+  .stat-badge {
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 16px;
+    text-align: center;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  }
+  .stat-badge .stat-value {
+    font-family: 'Oswald', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .stat-badge .stat-label {
+    font-size: 12px;
+    color: var(--text-dim);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .stat-badge.red .stat-value { color: var(--red); }
+  .stat-badge.yellow .stat-value { color: var(--yellow); }
+  .stat-badge.green .stat-value { color: var(--green); }
+
+  .starting-desc {
+    font-size: 14px;
+    color: var(--text-dim);
+    margin-top: 16px;
+    line-height: 1.7;
+  }
+  .starting-desc strong { color: var(--text); }
+
+  .goal-box {
+    background: var(--bg-blue-light);
+    border-left: 4px solid var(--accent);
+    border-radius: 0 10px 10px 0;
+    padding: 20px 24px;
+    margin-top: 20px;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+  .goal-box strong {
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 13px;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  /* ── PHASE DIVIDER ── */
+  .phase-divider {
+    background: var(--bg-blue);
+    color: #fff;
+    padding: 28px 0;
+    text-align: center;
+    margin: 56px 0 0;
+  }
+  .phase-divider .phase-number {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    opacity: 0.7;
+    margin-bottom: 4px;
+  }
+  .phase-divider h2 {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 26px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  .phase-divider .phase-timeline {
+    font-size: 13px;
+    opacity: 0.7;
+    margin-top: 6px;
+    letter-spacing: 1px;
+  }
+
+  /* ── SECTION HEADER ── */
+  .section-header {
+    border-left: 4px solid var(--accent);
+    padding-left: 16px;
+    margin: 40px 0 20px;
+  }
+  .section-header h3 {
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+    font-size: 18px;
+    letter-spacing: 1.5px;
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .section-header p {
+    font-size: 13px;
+    color: var(--text-dim);
+    margin-top: 2px;
+  }
+
+  /* ── PHASE CONTENT WRAPPER ── */
+  .phase-content {
+    padding: 0 24px 48px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  /* ── CARDS ── */
+  .card {
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px 28px;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  }
+  .card h4 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--accent);
+    margin-bottom: 14px;
+    font-weight: 600;
+  }
+
+  /* ── CHECKLISTS ── */
+  .checklist { list-style: none; }
+  .checklist li {
+    padding: 7px 0;
+    font-size: 14px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    line-height: 1.5;
+  }
+  .checklist li::before {
+    content: '';
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .checklist li.done::before {
+    background: var(--green);
+    content: '\2713';
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .checklist li.todo::before {
+    border: 2px solid var(--border);
+    background: #fff;
+  }
+
+  /* ── TABLES ── */
+  .table-wrap {
+    overflow-x: auto;
+    margin: 16px 0;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13.5px;
+  }
+  thead th {
+    background: var(--bg-blue);
+    color: #fff;
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 500;
+    font-size: 12.5px;
+    padding: 12px 16px;
+    text-align: left;
+    white-space: nowrap;
+  }
+  thead th:first-child { border-radius: 9px 0 0 0; }
+  thead th:last-child { border-radius: 0 9px 0 0; }
+  tbody td {
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  tbody tr:nth-child(even) td { background: var(--bg-alt); }
+  tbody tr:nth-child(odd) td { background: #fff; }
+  tbody tr:last-child td { border-bottom: none; }
+
+  /* ── TIER BADGES ── */
+  .tier-badge {
+    display: inline-block;
+    font-family: 'Oswald', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 4px;
+    margin-bottom: 8px;
+  }
+  .tier-badge.t1 { background: var(--accent); color: #fff; }
+  .tier-badge.t2 { background: var(--bg-blue-light); color: var(--accent); }
+  .tier-badge.t3 { background: #e5e7eb; color: #555; }
+
+  /* ── CALLOUT ── */
+  .callout {
+    background: var(--bg-blue-light);
+    border-left: 4px solid var(--accent);
+    border-radius: 0 10px 10px 0;
+    padding: 20px 24px;
+    margin: 20px 0;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+  .callout strong { color: var(--accent); }
+
+  /* ── NAP BOX ── */
+  .nap-box {
+    background: var(--bg-blue-light);
+    border: 2px solid var(--accent);
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin: 24px 0;
+  }
+  .nap-box h4 {
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-size: 14px;
+    color: var(--accent);
+    margin-bottom: 14px;
+  }
+  .nap-box .nap-row {
+    display: flex;
+    gap: 8px;
+    padding: 5px 0;
+    font-size: 14px;
+  }
+  .nap-box .nap-label {
+    font-weight: 600;
+    color: var(--accent);
+    min-width: 80px;
+  }
+
+  /* ── BULLET LISTS ── */
+  .blue-list { list-style: none; }
+  .blue-list li {
+    padding: 5px 0;
+    font-size: 14px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    line-height: 1.6;
+  }
+  .blue-list li::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background: var(--accent);
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 7px;
+  }
+
+  /* ── NUMBERED LIST ── */
+  .numbered-list { list-style: none; counter-reset: num-list; }
+  .numbered-list li {
+    counter-increment: num-list;
+    padding: 6px 0;
+    font-size: 14px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    line-height: 1.6;
+  }
+  .numbered-list li::before {
+    content: counter(num-list);
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    color: #fff;
+    background: var(--accent);
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* ── BLOG TITLE BLOCKS ── */
+  .blog-title-block {
+    background: var(--bg-alt);
+    border-left: 3px solid var(--accent);
+    padding: 12px 18px;
+    margin: 8px 0;
+    font-size: 14px;
+    font-weight: 500;
+    font-style: italic;
+    color: var(--text);
+    border-radius: 0 8px 8px 0;
+  }
+
+  /* ── REVIEW MILESTONES ── */
+  .milestone-track {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin: 24px 0;
+    position: relative;
+  }
+  .milestone-track::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--border);
+    z-index: 0;
+    transform: translateY(-50%);
+  }
+  .milestone {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    flex: 1;
+  }
+  .milestone .dot {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #fff;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 6px;
+    border: 3px solid #fff;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+  }
+  .milestone .dot.current { background: var(--green); }
+  .milestone .label {
+    font-size: 11px;
+    color: var(--text-dim);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  /* ── AI CLAIMS ── */
+  .claim-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 12px;
+    margin: 16px 0;
+  }
+  .claim-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 18px;
+    font-size: 13.5px;
+    line-height: 1.5;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .claim-card .quote-icon {
+    color: var(--accent);
+    font-size: 22px;
+    font-weight: 700;
+    flex-shrink: 0;
+    line-height: 1;
+    font-family: Georgia, serif;
+  }
+
+  /* ── SUCCESS METRICS TABLE ── */
+  .metric-green { color: var(--green); font-weight: 600; }
+  .metric-yellow { color: var(--yellow); font-weight: 600; }
+  .metric-red { color: var(--red); font-weight: 600; }
+  .metric-tag {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 2px 8px;
+    border-radius: 4px;
+  }
+  .metric-tag.easy { background: #dcfce7; color: var(--green); }
+  .metric-tag.medium { background: #fef9c3; color: var(--yellow); }
+  .metric-tag.hard { background: #fee2e2; color: var(--red); }
+
+  /* ── EXCLUSIONS ── */
+  .exclusion-list { list-style: none; }
+  .exclusion-list li {
+    padding: 6px 0;
+    font-size: 14px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    line-height: 1.5;
+    color: var(--text-dim);
+  }
+  .exclusion-list li::before {
+    content: '\2715';
+    color: var(--red);
+    font-weight: 700;
+    font-size: 13px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    background: var(--bg-blue);
+    color: #fff;
+    padding: 36px 0;
+    text-align: center;
+    margin-top: 56px;
+  }
+  .footer .footer-brand {
+    font-family: 'Oswald', sans-serif;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    opacity: 0.9;
+    margin-bottom: 6px;
+  }
+  .footer .footer-sub {
+    font-size: 12px;
+    opacity: 0.6;
+    letter-spacing: 0.5px;
+  }
+  .footer .footer-divider {
+    width: 40px;
+    height: 2px;
+    background: rgba(255,255,255,0.3);
+    margin: 14px auto;
+  }
+
+  /* ── TWO-COL GRID ── */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .toc ol { columns: 1; }
+    .stat-grid { grid-template-columns: repeat(2, 1fr); }
+    .two-col { grid-template-columns: 1fr; }
+    .header h1 { font-size: 28px; }
+    .phase-divider h2 { font-size: 20px; }
+    .claim-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ── PRINT ── */
+  @media print {
+    .phase-divider { break-before: page; }
+    body { font-size: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════ HEADER ═══ -->
+<header class="header">
+  <div class="container">
+    <h1>Safe 4 USA Security</h1>
+    <div class="subtitle">SEO &amp; AI Visibility Roadmap</div>
+  </div>
+</header>
+
+<!-- ═══════════════════════════════════════════════ META STRIP ═══ -->
+<div class="meta-strip">
+  <span><strong>Date:</strong> April 2026</span>
+  <span><strong>Prepared by:</strong> Online Optimisers</span>
+  <span><strong>Timeframe:</strong> 6-Month Strategic Plan</span>
+</div>
+
+<!-- ═══════════════════════════════════════ TABLE OF CONTENTS ═══ -->
+<div class="container">
+  <div class="toc">
+    <h2>Table of Contents</h2>
+    <ol>
+      <li><a href="#starting-point">Starting Point Assessment</a></li>
+      <li><a href="#phase-1">Phase 1: Emergency Foundation</a></li>
+      <li><a href="#phase-2">Phase 2: Directory &amp; Citation Blitz</a></li>
+      <li><a href="#phase-3">Phase 3: Content Engine</a></li>
+      <li><a href="#phase-4">Phase 4: Review Acquisition</a></li>
+      <li><a href="#phase-5">Phase 5: Authority Building</a></li>
+      <li><a href="#phase-6">Phase 6: AI-Specific Optimization</a></li>
+      <li><a href="#metrics">Success Metrics &amp; Timeline</a></li>
+      <li><a href="#exclusions">Scope &amp; Exclusions</a></li>
+    </ol>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ STARTING POINT ═══ -->
+<div class="starting-point" id="starting-point">
+  <div class="section-header">
+    <h3>Starting Point Assessment</h3>
+    <p>Current digital visibility baseline</p>
+  </div>
+
+  <div class="stat-grid">
+    <div class="stat-badge red">
+      <div class="stat-value">NOINDEX</div>
+      <div class="stat-label">Site Status</div>
+    </div>
+    <div class="stat-badge red">
+      <div class="stat-value">0</div>
+      <div class="stat-label">Ranked Keywords</div>
+    </div>
+    <div class="stat-badge red">
+      <div class="stat-value">0</div>
+      <div class="stat-label">Organic Traffic</div>
+    </div>
+    <div class="stat-badge red">
+      <div class="stat-value">0/30</div>
+      <div class="stat-label">AI Citations</div>
+    </div>
+    <div class="stat-badge red">
+      <div class="stat-value">DR 0</div>
+      <div class="stat-label">Domain Rating</div>
+    </div>
+    <div class="stat-badge yellow">
+      <div class="stat-value">42</div>
+      <div class="stat-label">Backlinks (52% Spam)</div>
+    </div>
+    <div class="stat-badge green">
+      <div class="stat-value">5.0 &#9733;</div>
+      <div class="stat-label">Google Rating (8 Reviews)</div>
+    </div>
+    <div class="stat-badge red">
+      <div class="stat-value">NONE</div>
+      <div class="stat-label">Schema Markup</div>
+    </div>
+  </div>
+
+  <div class="goal-box">
+    <strong>6-Month Goal</strong>
+    Make Safe 4 USA the #1 digitally visible security company in Hallandale Beach, Fort Lauderdale, and South Florida - generating consistent inbound leads via organic search and AI citations.
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════ PHASE 1 DIVIDER ═══ -->
+<div class="phase-divider" id="phase-1">
+  <div class="phase-number">Phase 1</div>
+  <h2>Emergency Foundation</h2>
+  <div class="phase-timeline">Week 1 - 2</div>
+</div>
+
+<div class="phase-content">
+
+  <div class="section-header">
+    <h3>Day 1 Fixes</h3>
+    <p>New website handles most of these automatically</p>
+  </div>
+
+  <div class="card">
+    <ul class="checklist">
+      <li class="done">Remove noindex, nofollow meta tag (automatic with new Astro site)</li>
+      <li class="todo">Fix email domain mismatch - standardize to security@safe4usasecurity.net everywhere</li>
+      <li class="todo">Remove lorem ipsum placeholder testimonial</li>
+      <li class="todo">Install Google Analytics (GA4) on new site</li>
+      <li class="todo">Set up Google Search Console, verify ownership, submit sitemap.xml</li>
+      <li class="todo">Set up Bing Webmaster Tools</li>
+    </ul>
+  </div>
+
+  <div class="section-header">
+    <h3>Google Business Profile Optimization</h3>
+  </div>
+
+  <div class="card">
+    <ul class="checklist">
+      <li class="todo">Claim full admin access to GBP listing</li>
+      <li class="todo">Update business description with entity-rich copy (military credentials, all 14 services, FL license number)</li>
+      <li class="todo">Add all relevant categories: Security Guard Service, Security System Installer, Private Investigator, Event Planner (security events), Safety Consultant, Self-Defense School</li>
+      <li class="todo">Upload 20+ photos: team headshots, operations, K9 units, vehicles, training, office</li>
+      <li class="todo">Set service area to cover Hallandale Beach, Fort Lauderdale, Miami, Pompano Beach, Hollywood FL</li>
+      <li class="todo">Add all 14 services with descriptions</li>
+      <li class="todo">Enable messaging and booking</li>
+      <li class="todo">Post first GBP update (company intro + credential highlight)</li>
+    </ul>
+  </div>
+
+  <div class="section-header">
+    <h3>Spam Cleanup</h3>
+  </div>
+
+  <div class="card">
+    <ul class="checklist">
+      <li class="todo">Generate disavow file for the 52% spam/PBN backlinks identified in audit</li>
+      <li class="todo">Submit disavow file via Google Search Console</li>
+      <li class="todo">Document which domains were disavowed for future reference</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════ PHASE 2 DIVIDER ═══ -->
+<div class="phase-divider" id="phase-2">
+  <div class="phase-number">Phase 2</div>
+  <h2>Directory &amp; Citation Blitz</h2>
+  <div class="phase-timeline">Week 2 - 4</div>
+</div>
+
+<div class="phase-content">
+
+  <div class="callout">
+    <strong>Goal:</strong> Get listed on every platform AI systems pull from when recommending security companies.
+  </div>
+
+  <!-- TIER 1 -->
+  <div class="section-header">
+    <h3>AI Citation Sources</h3>
+  </div>
+  <span class="tier-badge t1">Tier 1 - High Priority</span>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Platform</th><th>Status</th><th>Action</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Google Business Profile</td><td>Listed (8 reviews, 5.0)</td><td>Optimize fully (see Phase 1)</td></tr>
+        <tr><td>Yelp</td><td>Claimed, 0 reviews</td><td>Add photos, full description, request first 5 reviews</td></tr>
+        <tr><td>BBB</td><td style="color:var(--red);font-weight:600;">Missing</td><td>Apply for accreditation - strong trust signal for AI</td></tr>
+        <tr><td>Facebook Business</td><td>Present</td><td>Optimize with full service list, photos, reviews</td></tr>
+        <tr><td>LinkedIn Company</td><td>Present</td><td>Full page with team profiles linked</td></tr>
+        <tr><td>Apple Maps</td><td style="color:var(--yellow);font-weight:600;">Unknown</td><td>Submit via Apple Business Connect</td></tr>
+        <tr><td>Bing Places</td><td style="color:var(--yellow);font-weight:600;">Unknown</td><td>Submit listing</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- TIER 2 -->
+  <div class="section-header" style="margin-top:32px;">
+    <h3>Security Industry Directories</h3>
+  </div>
+  <span class="tier-badge t2">Tier 2 - Industry Authority</span>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Platform</th><th>Why It Matters</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>ASIS International</td><td>The global security industry association - major authority signal</td></tr>
+        <tr><td>Electronic Security Association (ESA/Alarm.org)</td><td>Industry body, cited by AI for security recommendations</td></tr>
+        <tr><td>SecurityInfoWatch.com</td><td>Industry publication with company directory</td></tr>
+        <tr><td>SDM Magazine</td><td>Top security industry publication</td></tr>
+        <tr><td>Security Magazine</td><td>Another top industry publication</td></tr>
+        <tr><td>National Association of Security Companies (NASCO)</td><td>Trade association</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- TIER 3 -->
+  <div class="section-header" style="margin-top:32px;">
+    <h3>General Business Directories</h3>
+  </div>
+  <span class="tier-badge t3">Tier 3 - General Visibility</span>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Platform</th><th>Action</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Thumbtack</td><td>Create profile for event security + commercial security</td></tr>
+        <tr><td>Angi (formerly HomeAdvisor)</td><td>Residential + commercial security services</td></tr>
+        <tr><td>MapQuest</td><td>Submit listing</td></tr>
+        <tr><td>Alignable</td><td>Already present - optimize</td></tr>
+        <tr><td>Hallandale Beach Chamber of Commerce</td><td>Join + get listed</td></tr>
+        <tr><td>Fort Lauderdale Chamber of Commerce</td><td>Join + get listed</td></tr>
+        <tr><td>Greater Miami Chamber of Commerce</td><td>Join + get listed</td></tr>
+        <tr><td>Veteran-owned business directories</td><td>NaVOBA, VetBiz, Veteran Owned Business Directory</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- NAP -->
+  <div class="nap-box">
+    <h4>NAP Consistency - Use Exactly Across All Listings</h4>
+    <div class="nap-row"><span class="nap-label">Name:</span> Safe 4 USA Security</div>
+    <div class="nap-row"><span class="nap-label">Address:</span> 800 SE 4th Ave, Ste 707, Hallandale Beach, FL 33009</div>
+    <div class="nap-row"><span class="nap-label">Phone:</span> (754) 544-1544</div>
+    <div class="nap-row"><span class="nap-label">Website:</span> https://safe4usasecurity.net</div>
+    <div class="nap-row"><span class="nap-label">Email:</span> security@safe4usasecurity.net</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════ PHASE 3 DIVIDER ═══ -->
+<div class="phase-divider" id="phase-3">
+  <div class="phase-number">Phase 3</div>
+  <h2>Content Engine</h2>
+  <div class="phase-timeline">Month 1 - 3</div>
+</div>
+
+<div class="phase-content">
+
+  <!-- SERVICE PAGES -->
+  <div class="section-header">
+    <h3>Service Pages</h3>
+    <p>8 deep service pages, launched with the new website</p>
+  </div>
+
+  <div class="callout">
+    Each service page includes: 500+ words of specific, differentiated content, 5-8 FAQ pairs targeting AI citation queries, Service schema + FAQPage schema, internal links to related services, sidebar CTA with lead form, and real examples/credentials/stats.
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Page</th><th>Primary Keyword</th><th>Secondary Keywords</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Armed Security Guards</strong></td><td>armed security guards Florida</td><td>armed guard service Fort Lauderdale, licensed armed security Hallandale Beach</td></tr>
+        <tr><td><strong>Executive Protection</strong></td><td>executive protection Florida</td><td>personal bodyguard South Florida, VIP security Miami</td></tr>
+        <tr><td><strong>School Security</strong></td><td>school security Florida</td><td>educational institution security, school guard service Broward County</td></tr>
+        <tr><td><strong>Event Security</strong></td><td>event security Florida</td><td>private event security Miami, concert security Fort Lauderdale</td></tr>
+        <tr><td><strong>K9 Security</strong></td><td>K9 security Florida</td><td>security dog patrol Fort Lauderdale, K9 unit hire South Florida</td></tr>
+        <tr><td><strong>Commercial Security</strong></td><td>commercial security Florida</td><td>office building security, warehouse security Hallandale Beach</td></tr>
+        <tr><td><strong>CCTV Monitoring</strong></td><td>CCTV monitoring Florida</td><td>24/7 security monitoring, live camera surveillance South Florida</td></tr>
+        <tr><td><strong>Active Shooter Training</strong></td><td>active shooter training Florida</td><td>active shooter response, workplace violence training South Florida</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- LOCATION PAGES -->
+  <div class="section-header">
+    <h3>Location Pages</h3>
+    <p>3 city-specific pages targeting "[service] in [city]" queries</p>
+  </div>
+
+  <div class="callout">
+    Each location page: 400+ words, local landmarks/context, testimonial from a client in that area (if available), LocalBusiness schema with geo coordinates.
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Page</th><th>Target Keywords</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Hallandale Beach</strong></td><td>security company Hallandale Beach FL, security guard Hallandale Beach</td></tr>
+        <tr><td><strong>Fort Lauderdale</strong></td><td>security company Fort Lauderdale FL, armed guards Fort Lauderdale</td></tr>
+        <tr><td><strong>Miami</strong></td><td>security company Miami FL, event security Miami</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- BLOG CONTENT -->
+  <div class="section-header">
+    <h3>Blog Content Calendar</h3>
+    <p>2 posts per month, months 1-3</p>
+  </div>
+
+  <div class="card">
+    <h4>Month 1</h4>
+    <div class="blog-title-block">"How to Choose a Security Company in South Florida"</div>
+    <div class="blog-title-block">"School Security Best Practices: A Green Beret's Guide"</div>
+  </div>
+
+  <div class="card">
+    <h4>Month 2</h4>
+    <div class="blog-title-block">"Armed vs. Unarmed Security Guards: Which Does Your Business Need?"</div>
+    <div class="blog-title-block">"Event Security Planning: What to Ask Before You Hire"</div>
+  </div>
+
+  <div class="card">
+    <h4>Month 3</h4>
+    <div class="blog-title-block">"Why Military Veterans Make the Best Security Professionals"</div>
+    <div class="blog-title-block">"CCTV vs. Live Guards: The Real Cost Comparison for Florida Businesses"</div>
+  </div>
+
+  <div class="callout">
+    Each post: 800-1200 words, FAQ section at bottom, author linked to team member Person schema, internal links to relevant service pages.
+  </div>
+
+  <!-- TEAM ENTITY BUILDING -->
+  <div class="section-header">
+    <h3>Team Entity Building</h3>
+  </div>
+
+  <div class="card">
+    <ul class="blue-list">
+      <li>Each team member bio on the About page functions as an entity document</li>
+      <li>Person schema with alumniOf (military units), knowsAbout (specializations), jobTitle</li>
+      <li>Link team LinkedIn profiles as sameAs in schema</li>
+      <li>Goal: AI systems recognize Denis Voit, Kenny Robertson, etc. as security experts</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════ PHASE 4 DIVIDER ═══ -->
+<div class="phase-divider" id="phase-4">
+  <div class="phase-number">Phase 4</div>
+  <h2>Review Acquisition</h2>
+  <div class="phase-timeline">Ongoing from Week 2</div>
+</div>
+
+<div class="phase-content">
+
+  <div class="section-header">
+    <h3>Current State &amp; Competitive Gap</h3>
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <h4>Safe 4 USA</h4>
+      <div style="text-align:center; padding: 12px 0;">
+        <div style="font-family:'Oswald',sans-serif; font-size:40px; font-weight:700; color:var(--accent);">8</div>
+        <div style="font-size:12px; color:var(--text-dim); text-transform:uppercase; letter-spacing:1px;">Google Reviews</div>
+        <div style="font-family:'Oswald',sans-serif; font-size:20px; color:var(--green); margin-top:4px;">5.0 &#9733;</div>
+      </div>
+    </div>
+    <div class="card">
+      <h4>Competitors</h4>
+      <div style="padding: 8px 0; font-size: 14px;">
+        <div style="display:flex; justify-content:space-between; padding:5px 0; border-bottom:1px solid var(--border);">
+          <span>Fast Guard</span>
+          <strong style="color:var(--red);">78 reviews</strong>
+        </div>
+        <div style="display:flex; justify-content:space-between; padding:5px 0; border-bottom:1px solid var(--border);">
+          <span>Allied Universal</span>
+          <strong style="color:var(--red);">171 reviews</strong>
+        </div>
+        <div style="display:flex; justify-content:space-between; padding:5px 0;">
+          <span>Security USA Inc.</span>
+          <strong style="color:var(--yellow);">10 reviews</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- REVIEW MILESTONE TIMELINE -->
+  <div class="section-header">
+    <h3>Review Growth Targets</h3>
+  </div>
+
+  <div class="card">
+    <div class="milestone-track">
+      <div class="milestone">
+        <div class="dot current">8</div>
+        <div class="label">Now</div>
+      </div>
+      <div class="milestone">
+        <div class="dot">13</div>
+        <div class="label">Month 1</div>
+      </div>
+      <div class="milestone">
+        <div class="dot">23</div>
+        <div class="label">Month 3</div>
+      </div>
+      <div class="milestone">
+        <div class="dot">38</div>
+        <div class="label">Month 6</div>
+      </div>
+    </div>
+    <p style="text-align:center; font-size:13px; color:var(--text-dim); margin-top: 8px;">Also build Yelp to 5+ reviews</p>
+  </div>
+
+  <!-- TACTICS -->
+  <div class="section-header">
+    <h3>Tactics</h3>
+  </div>
+
+  <div class="card">
+    <ul class="blue-list">
+      <li>After every completed contract: send Google review request via GHL automation</li>
+      <li>Create a simple review link (g.page/[profile]/review) for easy sharing</li>
+      <li>Denis asks satisfied clients personally (highest conversion)</li>
+      <li>Reply to every review within 24 hours (engagement signal)</li>
+      <li>Never incentivize or fake reviews</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════ PHASE 5 DIVIDER ═══ -->
+<div class="phase-divider" id="phase-5">
+  <div class="phase-number">Phase 5</div>
+  <h2>Authority Building</h2>
+  <div class="phase-timeline">Month 2 - 6</div>
+</div>
+
+<div class="phase-content">
+
+  <div class="section-header">
+    <h3>Backlink Strategy</h3>
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <h4>Current State</h4>
+      <div style="text-align:center; padding:8px 0;">
+        <div style="font-family:'Oswald',sans-serif; font-size:36px; font-weight:700; color:var(--red);">42</div>
+        <div style="font-size:12px; color:var(--text-dim); text-transform:uppercase; letter-spacing:1px; margin-bottom:4px;">Total Backlinks</div>
+        <div style="font-size:13px; color:var(--red);">52% spam - after disavow: ~20 real</div>
+        <div style="font-size:13px; color:var(--text-dim); margin-top:4px;">Domain Rating: 0</div>
+      </div>
+    </div>
+    <div class="card">
+      <h4>Month 6 Target</h4>
+      <div style="text-align:center; padding:8px 0;">
+        <div style="font-family:'Oswald',sans-serif; font-size:36px; font-weight:700; color:var(--green);">80+</div>
+        <div style="font-size:12px; color:var(--text-dim); text-transform:uppercase; letter-spacing:1px; margin-bottom:4px;">Quality Backlinks</div>
+        <div style="font-size:13px; color:var(--green);">Domain Rating: 15+</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-header" style="margin-top:28px;">
+    <h3>Link Sources (Prioritized by ROI)</h3>
+  </div>
+
+  <div class="card">
+    <ol class="numbered-list">
+      <li><strong>Directory links</strong> (Phase 2) - 15-20 links from business and industry directories</li>
+      <li><strong>Chamber of Commerce links</strong> - 3 high-authority local links</li>
+      <li><strong>Veteran-owned business press</strong> - pitch local media: "Hallandale Beach security company founded by ex-military team including Green Beret, Special Forces, Secret Service"</li>
+      <li><strong>Industry publications</strong> - guest posts on SecurityInfoWatch, SDM, Security Magazine</li>
+      <li><strong>HARO / Qwoted / Help a B2B Writer</strong> - position team as expert commentators on security topics</li>
+      <li><strong>Local business journal</strong> - South Florida Business Journal, Sun Sentinel business section</li>
+      <li><strong>Link gap targets</strong> - domains linking to Security USA, Homeland Patrol, Fast Guard but not Safe4USA (identified in full audit Phase 8)</li>
+    </ol>
+  </div>
+
+  <div class="section-header">
+    <h3>Content Marketing</h3>
+  </div>
+
+  <div class="card">
+    <ul class="blue-list">
+      <li>Repurpose service page content into LinkedIn articles (Denis as author)</li>
+      <li>Share GBP posts weekly (1 per week minimum)</li>
+      <li>If Denis does speaking/training events, get event site links</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════ PHASE 6 DIVIDER ═══ -->
+<div class="phase-divider" id="phase-6">
+  <div class="phase-number">Phase 6</div>
+  <h2>AI-Specific Optimization</h2>
+  <div class="phase-timeline">Ongoing</div>
+</div>
+
+<div class="phase-content">
+
+  <div class="section-header">
+    <h3>What Makes AI Cite a Business</h3>
+  </div>
+
+  <div class="card">
+    <ol class="numbered-list">
+      <li><strong>Structured data</strong> - JSON-LD schema on every page (handled in website build)</li>
+      <li><strong>Direct answers</strong> - FAQ content that directly answers "who is the best [service] in [city]"</li>
+      <li><strong>Third-party validation</strong> - reviews, directory listings, press mentions</li>
+      <li><strong>Unique claims</strong> - specific stats and differentiators AI can quote</li>
+      <li><strong>Entity presence</strong> - consistent information across multiple authoritative sources</li>
+      <li><strong>Content freshness</strong> - regular updates signal active business</li>
+    </ol>
+  </div>
+
+  <div class="section-header">
+    <h3>Quotable Claims to Build Into Content</h3>
+    <p>Specific, citable statements AI systems can reference</p>
+  </div>
+
+  <div class="claim-grid">
+    <div class="claim-card">
+      <span class="quote-icon">"</span>
+      <span>75+ combined years of military and law enforcement experience</span>
+    </div>
+    <div class="claim-card">
+      <span class="quote-icon">"</span>
+      <span>Team includes US Army Green Beret, British Special Forces, and former Secret Service</span>
+    </div>
+    <div class="claim-card">
+      <span class="quote-icon">"</span>
+      <span>Licensed Florida Class B security agency (B1900246)</span>
+    </div>
+    <div class="claim-card">
+      <span class="quote-icon">"</span>
+      <span>14 specialized security services including K9 units and armored vehicles</span>
+    </div>
+    <div class="claim-card">
+      <span class="quote-icon">"</span>
+      <span>Serving South Florida since [founding year]</span>
+    </div>
+    <div class="claim-card">
+      <span class="quote-icon">"</span>
+      <span>5.0 star rating on Google with [X] reviews</span>
+    </div>
+  </div>
+
+  <div class="section-header">
+    <h3>Monthly AI Monitoring</h3>
+  </div>
+
+  <div class="card">
+    <ul class="blue-list">
+      <li>Re-run 10 core queries across ChatGPT, Perplexity, Google AIO</li>
+      <li>Track: which queries cite Safe4USA, position in citation list, new competitors appearing</li>
+      <li>Quarterly full re-audit using /full-audit skill</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════ SUCCESS METRICS ═══ -->
+<div class="phase-divider" id="metrics">
+  <div class="phase-number">Tracking</div>
+  <h2>Success Metrics &amp; Timeline</h2>
+  <div class="phase-timeline">Milestones across 12 months</div>
+</div>
+
+<div class="phase-content">
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Timeframe</th><th>Metric</th><th>Target</th><th>Difficulty</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Week 1</strong></td>
+          <td>noindex removed, site live</td>
+          <td class="metric-green">Done</td>
+          <td><span class="metric-tag easy">Easy</span></td>
+        </tr>
+        <tr>
+          <td><strong>Week 2</strong></td>
+          <td>GSC verified, sitemap submitted</td>
+          <td class="metric-green">Indexed pages > 0</td>
+          <td><span class="metric-tag easy">Easy</span></td>
+        </tr>
+        <tr>
+          <td><strong>Month 1</strong></td>
+          <td>Directory submissions complete</td>
+          <td class="metric-green">15+ listings</td>
+          <td><span class="metric-tag easy">Easy</span></td>
+        </tr>
+        <tr>
+          <td><strong>Month 1</strong></td>
+          <td>Google reviews</td>
+          <td class="metric-green">13+</td>
+          <td><span class="metric-tag easy">Easy</span></td>
+        </tr>
+        <tr>
+          <td><strong>Month 2</strong></td>
+          <td>First ranked keywords</td>
+          <td class="metric-yellow">Any keyword in top 100</td>
+          <td><span class="metric-tag medium">Medium</span></td>
+        </tr>
+        <tr>
+          <td><strong>Month 3</strong></td>
+          <td>AI citations</td>
+          <td class="metric-yellow">> 0/30 (any citation is a win)</td>
+          <td><span class="metric-tag medium">Medium</span></td>
+        </tr>
+        <tr>
+          <td><strong>Month 3</strong></td>
+          <td>Google reviews</td>
+          <td class="metric-green">23+</td>
+          <td><span class="metric-tag easy">Easy</span></td>
+        </tr>
+        <tr>
+          <td><strong>Month 3</strong></td>
+          <td>Domain Rating</td>
+          <td class="metric-yellow">> 5</td>
+          <td><span class="metric-tag medium">Medium</span></td>
+        </tr>
+        <tr>
+          <td><strong>Month 6</strong></td>
+          <td>AI citations</td>
+          <td class="metric-yellow">> 5/30</td>
+          <td><span class="metric-tag medium">Medium</span></td>
+        </tr>
+        <tr>
+          <td><strong>Month 6</strong></td>
+          <td>Ranked keywords (top 20)</td>
+          <td class="metric-yellow">> 20</td>
+          <td><span class="metric-tag medium">Medium</span></td>
+        </tr>
+        <tr>
+          <td><strong>Month 6</strong></td>
+          <td>Google reviews</td>
+          <td class="metric-green">38+</td>
+          <td><span class="metric-tag easy">Easy</span></td>
+        </tr>
+        <tr>
+          <td><strong>Month 6</strong></td>
+          <td>Domain Rating</td>
+          <td class="metric-yellow">> 15</td>
+          <td><span class="metric-tag medium">Medium</span></td>
+        </tr>
+        <tr>
+          <td><strong>Month 6</strong></td>
+          <td>Organic traffic</td>
+          <td class="metric-yellow">200+ visits/month</td>
+          <td><span class="metric-tag medium">Medium</span></td>
+        </tr>
+        <tr>
+          <td><strong>Month 12</strong></td>
+          <td>AI citations</td>
+          <td class="metric-red">> 10/30 (competitive with Security USA)</td>
+          <td><span class="metric-tag hard">Hard</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════ EXCLUSIONS ═══ -->
+<div class="phase-divider" id="exclusions" style="margin-top:20px;">
+  <div class="phase-number">Scope</div>
+  <h2>What This Does Not Include</h2>
+</div>
+
+<div class="phase-content">
+
+  <div class="card">
+    <ul class="exclusion-list">
+      <li>Paid advertising management (separate strategy doc)</li>
+      <li>Social media content management</li>
+      <li>Ongoing content writing beyond initial 6 blog posts</li>
+      <li>PR/media outreach execution (we provide the angles, Denis pitches)</li>
+      <li>GHL CRM setup and management (separate setup)</li>
+    </ul>
+    <p style="font-size:13px; color:var(--text-dim); margin-top:16px; font-style:italic;">These can be added as the partnership proves out.</p>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════ FOOTER ═══ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-brand">Safe 4 USA Security</div>
+    <div class="footer-sub">SEO &amp; AI Visibility Roadmap - April 2026</div>
+    <div class="footer-divider"></div>
+    <div class="footer-sub">Prepared by Online Optimisers</div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,1346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Safe 4 USA Security - Partnership Proposal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #ffffff;
+    --bg-alt: #f5f7fa;
+    --bg-blue: #071383;
+    --bg-blue-light: #e8eaf6;
+    --text: #1a1a2e;
+    --text-dim: #5f6578;
+    --accent: #071383;
+    --border: #e0e4ea;
+    --green: #16a34a;
+    --yellow: #ca8a04;
+    --red: #dc2626;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── HEADER ── */
+  .hero-header {
+    background: var(--bg-blue);
+    color: #fff;
+    padding: 56px 24px 48px;
+    text-align: center;
+  }
+  .hero-header .shield-icon {
+    width: 56px;
+    height: 56px;
+    margin-bottom: 18px;
+    opacity: 0.9;
+  }
+  .hero-header h1 {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 42px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .hero-header .subtitle {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: 0.85;
+  }
+
+  /* ── META STRIP ── */
+  .meta-strip {
+    background: var(--bg-alt);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 24px;
+  }
+  .meta-strip .container {
+    display: flex;
+    justify-content: center;
+    gap: 36px;
+    flex-wrap: wrap;
+  }
+  .meta-strip .meta-item {
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+  .meta-strip .meta-item strong {
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  /* ── CONTAINER ── */
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+  /* ── TABLE OF CONTENTS ── */
+  .toc-section {
+    padding: 40px 24px;
+    background: var(--bg);
+  }
+  .toc-section .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .toc-title {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--text-dim);
+    margin-bottom: 18px;
+  }
+  .toc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px 24px;
+    width: 100%;
+    max-width: 800px;
+  }
+  .toc-grid a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: var(--accent);
+    font-weight: 500;
+    font-size: 14px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    transition: background 0.2s;
+  }
+  .toc-grid a:hover { background: var(--bg-blue-light); }
+  .toc-grid a .toc-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    background: var(--bg-blue);
+    color: #fff;
+    border-radius: 50%;
+    font-size: 11px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  /* ── SECTION HEADERS ── */
+  .section { padding: 56px 24px; }
+  .section.alt { background: var(--bg-alt); }
+  .section-header {
+    border-left: 4px solid var(--accent);
+    padding-left: 18px;
+    margin-bottom: 32px;
+  }
+  .section-header h2 {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 28px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--text);
+    line-height: 1.2;
+  }
+  .section-header .section-sub {
+    font-size: 14px;
+    color: var(--text-dim);
+    margin-top: 4px;
+  }
+
+  /* ── BLUE DIVIDER ── */
+  .blue-divider {
+    background: var(--bg-blue);
+    height: 6px;
+  }
+
+  /* ── PROBLEM SECTION ── */
+  .problem-intro {
+    font-size: 18px;
+    line-height: 1.7;
+    color: var(--text);
+    margin-bottom: 28px;
+  }
+  .problem-intro strong { color: var(--accent); }
+
+  .problem-callout {
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--red);
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin-bottom: 28px;
+    font-size: 17px;
+    line-height: 1.7;
+  }
+
+  .stat-comparison {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin: 32px 0;
+  }
+  .stat-card {
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  }
+  .stat-card.you { border-top: 4px solid var(--red); }
+  .stat-card.competitor { border-top: 4px solid var(--green); }
+  .stat-card .stat-label {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--text-dim);
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .stat-card .stat-company {
+    font-family: 'Oswald', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+  .stat-card.you .stat-company { color: var(--red); }
+  .stat-card.competitor .stat-company { color: var(--green); }
+  .stat-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .stat-row:last-child { border-bottom: none; }
+  .stat-row .stat-metric { font-size: 13px; color: var(--text-dim); }
+  .stat-row .stat-value { font-weight: 700; font-size: 20px; }
+  .stat-card.you .stat-value { color: var(--red); }
+  .stat-card.competitor .stat-value { color: var(--green); }
+
+  /* Citation badge */
+  .citation-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #fef2f2;
+    border: 2px solid var(--red);
+    border-radius: 16px;
+    padding: 20px 40px;
+    margin: 24px auto;
+    text-align: center;
+  }
+  .citation-badge .badge-number {
+    font-family: 'Oswald', sans-serif;
+    font-size: 56px;
+    font-weight: 700;
+    color: var(--red);
+    line-height: 1;
+  }
+  .citation-badge .badge-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--red);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-left: 16px;
+  }
+  .citation-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 28px;
+  }
+
+  .problem-details {
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px 28px;
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--text-dim);
+  }
+  .problem-details p { margin-bottom: 12px; }
+  .problem-details p:last-child { margin-bottom: 0; }
+
+  .problem-closing {
+    margin-top: 28px;
+    padding: 20px 28px;
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    border-radius: 12px;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--red);
+    text-align: center;
+  }
+
+  /* ── PROPOSAL INTRO ── */
+  .proposal-intro {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  .proposal-intro .big-statement {
+    font-family: 'Oswald', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+  .proposal-intro .sub-statement {
+    font-size: 18px;
+    color: var(--text-dim);
+  }
+  .proposal-zero {
+    text-align: center;
+    background: var(--bg-blue-light);
+    border-radius: 12px;
+    padding: 16px;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 40px;
+  }
+
+  /* ── VALUE STACK CARDS ── */
+  .value-stack { display: flex; flex-direction: column; gap: 20px; margin-bottom: 40px; }
+  .value-card {
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 32px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    display: flex;
+    gap: 28px;
+    align-items: flex-start;
+  }
+  .value-card-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background: var(--bg-blue);
+    color: #fff;
+    border-radius: 12px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .value-card-content { flex: 1; }
+  .value-card-content h3 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text);
+    margin-bottom: 12px;
+  }
+  .value-card-content p, .value-card-content li {
+    font-size: 14px;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+  .value-card-content ul {
+    list-style: none;
+    margin: 12px 0 0;
+  }
+  .value-card-content ul li {
+    padding: 4px 0;
+    padding-left: 18px;
+    position: relative;
+  }
+  .value-card-content ul li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 11px;
+    width: 6px;
+    height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+  }
+  .value-card-price {
+    flex-shrink: 0;
+    text-align: right;
+    align-self: center;
+  }
+  .value-card-price .price-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-dim);
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .value-card-price .price-amount {
+    font-family: 'Oswald', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--accent);
+  }
+
+  .value-card-note {
+    font-size: 13px;
+    color: var(--text-dim);
+    font-style: italic;
+    margin-top: 10px;
+  }
+
+  /* ── TOTAL VALUE BLOCK ── */
+  .total-value-block {
+    background: var(--bg-blue);
+    border-radius: 16px;
+    padding: 48px 40px;
+    text-align: center;
+    color: #fff;
+    margin-bottom: 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .total-value-block::before {
+    content: '';
+    position: absolute;
+    top: -60px;
+    right: -60px;
+    width: 200px;
+    height: 200px;
+    background: rgba(255,255,255,0.04);
+    border-radius: 50%;
+  }
+  .total-value-block::after {
+    content: '';
+    position: absolute;
+    bottom: -40px;
+    left: -40px;
+    width: 150px;
+    height: 150px;
+    background: rgba(255,255,255,0.03);
+    border-radius: 50%;
+  }
+  .total-label {
+    font-family: 'Oswald', sans-serif;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    opacity: 0.7;
+    margin-bottom: 8px;
+  }
+  .total-amount {
+    font-family: 'Oswald', sans-serif;
+    font-size: 56px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+    text-decoration: line-through;
+    text-decoration-color: rgba(255,255,255,0.5);
+    text-decoration-thickness: 3px;
+  }
+  .your-cost-label {
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    opacity: 0.6;
+    margin-bottom: 4px;
+  }
+  .your-cost-amount {
+    font-family: 'Oswald', sans-serif;
+    font-size: 72px;
+    font-weight: 700;
+    line-height: 1;
+    color: #4ade80;
+    text-shadow: 0 0 40px rgba(74,222,128,0.3);
+  }
+  .your-cost-sub {
+    font-size: 18px;
+    font-weight: 500;
+    margin-top: 8px;
+    opacity: 0.8;
+  }
+
+  /* ── COMMISSION SECTION ── */
+  .commission-intro {
+    text-align: center;
+    margin-bottom: 36px;
+  }
+  .commission-intro .highlight {
+    font-family: 'Oswald', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .commission-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+  .commission-card {
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  }
+  .commission-card .cc-source {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-dim);
+    margin-bottom: 8px;
+  }
+  .commission-card .cc-contract {
+    font-family: 'Oswald', sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+  .commission-card .cc-arrow {
+    color: var(--accent);
+    font-size: 20px;
+    margin: 6px 0;
+  }
+  .commission-card .cc-commission-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-dim);
+    margin-bottom: 2px;
+  }
+  .commission-card .cc-commission {
+    font-family: 'Oswald', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--green);
+  }
+  .commission-card.zero-card {
+    background: #fef2f2;
+    border-color: #fecaca;
+  }
+  .commission-card.zero-card .cc-commission {
+    color: var(--text-dim);
+  }
+
+  .commission-bottom {
+    text-align: center;
+    padding: 20px;
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--green);
+  }
+
+  /* ── WHAT YOU COVER ── */
+  .cover-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  .cover-card {
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  }
+  .cover-card h3 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+  .cover-card p {
+    font-size: 14px;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+  .cover-card .optional-tag {
+    display: inline-block;
+    background: var(--bg-blue-light);
+    color: var(--accent);
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 3px 10px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+  }
+
+  /* ── CHECKLIST (What We Need) ── */
+  .need-list { display: flex; flex-direction: column; gap: 12px; }
+  .need-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 22px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+  }
+  .need-item .need-num {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    background: var(--bg-blue);
+    color: #fff;
+    border-radius: 50%;
+    font-size: 13px;
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .need-item .need-text {
+    font-size: 15px;
+    color: var(--text);
+    line-height: 1.5;
+  }
+  .need-item .need-text strong { color: var(--accent); }
+  .need-item .need-text .need-reason {
+    color: var(--text-dim);
+    font-size: 13px;
+  }
+
+  /* ── TERMS TABLE ── */
+  .terms-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .terms-table thead th {
+    background: var(--bg-blue);
+    color: #fff;
+    font-family: 'Oswald', sans-serif;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+    padding: 14px 20px;
+    text-align: left;
+  }
+  .terms-table tbody td {
+    padding: 14px 20px;
+    font-size: 14px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  .terms-table tbody tr:nth-child(even) td { background: var(--bg-alt); }
+  .terms-table tbody tr:last-child td { border-bottom: none; }
+  .terms-table tbody td:first-child {
+    font-weight: 600;
+    color: var(--text);
+    white-space: nowrap;
+    width: 180px;
+  }
+  .terms-table tbody td:last-child {
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+
+  /* ── WHY THIS WORKS 2x2 ── */
+  .why-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  .why-card {
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  }
+  .why-card-icon {
+    width: 44px;
+    height: 44px;
+    background: var(--bg-blue-light);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 14px;
+  }
+  .why-card-icon svg { width: 22px; height: 22px; }
+  .why-card h3 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .why-card p {
+    font-size: 14px;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+
+  /* ── NEXT STEPS TIMELINE ── */
+  .timeline {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    margin: 40px 0 32px;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    top: 28px;
+    left: 60px;
+    right: 60px;
+    height: 3px;
+    background: var(--border);
+    z-index: 0;
+  }
+  .timeline-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    flex: 1;
+    position: relative;
+    z-index: 1;
+  }
+  .timeline-num {
+    width: 56px;
+    height: 56px;
+    background: var(--bg-blue);
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Oswald', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 14px;
+    box-shadow: 0 4px 12px rgba(7,19,131,0.25);
+  }
+  .timeline-text {
+    font-size: 14px;
+    color: var(--text);
+    font-weight: 500;
+    max-width: 160px;
+    line-height: 1.4;
+  }
+
+  .cta-block {
+    text-align: center;
+    margin-top: 36px;
+  }
+  .cta-block p {
+    font-size: 18px;
+    color: var(--text);
+    font-weight: 500;
+    margin-bottom: 16px;
+  }
+  .cta-button {
+    display: inline-block;
+    background: var(--bg-blue);
+    color: #fff;
+    font-family: 'Oswald', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 16px 48px;
+    border-radius: 10px;
+    text-decoration: none;
+    box-shadow: 0 4px 16px rgba(7,19,131,0.3);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(7,19,131,0.4);
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    background: var(--bg-blue);
+    color: #fff;
+    padding: 32px 24px;
+    text-align: center;
+  }
+  .footer-logos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+    margin-bottom: 14px;
+  }
+  .footer-logo-text {
+    font-family: 'Oswald', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    opacity: 0.9;
+  }
+  .footer-divider {
+    width: 1px;
+    height: 24px;
+    background: rgba(255,255,255,0.3);
+  }
+  .footer-sub {
+    font-size: 13px;
+    opacity: 0.5;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .hero-header h1 { font-size: 28px; }
+    .hero-header .subtitle { font-size: 16px; }
+    .meta-strip .container { flex-direction: column; gap: 8px; text-align: center; }
+    .stat-comparison { grid-template-columns: 1fr; }
+    .commission-grid { grid-template-columns: 1fr; }
+    .cover-cards { grid-template-columns: 1fr; }
+    .why-grid { grid-template-columns: 1fr; }
+    .timeline { flex-direction: column; gap: 24px; align-items: center; }
+    .timeline::before { display: none; }
+    .total-amount { font-size: 40px; }
+    .your-cost-amount { font-size: 52px; }
+    .value-card { flex-direction: column; }
+    .value-card-price { align-self: flex-start; text-align: left; }
+  }
+
+  /* ── SMOOTH SCROLL ── */
+  html { scroll-behavior: smooth; }
+
+  /* ── PRINT ── */
+  @media print {
+    .section { padding: 28px 0; }
+    .blue-divider { height: 3px; }
+    .total-value-block { padding: 28px; }
+    .cta-button { box-shadow: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════ HEADER ═══════════════════════════════════════ -->
+<header class="hero-header">
+  <svg class="shield-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+    <path d="M9 12l2 2 4-4"/>
+  </svg>
+  <h1>Safe 4 USA Security</h1>
+  <div class="subtitle">Partnership Proposal</div>
+</header>
+
+<!-- ═══════════════════════════════════════ META STRIP ═══════════════════════════════════════ -->
+<div class="meta-strip">
+  <div class="container">
+    <div class="meta-item"><strong>From:</strong> Online Optimisers</div>
+    <div class="meta-item"><strong>To:</strong> Denis Voit, Founder</div>
+    <div class="meta-item"><strong>Date:</strong> April 2026</div>
+    <div class="meta-item"><strong>Model:</strong> Performance-based (commission on results)</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ TABLE OF CONTENTS ═══════════════════════════════════════ -->
+<nav class="toc-section">
+  <div class="container">
+    <div class="toc-title">Contents</div>
+    <div class="toc-grid">
+      <a href="#problem"><span class="toc-num">1</span> The Problem</a>
+      <a href="#proposal"><span class="toc-num">2</span> What We Build (Free)</a>
+      <a href="#commission"><span class="toc-num">3</span> How We Earn</a>
+      <a href="#you-cover"><span class="toc-num">4</span> What You Cover</a>
+      <a href="#we-need"><span class="toc-num">5</span> What We Need</a>
+      <a href="#terms"><span class="toc-num">6</span> Terms</a>
+      <a href="#why-works"><span class="toc-num">7</span> Why This Works</a>
+      <a href="#next-steps"><span class="toc-num">8</span> Next Steps</a>
+    </div>
+  </div>
+</nav>
+
+<div class="blue-divider"></div>
+
+<!-- ═══════════════════════════════════════ 1. THE PROBLEM ═══════════════════════════════════════ -->
+<section class="section" id="problem">
+  <div class="container">
+    <div class="section-header">
+      <h2>The Problem</h2>
+    </div>
+
+    <p class="problem-intro">
+      Your team includes a <strong>Green Beret</strong>, <strong>British Special Forces</strong> veteran, former <strong>Secret Service</strong> agent, and a <strong>Krav Maga</strong> instructor. You offer <strong>14 security services</strong> including K9 units, armored vehicles, and active shooter training. Your Google reviews are <strong>5.0 stars</strong>.
+    </p>
+
+    <div class="problem-callout">
+      None of this is visible online. Your website has a single line of code telling Google and every AI system to <strong>ignore it completely</strong>.
+    </div>
+
+    <p class="problem-intro" style="margin-bottom: 12px;">
+      We tested <strong>30 queries</strong> across 3 AI platforms. When someone in Hallandale Beach asks ChatGPT, Perplexity, or Google for a security company, they get recommended your competitors. Every single time.
+    </p>
+
+    <div class="citation-wrapper">
+      <div class="citation-badge">
+        <span class="badge-number">0/30</span>
+        <span class="badge-label">AI Citations<br>for Safe 4 USA</span>
+      </div>
+    </div>
+
+    <div class="stat-comparison">
+      <div class="stat-card you">
+        <div class="stat-label">Your Business</div>
+        <div class="stat-company">Safe 4 USA Security</div>
+        <div class="stat-row">
+          <span class="stat-metric">AI Citations</span>
+          <span class="stat-value">0 / 30</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-metric">Backlinks</span>
+          <span class="stat-value">42</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-metric">Domain Rank</span>
+          <span class="stat-value">0</span>
+        </div>
+      </div>
+      <div class="stat-card competitor">
+        <div class="stat-label">Your Competitor</div>
+        <div class="stat-company">Security USA Inc.</div>
+        <div class="stat-row">
+          <span class="stat-metric">AI Citations</span>
+          <span class="stat-value">7 / 30</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-metric">Backlinks</span>
+          <span class="stat-value">700</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-metric">Domain Rank</span>
+          <span class="stat-value">194</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="problem-details">
+      <p>Your site has not been updated since May 2023. There is a <em>lorem ipsum</em> placeholder testimonial still live on the page. The email in your header (.net) does not match the email in your footer (.com).</p>
+    </div>
+
+    <div class="problem-closing">
+      You are invisible. And every day you stay invisible, your competitors win contracts that should be yours.
+    </div>
+  </div>
+</section>
+
+<div class="blue-divider"></div>
+
+<!-- ═══════════════════════════════════════ 2. WHAT WE BUILD ═══════════════════════════════════════ -->
+<section class="section alt" id="proposal">
+  <div class="container">
+    <div class="section-header">
+      <h2>What We're Proposing</h2>
+    </div>
+
+    <div class="proposal-intro">
+      <div class="big-statement">We build everything. You pay nothing upfront.</div>
+      <div class="sub-statement">We earn a percentage of the business that comes through our system.</div>
+    </div>
+
+    <div class="proposal-zero">Zero leads = zero dollars from you.</div>
+
+    <div class="section-header" style="margin-bottom: 24px;">
+      <h2 style="font-size: 22px;">What We Build (Free)</h2>
+    </div>
+
+    <div class="value-stack">
+
+      <!-- Card 1: Website -->
+      <div class="value-card">
+        <div class="value-card-number">1</div>
+        <div class="value-card-content">
+          <h3>New 18-Page Website</h3>
+          <p>Custom-built, fast, mobile-first, SEO-ready. Not a WordPress template - a purpose-built site on modern infrastructure (Astro on Cloudflare Pages). Pages include:</p>
+          <ul>
+            <li>Homepage with credential strip and trust signals</li>
+            <li>Full team bio pages with military backgrounds front and center</li>
+            <li>8 individual service pages (armed guards, K9, executive protection, school security, event security, CCTV, commercial, active shooter training)</li>
+            <li>3 location pages (Hallandale Beach, Fort Lauderdale, Miami)</li>
+            <li>Contact page with lead capture form</li>
+            <li>Dedicated consultation landing page optimized for conversions</li>
+          </ul>
+          <p class="value-card-note">Every page includes structured data (schema markup) so Google and AI systems can read and recommend your services.</p>
+        </div>
+        <div class="value-card-price">
+          <div class="price-label">Retail Value</div>
+          <div class="price-amount">$8,000 - $12,000</div>
+        </div>
+      </div>
+
+      <!-- Card 2: SEO -->
+      <div class="value-card">
+        <div class="value-card-number">2</div>
+        <div class="value-card-content">
+          <h3>Full SEO Foundation</h3>
+          <ul>
+            <li>Remove the noindex block (day one fix)</li>
+            <li>Submit sitemap to Google Search Console</li>
+            <li>Google Business Profile optimization with all 14 service categories</li>
+            <li>15+ directory submissions (BBB, Yelp, ASIS, Alarm.org, Thumbtack, and more)</li>
+            <li>Spam backlink cleanup (disavow the 52% that are hurting you)</li>
+            <li>Google Analytics and Search Console setup</li>
+          </ul>
+        </div>
+        <div class="value-card-price">
+          <div class="price-label">Retail Value</div>
+          <div class="price-amount">$2,500 - $3,500</div>
+        </div>
+      </div>
+
+      <!-- Card 3: AI Visibility -->
+      <div class="value-card">
+        <div class="value-card-number">3</div>
+        <div class="value-card-content">
+          <h3>AI Visibility Optimization</h3>
+          <ul>
+            <li>Structured data on every page so AI systems can cite your team and services</li>
+            <li>FAQ content targeting the exact queries people ask AI about security companies</li>
+            <li>Entity building so your team members become recognized by AI as security experts</li>
+            <li>Monthly AI visibility monitoring and re-audits</li>
+          </ul>
+        </div>
+        <div class="value-card-price">
+          <div class="price-label">Retail Value</div>
+          <div class="price-amount">$1,500 - $2,000</div>
+        </div>
+      </div>
+
+      <!-- Card 4: Lead Tracking -->
+      <div class="value-card">
+        <div class="value-card-number">4</div>
+        <div class="value-card-content">
+          <h3>Lead Tracking System</h3>
+          <ul>
+            <li>Custom forms on every page capturing name, email, phone, service needed, and source</li>
+            <li>Call tracking number on the website (separate from your direct line)</li>
+            <li>"How did you hear about us?" on every form for attribution</li>
+            <li>Real-time lead notifications</li>
+            <li>Monthly reporting dashboard showing exactly what came through our system</li>
+          </ul>
+        </div>
+        <div class="value-card-price">
+          <div class="price-label">Retail Value</div>
+          <div class="price-amount">$1,000 - $1,500</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- TOTAL VALUE -->
+    <div class="total-value-block">
+      <div class="total-label">Total Package Value</div>
+      <div class="total-amount">$13,000 - $19,000</div>
+      <div class="your-cost-label">Your Cost</div>
+      <div class="your-cost-amount">$0 Upfront</div>
+      <div class="your-cost-sub">Zero risk. We earn when you earn.</div>
+    </div>
+  </div>
+</section>
+
+<div class="blue-divider"></div>
+
+<!-- ═══════════════════════════════════════ 3. HOW WE EARN ═══════════════════════════════════════ -->
+<section class="section" id="commission">
+  <div class="container">
+    <div class="section-header">
+      <h2>How We Earn</h2>
+    </div>
+
+    <div class="commission-intro">
+      <div class="highlight">10% commission on the first-year value of every deal that comes through our system.</div>
+    </div>
+
+    <div class="commission-grid">
+      <div class="commission-card">
+        <div class="cc-source">Commercial Contract</div>
+        <div class="cc-contract">$10,000</div>
+        <div class="cc-arrow">&#8595;</div>
+        <div class="cc-commission-label">Our Commission</div>
+        <div class="cc-commission">$1,000</div>
+      </div>
+      <div class="commission-card">
+        <div class="cc-source">Educational Contract</div>
+        <div class="cc-contract">$50,000</div>
+        <div class="cc-arrow">&#8595;</div>
+        <div class="cc-commission-label">Our Commission</div>
+        <div class="cc-commission">$5,000</div>
+      </div>
+      <div class="commission-card">
+        <div class="cc-source">Monitoring Customer</div>
+        <div class="cc-contract">$360/yr</div>
+        <div class="cc-arrow">&#8595;</div>
+        <div class="cc-commission-label">Our Commission</div>
+        <div class="cc-commission">$36</div>
+      </div>
+      <div class="commission-card zero-card">
+        <div class="cc-source">Zero Leads</div>
+        <div class="cc-contract">$0</div>
+        <div class="cc-arrow">&#8595;</div>
+        <div class="cc-commission-label">Our Commission</div>
+        <div class="cc-commission">$0</div>
+      </div>
+    </div>
+
+    <div class="commission-bottom">
+      We only win when you win. If our system does not produce results, it costs you nothing.
+    </div>
+  </div>
+</section>
+
+<div class="blue-divider"></div>
+
+<!-- ═══════════════════════════════════════ 4. WHAT YOU COVER ═══════════════════════════════════════ -->
+<section class="section alt" id="you-cover">
+  <div class="container">
+    <div class="section-header">
+      <h2>What You Cover</h2>
+    </div>
+
+    <div class="cover-cards">
+      <div class="cover-card">
+        <span class="optional-tag">Optional but Recommended</span>
+        <h3>Advertising Budget</h3>
+        <p>$1,500 - $2,300/month for Google Ads and Facebook/Instagram campaigns. This goes directly to the ad platforms, not to us. We set up the campaigns, manage the tracking, and earn commission only on deals that close.</p>
+      </div>
+      <div class="cover-card">
+        <h3>Your Time</h3>
+        <p>Update lead status in the tracking system (5 minutes per week). Follow up on leads within 24 hours. Ask satisfied clients for Google reviews.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="blue-divider"></div>
+
+<!-- ═══════════════════════════════════════ 5. WHAT WE NEED ═══════════════════════════════════════ -->
+<section class="section" id="we-need">
+  <div class="container">
+    <div class="section-header">
+      <h2>What We Need From You</h2>
+    </div>
+
+    <div class="need-list">
+      <div class="need-item">
+        <span class="need-num">1</span>
+        <div class="need-text"><strong>DNS access</strong> <span class="need-reason">- so we can point the domain to the new website when you approve it</span></div>
+      </div>
+      <div class="need-item">
+        <span class="need-num">2</span>
+        <div class="need-text"><strong>Google Business Profile access</strong> <span class="need-reason">- so we can optimize your listing</span></div>
+      </div>
+      <div class="need-item">
+        <span class="need-num">3</span>
+        <div class="need-text"><strong>Team photos</strong> <span class="need-reason">- headshots, operation photos, K9 photos for the website</span></div>
+      </div>
+      <div class="need-item">
+        <span class="need-num">4</span>
+        <div class="need-text"><strong>3-5 client testimonials</strong> <span class="need-reason">- with permission to publish (replace the lorem ipsum)</span></div>
+      </div>
+      <div class="need-item">
+        <span class="need-num">5</span>
+        <div class="need-text"><strong>24-hour lead follow-up</strong> <span class="need-reason">- fast response = higher close rate</span></div>
+      </div>
+      <div class="need-item">
+        <span class="need-num">6</span>
+        <div class="need-text"><strong>Deal outcome updates</strong> <span class="need-reason">- mark leads as won/lost with contract value in the system</span></div>
+      </div>
+      <div class="need-item">
+        <span class="need-num">7</span>
+        <div class="need-text"><strong>Ad budget</strong> <span class="need-reason">- if you want paid campaigns running (recommended for immediate leads while SEO builds)</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="blue-divider"></div>
+
+<!-- ═══════════════════════════════════════ 6. TERMS ═══════════════════════════════════════ -->
+<section class="section alt" id="terms">
+  <div class="container">
+    <div class="section-header">
+      <h2>Terms</h2>
+    </div>
+
+    <table class="terms-table">
+      <thead>
+        <tr>
+          <th>Term</th>
+          <th>Details</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Duration</td>
+          <td>12-month initial term</td>
+        </tr>
+        <tr>
+          <td>Commission</td>
+          <td>10% of first-year contract value on attributable leads</td>
+        </tr>
+        <tr>
+          <td>Reporting</td>
+          <td>Monthly report by the 5th - leads, quotes, closed deals, commission earned</td>
+        </tr>
+        <tr>
+          <td>Attribution</td>
+          <td>Lead came through our website forms, our tracking number, or our ad campaigns = our attribution. Both parties see the same dashboard.</td>
+        </tr>
+        <tr>
+          <td>Dispute Window</td>
+          <td>30 days to dispute any attribution. Call recordings available for review.</td>
+        </tr>
+        <tr>
+          <td>Exit Clause</td>
+          <td>90-day out with 30-day written notice for either party</td>
+        </tr>
+        <tr>
+          <td>Website Ownership</td>
+          <td>Site lives on our hosting during the agreement. Full IP transfer to you at 12-month completion.</td>
+        </tr>
+        <tr>
+          <td>If We Part Ways</td>
+          <td>You keep the website, the SEO foundation, and everything we built. We stop tracking and earning commission.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<div class="blue-divider"></div>
+
+<!-- ═══════════════════════════════════════ 7. WHY THIS WORKS ═══════════════════════════════════════ -->
+<section class="section" id="why-works">
+  <div class="container">
+    <div class="section-header">
+      <h2>Why This Works For You</h2>
+    </div>
+
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#071383" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
+        <h3>Zero Risk</h3>
+        <p>No upfront cost. No monthly retainer. No long-term lock-in. If we do not perform, you pay nothing.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#071383" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+          </svg>
+        </div>
+        <h3>We're Incentivized to Perform</h3>
+        <p>If we do not generate leads, we do not eat. Our interests are perfectly aligned with yours.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#071383" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+        </div>
+        <h3>Your Credentials Deserve Visibility</h3>
+        <p>A team with Green Beret, Special Forces, and Secret Service backgrounds should not be invisible online. We fix that.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#071383" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <polyline points="12 6 12 12 16 14"/>
+          </svg>
+        </div>
+        <h3>The Window Is Closing</h3>
+        <p>Right now, most security companies are not optimized for AI search. Early movers get the citation advantage. In 12 months, everyone will be doing this.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="blue-divider"></div>
+
+<!-- ═══════════════════════════════════════ 8. NEXT STEPS ═══════════════════════════════════════ -->
+<section class="section alt" id="next-steps">
+  <div class="container">
+    <div class="section-header">
+      <h2>Next Steps</h2>
+    </div>
+
+    <div class="timeline">
+      <div class="timeline-step">
+        <div class="timeline-num">1</div>
+        <div class="timeline-text">10-minute call to align on details and answer questions</div>
+      </div>
+      <div class="timeline-step">
+        <div class="timeline-num">2</div>
+        <div class="timeline-text">We share a preview of the new website design</div>
+      </div>
+      <div class="timeline-step">
+        <div class="timeline-num">3</div>
+        <div class="timeline-text">You approve the design, we go live</div>
+      </div>
+      <div class="timeline-step">
+        <div class="timeline-num">4</div>
+        <div class="timeline-text">Leads start flowing, you close deals, we earn our share</div>
+      </div>
+    </div>
+
+    <div class="cta-block">
+      <p>Ready to talk?</p>
+      <a href="https://calendly.com/onlineoptimisers/discovery" class="cta-button">Book a 10-Minute Call</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ FOOTER ═══════════════════════════════════════ -->
+<footer class="footer">
+  <div class="footer-logos">
+    <span class="footer-logo-text">Online Optimisers</span>
+    <span class="footer-divider"></span>
+    <span class="footer-logo-text">Safe 4 USA Security</span>
+  </div>
+  <div class="footer-sub">Partnership Proposal - April 2026 - Confidential</div>
+</footer>
+
+</body>
+</html>
