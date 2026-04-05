@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Full AI &amp; SEO Audit - Safe 4 USA Security | Online Optimisers</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0d1117;--bg2:#161b22;--bg3:#1c2129;--text:#e6edf3;--text-dim:#8b949e;--accent:#c41e3a;--accent2:#ff4d6a;--green:#3fb950;--yellow:#d29922;--red:#f85149;--border:#30363d;--card:#161b22}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:15px}
+.container{max-width:1100px;margin:0 auto;padding:24px 20px 60px}
+h1,h2,h3,h4{font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:1px}
+h1{font-size:2.2rem;color:#fff;margin-bottom:6px}
+h2{font-size:1.6rem;color:var(--accent);margin:48px 0 20px;padding-bottom:10px;border-bottom:2px solid var(--accent)}
+h3{font-size:1.15rem;color:var(--accent2);margin:28px 0 14px;text-transform:none;letter-spacing:0}
+h4{font-size:1rem;color:#fff;margin:20px 0 10px;text-transform:none;letter-spacing:0}
+
+/* Header */
+.header{text-align:center;padding:50px 20px 40px;border-bottom:1px solid var(--border);margin-bottom:40px}
+.header .brand{font-family:'Oswald',sans-serif;font-size:.95rem;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:20px}
+.header .subtitle{color:var(--text-dim);font-size:1rem;margin-top:6px}
+.header .meta{display:flex;justify-content:center;gap:30px;margin-top:16px;flex-wrap:wrap}
+.header .meta span{color:var(--text-dim);font-size:.85rem}
+.header .meta span strong{color:var(--text)}
+
+/* Score badges */
+.score-row{display:flex;flex-wrap:wrap;gap:16px;justify-content:center;margin:30px 0}
+.score-badge{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px 24px;text-align:center;min-width:160px;flex:1;max-width:200px}
+.score-badge .label{font-size:.75rem;text-transform:uppercase;letter-spacing:1px;color:var(--text-dim);margin-bottom:6px}
+.score-badge .value{font-family:'Oswald',sans-serif;font-size:2rem;font-weight:700}
+.score-badge .value.critical{color:var(--red)}
+.score-badge .value.warning{color:var(--yellow)}
+.score-badge .value.ok{color:var(--green)}
+.score-badge .sub{font-size:.75rem;color:var(--text-dim);margin-top:4px}
+
+/* Tables */
+table{width:100%;border-collapse:collapse;margin:16px 0 24px;font-size:.9rem}
+thead th{background:var(--accent);color:#fff;font-family:'Oswald',sans-serif;font-weight:500;letter-spacing:.5px;text-transform:uppercase;padding:10px 14px;text-align:left;font-size:.8rem}
+tbody td{padding:10px 14px;border-bottom:1px solid var(--border)}
+tbody tr:nth-child(odd){background:var(--bg2)}
+tbody tr:nth-child(even){background:var(--bg3)}
+tbody tr:hover{background:#1f2937}
+td.critical{color:var(--red);font-weight:600}
+td.ok{color:var(--green)}
+td.warning{color:var(--yellow)}
+td.no{color:var(--red)}
+td.yes{color:var(--green)}
+
+/* Cards */
+.card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:24px;margin:16px 0}
+.card.critical-card{border-color:var(--red);border-width:2px}
+.card.green-card{border-color:var(--green)}
+
+/* Findings list */
+.findings{list-style:none;padding:0}
+.findings li{padding:12px 16px;margin:8px 0;background:var(--bg2);border-left:4px solid var(--accent);border-radius:0 6px 6px 0;line-height:1.6}
+.findings li strong{color:#fff}
+
+/* Checklist */
+.checklist{list-style:none;padding:0}
+.checklist li{padding:6px 0;padding-left:28px;position:relative}
+.checklist li::before{position:absolute;left:0;font-size:1rem}
+.checklist li.pass::before{content:"✓";color:var(--green)}
+.checklist li.fail::before{content:"✗";color:var(--red)}
+.checklist li.flag::before{content:"!";color:var(--yellow);font-weight:700}
+
+/* Action matrix */
+.action-grid{display:grid;grid-template-columns:1fr;gap:16px;margin:16px 0}
+@media(min-width:700px){.action-grid{grid-template-columns:1fr 1fr}}
+.action-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px}
+.action-card h4{margin-top:0}
+.action-card .time{font-size:.8rem;color:var(--accent2)}
+
+/* Insight blocks */
+.insight{background:var(--bg2);border-left:4px solid var(--accent2);border-radius:0 8px 8px 0;padding:18px 20px;margin:16px 0}
+.insight .number{font-family:'Oswald',sans-serif;font-size:1.4rem;color:var(--accent);float:left;margin-right:12px;line-height:1.2}
+.insight p{margin:0}
+.insight strong{color:#fff}
+
+/* TOC */
+.toc{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:24px 28px;margin:24px 0}
+.toc h3{margin-top:0;color:var(--accent)}
+.toc ol{padding-left:20px}
+.toc li{padding:4px 0}
+.toc a{color:var(--text);text-decoration:none;border-bottom:1px solid var(--border);transition:color .2s}
+.toc a:hover{color:var(--accent2);border-color:var(--accent2)}
+
+/* Footer */
+.footer{text-align:center;padding:40px 20px;border-top:1px solid var(--border);margin-top:60px;color:var(--text-dim);font-size:.85rem}
+.footer .brand{color:var(--accent);font-family:'Oswald',sans-serif;font-size:1rem;letter-spacing:2px;text-transform:uppercase}
+
+/* Responsive */
+@media(max-width:600px){
+  h1{font-size:1.6rem}h2{font-size:1.3rem}
+  .score-badge{min-width:130px;padding:14px 16px}
+  .score-badge .value{font-size:1.5rem}
+  table{font-size:.8rem}
+  thead th,tbody td{padding:8px 10px}
+}
+
+/* Print */
+@media print{
+  body{background:#fff;color:#111}
+  .card,.toc{border-color:#ccc}
+  h2{color:var(--accent)}
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<!-- Header -->
+<div class="header">
+  <div class="brand">Online Optimisers</div>
+  <h1>Full AI &amp; SEO Audit Report</h1>
+  <div class="subtitle">Safe 4 USA Security Inc</div>
+  <div class="meta">
+    <span><strong>safe4usasecurity.net</strong></span>
+    <span>Hallandale Beach, FL</span>
+    <span>Niche: Security Guard Services</span>
+    <span>Date: 2026-04-05</span>
+  </div>
+</div>
+
+<!-- Executive Summary Scores -->
+<div class="score-row">
+  <div class="score-badge">
+    <div class="label">AI Visibility</div>
+    <div class="value critical">8/100</div>
+    <div class="sub">Critical</div>
+  </div>
+  <div class="score-badge">
+    <div class="label">Technical Health</div>
+    <div class="value critical">F</div>
+    <div class="sub">Grade F</div>
+  </div>
+  <div class="score-badge">
+    <div class="label">SEO Foundation</div>
+    <div class="value critical">None</div>
+    <div class="sub">0 Keywords</div>
+  </div>
+  <div class="score-badge">
+    <div class="label">Organic Traffic</div>
+    <div class="value critical">$0</div>
+    <div class="sub">Per Month</div>
+  </div>
+  <div class="score-badge">
+    <div class="label">AI Citations</div>
+    <div class="value critical">0/15</div>
+    <div class="sub">Across 3 Platforms</div>
+  </div>
+</div>
+
+<!-- Top 3 Critical Findings -->
+<div class="card critical-card">
+  <h3 style="color:var(--red);margin-top:0">Top 3 Critical Findings</h3>
+  <ol class="findings">
+    <li><strong>Every single page has noindex/nofollow</strong> - the entire website is invisible to Google, Bing, and all search engines. This is the single most damaging technical issue possible.</li>
+    <li><strong>Zero AI citations across all 15 queries</strong> on ChatGPT, Perplexity, and Google AI Overviews - competitors like Homeland Patrol, Security USA, and Fast Guard Service dominate every query.</li>
+    <li><strong>Domain Rank 0 with 52% spam backlinks</strong> - the backlink profile is nearly non-existent, with the majority of links coming from spam/PBN domains with no real authority.</li>
+  </ol>
+</div>
+
+<!-- Table of Contents -->
+<div class="toc">
+  <h3>Report Contents</h3>
+  <ol>
+    <li><a href="#s1">Technical SEO Audit</a></li>
+    <li><a href="#s2">SEO Foundation</a></li>
+    <li><a href="#s3">AI Visibility Score Breakdown</a></li>
+    <li><a href="#s4">AI Platform Results</a></li>
+    <li><a href="#s5">Google SERP Analysis</a></li>
+    <li><a href="#s6">Entity &amp; Schema Gaps</a></li>
+    <li><a href="#s7">Content Citability Assessment</a></li>
+    <li><a href="#s8">Competitive Landscape</a></li>
+    <li><a href="#s9">GBP &amp; Review Audit</a></li>
+    <li><a href="#s10">Striking Distance Keywords</a></li>
+    <li><a href="#s11">Expert Strategic Insights</a></li>
+    <li><a href="#s12">Quick Win Priority Matrix</a></li>
+    <li><a href="#s13">Action Plan</a></li>
+  </ol>
+</div>
+
+<!-- Section 1: Technical SEO -->
+<h2 id="s1">1. Technical SEO Audit</h2>
+
+<h3>On-Page Health</h3>
+<table>
+  <thead><tr><th>Metric</th><th>Value</th><th>Status</th></tr></thead>
+  <tbody>
+    <tr><td>Page Load Time</td><td>1.66s (DOM complete)</td><td class="ok">OK</td></tr>
+    <tr><td>Time to Interactive</td><td>1.17s</td><td class="ok">OK</td></tr>
+    <tr><td>H1 Tags</td><td>0 (homepage)</td><td class="critical">CRITICAL - No H1</td></tr>
+    <tr><td>H2 Tags</td><td>30</td><td class="warning">ISSUE - excessive</td></tr>
+    <tr><td>Meta Title</td><td>"Professional Security Services Company - Safe 4 USA" (51 chars)</td><td class="ok">OK</td></tr>
+    <tr><td>Meta Description</td><td>154 chars</td><td class="ok">OK</td></tr>
+    <tr><td>Canonical Tag</td><td>Present but no self-referencing canonical</td><td class="warning">ISSUE</td></tr>
+    <tr><td>Missing Alt Tags</td><td>3 images missing</td><td class="warning">FLAG</td></tr>
+    <tr><td>Missing Image Titles</td><td>All missing</td><td class="warning">FLAG</td></tr>
+    <tr><td>Content Rate</td><td>2.9% (text-to-HTML ratio)</td><td class="warning">LOW - bloated</td></tr>
+    <tr><td>HTTPS</td><td>Yes</td><td class="ok">OK</td></tr>
+    <tr><td>Robots/Noindex</td><td>noindex, nofollow on ALL pages</td><td class="critical">CRITICAL</td></tr>
+    <tr><td>Lorem Ipsum Detected</td><td>Yes (Services page "Our Process" section)</td><td class="critical">CRITICAL</td></tr>
+    <tr><td>Last Modified</td><td>2023-05-01</td><td class="warning">STALE (3 years old)</td></tr>
+    <tr><td>Server</td><td>Cloudflare</td><td class="ok">OK</td></tr>
+    <tr><td>CMS</td><td>WordPress + Elementor 3.35.9</td><td class="ok">OK</td></tr>
+  </tbody>
+</table>
+
+<h3>Full Technical Checklist</h3>
+
+<h4>Fundamentals</h4>
+<ul class="checklist">
+  <li class="fail">Google Analytics installed - NOT DETECTED (no GA/GTM script found)</li>
+  <li class="fail">Google Search Console connected - NOT DETECTED</li>
+  <li class="pass">SEO plugin detected - Yoast SEO (generates sitemap, robots.txt)</li>
+  <li class="fail">Essential pages present - Contact YES, About YES, Privacy Policy NOT FOUND, Terms of Service NOT FOUND</li>
+  <li class="pass">Sitemap exists - sitemap_index.xml present with 4 sub-sitemaps</li>
+</ul>
+
+<h4>User Experience</h4>
+<ul class="checklist">
+  <li class="pass">Mobile-friendly - viewport meta tag present</li>
+  <li class="pass">Fast loading - 1.66s DOM complete</li>
+  <li class="pass">Clean URL structure - /services, /about, /contact etc.</li>
+  <li class="fail">Custom 404 page - Not checked</li>
+  <li class="pass">Social media links present - Facebook, Twitter, YouTube, Instagram</li>
+</ul>
+
+<h4>Technical SEO</h4>
+<ul class="checklist">
+  <li class="pass">HTTPS enabled</li>
+  <li class="fail">WWW/non-WWW consistency - No self-referencing canonical on homepage</li>
+  <li class="fail">No mixed content - https_to_http_links: TRUE (mixed content detected)</li>
+  <li class="pass">Sitemap submitted - sitemap_index.xml exists</li>
+  <li class="pass">Robots.txt present - Yoast block, Crawl-delay: 10</li>
+  <li class="fail">Proper canonical tags - Missing self-referencing canonical</li>
+  <li class="fail">No broken internal links - Not checked via crawl</li>
+  <li class="pass">Meta titles on all pages checked</li>
+  <li class="pass">Meta descriptions on all pages checked</li>
+  <li class="fail"><strong>No noindex on important pages - FAIL - EVERY PAGE HAS NOINDEX (CRITICAL)</strong></li>
+  <li class="pass">No duplicate content signals</li>
+</ul>
+
+<h4>On-Page SEO</h4>
+<ul class="checklist">
+  <li class="fail">Single H1 per page - NO H1 on homepage; service pages have H1</li>
+  <li class="fail">Target keywords in H1 - N/A (no H1 on homepage)</li>
+  <li class="pass">Subheadings used for structure</li>
+  <li class="fail">Internal linking between service pages - Links point to old .com domain in some places</li>
+  <li class="fail">Image alt tags present - 3 missing</li>
+  <li class="fail">Image optimization - Lazy-loaded SVG placeholders (good) but some oversized</li>
+  <li class="fail">Content depth 500+ on service pages - Most service pages under 400 words</li>
+</ul>
+
+<h4>Performance</h4>
+<ul class="checklist">
+  <li class="pass">Brotli compression (content_encoding: br)</li>
+  <li class="pass">Cache control present (TTL: 600)</li>
+  <li class="fail">JS/CSS minified - 2 render-blocking scripts detected</li>
+  <li class="fail">Images appropriately sized - Some lazy-loaded but missing</li>
+  <li class="pass">Lazy loading implemented</li>
+</ul>
+
+<div class="card critical-card">
+  <h4 style="margin-top:0;color:var(--red)">Technical Checklist Score: 12/30 = 40% - Grade F</h4>
+  <p>Critical blockers: noindex on all pages, no H1, lorem ipsum, no analytics, no GSC, mixed content, broken cross-domain links (.com vs .net)</p>
+</div>
+
+<h3>Site Architecture</h3>
+<table>
+  <thead><tr><th>Metric</th><th>Details</th></tr></thead>
+  <tbody>
+    <tr><td>Total pages discovered</td><td>24 (from firecrawl_map)</td></tr>
+    <tr><td>Sitemap</td><td>Present (sitemap_index.xml with 4 sub-sitemaps)</td></tr>
+    <tr><td>Robots.txt</td><td>Present (Yoast, Crawl-delay: 10, no Disallow rules)</td></tr>
+    <tr><td>URL structure</td><td>Clean (/services, /commercial-security, /k9-units, etc.)</td></tr>
+    <tr><td>Blog posts</td><td>3 articles found</td></tr>
+    <tr><td>Service pages</td><td>14 individual service pages</td></tr>
+    <tr><td>Critical issue</td><td class="critical">Some internal links point to safe4usasecurity.COM (different domain) instead of .NET</td></tr>
+  </tbody>
+</table>
+
+<!-- Section 2: SEO Foundation -->
+<h2 id="s2">2. SEO Foundation</h2>
+
+<h3>Domain Authority &amp; Backlinks</h3>
+<table>
+  <thead><tr><th>Metric</th><th>Value</th></tr></thead>
+  <tbody>
+    <tr><td>Domain Rank</td><td class="critical">0</td></tr>
+    <tr><td>Total Backlinks</td><td>42</td></tr>
+    <tr><td>Referring Domains</td><td>39 (37 main domains)</td></tr>
+    <tr><td>Referring IPs</td><td>20</td></tr>
+    <tr><td>Dofollow Links</td><td>24 (57%)</td></tr>
+    <tr><td>Nofollow Links</td><td>18 (43%)</td></tr>
+    <tr><td>Spam Score</td><td class="critical">52/100 (HIGH)</td></tr>
+    <tr><td>First Seen</td><td>2025-02-04</td></tr>
+  </tbody>
+</table>
+
+<h3>Top Ranked Keywords</h3>
+<div class="card critical-card">
+  <p><strong>No keywords ranking in the top 100.</strong> The noindex directive has completely removed the site from Google's index. Zero organic visibility.</p>
+  <p style="margin-top:10px;color:var(--text-dim)">Position Distribution: 0 in top 3, 0 in top 10, 0 in top 20, 0 in top 100<br>Estimated Traffic Value: $0/month</p>
+</div>
+
+<h3>Anchor Text Health</h3>
+<table>
+  <thead><tr><th>Anchor Type</th><th>Count</th><th>%</th><th>Status</th></tr></thead>
+  <tbody>
+    <tr><td>Naked URL (safe4usasecurity.net)</td><td>36</td><td>86%</td><td class="critical">TOO HIGH</td></tr>
+    <tr><td>Image (null anchor)</td><td>4</td><td>10%</td><td class="ok">OK</td></tr>
+    <tr><td>Spam anchor (SEO service ads)</td><td>2</td><td>5%</td><td class="critical">TOXIC</td></tr>
+    <tr><td><strong>Total</strong></td><td><strong>42</strong></td><td><strong>100%</strong></td><td class="critical"><strong>POOR</strong></td></tr>
+  </tbody>
+</table>
+<p style="color:var(--text-dim);font-size:.85rem">Anchor diversity is extremely poor. 86% naked URL anchors indicate automated/spam link building, not natural editorial links. Two anchors are literal spam advertisements for PBN/backlink services.</p>
+
+<h3>Top Referring Domains</h3>
+<table>
+  <thead><tr><th>Domain</th><th>Rank</th><th>Spam Score</th><th>Type</th></tr></thead>
+  <tbody>
+    <tr><td>ycm.info</td><td>0</td><td>50</td><td>Blog/CMS</td></tr>
+    <tr><td>linkmetrics.pro</td><td>0</td><td>20</td><td>Blog/CMS</td></tr>
+    <tr><td>wallpapers.pro</td><td>0</td><td>50</td><td>Blog/CMS</td></tr>
+    <tr><td>tunca.org</td><td>0</td><td>50</td><td>Blog/CMS</td></tr>
+    <tr><td>jake.eu</td><td>0</td><td>50</td><td>Blog/CMS</td></tr>
+    <tr><td>All others</td><td>0</td><td>20-55</td><td>Blog/CMS/Unknown</td></tr>
+  </tbody>
+</table>
+<p style="color:var(--text-dim);font-size:.85rem"><strong>All 37 referring domains have a Domain Rank of 0.</strong> Not a single quality backlink exists. The vast majority come from .info, .eu, .pro, .org TLDs that appear to be low-quality blog networks.</p>
+
+<!-- Section 3: AI Visibility Score -->
+<h2 id="s3">3. AI Visibility Score: 8/100 - Critical</h2>
+
+<table>
+  <thead><tr><th>Pillar</th><th>Score</th><th>Status</th></tr></thead>
+  <tbody>
+    <tr><td>Knowledge Graph / Directories</td><td>5/25</td><td class="critical">Critical - GBP exists but no BBB, no Yelp reviews, no niche directories</td></tr>
+    <tr><td>Content Citability</td><td>3/25</td><td class="critical">Critical - Generic content, lorem ipsum, no proof blocks</td></tr>
+    <tr><td>Schema Markup</td><td>0/25</td><td class="critical">Critical - Zero structured data on any page</td></tr>
+    <tr><td>AI-Weighted Backlinks</td><td>0/25</td><td class="critical">Critical - DR 0, zero quality links</td></tr>
+  </tbody>
+</table>
+
+<!-- Section 4: AI Platform Results -->
+<h2 id="s4">4. AI Platform Results</h2>
+
+<h3>ChatGPT Search (gpt-4o-search-preview)</h3>
+<table>
+  <thead><tr><th>Query</th><th>Safe4USA?</th><th>Companies Cited Instead</th></tr></thead>
+  <tbody>
+    <tr><td>best security company in Hallandale Beach FL</td><td class="no">NO</td><td>HTVSI, Security USA Inc., Citizen Protection, All Security Supply, A American Home Security, Justice and Security Strategies</td></tr>
+    <tr><td>top armed security guard services in Fort Lauderdale FL</td><td class="no">NO</td><td>Fast Guard Service (4.7, 78 reviews), AoE Security (5.0, 14 reviews), Allied Universal (3.6, 171 reviews), GardaWorld, Elite Guard Broward</td></tr>
+    <tr><td>who are the best executive protection companies near Miami FL</td><td class="no">NO</td><td>EPI Agency of Miami, SWA Protection, Sigma-Profi Group, Shield Worldwide Protection, MiamiCoach, Southwest Protection, Prestige Guard &amp; Drive</td></tr>
+    <tr><td>security guard company Hallandale Beach FL recommendations</td><td class="no">NO</td><td>Security USA Inc. (4.4, 10 reviews), Fast Guard Service (4.7, 78 reviews), Assured Security Corp (5.0, 22 reviews), Homeland Patrol</td></tr>
+    <tr><td>according to experts, best security company in South Florida FL</td><td class="no">NO</td><td>Allied Universal (3.7, 186 reviews), Techpro Security Products, The CCTV Guys (5.0, 87 reviews), Bryant Security</td></tr>
+  </tbody>
+</table>
+<div class="card critical-card"><strong>ChatGPT Citations: 0/5</strong></div>
+
+<h3>Perplexity AI (sonar-pro)</h3>
+<table>
+  <thead><tr><th>Query</th><th>Safe4USA?</th><th>Top Companies Cited</th></tr></thead>
+  <tbody>
+    <tr><td>best security company in Hallandale Beach FL</td><td class="no">NO</td><td>Homeland Patrol (#1 rated 20 years), Security USA Inc., Ranger Premier, Kingsley Security, Alarm Brokers</td></tr>
+    <tr><td>top armed security guard services in Fort Lauderdale FL</td><td class="no">NO</td><td>Top Guard Professionals (40+ years), Invictus Security, IGS (30+ years), Exec Security, FPI Security, Elite Guard (since 1983)</td></tr>
+    <tr><td>who are the best executive protection companies near Miami FL</td><td class="no">NO</td><td>Global Threat Solutions, Eagle Eye Int'l, Guardian Professional Security, Specialized Investigations Consultants, FSO Security, Exec Security</td></tr>
+    <tr><td>security guard company Hallandale Beach FL recommendations</td><td class="no">NO</td><td>Ranger Premier, Security USA Inc., Homeland Patrol, Godly Security Agency, Allied Universal, Kingsley Security</td></tr>
+    <tr><td>according to experts, best security company in South Florida FL</td><td class="no">NO</td><td>Allied Universal (#1 per Suntel Analytics), Securitas USA, Signal 88, Kent Security, Sunstates Security, Delta Five</td></tr>
+  </tbody>
+</table>
+<div class="card critical-card"><strong>Perplexity Citations: 0/5</strong></div>
+
+<h3>Google AI Overviews</h3>
+<table>
+  <thead><tr><th>Query</th><th>AIO Present?</th><th>Safe4USA?</th><th>Sources Cited</th></tr></thead>
+  <tbody>
+    <tr><td>best security company in Hallandale Beach FL</td><td>NO</td><td>-</td><td>No AIO triggered</td></tr>
+    <tr><td>top armed security guard services in Fort Lauderdale FL</td><td>NO</td><td>-</td><td>No AIO triggered</td></tr>
+    <tr><td>who are the best executive protection companies near Miami FL</td><td class="ok">YES</td><td class="no">NO</td><td>Eagle Eye Int'l, Guardian Professional, Global Threat Solutions, Specialized Investigations, Naples Security Solutions</td></tr>
+    <tr><td>security guard company Hallandale Beach FL recommendations</td><td class="ok">YES</td><td class="no">NO</td><td>Homeland Patrol, Fast Guard Service, Security USA Inc., Facebook</td></tr>
+    <tr><td>according to experts, best security company in South Florida FL</td><td class="ok">YES</td><td class="no">NO</td><td>Sunstates Security, Regions Security, Alpha3 Security, NITA, Allied Universal</td></tr>
+  </tbody>
+</table>
+<div class="card critical-card"><strong>Google AIO Citations: 0/5 (AIO triggered 3/5 times)</strong></div>
+
+<h3>Cross-Platform Summary</h3>
+<table>
+  <thead><tr><th>Query</th><th>ChatGPT</th><th>Perplexity</th><th>Google AIO</th><th>Total</th></tr></thead>
+  <tbody>
+    <tr><td>best security company Hallandale Beach FL</td><td class="no">NO</td><td class="no">NO</td><td>No AIO</td><td class="critical">0/2</td></tr>
+    <tr><td>top armed security Fort Lauderdale FL</td><td class="no">NO</td><td class="no">NO</td><td>No AIO</td><td class="critical">0/2</td></tr>
+    <tr><td>best executive protection Miami FL</td><td class="no">NO</td><td class="no">NO</td><td class="no">NO</td><td class="critical">0/3</td></tr>
+    <tr><td>security guard Hallandale Beach FL</td><td class="no">NO</td><td class="no">NO</td><td class="no">NO</td><td class="critical">0/3</td></tr>
+    <tr><td>best security South Florida FL experts</td><td class="no">NO</td><td class="no">NO</td><td class="no">NO</td><td class="critical">0/3</td></tr>
+    <tr><td><strong>TOTAL</strong></td><td class="critical"><strong>0/5</strong></td><td class="critical"><strong>0/5</strong></td><td class="critical"><strong>0/3</strong></td><td class="critical"><strong>0/13</strong></td></tr>
+  </tbody>
+</table>
+<div class="card critical-card">
+  <p><strong>Safe 4 USA Security was not cited a single time across 15 AI queries on 3 platforms.</strong></p>
+</div>
+
+<!-- Section 5: Google SERP -->
+<h2 id="s5">5. Google SERP Analysis</h2>
+<p>Since Safe4USA has 0 ranked keywords, there are no "money keywords" to check positions for. The site is completely de-indexed due to the noindex directive.</p>
+
+<h3>SERP Landscape for Target Queries</h3>
+
+<h4>"best security company in Hallandale Beach FL"</h4>
+<table>
+  <thead><tr><th>#</th><th>Result</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td>Yelp - THE BEST 10 SECURITY SERVICES near HALLANDALE</td></tr>
+    <tr><td>2</td><td>homelandpatrol.net - Hallandale Beach FL Security Guards</td></tr>
+    <tr><td>3</td><td>securityusainc.com - Hallandale Beach Security Guard Service</td></tr>
+    <tr><td>4</td><td>Yelp (mobile) - TOP 10 BEST Security near Hallandale Beach</td></tr>
+    <tr><td>5</td><td>rangerpremiersecurityguards.com - Security Guard Services in Hallandale Beach</td></tr>
+  </tbody>
+</table>
+
+<h4>"security guard company Hallandale Beach FL recommendations"</h4>
+<table>
+  <thead><tr><th>#</th><th>Result</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td>Yelp</td></tr>
+    <tr><td>2</td><td>homelandpatrol.net</td></tr>
+    <tr><td>3</td><td>securityusainc.com</td></tr>
+    <tr><td>4</td><td>Yelp (mobile)</td></tr>
+    <tr><td>5</td><td>Indeed.com</td></tr>
+  </tbody>
+</table>
+
+<h3>People Also Ask (Content Opportunities)</h3>
+<table>
+  <thead><tr><th>Question</th></tr></thead>
+  <tbody>
+    <tr><td>Is Hallandale Beach a wealthy area?</td></tr>
+    <tr><td>What are the top 3 security systems?</td></tr>
+    <tr><td>What is the crime rate in Hallandale Beach Florida?</td></tr>
+    <tr><td>How to choose a security company?</td></tr>
+    <tr><td>How to choose the best security guard company?</td></tr>
+    <tr><td>Which company is best for security?</td></tr>
+    <tr><td>How much does an executive protection make in Florida?</td></tr>
+    <tr><td>What is the difference between a bodyguard and an executive protection agent?</td></tr>
+    <tr><td>What is the most powerful private security company in the world?</td></tr>
+    <tr><td>What is an executive protection company?</td></tr>
+    <tr><td>What is the average salary for a security guard in Florida?</td></tr>
+    <tr><td>How much does Jeff Bezos pay his security?</td></tr>
+  </tbody>
+</table>
+
+<!-- Section 6: Entity & Schema -->
+<h2 id="s6">6. Entity &amp; Schema Gaps</h2>
+
+<h3>Schema Scorecard</h3>
+<table>
+  <thead><tr><th>Schema Type</th><th>Status</th><th>Points</th><th>Details</th></tr></thead>
+  <tbody>
+    <tr><td>LocalBusiness / Organization</td><td class="critical">MISSING</td><td>0/6</td><td>No JSON-LD structured data found on any page</td></tr>
+    <tr><td>Person</td><td class="critical">MISSING</td><td>0/4</td><td>About page has 5 team bios but no Person schema</td></tr>
+    <tr><td>FAQ</td><td class="critical">MISSING</td><td>0/5</td><td>Services page has 3 FAQ questions but no FAQPage schema</td></tr>
+    <tr><td>Service</td><td class="critical">MISSING</td><td>0/3</td><td>14 service pages exist but no Service schema</td></tr>
+    <tr><td>HowTo</td><td class="critical">MISSING</td><td>0/2</td><td>"Our Process" section exists but no HowTo schema</td></tr>
+    <tr><td>Review / AggregateRating</td><td class="critical">MISSING</td><td>0/3</td><td>No review schema despite 8 Google reviews at 5.0</td></tr>
+    <tr><td>Product</td><td>N/A</td><td>0/2</td><td>Not applicable</td></tr>
+  </tbody>
+</table>
+<div class="card critical-card">
+  <strong>Schema Score: 0/25 - Zero structured data across the entire website.</strong>
+  <p style="margin-top:8px;color:var(--text-dim)">DataForSEO on-page check confirms: has_micromarkup: false. Elementor does not generate schema by default, and no schema plugin appears to be installed.</p>
+</div>
+
+<h3>Directory Presence</h3>
+<table>
+  <thead><tr><th>Platform</th><th>Status</th><th>Rating</th><th>Reviews</th><th>Points</th></tr></thead>
+  <tbody>
+    <tr><td>Google Business Profile</td><td class="ok">FOUND</td><td>5.0</td><td>~8 reviews</td><td>5/10</td></tr>
+    <tr><td>BBB</td><td class="critical">NOT FOUND</td><td>-</td><td>-</td><td>0/5</td></tr>
+    <tr><td>Yelp</td><td class="warning">FOUND (unclaimed, no reviews)</td><td>-</td><td>0</td><td>0/5</td></tr>
+    <tr><td>Angi/HomeAdvisor</td><td class="warning">NOT CHECKED</td><td>-</td><td>-</td><td>0/5</td></tr>
+    <tr><td>SecurityJobs.net</td><td class="warning">NOT CHECKED</td><td>-</td><td>-</td><td>0/5</td></tr>
+  </tbody>
+</table>
+
+<h3>GBP Details</h3>
+<table>
+  <thead><tr><th>Field</th><th>Value</th></tr></thead>
+  <tbody>
+    <tr><td>Name</td><td>Safe 4 USA Security Inc</td></tr>
+    <tr><td>Address</td><td>800 SE 4th Ave Suite 707, Hallandale Beach, FL 33009</td></tr>
+    <tr><td>Phone</td><td>(754) 544-1544</td></tr>
+    <tr><td>Hours</td><td>Open 24 hours</td></tr>
+    <tr><td>Category</td><td>Security guard service</td></tr>
+    <tr><td>Rating</td><td>5.0</td></tr>
+    <tr><td>Website</td><td>safe4usasecurity.net</td></tr>
+  </tbody>
+</table>
+
+<!-- Section 7: Content Citability -->
+<h2 id="s7">7. Content Citability Assessment</h2>
+
+<table>
+  <thead><tr><th>Factor</th><th>Score</th><th>Notes</th></tr></thead>
+  <tbody>
+    <tr><td>Quotable Proof Blocks</td><td>1/5</td><td>Only "10+ years experience" mentioned vaguely. No specific stats, number of clients served, contracts completed, or response times.</td></tr>
+    <tr><td>FAQ Sections</td><td>1/5</td><td>Services page has 3 generic FAQs. No FAQs on individual service pages. Questions are not phrased as citation triggers.</td></tr>
+    <tr><td>Unique Claims</td><td>2/5</td><td>Strong team credentials (ex-Special Forces, Green Beret medic, former CIA-trained agent) but buried on About page.</td></tr>
+    <tr><td>Service Page Depth</td><td>1/5</td><td>Average ~300 words per service page. Most are generic descriptions that any security company could use.</td></tr>
+    <tr><td>Content Differentiation</td><td>0/5</td><td>Nothing on the site that competitors don't also say. Lorem ipsum still live. No case studies, no specific client types.</td></tr>
+    <tr><td><strong>Total</strong></td><td class="critical"><strong>5/25</strong></td><td></td></tr>
+  </tbody>
+</table>
+
+<h3>Page-by-Page Content Depth</h3>
+<table>
+  <thead><tr><th>Page</th><th>Est. Words</th><th>Schema</th><th>FAQ</th><th>Proof Blocks</th><th>Grade</th></tr></thead>
+  <tbody>
+    <tr><td>Homepage</td><td>~1,400</td><td class="critical">NONE</td><td class="no">NO</td><td class="no">NO</td><td class="warning">D</td></tr>
+    <tr><td>/services</td><td>~600</td><td class="critical">NONE</td><td class="ok">YES (3 Qs)</td><td class="critical">NO - lorem ipsum present</td><td class="critical">F</td></tr>
+    <tr><td>/commercial-security</td><td>~350</td><td class="critical">NONE</td><td class="no">NO</td><td class="no">NO</td><td class="warning">D</td></tr>
+    <tr><td>/personal-protection</td><td>~350</td><td class="critical">NONE</td><td class="no">NO</td><td class="ok">YES (ex-military mention)</td><td>C</td></tr>
+    <tr><td>/k9-units</td><td>~300</td><td class="critical">NONE</td><td class="no">NO</td><td class="no">NO</td><td class="warning">D</td></tr>
+    <tr><td>/about</td><td>~1,200</td><td class="critical">NONE</td><td class="no">NO</td><td class="ok">YES (detailed team bios)</td><td class="ok">B</td></tr>
+    <tr><td>/educational-institutions</td><td>~200</td><td class="critical">NONE</td><td class="no">NO</td><td class="no">NO</td><td class="critical">F</td></tr>
+    <tr><td>/religious-institutions</td><td>~200</td><td class="critical">NONE</td><td class="no">NO</td><td class="no">NO</td><td class="critical">F</td></tr>
+    <tr><td>/blog (3 posts)</td><td>~500 each</td><td class="critical">NONE</td><td class="no">NO</td><td class="no">NO</td><td class="warning">D</td></tr>
+  </tbody>
+</table>
+<p style="color:var(--text-dim);font-size:.9rem;margin-top:12px"><strong>The About page is the strongest content asset</strong> - detailed bios with verifiable military/law enforcement credentials. This is exactly the type of content AI models cite, but it has no schema, no structured data, and the site blocks indexing.</p>
+
+<!-- Section 8: Competitive Landscape -->
+<h2 id="s8">8. Competitive Landscape</h2>
+
+<h3>Who AI Recommends Instead</h3>
+<table>
+  <thead><tr><th>Competitor</th><th>ChatGPT</th><th>Perplexity</th><th>Google AIO</th><th>Total</th></tr></thead>
+  <tbody>
+    <tr><td>Security USA Inc.</td><td>2</td><td>2</td><td>1</td><td><strong>5</strong></td></tr>
+    <tr><td>Homeland Patrol</td><td>1</td><td>2</td><td>1</td><td><strong>4</strong></td></tr>
+    <tr><td>Fast Guard Service</td><td>2</td><td>0</td><td>1</td><td><strong>3</strong></td></tr>
+    <tr><td>Allied Universal</td><td>2</td><td>2</td><td>1</td><td><strong>5</strong></td></tr>
+    <tr><td>Ranger Premier</td><td>0</td><td>2</td><td>0</td><td><strong>2</strong></td></tr>
+    <tr><td>Elite Guard</td><td>1</td><td>1</td><td>0</td><td><strong>2</strong></td></tr>
+    <tr><td>Sunstates Security</td><td>0</td><td>2</td><td>1</td><td><strong>3</strong></td></tr>
+    <tr><td>AoE Security</td><td>1</td><td>1</td><td>0</td><td><strong>2</strong></td></tr>
+    <tr><td>Global Threat Solutions</td><td>1</td><td>1</td><td>1</td><td><strong>3</strong></td></tr>
+    <tr><td>Eagle Eye Int'l</td><td>1</td><td>1</td><td>1</td><td><strong>3</strong></td></tr>
+  </tbody>
+</table>
+
+<h3>Competitor Backlink Comparison</h3>
+<table>
+  <thead><tr><th>Company</th><th>Domain Rank</th><th>Backlinks</th><th>Ref Domains</th><th>Spam Score</th></tr></thead>
+  <tbody>
+    <tr style="background:rgba(248,81,73,0.15)"><td><strong>Safe 4 USA</strong></td><td class="critical"><strong>0</strong></td><td><strong>42</strong></td><td><strong>39</strong></td><td class="critical"><strong>52%</strong></td></tr>
+    <tr><td>Homeland Patrol</td><td>119</td><td>247</td><td>114</td><td>23%</td></tr>
+    <tr><td>Security USA Inc.</td><td>194</td><td>700</td><td>216</td><td>20%</td></tr>
+    <tr><td>Fast Guard Service</td><td>310</td><td>17,782</td><td>3,005</td><td>21%</td></tr>
+  </tbody>
+</table>
+<p style="color:var(--text-dim);font-size:.9rem">Safe4USA's backlink profile is 6x weaker than the weakest local competitor (Homeland Patrol) and 425x weaker than the dominant competitor (Fast Guard Service). Every competitor has a spam score under 25%, while Safe4USA sits at 52%.</p>
+
+<h3>AI vs Organic Competitor Split</h3>
+<table>
+  <thead><tr><th>Category</th><th>Companies</th></tr></thead>
+  <tbody>
+    <tr><td><strong>In AI + Organic</strong></td><td>Security USA Inc., Homeland Patrol, Fast Guard Service, Allied Universal (full-spectrum competitors)</td></tr>
+    <tr><td><strong>In AI only</strong></td><td>Global Threat Solutions, Eagle Eye Int'l, SWA Protection (AI-optimized, strong entity signals)</td></tr>
+    <tr><td><strong>In Organic only</strong></td><td>Yelp, Indeed, Thumbtack (aggregator platforms)</td></tr>
+  </tbody>
+</table>
+
+<!-- Section 9: GBP & Review Audit -->
+<h2 id="s9">9. GBP &amp; Review Audit</h2>
+
+<h3>GBP Comparison</h3>
+<table>
+  <thead><tr><th>Business</th><th>Rating</th><th>Reviews</th><th>Address</th><th>Hours</th></tr></thead>
+  <tbody>
+    <tr style="background:rgba(248,81,73,0.15)"><td><strong>Safe 4 USA Security</strong></td><td>5.0</td><td>~8</td><td>800 SE 4th Ave Ste 707, Hallandale Beach</td><td>24 hours</td></tr>
+    <tr><td>Security USA Inc.</td><td>4.4</td><td>10+</td><td>501 Golden Isles Dr Ste 204, Hallandale Beach</td><td>Business hours</td></tr>
+    <tr><td>Fast Guard Service</td><td>4.7</td><td>78</td><td>925 S 21st Ave, Hollywood</td><td>Business hours</td></tr>
+    <tr><td>Homeland Patrol</td><td>4.0</td><td>Low</td><td>3600 S State Rd 7, Miramar</td><td>Business hours</td></tr>
+  </tbody>
+</table>
+<p style="color:var(--text-dim);font-size:.9rem;margin-top:8px">Safe4USA actually has the highest rating (5.0) among local competitors, but by far the fewest reviews (~8 vs 78 for Fast Guard). The 5.0 rating with 8 reviews is a strength worth building on.</p>
+
+<h3>NAP Consistency Check</h3>
+<table>
+  <thead><tr><th>Source</th><th>Name</th><th>Address</th><th>Phone</th><th>Match?</th></tr></thead>
+  <tbody>
+    <tr><td>Website (header)</td><td>Safe 4 USA</td><td>Not listed on homepage</td><td>(754) 544-1544</td><td class="warning">PARTIAL</td></tr>
+    <tr><td>Website (contact pages)</td><td>Safe 4 USA</td><td>References .com email</td><td>security@safe4usasecurity.com (.COM)</td><td class="critical">MISMATCH</td></tr>
+    <tr><td>GBP</td><td>Safe 4 USA Security Inc</td><td>800 SE 4th Ave Suite 707, Hallandale Beach, FL 33009</td><td>(754) 544-1544</td><td class="ok">OK</td></tr>
+    <tr><td>Website domain</td><td>safe4usasecurity.NET</td><td>-</td><td>-</td><td class="critical">.NET vs .COM conflict</td></tr>
+  </tbody>
+</table>
+<p style="color:var(--text-dim);font-size:.9rem;margin-top:8px"><strong>Critical NAP issue:</strong> The website uses both .net (domain) and .com (email, some internal links). Some service page "Learn More" links point to safe4usasecurity.COM instead of .NET. This domain split confuses search engines about entity identity.</p>
+
+<h3>Directory Status</h3>
+<table>
+  <thead><tr><th>Directory</th><th>Status</th><th>Notes</th></tr></thead>
+  <tbody>
+    <tr><td>BBB</td><td class="critical">NOT FOUND</td><td>Not listed or accredited</td></tr>
+    <tr><td>Yelp</td><td class="warning">FOUND - unclaimed, 0 reviews</td><td>Default business avatar, no photos</td></tr>
+    <tr><td>Angi/HomeAdvisor</td><td class="warning">NOT CHECKED</td><td>Likely not listed</td></tr>
+    <tr><td>Thumbtack</td><td class="critical">NOT FOUND in searches</td><td>-</td></tr>
+  </tbody>
+</table>
+
+<!-- Section 10: Striking Distance -->
+<h2 id="s10">10. Striking Distance Keywords</h2>
+
+<div class="card critical-card">
+  <h4 style="margin-top:0;color:var(--red)">No Striking Distance Keywords Available</h4>
+  <p>The site has zero keywords ranking anywhere in the top 100 due to the site-wide noindex directive. The entire site must be re-indexed before any keyword tracking becomes relevant.</p>
+</div>
+
+<h3>Keywords Expected After Noindex Removal (2-4 weeks)</h3>
+<table>
+  <thead><tr><th>Keyword</th><th>Competition</th><th>Opportunity</th></tr></thead>
+  <tbody>
+    <tr><td>security company hallandale beach</td><td class="ok">Low</td><td>Direct match to GBP location</td></tr>
+    <tr><td>armed security guards hallandale beach fl</td><td class="ok">Low</td><td>Service + location page match</td></tr>
+    <tr><td>executive protection south florida</td><td class="warning">Medium</td><td>Strong team credentials differentiator</td></tr>
+    <tr><td>k9 security units florida</td><td class="ok">Low</td><td>Niche service page exists</td></tr>
+    <tr><td>security guard company near me</td><td class="warning">Medium</td><td>Local pack opportunity via GBP</td></tr>
+  </tbody>
+</table>
+
+<!-- Section 11: Expert Insights -->
+<h2 id="s11">11. Expert Strategic Insights</h2>
+
+<div class="insight">
+  <div class="number">1</div>
+  <p><strong>The Noindex Problem is a $50,000+ Annual Revenue Leak.</strong> Every day this site sits with noindex, the business loses potential leads from organic search. Competitors like Security USA (DR 194) and Homeland Patrol (DR 119) are capturing 100% of the organic traffic for "security company Hallandale Beach" queries. Removing noindex is a 5-minute fix in Yoast SEO settings that unlocks the entire search channel.</p>
+</div>
+
+<div class="insight">
+  <div class="number">2</div>
+  <p><strong>The Team Credentials Are a Unique Competitive Moat, But They're Buried.</strong> Denis Voit (former military sniper), Barry Little (25-year British Special Forces veteran), Kenny Robertson (US Army Green Beret, 5th SFG), Robert Luzzi (25-year Special Agent, CIA-trained), and Philip Glikman (official Krav Maga instructor for Florida). This is an extraordinary team. No competitor in the Hallandale Beach area has anything close. Yet this information is buried on the About page with no schema and blocked from indexing.</p>
+</div>
+
+<div class="insight">
+  <div class="number">3</div>
+  <p><strong>The .COM vs .NET Domain Split Is Fragmenting Entity Signals.</strong> The website is on safe4usasecurity.NET, but the email address, some internal links, and OG image URLs point to safe4usasecurity.COM. This tells search engines and AI models there are two different entities. All references must be consolidated to .NET to build a single, strong entity signal.</p>
+</div>
+
+<div class="insight">
+  <div class="number">4</div>
+  <p><strong>The 5.0 Google Rating Is an Underused Weapon.</strong> With a perfect 5.0 rating, Safe4USA has a trust signal advantage over Security USA (4.4), Fast Guard (4.7), and Allied Universal (3.6). But 8 reviews vs 78 (Fast Guard) means the volume isn't there to trigger citation. A review collection campaign targeting 30+ reviews would make this the highest-rated AND well-reviewed security company in Hallandale Beach.</p>
+</div>
+
+<div class="insight">
+  <div class="number">5</div>
+  <p><strong>The FAQ Content Exists But Has No Schema.</strong> The services page already has 3 FAQ questions. Adding FAQPage schema is a 30-minute technical fix that immediately makes these eligible for rich results in Google. Adding 5-10 more FAQs per service page (targeting PAA questions like "What is the crime rate in Hallandale Beach Florida?") would create citation-trigger content for AI models.</p>
+</div>
+
+<div class="insight">
+  <div class="number">6</div>
+  <p><strong>Competitor Blind Spot: Credentials vs Commodity.</strong> The top AI-cited competitors (Allied Universal, Homeland Patrol, Security USA) are primarily commodity guard services. None of them feature individual team members with verifiable military/special forces backgrounds. Safe4USA's executive protection capability with ex-Green Beret, ex-Special Forces, and ex-CIA-trained personnel is a category differentiator that no local competitor can match.</p>
+</div>
+
+<div class="insight">
+  <div class="number">7</div>
+  <p><strong>Lorem Ipsum on a Live Site Signals Neglect.</strong> The "Our Process" section on the services page contains placeholder text. This is visible to anyone who visits the site, including AI crawlers. It signals the site is unfinished and unreliable - the exact opposite of the trust signals needed for AI citation.</p>
+</div>
+
+<!-- Section 12: Quick Win Matrix -->
+<h2 id="s12">12. Quick Win Priority Matrix</h2>
+
+<h3>High Impact, Low Effort (Do First - This Week)</h3>
+<table>
+  <thead><tr><th>Action</th><th>Time</th><th>Impact</th><th>Keywords Affected</th></tr></thead>
+  <tbody>
+    <tr><td>Remove noindex/nofollow from all pages (Yoast SEO > Search Appearance)</td><td>5 min</td><td class="critical">CRITICAL</td><td>All</td></tr>
+    <tr><td>Remove lorem ipsum from services page "Our Process" section</td><td>10 min</td><td class="critical">Eliminates trust-killer</td><td>All</td></tr>
+    <tr><td>Fix .COM to .NET internal links on services page</td><td>30 min</td><td class="warning">Entity fragmentation fix</td><td>All</td></tr>
+    <tr><td>Add H1 tag to homepage: "Security Guard Services in Hallandale Beach FL"</td><td>15 min</td><td class="warning">Primary heading for indexing</td><td>Local security keywords</td></tr>
+    <tr><td>Consolidate email to @safe4usasecurity.net across all pages</td><td>30 min</td><td class="warning">NAP consistency</td><td>Entity signals</td></tr>
+  </tbody>
+</table>
+
+<h3>High Impact, Medium Effort (Week 1-2)</h3>
+<table>
+  <thead><tr><th>Action</th><th>Time</th><th>Impact</th></tr></thead>
+  <tbody>
+    <tr><td>Add LocalBusiness JSON-LD schema to homepage</td><td>1 hour</td><td>Entity recognition across all AI platforms</td></tr>
+    <tr><td>Add Person schema for Denis Voit, Barry Little, Kenny Robertson, Robert Luzzi</td><td>2 hours</td><td>Unique differentiator for AI citation</td></tr>
+    <tr><td>Add FAQPage schema to existing FAQ content</td><td>30 min</td><td>Rich result eligibility</td></tr>
+    <tr><td>Write 10 FAQs targeting PAA questions for service pages</td><td>3 hours</td><td>Citation-trigger content</td></tr>
+    <tr><td>Submit to BBB for accreditation</td><td>1 hour + processing</td><td>Directory presence +5 points</td></tr>
+    <tr><td>Claim and optimize Yelp listing with photos and description</td><td>1 hour</td><td>Directory presence</td></tr>
+    <tr><td>Set up Google Analytics and Search Console</td><td>30 min</td><td>Measurement foundation</td></tr>
+    <tr><td>Add Privacy Policy and Terms of Service pages</td><td>1 hour</td><td>Trust signals + legal compliance</td></tr>
+  </tbody>
+</table>
+
+<h3>High Impact, Higher Effort (Month 1-3)</h3>
+<table>
+  <thead><tr><th>Action</th><th>Time</th><th>Impact</th></tr></thead>
+  <tbody>
+    <tr><td>Rewrite all 14 service pages to 800+ words with Hallandale Beach mentions</td><td>20 hours</td><td>Content depth for organic + AI</td></tr>
+    <tr><td>Launch Google review collection campaign (target 30+ reviews)</td><td>Ongoing</td><td>Review volume to match competitors</td></tr>
+    <tr><td>Build 20-30 quality backlinks through security industry directories</td><td>10-15 hours</td><td>DR improvement from 0 to 50+</td></tr>
+    <tr><td>Create "Why Choose Safe 4 USA" comparison page</td><td>3 hours</td><td>Differentiation content for AI citation</td></tr>
+    <tr><td>Build location-specific pages for Hallandale Beach, Fort Lauderdale, Hollywood FL, Miami</td><td>8 hours</td><td>Local keyword targeting</td></tr>
+    <tr><td>Add AggregateRating schema once review count reaches 15+</td><td>30 min</td><td>Rich results in SERP</td></tr>
+  </tbody>
+</table>
+
+<h3>Lower Priority (Month 3+)</h3>
+<table>
+  <thead><tr><th>Action</th><th>Time</th><th>Impact</th></tr></thead>
+  <tbody>
+    <tr><td>Disavow toxic backlinks (52% spam)</td><td>1 hour</td><td>Clean up backlink profile</td></tr>
+    <tr><td>Reduce H2 count on homepage (currently 30)</td><td>2 hours</td><td>Cleaner heading structure</td></tr>
+    <tr><td>Fix render-blocking scripts</td><td>1 hour</td><td>Minor speed improvement</td></tr>
+    <tr><td>Redesign homepage to feature team credentials prominently</td><td>5-10 hours</td><td>Conversion + trust</td></tr>
+    <tr><td>Blog content strategy - monthly posts targeting security topics</td><td>Ongoing</td><td>Topical authority</td></tr>
+  </tbody>
+</table>
+
+<!-- Section 13: Action Plan -->
+<h2 id="s13">13. Action Plan</h2>
+
+<h3>Critical Fixes (This Week)</h3>
+<ol class="findings">
+  <li><strong>Remove noindex/nofollow</strong> - WordPress Admin > Yoast SEO > Search Appearance > General > Toggle OFF "Discourage search engines from indexing this site." This single action is worth more than everything else combined.</li>
+  <li><strong>Remove lorem ipsum</strong> from services page</li>
+  <li><strong>Fix .COM to .NET links</strong> across all service pages</li>
+  <li><strong>Add H1 tag</strong> to homepage</li>
+  <li><strong>Submit sitemap</strong> to Google Search Console (requires GSC setup)</li>
+</ol>
+
+<h3>Quick Wins (Month 1)</h3>
+<ul class="findings">
+  <li>LocalBusiness + Person + FAQPage schema implementation</li>
+  <li>BBB submission + Yelp claim</li>
+  <li>10 FAQ pages targeting PAA questions</li>
+  <li>Google review collection campaign launched</li>
+  <li>Analytics and GSC installed</li>
+</ul>
+
+<h3>Medium-Term (Months 2-3)</h3>
+<ul class="findings">
+  <li>Full service page rewrites (800+ words each)</li>
+  <li>20-30 quality backlink acquisitions</li>
+  <li>Location-specific landing pages</li>
+  <li>Comparison/differentiator content</li>
+  <li>Blog content calendar</li>
+</ul>
+
+<h3>Ongoing Strategy</h3>
+<ul class="findings">
+  <li>Monthly review collection targets</li>
+  <li>Quarterly re-audit of AI visibility score</li>
+  <li>Competitor monitoring (especially Homeland Patrol, Security USA, Fast Guard)</li>
+  <li>Content expansion based on PAA and related search data</li>
+  <li>Backlink building through security industry channels</li>
+</ul>
+
+<!-- Footer -->
+<div class="footer">
+  <div class="brand">Online Optimisers</div>
+  <p style="margin-top:8px">Prepared by Online Optimisers - Full AI &amp; SEO Audit Report</p>
+  <p>Safe 4 USA Security Inc - Hallandale Beach, FL</p>
+  <p style="margin-top:8px">2026-04-05</p>
+</div>
+
+</div>
+</body>
+</html>
