@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Handyman Superior LLC - Call Briefing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #ffffff;
+    --bg-alt: #f5f7fa;
+    --bg-navy: #061B31;
+    --bg-navy-light: #e8ecf2;
+    --text: #1a1a2e;
+    --text-dim: #5f6578;
+    --accent: #061B31;
+    --accent-warm: #D97706;
+    --border: #e0e4ea;
+    --green: #16a34a;
+    --yellow: #ca8a04;
+    --red: #dc2626;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .hero-header {
+    background: var(--bg-navy);
+    color: #fff;
+    padding: 56px 24px 48px;
+    text-align: center;
+  }
+  .hero-header .icon {
+    width: 56px;
+    height: 56px;
+    margin-bottom: 18px;
+    opacity: 0.9;
+  }
+  .hero-header h1 {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 38px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .hero-header .subtitle {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: 0.85;
+  }
+
+  .meta-strip {
+    background: var(--bg-alt);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 24px;
+  }
+  .meta-strip .container {
+    display: flex;
+    justify-content: center;
+    gap: 36px;
+    flex-wrap: wrap;
+  }
+  .meta-strip .meta-item {
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+  .meta-strip .meta-item strong {
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  .container { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+
+  section {
+    padding: 40px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  section:last-child { border-bottom: none; }
+
+  .section-label {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--accent-warm);
+    margin-bottom: 6px;
+  }
+  h2 {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 26px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+    color: var(--text);
+  }
+  h3 {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+    color: var(--accent);
+  }
+
+  .key-facts ol {
+    list-style: none;
+    counter-reset: facts;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .key-facts ol li {
+    counter-increment: facts;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 20px;
+  }
+  .key-facts ol li::before {
+    content: counter(facts);
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    background: var(--accent-warm);
+    color: #fff;
+    font-weight: 700;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin-top: 2px;
+  }
+  .key-facts ol li strong {
+    color: var(--accent);
+  }
+
+  .intel-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  @media (max-width: 600px) {
+    .intel-grid { grid-template-columns: 1fr; }
+  }
+  .intel-card {
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+  }
+  .intel-card .competitor-name {
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 6px;
+    font-size: 15px;
+  }
+  .intel-card p {
+    font-size: 14px;
+    color: var(--text-dim);
+    line-height: 1.5;
+  }
+
+  .quote-block {
+    background: var(--bg-navy-light);
+    border-left: 4px solid var(--accent-warm);
+    border-radius: 0 10px 10px 0;
+    padding: 18px 22px;
+    margin-bottom: 14px;
+    font-style: italic;
+    color: var(--text);
+  }
+  .quote-block .source {
+    font-style: normal;
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-top: 6px;
+  }
+
+  .objection-item {
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 20px;
+    margin-bottom: 12px;
+  }
+  .objection-item .objection {
+    font-weight: 700;
+    color: var(--red);
+    margin-bottom: 6px;
+    font-size: 15px;
+  }
+  .objection-item .response {
+    color: var(--text);
+    font-size: 14px;
+  }
+
+  .call-flow ol {
+    list-style: none;
+    counter-reset: flow;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .call-flow ol li {
+    counter-increment: flow;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .call-flow ol li:last-child { border-bottom: none; }
+  .call-flow ol li::before {
+    content: counter(flow);
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    background: var(--green);
+    color: #fff;
+    font-weight: 700;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin-top: 2px;
+  }
+
+  .highlight-box {
+    background: linear-gradient(135deg, #061B31 0%, #0A2A4A 100%);
+    color: #fff;
+    border-radius: 12px;
+    padding: 28px;
+    text-align: center;
+    margin-top: 20px;
+  }
+  .highlight-box h3 {
+    color: #fff;
+    margin-bottom: 10px;
+    font-size: 20px;
+  }
+  .highlight-box p {
+    font-size: 15px;
+    opacity: 0.92;
+    line-height: 1.6;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .internal-label {
+    display: inline-block;
+    background: var(--accent-warm);
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 3px 8px;
+    border-radius: 4px;
+    margin-bottom: 16px;
+  }
+
+  .footer {
+    text-align: center;
+    padding: 32px 24px;
+    font-size: 12px;
+    color: var(--text-dim);
+    border-top: 1px solid var(--border);
+  }
+</style>
+</head>
+<body>
+
+<div class="hero-header">
+  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+  <h1>Call Briefing</h1>
+  <div class="subtitle">Handyman Superior LLC - DeMario</div>
+</div>
+
+<div class="meta-strip">
+  <div class="container">
+    <div class="meta-item"><strong>Lead:</strong> DeMario (Owner)</div>
+    <div class="meta-item"><strong>Location:</strong> Jackson, MS</div>
+    <div class="meta-item"><strong>Phone:</strong> 601-564-5688</div>
+    <div class="meta-item"><strong>Model:</strong> Free build + $500/mo ads</div>
+  </div>
+</div>
+
+<div class="container">
+
+  <section>
+    <span class="internal-label">Internal - Sales Prep</span>
+    <div class="section-label">Call Objective</div>
+    <h2>Get DeMario on Board</h2>
+    <p>Confirm $500/mo ad spend, get DNS + photos, schedule GBP verification. DeMario is desperate for leads and price-sensitive. Lead with speed and low cost. He messaged saying he needs more business ASAP and asked about pricing.</p>
+    <p style="margin-top:10px;"><strong>Audit Deck:</strong> <a href="https://onlineoptimisers.github.io/audits/handyman-superior.html" style="color:var(--accent-warm);">View Live Deck</a></p>
+  </section>
+
+  <section class="key-facts">
+    <div class="section-label">Preparation</div>
+    <h2>10 Key Facts</h2>
+    <ol>
+      <li><strong>No Google Maps listing at all.</strong> When someone searches "handyman near me" in Jackson, DeMario does not exist. Every competitor shows up. He does not. This is the #1 thing to lead with.</li>
+      <li><strong>Zero directory presence.</strong> Not on Yelp, HomeAdvisor, Angi, Thumbtack, BBB, Houzz, or Porch. The only trace online is Craigslist job postings and the Mississippi LLC registry.</li>
+      <li><strong>Fake reviews on his website.</strong> His site has a review form that saves to the visitor's browser (localStorage). Nobody else can see them. The "reviews" section looks real when you visit, but the data only exists in YOUR browser. Great talking point.</li>
+      <li><strong>0 out of 6 AI citations.</strong> Tested ChatGPT and Perplexity for Jackson handyman queries. Competitors get recommended every time. DeMario never appears.</li>
+      <li><strong>25+ years combined experience across 8 services.</strong> Painting, rehabs, make-readies, maintenance, drywall, flooring, minor electrical, minor plumbing. Targets investors and property managers. The credibility story is strong.</li>
+      <li><strong>We are building him a free website.</strong> 10+ page Astro site on Cloudflare Pages. Every service page, service area pages, schema markup, lead tracking forms. Retail value $5K-8K. Show preview on the call.</li>
+      <li><strong>His only cost is $500/month for Facebook ads.</strong> We handle everything else. $500 goes direct to Meta. Ads produce leads from week 1 while organic builds.</li>
+      <li><strong>Jackson handyman market is not crowded in AI.</strong> Most competitors have basic presence but no AI optimization. Early mover advantage is real.</li>
+      <li><strong>We need from him:</strong> Photos of team on job sites, DNS access, GBP verification (postcard or phone), $500/mo ad budget, 24-hour lead follow-up commitment, and testimonials from past property manager clients.</li>
+      <li><strong>Revenue angle:</strong> Even 2-3 new property manager contracts = $30-60K/year recurring. Make-readies and contract maintenance are monthly revenue. One relationship could be $2-5K/month.</li>
+    </ol>
+  </section>
+
+  <section>
+    <div class="section-label">Context</div>
+    <h2>What DeMario Already Said</h2>
+    <div class="quote-block">
+      "I kinda understand. How ever I do pop up Google. I really need to pick up some more business asap. most companies now are going with bids that are ridiculously low."
+      <div class="source">DeMario, recent message</div>
+    </div>
+    <div class="quote-block">
+      "How much is this service and how fast do you think I can see a pick up in calls?"
+      <div class="source">Follow-up message</div>
+    </div>
+    <p style="margin-top:16px; font-weight:600; color:var(--accent-warm);">He is desperate for leads and price-sensitive. Lead with speed and low cost.</p>
+  </section>
+
+  <section>
+    <div class="section-label">Intelligence</div>
+    <h2>Competitor Intel for the Call</h2>
+    <div class="intel-grid">
+      <div class="intel-card">
+        <div class="competitor-name">Home Time Handyman</div>
+        <p>Most cited by AI. Licensed, insured, covers Hinds/Madison/Rankin counties. Has GMB + real website.</p>
+      </div>
+      <div class="intel-card">
+        <div class="competitor-name">Taylor Remodeling</div>
+        <p>96% recommended on HomeAdvisor, 4.87 stars. 25 years experience. Founded 2007.</p>
+      </div>
+      <div class="intel-card">
+        <div class="competitor-name">Round 'Da House</div>
+        <p>Multiple award winner. Bonded and insured. 2-year workmanship warranty. Strong Yelp presence.</p>
+      </div>
+      <div class="intel-card">
+        <div class="competitor-name">DeMario's Position</div>
+        <p>25+ years experience, 8 service lines, but zero online presence. Has the skills, missing the visibility.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-label">Key Insight</div>
+    <h2>Unusual Discovery</h2>
+    <div class="highlight-box">
+      <h3>The localStorage Ghost Reviews</h3>
+      <p>His website LOOKS like it has customer reviews. But the review data is stored in each visitor's browser using localStorage. A different visitor sees a blank review section. DeMario cares about social proof enough to build a review system, but nobody else can actually see the reviews. Zero trust signals for search engines or AI.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-label">Preparation</div>
+    <h2>Objection Handling</h2>
+    <div class="objection-item">
+      <div class="objection">"How much does this cost?"</div>
+      <div class="response">Your only cost is $500/month for the ad budget. That goes straight to Facebook. Everything else - the website, Google Maps, directories, CRM - we handle at no charge.</div>
+    </div>
+    <div class="objection-item">
+      <div class="objection">"That sounds too good to be true"</div>
+      <div class="response">We are building our portfolio of local service businesses. Your business has strong experience and good services. We want to prove what we can do, and your success becomes our case study.</div>
+    </div>
+    <div class="objection-item">
+      <div class="objection">"How fast will I see results?"</div>
+      <div class="response">Facebook ads start generating calls within 1-2 weeks. Google Maps takes about 4-6 weeks to really kick in. The ads bridge that gap so you are getting leads from day one.</div>
+    </div>
+    <div class="objection-item">
+      <div class="objection">"I'm already getting underbid by everyone"</div>
+      <div class="response">That is exactly why online leads matter. When someone finds you through Google or Facebook, they are coming to you. You are not competing on price against 5 other bids. These are warm leads who already want a handyman.</div>
+    </div>
+    <div class="objection-item">
+      <div class="objection">"I don't have many photos"</div>
+      <div class="response">Even phone photos of job sites work great. Before/after shots are gold. We can work with whatever you have.</div>
+    </div>
+  </section>
+
+  <section class="call-flow">
+    <div class="section-label">Execution</div>
+    <h2>Call Flow</h2>
+    <ol>
+      <li>Quick rapport - acknowledge he has been grinding, respect the 25+ years experience</li>
+      <li>"We looked at your online presence and found something surprising" - the no Google Maps hook</li>
+      <li>Show the audit deck briefly (he may have seen it already)</li>
+      <li>"We want to build you a full website and get you on Google Maps for free" - show the preview</li>
+      <li>Explain the deal - $500/mo for ads is his only cost, we do everything else</li>
+      <li>What we need from him (photos, GBP verification, DNS, follow-up commitment)</li>
+      <li>Address the speed question directly - "ads from week 1, maps in 4-6 weeks"</li>
+      <li>Next steps - he agrees, we go live immediately</li>
+    </ol>
+  </section>
+
+</div>
+
+<div class="footer">
+  Online Optimisers - Internal Sales Briefing - Prepared for Thonty
+</div>
+
+</body>
+</html>
