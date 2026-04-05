@@ -99,11 +99,23 @@ td.yes{color:var(--green)}
   thead th,tbody td{padding:8px 10px}
 }
 
+/* Collapsible sections */
+.section-header{display:flex;align-items:center;justify-content:space-between;cursor:pointer;padding:16px 20px;background:var(--bg2);border:1px solid var(--border);border-radius:12px;transition:all .2s;user-select:none;margin-top:48px;}
+.section-header:hover{border-color:rgba(196,30,58,.4);}
+.section-header h2{font-size:18px;font-weight:800;color:#fff;display:flex;align-items:center;gap:12px;margin:0;padding:0;border:none;}
+.section-header .sec-num{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:8px;background:rgba(196,30,58,.15);color:var(--accent);font-size:12px;font-weight:800;}
+.section-header .chevron{font-size:20px;color:var(--text-dim);transition:transform .3s;}
+.section-header.open .chevron{transform:rotate(180deg);}
+.section-body{overflow:hidden;max-height:0;transition:max-height .4s ease;padding:0 4px;}
+.section-body.open{max-height:none;padding:24px 4px;}
+
 /* Print */
 @media print{
   body{background:#fff;color:#111}
   .card,.toc{border-color:#ccc}
   h2{color:var(--accent)}
+  .section-body{max-height:none!important;padding:24px 4px!important}
+  .section-header .chevron{display:none}
 }
 </style>
 </head>
@@ -184,7 +196,11 @@ td.yes{color:var(--green)}
 </div>
 
 <!-- Section 1: Technical SEO -->
-<h2 id="s1">1. Technical SEO Audit</h2>
+<div class="section-header open" onclick="toggleSection(this)">
+  <h2 id="s1"><span class="sec-num">1</span> Technical SEO Audit</h2>
+  <span class="chevron">&#9662;</span>
+</div>
+<div class="section-body open">
 
 <h3>On-Page Health</h3>
 <table>
@@ -283,8 +299,14 @@ td.yes{color:var(--green)}
   </tbody>
 </table>
 
+</div><!-- /section-body 1 -->
+
 <!-- Section 2: SEO Foundation -->
-<h2 id="s2">2. SEO Foundation</h2>
+<div class="section-header open" onclick="toggleSection(this)">
+  <h2 id="s2"><span class="sec-num">2</span> SEO Foundation</h2>
+  <span class="chevron">&#9662;</span>
+</div>
+<div class="section-body open">
 
 <h3>Domain Authority &amp; Backlinks</h3>
 <table>
@@ -333,8 +355,14 @@ td.yes{color:var(--green)}
 </table>
 <p style="color:var(--text-dim);font-size:.85rem"><strong>All 37 referring domains have a Domain Rank of 0.</strong> Not a single quality backlink exists. The vast majority come from .info, .eu, .pro, .org TLDs that appear to be low-quality blog networks.</p>
 
+</div><!-- /section-body 2 -->
+
 <!-- Section 3: AI Visibility Score -->
-<h2 id="s3">3. AI Visibility Score: 8/100 - Critical</h2>
+<div class="section-header open" onclick="toggleSection(this)">
+  <h2 id="s3"><span class="sec-num">3</span> AI Visibility Score: 8/100 - Critical</h2>
+  <span class="chevron">&#9662;</span>
+</div>
+<div class="section-body open">
 
 <table>
   <thead><tr><th>Pillar</th><th>Score</th><th>Status</th></tr></thead>
@@ -346,8 +374,14 @@ td.yes{color:var(--green)}
   </tbody>
 </table>
 
+</div><!-- /section-body 3 -->
+
 <!-- Section 4: AI Platform Results -->
-<h2 id="s4">4. AI Platform Results</h2>
+<div class="section-header" onclick="toggleSection(this)">
+  <h2 id="s4"><span class="sec-num">4</span> AI Platform Results</h2>
+  <span class="chevron">&#9662;</span>
+</div>
+<div class="section-body">
 
 <h3>ChatGPT Search (gpt-4o-search-preview)</h3>
 <table>
@@ -404,8 +438,15 @@ td.yes{color:var(--green)}
   <p><strong>Safe 4 USA Security was not cited a single time across 15 AI queries on 3 platforms.</strong></p>
 </div>
 
+</div><!-- /section-body 4 -->
+
 <!-- Section 5: Google SERP -->
-<h2 id="s5">5. Google SERP Analysis</h2>
+<div class="section-header" onclick="toggleSection(this)">
+  <h2 id="s5"><span class="sec-num">5</span> Google SERP Analysis</h2>
+  <span class="chevron">&#9662;</span>
+</div>
+<div class="section-body">
+
 <p>Since Safe4USA has 0 ranked keywords, there are no "money keywords" to check positions for. The site is completely de-indexed due to the noindex directive.</p>
 
 <h3>SERP Landscape for Target Queries</h3>
@@ -453,8 +494,14 @@ td.yes{color:var(--green)}
   </tbody>
 </table>
 
+</div><!-- /section-body 5 -->
+
 <!-- Section 6: Entity & Schema -->
-<h2 id="s6">6. Entity &amp; Schema Gaps</h2>
+<div class="section-header" onclick="toggleSection(this)">
+  <h2 id="s6"><span class="sec-num">6</span> Entity &amp; Schema Gaps</h2>
+  <span class="chevron">&#9662;</span>
+</div>
+<div class="section-body">
 
 <h3>Schema Scorecard</h3>
 <table>
@@ -500,8 +547,14 @@ td.yes{color:var(--green)}
   </tbody>
 </table>
 
+</div><!-- /section-body 6 -->
+
 <!-- Section 7: Content Citability -->
-<h2 id="s7">7. Content Citability Assessment</h2>
+<div class="section-header" onclick="toggleSection(this)">
+  <h2 id="s7"><span class="sec-num">7</span> Content Citability Assessment</h2>
+  <span class="chevron">&#9662;</span>
+</div>
+<div class="section-body">
 
 <table>
   <thead><tr><th>Factor</th><th>Score</th><th>Notes</th></tr></thead>
@@ -532,8 +585,14 @@ td.yes{color:var(--green)}
 </table>
 <p style="color:var(--text-dim);font-size:.9rem;margin-top:12px"><strong>The About page is the strongest content asset</strong> - detailed bios with verifiable military/law enforcement credentials. This is exactly the type of content AI models cite, but it has no schema, no structured data, and the site blocks indexing.</p>
 
+</div><!-- /section-body 7 -->
+
 <!-- Section 8: Competitive Landscape -->
-<h2 id="s8">8. Competitive Landscape</h2>
+<div class="section-header" onclick="toggleSection(this)">
+  <h2 id="s8"><span class="sec-num">8</span> Competitive Landscape</h2>
+  <span class="chevron">&#9662;</span>
+</div>
+<div class="section-body">
 
 <h3>Who AI Recommends Instead</h3>
 <table>
@@ -574,8 +633,14 @@ td.yes{color:var(--green)}
   </tbody>
 </table>
 
+</div><!-- /section-body 8 -->
+
 <!-- Section 9: GBP & Review Audit -->
-<h2 id="s9">9. GBP &amp; Review Audit</h2>
+<div class="section-header" onclick="toggleSection(this)">
+  <h2 id="s9"><span class="sec-num">9</span> GBP &amp; Review Audit</h2>
+  <span class="chevron">&#9662;</span>
+</div>
+<div class="section-body">
 
 <h3>GBP Comparison</h3>
 <table>
@@ -612,8 +677,14 @@ td.yes{color:var(--green)}
   </tbody>
 </table>
 
+</div><!-- /section-body 9 -->
+
 <!-- Section 10: Striking Distance -->
-<h2 id="s10">10. Striking Distance Keywords</h2>
+<div class="section-header" onclick="toggleSection(this)">
+  <h2 id="s10"><span class="sec-num">10</span> Striking Distance Keywords</h2>
+  <span class="chevron">&#9662;</span>
+</div>
+<div class="section-body">
 
 <div class="card critical-card">
   <h4 style="margin-top:0;color:var(--red)">No Striking Distance Keywords Available</h4>
@@ -632,8 +703,14 @@ td.yes{color:var(--green)}
   </tbody>
 </table>
 
+</div><!-- /section-body 10 -->
+
 <!-- Section 11: Expert Insights -->
-<h2 id="s11">11. Expert Strategic Insights</h2>
+<div class="section-header" onclick="toggleSection(this)">
+  <h2 id="s11"><span class="sec-num">11</span> Expert Strategic Insights</h2>
+  <span class="chevron">&#9662;</span>
+</div>
+<div class="section-body">
 
 <div class="insight">
   <div class="number">1</div>
@@ -670,8 +747,14 @@ td.yes{color:var(--green)}
   <p><strong>Lorem Ipsum on a Live Site Signals Neglect.</strong> The "Our Process" section on the services page contains placeholder text. This is visible to anyone who visits the site, including AI crawlers. It signals the site is unfinished and unreliable - the exact opposite of the trust signals needed for AI citation.</p>
 </div>
 
+</div><!-- /section-body 11 -->
+
 <!-- Section 12: Quick Win Matrix -->
-<h2 id="s12">12. Quick Win Priority Matrix</h2>
+<div class="section-header" onclick="toggleSection(this)">
+  <h2 id="s12"><span class="sec-num">12</span> Quick Win Priority Matrix</h2>
+  <span class="chevron">&#9662;</span>
+</div>
+<div class="section-body">
 
 <h3>High Impact, Low Effort (Do First - This Week)</h3>
 <table>
@@ -725,8 +808,14 @@ td.yes{color:var(--green)}
   </tbody>
 </table>
 
+</div><!-- /section-body 12 -->
+
 <!-- Section 13: Action Plan -->
-<h2 id="s13">13. Action Plan</h2>
+<div class="section-header" onclick="toggleSection(this)">
+  <h2 id="s13"><span class="sec-num">13</span> Action Plan</h2>
+  <span class="chevron">&#9662;</span>
+</div>
+<div class="section-body">
 
 <h3>Critical Fixes (This Week)</h3>
 <ol class="findings">
@@ -764,6 +853,8 @@ td.yes{color:var(--green)}
   <li>Backlink building through security industry channels</li>
 </ul>
 
+</div><!-- /section-body 13 -->
+
 <!-- Footer -->
 <div class="footer">
   <div class="brand">Online Optimisers</div>
@@ -773,5 +864,11 @@ td.yes{color:var(--green)}
 </div>
 
 </div>
+<script>
+function toggleSection(el){
+  el.classList.toggle('open');
+  el.nextElementSibling.classList.toggle('open');
+}
+</script>
 </body>
 </html>
