@@ -401,24 +401,137 @@
 <tr><td>15</td><td>shermanmoving.com</td><td>5</td></tr>
 </tbody></table>
 <hr>
-<h2>Section 9 - Quick Wins</h2>
+<h2>Section 9 - Sourcing vs Display Layer Analysis</h2>
+<p style='color:#64748B;font-style:italic;'>For each query, classifies into VISIBLE (in answer text), HIDDEN (in sources but not answer text - &#x27;trusted but not quotable&#x27;), or ABSENT (not in AI data at all).</p>
+<table>
+<thead><tr><th>Platform</th><th>Visible</th><th>Hidden</th><th>Absent</th></tr></thead>
+<tbody>
+<tr><td>ChatGPT</td><td>5</td><td>0</td><td>15</td></tr>
+<tr><td>Perplexity</td><td>2</td><td>0</td><td>18</td></tr>
+<tr><td>Google AIO</td><td>2</td><td>0</td><td>5</td></tr>
+<tr><td><strong>TOTAL</strong></td><td><strong>9</strong></td><td><strong>0</strong></td><td><strong>38</strong></td></tr>
+</tbody></table>
+<h3>Insights</h3>
+<ul>
+<li>CRITICAL: 38/60 queries have business completely absent from AI data - entity signals + backlinks needed.</li>
+<li>ChatGPT citations exceed Perplexity - business has good entity signals but missing from authoritative source content. Needs PR + 3rd party mentions.</li>
+</ul>
+<hr>
+<h2>Section 10 - RAG Trigger Classification</h2>
+<p style='color:#64748B;font-style:italic;'>Classifies queries by whether they trigger AI web retrieval (YES_SEARCH, high commercial intent) vs use embedded LLM knowledge (NO_EMBEDDED). YES_SEARCH queries are where AI ranking work pays off most.</p>
+<ul>
+<li><strong>YES_SEARCH queries:</strong> 5/20 cited</li>
+<li><strong>NO_EMBEDDED queries:</strong> 0/0 cited</li>
+<li><strong>MAYBE queries:</strong> 0/0 cited</li>
+<li><strong>High-value absent queries:</strong> 15 (YES_SEARCH where business is invisible)</li>
+</ul>
+<h3>Insights</h3>
+<ul>
+<li>YES_SEARCH queries (high commercial intent): cited in 5/20 (25%)</li>
+<li>15 high-value YES_SEARCH queries where business is invisible - content + entity work targeting these would directly improve revenue.</li>
+</ul>
+<h3>Top high-value absent queries (cited in NO platform, high commercial intent):</h3>
+<ul>
+<li>Q1: &quot;best moving company Indianapolis IN&quot;</li>
+<li>Q2: &quot;top rated movers Indianapolis&quot;</li>
+<li>Q3: &quot;best moving and storage Indianapolis&quot;</li>
+<li>Q5: &quot;moving company Carmel IN&quot;</li>
+<li>Q6: &quot;who are the best movers in Indianapolis&quot;</li>
+<li>Q7: &quot;what is the best moving company in Indianapolis&quot;</li>
+<li>Q9: &quot;can you recommend a mover in Indianapolis&quot;</li>
+<li>Q10: &quot;what moving company should I use in Indianapolis&quot;</li>
+</ul>
+<hr>
+<h2>Section 11 - Entity Linker Opportunity Analysis</h2>
+<p style='color:#64748B;font-style:italic;'>Khaled technique: implied citations. Create unique claims on website + corroborate across 2-3 external AI-trusted sources. AI links them to same entity. No backlink needed.</p>
+<h3>Unique Claims Found on Homepage (0)</h3>
+<ul>
+<li>_No structured claims detected - opportunity to add years-in-business, certifications, awards, review count to homepage_</li>
+</ul>
+<h3>Trust Gateway Analysis</h3>
+<ul>
+<li><strong>Active in this niche</strong> (4/20): bbb.org, angi.com, thumbtack.com, mapquest.com</li>
+<li><strong>Missing from niche citations</strong>: yelp.com, google.com, facebook.com, linkedin.com, homeadvisor.com, houzz.com, manta.com, yellowpages.com</li>
+</ul>
+<h3>Recommended Entity Linker Actions</h3>
+<ul>
+<li>Verify BBB profile is complete with all unique claims (years in business, awards, certifications)</li>
+<li>Pick 3-5 unique claims and corroborate across BBB + Yelp + LinkedIn + GMB description for AI entity linking</li>
+</ul>
+<hr>
+<h2>Section 12 - Service Page Content Depth Analysis</h2>
+<p style='color:#64748B;font-style:italic;'>Top 5 service pages scraped + scored on word count, FAQ, proof blocks, pricing, images, internal links.</p>
+<p><strong>Average depth score: 7.8/10</strong></p>
+<table>
+<thead><tr><th>#</th><th>URL</th><th>Words</th><th>FAQs</th><th>Testimonials</th><th>Warranty</th><th>Pricing</th><th>Images</th><th>Score</th><th>Grade</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>packing</td><td>1119</td><td>1</td><td>N</td><td>N</td><td>Y</td><td>6</td><td>8/10</td><td><strong>A</strong></td></tr>
+<tr><td>2</td><td>storage</td><td>956</td><td>1</td><td>N</td><td>N</td><td>Y</td><td>6</td><td>7/10</td><td><strong>B</strong></td></tr>
+<tr><td>3</td><td>about-us</td><td>1036</td><td>1</td><td>N</td><td>Y</td><td>Y</td><td>13</td><td>9/10</td><td><strong>A</strong></td></tr>
+<tr><td>4</td><td>bloomington</td><td>1161</td><td>1</td><td>N</td><td>N</td><td>Y</td><td>15</td><td>8/10</td><td><strong>A</strong></td></tr>
+<tr><td>5</td><td>contact-us</td><td>1088</td><td>1</td><td>N</td><td>N</td><td>N</td><td>25</td><td>7/10</td><td><strong>B</strong></td></tr>
+</tbody></table>
+<h3>Insights</h3>
+<ul>
+<li>Average service page depth score is 7.8/10 (GOOD) - solid content foundation.</li>
+</ul>
+<hr>
+<h2>Section 13 - Google Business Profile Comparison</h2>
+<p style='color:#64748B;font-style:italic;'>Client GBP vs top competitors from Google Maps SERP.</p>
+<h3>Client GBP</h3>
+<ul>
+<li><strong>Title:</strong> Soft Touch Moving</li>
+<li><strong>Category:</strong> Mover </li>
+<li><strong>Rating:</strong> 4.9 stars (49 reviews)</li>
+<li><strong>Address:</strong> 5136b E 65th St, Indianapolis, IN 46220</li>
+<li><strong>Phone:</strong> +1317-284-1900</li>
+<li><strong>Photos:</strong> 85</li>
+<li><strong>Verified/Claimed:</strong> YES</li>
+<li><strong>Hours set:</strong> NO</li>
+<li><strong>Questions:</strong> None</li>
+</ul>
+<h3>Competitor GBPs</h3>
+<table>
+<thead><tr><th>Title</th><th>Category</th><th>Rating</th><th>Reviews</th><th>Photos</th><th>Claimed</th></tr></thead>
+<tbody>
+<tr><td>You Move Me Indianapolis</td><td>Mover</td><td>4.8</td><td>837</td><td>29</td><td>Y</td></tr>
+<tr><td>Two Men and a Truck Moving and Storage</td><td>Mover</td><td>4.7</td><td>652</td><td>17</td><td>Y</td></tr>
+</tbody></table>
+<h3>Insights</h3>
+<ul>
+<li>Review count (49) below 50 - review velocity campaign needed</li>
+<li>Review count (49) is less than half of competitor average (744) - significant gap</li>
+</ul>
+<hr>
+<h2>Section 14 - Knowledge Graph Verification</h2>
+<ul>
+<li><strong>Wikidata entity:</strong> NO</li>
+<li><strong>Google Knowledge Graph entity:</strong> NO</li>
+<li><strong>Google KG items in SERP results:</strong> 3</li>
+</ul>
+<p style='color:#64748B;font-style:italic;'>Wikidata gap: opportunity to create a Wikidata entry for this business + cross-link to website. Wikidata is the lookup table for both Google KG and Bing.</p>
+<hr>
+<h2>Section 15 - Quick Wins</h2>
 <p>1. Increase content-to-HTML ratio (low content density flagged)</p>
 <p>2. Add alt text to images</p>
 <p>3. Add missing schema: LocalBusiness/Organization schema, Person schema, FAQ schema</p>
 <p>4. Push striking-distance keyword &#x27;mobile home movers in indiana&#x27; (pos 16, vol 70) to page 1</p>
 <hr>
-<h2>Section 10 - Recommended Action Plan</h2>
+<h2>Section 16 - Recommended Action Plan</h2>
 <h3>This Week</h3>
 <ul>
 <li>Add LocalBusiness, FAQ, Service, Person schema markup to homepage</li>
 </ul>
 <h3>Month 1</h3>
 <ul>
+<li>Build content for 15 high-value YES_SEARCH queries where business is invisible</li>
+<li>Add 3-5 unique claims to homepage (years in business, certifications, awards, review count)</li>
 <li>Build entity linkers across BBB, Yelp, niche directories</li>
 <li>Push 1 striking-distance keywords to page 1 (page 2 currently)</li>
 </ul>
 <h3>Months 2-3</h3>
 <ul>
+<li>Create Wikidata entity for business + cross-link to website (KG signal)</li>
 <li>Content depth on top 5 service pages (FAQ, proof blocks, unique claims)</li>
 <li>Backlink campaign targeting trust list domains AI cites in this niche</li>
 <li>Set up monthly AI visibility tracking (re-run audit)</li>

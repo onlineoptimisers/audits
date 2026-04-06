@@ -497,25 +497,133 @@
 <tr><td>15</td><td>seaportmoving.com</td><td>4</td></tr>
 </tbody></table>
 <hr>
-<h2>Section 9 - Quick Wins</h2>
+<h2>Section 9 - Sourcing vs Display Layer Analysis</h2>
+<p style='color:#64748B;font-style:italic;'>For each query, classifies into VISIBLE (in answer text), HIDDEN (in sources but not answer text - &#x27;trusted but not quotable&#x27;), or ABSENT (not in AI data at all).</p>
+<table>
+<thead><tr><th>Platform</th><th>Visible</th><th>Hidden</th><th>Absent</th></tr></thead>
+<tbody>
+<tr><td>ChatGPT</td><td>16</td><td>0</td><td>4</td></tr>
+<tr><td>Perplexity</td><td>14</td><td>0</td><td>6</td></tr>
+<tr><td>Google AIO</td><td>7</td><td>0</td><td>1</td></tr>
+<tr><td><strong>TOTAL</strong></td><td><strong>37</strong></td><td><strong>0</strong></td><td><strong>11</strong></td></tr>
+</tbody></table>
+<h3>Insights</h3>
+<ul>
+<li>ChatGPT citations exceed Perplexity - business has good entity signals but missing from authoritative source content. Needs PR + 3rd party mentions.</li>
+</ul>
+<hr>
+<h2>Section 10 - RAG Trigger Classification</h2>
+<p style='color:#64748B;font-style:italic;'>Classifies queries by whether they trigger AI web retrieval (YES_SEARCH, high commercial intent) vs use embedded LLM knowledge (NO_EMBEDDED). YES_SEARCH queries are where AI ranking work pays off most.</p>
+<ul>
+<li><strong>YES_SEARCH queries:</strong> 17/20 cited</li>
+<li><strong>NO_EMBEDDED queries:</strong> 0/0 cited</li>
+<li><strong>MAYBE queries:</strong> 0/0 cited</li>
+<li><strong>High-value absent queries:</strong> 3 (YES_SEARCH where business is invisible)</li>
+</ul>
+<h3>Insights</h3>
+<ul>
+<li>YES_SEARCH queries (high commercial intent): cited in 17/20 (85%)</li>
+<li>3 high-value YES_SEARCH queries where business is invisible - content + entity work targeting these would directly improve revenue.</li>
+</ul>
+<h3>Top high-value absent queries (cited in NO platform, high commercial intent):</h3>
+<ul>
+<li>Q3: &quot;best movers in Portland OR&quot;</li>
+<li>Q8: &quot;who should I hire to move in Portland OR&quot;</li>
+<li>Q11: &quot;last minute movers Vancouver WA&quot;</li>
+</ul>
+<hr>
+<h2>Section 11 - Entity Linker Opportunity Analysis</h2>
+<p style='color:#64748B;font-style:italic;'>Khaled technique: implied citations. Create unique claims on website + corroborate across 2-3 external AI-trusted sources. AI links them to same entity. No backlink needed.</p>
+<h3>Unique Claims Found on Homepage (1)</h3>
+<ul>
+<li><strong>service_area:</strong> serving Vancouver</li>
+</ul>
+<h3>Trust Gateway Analysis</h3>
+<ul>
+<li><strong>Active in this niche</strong> (5/20): bbb.org, google.com, angi.com, thumbtack.com, homeadvisor.com</li>
+<li><strong>Missing from niche citations</strong>: yelp.com, facebook.com, linkedin.com, houzz.com, manta.com, yellowpages.com, mapquest.com, foursquare.com</li>
+</ul>
+<h3>Recommended Entity Linker Actions</h3>
+<ul>
+<li>Verify BBB profile is complete with all unique claims (years in business, awards, certifications)</li>
+<li>Pick 3-5 unique claims and corroborate across BBB + Yelp + LinkedIn + GMB description for AI entity linking</li>
+</ul>
+<hr>
+<h2>Section 12 - Service Page Content Depth Analysis</h2>
+<p style='color:#64748B;font-style:italic;'>Top 5 service pages scraped + scored on word count, FAQ, proof blocks, pricing, images, internal links.</p>
+<p><strong>Average depth score: 10.0/10</strong></p>
+<table>
+<thead><tr><th>#</th><th>URL</th><th>Words</th><th>FAQs</th><th>Testimonials</th><th>Warranty</th><th>Pricing</th><th>Images</th><th>Score</th><th>Grade</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>about</td><td>1688</td><td>0</td><td>Y</td><td>Y</td><td>Y</td><td>45</td><td>10/10</td><td><strong>A</strong></td></tr>
+<tr><td>2</td><td>residential-movers-battle-ground-wa</td><td>1106</td><td>1</td><td>Y</td><td>Y</td><td>Y</td><td>40</td><td>10/10</td><td><strong>A</strong></td></tr>
+<tr><td>3</td><td>residential-movers-camas-wa</td><td>1048</td><td>1</td><td>Y</td><td>Y</td><td>Y</td><td>40</td><td>10/10</td><td><strong>A</strong></td></tr>
+<tr><td>4</td><td>residential-movers-kelso-wa</td><td>1294</td><td>1</td><td>Y</td><td>Y</td><td>Y</td><td>40</td><td>10/10</td><td><strong>A</strong></td></tr>
+<tr><td>5</td><td>residential-movers-longview-wa</td><td>1129</td><td>1</td><td>Y</td><td>Y</td><td>Y</td><td>40</td><td>10/10</td><td><strong>A</strong></td></tr>
+</tbody></table>
+<h3>Insights</h3>
+<ul>
+<li>Average service page depth score is 10.0/10 (GOOD) - solid content foundation.</li>
+</ul>
+<hr>
+<h2>Section 13 - Google Business Profile Comparison</h2>
+<p style='color:#64748B;font-style:italic;'>Client GBP vs top competitors from Google Maps SERP.</p>
+<h3>Client GBP</h3>
+<ul>
+<li><strong>Title:</strong> ANC Movers - Vancouver &amp; Portland</li>
+<li><strong>Category:</strong> Mover  | also: Moving and storage service, Piano moving service</li>
+<li><strong>Rating:</strong> 4.6 stars (213 reviews)</li>
+<li><strong>Address:</strong> 5305 NE 121st Ave #106, Vancouver, WA 98682</li>
+<li><strong>Phone:</strong> +1360-992-8702</li>
+<li><strong>Photos:</strong> 119</li>
+<li><strong>Verified/Claimed:</strong> YES</li>
+<li><strong>Hours set:</strong> NO</li>
+<li><strong>Questions:</strong> None</li>
+</ul>
+<h3>Competitor GBPs</h3>
+<table>
+<thead><tr><th>Title</th><th>Category</th><th>Rating</th><th>Reviews</th><th>Photos</th><th>Claimed</th></tr></thead>
+<tbody>
+<tr><td>You Move Me Vancouver, WA</td><td>Mover</td><td>4.9</td><td>2116</td><td>694</td><td>Y</td></tr>
+<tr><td>Miracle Man Movers</td><td>Mover</td><td>4.5</td><td>451</td><td>123</td><td>Y</td></tr>
+<tr><td>Comfortable Moving</td><td>Mover</td><td>5</td><td>111</td><td>122</td><td>Y</td></tr>
+</tbody></table>
+<h3>Insights</h3>
+<ul>
+<li>Review count (213) is less than half of competitor average (893) - significant gap</li>
+<li>Photo count (119) is less than half of competitor average (313)</li>
+</ul>
+<hr>
+<h2>Section 14 - Knowledge Graph Verification</h2>
+<ul>
+<li><strong>Wikidata entity:</strong> NO</li>
+<li><strong>Google Knowledge Graph entity:</strong> YES</li>
+<li><strong>Google KG items in SERP results:</strong> 3</li>
+</ul>
+<p style='color:#64748B;font-style:italic;'>Wikidata gap: opportunity to create a Wikidata entry for this business + cross-link to website. Wikidata is the lookup table for both Google KG and Bing.</p>
+<hr>
+<h2>Section 15 - Quick Wins</h2>
 <p>1. Increase content-to-HTML ratio (low content density flagged)</p>
 <p>2. Add alt text to images</p>
 <p>3. Improve page load time</p>
 <p>4. Add missing schema: LocalBusiness/Organization schema, Person schema, FAQ schema</p>
 <p>5. Push striking-distance keyword &#x27;beaverton moving company&#x27; (pos 16, vol 1300) to page 1</p>
 <hr>
-<h2>Section 10 - Recommended Action Plan</h2>
+<h2>Section 16 - Recommended Action Plan</h2>
 <h3>This Week</h3>
 <ul>
 <li>Add LocalBusiness, FAQ, Service, Person schema markup to homepage</li>
 </ul>
 <h3>Month 1</h3>
 <ul>
+<li>Build content for 3 high-value YES_SEARCH queries where business is invisible</li>
+<li>Add 3-5 unique claims to homepage (years in business, certifications, awards, review count)</li>
 <li>Build entity linkers across BBB, Yelp, niche directories</li>
 <li>Push 15 striking-distance keywords to page 1 (page 2 currently)</li>
 </ul>
 <h3>Months 2-3</h3>
 <ul>
+<li>Create Wikidata entity for business + cross-link to website (KG signal)</li>
 <li>Content depth on top 5 service pages (FAQ, proof blocks, unique claims)</li>
 <li>Backlink campaign targeting trust list domains AI cites in this niche</li>
 <li>Set up monthly AI visibility tracking (re-run audit)</li>

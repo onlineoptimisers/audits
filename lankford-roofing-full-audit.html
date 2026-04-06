@@ -458,14 +458,117 @@
 <tr><td>15</td><td>gbtroofing.com</td><td>5</td></tr>
 </tbody></table>
 <hr>
-<h2>Section 9 - Quick Wins</h2>
+<h2>Section 9 - Sourcing vs Display Layer Analysis</h2>
+<p style='color:#64748B;font-style:italic;'>For each query, classifies into VISIBLE (in answer text), HIDDEN (in sources but not answer text - &#x27;trusted but not quotable&#x27;), or ABSENT (not in AI data at all).</p>
+<table>
+<thead><tr><th>Platform</th><th>Visible</th><th>Hidden</th><th>Absent</th></tr></thead>
+<tbody>
+<tr><td>ChatGPT</td><td>15</td><td>0</td><td>5</td></tr>
+<tr><td>Perplexity</td><td>16</td><td>0</td><td>4</td></tr>
+<tr><td>Google AIO</td><td>3</td><td>0</td><td>1</td></tr>
+<tr><td><strong>TOTAL</strong></td><td><strong>34</strong></td><td><strong>0</strong></td><td><strong>10</strong></td></tr>
+</tbody></table>
+<h3>Insights</h3>
+<ul>
+<li>Perplexity citations exceed ChatGPT - business is in &#x27;fresh&#x27; web data but not in ChatGPT&#x27;s training/retrieval. Needs trust list backlinks.</li>
+</ul>
+<hr>
+<h2>Section 10 - RAG Trigger Classification</h2>
+<p style='color:#64748B;font-style:italic;'>Classifies queries by whether they trigger AI web retrieval (YES_SEARCH, high commercial intent) vs use embedded LLM knowledge (NO_EMBEDDED). YES_SEARCH queries are where AI ranking work pays off most.</p>
+<ul>
+<li><strong>YES_SEARCH queries:</strong> 18/20 cited</li>
+<li><strong>NO_EMBEDDED queries:</strong> 0/0 cited</li>
+<li><strong>MAYBE queries:</strong> 0/0 cited</li>
+<li><strong>High-value absent queries:</strong> 2 (YES_SEARCH where business is invisible)</li>
+</ul>
+<h3>Insights</h3>
+<ul>
+<li>YES_SEARCH queries (high commercial intent): cited in 18/20 (90%)</li>
+<li>2 high-value YES_SEARCH queries where business is invisible - content + entity work targeting these would directly improve revenue.</li>
+</ul>
+<h3>Top high-value absent queries (cited in NO platform, high commercial intent):</h3>
+<ul>
+<li>Q3: &quot;best roofing contractors in Denison TX&quot;</li>
+<li>Q9: &quot;can you recommend a good roofer in Denison TX&quot;</li>
+</ul>
+<hr>
+<h2>Section 11 - Entity Linker Opportunity Analysis</h2>
+<p style='color:#64748B;font-style:italic;'>Khaled technique: implied citations. Create unique claims on website + corroborate across 2-3 external AI-trusted sources. AI links them to same entity. No backlink needed.</p>
+<h3>Unique Claims Found on Homepage (5)</h3>
+<ul>
+<li><strong>founded:</strong> Since 1937</li>
+<li><strong>years_experience:</strong> 87+ Years of Local</li>
+<li><strong>award:</strong> Voted Best Roofing Company in Texoma 2025 FREE ESTIMATE 903-465-7677 TX | 580-920-1433 OK </li>
+<li><strong>certification:</strong> ISO 9001:2015</li>
+<li><strong>service_area:</strong> serving Texoma</li>
+</ul>
+<h3>Trust Gateway Analysis</h3>
+<ul>
+<li><strong>Active in this niche</strong> (4/20): bbb.org, angi.com, homeadvisor.com, houzz.com</li>
+<li><strong>Missing from niche citations</strong>: yelp.com, google.com, facebook.com, linkedin.com, thumbtack.com, manta.com, yellowpages.com, mapquest.com</li>
+</ul>
+<h3>Recommended Entity Linker Actions</h3>
+<ul>
+<li>Verify BBB profile is complete with all unique claims (years in business, awards, certifications)</li>
+<li>Pick 3-5 unique claims and corroborate across BBB + Yelp + LinkedIn + GMB description for AI entity linking</li>
+</ul>
+<hr>
+<h2>Section 12 - Service Page Content Depth Analysis</h2>
+<p style='color:#64748B;font-style:italic;'>Top 5 service pages scraped + scored on word count, FAQ, proof blocks, pricing, images, internal links.</p>
+<p><strong>Average depth score: 10.0/10</strong></p>
+<table>
+<thead><tr><th>#</th><th>URL</th><th>Words</th><th>FAQs</th><th>Testimonials</th><th>Warranty</th><th>Pricing</th><th>Images</th><th>Score</th><th>Grade</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>metal-roofing</td><td>1174</td><td>0</td><td>Y</td><td>Y</td><td>Y</td><td>40</td><td>10/10</td><td><strong>A</strong></td></tr>
+<tr><td>2</td><td>standing-seam-metal</td><td>1127</td><td>0</td><td>Y</td><td>Y</td><td>Y</td><td>41</td><td>10/10</td><td><strong>A</strong></td></tr>
+<tr><td>3</td><td>tpo</td><td>1141</td><td>0</td><td>Y</td><td>Y</td><td>Y</td><td>39</td><td>10/10</td><td><strong>A</strong></td></tr>
+<tr><td>4</td><td>metal-roofing</td><td>1177</td><td>0</td><td>Y</td><td>Y</td><td>Y</td><td>40</td><td>10/10</td><td><strong>A</strong></td></tr>
+<tr><td>5</td><td>standing-seam-metal-roofs</td><td>1661</td><td>0</td><td>Y</td><td>Y</td><td>Y</td><td>25</td><td>10/10</td><td><strong>A</strong></td></tr>
+</tbody></table>
+<h3>Insights</h3>
+<ul>
+<li>Average service page depth score is 10.0/10 (GOOD) - solid content foundation.</li>
+</ul>
+<hr>
+<h2>Section 13 - Google Business Profile Comparison</h2>
+<p style='color:#64748B;font-style:italic;'>Client GBP vs top competitors from Google Maps SERP.</p>
+<h3>Client GBP</h3>
+<ul>
+<li><strong>Title:</strong> Lankford Roofing &amp; Construction LLC</li>
+<li><strong>Category:</strong> Roofing contractor </li>
+<li><strong>Rating:</strong> 4.9 stars (333 reviews)</li>
+<li><strong>Address:</strong> 23994 US-82, Sherman, TX 75092</li>
+<li><strong>Phone:</strong> +1903-465-7677</li>
+<li><strong>Photos:</strong> 358</li>
+<li><strong>Verified/Claimed:</strong> YES</li>
+<li><strong>Hours set:</strong> NO</li>
+<li><strong>Questions:</strong> None</li>
+</ul>
+<h3>Competitor GBPs</h3>
+<table>
+<thead><tr><th>Title</th><th>Category</th><th>Rating</th><th>Reviews</th><th>Photos</th><th>Claimed</th></tr></thead>
+<tbody>
+<tr><td>Premiere Roofing</td><td>Roofing contractor</td><td>4.8</td><td>88</td><td>37</td><td>Y</td></tr>
+<tr><td>K&amp;M Roofing And Construction</td><td>Roofing contractor</td><td>4.8</td><td>268</td><td>103</td><td>Y</td></tr>
+<tr><td>Abel Aleman Roofing</td><td>Roofing contractor</td><td>4.8</td><td>198</td><td>12</td><td>Y</td></tr>
+</tbody></table>
+<hr>
+<h2>Section 14 - Knowledge Graph Verification</h2>
+<ul>
+<li><strong>Wikidata entity:</strong> NO</li>
+<li><strong>Google Knowledge Graph entity:</strong> YES</li>
+<li><strong>Google KG items in SERP results:</strong> 2</li>
+</ul>
+<p style='color:#64748B;font-style:italic;'>Wikidata gap: opportunity to create a Wikidata entry for this business + cross-link to website. Wikidata is the lookup table for both Google KG and Bing.</p>
+<hr>
+<h2>Section 15 - Quick Wins</h2>
 <p>1. Fix meta description (missing or over 160 chars)</p>
 <p>2. Increase content-to-HTML ratio (low content density flagged)</p>
 <p>3. Add alt text to images</p>
 <p>4. Add missing schema: LocalBusiness/Organization schema, Person schema, FAQ schema</p>
 <p>5. Push striking-distance keyword &#x27;steel roof installers near me&#x27; (pos 16, vol 9900) to page 1</p>
 <hr>
-<h2>Section 10 - Recommended Action Plan</h2>
+<h2>Section 16 - Recommended Action Plan</h2>
 <h3>This Week</h3>
 <ul>
 <li>Add LocalBusiness, FAQ, Service, Person schema markup to homepage</li>
@@ -473,11 +576,13 @@
 </ul>
 <h3>Month 1</h3>
 <ul>
+<li>Build content for 2 high-value YES_SEARCH queries where business is invisible</li>
 <li>Build entity linkers across BBB, Yelp, niche directories</li>
 <li>Push 10 striking-distance keywords to page 1 (page 2 currently)</li>
 </ul>
 <h3>Months 2-3</h3>
 <ul>
+<li>Create Wikidata entity for business + cross-link to website (KG signal)</li>
 <li>Content depth on top 5 service pages (FAQ, proof blocks, unique claims)</li>
 <li>Backlink campaign targeting trust list domains AI cites in this niche</li>
 <li>Set up monthly AI visibility tracking (re-run audit)</li>
