@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maestro Movers - AI Visibility Audit | Online Optimisers</title>
+<style>
+    * { box-sizing: border-box; }
+    body { margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif; background: #06101E; color: #E5E7EB; line-height: 1.6; }
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 40px 24px; }
+    h1 { color: #4FC3F7; font-size: 2.2em; margin-bottom: 0.2em; }
+    h2 { color: #4FC3F7; border-bottom: 2px solid #0A1628; padding-bottom: 8px; margin-top: 48px; }
+    h3 { color: #F4B942; }
+    .meta { color: #94A3B8; margin-bottom: 32px; }
+    .score-card { background: linear-gradient(135deg, #0A1628 0%, #06101E 100%); border: 2px solid #F87171; border-radius: 16px; padding: 32px; text-align: center; margin: 24px 0; }
+    .score-big { font-size: 5em; font-weight: 900; color: #F87171; line-height: 1; margin: 0; }
+    .score-band { font-size: 1.4em; color: #F87171; text-transform: uppercase; letter-spacing: 2px; margin-top: 8px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin: 24px 0; }
+    .card { background: #0A1628; border: 1px solid #1E293B; border-radius: 12px; padding: 20px; }
+    .card .label { font-size: 0.85em; color: #94A3B8; text-transform: uppercase; letter-spacing: 1px; }
+    .card .value { font-size: 2em; font-weight: 700; color: #4FC3F7; margin-top: 4px; }
+    .card .sub { font-size: 0.85em; color: #94A3B8; margin-top: 4px; }
+    table { width: 100%; border-collapse: collapse; margin: 16px 0; background: #0A1628; border-radius: 8px; overflow: hidden; }
+    th, td { padding: 10px 14px; text-align: left; border-bottom: 1px solid #1E293B; font-size: 0.92em; }
+    th { background: #06101E; color: #4FC3F7; font-weight: 600; }
+    tr:hover { background: #0E1A2F; }
+    blockquote { border-left: 3px solid #4FC3F7; margin: 12px 0; padding: 8px 16px; background: #0A1628; border-radius: 0 8px 8px 0; color: #CBD5E1; font-style: italic; font-size: 0.92em; }
+    code { background: #0A1628; padding: 2px 6px; border-radius: 4px; font-family: 'JetBrains Mono', 'Fira Code', monospace; font-size: 0.9em; color: #F4B942; }
+    a { color: #4FC3F7; }
+    .platform-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 24px 0; }
+    .platform { background: #0A1628; border-radius: 12px; padding: 24px; border-top: 4px solid; }
+    .platform.chatgpt { border-color: #19C37D; }
+    .platform.perplexity { border-color: #7C3AED; }
+    .platform.aio { border-color: #F4B942; }
+    .platform .name { font-size: 0.9em; color: #94A3B8; text-transform: uppercase; letter-spacing: 1px; }
+    .platform .stat { font-size: 2.4em; font-weight: 800; margin: 8px 0; }
+    .platform.chatgpt .stat { color: #19C37D; }
+    .platform.perplexity .stat { color: #7C3AED; }
+    .platform.aio .stat { color: #F4B942; }
+    .platform .label { font-size: 0.85em; color: #94A3B8; }
+    .pill { display: inline-block; padding: 4px 10px; border-radius: 999px; font-size: 0.8em; font-weight: 600; }
+    .pill.good { background: rgba(74, 222, 128, 0.2); color: #4ADE80; }
+    .pill.fair { background: rgba(251, 191, 36, 0.2); color: #FBBF24; }
+    .pill.poor { background: rgba(248, 113, 113, 0.2); color: #F87171; }
+    ul li { margin-bottom: 6px; }
+    hr { border: none; border-top: 1px solid #0A1628; margin: 32px 0; }
+    .footer { text-align: center; color: #64748B; padding: 32px 0; font-size: 0.85em; }
+    </style>
+</head>
+<body>
+<div class="wrap">
+<h1>AI Visibility Audit</h1>
+<div class="meta"><strong>Maestro Movers</strong> &middot; Orlando, FL &middot; 2026-04-06</div>
+
+<div class="score-card">
+  <div class="label" style="color:#94A3B8;font-size:0.9em;letter-spacing:1px;">AI VISIBILITY SCORE</div>
+  <div class="score-big">43<span style="font-size:0.4em;color:#64748B;">/100</span></div>
+  <div class="score-band">poor</div>
+</div>
+
+<div class="platform-grid">
+  <div class="platform chatgpt">
+    <div class="name">ChatGPT</div>
+    <div class="stat">4<span style="font-size:0.5em;color:#94A3B8;">/20</span></div>
+    <div class="label">queries cited</div>
+  </div>
+  <div class="platform perplexity">
+    <div class="name">Perplexity</div>
+    <div class="stat">3<span style="font-size:0.5em;color:#94A3B8;">/20</span></div>
+    <div class="label">queries cited</div>
+  </div>
+  <div class="platform aio">
+    <div class="name">Google AI Overview</div>
+    <div class="stat">2<span style="font-size:0.5em;color:#94A3B8;">/20</span></div>
+    <div class="label">cited / 7 triggered</div>
+  </div>
+</div>
+
+<div class="grid">
+  <div class="card">
+    <div class="label">Domain Rank</div>
+    <div class="value">132</div>
+    <div class="sub">DataForSEO</div>
+  </div>
+  <div class="card">
+    <div class="label">Backlinks</div>
+    <div class="value">261</div>
+    <div class="sub">112 referring domains</div>
+  </div>
+  <div class="card">
+    <div class="label">Ranked Keywords</div>
+    <div class="value">292</div>
+    <div class="sub">organic positions</div>
+  </div>
+  <div class="card">
+    <div class="label">Schema Score</div>
+    <div class="value">15<span style="font-size:0.5em;color:#94A3B8;">/25</span></div>
+    <div class="sub">7 types found</div>
+  </div>
+</div>
+
+<hr>
+<h2>AI Visibility Score: **43/100** (POOR)</h2>
+<table>
+<thead><tr><th>Component</th><th>Score</th><th>Detail</th></tr></thead>
+<tbody>
+<tr><td>AI Platform Citations</td><td>4/25</td><td>9/60 queries cited</td></tr>
+<tr><td>Schema Markup</td><td>15/25</td><td>7 schemas found</td></tr>
+<tr><td>AI-Weighted Backlinks</td><td>20/25</td><td>112 referring main domains</td></tr>
+<tr><td>Content Citability</td><td>4/25</td><td>Perplexity in-content + in-sources signal</td></tr>
+</tbody></table>
+<hr>
+<h2>Headline Findings</h2>
+<ul>
+<li><strong>4/20 ChatGPT</strong> queries cited Maestro Movers (20%)</li>
+<li><strong>3/20 Perplexity</strong> queries cited Maestro Movers (15%)</li>
+<li><strong>2/20 Google AI Overview</strong> queries cited Maestro Movers (7/20 triggered AIO)</li>
+<li><strong>3/5 Google Maps</strong> queries returned Maestro Movers in top 20</li>
+<li><strong>Domain Rank 132</strong> | <strong>261</strong> backlinks | <strong>112</strong> referring domains</li>
+<li><strong>292</strong> ranked keywords (organic ETV: 1243.96164104715)</li>
+<li><strong>Schema score: 15/25</strong> (7 types found)</li>
+</ul>
+<hr>
+<h2>Section 1 - ChatGPT Visibility (4/20)</h2>
+<h3>Cited In:</h3>
+<ul>
+<li><strong>Q10</strong> - &quot;what is the best mover in Winter Springs FL&quot;</li>
+</ul>
+<p>  &gt; th residential and commercial clients, along with secure storage solutions.</p>
+<p><strong>[Maestro Movers](http://maestromovers.com/?utm_source=openai)</strong>  </p>
+<p><strong>Closed · Mover · 4.8 (147 reviews)</strong>  </p>
+<p>Known for their careful handling and efficient service, they hav...</p>
+<ul>
+<li><strong>Q11</strong> - &quot;piano movers Orlando FL&quot;</li>
+</ul>
+<p>  &gt; es, equipped to handle pianos of all sizes and brands with the utmost care.</p>
+<p><strong>[Maestro Movers](http://maestromovers.com/?utm_source=openai)</strong>  </p>
+<p><strong>Closed · Mover · 4.8 (147 reviews)</strong>  </p>
+<p>Maestro Movers offers full-service moving with expertise in safe...</p>
+<ul>
+<li><strong>Q19</strong> - &quot;Maestro Movers Orlando reviews&quot;</li>
+</ul>
+<p>  &gt; ## [Maestro Movers](https://www.google.com/maps/search/Maestro+Movers+Orlando?utm_source=openai)</p>
+<p>Maestro Movers, based in Orlando, Florida, has garnered a strong reputation for its moving services, as reflected in numerous positive reviews across v...</p>
+<ul>
+<li><strong>Q20</strong> - &quot;is Maestro Movers a good company&quot;</li>
+</ul>
+<p>  &gt; Maestro Movers, based in Orlando, Florida, has garnered a strong reputation for its moving services. Customers frequently commend the company for its professionalism, efficiency, and careful handling of belongings. For instance, a review on moveBuddh...</p>
+<h3>Absent From:</h3>
+<ul>
+<li><strong>Q1</strong> - &quot;best moving company Orlando FL&quot;</li>
+<li><strong>Q2</strong> - &quot;top rated movers Orlando FL&quot;</li>
+<li><strong>Q3</strong> - &quot;best movers Winter Park FL&quot;</li>
+<li><strong>Q4</strong> - &quot;best moving company Maitland FL&quot;</li>
+<li><strong>Q5</strong> - &quot;movers Windermere FL&quot;</li>
+<li><strong>Q6</strong> - &quot;who are the best movers in Orlando&quot;</li>
+<li><strong>Q7</strong> - &quot;what moving company should I use in Orlando&quot;</li>
+<li><strong>Q8</strong> - &quot;who should I hire to move in Winter Park&quot;</li>
+<li><strong>Q9</strong> - &quot;can you recommend movers in Orlando FL&quot;</li>
+<li><strong>Q12</strong> - &quot;movers and storage Orlando FL&quot;</li>
+</ul>
+<p style='color:#64748B;font-style:italic;'>...and 6 more</p>
+<hr>
+<h2>Section 2 - Perplexity Visibility (3/20)</h2>
+<p>In response: 3/20 | In sources only: 0/20</p>
+<h3>Cited In:</h3>
+<ul>
+<li><strong>Q11</strong> - &quot;piano movers Orlando FL&quot; (also in sources)</li>
+</ul>
+<p>  &gt; rs; 15,000+ customers | Orlando, Lake, Orange, Osceola, Seminole Counties |</p>
+<table>
+<thead><tr><th>**Maestro Movers**</th><th>24/7 availability; fast local service; free quotes.[3]</th><th>(407) 637-5795</th><th>Not specified</th><th>Orlando &amp; beyond</th></tr></thead>
+<tbody>
+</tbody></table>
+<ul>
+<li><strong>Q19</strong> - &quot;Maestro Movers Orlando reviews&quot; (also in sources)</li>
+</ul>
+<p>  &gt; <strong>Maestro Movers, an Orlando-area moving company, receives overwhelmingly positive reviews across multiple platforms, with 100% positive feedback on some sites and rare negative mentions elsewhere.</strong> Customers consistently praise their efficiency, pr...</p>
+<ul>
+<li><strong>Q20</strong> - &quot;is Maestro Movers a good company&quot; (also in sources)</li>
+</ul>
+<p>  &gt; <strong>Maestro Movers, LLC, based in Longwood, Florida, has a strong reputation as a reliable moving company, evidenced by its A+ BBB rating, accreditation since 2017, and consistently positive customer reviews across multiple platforms.[1][2][3][4][5]</strong> ...</p>
+<hr>
+<h2>Section 3 - Google AI Overview (2/20 cited, 7/20 triggered)</h2>
+<h3>AI Overview cited:</h3>
+<ul>
+<li><strong>Q8</strong> - &quot;who should I hire to move in Winter Park&quot;</li>
+</ul>
+<p>  Sources: bigmanmovers.com, suddath.com, motouchmovers.com</p>
+<ul>
+<li><strong>Q20</strong> - &quot;is Maestro Movers a good company&quot;</li>
+</ul>
+<p>  Sources: maestromovers.com, trustindex.io, trustindex.io</p>
+<h3>AIO triggered but did NOT cite us:</h3>
+<ul>
+<li><strong>Q4</strong> - &quot;best moving company Maitland FL&quot;</li>
+</ul>
+<p>  Sources cited instead: orlandoexpressmovers.com, angi.com, m.yelp.com</p>
+<ul>
+<li><strong>Q6</strong> - &quot;who are the best movers in Orlando&quot;</li>
+</ul>
+<p>  Sources cited instead: orlandobestusamovers.com, sebastianmoving.com, m.yelp.com</p>
+<ul>
+<li><strong>Q7</strong> - &quot;what moving company should I use in Orlando&quot;</li>
+</ul>
+<p>  Sources cited instead: m.yelp.com, reddit.com, reddit.com</p>
+<ul>
+<li><strong>Q9</strong> - &quot;can you recommend movers in Orlando FL&quot;</li>
+</ul>
+<p>  Sources cited instead: reddit.com, reddit.com, reddit.com</p>
+<ul>
+<li><strong>Q10</strong> - &quot;what is the best mover in Winter Springs FL&quot;</li>
+</ul>
+<p>  Sources cited instead: m.yelp.com, angi.com, hireahelper.com</p>
+<h3>Organic positions for AI-tested queries:</h3>
+<ul>
+<li>Q11 - &quot;piano movers Orlando FL&quot; - position <strong>#3</strong></li>
+<li>Q19 - &quot;Maestro Movers Orlando reviews&quot; - position <strong>#1</strong></li>
+<li>Q20 - &quot;is Maestro Movers a good company&quot; - position <strong>#3</strong></li>
+</ul>
+<hr>
+<h2>Section 4 - Google Maps Pack (3/5)</h2>
+<ul>
+<li><strong>&quot;movers Orlando FL&quot;</strong> - position <strong>#13</strong></li>
+<li><strong>&quot;piano movers Orlando FL&quot;</strong> - position <strong>#1</strong></li>
+<li><strong>&quot;moving and storage Orlando FL&quot;</strong> - position <strong>#13</strong></li>
+</ul>
+<h3>Missing from:</h3>
+<ul>
+<li><strong>&quot;moving company Winter Park FL&quot;</strong> - top 5 currently:</li>
+</ul>
+<p>  - 1. Big Man Movers (4.7* / 212 reviews)</p>
+<p>  - 2. All My Sons Moving &amp; Storage (4.7* / 8387 reviews)</p>
+<p>  - 3. Orlando Moving Company (4.9* / 551 reviews)</p>
+<p>  - 4. Teleport Moving and Storage (4.9* / 1407 reviews)</p>
+<p>  - 5. Two Men and a Truck Moving (4.7* / 786 reviews)</p>
+<ul>
+<li><strong>&quot;movers Maitland FL&quot;</strong> - top 5 currently:</li>
+</ul>
+<p>  - 1. Orlando Moving Company (4.9* / 551 reviews)</p>
+<p>  - 2. Big Man Movers (4.7* / 212 reviews)</p>
+<p>  - 3. Get Done Moving - Movers Altamonte Springs (5* / 431 reviews)</p>
+<p>  - 4. Two Men and a Truck Moving (4.7* / 786 reviews)</p>
+<p>  - 5. Tactical Moving Company (4.9* / 401 reviews)</p>
+<hr>
+<h2>Section 5 - SEO Foundation</h2>
+<ul>
+<li><strong>Domain Rank:</strong> 132</li>
+<li><strong>Backlinks:</strong> 261</li>
+<li><strong>Referring Domains:</strong> 115</li>
+<li><strong>Referring Main Domains:</strong> 112</li>
+<li><strong>Spam Score:</strong> 20</li>
+<li><strong>Ranked Keywords:</strong> 292</li>
+<li><strong>Organic ETV:</strong> 1243.96164104715</li>
+</ul>
+<h3>Top 20 Ranked Keywords</h3>
+<table>
+<thead><tr><th>#</th><th>Keyword</th><th>Position</th><th>Volume</th><th>CPC</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>cost of moving using pods</td><td>76</td><td>22200</td><td>$10.46</td></tr>
+<tr><td>2</td><td>cost to move using pods</td><td>33</td><td>22200</td><td>$10.46</td></tr>
+<tr><td>3</td><td>costs of pods</td><td>52</td><td>22200</td><td>$7.66</td></tr>
+<tr><td>4</td><td>moving piano near me</td><td>75</td><td>22200</td><td>$12.08</td></tr>
+<tr><td>5</td><td>moving pods storage cost</td><td>43</td><td>22200</td><td>$7.66</td></tr>
+<tr><td>6</td><td>moving with pods rates</td><td>52</td><td>22200</td><td>$10.46</td></tr>
+<tr><td>7</td><td>piano movers near me</td><td>33</td><td>22200</td><td>$12.08</td></tr>
+<tr><td>8</td><td>piano moving company near me</td><td>66</td><td>22200</td><td>$12.08</td></tr>
+<tr><td>9</td><td>piano moving service near me</td><td>101</td><td>22200</td><td>$12.08</td></tr>
+<tr><td>10</td><td>pod movers cost</td><td>41</td><td>22200</td><td>$10.46</td></tr>
+<tr><td>11</td><td>pod moving companies cost</td><td>50</td><td>22200</td><td>$10.46</td></tr>
+<tr><td>12</td><td>pod moving cost</td><td>59</td><td>22200</td><td>$10.46</td></tr>
+<tr><td>13</td><td>pods moving and storage cost</td><td>52</td><td>22200</td><td>$7.66</td></tr>
+<tr><td>14</td><td>pods moving cost</td><td>62</td><td>22200</td><td>$10.46</td></tr>
+<tr><td>15</td><td>pods moving prices</td><td>56</td><td>22200</td><td>$10.46</td></tr>
+<tr><td>16</td><td>mover for piano</td><td>48</td><td>14800</td><td>$12.25</td></tr>
+<tr><td>17</td><td>moving companies piano</td><td>37</td><td>14800</td><td>$12.25</td></tr>
+<tr><td>18</td><td>moving company piano</td><td>78</td><td>14800</td><td>$12.30</td></tr>
+<tr><td>19</td><td>orlando florida moving company</td><td>33</td><td>12100</td><td>$24.24</td></tr>
+<tr><td>20</td><td>pods rental cost</td><td>53</td><td>6600</td><td>$7.56</td></tr>
+</tbody></table>
+<h3>Striking Distance Keywords (positions 11-20, ready to push to page 1)</h3>
+<table>
+<thead><tr><th>Keyword</th><th>Position</th><th>Volume</th><th>CPC</th></tr></thead>
+<tbody>
+<tr><td>pods orlando</td><td>18</td><td>390</td><td>$10.56</td></tr>
+</tbody></table>
+<h3>Top 15 Referring Domains</h3>
+<table>
+<thead><tr><th>Domain</th><th>Rank</th><th>Backlinks</th></tr></thead>
+<tbody>
+<tr><td>orlandopianotuning.com</td><td>113</td><td>53</td></tr>
+<tr><td>bunity.com</td><td>23</td><td>2</td></tr>
+<tr><td>pianomoversorlando.com</td><td>14</td><td>3</td></tr>
+<tr><td>countyadvisoryboard.com</td><td>7</td><td>1</td></tr>
+<tr><td>activdirectory.net</td><td>0</td><td>1</td></tr>
+<tr><td>seomuda.id</td><td>0</td><td>1</td></tr>
+<tr><td>rankvance-agency.online</td><td>0</td><td>1</td></tr>
+<tr><td>torun-stolarz.pl</td><td>0</td><td>1</td></tr>
+<tr><td>ododuorpremium.com</td><td>0</td><td>1</td></tr>
+<tr><td>shoplogist.com</td><td>0</td><td>1</td></tr>
+<tr><td>ycm.info</td><td>0</td><td>1</td></tr>
+<tr><td>buzzshrink.website</td><td>0</td><td>1</td></tr>
+<tr><td>pagesearch.net</td><td>0</td><td>1</td></tr>
+<tr><td>arteza.fr</td><td>0</td><td>1</td></tr>
+<tr><td>walisha.org</td><td>0</td><td>1</td></tr>
+</tbody></table>
+<h3>Algorithmic Competitors (DataForSEO Labs)</h3>
+<table>
+<thead><tr><th>Domain</th><th>Intersections</th><th>Avg Position</th><th>Ranked KWs</th></tr></thead>
+<tbody>
+<tr><td>maestromovers.com</td><td>292</td><td>52.63356164383562</td><td>292</td></tr>
+<tr><td>facebook.com</td><td>264</td><td>23.443181818181817</td><td>264</td></tr>
+<tr><td>youtube.com</td><td>242</td><td>26.363636363636363</td><td>242</td></tr>
+<tr><td>reddit.com</td><td>221</td><td>9.574660633484163</td><td>221</td></tr>
+<tr><td>uhaul.com</td><td>176</td><td>29.875</td><td>176</td></tr>
+<tr><td>yelp.com</td><td>172</td><td>17.00581395348837</td><td>172</td></tr>
+<tr><td>hireahelper.com</td><td>160</td><td>27.71875</td><td>160</td></tr>
+<tr><td>forbes.com</td><td>159</td><td>22.270440251572328</td><td>159</td></tr>
+<tr><td>movebuddha.com</td><td>148</td><td>12.858108108108109</td><td>148</td></tr>
+<tr><td>quora.com</td><td>143</td><td>21.818181818181817</td><td>143</td></tr>
+</tbody></table>
+<h3>Top Anchor Texts</h3>
+<ul>
+<li><strong>&quot;None&quot;</strong> - 69 backlinks from 13 domains</li>
+<li><strong>&quot;maestromovers.com&quot;</strong> - 47 backlinks from 44 domains</li>
+<li><strong>&quot;Maestro Movers&quot;</strong> - 21 backlinks from 6 domains</li>
+<li><strong>&quot;Visit Site&quot;</strong> - 20 backlinks from 1 domains</li>
+<li><strong>&quot;Website&quot;</strong> - 18 backlinks from 7 domains</li>
+<li><strong>&quot;pianomoversorlando.com&quot;</strong> - 15 backlinks from 15 domains</li>
+<li><strong>&quot;Visit Website&quot;</strong> - 14 backlinks from 4 domains</li>
+<li><strong>&quot;movingcompanyinorlando.com&quot;</strong> - 11 backlinks from 11 domains</li>
+<li><strong>&quot;JOIN OUR TELEGRAM https://t.me/s/darksidelinks&quot;</strong> - 8 backlinks from 7 domains</li>
+<li><strong>&quot;OUR TELEGRAM CHANEL https://t.me/s/quarterlinks25&quot;</strong> - 8 backlinks from 8 domains</li>
+</ul>
+<hr>
+<h2>Section 6 - Schema &amp; Structured Data</h2>
+<p><strong>Score: 15/25</strong></p>
+<p><strong>Schemas found (7):</strong> WebPage, Organization, Person, FAQPage, ImageObject, Article, WebSite</p>
+<h3>Gaps:</h3>
+<ul>
+<li>Service schema MISSING (-3 pts)</li>
+<li>Review/AggregateRating schema MISSING (-3 pts)</li>
+<li>HowTo schema MISSING (-2 pts)</li>
+<li>BreadcrumbList schema MISSING (-1 pt)</li>
+</ul>
+<hr>
+<h2>Section 7 - Technical On-Page (DataForSEO Instant)</h2>
+<ul>
+<li><strong>URL tested:</strong> https://maestromovers.com/</li>
+<li><strong>Status code:</strong> 200</li>
+<li><strong>Title:</strong> &quot;Orlando movers, Orlando moving company, Orlando Piano Movers&quot; (60 chars)</li>
+<li><strong>Description:</strong> &quot;Maestro Movers is your trusted moving partner in Orlando, FL. We provide reliable residential and commercial moving serv&quot; (163 chars)</li>
+<li><strong>H1 tags:</strong> [&#x27;Orlando Mover - Maestro Movers&#x27;]</li>
+<li><strong>Word count:</strong> None</li>
+<li><strong>Content rate:</strong> None</li>
+<li><strong>Load time:</strong> 1585ms</li>
+<li><strong>Issues flagged:</strong> is_https, low_content_rate, duplicate_meta_tags, no_image_alt, frame</li>
+</ul>
+<hr>
+<h2>Section 8 - Trust List (Top Cited Source Domains Across All Queries)</h2>
+<p style='color:#64748B;font-style:italic;'>Domains AI engines cited most often when answering queries in this niche.</p>
+<table>
+<thead><tr><th>#</th><th>Domain</th><th>Citation Count</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>allmysons.com</td><td>18</td></tr>
+<tr><td>2</td><td>orlandobestusamovers.com</td><td>17</td></tr>
+<tr><td>3</td><td>suddath.com</td><td>11</td></tr>
+<tr><td>4</td><td>jjmetro.com</td><td>10</td></tr>
+<tr><td>5</td><td>2collegebrothers.com</td><td>10</td></tr>
+<tr><td>6</td><td>google.com</td><td>9</td></tr>
+<tr><td>7</td><td>hireahelper.com</td><td>9</td></tr>
+<tr><td>8</td><td>angi.com</td><td>9</td></tr>
+<tr><td>9</td><td>m.yelp.com</td><td>9</td></tr>
+<tr><td>10</td><td>maestromovers.com</td><td>8</td></tr>
+<tr><td>11</td><td>extraspace.com</td><td>7</td></tr>
+<tr><td>12</td><td>reddit.com</td><td>7</td></tr>
+<tr><td>13</td><td>orlandomovingco.com</td><td>6</td></tr>
+<tr><td>14</td><td>greekmoving.com</td><td>6</td></tr>
+<tr><td>15</td><td>sebastianmoving.com</td><td>6</td></tr>
+</tbody></table>
+<hr>
+<h2>Section 9 - Quick Wins</h2>
+<p>1. Fix meta description (missing or over 160 chars)</p>
+<p>2. Increase content-to-HTML ratio (low content density flagged)</p>
+<p>3. Add alt text to images</p>
+<p>4. Add missing schema: LocalBusiness/Organization schema, Person schema, FAQ schema</p>
+<p>5. Push striking-distance keyword &#x27;pods orlando&#x27; (pos 18, vol 390) to page 1</p>
+<p>6. AI Visibility URGENT: only 4/20 ChatGPT citations - build entity signals + content depth</p>
+<hr>
+<h2>Section 10 - Recommended Action Plan</h2>
+<h3>This Week</h3>
+<ul>
+<li>Trim meta description to under 160 chars</li>
+</ul>
+<h3>Month 1</h3>
+<ul>
+<li>Build entity linkers across BBB, Yelp, niche directories</li>
+<li>Push 1 striking-distance keywords to page 1 (page 2 currently)</li>
+</ul>
+<h3>Months 2-3</h3>
+<ul>
+<li>Content depth on top 5 service pages (FAQ, proof blocks, unique claims)</li>
+<li>Backlink campaign targeting trust list domains AI cites in this niche</li>
+<li>Set up monthly AI visibility tracking (re-run audit)</li>
+</ul>
+<hr>
+<p style='color:#64748B;font-style:italic;'>Audit generated 2026-04-06 by Online Optimisers AI Audit Pipeline (v2026.04).</p>
+
+<div class="footer">
+Audit generated by <strong>Online Optimisers AI Audit Pipeline</strong> (v2026.04)<br>
+<a href="https://onlineoptimisers.com">onlineoptimisers.com</a>
+</div>
+
+</div>
+</body>
+</html>

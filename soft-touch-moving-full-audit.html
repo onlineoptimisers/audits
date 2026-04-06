@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Soft Touch Moving and Storage - AI Visibility Audit | Online Optimisers</title>
+<style>
+    * { box-sizing: border-box; }
+    body { margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif; background: #06101E; color: #E5E7EB; line-height: 1.6; }
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 40px 24px; }
+    h1 { color: #4FC3F7; font-size: 2.2em; margin-bottom: 0.2em; }
+    h2 { color: #4FC3F7; border-bottom: 2px solid #0A1628; padding-bottom: 8px; margin-top: 48px; }
+    h3 { color: #F4B942; }
+    .meta { color: #94A3B8; margin-bottom: 32px; }
+    .score-card { background: linear-gradient(135deg, #0A1628 0%, #06101E 100%); border: 2px solid #F87171; border-radius: 16px; padding: 32px; text-align: center; margin: 24px 0; }
+    .score-big { font-size: 5em; font-weight: 900; color: #F87171; line-height: 1; margin: 0; }
+    .score-band { font-size: 1.4em; color: #F87171; text-transform: uppercase; letter-spacing: 2px; margin-top: 8px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin: 24px 0; }
+    .card { background: #0A1628; border: 1px solid #1E293B; border-radius: 12px; padding: 20px; }
+    .card .label { font-size: 0.85em; color: #94A3B8; text-transform: uppercase; letter-spacing: 1px; }
+    .card .value { font-size: 2em; font-weight: 700; color: #4FC3F7; margin-top: 4px; }
+    .card .sub { font-size: 0.85em; color: #94A3B8; margin-top: 4px; }
+    table { width: 100%; border-collapse: collapse; margin: 16px 0; background: #0A1628; border-radius: 8px; overflow: hidden; }
+    th, td { padding: 10px 14px; text-align: left; border-bottom: 1px solid #1E293B; font-size: 0.92em; }
+    th { background: #06101E; color: #4FC3F7; font-weight: 600; }
+    tr:hover { background: #0E1A2F; }
+    blockquote { border-left: 3px solid #4FC3F7; margin: 12px 0; padding: 8px 16px; background: #0A1628; border-radius: 0 8px 8px 0; color: #CBD5E1; font-style: italic; font-size: 0.92em; }
+    code { background: #0A1628; padding: 2px 6px; border-radius: 4px; font-family: 'JetBrains Mono', 'Fira Code', monospace; font-size: 0.9em; color: #F4B942; }
+    a { color: #4FC3F7; }
+    .platform-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 24px 0; }
+    .platform { background: #0A1628; border-radius: 12px; padding: 24px; border-top: 4px solid; }
+    .platform.chatgpt { border-color: #19C37D; }
+    .platform.perplexity { border-color: #7C3AED; }
+    .platform.aio { border-color: #F4B942; }
+    .platform .name { font-size: 0.9em; color: #94A3B8; text-transform: uppercase; letter-spacing: 1px; }
+    .platform .stat { font-size: 2.4em; font-weight: 800; margin: 8px 0; }
+    .platform.chatgpt .stat { color: #19C37D; }
+    .platform.perplexity .stat { color: #7C3AED; }
+    .platform.aio .stat { color: #F4B942; }
+    .platform .label { font-size: 0.85em; color: #94A3B8; }
+    .pill { display: inline-block; padding: 4px 10px; border-radius: 999px; font-size: 0.8em; font-weight: 600; }
+    .pill.good { background: rgba(74, 222, 128, 0.2); color: #4ADE80; }
+    .pill.fair { background: rgba(251, 191, 36, 0.2); color: #FBBF24; }
+    .pill.poor { background: rgba(248, 113, 113, 0.2); color: #F87171; }
+    ul li { margin-bottom: 6px; }
+    hr { border: none; border-top: 1px solid #0A1628; margin: 32px 0; }
+    .footer { text-align: center; color: #64748B; padding: 32px 0; font-size: 0.85em; }
+    </style>
+</head>
+<body>
+<div class="wrap">
+<h1>AI Visibility Audit</h1>
+<div class="meta"><strong>Soft Touch Moving and Storage</strong> &middot; Indianapolis, IN &middot; 2026-04-06</div>
+
+<div class="score-card">
+  <div class="label" style="color:#94A3B8;font-size:0.9em;letter-spacing:1px;">AI VISIBILITY SCORE</div>
+  <div class="score-big">33<span style="font-size:0.4em;color:#64748B;">/100</span></div>
+  <div class="score-band">poor</div>
+</div>
+
+<div class="platform-grid">
+  <div class="platform chatgpt">
+    <div class="name">ChatGPT</div>
+    <div class="stat">5<span style="font-size:0.5em;color:#94A3B8;">/20</span></div>
+    <div class="label">queries cited</div>
+  </div>
+  <div class="platform perplexity">
+    <div class="name">Perplexity</div>
+    <div class="stat">2<span style="font-size:0.5em;color:#94A3B8;">/20</span></div>
+    <div class="label">queries cited</div>
+  </div>
+  <div class="platform aio">
+    <div class="name">Google AI Overview</div>
+    <div class="stat">2<span style="font-size:0.5em;color:#94A3B8;">/20</span></div>
+    <div class="label">cited / 7 triggered</div>
+  </div>
+</div>
+
+<div class="grid">
+  <div class="card">
+    <div class="label">Domain Rank</div>
+    <div class="value">130</div>
+    <div class="sub">DataForSEO</div>
+  </div>
+  <div class="card">
+    <div class="label">Backlinks</div>
+    <div class="value">347</div>
+    <div class="sub">166 referring domains</div>
+  </div>
+  <div class="card">
+    <div class="label">Ranked Keywords</div>
+    <div class="value">134</div>
+    <div class="sub">organic positions</div>
+  </div>
+  <div class="card">
+    <div class="label">Schema Score</div>
+    <div class="value">7<span style="font-size:0.5em;color:#94A3B8;">/25</span></div>
+    <div class="sub">4 types found</div>
+  </div>
+</div>
+
+<hr>
+<h2>AI Visibility Score: **33/100** (POOR)</h2>
+<table>
+<thead><tr><th>Component</th><th>Score</th><th>Detail</th></tr></thead>
+<tbody>
+<tr><td>AI Platform Citations</td><td>4/25</td><td>9/60 queries cited</td></tr>
+<tr><td>Schema Markup</td><td>7/25</td><td>4 schemas found</td></tr>
+<tr><td>AI-Weighted Backlinks</td><td>20/25</td><td>166 referring main domains</td></tr>
+<tr><td>Content Citability</td><td>2/25</td><td>Perplexity in-content + in-sources signal</td></tr>
+</tbody></table>
+<hr>
+<h2>Headline Findings</h2>
+<ul>
+<li><strong>5/20 ChatGPT</strong> queries cited Soft Touch Moving and Storage (25%)</li>
+<li><strong>2/20 Perplexity</strong> queries cited Soft Touch Moving and Storage (10%)</li>
+<li><strong>2/20 Google AI Overview</strong> queries cited Soft Touch Moving and Storage (7/20 triggered AIO)</li>
+<li><strong>1/5 Google Maps</strong> queries returned Soft Touch Moving and Storage in top 20</li>
+<li><strong>Domain Rank 130</strong> | <strong>347</strong> backlinks | <strong>166</strong> referring domains</li>
+<li><strong>134</strong> ranked keywords (organic ETV: 2138.1505097933114)</li>
+<li><strong>Schema score: 7/25</strong> (4 types found)</li>
+</ul>
+<hr>
+<h2>Section 1 - ChatGPT Visibility (5/20)</h2>
+<h3>Cited In:</h3>
+<ul>
+<li><strong>Q4</strong> - &quot;best movers Bloomington IN&quot;</li>
+</ul>
+<p>  &gt; s, covering 196,000 miles last year.</p>
+<p><strong>[Soft Touch Moving &amp; Storage Co](http://softtouchmovingandstorage.com/?utm_source=openai)</strong>  </p>
+<p><strong>Closed · Moving and storage service · 4.3 (118 reviews)</strong>  </p>
+<p>_3150 S Walnut St, Bloomington, IN 47401_  </p>
+<p>A full-ser...</p>
+<ul>
+<li><strong>Q8</strong> - &quot;who should I hire to move in Bloomington IN&quot;</li>
+</ul>
+<p>  &gt; provide portable storage containers.</p>
+<p><strong>[Soft Touch Moving &amp; Storage Co](http://softtouchmovingandstorage.com/?utm_source=openai)</strong>  </p>
+<p><strong>Closed · Moving and storage service · 4.3 (118 reviews)</strong>  </p>
+<p>_3150 S Walnut St, Bloomington, IN 47401_  </p>
+<p>A full-ser...</p>
+<ul>
+<li><strong>Q16</strong> - &quot;residential movers Indianapolis&quot;</li>
+</ul>
+<p>  &gt; ncluding full-service packing and custom crating.</p>
+<p><strong>[Soft Touch Moving](http://softtouchmovingandstorage.com/?utm_source=openai)</strong>  </p>
+<p><strong>Closed · Mover · 4.9 (49 reviews)</strong>  </p>
+<p>_5136b E 65th St, Indianapolis, IN 46220_  </p>
+<p>A full-service moving company of...</p>
+<ul>
+<li><strong>Q19</strong> - &quot;Soft Touch Moving Indianapolis reviews&quot;</li>
+</ul>
+<p>  &gt; Soft Touch Moving &amp; Storage, based in Indianapolis, IN, has garnered a strong reputation for its moving services. The company boasts an impressive 98% positive feedback rate from 54 reviews, with no negative reviews reported. ([movebuddha.com](https:...</p>
+<ul>
+<li><strong>Q20</strong> - &quot;is Soft Touch Moving a good company&quot;</li>
+</ul>
+<p>  &gt; &quot;Soft Touch Moving&quot; operates under various names and locations, leading to a range of customer experiences. Here&#x27;s a summary of feedback from different branches:</p>
+<p><strong>Soft Touch Moving &amp; Packing (Phoenix, AZ):</strong></p>
+<ul>
+<li><strong>Customer Reviews:</strong> This branch has ...</li>
+</ul>
+<h3>Absent From:</h3>
+<ul>
+<li><strong>Q1</strong> - &quot;best moving company Indianapolis IN&quot;</li>
+<li><strong>Q2</strong> - &quot;top rated movers Indianapolis&quot;</li>
+<li><strong>Q3</strong> - &quot;best moving and storage Indianapolis&quot;</li>
+<li><strong>Q5</strong> - &quot;moving company Carmel IN&quot;</li>
+<li><strong>Q6</strong> - &quot;who are the best movers in Indianapolis&quot;</li>
+<li><strong>Q7</strong> - &quot;what is the best moving company in Indianapolis&quot;</li>
+<li><strong>Q9</strong> - &quot;can you recommend a mover in Indianapolis&quot;</li>
+<li><strong>Q10</strong> - &quot;what moving company should I use in Indianapolis&quot;</li>
+<li><strong>Q11</strong> - &quot;movers and storage Indianapolis&quot;</li>
+<li><strong>Q12</strong> - &quot;long distance movers Indianapolis&quot;</li>
+</ul>
+<p style='color:#64748B;font-style:italic;'>...and 5 more</p>
+<hr>
+<h2>Section 2 - Perplexity Visibility (2/20)</h2>
+<p>In response: 2/20 | In sources only: 0/20</p>
+<h3>Cited In:</h3>
+<ul>
+<li><strong>Q19</strong> - &quot;Soft Touch Moving Indianapolis reviews&quot;</li>
+</ul>
+<p>  &gt; **Soft Touch Moving (also listed as Soft Touch Movers or Soft Touch Moving &amp; Storage) receives predominantly positive reviews across platforms, with customers frequently praising their punctuality, efficiency, professionalism, and careful handling of...</p>
+<ul>
+<li><strong>Q20</strong> - &quot;is Soft Touch Moving a good company&quot;</li>
+</ul>
+<p>  &gt; **Soft Touch Moving receives mostly positive customer reviews for efficiency, professionalism, and care with items across its locations in Indiana (e.g., Bloomington, Martinsville) and Arizona (e.g., Phoenix, Tempe), but it has some serious complaint...</p>
+<hr>
+<h2>Section 3 - Google AI Overview (2/20 cited, 7/20 triggered)</h2>
+<h3>AI Overview cited:</h3>
+<ul>
+<li><strong>Q13</strong> - &quot;licensed insured movers Indianapolis&quot;</li>
+</ul>
+<p>  Sources: twomenandatruck.com, shermanmoving.com, extraspace.com</p>
+<ul>
+<li><strong>Q20</strong> - &quot;is Soft Touch Moving a good company&quot;</li>
+</ul>
+<p>  Sources: softtouchmovingandstorage.com, m.yelp.com, m.yelp.com</p>
+<h3>AIO triggered but did NOT cite us:</h3>
+<ul>
+<li><strong>Q1</strong> - &quot;best moving company Indianapolis IN&quot;</li>
+</ul>
+<p>  Sources cited instead: reddit.com, reddit.com, forbes.com</p>
+<ul>
+<li><strong>Q6</strong> - &quot;who are the best movers in Indianapolis&quot;</li>
+</ul>
+<p>  Sources cited instead: reddit.com, reddit.com, forbes.com</p>
+<ul>
+<li><strong>Q7</strong> - &quot;what is the best moving company in Indianapolis&quot;</li>
+</ul>
+<p>  Sources cited instead: reddit.com, reddit.com, m.yelp.com</p>
+<ul>
+<li><strong>Q9</strong> - &quot;can you recommend a mover in Indianapolis&quot;</li>
+</ul>
+<p>  Sources cited instead: m.yelp.com, reddit.com, reddit.com</p>
+<ul>
+<li><strong>Q10</strong> - &quot;what moving company should I use in Indianapolis&quot;</li>
+</ul>
+<p>  Sources cited instead: reddit.com, reddit.com, reddit.com</p>
+<h3>Organic positions for AI-tested queries:</h3>
+<ul>
+<li>Q4 - &quot;best movers Bloomington IN&quot; - position <strong>#8</strong></li>
+<li>Q13 - &quot;licensed insured movers Indianapolis&quot; - position <strong>#15</strong></li>
+<li>Q17 - &quot;packing services Indianapolis&quot; - position <strong>#10</strong></li>
+<li>Q19 - &quot;Soft Touch Moving Indianapolis reviews&quot; - position <strong>#3</strong></li>
+<li>Q20 - &quot;is Soft Touch Moving a good company&quot; - position <strong>#11</strong></li>
+</ul>
+<hr>
+<h2>Section 4 - Google Maps Pack (1/5)</h2>
+<ul>
+<li><strong>&quot;moving company Bloomington IN&quot;</strong> - position <strong>#4</strong></li>
+</ul>
+<h3>Missing from:</h3>
+<ul>
+<li><strong>&quot;movers Indianapolis IN&quot;</strong> - top 5 currently:</li>
+</ul>
+<p>  - 1. You Move Me Indianapolis (4.8* / 837 reviews)</p>
+<p>  - 2. All My Sons Moving &amp; Storage (4.6* / 3650 reviews)</p>
+<p>  - 3. Two Men and a Truck Moving and Storage (4.5* / 635 reviews)</p>
+<p>  - 4. All My Sons Moving &amp; Storage (4.6* / 1177 reviews)</p>
+<p>  - 5. My Movers Inc (4.8* / 130 reviews)</p>
+<ul>
+<li><strong>&quot;moving and storage Indianapolis&quot;</strong> - top 5 currently:</li>
+</ul>
+<p>  - 1. Planes Moving &amp; Storage of Indianapolis (4.9* / 982 reviews)</p>
+<p>  - 2. All My Sons Moving &amp; Storage (4.6* / 3650 reviews)</p>
+<p>  - 3. You Move Me Indianapolis (4.8* / 837 reviews)</p>
+<p>  - 4. All My Sons Moving &amp; Storage (4.6* / 1177 reviews)</p>
+<p>  - 5. Leaders Moving &amp; Storage Co. (4.7* / 1106 reviews)</p>
+<ul>
+<li><strong>&quot;long distance movers Indianapolis&quot;</strong> - top 5 currently:</li>
+</ul>
+<p>  - 1. All My Sons Moving &amp; Storage (4.6* / 3650 reviews)</p>
+<p>  - 2. Bellhop Moving - Indianapolis (4.4* / 496 reviews)</p>
+<p>  - 3. Moves For Less of Indianapolis (4.8* / 901 reviews)</p>
+<p>  - 4. You Move Me Indianapolis (4.8* / 837 reviews)</p>
+<p>  - 5. Move Indy (4.9* / 478 reviews)</p>
+<ul>
+<li><strong>&quot;packing services Indianapolis&quot;</strong> - top 5 currently:</li>
+</ul>
+<p>  - 1. Planes Moving &amp; Storage of Indianapolis (4.9* / 982 reviews)</p>
+<p>  - 2. All My Sons Moving &amp; Storage (4.6* / 3650 reviews)</p>
+<p>  - 3. Britt&#x27;s Professional Packing (4.2* / 33 reviews)</p>
+<p>  - 4. Moves For Less of Indianapolis (4.8* / 901 reviews)</p>
+<p>  - 5. My Movers Inc (4.8* / 130 reviews)</p>
+<hr>
+<h2>Section 5 - SEO Foundation</h2>
+<ul>
+<li><strong>Domain Rank:</strong> 130</li>
+<li><strong>Backlinks:</strong> 347</li>
+<li><strong>Referring Domains:</strong> 169</li>
+<li><strong>Referring Main Domains:</strong> 166</li>
+<li><strong>Spam Score:</strong> 21</li>
+<li><strong>Ranked Keywords:</strong> 134</li>
+<li><strong>Organic ETV:</strong> 2138.1505097933114</li>
+</ul>
+<h3>Top 20 Ranked Keywords</h3>
+<table>
+<thead><tr><th>#</th><th>Keyword</th><th>Position</th><th>Volume</th><th>CPC</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>moving service storage</td><td>76</td><td>9900</td><td>$34.20</td></tr>
+<tr><td>2</td><td>move and storage</td><td>81</td><td>8100</td><td>$20.15</td></tr>
+<tr><td>3</td><td>storage moving companies</td><td>72</td><td>8100</td><td>$39.54</td></tr>
+<tr><td>4</td><td>packing and removal company</td><td>63</td><td>4400</td><td>$28.06</td></tr>
+<tr><td>5</td><td>indy moving companies</td><td>63</td><td>2900</td><td>$23.73</td></tr>
+<tr><td>6</td><td>lexington moving companies</td><td>68</td><td>2400</td><td>$19.17</td></tr>
+<tr><td>7</td><td>storage facilities bloomington indiana</td><td>55</td><td>2400</td><td>$7.93</td></tr>
+<tr><td>8</td><td>packing moving services near me</td><td>84</td><td>1300</td><td>$32.83</td></tr>
+<tr><td>9</td><td>bloomington in movers</td><td>7</td><td>1000</td><td>$13.50</td></tr>
+<tr><td>10</td><td>bloomington in moving companies</td><td>5</td><td>1000</td><td>$13.50</td></tr>
+<tr><td>11</td><td>bloomington indiana movers</td><td>7</td><td>1000</td><td>$13.50</td></tr>
+<tr><td>12</td><td>bloomington movers</td><td>7</td><td>1000</td><td>$13.50</td></tr>
+<tr><td>13</td><td>bloomington moving company</td><td>5</td><td>1000</td><td>$13.50</td></tr>
+<tr><td>14</td><td>home packing service</td><td>60</td><td>1000</td><td>$16.02</td></tr>
+<tr><td>15</td><td>house packing services</td><td>67</td><td>1000</td><td>$16.02</td></tr>
+<tr><td>16</td><td>household packing service</td><td>50</td><td>1000</td><td>$16.02</td></tr>
+<tr><td>17</td><td>movers bloomington</td><td>5</td><td>1000</td><td>$13.50</td></tr>
+<tr><td>18</td><td>movers bloomington indiana</td><td>5</td><td>1000</td><td>$13.50</td></tr>
+<tr><td>19</td><td>movers in bloomington</td><td>5</td><td>1000</td><td>$13.50</td></tr>
+<tr><td>20</td><td>movers in bloomington indiana</td><td>6</td><td>1000</td><td>$13.50</td></tr>
+</tbody></table>
+<h3>Striking Distance Keywords (positions 11-20, ready to push to page 1)</h3>
+<table>
+<thead><tr><th>Keyword</th><th>Position</th><th>Volume</th><th>CPC</th></tr></thead>
+<tbody>
+<tr><td>mobile home movers in indiana</td><td>16</td><td>70</td><td>$5.87</td></tr>
+</tbody></table>
+<h3>Top 15 Referring Domains</h3>
+<table>
+<thead><tr><th>Domain</th><th>Rank</th><th>Backlinks</th></tr></thead>
+<tbody>
+<tr><td>intuhire.com</td><td>63</td><td>4</td></tr>
+<tr><td>callupcontact.com</td><td>51</td><td>1</td></tr>
+<tr><td>pricehomeimprovements.com</td><td>23</td><td>6</td></tr>
+<tr><td>loserve.com</td><td>16</td><td>4</td></tr>
+<tr><td>bunity.com</td><td>7</td><td>2</td></tr>
+<tr><td>ec2-54-87-57-223.compute-1.amazonaws.com</td><td>7</td><td>1</td></tr>
+<tr><td>talktradings.com</td><td>7</td><td>1</td></tr>
+<tr><td>chamberbloomington.org</td><td>2</td><td>25</td></tr>
+<tr><td>seomuda.id</td><td>0</td><td>1</td></tr>
+<tr><td>torun-stolarz.pl</td><td>0</td><td>1</td></tr>
+<tr><td>ododuorpremium.com</td><td>0</td><td>1</td></tr>
+<tr><td>ycm.info</td><td>0</td><td>1</td></tr>
+<tr><td>shoplogist.com</td><td>0</td><td>1</td></tr>
+<tr><td>apeopledirectory.com</td><td>0</td><td>1</td></tr>
+<tr><td>phinin.com</td><td>0</td><td>1</td></tr>
+</tbody></table>
+<h3>Algorithmic Competitors (DataForSEO Labs)</h3>
+<table>
+<thead><tr><th>Domain</th><th>Intersections</th><th>Avg Position</th><th>Ranked KWs</th></tr></thead>
+<tbody>
+<tr><td>softtouchmovingandstorage.com</td><td>134</td><td>46.514925373134325</td><td>134</td></tr>
+<tr><td>yelp.com</td><td>128</td><td>8.96875</td><td>128</td></tr>
+<tr><td>twomenandatruck.com</td><td>107</td><td>12.046728971962617</td><td>107</td></tr>
+<tr><td>uhaul.com</td><td>103</td><td>23.805825242718445</td><td>103</td></tr>
+<tr><td>facebook.com</td><td>101</td><td>19.88118811881188</td><td>101</td></tr>
+<tr><td>allied.com</td><td>94</td><td>23.47872340425532</td><td>94</td></tr>
+<tr><td>reddit.com</td><td>93</td><td>19.387096774193548</td><td>93</td></tr>
+<tr><td>hireahelper.com</td><td>92</td><td>19.25</td><td>92</td></tr>
+<tr><td>thumbtack.com</td><td>86</td><td>40.76744186046512</td><td>86</td></tr>
+<tr><td>bbb.org</td><td>84</td><td>26.55952380952381</td><td>84</td></tr>
+</tbody></table>
+<h3>Top Anchor Texts</h3>
+<ul>
+<li><strong>&quot;softtouchmovingandstorage.com&quot;</strong> - 95 backlinks from 89 domains</li>
+<li><strong>&quot;Visit Site&quot;</strong> - 38 backlinks from 2 domains</li>
+<li><strong>&quot;Visit Website&quot;</strong> - 27 backlinks from 7 domains</li>
+<li><strong>&quot;None&quot;</strong> - 21 backlinks from 10 domains</li>
+<li><strong>&quot;http://www.softtouchmovingandstorage.com/&quot;</strong> - 20 backlinks from 6 domains</li>
+<li><strong>&quot;Website&quot;</strong> - 14 backlinks from 4 domains</li>
+<li><strong>&quot;OUR TELEGRAM CHANEL https://t.me/s/quarterlinks25&quot;</strong> - 9 backlinks from 9 domains</li>
+<li><strong>&quot;Soft Touch Moving and Storage Co.&quot;</strong> - 9 backlinks from 1 domains</li>
+<li><strong>&quot;Soft Touch Moving and Storage&quot;</strong> - 9 backlinks from 5 domains</li>
+<li><strong>&quot;JOIN OUR TELEGRAM https://t.me/s/darksidelinks&quot;</strong> - 8 backlinks from 7 domains</li>
+</ul>
+<hr>
+<h2>Section 6 - Schema &amp; Structured Data</h2>
+<p><strong>Score: 7/25</strong></p>
+<p><strong>Schemas found (4):</strong> WebPage, WebSite, Organization, BreadcrumbList</p>
+<h3>Gaps:</h3>
+<ul>
+<li>Person schema MISSING (-4 pts)</li>
+<li>FAQ schema MISSING (-5 pts)</li>
+<li>Service schema MISSING (-3 pts)</li>
+<li>Review/AggregateRating schema MISSING (-3 pts)</li>
+<li>HowTo schema MISSING (-2 pts)</li>
+</ul>
+<hr>
+<h2>Section 7 - Technical On-Page (DataForSEO Instant)</h2>
+<ul>
+<li><strong>URL tested:</strong> https://softtouchmovingandstorage.com/</li>
+<li><strong>Status code:</strong> 200</li>
+<li><strong>Title:</strong> &quot;Bloomington &amp; Indianapolis Moving Company | Soft Touch&quot; (54 chars)</li>
+<li><strong>Description:</strong> &quot;Soft Touch Moving &amp; Storage provides trusted moving, packing, and storage services in Bloomington and Indianapolis. Get &quot; (146 chars)</li>
+<li><strong>H1 tags:</strong> [&#x27;Our Goodness    Soft Touch Services&#x27;, &#x27;REASONS TO   CHOOSE US&#x27;, &#x27;What Our  Customers Saying&#x27;, &#x27;ABOUT OUR COMPANY&#x27;]</li>
+<li><strong>Word count:</strong> None</li>
+<li><strong>Content rate:</strong> None</li>
+<li><strong>Load time:</strong> 1532ms</li>
+<li><strong>Issues flagged:</strong> is_https, low_content_rate, no_image_alt, no_image_title, frame</li>
+</ul>
+<hr>
+<h2>Section 8 - Trust List (Top Cited Source Domains Across All Queries)</h2>
+<p style='color:#64748B;font-style:italic;'>Domains AI engines cited most often when answering queries in this niche.</p>
+<table>
+<thead><tr><th>#</th><th>Domain</th><th>Citation Count</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>allmysons.com</td><td>23</td></tr>
+<tr><td>2</td><td>coltmoving.com</td><td>18</td></tr>
+<tr><td>3</td><td>reddit.com</td><td>18</td></tr>
+<tr><td>4</td><td>busybeemovers.com</td><td>16</td></tr>
+<tr><td>5</td><td>move-indy.com</td><td>15</td></tr>
+<tr><td>6</td><td>indianapolis.youmoveme.com</td><td>11</td></tr>
+<tr><td>7</td><td>teamplanes.com</td><td>10</td></tr>
+<tr><td>8</td><td>leadersmoving.com</td><td>10</td></tr>
+<tr><td>9</td><td>m.yelp.com</td><td>10</td></tr>
+<tr><td>10</td><td>guardianrelocation.com</td><td>9</td></tr>
+<tr><td>11</td><td>unitedvanlines.com</td><td>7</td></tr>
+<tr><td>12</td><td>mymoversinc.com</td><td>6</td></tr>
+<tr><td>13</td><td>angi.com</td><td>6</td></tr>
+<tr><td>14</td><td>allied.com</td><td>5</td></tr>
+<tr><td>15</td><td>shermanmoving.com</td><td>5</td></tr>
+</tbody></table>
+<hr>
+<h2>Section 9 - Quick Wins</h2>
+<p>1. Increase content-to-HTML ratio (low content density flagged)</p>
+<p>2. Add alt text to images</p>
+<p>3. Add missing schema: LocalBusiness/Organization schema, Person schema, FAQ schema</p>
+<p>4. Push striking-distance keyword &#x27;mobile home movers in indiana&#x27; (pos 16, vol 70) to page 1</p>
+<hr>
+<h2>Section 10 - Recommended Action Plan</h2>
+<h3>This Week</h3>
+<ul>
+<li>Add LocalBusiness, FAQ, Service, Person schema markup to homepage</li>
+</ul>
+<h3>Month 1</h3>
+<ul>
+<li>Build entity linkers across BBB, Yelp, niche directories</li>
+<li>Push 1 striking-distance keywords to page 1 (page 2 currently)</li>
+</ul>
+<h3>Months 2-3</h3>
+<ul>
+<li>Content depth on top 5 service pages (FAQ, proof blocks, unique claims)</li>
+<li>Backlink campaign targeting trust list domains AI cites in this niche</li>
+<li>Set up monthly AI visibility tracking (re-run audit)</li>
+</ul>
+<hr>
+<p style='color:#64748B;font-style:italic;'>Audit generated 2026-04-06 by Online Optimisers AI Audit Pipeline (v2026.04).</p>
+
+<div class="footer">
+Audit generated by <strong>Online Optimisers AI Audit Pipeline</strong> (v2026.04)<br>
+<a href="https://onlineoptimisers.com">onlineoptimisers.com</a>
+</div>
+
+</div>
+</body>
+</html>

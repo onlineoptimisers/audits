@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Moving Pro Inc - AI Visibility Audit | Online Optimisers</title>
+<style>
+    * { box-sizing: border-box; }
+    body { margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif; background: #06101E; color: #E5E7EB; line-height: 1.6; }
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 40px 24px; }
+    h1 { color: #4FC3F7; font-size: 2.2em; margin-bottom: 0.2em; }
+    h2 { color: #4FC3F7; border-bottom: 2px solid #0A1628; padding-bottom: 8px; margin-top: 48px; }
+    h3 { color: #F4B942; }
+    .meta { color: #94A3B8; margin-bottom: 32px; }
+    .score-card { background: linear-gradient(135deg, #0A1628 0%, #06101E 100%); border: 2px solid #F87171; border-radius: 16px; padding: 32px; text-align: center; margin: 24px 0; }
+    .score-big { font-size: 5em; font-weight: 900; color: #F87171; line-height: 1; margin: 0; }
+    .score-band { font-size: 1.4em; color: #F87171; text-transform: uppercase; letter-spacing: 2px; margin-top: 8px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin: 24px 0; }
+    .card { background: #0A1628; border: 1px solid #1E293B; border-radius: 12px; padding: 20px; }
+    .card .label { font-size: 0.85em; color: #94A3B8; text-transform: uppercase; letter-spacing: 1px; }
+    .card .value { font-size: 2em; font-weight: 700; color: #4FC3F7; margin-top: 4px; }
+    .card .sub { font-size: 0.85em; color: #94A3B8; margin-top: 4px; }
+    table { width: 100%; border-collapse: collapse; margin: 16px 0; background: #0A1628; border-radius: 8px; overflow: hidden; }
+    th, td { padding: 10px 14px; text-align: left; border-bottom: 1px solid #1E293B; font-size: 0.92em; }
+    th { background: #06101E; color: #4FC3F7; font-weight: 600; }
+    tr:hover { background: #0E1A2F; }
+    blockquote { border-left: 3px solid #4FC3F7; margin: 12px 0; padding: 8px 16px; background: #0A1628; border-radius: 0 8px 8px 0; color: #CBD5E1; font-style: italic; font-size: 0.92em; }
+    code { background: #0A1628; padding: 2px 6px; border-radius: 4px; font-family: 'JetBrains Mono', 'Fira Code', monospace; font-size: 0.9em; color: #F4B942; }
+    a { color: #4FC3F7; }
+    .platform-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 24px 0; }
+    .platform { background: #0A1628; border-radius: 12px; padding: 24px; border-top: 4px solid; }
+    .platform.chatgpt { border-color: #19C37D; }
+    .platform.perplexity { border-color: #7C3AED; }
+    .platform.aio { border-color: #F4B942; }
+    .platform .name { font-size: 0.9em; color: #94A3B8; text-transform: uppercase; letter-spacing: 1px; }
+    .platform .stat { font-size: 2.4em; font-weight: 800; margin: 8px 0; }
+    .platform.chatgpt .stat { color: #19C37D; }
+    .platform.perplexity .stat { color: #7C3AED; }
+    .platform.aio .stat { color: #F4B942; }
+    .platform .label { font-size: 0.85em; color: #94A3B8; }
+    .pill { display: inline-block; padding: 4px 10px; border-radius: 999px; font-size: 0.8em; font-weight: 600; }
+    .pill.good { background: rgba(74, 222, 128, 0.2); color: #4ADE80; }
+    .pill.fair { background: rgba(251, 191, 36, 0.2); color: #FBBF24; }
+    .pill.poor { background: rgba(248, 113, 113, 0.2); color: #F87171; }
+    ul li { margin-bottom: 6px; }
+    hr { border: none; border-top: 1px solid #0A1628; margin: 32px 0; }
+    .footer { text-align: center; color: #64748B; padding: 32px 0; font-size: 0.85em; }
+    </style>
+</head>
+<body>
+<div class="wrap">
+<h1>AI Visibility Audit</h1>
+<div class="meta"><strong>Moving Pro Inc</strong> &middot; Venice, CA &middot; 2026-04-06</div>
+
+<div class="score-card">
+  <div class="label" style="color:#94A3B8;font-size:0.9em;letter-spacing:1px;">AI VISIBILITY SCORE</div>
+  <div class="score-big">40<span style="font-size:0.4em;color:#64748B;">/100</span></div>
+  <div class="score-band">poor</div>
+</div>
+
+<div class="platform-grid">
+  <div class="platform chatgpt">
+    <div class="name">ChatGPT</div>
+    <div class="stat">7<span style="font-size:0.5em;color:#94A3B8;">/20</span></div>
+    <div class="label">queries cited</div>
+  </div>
+  <div class="platform perplexity">
+    <div class="name">Perplexity</div>
+    <div class="stat">8<span style="font-size:0.5em;color:#94A3B8;">/20</span></div>
+    <div class="label">queries cited</div>
+  </div>
+  <div class="platform aio">
+    <div class="name">Google AI Overview</div>
+    <div class="stat">1<span style="font-size:0.5em;color:#94A3B8;">/20</span></div>
+    <div class="label">cited / 5 triggered</div>
+  </div>
+</div>
+
+<div class="grid">
+  <div class="card">
+    <div class="label">Domain Rank</div>
+    <div class="value">219</div>
+    <div class="sub">DataForSEO</div>
+  </div>
+  <div class="card">
+    <div class="label">Backlinks</div>
+    <div class="value">242</div>
+    <div class="sub">93 referring domains</div>
+  </div>
+  <div class="card">
+    <div class="label">Ranked Keywords</div>
+    <div class="value">88</div>
+    <div class="sub">organic positions</div>
+  </div>
+  <div class="card">
+    <div class="label">Schema Score</div>
+    <div class="value">7<span style="font-size:0.5em;color:#94A3B8;">/25</span></div>
+    <div class="sub">5 types found</div>
+  </div>
+</div>
+
+<hr>
+<h2>AI Visibility Score: **40/100** (POOR)</h2>
+<table>
+<thead><tr><th>Component</th><th>Score</th><th>Detail</th></tr></thead>
+<tbody>
+<tr><td>AI Platform Citations</td><td>7/25</td><td>16/60 queries cited</td></tr>
+<tr><td>Schema Markup</td><td>7/25</td><td>5 schemas found</td></tr>
+<tr><td>AI-Weighted Backlinks</td><td>15/25</td><td>93 referring main domains</td></tr>
+<tr><td>Content Citability</td><td>11/25</td><td>Perplexity in-content + in-sources signal</td></tr>
+</tbody></table>
+<hr>
+<h2>Headline Findings</h2>
+<ul>
+<li><strong>7/20 ChatGPT</strong> queries cited Moving Pro Inc (35%)</li>
+<li><strong>8/20 Perplexity</strong> queries cited Moving Pro Inc (40%)</li>
+<li><strong>1/20 Google AI Overview</strong> queries cited Moving Pro Inc (5/20 triggered AIO)</li>
+<li><strong>4/5 Google Maps</strong> queries returned Moving Pro Inc in top 20</li>
+<li><strong>Domain Rank 219</strong> | <strong>242</strong> backlinks | <strong>93</strong> referring domains</li>
+<li><strong>88</strong> ranked keywords (organic ETV: 105.11523926630616)</li>
+<li><strong>Schema score: 7/25</strong> (5 types found)</li>
+</ul>
+<hr>
+<h2>Section 1 - ChatGPT Visibility (7/20)</h2>
+<h3>Cited In:</h3>
+<ul>
+<li><strong>Q2</strong> - &quot;top movers Venice California&quot;</li>
+</ul>
+<p>  &gt; ssional moving and storage services while planting 10 trees for every move.</p>
+<p><strong>[Moving Pro inc](http://www.movingproinc.com/?utm_source=openai)</strong>  </p>
+<p><strong>Closed · Mover · 4.9 (149 reviews)</strong>  </p>
+<p>_#1, Venice, CA 90291_  </p>
+<p>Established in 2014, known for caref...</p>
+<ul>
+<li><strong>Q13</strong> - &quot;movers for high value items Venice CA&quot;</li>
+</ul>
+<p>  &gt; pert coordination and protection for high-value homes and fine furnishings.</p>
+<p><strong>[Moving Pro inc](http://www.movingproinc.com/?utm_source=openai)</strong>  </p>
+<p><strong>Closed · Mover · 4.9 (149 reviews)</strong>  </p>
+<p>_#1, Venice, CA 90291_  </p>
+<p>Known for careful packing, clear com...</p>
+<ul>
+<li><strong>Q14</strong> - &quot;long distance movers Los Angeles&quot;</li>
+</ul>
+<p>  &gt; e · 4.5 (311 reviews)**  </p>
+<p>_90021 California, Los Angeles, S Alameda St_  </p>
+<p>Bravo Moving provides transparent pricing with no hidden fees for long-distance moves. They offer clear contracts and tracking features to ensure the safety of your possessions...</p>
+<ul>
+<li><strong>Q17</strong> - &quot;commercial movers Venice CA&quot;</li>
+</ul>
+<p>  &gt; g services in Venice, CA, here are several reputable companies to consider:</p>
+<p><strong>[Moving Pro inc](http://www.movingproinc.com/?utm_source=openai)</strong>  </p>
+<p><strong>Closed · Mover · 4.9 (149 reviews)</strong>  </p>
+<p>_#1, Venice, CA 90291_  </p>
+<p>Specializes in business relocations,...</p>
+<ul>
+<li><strong>Q18</strong> - &quot;packing and moving Venice CA&quot;</li>
+</ul>
+<p>  &gt; gistics, offering full and partial packing services tailored to your needs.</p>
+<p><strong>[Moving Pro inc](http://www.movingproinc.com/?utm_source=openai)</strong>  </p>
+<p><strong>Closed · Mover · 4.9 (149 reviews)</strong>  </p>
+<p>_#1, Venice, CA 90291_  </p>
+<p>Provides certified packing services ...</p>
+<ul>
+<li><strong>Q19</strong> - &quot;Moving Pro Inc Venice reviews&quot;</li>
+</ul>
+<p>  &gt; Moving Pro Inc, based in Venice, California, is a family-owned and operated moving company with over 20 years of experience. They offer a range of services, including local and long-distance moving, packing, storage, and car transportation. ([movingp...</p>
+<ul>
+<li><strong>Q20</strong> - &quot;is Moving Pro Inc a good moving company&quot;</li>
+</ul>
+<p>  &gt; ## [Moving Pro Inc](https://www.google.com/maps/search/Moving+Pro+Inc?utm_source=openai)</p>
+<p>Moving Pro Inc, based in Venice, California, is a family-owned moving company with over 20 years of experience. They offer services such as trucking, warehousi...</p>
+<h3>Absent From:</h3>
+<ul>
+<li><strong>Q1</strong> - &quot;best moving company Venice CA&quot;</li>
+<li><strong>Q3</strong> - &quot;best long distance movers Los Angeles&quot;</li>
+<li><strong>Q4</strong> - &quot;best movers Santa Monica CA&quot;</li>
+<li><strong>Q5</strong> - &quot;moving company Brentwood CA&quot;</li>
+<li><strong>Q6</strong> - &quot;who are the best movers in Venice CA&quot;</li>
+<li><strong>Q7</strong> - &quot;what is the best moving company in Santa Monica&quot;</li>
+<li><strong>Q8</strong> - &quot;who should I hire for cross country move from LA&quot;</li>
+<li><strong>Q9</strong> - &quot;can you recommend a long distance mover Venice&quot;</li>
+<li><strong>Q10</strong> - &quot;what moving company should I use in Marina del Rey&quot;</li>
+<li><strong>Q11</strong> - &quot;art movers Venice CA&quot;</li>
+</ul>
+<p style='color:#64748B;font-style:italic;'>...and 3 more</p>
+<hr>
+<h2>Section 2 - Perplexity Visibility (8/20)</h2>
+<p>In response: 8/20 | In sources only: 1/20</p>
+<h3>Cited In:</h3>
+<ul>
+<li><strong>Q1</strong> - &quot;best moving company Venice CA&quot; (also in sources)</li>
+</ul>
+<p>  &gt; rated movers based on real reviews, including Imperial Moving and Storage.[7]</p>
+<ul>
+<li>Moving Pro Inc. highlights affordable residential services with transparent pricing.[8]</li>
+</ul>
+<p>No single company is universally &quot;best&quot; without specific needs (e.g., local vs. i...</p>
+<ul>
+<li><strong>Q2</strong> - &quot;top movers Venice California&quot; (also in sources)</li>
+</ul>
+<p>  &gt; rvices, including piano and fine art; focuses on stress-free efficiency.[5]</p>
+<ul>
+<li><strong>Moving Pro Inc</strong>: Family-owned in Venice, provides packing/storage; trusted for local LA moves with area expertise.[6]</li>
+<li><strong>White Truck Moving Company</strong>: Positive reviews ...</li>
+</ul>
+<ul>
+<li><strong>Q9</strong> - &quot;can you recommend a long distance mover Venice&quot; (also in sources)</li>
+</ul>
+<p>  &gt; , and 7-day customer support; they hold official licenses and insurance.[2]</p>
+<ul>
+<li><strong>Moving Pro Inc. (movingproinc.com)</strong>: Family-owned local company serving Venice and Los Angeles for long-distance relocations, with personalized, affordable services focu...</li>
+</ul>
+<ul>
+<li><strong>Q16</strong> - &quot;specialty movers Venice CA&quot; (also in sources)</li>
+</ul>
+<p>  &gt; orage | Handles regulations for CA moves over 100 miles[5] | Site inquiry |</p>
+<table>
+<thead><tr><th>**Moving Pro Inc.**</th><th>Commercial/business relocations (small to large offices)[8]</th><th>Specializes in corporate transitions</th><th>Site details</th></tr></thead>
+<tbody>
+<h3>Additional Options</h3>
+</tbody></table>
+<ul>
+<li>**HireAH...</li>
+</ul>
+<ul>
+<li><strong>Q17</strong> - &quot;commercial movers Venice CA&quot; (also in sources)</li>
+</ul>
+<p>  &gt; s for Westside/Venice areas.[6] | (213) 772-1470 | Free quotes available. |</p>
+<table>
+<thead><tr><th>**Moving Pro Inc.**</th><th>Commercial moving in Venice/LA, skilled handling.[8]</th><th>Not specified</th><th>Focuses on seamless business relocations.</th></tr></thead>
+<tbody>
+</tbody></table>
+<ul>
+<li><strong>Q18</strong> - &quot;packing and moving Venice CA&quot; (also in sources)</li>
+</ul>
+<p>  &gt; vices Available</p>
+<ul>
+<li><strong>Full Packing and Moving</strong>: Companies like Man With A Truck, Moving Pro Inc., Mario Moving, SOS Moving LA, and Meathead Movers provide complete packing with high-quality materials (e.g., boxes, bubble wrap, tape), careful loading/u...</li>
+</ul>
+<ul>
+<li><strong>Q19</strong> - &quot;Moving Pro Inc Venice reviews&quot; (also in sources)</li>
+</ul>
+<p>  &gt; **Moving Pro Inc, a Venice, CA-based moving company, receives consistently positive reviews across multiple platforms, with perfect 5-star ratings on BBB (A+ accredited since 2011), Angi&#x27;s List (5.0/5 from 7 reviews), and their own site, praising eff...</p>
+<ul>
+<li><strong>Q20</strong> - &quot;is Moving Pro Inc a good moving company&quot; (also in sources)</li>
+</ul>
+<p>  &gt; <strong>Moving Pro Inc, based in Venice, CA, appears to be a highly regarded moving company based on consistently positive customer reviews and ratings across multiple platforms.</strong>[1][2][3][6]</p>
+<h3>Key Strengths from Reviews</h3>
+<ul>
+<li><strong>Customer Satisfaction:</strong> Al...</li>
+</ul>
+<hr>
+<h2>Section 3 - Google AI Overview (1/20 cited, 5/20 triggered)</h2>
+<h3>AI Overview cited:</h3>
+<ul>
+<li><strong>Q6</strong> - &quot;who are the best movers in Venice CA&quot;</li>
+</ul>
+<p>  Sources: meatheadmovers.com, hireahelper.com, m.yelp.com</p>
+<h3>AIO triggered but did NOT cite us:</h3>
+<ul>
+<li><strong>Q2</strong> - &quot;top movers Venice California&quot;</li>
+</ul>
+<p>  Sources cited instead: m.yelp.com, meatheadmovers.com, sosmovingla.net</p>
+<ul>
+<li><strong>Q8</strong> - &quot;who should I hire for cross country move from LA&quot;</li>
+</ul>
+<p>  Sources cited instead: m.yelp.com, reddit.com, allied.com</p>
+<ul>
+<li><strong>Q10</strong> - &quot;what moving company should I use in Marina del Rey&quot;</li>
+</ul>
+<p>  Sources cited instead: m.yelp.com, meatheadmovers.com, m.yelp.com</p>
+<ul>
+<li><strong>Q13</strong> - &quot;movers for high value items Venice CA&quot;</li>
+</ul>
+<p>  Sources cited instead: sosmovingla.net, mariomoving.com, m.yelp.com</p>
+<h3>Organic positions for AI-tested queries:</h3>
+<ul>
+<li>Q1 - &quot;best moving company Venice CA&quot; - position <strong>#9</strong></li>
+<li>Q11 - &quot;art movers Venice CA&quot; - position <strong>#10</strong></li>
+<li>Q13 - &quot;movers for high value items Venice CA&quot; - position <strong>#11</strong></li>
+<li>Q16 - &quot;specialty movers Venice CA&quot; - position <strong>#4</strong></li>
+<li>Q17 - &quot;commercial movers Venice CA&quot; - position <strong>#7</strong></li>
+<li>Q18 - &quot;packing and moving Venice CA&quot; - position <strong>#10</strong></li>
+<li>Q19 - &quot;Moving Pro Inc Venice reviews&quot; - position <strong>#4</strong></li>
+<li>Q20 - &quot;is Moving Pro Inc a good moving company&quot; - position <strong>#7</strong></li>
+</ul>
+<hr>
+<h2>Section 4 - Google Maps Pack (4/5)</h2>
+<ul>
+<li><strong>&quot;movers Venice CA&quot;</strong> - position <strong>#1</strong></li>
+<li><strong>&quot;moving company Santa Monica CA&quot;</strong> - position <strong>#6</strong></li>
+<li><strong>&quot;art movers Venice CA&quot;</strong> - position <strong>#2</strong></li>
+<li><strong>&quot;piano movers Venice CA&quot;</strong> - position <strong>#1</strong></li>
+</ul>
+<h3>Missing from:</h3>
+<ul>
+<li><strong>&quot;long distance movers Los Angeles&quot;</strong> - top 5 currently:</li>
+</ul>
+<p>  - 1. Pure Moving Company Los Angeles Movers Local &amp; Long distance (5* / 2978 reviews)</p>
+<p>  - 2. Trek Movers (4.9* / 988 reviews)</p>
+<p>  - 3. DoStar Moving - Los Angeles Movers Local &amp; Long Distance Moving LA (5* / 241 reviews)</p>
+<p>  - 4. NorthStar Moving Company (4.9* / 885 reviews)</p>
+<p>  - 5. Cheap Movers Los Angeles (4.9* / 986 reviews)</p>
+<hr>
+<h2>Section 5 - SEO Foundation</h2>
+<ul>
+<li><strong>Domain Rank:</strong> 219</li>
+<li><strong>Backlinks:</strong> 242</li>
+<li><strong>Referring Domains:</strong> 96</li>
+<li><strong>Referring Main Domains:</strong> 93</li>
+<li><strong>Spam Score:</strong> 15</li>
+<li><strong>Ranked Keywords:</strong> 88</li>
+<li><strong>Organic ETV:</strong> 105.11523926630616</li>
+</ul>
+<h3>Top 20 Ranked Keywords</h3>
+<table>
+<thead><tr><th>#</th><th>Keyword</th><th>Position</th><th>Volume</th><th>CPC</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>brown box</td><td>87</td><td>4400</td><td>$2.17</td></tr>
+<tr><td>2</td><td>movi company</td><td>62</td><td>2400</td><td>$0.87</td></tr>
+<tr><td>3</td><td>moving pr</td><td>86</td><td>1900</td><td>$6.61</td></tr>
+<tr><td>4</td><td>logistic pro inc</td><td>25</td><td>1300</td><td>$7.89</td></tr>
+<tr><td>5</td><td>movers santa monica</td><td>59</td><td>1000</td><td>$29.42</td></tr>
+<tr><td>6</td><td>moving companies in pasadena</td><td>59</td><td>1000</td><td>$17.12</td></tr>
+<tr><td>7</td><td>moving companies in pasadena ca</td><td>76</td><td>1000</td><td>$17.12</td></tr>
+<tr><td>8</td><td>moving companies pasadena ca</td><td>57</td><td>1000</td><td>$17.12</td></tr>
+<tr><td>9</td><td>moving companies santa monica</td><td>74</td><td>1000</td><td>$29.42</td></tr>
+<tr><td>10</td><td>moving company in pasadena</td><td>58</td><td>1000</td><td>$17.12</td></tr>
+<tr><td>11</td><td>moving company pasadena ca</td><td>63</td><td>1000</td><td>$17.12</td></tr>
+<tr><td>12</td><td>moving company santa monica</td><td>66</td><td>1000</td><td>$29.42</td></tr>
+<tr><td>13</td><td>moving service santa monica</td><td>66</td><td>1000</td><td>$29.42</td></tr>
+<tr><td>14</td><td>pasadena ca moving companies</td><td>58</td><td>1000</td><td>$17.12</td></tr>
+<tr><td>15</td><td>pasadena moving companies</td><td>54</td><td>1000</td><td>$17.12</td></tr>
+<tr><td>16</td><td>santa monica moving companies</td><td>54</td><td>1000</td><td>$29.42</td></tr>
+<tr><td>17</td><td>move pro</td><td>27</td><td>880</td><td>$5.80</td></tr>
+<tr><td>18</td><td>move-proz</td><td>74</td><td>720</td><td>$9.38</td></tr>
+<tr><td>19</td><td>moving pros</td><td>22</td><td>720</td><td>$11.07</td></tr>
+<tr><td>20</td><td>movingpro</td><td>11</td><td>720</td><td>$11.07</td></tr>
+</tbody></table>
+<h3>Striking Distance Keywords (positions 11-20, ready to push to page 1)</h3>
+<table>
+<thead><tr><th>Keyword</th><th>Position</th><th>Volume</th><th>CPC</th></tr></thead>
+<tbody>
+<tr><td>movingpro</td><td>11</td><td>720</td><td>$11.07</td></tr>
+<tr><td>west la movers</td><td>17</td><td>90</td><td>$38.13</td></tr>
+<tr><td>pick it up pro</td><td>20</td><td>50</td><td>$0.00</td></tr>
+</tbody></table>
+<h3>Top 15 Referring Domains</h3>
+<table>
+<thead><tr><th>Domain</th><th>Rank</th><th>Backlinks</th></tr></thead>
+<tbody>
+<tr><td>qrgtech.com</td><td>217</td><td>120</td></tr>
+<tr><td>movingprosusa.com</td><td>62</td><td>1</td></tr>
+<tr><td>sergechel.info</td><td>0</td><td>1</td></tr>
+<tr><td>seomuda.id</td><td>0</td><td>1</td></tr>
+<tr><td>torun-stolarz.pl</td><td>0</td><td>1</td></tr>
+<tr><td>ododuorpremium.com</td><td>0</td><td>1</td></tr>
+<tr><td>shoplogist.com</td><td>0</td><td>1</td></tr>
+<tr><td>ycm.info</td><td>0</td><td>1</td></tr>
+<tr><td>arteza.fr</td><td>0</td><td>1</td></tr>
+<tr><td>walisha.org</td><td>0</td><td>1</td></tr>
+<tr><td>wallpapers.pro</td><td>0</td><td>1</td></tr>
+<tr><td>cuevideos.com</td><td>0</td><td>1</td></tr>
+<tr><td>urls-shortener.eu</td><td>0</td><td>1</td></tr>
+<tr><td>linkcenter.com</td><td>0</td><td>1</td></tr>
+<tr><td>musweb.org</td><td>0</td><td>1</td></tr>
+</tbody></table>
+<h3>Algorithmic Competitors (DataForSEO Labs)</h3>
+<table>
+<thead><tr><th>Domain</th><th>Intersections</th><th>Avg Position</th><th>Ranked KWs</th></tr></thead>
+<tbody>
+<tr><td>movingproinc.com</td><td>88</td><td>48.96590909090909</td><td>88</td></tr>
+<tr><td>yelp.com</td><td>78</td><td>4.115384615384615</td><td>78</td></tr>
+<tr><td>facebook.com</td><td>68</td><td>22.441176470588236</td><td>68</td></tr>
+<tr><td>youtube.com</td><td>57</td><td>37.175438596491226</td><td>57</td></tr>
+<tr><td>instagram.com</td><td>53</td><td>32.056603773584904</td><td>53</td></tr>
+<tr><td>hireahelper.com</td><td>50</td><td>15.78</td><td>50</td></tr>
+<tr><td>reddit.com</td><td>48</td><td>18.770833333333332</td><td>48</td></tr>
+<tr><td>angi.com</td><td>48</td><td>42.916666666666664</td><td>48</td></tr>
+<tr><td>mapquest.com</td><td>45</td><td>24.266666666666666</td><td>45</td></tr>
+<tr><td>uhaul.com</td><td>44</td><td>35.75</td><td>44</td></tr>
+</tbody></table>
+<h3>Top Anchor Texts</h3>
+<ul>
+<li><strong>&quot;None&quot;</strong> - 121 backlinks from 2 domains</li>
+<li><strong>&quot;movingproinc.com&quot;</strong> - 34 backlinks from 31 domains</li>
+<li><strong>&quot;Visit Website&quot;</strong> - 16 backlinks from 7 domains</li>
+<li><strong>&quot;OUR TELEGRAM CHANEL https://t.me/s/quarterlinks25&quot;</strong> - 8 backlinks from 8 domains</li>
+<li><strong>&quot;www.movingproinc.com&quot;</strong> - 7 backlinks from 4 domains</li>
+<li><strong>&quot;JOIN OUR TELEGRAM https://t.me/s/darksidelinks&quot;</strong> - 6 backlinks from 6 domains</li>
+<li><strong>&quot;https://movingproinc.com/&quot;</strong> - 6 backlinks from 3 domains</li>
+<li><strong>&quot;Website&quot;</strong> - 6 backlinks from 5 domains</li>
+<li><strong>&quot;www.movingprosusa.com&quot;</strong> - 6 backlinks from 2 domains</li>
+<li><strong>&quot;Moving Pro inc&quot;</strong> - 4 backlinks from 3 domains</li>
+</ul>
+<hr>
+<h2>Section 6 - Schema &amp; Structured Data</h2>
+<p><strong>Score: 7/25</strong></p>
+<p><strong>Schemas found (5):</strong> WebPage, BreadcrumbList, Organization, ImageObject, WebSite</p>
+<h3>Gaps:</h3>
+<ul>
+<li>Person schema MISSING (-4 pts)</li>
+<li>FAQ schema MISSING (-5 pts)</li>
+<li>Service schema MISSING (-3 pts)</li>
+<li>Review/AggregateRating schema MISSING (-3 pts)</li>
+<li>HowTo schema MISSING (-2 pts)</li>
+</ul>
+<hr>
+<h2>Section 7 - Technical On-Page (DataForSEO Instant)</h2>
+<ul>
+<li><strong>URL tested:</strong> https://movingproinc.com/</li>
+<li><strong>Status code:</strong> 200</li>
+<li><strong>Title:</strong> &quot;Moving Pro Inc – Local &amp; Long-Distance Movers in CA&quot; (51 chars)</li>
+<li><strong>Description:</strong> &quot;Family-owned moving company based in Venice, CA. Trusted by locals for professional moving, packing, and storage service&quot; (122 chars)</li>
+<li><strong>H1 tags:</strong> [&#x27;Start Your Journey With Moving Pro Inc&#x27;]</li>
+<li><strong>Word count:</strong> None</li>
+<li><strong>Content rate:</strong> None</li>
+<li><strong>Load time:</strong> 3059ms</li>
+<li><strong>Issues flagged:</strong> high_loading_time, is_https, low_content_rate, deprecated_html_tags, duplicate_meta_tags, no_image_alt, no_image_title, frame</li>
+</ul>
+<hr>
+<h2>Section 8 - Trust List (Top Cited Source Domains Across All Queries)</h2>
+<p style='color:#64748B;font-style:italic;'>Domains AI engines cited most often when answering queries in this niche.</p>
+<table>
+<thead><tr><th>#</th><th>Domain</th><th>Citation Count</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>movingproinc.com</td><td>18</td></tr>
+<tr><td>2</td><td>meatheadmovers.com</td><td>15</td></tr>
+<tr><td>3</td><td>abcmovingsystems.com</td><td>15</td></tr>
+<tr><td>4</td><td>sosmovingla.net</td><td>14</td></tr>
+<tr><td>5</td><td>neomovers.com</td><td>12</td></tr>
+<tr><td>6</td><td>angi.com</td><td>10</td></tr>
+<tr><td>7</td><td>royalmovingco.com</td><td>9</td></tr>
+<tr><td>8</td><td>hireahelper.com</td><td>8</td></tr>
+<tr><td>9</td><td>m.yelp.com</td><td>8</td></tr>
+<tr><td>10</td><td>allied.com</td><td>7</td></tr>
+<tr><td>11</td><td>bbb.org</td><td>6</td></tr>
+<tr><td>12</td><td>iboxmoving.com</td><td>5</td></tr>
+<tr><td>13</td><td>moveadvisor.com</td><td>5</td></tr>
+<tr><td>14</td><td>northstarmoving.com</td><td>5</td></tr>
+<tr><td>15</td><td>puremovers.com</td><td>5</td></tr>
+</tbody></table>
+<hr>
+<h2>Section 9 - Quick Wins</h2>
+<p>1. Increase content-to-HTML ratio (low content density flagged)</p>
+<p>2. Add alt text to images</p>
+<p>3. Improve page load time</p>
+<p>4. Add missing schema: LocalBusiness/Organization schema, Person schema, FAQ schema</p>
+<p>5. Push striking-distance keyword &#x27;movingpro&#x27; (pos 11, vol 720) to page 1</p>
+<hr>
+<h2>Section 10 - Recommended Action Plan</h2>
+<h3>This Week</h3>
+<ul>
+<li>Add LocalBusiness, FAQ, Service, Person schema markup to homepage</li>
+</ul>
+<h3>Month 1</h3>
+<ul>
+<li>Promote 1 pages already in Perplexity sources but not response - improve content quotability</li>
+<li>Build entity linkers across BBB, Yelp, niche directories</li>
+<li>Push 3 striking-distance keywords to page 1 (page 2 currently)</li>
+</ul>
+<h3>Months 2-3</h3>
+<ul>
+<li>Content depth on top 5 service pages (FAQ, proof blocks, unique claims)</li>
+<li>Backlink campaign targeting trust list domains AI cites in this niche</li>
+<li>Set up monthly AI visibility tracking (re-run audit)</li>
+</ul>
+<hr>
+<p style='color:#64748B;font-style:italic;'>Audit generated 2026-04-06 by Online Optimisers AI Audit Pipeline (v2026.04).</p>
+
+<div class="footer">
+Audit generated by <strong>Online Optimisers AI Audit Pipeline</strong> (v2026.04)<br>
+<a href="https://onlineoptimisers.com">onlineoptimisers.com</a>
+</div>
+
+</div>
+</body>
+</html>

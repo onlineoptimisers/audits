@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ANC Movers - AI Visibility Audit | Online Optimisers</title>
+<style>
+    * { box-sizing: border-box; }
+    body { margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif; background: #06101E; color: #E5E7EB; line-height: 1.6; }
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 40px 24px; }
+    h1 { color: #4FC3F7; font-size: 2.2em; margin-bottom: 0.2em; }
+    h2 { color: #4FC3F7; border-bottom: 2px solid #0A1628; padding-bottom: 8px; margin-top: 48px; }
+    h3 { color: #F4B942; }
+    .meta { color: #94A3B8; margin-bottom: 32px; }
+    .score-card { background: linear-gradient(135deg, #0A1628 0%, #06101E 100%); border: 2px solid #FBBF24; border-radius: 16px; padding: 32px; text-align: center; margin: 24px 0; }
+    .score-big { font-size: 5em; font-weight: 900; color: #FBBF24; line-height: 1; margin: 0; }
+    .score-band { font-size: 1.4em; color: #FBBF24; text-transform: uppercase; letter-spacing: 2px; margin-top: 8px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin: 24px 0; }
+    .card { background: #0A1628; border: 1px solid #1E293B; border-radius: 12px; padding: 20px; }
+    .card .label { font-size: 0.85em; color: #94A3B8; text-transform: uppercase; letter-spacing: 1px; }
+    .card .value { font-size: 2em; font-weight: 700; color: #4FC3F7; margin-top: 4px; }
+    .card .sub { font-size: 0.85em; color: #94A3B8; margin-top: 4px; }
+    table { width: 100%; border-collapse: collapse; margin: 16px 0; background: #0A1628; border-radius: 8px; overflow: hidden; }
+    th, td { padding: 10px 14px; text-align: left; border-bottom: 1px solid #1E293B; font-size: 0.92em; }
+    th { background: #06101E; color: #4FC3F7; font-weight: 600; }
+    tr:hover { background: #0E1A2F; }
+    blockquote { border-left: 3px solid #4FC3F7; margin: 12px 0; padding: 8px 16px; background: #0A1628; border-radius: 0 8px 8px 0; color: #CBD5E1; font-style: italic; font-size: 0.92em; }
+    code { background: #0A1628; padding: 2px 6px; border-radius: 4px; font-family: 'JetBrains Mono', 'Fira Code', monospace; font-size: 0.9em; color: #F4B942; }
+    a { color: #4FC3F7; }
+    .platform-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 24px 0; }
+    .platform { background: #0A1628; border-radius: 12px; padding: 24px; border-top: 4px solid; }
+    .platform.chatgpt { border-color: #19C37D; }
+    .platform.perplexity { border-color: #7C3AED; }
+    .platform.aio { border-color: #F4B942; }
+    .platform .name { font-size: 0.9em; color: #94A3B8; text-transform: uppercase; letter-spacing: 1px; }
+    .platform .stat { font-size: 2.4em; font-weight: 800; margin: 8px 0; }
+    .platform.chatgpt .stat { color: #19C37D; }
+    .platform.perplexity .stat { color: #7C3AED; }
+    .platform.aio .stat { color: #F4B942; }
+    .platform .label { font-size: 0.85em; color: #94A3B8; }
+    .pill { display: inline-block; padding: 4px 10px; border-radius: 999px; font-size: 0.8em; font-weight: 600; }
+    .pill.good { background: rgba(74, 222, 128, 0.2); color: #4ADE80; }
+    .pill.fair { background: rgba(251, 191, 36, 0.2); color: #FBBF24; }
+    .pill.poor { background: rgba(248, 113, 113, 0.2); color: #F87171; }
+    ul li { margin-bottom: 6px; }
+    hr { border: none; border-top: 1px solid #0A1628; margin: 32px 0; }
+    .footer { text-align: center; color: #64748B; padding: 32px 0; font-size: 0.85em; }
+    </style>
+</head>
+<body>
+<div class="wrap">
+<h1>AI Visibility Audit</h1>
+<div class="meta"><strong>ANC Movers</strong> &middot; Vancouver, WA &middot; 2026-04-06</div>
+
+<div class="score-card">
+  <div class="label" style="color:#94A3B8;font-size:0.9em;letter-spacing:1px;">AI VISIBILITY SCORE</div>
+  <div class="score-big">59<span style="font-size:0.4em;color:#64748B;">/100</span></div>
+  <div class="score-band">fair</div>
+</div>
+
+<div class="platform-grid">
+  <div class="platform chatgpt">
+    <div class="name">ChatGPT</div>
+    <div class="stat">16<span style="font-size:0.5em;color:#94A3B8;">/20</span></div>
+    <div class="label">queries cited</div>
+  </div>
+  <div class="platform perplexity">
+    <div class="name">Perplexity</div>
+    <div class="stat">14<span style="font-size:0.5em;color:#94A3B8;">/20</span></div>
+    <div class="label">queries cited</div>
+  </div>
+  <div class="platform aio">
+    <div class="name">Google AI Overview</div>
+    <div class="stat">7<span style="font-size:0.5em;color:#94A3B8;">/20</span></div>
+    <div class="label">cited / 8 triggered</div>
+  </div>
+</div>
+
+<div class="grid">
+  <div class="card">
+    <div class="label">Domain Rank</div>
+    <div class="value">152</div>
+    <div class="sub">DataForSEO</div>
+  </div>
+  <div class="card">
+    <div class="label">Backlinks</div>
+    <div class="value">356</div>
+    <div class="sub">150 referring domains</div>
+  </div>
+  <div class="card">
+    <div class="label">Ranked Keywords</div>
+    <div class="value">281</div>
+    <div class="sub">organic positions</div>
+  </div>
+  <div class="card">
+    <div class="label">Schema Score</div>
+    <div class="value">6<span style="font-size:0.5em;color:#94A3B8;">/25</span></div>
+    <div class="sub">3 types found</div>
+  </div>
+</div>
+
+<hr>
+<h2>AI Visibility Score: **59/100** (FAIR)</h2>
+<table>
+<thead><tr><th>Component</th><th>Score</th><th>Detail</th></tr></thead>
+<tbody>
+<tr><td>AI Platform Citations</td><td>15/25</td><td>37/60 queries cited</td></tr>
+<tr><td>Schema Markup</td><td>6/25</td><td>3 schemas found</td></tr>
+<tr><td>AI-Weighted Backlinks</td><td>20/25</td><td>150 referring main domains</td></tr>
+<tr><td>Content Citability</td><td>18/25</td><td>Perplexity in-content + in-sources signal</td></tr>
+</tbody></table>
+<hr>
+<h2>Headline Findings</h2>
+<ul>
+<li><strong>16/20 ChatGPT</strong> queries cited ANC Movers (80%)</li>
+<li><strong>14/20 Perplexity</strong> queries cited ANC Movers (70%)</li>
+<li><strong>7/20 Google AI Overview</strong> queries cited ANC Movers (8/20 triggered AIO)</li>
+<li><strong>4/5 Google Maps</strong> queries returned ANC Movers in top 20</li>
+<li><strong>Domain Rank 152</strong> | <strong>356</strong> backlinks | <strong>150</strong> referring domains</li>
+<li><strong>281</strong> ranked keywords (organic ETV: 391.8631602935493)</li>
+<li><strong>Schema score: 6/25</strong> (3 types found)</li>
+</ul>
+<hr>
+<h2>Section 1 - ChatGPT Visibility (16/20)</h2>
+<h3>Cited In:</h3>
+<ul>
+<li><strong>Q1</strong> - &quot;best moving company in Vancouver WA&quot;</li>
+</ul>
+<p>  &gt; ng services, including local, long-distance, and international relocations.</p>
+<p><strong>[ANC Movers - Vancouver &amp; Portland](https://ancmovers.com/?utm_medium=organic&amp;utm_source=openai)</strong>  </p>
+<p><strong>Closed · Mover · 4.6 (213 reviews)</strong>  </p>
+<p>_5305 NE 121st Ave #106, Vanc...</p>
+<ul>
+<li><strong>Q2</strong> - &quot;top rated movers in Vancouver WA&quot;</li>
+</ul>
+<p>  &gt; king to unpacking, and boasts an A+ rating from the Better Business Bureau.</p>
+<p><strong>[ANC Movers - Vancouver &amp; Portland](https://ancmovers.com/?utm_medium=organic&amp;utm_source=openai)</strong>  </p>
+<p><strong>Closed · Mover · 4.6 (213 reviews)</strong>  </p>
+<p>_5305 NE 121st Ave #106, Vanc...</p>
+<ul>
+<li><strong>Q4</strong> - &quot;best long distance movers Vancouver WA&quot;</li>
+</ul>
+<p>  &gt; mooth transition. Here are some top-rated long-distance movers in the area:</p>
+<p><strong>[ANC Movers - Vancouver &amp; Portland](https://ancmovers.com/?utm_medium=organic&amp;utm_source=openai)</strong>  </p>
+<p><strong>Closed · Mover · 4.6 (213 reviews)</strong>  </p>
+<p>_5305 NE 121st Ave #106, Vanc...</p>
+<ul>
+<li><strong>Q6</strong> - &quot;who are the best movers in Vancouver WA&quot;</li>
+</ul>
+<p>  &gt; residential and commercial moving services, including packing and storage.</p>
+<p><strong>[ANC Movers](https://www.google.com/maps/search/ANC+Movers%2C+Vancouver%2C+WA?utm_source=openai)</strong></p>
+<p style='color:#64748B;font-style:italic;'>Vancouver, WA</p>
+<p>Provides residential and commercial moving services with ...</p>
+<ul>
+<li><strong>Q7</strong> - &quot;what is the best moving company in Vancouver Washington&quot;</li>
+</ul>
+<p>  &gt; es the eleven western states with regular routes to California and Seattle.</p>
+<p><strong>[ANC Movers - Vancouver &amp; Portland](https://ancmovers.com/?utm_medium=organic&amp;utm_source=openai)</strong>  </p>
+<p><strong>Closed · Mover · 4.6 (213 reviews)</strong>  </p>
+<p>_5305 NE 121st Ave #106, Vanc...</p>
+<ul>
+<li><strong>Q9</strong> - &quot;can you recommend a good mover in Vancouver WA&quot;</li>
+</ul>
+<p>  &gt; and secure storage. All belongings are insured for complete peace of mind.</p>
+<p><strong>[ANC Movers](https://www.google.com/maps/search/ANC+Movers%2C+Vancouver%2C+WA?utm_source=openai)</strong></p>
+<p style='color:#64748B;font-style:italic;'>Vancouver, WA</p>
+<p>Offers residential and commercial moving services with fl...</p>
+<ul>
+<li><strong>Q10</strong> - &quot;what moving company should I use in Longview WA&quot;</li>
+</ul>
+<p>  &gt; no-obligation quotes and have teams strategically spread across Washington.</p>
+<p><strong>[ANC Movers - Vancouver &amp; Portland](https://ancmovers.com/?utm_medium=organic&amp;utm_source=openai)</strong>  </p>
+<p><strong>Closed · Mover · 4.6 (213 reviews)</strong>  </p>
+<p>_5305 NE 121st Ave #106, Vanc...</p>
+<ul>
+<li><strong>Q12</strong> - &quot;movers for seniors in Vancouver WA&quot;</li>
+</ul>
+<p>  &gt; r seniors in Vancouver, WA, here are several reputable options to consider:</p>
+<p><strong>[ANC Movers - Vancouver &amp; Portland](https://ancmovers.com/?utm_medium=organic&amp;utm_source=openai)</strong>  </p>
+<p><strong>Closed · Mover · 4.6 (213 reviews)</strong>  </p>
+<p>_5305 NE 121st Ave #106, Vanc...</p>
+<ul>
+<li><strong>Q13</strong> - &quot;movers for assisted living move Vancouver WA&quot;</li>
+</ul>
+<p>  &gt; ep with care and organization, aiming to make moves smooth and stress-free.</p>
+<p><strong>[ANC Movers - Vancouver &amp; Portland](https://ancmovers.com/?utm_medium=organic&amp;utm_source=openai)</strong>  </p>
+<p><strong>Closed · Mover · 4.6 (213 reviews)</strong>  </p>
+<p>_5305 NE 121st Ave #106, Vanc...</p>
+<ul>
+<li><strong>Q14</strong> - &quot;licensed and insured movers in Vancouver WA&quot;</li>
+</ul>
+<p>  &gt; ured, with a focus on transparent pricing and exceptional customer service.</p>
+<p><strong>[ANC Movers - Vancouver &amp; Portland](https://ancmovers.com/?utm_medium=organic&amp;utm_source=openai)</strong>  </p>
+<p><strong>Closed · Mover · 4.6 (213 reviews)</strong>  </p>
+<p>_5305 NE 121st Ave #106, Vanc...</p>
+<p style='color:#64748B;font-style:italic;'>...and 6 more cited queries</p>
+<h3>Absent From:</h3>
+<ul>
+<li><strong>Q3</strong> - &quot;best movers in Portland OR&quot;</li>
+<li><strong>Q5</strong> - &quot;affordable movers Vancouver Washington&quot;</li>
+<li><strong>Q8</strong> - &quot;who should I hire to move in Portland OR&quot;</li>
+<li><strong>Q11</strong> - &quot;last minute movers Vancouver WA&quot;</li>
+</ul>
+<hr>
+<h2>Section 2 - Perplexity Visibility (14/20)</h2>
+<p>In response: 14/20 | In sources only: 0/20</p>
+<h3>Cited In:</h3>
+<ul>
+<li><strong>Q1</strong> - &quot;best moving company in Vancouver WA&quot; (also in sources)</li>
+</ul>
+<p>  &gt; services with a focus on guaranteeing successful and easy relocations.[3]</p>
+<ul>
+<li><strong>ANC Movers</strong> — A trusted local moving service that handles residential moves, office relocations, furniture moving, and specialty items like pianos.[1]</li>
+</ul>
+<ul>
+<li>**Big Al&#x27;s Speci...</li>
+</ul>
+<ul>
+<li><strong>Q4</strong> - &quot;best long distance movers Vancouver WA&quot; (also in sources)</li>
+</ul>
+<p>  &gt; national reputation (as of March 2026).[6] | Not specified in results     |</p>
+<table>
+<thead><tr><th>**ANC Movers**</th><th>Custom packages tailored to needs and budget.[3]</th><th>Contact via site</th></tr></thead>
+<tbody>
+</tbody></table>
+<ul>
+<li><strong>Q5</strong> - &quot;affordable movers Vancouver Washington&quot; (also in sources)</li>
+</ul>
+<p>  &gt; home size (e.g., $303 for 1-bedroom apt., 2 movers/1.9 hrs at ~$85/hr).[2]</p>
+<ul>
+<li><strong>ANC Movers</strong>: Local full-service for homes/offices; free estimates, fully licensed/insured, flexible scheduling. Emphasizes cost-effective, stress-free moves with experien...</li>
+</ul>
+<ul>
+<li><strong>Q9</strong> - &quot;can you recommend a good mover in Vancouver WA&quot; (also in sources)</li>
+</ul>
+<p>  &gt; Several reputable moving companies serve Vancouver, WA, including <strong>ANC Movers</strong>, <strong>All My Sons Moving &amp; Storage</strong>, and <strong>You Move Me Portland-Vancouver</strong>, which emphasize local expertise, full-time trained staff, and customer satisfaction.[1][2][3] ...</p>
+<ul>
+<li><strong>Q10</strong> - &quot;what moving company should I use in Longview WA&quot; (also in sources)</li>
+</ul>
+<p>  &gt; | Key Details | Contact/Source |</p>
+<table>
+<thead><tr><th>---------</th><th>-------------</th><th>---------------</th></tr></thead>
+<tbody>
+</tbody></table>
+<ul>
+<li><strong>Q12</strong> - &quot;movers for seniors in Vancouver WA&quot; (also in sources)</li>
+</ul>
+<p>  &gt; acking, and gentle handling for seniors.[1][2][3][4]</p>
+<h3>Top Local Options</h3>
+<ul>
+<li><strong>ANC Movers</strong> (Vancouver, WA-based, locally owned for nearly 20 years): Provides full-service senior moves including packing, unpacking, piano/furniture/medical equipment/...</li>
+</ul>
+<ul>
+<li><strong>Q13</strong> - &quot;movers for assisted living move Vancouver WA&quot; (also in sources)</li>
+</ul>
+<p>  &gt; and coordination for seniors.[1][2][3][4][5][6]</p>
+<h3>Recommended Providers</h3>
+<ul>
+<li><strong>ANC Movers</strong>: Local Vancouver company with 20 years of experience in assisted living moves, including packing, multiple drop-offs, piano/furniture/medical equipment handli...</li>
+</ul>
+<ul>
+<li><strong>Q14</strong> - &quot;licensed and insured movers in Vancouver WA&quot; (also in sources)</li>
+</ul>
+<p>  &gt; Several licensed and insured moving companies serve Vancouver, WA, including <strong>ANC Movers</strong>, <strong>Priestley &amp; Sons</strong>, <strong>Bellhop</strong>, and <strong>GOAT Movers</strong>, all explicitly confirming their licensing and insurance status.[1][2][3][4]</p>
+<h3>Recommended Options ...</h3>
+<ul>
+<li><strong>Q15</strong> - &quot;piano movers in Vancouver WA&quot; (also in sources)</li>
+</ul>
+<p>  &gt; s:</p>
+<table>
+<thead><tr><th>Company</th><th>Key Details</th><th>Contact</th></tr></thead>
+<tbody>
+<tr><td><strong>ANC Movers</strong></td><td>Locally owned since 1998; specializes exclusively in pianos initially; handles grands, uprights, players, organs; free quotes; serves Vancouver area.[1]</td><td>...</td></tr>
+</tbody></table>
+<ul>
+<li><strong>Q16</strong> - &quot;gun safe movers Vancouver WA&quot; (also in sources)</li>
+</ul>
+<p>  &gt; r metro areas[2]. Contact them at (360) 213-0363 or info@trackersafe.com[6].</p>
+<p><strong>ANC Movers</strong> has been moving gun safes in the Vancouver area since 1998 and is a DBE-certified minority-owned business[1]. They report no weight restrictions and bring sp...</p>
+<p style='color:#64748B;font-style:italic;'>...and 4 more cited queries</p>
+<hr>
+<h2>Section 3 - Google AI Overview (7/20 cited, 8/20 triggered)</h2>
+<h3>AI Overview cited:</h3>
+<ul>
+<li><strong>Q4</strong> - &quot;best long distance movers Vancouver WA&quot;</li>
+</ul>
+<p>  Sources: allied.com, northamerican.com, lile.com</p>
+<ul>
+<li><strong>Q7</strong> - &quot;what is the best moving company in Vancouver Washington&quot;</li>
+</ul>
+<p>  Sources: m.yelp.com, m.yelp.com, reddit.com</p>
+<ul>
+<li><strong>Q10</strong> - &quot;what moving company should I use in Longview WA&quot;</li>
+</ul>
+<p>  Sources: yelp.com, m.yelp.com, miraclemanmovers.com</p>
+<ul>
+<li><strong>Q12</strong> - &quot;movers for seniors in Vancouver WA&quot;</li>
+</ul>
+<p>  Sources: ancmovers.com, m.yelp.com, heritagemovingsolutions.com</p>
+<ul>
+<li><strong>Q13</strong> - &quot;movers for assisted living move Vancouver WA&quot;</li>
+</ul>
+<p>  Sources: ancmovers.com, heritagemovingsolutions.com, changingplaces.today</p>
+<ul>
+<li><strong>Q16</strong> - &quot;gun safe movers Vancouver WA&quot;</li>
+</ul>
+<p>  Sources: trackersafe.com, facebook.com, ancmovers.com</p>
+<ul>
+<li><strong>Q20</strong> - &quot;is ANC Movers a good moving company&quot;</li>
+</ul>
+<p>  Sources: freightwaves.com, ancmovers.com, birdeye.com</p>
+<h3>AIO triggered but did NOT cite us:</h3>
+<ul>
+<li><strong>Q8</strong> - &quot;who should I hire to move in Portland OR&quot;</li>
+</ul>
+<p>  Sources cited instead: m.yelp.com, m.yelp.com, willamettevalleymoving.com</p>
+<h3>Organic positions for AI-tested queries:</h3>
+<ul>
+<li>Q4 - &quot;best long distance movers Vancouver WA&quot; - position <strong>#7</strong></li>
+<li>Q10 - &quot;what moving company should I use in Longview WA&quot; - position <strong>#2</strong></li>
+<li>Q11 - &quot;last minute movers Vancouver WA&quot; - position <strong>#12</strong></li>
+<li>Q12 - &quot;movers for seniors in Vancouver WA&quot; - position <strong>#2</strong></li>
+<li>Q13 - &quot;movers for assisted living move Vancouver WA&quot; - position <strong>#2</strong></li>
+<li>Q14 - &quot;licensed and insured movers in Vancouver WA&quot; - position <strong>#6</strong></li>
+<li>Q15 - &quot;piano movers in Vancouver WA&quot; - position <strong>#1</strong></li>
+<li>Q16 - &quot;gun safe movers Vancouver WA&quot; - position <strong>#1</strong></li>
+<li>Q17 - &quot;commercial moving company Vancouver WA&quot; - position <strong>#10</strong></li>
+<li>Q18 - &quot;packing services Vancouver WA&quot; - position <strong>#4</strong></li>
+</ul>
+<hr>
+<h2>Section 4 - Google Maps Pack (4/5)</h2>
+<ul>
+<li><strong>&quot;best moving company in Vancouver WA&quot;</strong> - position <strong>#3</strong></li>
+<li><strong>&quot;top rated movers in Vancouver WA&quot;</strong> - position <strong>#3</strong></li>
+<li><strong>&quot;best long distance movers Vancouver WA&quot;</strong> - position <strong>#3</strong></li>
+<li><strong>&quot;affordable movers Vancouver Washington&quot;</strong> - position <strong>#4</strong></li>
+</ul>
+<h3>Missing from:</h3>
+<ul>
+<li><strong>&quot;best movers in Portland OR&quot;</strong> - top 5 currently:</li>
+</ul>
+<p>  - 1. Portland Movers Company (4.9* / 345 reviews)</p>
+<p>  - 2. 2 Brothers Moving &amp; Delivery (4.9* / 2097 reviews)</p>
+<p>  - 3. All Service Moving (4.8* / 3429 reviews)</p>
+<p>  - 4. Portland Movers Ready (4.8* / 682 reviews)</p>
+<p>  - 5. PDX Movers (4.8* / 821 reviews)</p>
+<hr>
+<h2>Section 5 - SEO Foundation</h2>
+<ul>
+<li><strong>Domain Rank:</strong> 152</li>
+<li><strong>Backlinks:</strong> 356</li>
+<li><strong>Referring Domains:</strong> 176</li>
+<li><strong>Referring Main Domains:</strong> 150</li>
+<li><strong>Spam Score:</strong> 13</li>
+<li><strong>Ranked Keywords:</strong> 281</li>
+<li><strong>Organic ETV:</strong> 391.8631602935493</li>
+</ul>
+<h3>Top 20 Ranked Keywords</h3>
+<table>
+<thead><tr><th>#</th><th>Keyword</th><th>Position</th><th>Volume</th><th>CPC</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>movers in portland or</td><td>105</td><td>5400</td><td>$24.09</td></tr>
+<tr><td>2</td><td>portland movers</td><td>32</td><td>5400</td><td>$24.09</td></tr>
+<tr><td>3</td><td>company that packs and moves</td><td>49</td><td>4400</td><td>$28.06</td></tr>
+<tr><td>4</td><td>distance long moving</td><td>59</td><td>3600</td><td>$56.30</td></tr>
+<tr><td>5</td><td>a caring closet</td><td>34</td><td>2400</td><td>$1.69</td></tr>
+<tr><td>6</td><td>moving services for seniors</td><td>113</td><td>1900</td><td>$13.95</td></tr>
+<tr><td>7</td><td>beaverton moving</td><td>24</td><td>1300</td><td>$29.35</td></tr>
+<tr><td>8</td><td>beaverton moving company</td><td>16</td><td>1300</td><td>$29.35</td></tr>
+<tr><td>9</td><td>beaverton oregon moving companies</td><td>34</td><td>1300</td><td>$29.35</td></tr>
+<tr><td>10</td><td>how to pack dishes to move</td><td>27</td><td>1300</td><td>$0.74</td></tr>
+<tr><td>11</td><td>movers beaverton</td><td>22</td><td>1300</td><td>$29.35</td></tr>
+<tr><td>12</td><td>movers beaverton oregon</td><td>34</td><td>1300</td><td>$29.35</td></tr>
+<tr><td>13</td><td>movers in beaverton</td><td>19</td><td>1300</td><td>$29.35</td></tr>
+<tr><td>14</td><td>moving companies beaverton oregon</td><td>38</td><td>1300</td><td>$29.35</td></tr>
+<tr><td>15</td><td>moving companies in beaverton</td><td>34</td><td>1300</td><td>$29.35</td></tr>
+<tr><td>16</td><td>moving company in beaverton</td><td>18</td><td>1300</td><td>$29.35</td></tr>
+<tr><td>17</td><td>packing and moving companies near me</td><td>46</td><td>1300</td><td>$32.83</td></tr>
+<tr><td>18</td><td>movers in vancouver washington</td><td>14</td><td>1000</td><td>$21.17</td></tr>
+<tr><td>19</td><td>movers vancouver wa</td><td>18</td><td>1000</td><td>$21.17</td></tr>
+<tr><td>20</td><td>moving and packing services near me</td><td>73</td><td>1000</td><td>$25.63</td></tr>
+</tbody></table>
+<h3>Striking Distance Keywords (positions 11-20, ready to push to page 1)</h3>
+<table>
+<thead><tr><th>Keyword</th><th>Position</th><th>Volume</th><th>CPC</th></tr></thead>
+<tbody>
+<tr><td>beaverton moving company</td><td>16</td><td>1300</td><td>$29.35</td></tr>
+<tr><td>movers in beaverton</td><td>19</td><td>1300</td><td>$29.35</td></tr>
+<tr><td>moving company in beaverton</td><td>18</td><td>1300</td><td>$29.35</td></tr>
+<tr><td>movers in vancouver washington</td><td>14</td><td>1000</td><td>$21.17</td></tr>
+<tr><td>movers vancouver wa</td><td>18</td><td>1000</td><td>$21.17</td></tr>
+<tr><td>moving companies vancouver wa</td><td>14</td><td>1000</td><td>$21.17</td></tr>
+<tr><td>moving company vancouver wa</td><td>12</td><td>1000</td><td>$21.17</td></tr>
+<tr><td>moving service vancouver wa</td><td>16</td><td>1000</td><td>$21.17</td></tr>
+<tr><td>vancouver washington movers</td><td>17</td><td>1000</td><td>$21.17</td></tr>
+<tr><td>movers vancouver</td><td>12</td><td>590</td><td>$22.42</td></tr>
+<tr><td>moving services vancouver</td><td>19</td><td>590</td><td>$22.42</td></tr>
+<tr><td>moving.company vancouver</td><td>18</td><td>590</td><td>$22.42</td></tr>
+<tr><td>vancouver moving company</td><td>17</td><td>590</td><td>$22.42</td></tr>
+<tr><td>hillsboro movers</td><td>18</td><td>480</td><td>$15.43</td></tr>
+<tr><td>movers hillsboro</td><td>17</td><td>480</td><td>$15.43</td></tr>
+</tbody></table>
+<h3>Top 15 Referring Domains</h3>
+<table>
+<thead><tr><th>Domain</th><th>Rank</th><th>Backlinks</th></tr></thead>
+<tbody>
+<tr><td>movingcompany.com</td><td>61</td><td>5</td></tr>
+<tr><td>callupcontact.com</td><td>51</td><td>1</td></tr>
+<tr><td>batchgeo.com</td><td>45</td><td>11</td></tr>
+<tr><td>vancouverusa.com</td><td>43</td><td>12</td></tr>
+<tr><td>birdeye.com</td><td>23</td><td>1</td></tr>
+<tr><td>esad.edu.br</td><td>20</td><td>10</td></tr>
+<tr><td>moverrankings.com</td><td>19</td><td>2</td></tr>
+<tr><td>ridgefieldchamberofcommerce.com</td><td>14</td><td>2</td></tr>
+<tr><td>b-cdn.net</td><td>11</td><td>4</td></tr>
+<tr><td>concejomunicipaldechinu.gov.co</td><td>10</td><td>7</td></tr>
+<tr><td>ancmoversportland.com</td><td>7</td><td>1</td></tr>
+<tr><td>moverreviews.com</td><td>7</td><td>1</td></tr>
+<tr><td>moverreviews.azurewebsites.net</td><td>7</td><td>1</td></tr>
+<tr><td>reviewsonmywebsite.com</td><td>3</td><td>4</td></tr>
+<tr><td>activdirectory.net</td><td>0</td><td>1</td></tr>
+</tbody></table>
+<h3>Algorithmic Competitors (DataForSEO Labs)</h3>
+<table>
+<thead><tr><th>Domain</th><th>Intersections</th><th>Avg Position</th><th>Ranked KWs</th></tr></thead>
+<tbody>
+<tr><td>ancmovers.com</td><td>281</td><td>46.00355871886121</td><td>281</td></tr>
+<tr><td>facebook.com</td><td>222</td><td>24.61261261261261</td><td>222</td></tr>
+<tr><td>reddit.com</td><td>221</td><td>11.751131221719458</td><td>221</td></tr>
+<tr><td>youtube.com</td><td>199</td><td>33.36683417085427</td><td>199</td></tr>
+<tr><td>yelp.com</td><td>195</td><td>12.34871794871795</td><td>195</td></tr>
+<tr><td>twomenandatruck.com</td><td>166</td><td>22.33132530120482</td><td>166</td></tr>
+<tr><td>uhaul.com</td><td>158</td><td>28.924050632911392</td><td>158</td></tr>
+<tr><td>angi.com</td><td>158</td><td>33.9746835443038</td><td>158</td></tr>
+<tr><td>allmysons.com</td><td>145</td><td>19.020689655172415</td><td>145</td></tr>
+<tr><td>movinghelp.com</td><td>129</td><td>28.8062015503876</td><td>129</td></tr>
+</tbody></table>
+<h3>Top Anchor Texts</h3>
+<ul>
+<li><strong>&quot;https://ancmovers.com/&quot;</strong> - 92 backlinks from 33 domains</li>
+<li><strong>&quot;None&quot;</strong> - 48 backlinks from 20 domains</li>
+<li><strong>&quot;ancmovers.com&quot;</strong> - 44 backlinks from 42 domains</li>
+<li><strong>&quot;ANC Movers&quot;</strong> - 32 backlinks from 15 domains</li>
+<li><strong>&quot;Visit Site&quot;</strong> - 25 backlinks from 1 domains</li>
+<li><strong>&quot;Visit Website&quot;</strong> - 13 backlinks from 8 domains</li>
+<li><strong>&quot;ANCMovers&quot;</strong> - 11 backlinks from 11 domains</li>
+<li><strong>&quot;OUR TELEGRAM CHANEL https://t.me/s/quarterlinks25&quot;</strong> - 9 backlinks from 9 domains</li>
+<li><strong>&quot;https://ancmovers.com/free-quote/&quot;</strong> - 8 backlinks from 1 domains</li>
+<li><strong>&quot;JOIN OUR TELEGRAM https://t.me/s/darksidelinks&quot;</strong> - 6 backlinks from 6 domains</li>
+</ul>
+<hr>
+<h2>Section 6 - Schema &amp; Structured Data</h2>
+<p><strong>Score: 6/25</strong></p>
+<p><strong>Schemas found (3):</strong> ItemList, MovingCompany, Organization</p>
+<h3>Gaps:</h3>
+<ul>
+<li>Person schema MISSING (-4 pts)</li>
+<li>FAQ schema MISSING (-5 pts)</li>
+<li>Service schema MISSING (-3 pts)</li>
+<li>Review/AggregateRating schema MISSING (-3 pts)</li>
+<li>HowTo schema MISSING (-2 pts)</li>
+<li>BreadcrumbList schema MISSING (-1 pt)</li>
+</ul>
+<hr>
+<h2>Section 7 - Technical On-Page (DataForSEO Instant)</h2>
+<ul>
+<li><strong>URL tested:</strong> https://ancmovers.com/</li>
+<li><strong>Status code:</strong> 200</li>
+<li><strong>Title:</strong> &quot;Trusted Local Movers in Vancouver &amp; Oregon | ANC Movers&quot; (55 chars)</li>
+<li><strong>Description:</strong> &quot;Do you need movers in Vancouver WA? Whether you&#x27;re moving your house or your office, furniture or a piano, ANC Movers is&quot; (150 chars)</li>
+<li><strong>H1 tags:</strong> [&#x27;Trusted Local Movers in Vancouver &amp; Portland&#x27;]</li>
+<li><strong>Word count:</strong> None</li>
+<li><strong>Content rate:</strong> None</li>
+<li><strong>Load time:</strong> 3131ms</li>
+<li><strong>Issues flagged:</strong> high_loading_time, is_https, low_content_rate, duplicate_meta_tags, no_image_alt, no_image_title, frame</li>
+</ul>
+<hr>
+<h2>Section 8 - Trust List (Top Cited Source Domains Across All Queries)</h2>
+<p style='color:#64748B;font-style:italic;'>Domains AI engines cited most often when answering queries in this niche.</p>
+<table>
+<thead><tr><th>#</th><th>Domain</th><th>Citation Count</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>ancmovers.com</td><td>43</td></tr>
+<tr><td>2</td><td>google.com</td><td>37</td></tr>
+<tr><td>3</td><td>bigalsmovers.com</td><td>17</td></tr>
+<tr><td>4</td><td>miraclemanmovers.com</td><td>16</td></tr>
+<tr><td>5</td><td>portland-vancouver.youmoveme.com</td><td>10</td></tr>
+<tr><td>6</td><td>allmysons.com</td><td>10</td></tr>
+<tr><td>7</td><td>lugg.com</td><td>10</td></tr>
+<tr><td>8</td><td>m.yelp.com</td><td>8</td></tr>
+<tr><td>9</td><td>extraspace.com</td><td>6</td></tr>
+<tr><td>10</td><td>hireahelper.com</td><td>6</td></tr>
+<tr><td>11</td><td>consumeraffairs.com</td><td>5</td></tr>
+<tr><td>12</td><td>goatmovers.org</td><td>5</td></tr>
+<tr><td>13</td><td>freightwaves.com</td><td>5</td></tr>
+<tr><td>14</td><td>jordanrivermoving.com</td><td>5</td></tr>
+<tr><td>15</td><td>seaportmoving.com</td><td>4</td></tr>
+</tbody></table>
+<hr>
+<h2>Section 9 - Quick Wins</h2>
+<p>1. Increase content-to-HTML ratio (low content density flagged)</p>
+<p>2. Add alt text to images</p>
+<p>3. Improve page load time</p>
+<p>4. Add missing schema: LocalBusiness/Organization schema, Person schema, FAQ schema</p>
+<p>5. Push striking-distance keyword &#x27;beaverton moving company&#x27; (pos 16, vol 1300) to page 1</p>
+<hr>
+<h2>Section 10 - Recommended Action Plan</h2>
+<h3>This Week</h3>
+<ul>
+<li>Add LocalBusiness, FAQ, Service, Person schema markup to homepage</li>
+</ul>
+<h3>Month 1</h3>
+<ul>
+<li>Build entity linkers across BBB, Yelp, niche directories</li>
+<li>Push 15 striking-distance keywords to page 1 (page 2 currently)</li>
+</ul>
+<h3>Months 2-3</h3>
+<ul>
+<li>Content depth on top 5 service pages (FAQ, proof blocks, unique claims)</li>
+<li>Backlink campaign targeting trust list domains AI cites in this niche</li>
+<li>Set up monthly AI visibility tracking (re-run audit)</li>
+</ul>
+<hr>
+<p style='color:#64748B;font-style:italic;'>Audit generated 2026-04-06 by Online Optimisers AI Audit Pipeline (v2026.04).</p>
+
+<div class="footer">
+Audit generated by <strong>Online Optimisers AI Audit Pipeline</strong> (v2026.04)<br>
+<a href="https://onlineoptimisers.com">onlineoptimisers.com</a>
+</div>
+
+</div>
+</body>
+</html>
