@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GHL CRM Setup - 1-Shot Plan | Handyman Superior | Online Optimisers</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #ffffff;
+  --bg-alt: #f5f7fa;
+  --border: #e0e4ea;
+  --text: #1a1a2e;
+  --text-dim: #5f6578;
+  --accent: #061B31;
+  --accent-light: #1a3a5c;
+  --green: #16a34a;
+  --red: #dc2626;
+  --amber: #d97706;
+  --warn-bg: #fff5e6;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.65;
+  font-size: 16px;
+}
+.hero {
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+  color: #fff;
+  padding: 48px 0 36px;
+  border-bottom: 4px solid var(--amber);
+}
+.container { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+.label {
+  display: inline-block;
+  background: rgba(217, 119, 6, 0.2);
+  color: #fbbf24;
+  font-family: 'Oswald', sans-serif;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: 4px;
+  margin-bottom: 16px;
+  font-weight: 600;
+}
+.hero h1 {
+  font-family: 'Oswald', sans-serif;
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  line-height: 1.15;
+  margin-bottom: 12px;
+}
+.hero .subtitle { font-size: 17px; color: rgba(255,255,255,0.85); font-weight: 400; }
+.hero .meta {
+  margin-top: 18px;
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+  font-size: 13px;
+  color: rgba(255,255,255,0.7);
+}
+.status-banner {
+  background: var(--warn-bg);
+  border-left: 4px solid var(--amber);
+  padding: 14px 24px;
+  margin: 0;
+  font-size: 14px;
+  color: var(--text);
+}
+.status-banner strong { color: var(--accent); }
+.content { padding: 36px 0 80px; }
+.content h1, .content h2, .content h3, .content h4 {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-top: 32px;
+  margin-bottom: 14px;
+  line-height: 1.2;
+}
+.content h1 { font-size: 28px; border-bottom: 2px solid var(--accent); padding-bottom: 8px; }
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 17px; color: var(--amber); }
+.content h4 { font-size: 15px; color: var(--text-dim); }
+.content p { margin-bottom: 14px; color: var(--text); }
+.content strong { color: var(--accent); font-weight: 700; }
+.content em { color: var(--text-dim); font-style: italic; }
+.content ul, .content ol { margin: 12px 0 20px 24px; }
+.content li { margin-bottom: 8px; }
+.content blockquote {
+  border-left: 4px solid var(--amber);
+  background: var(--bg-alt);
+  padding: 14px 20px;
+  margin: 16px 0;
+  font-style: italic;
+  color: var(--text);
+}
+.content code {
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-family: 'SF Mono', Monaco, monospace;
+  font-size: 0.9em;
+}
+.content pre {
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 14px 18px;
+  overflow-x: auto;
+  margin: 14px 0;
+}
+.content pre code { background: none; border: none; padding: 0; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 18px 0;
+  font-size: 14px;
+}
+.content th {
+  background: var(--accent);
+  color: #fff;
+  text-align: left;
+  padding: 10px 14px;
+  font-family: 'Oswald', sans-serif;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.content td {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+.content tr:nth-child(even) td { background: var(--bg-alt); }
+.content hr { border: none; border-top: 2px solid var(--border); margin: 32px 0; }
+.content a { color: var(--accent); text-decoration: underline; }
+.content a:hover { color: var(--amber); }
+.footer {
+  border-top: 1px solid var(--border);
+  padding: 24px 0;
+  text-align: center;
+  font-size: 12px;
+  color: var(--text-dim);
+}
+.footer .brand {
+  font-family: 'Oswald', sans-serif;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 600;
+}
+</style>
+</head>
+<body>
+<div class="hero">
+  <div class="container">
+    <div class="label">Internal - Day 1 Plan</div>
+    <h1>GHL CRM Setup - 1-Shot Plan</h1>
+    <div class="subtitle">Sub-account, pipeline, speed-to-lead automation</div>
+    <div class="meta">
+      <span>Prospect: Handyman Superior LLC</span>
+      <span>Contact: DeMario</span>
+      <span>Location: Jackson, MS</span>
+    </div>
+  </div>
+</div>
+<div class="status-banner">
+  <div class="container">
+    <strong>STATUS:</strong> Lightweight 1-shot plan. Will be expanded with discovery call intel after Tomas + DeMario speak. Execution starts only after the deal closes.
+  </div>
+</div>
+<div class="content">
+  <div class="container">
+    <h1>GHL CRM Setup - 1-Shot Plan</h1>
+<p><strong>Prospect:</strong> Handyman Superior LLC, Jackson MS
+<strong>Status:</strong> PLANNED - awaiting close + DNS cutover
+<strong>Owner on execution:</strong> Alex (we have GHL agency API access already)
+<strong>Estimated time once unblocked:</strong> 60 min sub-account + workflow build, 15 min form wire-up after DNS</p>
+<hr />
+<h2>Why this matters</h2>
+<p>Even if Handyman Superior gets perfect visibility tomorrow, leads that come in have nowhere to land without a CRM. 78% of customers go with the first business that responds to their inquiry. Without speed-to-lead automation, every form fill is at risk. GHL handles the pipeline, the auto-response, the SMS notifications, the calendar booking, and the lead source tracking - all on the agency's existing GHL plan, no extra cost to DeMario.</p>
+<hr />
+<h2>What we control today</h2>
+<ul>
+<li>GHL agency API access (saved in <code>.env</code> as GHL_API_KEY, sub-account creation works)</li>
+<li>Website forms already exist (8 service pages + free quote page) on the Astro build</li>
+<li>Webhook endpoint pattern is known from past client setups</li>
+<li>This whole CRM scaffold can be built BEFORE DNS cutover - the only thing that needs the live domain is the form action URL swap</li>
+</ul>
+<hr />
+<h2>Sub-Account Spec</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sub-account name</td>
+<td>Handyman Superior LLC</td>
+</tr>
+<tr>
+<td>Industry</td>
+<td>Home Services / Handyman</td>
+</tr>
+<tr>
+<td>Owner email</td>
+<td>handymansuperior@outlook.com</td>
+</tr>
+<tr>
+<td>Phone</td>
+<td>601-564-5688</td>
+</tr>
+<tr>
+<td>Timezone</td>
+<td>America/Chicago (CST)</td>
+</tr>
+<tr>
+<td>Plan tier</td>
+<td>Free under our agency reseller</td>
+</tr>
+</tbody>
+</table>
+<h2>Pipeline stages</h2>
+<ol>
+<li><strong>New Lead</strong> - just submitted form</li>
+<li><strong>Contacted</strong> - spoke to or texted prospect</li>
+<li><strong>Quote Sent</strong> - estimate provided</li>
+<li><strong>Scheduled</strong> - work date booked</li>
+<li><strong>In Progress</strong> - job underway</li>
+<li><strong>Complete</strong> - job finished, invoiced</li>
+<li><strong>Follow-Up</strong> - asked for review, scheduled next maintenance</li>
+<li><strong>Lost</strong> - closed-lost (with reason tag)</li>
+</ol>
+<h2>Custom fields</h2>
+<ul>
+<li>Service requested (dropdown: 8 services)</li>
+<li>Job urgency (dropdown: ASAP / This week / This month / Flexible)</li>
+<li>Property type (Residential / Commercial / Rental)</li>
+<li>Property manager? (Yes/No checkbox - tags as high-LTV)</li>
+<li>Estimated job value</li>
+<li>Lead source (Website Form / Facebook Ad / Google Ad / GBP / Direct Call / Referral)</li>
+</ul>
+<h2>Speed-to-Lead Automation</h2>
+<p><strong>Trigger:</strong> New form submission lands in pipeline as "New Lead"</p>
+<p><strong>Actions:</strong></p>
+<ol>
+<li>
+<p>Auto-text within 60 seconds (from a Twilio number we provision):</p>
+<blockquote>
+<p>Hi {{firstName}}, this is DeMario at Handyman Superior. Got your request about {{service}}. I'll call you in 5 min - if now isn't good, just text me back what time works.</p>
+</blockquote>
+</li>
+<li>
+<p>Auto-email within 2 minutes with quote form pre-filled with their info + DeMario's calendar link</p>
+</li>
+<li>
+<p>SMS notification to DeMario's mobile: "NEW LEAD: {{firstName}} needs {{service}} in {{city}}. Call 601-XXX-XXXX or text back."</p>
+</li>
+<li>
+<p>Slack notification to OO ops channel (so we can monitor first month)</p>
+</li>
+</ol>
+<h2>Forms to wire (already exist on the Astro site)</h2>
+<ul>
+<li>Free Quote (homepage hero + dedicated /free-quote page)</li>
+<li>8 service-specific contact forms (one per service page)</li>
+<li>Contact page form</li>
+<li>Footer "Get a Call Back" widget</li>
+</ul>
+<p>All POST to the same GHL webhook with a <code>source_form</code> field to track which form converted.</p>
+<hr />
+<h2>What we need from DeMario</h2>
+<ul>
+<li>His mobile phone number for SMS notifications (might be different from business phone)</li>
+<li>His Google Calendar email (for booking sync)</li>
+<li>His preferred response template wording (we have a draft, he tweaks)</li>
+<li>Confirmation he will respond to every text within the same business day (or we adjust the auto-text to set expectations)</li>
+<li>Decision: do we route all calls through a Twilio number for tracking, or use his existing 601-564-5688?</li>
+</ul>
+<hr />
+<h2>What we need from the Fathom call</h2>
+<ul>
+<li>Confirmation he wants speed-to-lead automation (some old-school operators don't like text-first - need to know)</li>
+<li>Whether he has any existing CRM (Zoho, Pipedrive, paper) we need to migrate from</li>
+<li>His target response time SLA (we'll commit to under 1 hour, but if he can do under 15 minutes we say so on the website as a competitive advantage)</li>
+<li>Whether the property manager segment is the lead priority (changes the form fields and email copy)</li>
+</ul>
+<hr />
+<h2>Day 1 Execution Sequence</h2>
+<p><strong>Pre-DNS (can do anytime after close):</strong>
+1. Create sub-account via GHL agency API
+2. Set up pipeline + custom fields + tags
+3. Build the speed-to-lead automation
+4. Provision Twilio number (or skip if using DeMario's existing line)
+5. Wire calendar sync
+6. Test the auto-text from a fake form submission (use our own phone)</p>
+<p><strong>At DNS cutover (Donal approves):</strong>
+7. Update form action URL on the Astro site from preview pages.dev domain to handymansuperior.com
+8. Push site rebuild + redeploy (5 min)
+9. Test live form -&gt; GHL pipeline end-to-end
+10. Hand DeMario a 1-page CRM walkthrough (we draft this)</p>
+<hr />
+<h2>Expected results</h2>
+<table>
+<thead>
+<tr>
+<th>Week</th>
+<th>What changes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>CRM live, automation tested, forms wired</td>
+</tr>
+<tr>
+<td>2</td>
+<td>First real leads land in the pipeline (assuming GBP + ads start in week 2)</td>
+</tr>
+<tr>
+<td>4</td>
+<td>DeMario comfortable with the daily workflow, response time data starts to compound</td>
+</tr>
+<tr>
+<td>12</td>
+<td>Lead source attribution data shows which channels convert best (informs ad spend allocation)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>Notes for Tomas on the call</h2>
+<p>The CRM is invisible to DeMario until he wants to look at it. Frame it as: "When someone fills out your form, they get a text from you within 60 seconds. They get an email with your booking link. You get a text on your phone telling you to call them. The system handles all of that. You just answer the phone." Don't get into pipeline stages, custom fields, or webhooks - he doesn't care.</p>
+  </div>
+</div>
+<div class="footer">
+  <div class="container">
+    <div class="brand">Online Optimisers</div>
+    <div>Internal Day 1 execution plan - Handyman Superior LLC</div>
+  </div>
+</div>
+</body>
+</html>
