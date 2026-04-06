@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Visibility Deep Audit - Handyman Superior LLC | Online Optimisers</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #060f1e;
+  --bg2: #0d1b2e;
+  --card: #111f35;
+  --card-border: #1a2d4a;
+  --primary: #01a2f9;
+  --dark-blue: #0052cc;
+  --light-blue: #8cc7f3;
+  --text: #d4d4d8;
+  --text-dim: #7a90aa;
+  --text-bright: #f4f4f5;
+  --red: #ef4444;
+  --yellow: #f59e0b;
+  --green: #22c55e;
+  --orange: #FFB74D;
+  --chatgpt: #7CB89E;
+  --perplexity: #8B7EC2;
+  --google: #4285F4;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  padding-bottom: 60px;
+}
+
+h1, h2 { font-family: 'Playfair Display', serif; color: var(--primary); font-weight: 700; }
+h1 { font-size: 2rem; line-height: 1.2; }
+h2 { font-size: 1.4rem; line-height: 1.3; margin-bottom: 16px; }
+h3 { font-family: 'Inter', sans-serif; color: var(--text-bright); font-size: 0.95rem; font-weight: 600; margin-bottom: 12px; }
+p { font-size: 0.85rem; color: var(--text); margin-bottom: 12px; }
+
+.container { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+
+/* Header */
+.header {
+  background: linear-gradient(135deg, #060f1e 0%, #0d1b2e 50%, #0a1830 100%);
+  padding: 48px 0 40px;
+  border-bottom: 2px solid var(--primary);
+}
+.header .oo-brand { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 3px; color: var(--primary); margin-bottom: 8px; opacity: 0.8; }
+.header h1 { color: var(--text-bright); margin-bottom: 4px; }
+.header .biz-name { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--primary); margin-bottom: 4px; }
+.header .subtitle { color: var(--text-dim); font-size: 0.85rem; margin-bottom: 24px; }
+.header .meta-row { display: flex; gap: 24px; flex-wrap: wrap; font-size: 0.8rem; color: var(--text-dim); }
+.header .meta-row span { display: flex; align-items: center; gap: 6px; }
+
+/* Score Ring */
+.score-section { display: flex; align-items: center; gap: 32px; margin-top: 24px; flex-wrap: wrap; }
+.score-ring { position: relative; width: 140px; height: 140px; flex-shrink: 0; }
+.score-ring svg { transform: rotate(-90deg); }
+.score-ring .score-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; }
+.score-ring .score-num { font-size: 2.4rem; font-weight: 900; color: var(--text-bright); line-height: 1; }
+.score-ring .score-label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-dim); margin-top: 4px; }
+.score-ring .score-band { font-size: 0.75rem; font-weight: 700; color: var(--red); margin-top: 2px; }
+
+/* Hero Metrics */
+.hero-metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 24px; }
+.hero-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 10px;
+  padding: 16px 12px;
+  text-align: center;
+}
+.hero-card .h-val { font-size: 1.6rem; font-weight: 900; line-height: 1; }
+.hero-card .h-sub { font-size: 0.7rem; color: var(--text-dim); margin-top: 2px; }
+.hero-card .h-label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1px; color: rgba(255,255,255,0.35); margin-top: 8px; }
+.h-val.mint { color: var(--chatgpt); }
+.h-val.purple { color: var(--perplexity); }
+.h-val.gold { color: var(--google); }
+.h-val.red { color: var(--red); }
+
+/* Critical Findings */
+.findings { margin-top: 32px; }
+.finding-card {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-left: 3px solid var(--red);
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin-bottom: 10px;
+}
+.finding-card .finding-num { color: var(--red); font-weight: 800; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+.finding-card .finding-title { color: var(--text-bright); font-weight: 700; font-size: 0.9rem; margin-bottom: 4px; }
+.finding-card .finding-desc { color: var(--text-dim); font-size: 0.8rem; }
+
+/* Sections */
+.section { margin-top: 24px; }
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  user-select: none;
+}
+.sec-num {
+  width: 28px; height: 28px; border-radius: 50%;
+  background: rgba(1,162,249,0.2); color: var(--primary);
+  font-weight: 700; font-size: 0.8rem;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.section-header h2 { margin: 0; font-size: 1.1rem; flex: 1; }
+.section-meta { font-size: 0.7rem; color: var(--text-dim); margin-left: auto; }
+.section-body {
+  border-left: 2px solid rgba(1,162,249,0.3);
+  margin-left: 14px;
+  padding: 20px 20px 20px 24px;
+}
+.section-body p { color: var(--text); }
+
+/* Tables */
+table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.8rem; }
+th { background: var(--bg2); color: var(--primary); font-weight: 600; text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--card-border); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.5px; }
+td { padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.05); vertical-align: top; color: var(--text); }
+tr:hover td { background: rgba(255,255,255,0.02); }
+
+/* Tags */
+.tag {
+  display: inline-block; padding: 2px 8px; border-radius: 4px;
+  font-size: 0.7rem; font-weight: 600; letter-spacing: 0.3px;
+}
+.tag.yes { background: rgba(34,197,94,0.15); color: var(--green); border: 1px solid rgba(34,197,94,0.3); }
+.tag.no { background: rgba(239,68,68,0.15); color: var(--red); border: 1px solid rgba(239,68,68,0.3); }
+.tag.warn { background: rgba(245,158,11,0.15); color: var(--yellow); border: 1px solid rgba(245,158,11,0.3); }
+.tag.info { background: rgba(1,162,249,0.15); color: var(--primary); border: 1px solid rgba(1,162,249,0.3); }
+.tag.found { background: rgba(34,197,94,0.15); color: var(--green); border: 1px solid rgba(34,197,94,0.3); }
+.tag.missing { background: rgba(239,68,68,0.15); color: var(--red); border: 1px solid rgba(239,68,68,0.3); }
+
+/* Platform Badges */
+.platform { display: inline-block; padding: 3px 10px; border-radius: 4px; font-size: 0.7rem; font-weight: 600; }
+.platform.chatgpt { background: rgba(124,184,158,0.15); color: var(--chatgpt); border: 1px solid rgba(124,184,158,0.3); }
+.platform.perplexity { background: rgba(139,126,194,0.15); color: var(--perplexity); border: 1px solid rgba(139,126,194,0.3); }
+.platform.google { background: rgba(66,133,244,0.15); color: var(--google); border: 1px solid rgba(66,133,244,0.3); }
+
+/* Action cards */
+.action-group { margin: 20px 0; }
+.action-group-title { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; padding: 6px 12px; border-radius: 4px; display: inline-block; }
+.action-group-title.immediate { background: rgba(239,68,68,0.15); color: var(--red); }
+.action-group-title.month1 { background: rgba(245,158,11,0.15); color: var(--yellow); }
+.action-group-title.month23 { background: rgba(1,162,249,0.15); color: var(--primary); }
+.action-group-title.ongoing { background: rgba(34,197,94,0.15); color: var(--green); }
+.action-item { padding: 10px 16px; border-left: 2px solid var(--card-border); margin: 6px 0 6px 8px; font-size: 0.8rem; color: var(--text); }
+.action-item strong { color: var(--text-bright); }
+
+/* Category sub-header */
+.cat-header { color: var(--primary); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin: 20px 0 8px; padding-bottom: 4px; border-bottom: 1px solid rgba(1,162,249,0.2); }
+
+/* Why text */
+.why-box { background: var(--card); border: 1px solid var(--card-border); border-radius: 8px; padding: 16px 20px; margin-top: 16px; font-size: 0.85rem; line-height: 1.7; color: var(--text); }
+
+.callout {
+  background: rgba(239,68,68,0.06);
+  border: 1px solid rgba(239,68,68,0.2);
+  border-left: 3px solid var(--red);
+  border-radius: 6px;
+  padding: 14px 18px;
+  margin: 16px 0;
+  font-size: 0.85rem;
+  color: var(--text);
+}
+.callout.warn { background: rgba(245,158,11,0.06); border-color: rgba(245,158,11,0.2); border-left-color: var(--yellow); }
+.callout.good { background: rgba(34,197,94,0.06); border-color: rgba(34,197,94,0.2); border-left-color: var(--green); }
+.callout strong { color: var(--text-bright); }
+
+/* Footer */
+.footer { margin-top: 48px; padding: 24px 0; border-top: 1px solid var(--card-border); text-align: center; }
+.footer .oo-logo { color: var(--primary); font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; }
+.footer .oo-sub { color: var(--text-dim); font-size: 0.7rem; margin-top: 4px; }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero-metrics { grid-template-columns: repeat(2, 1fr); }
+  .score-section { flex-direction: column; align-items: flex-start; }
+  .header { padding: 32px 0 28px; }
+  h1 { font-size: 1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+<div class="container">
+  <div class="oo-brand">Online Optimisers</div>
+  <h1>AI Visibility Deep Audit</h1>
+  <div class="biz-name">Handyman Superior LLC</div>
+  <div class="subtitle">Jackson, MS - Contract Handyman (8 services, 9 cities served)</div>
+  <div class="meta-row">
+    <span>Date: 2026-04-06</span>
+    <span>URL: handymansuperior.com</span>
+    <span>10 queries x 3 platforms</span>
+  </div>
+
+  <!-- Score Ring + Hero Metrics -->
+  <div class="score-section">
+    <div class="score-ring">
+      <svg width="140" height="140" viewBox="0 0 140 140">
+        <circle cx="70" cy="70" r="60" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="10"/>
+        <circle cx="70" cy="70" r="60" fill="none" stroke="var(--red)" stroke-width="10" stroke-dasharray="377" stroke-dashoffset="358" stroke-linecap="round"/>
+      </svg>
+      <div class="score-text">
+        <div class="score-num">5</div>
+        <div class="score-label">out of 100</div>
+        <div class="score-band">Critical</div>
+      </div>
+    </div>
+    <div style="flex:1;">
+      <div class="hero-metrics">
+        <div class="hero-card">
+          <div class="h-val red">0/10</div>
+          <div class="h-sub">0 cited</div>
+          <div class="h-label">ChatGPT</div>
+        </div>
+        <div class="hero-card">
+          <div class="h-val red">0/10</div>
+          <div class="h-sub">0 in sources</div>
+          <div class="h-label">Perplexity</div>
+        </div>
+        <div class="hero-card">
+          <div class="h-val red">0/3</div>
+          <div class="h-sub">3 AIO triggered</div>
+          <div class="h-label">Google AIO</div>
+        </div>
+        <div class="hero-card">
+          <div class="h-val red">0/10</div>
+          <div class="h-sub">no organic ranks</div>
+          <div class="h-label">Google SERP</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Critical Findings -->
+  <div class="findings">
+    <div class="finding-card">
+      <div class="finding-num">Critical #1</div>
+      <div class="finding-title">No Google Business Profile - completely invisible on Google Maps</div>
+      <div class="finding-desc">Searching "handyman near me" or "handyman Jackson MS" on Google returns 10+ competitors. Handyman Superior does not appear because there is no GBP listing at all. This is the single biggest blocker. Fixable in week 1.</div>
+    </div>
+    <div class="finding-card">
+      <div class="finding-num">Critical #2</div>
+      <div class="finding-title">Zero presence on the directories AI pulls from</div>
+      <div class="finding-desc">Not on Yelp, HomeAdvisor, Angi, Thumbtack, BBB, Houzz, or Porch. Every single competitor cited by ChatGPT/Perplexity/Google AIO has at least 3 of these. AI cannot recommend a business it cannot find.</div>
+    </div>
+    <div class="finding-card">
+      <div class="finding-num">Critical #3</div>
+      <div class="finding-title">Reviews are stored in localStorage - nobody else can see them</div>
+      <div class="finding-desc">The website has a review form that saves submissions to the visitor's own browser only. A second visitor sees a blank review section. This means zero social proof is reaching prospects, AI crawlers, or Google. The intent was right, the execution is broken.</div>
+    </div>
+    <div class="finding-card">
+      <div class="finding-num">Critical #4</div>
+      <div class="finding-title">No schema markup, no LocalBusiness signals</div>
+      <div class="finding-desc">Site is plain HTML with no JSON-LD schema, no LocalBusiness structured data, no Service or FAQ markup. Search engines and AI crawlers have no machine-readable signals confirming this is a real handyman business in Jackson.</div>
+    </div>
+  </div>
+
+  <div class="why-box" style="margin-top:20px;">
+    <strong style="color:var(--primary);">Why Handyman Superior Is Invisible</strong><br><br>
+    DeMario has 25+ years of experience across 8 trade services and a real customer base. The business is real. The problem is not skill or service quality - it is digital footprint. Every signal that AI platforms use to verify and recommend a local business (Google Business Profile, directory presence, reviews on independent platforms, schema markup, structured citations) is either missing or broken. The fix is mechanical, not creative. Every gap on this report has a known solution and a 1-6 week timeline.
+  </div>
+</div>
+</div>
+
+<div class="container">
+
+<!-- SECTION 1: Executive Summary -->
+<div class="section">
+<div class="section-header">
+  <span class="sec-num">1</span>
+  <h2>Executive Summary</h2>
+  <span class="section-meta">5/100 score</span>
+</div>
+<div class="section-body">
+<p><strong>Headline:</strong> Handyman Superior LLC is currently invisible across every AI search platform, every major directory, and Google Maps. 0 of 30 tested AI queries returned a citation. Every competitor that AI cites has the same things Handyman Superior is missing: a Google Business Profile, a Yelp listing, a HomeAdvisor profile, and schema markup on a real website.</p>
+
+<p><strong>The good news:</strong> Every single gap is mechanically fixable. None of this requires creative work or a new market position. The credibility story (25+ years, 8 services, property-manager focus) is real - it just needs to be made visible to the systems that recommend businesses today.</p>
+
+<p><strong>The bad news:</strong> Every week without these fixes is a week that competitors capture leads that should be Handyman Superior's. The Jackson handyman market is being sorted into "exists in AI" and "does not exist." Right now Handyman Superior is on the wrong side of that line.</p>
+
+<div class="callout">
+<strong>Bottom line:</strong> This is a clean fix-it audit, not a strategic overhaul. The work is known, the cost is low, and the timeline is short. The question is who does it and how fast.
+</div>
+</div>
+</div>
+
+<!-- SECTION 2: AI Platform Results -->
+<div class="section">
+<div class="section-header">
+  <span class="sec-num">2</span>
+  <h2>AI Platform Results</h2>
+  <span class="section-meta">10 queries x 3 platforms</span>
+</div>
+<div class="section-body">
+
+<div class="cat-header"><span class="platform chatgpt">ChatGPT</span> 10 queries tested - 0/10 cited</div>
+<table>
+<tr><th>#</th><th>Query</th><th>Cited?</th><th>Who Got It Instead</th></tr>
+<tr><td>1</td><td>best handyman in Jackson MS</td><td><span class="tag no">NO</span></td><td>Home Time Handyman, Taylor Remodeling, Round 'Da House, Knockout Handyman</td></tr>
+<tr><td>2</td><td>handyman for rental property make-ready Jackson MS</td><td><span class="tag no">NO</span></td><td>Huston Solutions, Home Time Handyman, Steady Home Maintenance</td></tr>
+<tr><td>3</td><td>professional painter Jackson MS</td><td><span class="tag no">NO</span></td><td>CertaPro Painters, Five Star Painting, Taylor Remodeling, Berry Handyman</td></tr>
+<tr><td>4</td><td>total rehab contractor Jackson MS</td><td><span class="tag no">NO</span></td><td>Huston Solutions, Taylor Remodeling, Home Time Handyman</td></tr>
+<tr><td>5</td><td>property maintenance handyman Ridgeland Madison MS</td><td><span class="tag no">NO</span></td><td>Home Time Handyman, Steady Home Maintenance</td></tr>
+<tr><td>6</td><td>drywall repair handyman Jackson MS</td><td><span class="tag no">NO</span></td><td>Local competitors only</td></tr>
+<tr><td>7</td><td>handyman for investors Jackson MS</td><td><span class="tag no">NO</span></td><td>Huston Solutions, Taylor Remodeling</td></tr>
+<tr><td>8</td><td>flooring install handyman Jackson MS</td><td><span class="tag no">NO</span></td><td>Local flooring specialists</td></tr>
+<tr><td>9</td><td>affordable handyman services Brandon MS</td><td><span class="tag no">NO</span></td><td>Huston Solutions, Home Time Handyman</td></tr>
+<tr><td>10</td><td>best home repair service Ridgeland MS</td><td><span class="tag no">NO</span></td><td>Home Time Handyman, Round 'Da House</td></tr>
+</table>
+
+<div class="cat-header"><span class="platform perplexity">Perplexity</span> 10 queries tested - 0/10 cited, 0/10 in sources</div>
+<table>
+<tr><th>#</th><th>Query</th><th>In Answer?</th><th>In Sources?</th></tr>
+<tr><td>1</td><td>best handyman service Jackson Mississippi</td><td><span class="tag no">NO</span></td><td><span class="tag no">NO</span></td></tr>
+<tr><td>2</td><td>total rehab contractor Jackson MS for investors</td><td><span class="tag no">NO</span></td><td><span class="tag no">NO</span></td></tr>
+<tr><td>3</td><td>property maintenance handyman Ridgeland Madison MS</td><td><span class="tag no">NO</span></td><td><span class="tag no">NO</span></td></tr>
+<tr><td colspan="4" style="text-align:center;color:var(--text-dim);font-size:0.75rem;padding:10px">+ 7 more queries, all returning the same result: NOT FOUND in answer or sources</td></tr>
+</table>
+
+<div class="cat-header"><span class="platform google">Google AI Overviews</span> 10 queries tested - 3/10 triggered, 0/3 cited Handyman Superior</div>
+<table>
+<tr><th>#</th><th>Query</th><th>AIO?</th><th>Cited?</th><th>Who Was Cited</th></tr>
+<tr><td>1</td><td>best handyman Jackson MS</td><td><span class="tag yes">YES</span></td><td><span class="tag no">NO</span></td><td>HomeAdvisor, Taylor Remodeling, Yelp results, Thumbtack</td></tr>
+<tr><td>2</td><td>affordable handyman services Brandon MS</td><td><span class="tag yes">YES</span></td><td><span class="tag no">NO</span></td><td>Local competitors</td></tr>
+<tr><td>3</td><td>best home repair service Ridgeland MS</td><td><span class="tag yes">YES</span></td><td><span class="tag no">NO</span></td><td>Local competitors</td></tr>
+<tr><td colspan="5" style="text-align:center;color:var(--text-dim);font-size:0.75rem;padding:10px">7 of 10 queries did not trigger an AIO. AIO coverage is expanding rapidly in home services - early movers will dominate.</td></tr>
+</table>
+
+<div class="callout warn">
+<strong>What this means:</strong> Across 30 individual platform-query checks (10 queries x 3 platforms), Handyman Superior was cited zero times. Not "rarely" - zero. Every single recommendation went to a competitor. The first handyman a property manager hears about from AI is a competitor, every single time.
+</div>
+
+</div>
+</div>
+
+<!-- SECTION 3: Competitor Analysis -->
+<div class="section">
+<div class="section-header">
+  <span class="sec-num">3</span>
+  <h2>Competitor Analysis</h2>
+  <span class="section-meta">11 competitors cited</span>
+</div>
+<div class="section-body">
+
+<p>These are the real businesses AI recommends instead of Handyman Superior. Every one of them has at least the basics: a Google Business Profile, a directory presence, reviews on independent platforms.</p>
+
+<table>
+<tr><th>Competitor</th><th>Why AI Cites Them</th><th>Gap vs Handyman Superior</th></tr>
+<tr><td><strong>Home Time Handyman</strong></td><td>Most-cited handyman in Jackson AI results. Licensed, insured, covers Hinds/Madison/Rankin counties. Strong GBP, real website.</td><td>Has everything Handyman Superior lacks. The benchmark to beat.</td></tr>
+<tr><td><strong>Taylor Remodeling</strong></td><td>96% recommended on HomeAdvisor, 4.87 stars. 25 years in business (founded 2007). Strong directory presence.</td><td>Same length of experience, but visible because of HomeAdvisor profile + reviews.</td></tr>
+<tr><td><strong>Round 'Da House Home Repairs</strong></td><td>Multiple award winner. Bonded and insured. 2-year workmanship warranty. Strong Yelp profile.</td><td>Trust signals (bonding, warranty, awards) are documented and indexed.</td></tr>
+<tr><td><strong>Knockout Handyman Services</strong></td><td>Highly rated on Yelp. Active customer reviews.</td><td>Has Yelp presence with verifiable reviews. Handyman Superior has neither.</td></tr>
+<tr><td><strong>Huston Solutions</strong></td><td>Brandon, MS. 25+ years. Full remodeling services. Strong investor-focused positioning.</td><td>Owns the "investor remodel" angle that Handyman Superior also targets.</td></tr>
+<tr><td><strong>Steady Home Maintenance</strong></td><td>Flowood-based. Subscription maintenance model. Licensed and insured.</td><td>Subscription model = predictable recurring revenue. Worth modeling later.</td></tr>
+<tr><td><strong>Berry Handyman Services</strong></td><td>HomeAdvisor verified. Painting and general handyman.</td><td>Verified directory profile.</td></tr>
+<tr><td><strong>JB's Onestop Handyman</strong></td><td>Yelp listed. Jackson area coverage.</td><td>Even small operators with just Yelp + GBP rank above Handyman Superior.</td></tr>
+<tr><td><strong>Your Handyman Duties</strong></td><td>Yelp listed. Property manager-friendly.</td><td>Same niche focus, visible because of directory presence.</td></tr>
+<tr><td><strong>CertaPro Painters</strong></td><td>National franchise with Jackson location. Strong brand authority.</td><td>National brand signal. Hard to compete with directly on painter queries.</td></tr>
+<tr><td><strong>Five Star Painting</strong></td><td>Neighborly brand. Licensed and insured.</td><td>Same as CertaPro - franchise authority on painting queries.</td></tr>
+</table>
+
+<div class="callout">
+<strong>The pattern is unmistakable:</strong> Every cited competitor has at least three of: Google Business Profile, Yelp, HomeAdvisor, Angi, BBB, Thumbtack. The franchise competitors (CertaPro, Five Star) win painter queries. Independent local operators with basic directory presence (Home Time, Taylor, Round 'Da House) win general handyman queries. Handyman Superior has none of these and wins zero.
+</div>
+
+</div>
+</div>
+
+<!-- SECTION 4: SEO Foundation -->
+<div class="section">
+<div class="section-header">
+  <span class="sec-num">4</span>
+  <h2>SEO Foundation</h2>
+  <span class="section-meta">Domain rank: 0</span>
+</div>
+<div class="section-body">
+
+<table>
+<tr><th>Signal</th><th>Status</th><th>Notes</th></tr>
+<tr><td>Domain Authority / Rank</td><td><span class="tag missing">0</span></td><td>No measurable authority. New site or never built any backlinks.</td></tr>
+<tr><td>Backlinks</td><td><span class="tag missing">0</span></td><td>No referring domains found. Zero off-site signals.</td></tr>
+<tr><td>Ranked Keywords (organic)</td><td><span class="tag missing">0</span></td><td>Not ranking for any tracked keyword in Google organic results.</td></tr>
+<tr><td>Indexed Pages</td><td><span class="tag warn">~3</span></td><td>Basic site structure, minimal content. Most service pages do not exist.</td></tr>
+<tr><td>HTTPS / SSL</td><td><span class="tag yes">YES</span></td><td>Secure. Bare minimum.</td></tr>
+<tr><td>Mobile Responsive</td><td><span class="tag warn">PARTIAL</span></td><td>Renders on mobile but layout is dated and not designed for conversion.</td></tr>
+<tr><td>Page Speed</td><td><span class="tag warn">UNKNOWN</span></td><td>Not formally tested - site is small enough that this is not the bottleneck.</td></tr>
+<tr><td>XML Sitemap</td><td><span class="tag missing">NONE</span></td><td>Not present. Search engines have no map of the site.</td></tr>
+<tr><td>robots.txt</td><td><span class="tag missing">NONE</span></td><td>Not present. No crawl directives.</td></tr>
+</table>
+
+<p>The SEO foundation is essentially blank. There is nothing to optimise yet because there is nothing built. This is actually good news: a fresh build (no legacy mistakes to undo) starts from a clean slate and can be done correctly the first time.</p>
+
+</div>
+</div>
+
+<!-- SECTION 5: Schema & Technical -->
+<div class="section">
+<div class="section-header">
+  <span class="sec-num">5</span>
+  <h2>Schema and Technical Markup</h2>
+  <span class="section-meta">0 schema types found</span>
+</div>
+<div class="section-body">
+
+<table>
+<tr><th>Schema Type</th><th>Status</th><th>Why It Matters</th></tr>
+<tr><td>LocalBusiness</td><td><span class="tag missing">MISSING</span></td><td>The fundamental signal AI uses to confirm "this is a real local business in this city." Without it, Handyman Superior is an anonymous webpage.</td></tr>
+<tr><td>Service</td><td><span class="tag missing">MISSING</span></td><td>Each of the 8 services should have its own Service schema. Tells AI exactly what is offered.</td></tr>
+<tr><td>FAQPage</td><td><span class="tag missing">MISSING</span></td><td>FAQ schema is one of the highest-value AI ranking signals. Direct Q-and-A blocks get pulled into AI answers verbatim.</td></tr>
+<tr><td>Review / AggregateRating</td><td><span class="tag missing">MISSING</span></td><td>No rating signal in markup. Even if reviews existed, they would not be machine-readable.</td></tr>
+<tr><td>BreadcrumbList</td><td><span class="tag missing">MISSING</span></td><td>Helps AI understand site structure and topical hierarchy.</td></tr>
+<tr><td>Organization</td><td><span class="tag missing">MISSING</span></td><td>No entity definition. AI has no anchor for "Handyman Superior LLC" as a known organisation.</td></tr>
+</table>
+
+<div class="callout">
+<strong>What "no schema" means in plain English:</strong> When ChatGPT or Google AI looks at a website, schema is the structured label that says "this is a business, this is its address, these are its services, these are its hours, these are its reviews." Without schema, AI sees text on a page but cannot confidently classify it as a real business worth recommending. Schema is one of the cheapest and highest-leverage fixes available.
+</div>
+
+</div>
+</div>
+
+<!-- SECTION 6: Reviews and Trust Signals -->
+<div class="section">
+<div class="section-header">
+  <span class="sec-num">6</span>
+  <h2>Reviews and Trust Signals</h2>
+  <span class="section-meta">0 verified reviews</span>
+</div>
+<div class="section-body">
+
+<div class="callout">
+<strong>The localStorage reviews issue:</strong> The current handymansuperior.com website has a review form. When a visitor submits a review, the data is saved to that visitor's browser only (localStorage), not to a database. A different visitor opening the same page sees a blank review section. The intent was right - DeMario clearly cares about social proof - but the implementation means zero people other than the original submitter can ever see any review. This is one of the most unusual technical findings on any audit we have run.
+</div>
+
+<table>
+<tr><th>Trust Signal</th><th>Status</th><th>Notes</th></tr>
+<tr><td>Google Business Profile reviews</td><td><span class="tag missing">N/A</span></td><td>No GBP exists, so no Google reviews exist either.</td></tr>
+<tr><td>Yelp reviews</td><td><span class="tag missing">N/A</span></td><td>No Yelp profile.</td></tr>
+<tr><td>HomeAdvisor / Angi reviews</td><td><span class="tag missing">N/A</span></td><td>No directory profiles to host them.</td></tr>
+<tr><td>BBB rating / accreditation</td><td><span class="tag missing">NO</span></td><td>Not BBB-listed.</td></tr>
+<tr><td>Licensed and insured (verified)</td><td><span class="tag warn">UNKNOWN</span></td><td>Not stated on the website. Worth confirming and prominently displaying.</td></tr>
+<tr><td>Bonded</td><td><span class="tag warn">UNKNOWN</span></td><td>Several competitors lead with bonding. Worth confirming.</td></tr>
+<tr><td>Years in business</td><td><span class="tag yes">25+ YEARS</span></td><td>Real credibility but currently invisible to AI because it is not in any structured directory or schema.</td></tr>
+</table>
+
+</div>
+</div>
+
+<!-- SECTION 7: Google Maps Status -->
+<div class="section">
+<div class="section-header">
+  <span class="sec-num">7</span>
+  <h2>Google Maps Status</h2>
+  <span class="section-meta">No listing</span>
+</div>
+<div class="section-body">
+
+<p><strong>Result:</strong> No Google Business Profile exists for Handyman Superior LLC at the Jackson, MS address. We verified this via brand search, address search, and direct Google Maps lookup. There is no claimed or unclaimed listing.</p>
+
+<p><strong>Implication:</strong> Local pack results (the map + 3 business listings that appear when someone searches "handyman Jackson MS") show competitors only. The local pack is the single highest-converting result type for service businesses. Handyman Superior is not in any local pack for any tested query.</p>
+
+<div class="callout warn">
+<strong>This is the easiest and most impactful fix on the audit.</strong> Creating and verifying a GBP takes about 30 minutes of work plus a postcard verification (5-7 business days). It is free. Within 2 weeks of verification, Handyman Superior will start appearing in Maps results for branded and "near me" searches. Within 4-6 weeks of consistent activity (posts, photos, review collection), it will appear in the local pack for non-branded queries.
+</div>
+
+</div>
+</div>
+
+<!-- SECTION 8: Directory Presence -->
+<div class="section">
+<div class="section-header">
+  <span class="sec-num">8</span>
+  <h2>Directory Presence (NAP Citations)</h2>
+  <span class="section-meta">0 / 7 directories</span>
+</div>
+<div class="section-body">
+
+<p>NAP = Name, Address, Phone. Consistent NAP citations across major directories is the foundational signal that AI and search engines use to confirm a local business is real and operational. Handyman Superior has zero presence on any of the directories AI pulls from.</p>
+
+<table>
+<tr><th>Directory</th><th>Status</th><th>Why It Matters</th></tr>
+<tr><td>Yelp</td><td><span class="tag missing">NOT LISTED</span></td><td>One of the top sources AI cites for local services.</td></tr>
+<tr><td>HomeAdvisor</td><td><span class="tag missing">NOT LISTED</span></td><td>Highest-trust handyman directory. AI cites it constantly.</td></tr>
+<tr><td>Angi (formerly Angie's List)</td><td><span class="tag missing">NOT LISTED</span></td><td>Property managers actively use Angi for vendor sourcing.</td></tr>
+<tr><td>Thumbtack</td><td><span class="tag missing">NOT LISTED</span></td><td>Lead generation platform. Pay-per-lead but visible.</td></tr>
+<tr><td>Better Business Bureau (BBB)</td><td><span class="tag missing">NOT LISTED</span></td><td>Trust signal that competitors use heavily.</td></tr>
+<tr><td>Houzz</td><td><span class="tag missing">NOT LISTED</span></td><td>Investor and homeowner sourcing platform for trades.</td></tr>
+<tr><td>Porch</td><td><span class="tag missing">NOT LISTED</span></td><td>Home services directory with growing AI citation rate.</td></tr>
+</table>
+
+<div class="callout">
+<strong>The only digital trace we found:</strong> Mississippi LLC business registry (state filing) and a few Craigslist job postings. That is it. No directory presence anywhere. This means the only way a customer can currently find Handyman Superior is by direct referral or by typing the exact business name into Google.
+</div>
+
+</div>
+</div>
+
+<!-- SECTION 9: Content and Service Coverage -->
+<div class="section">
+<div class="section-header">
+  <span class="sec-num">9</span>
+  <h2>Content and Service Coverage</h2>
+  <span class="section-meta">8 services / 9 cities</span>
+</div>
+<div class="section-body">
+
+<p>DeMario offers 8 distinct services across 9 cities. Currently the website surfaces almost none of these. Each missing service page and each missing city page is a missed ranking opportunity.</p>
+
+<div class="cat-header">Services Offered (per DeMario)</div>
+<table>
+<tr><th>Service</th><th>Dedicated Page?</th><th>Schema?</th><th>Estimated Job Value</th></tr>
+<tr><td>Professional Painting</td><td><span class="tag missing">NO</span></td><td><span class="tag missing">NO</span></td><td>$1K - $10K</td></tr>
+<tr><td>Total Rehabs</td><td><span class="tag missing">NO</span></td><td><span class="tag missing">NO</span></td><td>$5K - $50K</td></tr>
+<tr><td>Make-Readies (rental turnover)</td><td><span class="tag missing">NO</span></td><td><span class="tag missing">NO</span></td><td>$500 - $2K (recurring)</td></tr>
+<tr><td>General Maintenance</td><td><span class="tag missing">NO</span></td><td><span class="tag missing">NO</span></td><td>$200 - $2K</td></tr>
+<tr><td>Drywall Repair</td><td><span class="tag missing">NO</span></td><td><span class="tag missing">NO</span></td><td>$200 - $2K</td></tr>
+<tr><td>Flooring Install</td><td><span class="tag missing">NO</span></td><td><span class="tag missing">NO</span></td><td>$500 - $5K</td></tr>
+<tr><td>Minor Electrical</td><td><span class="tag missing">NO</span></td><td><span class="tag missing">NO</span></td><td>$200 - $1K</td></tr>
+<tr><td>Minor Plumbing</td><td><span class="tag missing">NO</span></td><td><span class="tag missing">NO</span></td><td>$200 - $1K</td></tr>
+</table>
+
+<div class="cat-header">Cities Served</div>
+<p>Jackson, Madison, Ridgeland, Brandon, Flowood, Clinton, Pearl, Byram, Florence (9 cities total). Currently no city pages exist. Each city + service combo is a ranking opportunity (8 services x 9 cities = 72 potential pages, of which the top 12-15 would deliver 80% of the value).</p>
+
+<div class="callout">
+<strong>Content priority:</strong> Build 1 page per service (8 pages) and 3 location pages for the highest-value cities (Jackson, Madison, Ridgeland). This is enough to rank for the queries in Section 2 of this report. Total: 11 priority pages.
+</div>
+
+</div>
+</div>
+
+<!-- SECTION 10: Conversion Path -->
+<div class="section">
+<div class="section-header">
+  <span class="sec-num">10</span>
+  <h2>Conversion Path Analysis</h2>
+  <span class="section-meta">No tracking, no CRM</span>
+</div>
+<div class="section-body">
+
+<table>
+<tr><th>Conversion Element</th><th>Status</th><th>Notes</th></tr>
+<tr><td>Lead capture form</td><td><span class="tag warn">PARTIAL</span></td><td>Form exists but submissions go nowhere meaningful.</td></tr>
+<tr><td>Click-to-call (mobile)</td><td><span class="tag missing">NO</span></td><td>Phone number is on the page but not formatted as a tap-to-call link on mobile.</td></tr>
+<tr><td>CRM / lead pipeline</td><td><span class="tag missing">NONE</span></td><td>No system tracking incoming leads.</td></tr>
+<tr><td>Speed-to-lead automation</td><td><span class="tag missing">NONE</span></td><td>Industry data: 78% of customers go with the first responder. Without auto-response, every lead is at risk.</td></tr>
+<tr><td>Goal tracking (analytics)</td><td><span class="tag missing">NONE</span></td><td>No way to measure how many leads come from any channel.</td></tr>
+<tr><td>Free quote / estimate flow</td><td><span class="tag missing">NONE</span></td><td>Top competitors have explicit "Get a Free Quote" CTAs and dedicated landing pages.</td></tr>
+</table>
+
+<div class="callout warn">
+<strong>The hidden cost:</strong> Even if Handyman Superior fixed every visibility issue tomorrow, the conversion path is broken. Leads that come in have nowhere to land. The website needs working forms wired to a CRM with speed-to-lead automation before any paid traffic or visibility work can pay off.
+</div>
+
+</div>
+</div>
+
+<!-- SECTION 11: Quick Wins (Week 1) -->
+<div class="section">
+<div class="section-header">
+  <span class="sec-num">11</span>
+  <h2>Quick Wins - Week 1</h2>
+  <span class="section-meta">Highest impact, lowest effort</span>
+</div>
+<div class="section-body">
+
+<div class="action-group">
+<div class="action-group-title immediate">Day 1 - 7</div>
+<div class="action-item"><strong>Create Google Business Profile</strong> at the Jackson, MS address. Full profile setup: hours, services, service area (9 cities), category (Handyman), photos, business description. Postcard verification request submitted.</div>
+<div class="action-item"><strong>Submit to Yelp.</strong> Free claim, full profile build, photos, services list, hours.</div>
+<div class="action-item"><strong>Submit to BBB.</strong> Apply for accreditation. Even pending accreditation appears as a trust signal.</div>
+<div class="action-item"><strong>Submit to HomeAdvisor and Angi.</strong> Free profile creation. Optional paid lead tier later.</div>
+<div class="action-item"><strong>Submit to Thumbtack, Houzz, Porch.</strong> Free profiles. Pay-per-lead optional later.</div>
+<div class="action-item"><strong>Fix the localStorage reviews issue</strong> by removing the broken review form from the existing site (will be replaced by GBP reviews + a real review system on the new site).</div>
+</div>
+
+</div>
+</div>
+
+<!-- SECTION 12: Foundation (Month 1-2) -->
+<div class="section">
+<div class="section-header">
+  <span class="sec-num">12</span>
+  <h2>Foundation - Month 1-2</h2>
+  <span class="section-meta">Site rebuild + schema</span>
+</div>
+<div class="section-body">
+
+<div class="action-group">
+<div class="action-group-title month1">Week 2 - 6</div>
+<div class="action-item"><strong>New website:</strong> 10+ page Astro build on Cloudflare Pages. Home, About, 8 service pages, 3 city pages, Contact, Free Quote. Mobile-first, fast, designed for conversion.</div>
+<div class="action-item"><strong>Schema markup on every page:</strong> LocalBusiness on the homepage, Service on each service page, FAQPage on the FAQ section, BreadcrumbList site-wide. AggregateRating once GBP reviews start coming in.</div>
+<div class="action-item"><strong>Lead capture forms wired to GHL CRM</strong> with speed-to-lead automation (auto-text within 60 seconds of form submission).</div>
+<div class="action-item"><strong>GBP verification completes</strong> (postcard arrives within 5-7 business days). Begin posting weekly: photos, before/after, customer wins.</div>
+<div class="action-item"><strong>First review campaign:</strong> 5-10 past customers asked for Google reviews. Target 5+ reviews in month 1.</div>
+<div class="action-item"><strong>Facebook Ads campaign launches</strong> targeting property managers and homeowners in the 9-city service area. $500/month budget.</div>
+</div>
+
+</div>
+</div>
+
+<!-- SECTION 13: Growth and Roadmap -->
+<div class="section">
+<div class="section-header">
+  <span class="sec-num">13</span>
+  <h2>Growth and Roadmap - Month 3-6</h2>
+  <span class="section-meta">Scaling visibility</span>
+</div>
+<div class="section-body">
+
+<div class="action-group">
+<div class="action-group-title month23">Month 3-4</div>
+<div class="action-item"><strong>Expand directory presence</strong> to 15+ secondary directories (Yellow Pages, Foursquare, Manta, Hotfrog, Cylex, etc.) for NAP citation density.</div>
+<div class="action-item"><strong>Content cadence:</strong> 1 service-specific blog post per week (e.g., "How to choose a make-ready contractor in Jackson"). Each post becomes an AI-friendly answer source.</div>
+<div class="action-item"><strong>Review velocity target:</strong> 3-5 new Google reviews per month minimum. By month 6, target 25+ total.</div>
+<div class="action-item"><strong>FB Ads optimisation:</strong> A/B test creative, audience, and offer. Target $50-100 CPL on rental property manager segment.</div>
+</div>
+
+<div class="action-group">
+<div class="action-group-title ongoing">Month 5-6</div>
+<div class="action-item"><strong>Re-audit:</strong> Re-run all 30 platform-query checks. Track citation count growth from 0 to target 10-15.</div>
+<div class="action-item"><strong>Add AI evidence pages:</strong> "Why Jackson property managers choose Handyman Superior" (case studies), "Make-ready process and pricing guide" (depth content). These become the source material AI cites.</div>
+<div class="action-item"><strong>Expand to commercial accounts:</strong> Once base visibility is in place, add commercial property management as a service vertical with dedicated landing pages.</div>
+<div class="action-item"><strong>Local PR / partnerships:</strong> Sponsor local property manager events or get listed in Mississippi Apartment Association vendor directory. These are high-trust backlinks AI weights heavily.</div>
+</div>
+
+<div class="callout good">
+<strong>Realistic 6-month outcome:</strong> Score of 5/100 to a target of 50-65/100. AI citations from 0/30 to 12-18/30. Google Maps presence in the local pack for branded and "near me" queries. Steady inbound lead flow from a mix of Maps, Google organic, directories, and Facebook ads. Recurring make-ready contracts with 2-4 property managers worth $2-5K/month each.
+</div>
+
+</div>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  <div class="oo-logo">Online Optimisers</div>
+  <div class="oo-sub">AI Visibility Deep Audit - Handyman Superior LLC - April 2026</div>
+</div>
+
+</div>
+
+</body>
+</html>
