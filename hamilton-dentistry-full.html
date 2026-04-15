@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Ranking Full Audit - Hamilton Family Dentistry | Online Optimisers</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#060f1e; --bg2:#0d1b2e; --card:#111f35; --card-border:#1a2d4a;
+  --primary:#01a2f9; --dark-blue:#0052cc; --mid-blue:#1870d4; --light-blue:#8cc7f3;
+  --text:#e8edf4; --text-dim:#7a90aa; --text-bright:#ffffff;
+  --red:#ef4444; --yellow:#f59e0b; --green:#22c55e; --orange:#f97316;
+  --chatgpt:#7CB89E; --perplexity:#8B7EC2; --google:#4285F4;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Manrope',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.65;padding-bottom:80px;}
+.container{max-width:1040px;margin:0 auto;padding:0 24px;}
+a{color:var(--primary);text-decoration:none;}
+a:hover{text-decoration:underline;}
+code{font-family:ui-monospace,SF Mono,Consolas,monospace;font-size:12.5px;color:var(--light-blue);background:rgba(1,162,249,.07);padding:1px 6px;border-radius:3px;}
+
+.top-strip{background:rgba(1,162,249,.08);border-bottom:1px solid rgba(1,162,249,.2);padding:12px 0;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--primary);font-weight:800;}
+.top-strip .container{display:flex;justify-content:space-between;align-items:center;}
+.top-strip .right{color:var(--text-dim);letter-spacing:1px;font-weight:600;}
+
+.header{background:radial-gradient(ellipse at 70% 30%,rgba(1,162,249,.12) 0%,transparent 60%),radial-gradient(ellipse at 20% 80%,rgba(0,82,204,.08) 0%,transparent 50%),linear-gradient(135deg,#060f1e 0%,#0d1b2e 100%);padding:56px 0 48px;border-bottom:2px solid var(--primary);}
+.header .eyebrow{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--primary);font-weight:800;margin-bottom:10px;}
+.header h1{font-size:clamp(30px,4.2vw,44px);font-weight:900;line-height:1.1;letter-spacing:-.5px;color:var(--text-bright);margin-bottom:8px;}
+.header .subtitle{color:var(--text-dim);font-size:14px;margin-bottom:18px;}
+.header .meta-row{display:flex;gap:22px;flex-wrap:wrap;font-size:12px;color:var(--text-dim);margin-bottom:28px;}
+.header .meta-row span{display:flex;align-items:center;gap:6px;}
+
+.score-section{display:flex;align-items:center;gap:36px;flex-wrap:wrap;margin-top:8px;}
+.score-ring{position:relative;width:150px;height:150px;flex-shrink:0;}
+.score-ring svg{transform:rotate(-90deg);}
+.score-ring .score-text{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;}
+.score-ring .score-num{font-size:2.6rem;font-weight:900;color:var(--text-bright);line-height:1;}
+.score-ring .score-label{font-size:.6rem;text-transform:uppercase;letter-spacing:2px;color:var(--text-dim);margin-top:4px;}
+.score-ring .score-band{font-size:.75rem;font-weight:800;color:var(--yellow);margin-top:4px;letter-spacing:1px;}
+.score-side{flex:1;min-width:260px;}
+.score-side h2{font-size:22px;font-weight:800;color:var(--text-bright);margin-bottom:6px;}
+.score-side p{font-size:14px;color:rgba(255,255,255,.65);}
+
+.hero-metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:24px;}
+.hero-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:18px 14px;text-align:center;}
+.hero-card .h-val{font-size:1.7rem;font-weight:900;line-height:1;}
+.hero-card .h-sub{font-size:.7rem;color:var(--text-dim);margin-top:4px;}
+.hero-card .h-label{font-size:.62rem;text-transform:uppercase;letter-spacing:1.2px;color:rgba(255,255,255,.4);margin-top:10px;font-weight:700;}
+.h-val.mint{color:var(--chatgpt);} .h-val.blue{color:var(--perplexity);} .h-val.gold{color:var(--google);} .h-val.red{color:var(--red);} .h-val.green{color:var(--green);}
+
+.section{padding:44px 0;border-bottom:1px solid var(--card-border);}
+.section h2{font-size:26px;font-weight:800;color:var(--text-bright);margin-bottom:6px;letter-spacing:-.3px;cursor:pointer;display:flex;align-items:center;gap:10px;}
+.section h2 .num{color:var(--primary);font-weight:900;background:rgba(1,162,249,.1);padding:6px 12px;border-radius:8px;font-size:16px;}
+.section h2 .chev{margin-left:auto;color:var(--primary);transition:transform .2s;font-size:14px;}
+.section.collapsed h2 .chev{transform:rotate(-90deg);}
+.section .section-sub{color:var(--text-dim);font-size:13px;margin-bottom:24px;}
+.section .section-body{overflow:hidden;transition:max-height .3s;}
+.section.collapsed .section-body{max-height:0;}
+.section h3{font-size:16px;font-weight:700;color:var(--text-bright);margin:22px 0 10px;letter-spacing:-.1px;}
+.section p{font-size:14.5px;color:rgba(255,255,255,.78);margin-bottom:12px;}
+.section ul,.section ol{padding-left:22px;margin-bottom:12px;}
+.section li{font-size:14.5px;color:rgba(255,255,255,.78);margin-bottom:6px;}
+
+table{width:100%;border-collapse:collapse;margin:14px 0 10px;background:var(--card);border:1px solid var(--card-border);border-radius:10px;overflow:hidden;font-size:13.5px;}
+th,td{padding:11px 14px;text-align:left;border-bottom:1px solid var(--card-border);vertical-align:top;}
+th{background:rgba(1,162,249,.08);color:var(--text-bright);font-weight:700;font-size:12.5px;text-transform:uppercase;letter-spacing:.6px;}
+tr:last-child td{border-bottom:none;}
+td strong{color:var(--text-bright);}
+
+.finding-grid{display:grid;grid-template-columns:1fr;gap:14px;margin:18px 0;}
+.finding{background:var(--card);border:1px solid var(--card-border);border-left:4px solid var(--red);border-radius:8px;padding:18px 20px;}
+.finding .fnum{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--red);font-weight:800;margin-bottom:6px;}
+.finding h4{font-size:16px;font-weight:800;color:var(--text-bright);margin-bottom:6px;}
+.finding p{font-size:13.5px;color:rgba(255,255,255,.72);margin-bottom:0;}
+
+.why-box{background:linear-gradient(135deg,rgba(239,68,68,.06),rgba(245,158,11,.04));border:1px solid rgba(245,158,11,.2);border-radius:10px;padding:20px 22px;margin:16px 0 0;}
+.why-box h3{color:var(--yellow);margin-top:0;margin-bottom:10px;font-size:15px;letter-spacing:.5px;text-transform:uppercase;}
+.why-box p{font-size:14px;color:rgba(255,255,255,.85);margin-bottom:0;}
+
+.score-bars{display:flex;flex-direction:column;gap:12px;margin:16px 0;}
+.score-bar{display:grid;grid-template-columns:210px 1fr 60px;align-items:center;gap:14px;font-size:13px;}
+.score-bar .sb-label{color:var(--text-dim);font-weight:600;}
+.score-bar .sb-track{height:10px;background:var(--card);border:1px solid var(--card-border);border-radius:5px;overflow:hidden;position:relative;}
+.score-bar .sb-fill{height:100%;border-radius:5px;}
+.score-bar .sb-fill.low{background:linear-gradient(90deg,var(--red),#f97316);}
+.score-bar .sb-fill.mid{background:linear-gradient(90deg,var(--yellow),#facc15);}
+.score-bar .sb-fill.high{background:linear-gradient(90deg,var(--green),#4ade80);}
+.score-bar .sb-val{color:var(--text-bright);font-weight:800;text-align:right;}
+
+.tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700;letter-spacing:.5px;}
+.tag-miss{background:rgba(239,68,68,.15);color:var(--red);border:1px solid rgba(239,68,68,.3);}
+.tag-exist{background:rgba(34,197,94,.15);color:var(--green);border:1px solid rgba(34,197,94,.3);}
+.tag-warn{background:rgba(245,158,11,.15);color:var(--yellow);border:1px solid rgba(245,158,11,.3);}
+
+.chip{display:inline-block;padding:4px 10px;margin:3px;background:rgba(1,162,249,.1);border:1px solid rgba(1,162,249,.25);border-radius:6px;color:var(--light-blue);font-size:12px;font-weight:600;}
+
+.action-block{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin:16px 0;}
+.action{background:var(--card);border:1px solid var(--card-border);border-radius:10px;padding:16px 18px;border-top:3px solid var(--primary);}
+.action.immediate{border-top-color:var(--red);}
+.action.m1{border-top-color:var(--yellow);}
+.action.m23{border-top-color:var(--primary);}
+.action.ongoing{border-top-color:var(--green);}
+.action h4{font-size:13px;text-transform:uppercase;letter-spacing:1.2px;color:var(--text-bright);margin-bottom:10px;font-weight:800;}
+.action ol{padding-left:20px;margin:0;}
+.action li{font-size:13px;color:rgba(255,255,255,.78);margin-bottom:6px;line-height:1.5;}
+
+.cta-section{background:linear-gradient(135deg,rgba(1,162,249,.1),rgba(0,82,204,.05));border:1px solid rgba(1,162,249,.3);border-radius:14px;padding:40px 36px;text-align:center;margin:48px 0 16px;}
+.cta-section h2{font-size:26px;color:var(--text-bright);margin-bottom:8px;font-weight:800;letter-spacing:-.3px;}
+.cta-section p{font-size:15px;color:rgba(255,255,255,.78);margin-bottom:22px;max-width:620px;margin-left:auto;margin-right:auto;}
+.cta-btn{display:inline-block;padding:14px 32px;background:var(--primary);color:#fff;font-weight:800;font-size:15px;border-radius:10px;text-decoration:none;letter-spacing:.5px;transition:all .2s;box-shadow:0 0 30px rgba(1,162,249,.3);}
+.cta-btn:hover{opacity:.9;transform:translateY(-1px);text-decoration:none;}
+
+footer{padding:32px 0 0;color:var(--text-dim);font-size:12px;text-align:center;}
+footer .oo{color:var(--primary);font-weight:800;letter-spacing:2px;text-transform:uppercase;}
+
+@media (max-width:760px){
+  .hero-metrics{grid-template-columns:repeat(2,1fr);}
+  .action-block{grid-template-columns:1fr;}
+  .score-bar{grid-template-columns:130px 1fr 48px;}
+}
+</style>
+</head>
+<body>
+
+<div class="top-strip">
+  <div class="container">
+    <div class="left">Online Optimisers / Full AI and SEO Audit</div>
+    <div class="right">Prepared by Tomas</div>
+  </div>
+</div>
+
+<header class="header">
+  <div class="container">
+    <div class="eyebrow">Full AI and SEO Audit</div>
+    <h1>Hamilton Family Dentistry</h1>
+    <div class="subtitle">hamiltondentistrymd.com &bull; Baltimore, MD &bull; Dentist &bull; 2026-04-16</div>
+    <div class="meta-row">
+      <span>Contact: Dr. Erin Wolfson</span>
+      <span>Auditor: Online Optimisers</span>
+      <span>APIs: DataForSEO + OpenAI gpt-4o-search-preview + Perplexity sonar-pro</span>
+    </div>
+
+    <div class="score-section">
+      <div class="score-ring">
+        <svg width="150" height="150" viewBox="0 0 150 150">
+          <circle cx="75" cy="75" r="65" fill="none" stroke="#1a2d4a" stroke-width="12"></circle>
+          <circle cx="75" cy="75" r="65" fill="none" stroke="#f59e0b" stroke-width="12" stroke-linecap="round"
+                  stroke-dasharray="236.9 408.4"></circle>
+        </svg>
+        <div class="score-text">
+          <div class="score-num">58</div>
+          <div class="score-label">/ 100</div>
+          <div class="score-band">FAIR</div>
+        </div>
+      </div>
+      <div class="score-side">
+        <h2>Strong SEO foundation, under-expressed in AI</h2>
+        <p>13/20 ChatGPT, 7/20 Perplexity, 8/20 Google AIO. 238 ranked keywords in top 50, $1419/mo estimated traffic value. The content depth and backlink profile are already strong. Schema markup, author entity signals, and 5 suspicious team-page identities are the specific fixes that unlock the next level of AI citation.</p>
+      </div>
+    </div>
+
+    <div class="hero-metrics">
+      <div class="hero-card">
+        <div class="h-val mint">13/20</div>
+        <div class="h-sub">ChatGPT cited</div>
+        <div class="h-label">GPT-4O Search</div>
+      </div>
+      <div class="hero-card">
+        <div class="h-val blue">7/20</div>
+        <div class="h-sub">Perplexity cited</div>
+        <div class="h-label">Sonar Pro</div>
+      </div>
+      <div class="hero-card">
+        <div class="h-val gold">8/20</div>
+        <div class="h-sub">Google AIO cited</div>
+        <div class="h-label">DataForSEO SERP</div>
+      </div>
+      <div class="hero-card">
+        <div class="h-val green">$1419/mo</div>
+        <div class="h-sub">Estimated traffic value</div>
+        <div class="h-label">DataForSEO Labs ETV</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="section">
+  <div class="container">
+    <h2><span class="num">01</span>Executive Summary</h2>
+    <div class="section-sub">Top line diagnostic. What is true, what is broken, what it means.</div>
+    <div class="section-body">
+    <table>
+      <thead><tr><th>Metric</th><th>Result</th></tr></thead>
+      <tbody>
+        <tr><td>AI Visibility Score</td><td><strong>58/100</strong> - FAIR band</td></tr>
+        <tr><td>Technical Health</td><td><strong>Grade A</strong> (80% of 20 checks passing)</td></tr>
+        <tr><td>Domain Rank</td><td><strong>148</strong></td></tr>
+        <tr><td>Ranked Keywords (top 50)</td><td><strong>238</strong> across 126 referring main domains</td></tr>
+        <tr><td>Keywords in Top 10</td><td><strong>28</strong></td></tr>
+        <tr><td>Striking Distance (positions 11-20)</td><td><strong>39</strong></td></tr>
+        <tr><td>Estimated Organic Traffic Value</td><td><strong>$1419/month</strong></td></tr>
+        <tr><td>AI Citations (60 query-platform slots)</td><td><strong>28/60</strong> (47%)</td></tr>
+        <tr><td>Google Maps (top 20, 5 service queries)</td><td><strong>2/5</strong></td></tr>
+      </tbody>
+    </table>
+
+    <h3>Top 3 Critical Findings</h3>
+    <div class="finding-grid">
+      <div class="finding">
+        <div class="fnum">Finding 01</div>
+        <h4>Five team pages carry non-real identity names</h4>
+        <p>The sitemap includes profile pages under Queen Ledner, Raphaelle Kemmer, Ryleigh Altenwerth, Stuart Schuster, and Trent Romaguera. The only dentists named on the homepage and about page are Dr. Erin Wolfson and Dr. Sydney Nolan. These names match the pattern of Faker.js / template output. Either populate with real staff (hygienists, dental assistants) with Person schema and photos, or noindex and drop from the sitemap. This is an E-E-A-T risk and a trust signal that AI retrievers and reviewers will flag.</p>
+      </div>
+      <div class="finding">
+        <div class="fnum">Finding 02</div>
+        <h4>FAQPage schema absent on every service page</h4>
+        <p>Every checked service page (implants, veneers, Invisalign, emergencies) has FAQ content in plain text, 4 to 8 questions each. None are wrapped in FAQPage JSON-LD. One ~2 hour dev ticket unlocks FAQ rich-result eligibility and increased likelihood of citation on conversational and problem-based queries across ChatGPT, Perplexity, and Google AI Overviews.</p>
+      </div>
+      <div class="finding">
+        <div class="fnum">Finding 03</div>
+        <h4>Strong SEO foundation masks an entity-signal gap</h4>
+        <p>Domain Rank 148, 238 ranked keywords, 28 in top 10, $1419/mo ETV, 900+ reviews at 4.9 stars. The gap is not content or authority, it is entity signal clarity. Product schema is used for dental services (wrong @type). Person schema is missing for both dentists. These fixes are the lever from Fair to Good on the AI Visibility score.</p>
+      </div>
+    </div>
+
+    <div class="why-box">
+      <h3>Where the opportunity sits</h3>
+      <p>Hamilton ranks for 238 keywords in the top 50, sits at DR 148, and already wins the #1 Maps position for "family dentist Baltimore MD" and the Hamilton-Lauraville hyperlocal query. AI platforms cite Hamilton on 28 of 60 query-platform slots. The remaining 32 invisible slots are overwhelmingly high-value specialty queries: implants, veneers, Invisalign, full-mouth reconstruction. These are $3K-30K cases per patient. The gap closing between where you rank today and where you rank after the fixes in this audit represents measurable new revenue. Increased likelihood of citation across AI platforms, not guaranteed AI rankings.</p>
+    </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="container">
+    <h2><span class="num">02</span>Technical SEO Audit</h2>
+    <div class="section-sub">DataForSEO instant_pages with JavaScript rendering.</div>
+    <div class="section-body">
+    <table>
+      <thead><tr><th>Metric</th><th>Value</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td>Page Load (Time to Interactive)</td><td>1372 ms</td><td><span class="tag tag-exist">OK</span></td></tr>
+        <tr><td>Largest Contentful Paint</td><td>820 ms</td><td><span class="tag tag-exist">OK</span></td></tr>
+        <tr><td>Cumulative Layout Shift</td><td>0.036</td><td><span class="tag tag-exist">OK</span></td></tr>
+        <tr><td>On-Page Score</td><td>97.1/100</td><td><span class="tag tag-exist">OK</span></td></tr>
+        <tr><td>H1</td><td><code>Your Trusted Dentists in Baltimore, MD</code></td><td><span class="tag tag-exist">OK</span></td></tr>
+        <tr><td>Meta Title (52 chars)</td><td><code>Dentist in Baltimore, MD | Hamilton Family Dentistry</code></td><td><span class="tag tag-exist">OK</span></td></tr>
+        <tr><td>Meta Description (114 chars)</td><td><code>Welcome to Hamilton Family Dentistry in Baltimore, MD. Comprehensive care for all ages. Schedule your visit today.</code></td><td><span class="tag tag-exist">OK</span></td></tr>
+        <tr><td>Canonical Tag</td><td>Self-referencing</td><td><span class="tag tag-exist">OK</span></td></tr>
+        <tr><td>HTTPS</td><td>Yes</td><td><span class="tag tag-exist">OK</span></td></tr>
+        <tr><td>Images Missing Alt</td><td>Yes</td><td><span class="tag tag-warn">FLAG</span></td></tr>
+        <tr><td>Images Missing Title</td><td>Yes</td><td><span class="tag tag-warn">FLAG</span></td></tr>
+        <tr><td>Structured Data (JSON-LD)</td><td>Crawler flagged: partial</td><td><span class="tag tag-warn">REVIEW</span></td></tr>
+        <tr><td>Render-Blocking Resources</td><td>12</td><td><span class="tag tag-warn">FLAG</span></td></tr>
+        <tr><td>Scripts on Homepage</td><td>53</td><td><span class="tag tag-warn">FLAG</span></td></tr>
+        <tr><td>Internal Links on Homepage</td><td>22</td><td><span class="tag tag-exist">OK</span></td></tr>
+      </tbody>
+    </table>
+    <p><strong>Technical grade: A (80% of 20 checks passing).</strong></p>
+    <h3>Site Architecture</h3>
+    <ul>
+      <li>Sitemap present at <code>/sitemap.xml</code> with 52 URLs</li>
+      <li>Robots.txt permissive (User-Agent: * Allow: /)</li>
+      <li>URL pattern clean: <code>/services/[slug]</code>, <code>/blog/[slug]</code>, <code>/before-afters/[slug]</code></li>
+      <li><strong>Flag:</strong> 5 team-profile URLs in the sitemap under names that match Faker.js template output</li>
+    </ul>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="container">
+    <h2><span class="num">03</span>SEO Foundation</h2>
+    <div class="section-sub">DataForSEO Labs, Backlinks Summary, Anchor Text, Referring Domains.</div>
+    <div class="section-body">
+    <h3>Domain Authority and Backlinks</h3>
+    <table>
+      <thead><tr><th>Metric</th><th>Value</th></tr></thead>
+      <tbody>
+        <tr><td>Domain Rank</td><td><strong>148</strong></td></tr>
+        <tr><td>Total Backlinks</td><td>227</td></tr>
+        <tr><td>Referring Domains</td><td>129</td></tr>
+        <tr><td>Referring Main Domains</td><td>126</td></tr>
+        <tr><td>Broken Backlinks</td><td>4</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Position Distribution (top 50 ranked keywords)</h3>
+    <table>
+      <thead><tr><th>Range</th><th>Count</th></tr></thead>
+      <tbody>
+        <tr><td>Position 1</td><td><strong>2</strong></td></tr>
+        <tr><td>Position 2-3</td><td><strong>6</strong></td></tr>
+        <tr><td>Position 4-10</td><td><strong>20</strong></td></tr>
+        <tr><td>Position 11-20 (striking distance)</td><td><strong>39</strong></td></tr>
+        <tr><td>Total (top 50)</td><td><strong>238</strong></td></tr>
+        <tr><td><strong>Estimated Organic Traffic Value</strong></td><td><strong>$1419/month</strong></td></tr>
+      </tbody>
+    </table>
+
+    <h3>Top Ranked Keywords (by search volume)</h3>
+    <table>
+      <thead><tr><th>Keyword</th><th>Position</th><th>Volume</th><th>CPC</th><th>Landing URL</th></tr></thead>
+      <tbody><tr><td>higginbotham family dental</td><td><strong>#43</strong></td><td>4400</td><td>$4.28</td><td><code>/</code></td></tr><tr><td>hamilton dental</td><td><strong>#27</strong></td><td>3600</td><td>$3.73</td><td><code>/</code></td></tr><tr><td>hamilton dentistry</td><td><strong>#6</strong></td><td>3600</td><td>$3.73</td><td><code>/</code></td></tr><tr><td>baltimore maryland dentist</td><td><strong>#35</strong></td><td>2900</td><td>$9.80</td><td><code>/</code></td></tr><tr><td>baltimore md dentists</td><td><strong>#16</strong></td><td>2900</td><td>$9.80</td><td><code>/</code></td></tr><tr><td>dental in baltimore</td><td><strong>#36</strong></td><td>2900</td><td>$9.80</td><td><code>/</code></td></tr><tr><td>dentist baltimore</td><td><strong>#29</strong></td><td>2900</td><td>$9.80</td><td><code>/</code></td></tr><tr><td>dentist baltimore maryland</td><td><strong>#21</strong></td><td>2900</td><td>$9.80</td><td><code>/</code></td></tr><tr><td>dentist in baltimore md</td><td><strong>#23</strong></td><td>2900</td><td>$9.80</td><td><code>/</code></td></tr><tr><td>dentists baltimore</td><td><strong>#26</strong></td><td>2900</td><td>$9.80</td><td><code>/</code></td></tr><tr><td>dentists in baltimore md</td><td><strong>#9</strong></td><td>2900</td><td>$9.80</td><td><code>/</code></td></tr><tr><td>hamilton family dental</td><td><strong>#6</strong></td><td>2900</td><td>$7.32</td><td><code>/about</code></td></tr></tbody>
+    </table>
+
+    <h3>Anchor Text Profile</h3>
+    <table>
+      <thead><tr><th>Anchor</th><th>Backlinks</th><th>Ref Domains</th></tr></thead>
+      <tbody><tr><td>hamiltondentistrymd.com</td><td>49</td><td>46</td></tr><tr><td>dentist in Baltimore, MD</td><td>48</td><td>16</td></tr><tr><td>Visit Website</td><td>29</td><td>8</td></tr><tr><td>Hamilton Family Dentistry</td><td>16</td><td>4</td></tr><tr><td>Website</td><td>12</td><td>5</td></tr><tr><td>(no anchor)</td><td>9</td><td>8</td></tr><tr><td>OUR TELEGRAM CHANEL https://t.me/s/quarterlinks25</td><td>8</td><td>8</td></tr><tr><td>https://hamiltondentistrymd.com/</td><td>7</td><td>3</td></tr><tr><td>Halitosis (Bad Breath) Treatment - Hamilton Family Dentistry</td><td>5</td><td>1</td></tr><tr><td>crown Baltimore Maryland</td><td>4</td><td>4</td></tr><tr><td>Home Page</td><td>4</td><td>1</td></tr><tr><td>JOIN OUR TELEGRAM https://t.me/s/darksidelinks</td><td>3</td><td>3</td></tr></tbody>
+    </table>
+    <p>Branded anchors dominate (39.6%), a healthy profile for a local dental practice. One flagged anchor (a Telegram channel link) is a minor spam source worth auditing for disavow.</p>
+
+    <h3>Top Referring Domains (by authority)</h3>
+    <table>
+      <thead><tr><th>Domain</th><th>Domain Rank</th><th>Backlinks</th><th>First Seen</th></tr></thead>
+      <tbody><tr><td>globhy.com</td><td>79</td><td>2</td><td>2025-10-22</td></tr><tr><td>backlinktrap.com</td><td>51</td><td>1</td><td>2026-01-15</td></tr><tr><td>callupcontact.com</td><td>51</td><td>1</td><td>2025-07-08</td></tr><tr><td>americatop10.com</td><td>40</td><td>3</td><td>2024-03-08</td></tr><tr><td>healthysmilesdaily.com</td><td>38</td><td>1</td><td>2026-02-09</td></tr><tr><td>expatriates.com</td><td>23</td><td>1</td><td>2025-05-14</td></tr><tr><td>allventurehub.com</td><td>7</td><td>1</td><td>2026-02-10</td></tr><tr><td>exitexplorer.com</td><td>7</td><td>1</td><td>2025-11-09</td></tr><tr><td>dentistsranked.com</td><td>7</td><td>12</td><td>2023-10-04</td></tr><tr><td>sergechel.info</td><td>0</td><td>1</td><td>2026-04-11</td></tr><tr><td>streetregister.com</td><td>0</td><td>3</td><td>2026-03-25</td></tr><tr><td>dentalpedia.co</td><td>0</td><td>2</td><td>2026-03-25</td></tr><tr><td>ycm.info</td><td>0</td><td>1</td><td>2026-03-24</td></tr><tr><td>find-nearme.com</td><td>0</td><td>2</td><td>2026-03-22</td></tr><tr><td>shoplogist.com</td><td>0</td><td>1</td><td>2026-03-22</td></tr></tbody>
+    </table>
+    </div>
+  </div>
+</div>
+
+<div class="section collapsed">
+  <div class="container">
+    <h2><span class="num">04</span>AI Visibility Score Breakdown<span class="chev">&#9660;</span></h2>
+    <div class="section-sub">Four pillars, 25 points each. Total 58/100.</div>
+    <div class="section-body">
+    <div class="score-bars">
+      <div class="score-bar"><div class="sb-label">Knowledge Graph / Directories</div><div class="sb-track"><div class="sb-fill mid" style="width:64.0%"></div></div><div class="sb-val">16/25</div></div>
+      <div class="score-bar"><div class="sb-label">Content Citability</div><div class="sb-track"><div class="sb-fill mid" style="width:72.0%"></div></div><div class="sb-val">18/25</div></div>
+      <div class="score-bar"><div class="sb-label">Schema Markup</div><div class="sb-track"><div class="sb-fill low" style="width:36.0%"></div></div><div class="sb-val">9/25</div></div>
+      <div class="score-bar"><div class="sb-label">AI-Weighted Backlinks</div><div class="sb-track"><div class="sb-fill mid" style="width:60.0%"></div></div><div class="sb-val">15/25</div></div>
+    </div>
+    <p>Band: <strong>FAIR (58/100)</strong>. Knowledge Graph, Content Citability, and Backlinks are already at or near Fair. Schema is the single pillar pulling the overall score down. Lift Schema to 18+ and the overall score moves firmly into the Good band.</p>
+    </div>
+  </div>
+</div>
+
+<div class="section collapsed">
+  <div class="container">
+    <h2><span class="num">05</span>AI Platform Results<span class="chev">&#9660;</span></h2>
+    <div class="section-sub">20 queries, 3 platforms, 60 slots. Plus Google Maps top 20 for 5 service+location queries.</div>
+    <div class="section-body">
+    <h3>Cross-Platform Visibility (all 20 queries)</h3>
+    <table>
+      <thead><tr><th>#</th><th>Query</th><th>Category</th><th>ChatGPT</th><th>Perplexity</th><th>Google AIO</th><th>Hamilton Organic Pos</th></tr></thead>
+      <tbody><tr><td>1</td><td>best dentist in Baltimore MD</td><td><span class="tag tag-warn">Service+Location</span></td><td><span class="tag tag-miss">NO</span></td><td><span class="tag tag-miss">NO</span></td><td><span class="tag tag-miss">NO</span></td><td>-</td></tr>
+<tr><td>2</td><td>family dentist Baltimore MD</td><td><span class="tag tag-warn">Service+Location</span></td><td><span class="tag tag-exist">YES</span></td><td><span class="tag tag-exist">YES</span></td><td><span class="tag tag-exist">YES</span></td><td>#2</td></tr>
+<tr><td>3</td><td>cosmetic dentist Baltimore MD</td><td><span class="tag tag-warn">Service+Location</span></td><td><span class="tag tag-miss">NO</span></td><td><span class="tag tag-miss">NO</span></td><td><span class="tag tag-miss">NO</span></td><td>-</td></tr>
+<tr><td>4</td><td>dentist near Hamilton Lauraville Baltimore MD</td><td><span class="tag tag-warn">Service+Location</span></td><td><span class="tag tag-exist">YES</span></td><td><span class="tag tag-exist">YES</span></td><td><span class="tag tag-exist">YES</span></td><td>#1</td></tr>
+<tr><td>5</td><td>top rated dentists in Baltimore MD</td><td><span class="tag tag-warn">Service+Location</span></td><td><span class="tag tag-exist">YES</span></td><td><span class="tag tag-miss">NO</span></td><td><span class="tag tag-miss">NO</span></td><td>-</td></tr>
+<tr><td>6</td><td>who is the best dentist in Baltimore MD for nervous patients</td><td><span class="tag tag-warn">Conversational</span></td><td><span class="tag tag-exist">YES</span></td><td><span class="tag tag-miss">NO</span></td><td><span class="tag tag-miss">NO</span></td><td>-</td></tr>
+<tr><td>7</td><td>which dentist in Baltimore MD takes new patients</td><td><span class="tag tag-warn">Conversational</span></td><td><span class="tag tag-exist">YES</span></td><td><span class="tag tag-miss">NO</span></td><td><span class="tag tag-miss">NO</span></td><td>-</td></tr>
+<tr><td>8</td><td>what is the best family dental practice in Baltimore MD</td><td><span class="tag tag-warn">Conversational</span></td><td><span class="tag tag-exist">YES</span></td><td><span class="tag tag-exist">YES</span></td><td><span class="tag tag-exist">YES</span></td><td>#6</td></tr>
+<tr><td>9</td><td>how do I find a good cosmetic dentist in Baltimore MD</td><td><span class="tag tag-warn">Conversational</span></td><td><span class="tag tag-miss">NO</span></td><td><span class="tag tag-miss">NO</span></td><td><span class="tag tag-miss">NO</span></td><td>-</td></tr>
+<tr><td>10</td><td>where can I get dental implants in Baltimore MD</td><td><span class="tag tag-warn">Conversational</span></td><td><span class="tag tag-miss">NO</span></td><td><span class="tag tag-miss">NO</span></td><td><span class="tag tag-miss">NO</span></td><td>-</td></tr>
+<tr><td>11</td><td>emergency dentist Baltimore MD same day</td><td><span class="tag tag-warn">Problem-Based</span></td><td><span class="tag tag-exist">YES</span></td><td><span class="tag tag-exist">YES</span></td><td><span class="tag tag-exist">YES</span></td><td>#6</td></tr>
+<tr><td>12</td><td>affordable dentist Baltimore MD no insurance</td><td><span class="tag tag-warn">Problem-Based</span></td><td><span class="tag tag-exist">YES</span></td><td><span class="tag tag-miss">NO</span></td><td><span class="tag tag-exist">YES</span></td><td>#6</td></tr>
+<tr><td>13</td><td>sedation dentist Baltimore MD for dental anxiety</td><td><span class="tag tag-warn">Problem-Based</span></td><td><span class="tag tag-exist">YES</span></td><td><span class="tag tag-miss">NO</span></td><td><span class="tag tag-miss">NO</span></td><td>-</td></tr>
+<tr><td>14</td><td>dentist Baltimore MD accepting new patients this week</td><td><span class="tag tag-warn">Problem-Based</span></td><td><span class="tag tag-exist">YES</span></td><td><span class="tag tag-exist">YES</span></td><td><span class="tag tag-exist">YES</span></td><td>#5</td></tr>
+<tr><td>15</td><td>dental implants Baltimore MD cost</td><td><span class="tag tag-warn">Specialty</span></td><td><span class="tag tag-miss">NO</span></td><td><span class="tag tag-miss">NO</span></td><td><span class="tag tag-miss">NO</span></td><td>-</td></tr>
+<tr><td>16</td><td>porcelain veneers Baltimore MD</td><td><span class="tag tag-warn">Specialty</span></td><td><span class="tag tag-miss">NO</span></td><td><span class="tag tag-miss">NO</span></td><td><span class="tag tag-miss">NO</span></td><td>-</td></tr>
+<tr><td>17</td><td>Invisalign dentist Baltimore MD</td><td><span class="tag tag-warn">Specialty</span></td><td><span class="tag tag-exist">YES</span></td><td><span class="tag tag-miss">NO</span></td><td><span class="tag tag-miss">NO</span></td><td>-</td></tr>
+<tr><td>18</td><td>full mouth reconstruction dentist Baltimore MD</td><td><span class="tag tag-warn">Specialty</span></td><td><span class="tag tag-miss">NO</span></td><td><span class="tag tag-miss">NO</span></td><td><span class="tag tag-miss">NO</span></td><td>-</td></tr>
+<tr><td>19</td><td>Hamilton Family Dentistry Baltimore MD reviews</td><td><span class="tag tag-warn">Branded</span></td><td><span class="tag tag-exist">YES</span></td><td><span class="tag tag-exist">YES</span></td><td><span class="tag tag-exist">YES</span></td><td>#4</td></tr>
+<tr><td>20</td><td>Dr Erin Wolfson dentist Baltimore MD</td><td><span class="tag tag-warn">Branded</span></td><td><span class="tag tag-exist">YES</span></td><td><span class="tag tag-exist">YES</span></td><td><span class="tag tag-exist">YES</span></td><td>#1</td></tr>
+</tbody>
+    </table>
+
+    <h3>Category Breakdown</h3>
+    <table>
+      <thead><tr><th>Category</th><th>Queries</th><th>ChatGPT</th><th>Perplexity</th><th>Google AIO</th><th>Total</th></tr></thead>
+      <tbody><tr><td>Service+Location</td><td>5</td><td>3/5</td><td>2/5</td><td>2/5</td><td><strong>7/15</strong></td></tr><tr><td>Conversational</td><td>5</td><td>3/5</td><td>1/5</td><td>1/5</td><td><strong>5/15</strong></td></tr><tr><td>Problem-Based</td><td>4</td><td>4/4</td><td>2/4</td><td>3/4</td><td><strong>9/12</strong></td></tr><tr><td>Specialty</td><td>4</td><td>1/4</td><td>0/4</td><td>0/4</td><td><strong>1/12</strong></td></tr><tr><td>Branded</td><td>2</td><td>2/2</td><td>2/2</td><td>2/2</td><td><strong>6/6</strong></td></tr><tr><td><strong>TOTAL</strong></td><td><strong>20</strong></td><td><strong>13/20</strong></td><td><strong>7/20</strong></td><td><strong>8/20</strong></td><td><strong>28/60</strong></td></tr></tbody>
+    </table>
+
+    <h3>Google Maps Pack (top 5 service+location queries)</h3>
+    <table>
+      <thead><tr><th>Query</th><th>Hamilton Position (top 20)</th><th>Top 3 Maps Results</th></tr></thead>
+      <tbody><tr><td>best dentist in Baltimore MD</td><td><span class="tag tag-miss">Not in top 20</span></td><td>Dr. Garcia General &amp; Cosmetic Dentistry (4.9/5, 848 reviews), Waterfront Dental (5/5, 727 reviews), Smile Rotunda of Baltimore (4.9/5, 374 reviews)</td></tr><tr><td>family dentist Baltimore MD</td><td><strong>#1</strong></td><td>Hamilton Family Dentistry (4.9/5, 955 reviews), Family Dental Care (4.6/5, 220 reviews), Family Dentist (5/5, 9 reviews)</td></tr><tr><td>cosmetic dentist Baltimore MD</td><td><span class="tag tag-miss">Not in top 20</span></td><td>Dr. Garcia General &amp; Cosmetic Dentistry (4.9/5, 848 reviews), Cosmetic Dental Center (4.9/5, 409 reviews), Smile Rotunda of Baltimore (4.9/5, 374 reviews)</td></tr><tr><td>dentist near Hamilton Lauraville Baltimore MD</td><td><strong>#1</strong></td><td>Hamilton Family Dentistry (4.9/5, 955 reviews), iBrush Family Dental Care (4.5/5, 240 reviews), Foster Dental (4/5, 18 reviews)</td></tr><tr><td>top rated dentists in Baltimore MD</td><td><span class="tag tag-miss">Not in top 20</span></td><td>Smile Innovations (5/5, 15 reviews), The Mugford Center (4.9/5, 346 reviews), Dr. Garcia General &amp; Cosmetic Dentistry (4.9/5, 848 reviews)</td></tr></tbody>
+    </table>
+
+    <h3>People Also Ask (free keyword gold from DataForSEO SERP)</h3>
+    <ul><li>How can you tell if a dentist is good?</li><li>Can a dentist prescribe Ambien?</li><li>What is the most painful tooth procedure?</li><li>What is the dentist 2 year rule?</li><li>How much does a full set of teeth implants cost near Maryland?</li><li>What does MDS mean for a dentist?</li><li>Does Medicaid in Maryland cover dental?</li><li>Which founding father was a dentist?</li><li>How to find out if a dentist is good?</li><li>How do I go to the dentist with severe anxiety?</li><li>How do dentists deal with anxious patients?</li><li>What triggers dental anxiety?</li><li>What pill do dentists give for anxiety?</li><li>How to see if a dentist is accepting new patients?</li><li>Can diabetics get help with dental treatment?</li></ul>
+
+    <h3>Related Searches</h3>
+    <ul><li>Best dentist in Baltimore County</li><li>Baltimore magazine Top Dentists</li><li>Baltimore dentist that accept Medicaid</li><li>Dentists in Baltimore, MD</li><li>Dentist Charles Street Baltimore</li><li>Best dentist Baltimore reddit</li><li>Baltimore Uptown Dentist</li><li>Dentist Baltimore County</li><li>Family Dentistry Randallstown, MD</li><li>Family Dentistry Catonsville</li><li>Family Dentistry Dundalk</li><li>Shelton Family Dental</li><li>Horizon Family Dental Care Baltimore</li><li>Wellwood Family Dentistry</li><li>Dr Shelton dentist Baltimore, MD</li></ul>
+    </div>
+  </div>
+</div>
+
+<div class="section collapsed">
+  <div class="container">
+    <h2><span class="num">06</span>Schema and Entity Gaps<span class="chev">&#9660;</span></h2>
+    <div class="section-sub">Structured data is the single largest lever in this audit.</div>
+    <div class="section-body">
+    <table>
+      <thead><tr><th>Schema Type</th><th>Status</th><th>Points</th></tr></thead>
+      <tbody>
+        <tr><td>LocalBusiness / Dentist / MedicalBusiness</td><td><span class="tag tag-warn">PARTIAL</span> (AggregateRating + Brand only)</td><td>2/6</td></tr>
+        <tr><td>Person (Dr. Wolfson / Dr. Nolan)</td><td><span class="tag tag-miss">MISSING</span></td><td>0/4</td></tr>
+        <tr><td>FAQPage</td><td><span class="tag tag-miss">MISSING</span> (content exists on 4 service pages)</td><td>0/5</td></tr>
+        <tr><td>Service / MedicalProcedure</td><td><span class="tag tag-miss">WRONG TYPE</span> (Product used for dental services)</td><td>1/3</td></tr>
+        <tr><td>HowTo</td><td><span class="tag tag-miss">MISSING</span></td><td>0/2</td></tr>
+        <tr><td>Review / AggregateRating</td><td><span class="tag tag-exist">PRESENT</span></td><td>3/3</td></tr>
+      </tbody>
+    </table>
+    <p><strong>Schema total: 9/25.</strong> The fix list is short and bounded: FAQPage on 4 service pages, Person schema on the about page, swap Product to MedicalProcedure on 10 service pages. Estimated 4-6 hours of structured dev work.</p>
+    </div>
+  </div>
+</div>
+
+<div class="section collapsed">
+  <div class="container">
+    <h2><span class="num">07</span>Content Citability<span class="chev">&#9660;</span></h2>
+    <div class="section-sub">Can AI quote something specific from the site.</div>
+    <div class="section-body">
+    <table>
+      <thead><tr><th>Factor</th><th>Score</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Quotable Proof Blocks</td><td><strong>3/5</strong></td><td>"70+ years", "500+ CME hours", "900+ 5-star reviews". Missing: implants placed count, veneers completed, Invisalign cases.</td></tr>
+        <tr><td>FAQ Sections</td><td><strong>4/5</strong></td><td>Real FAQ on 4 of 4 service pages, 4-8 Q&amp;A each. Loses a point for no FAQPage schema wrapping.</td></tr>
+        <tr><td>Unique Claims</td><td><strong>3/5</strong></td><td>Anxiety transformation origin story, Overjet AI diagnostic technology, in-house membership plan.</td></tr>
+        <tr><td>Service Page Depth</td><td><strong>5/5</strong></td><td>2300+ word average across implants, veneers, Invisalign, emergencies.</td></tr>
+        <tr><td>Content Differentiation</td><td><strong>3/5</strong></td><td>Brand voice is strong. Baltimore-specific proof would sharpen differentiation.</td></tr>
+        <tr><td><strong>Total</strong></td><td colspan="2"><strong>18/25</strong></td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+</div>
+
+<div class="section collapsed">
+  <div class="container">
+    <h2><span class="num">08</span>Competitive Landscape<span class="chev">&#9660;</span></h2>
+    <div class="section-sub">Algorithmic competitors plus the domains AI cites instead.</div>
+    <div class="section-body">
+    <h3>Algorithmic Competitors (DataForSEO)</h3>
+    <table>
+      <thead><tr><th>Domain</th><th>Keyword Intersections</th><th>Average Position</th></tr></thead>
+      <tbody><tr><td>yelp.com</td><td>329</td><td>8.7</td></tr><tr><td>mapquest.com</td><td>294</td><td>20.7</td></tr><tr><td>facebook.com</td><td>286</td><td>17.7</td></tr><tr><td>healthgrades.com</td><td>281</td><td>23.4</td></tr><tr><td>webmd.com</td><td>241</td><td>37.6</td></tr><tr><td>instagram.com</td><td>167</td><td>26.0</td></tr><tr><td>usnews.com</td><td>145</td><td>27.3</td></tr><tr><td>deltadental.com</td><td>144</td><td>22.3</td></tr></tbody>
+    </table>
+
+    <h3>Competitors Cited by AI Platforms</h3>
+    <p>Non-Hamilton domains surfaced by ChatGPT, Perplexity, or Google AIO across the 20-query battery:</p>
+    <div><span class="chip">smilebaltimore.com</span><span class="chip">leboedentistry.com</span><span class="chip">lochridgedentalcare.com</span><span class="chip">baltimoreorthodonticgroup.com</span><span class="chip">healthgrades.com</span><span class="chip">sheltonfamilydental.com</span><span class="chip">dental.umaryland.edu</span><span class="chip">authoritydental.org</span><span class="chip">cantonsmilestudio.com</span><span class="chip">deltadental.com</span><span class="chip">drgarciadds.com</span><span class="chip">nowdentistry.com</span></div>
+
+    <h3>Competitor Backlink Benchmark</h3>
+    <table>
+      <thead><tr><th>Domain</th><th>Domain Rank</th><th>Backlinks</th><th>Ref Main Domains</th></tr></thead>
+      <tbody><tr><td>smilebaltimore.com</td><td>138</td><td>1414</td><td>91</td></tr><tr><td>leboedentistry.com</td><td>23</td><td>115</td><td>50</td></tr><tr><td>lochridgedentalcare.com</td><td>120</td><td>156</td><td>72</td></tr><tr style="background:rgba(1,162,249,.08)"><td><strong>Hamilton Family Dentistry</strong></td><td><strong>148</strong></td><td><strong>227</strong></td><td><strong>126</strong></td></tr></tbody>
+    </table>
+    </div>
+  </div>
+</div>
+
+<div class="section collapsed">
+  <div class="container">
+    <h2><span class="num">09</span>GBP and Reviews<span class="chev">&#9660;</span></h2>
+    <div class="section-sub">Local pack signals and NAP hygiene.</div>
+    <div class="section-body">
+    <table>
+      <thead><tr><th>Field</th><th>Value</th></tr></thead>
+      <tbody>
+        <tr><td>Business Name</td><td>Hamilton Family Dentistry</td></tr>
+        <tr><td>Address</td><td>5810 Harford Road, Baltimore, MD 21214</td></tr>
+        <tr><td>Phone</td><td>(410) 426-8200</td></tr>
+        <tr><td>Hours</td><td>Mon-Thu 8am-5pm; closed Fri-Sun</td></tr>
+        <tr><td>Rating</td><td>4.9 (from on-site schema)</td></tr>
+        <tr><td>Review Count</td><td>900+ (from homepage H3)</td></tr>
+        <tr><td>Categories</td><td>Dentist, Cosmetic Dentist, Family Dentist</td></tr>
+        <tr><td>Maps Pack Visibility (5 queries tested)</td><td><strong>2/5</strong> (family dentist #1, Hamilton-Lauraville #1)</td></tr>
+      </tbody>
+    </table>
+
+    <div class="why-box">
+      <h3>Friday-Sunday closure tension</h3>
+      <p>The /services/emergencies page promises same-day emergency dentistry. The office hours are Monday to Thursday. Google AI Overviews renders on emergency-dentist queries. Today Hamilton is not cited in that AIO. Fixing the hours copy (or adding an on-call weekend line) unlocks a clear citation path on a ~1,600/month keyword cluster.</p>
+    </div>
+    </div>
+  </div>
+</div>
+
+<div class="section collapsed">
+  <div class="container">
+    <h2><span class="num">10</span>Striking Distance Keywords<span class="chev">&#9660;</span></h2>
+    <div class="section-sub">Positions 11-20 with active search volume. Move 3-4 positions, earn page-one.</div>
+    <div class="section-body">
+    <h3>Top 15 Striking Distance Opportunities</h3>
+    <table>
+      <thead><tr><th>Keyword</th><th>Current Position</th><th>Volume</th><th>Landing URL</th></tr></thead>
+      <tbody><tr><td>baltimore md dentists</td><td>#16</td><td>2900</td><td><code>/</code></td></tr><tr><td>emergency dentist baltimore city</td><td>#14</td><td>1600</td><td><code>/services/emergencies</code></td></tr><tr><td>emergency dentist baltimore county</td><td>#11</td><td>1600</td><td><code>/services/emergencies</code></td></tr><tr><td>emergency dentist baltimore maryland</td><td>#17</td><td>1600</td><td><code>/services/emergencies</code></td></tr><tr><td>dr hamilton dentist</td><td>#14</td><td>590</td><td><code>/</code></td></tr><tr><td>dental implants baltimore</td><td>#17</td><td>480</td><td><code>/services/dental-implants</code></td></tr><tr><td>dental implants baltimore md</td><td>#17</td><td>480</td><td><code>/services/dental-implants</code></td></tr><tr><td>baltimore family dental</td><td>#17</td><td>320</td><td><code>/</code></td></tr><tr><td>randall family dentistry</td><td>#19</td><td>320</td><td><code>/</code></td></tr><tr><td>best dentist baltimore</td><td>#17</td><td>260</td><td><code>/</code></td></tr><tr><td>hamilton advanced dentistry</td><td>#17</td><td>210</td><td><code>/</code></td></tr><tr><td>dental offices in baltimore md</td><td>#11</td><td>170</td><td><code>/</code></td></tr><tr><td>dentist office in baltimore</td><td>#19</td><td>170</td><td><code>/</code></td></tr><tr><td>dr nolan dentist</td><td>#12</td><td>170</td><td><code>/about</code></td></tr><tr><td>hamilton dental office</td><td>#20</td><td>170</td><td><code>/</code></td></tr></tbody>
+    </table>
+
+    <h3>Keywords You Already Own (top 10 positions - protect these)</h3>
+    <table>
+      <thead><tr><th>Keyword</th><th>Position</th><th>Volume</th><th>Landing URL</th></tr></thead>
+      <tbody><tr><td>hamilton family dentistry</td><td><strong>#2</strong></td><td>2900</td><td><code>/</code></td></tr><tr><td>hamilton family dentists</td><td><strong>#3</strong></td><td>2900</td><td><code>/</code></td></tr><tr><td>hamilton family dentistry reviews</td><td><strong>#4</strong></td><td>210</td><td><code>/</code></td></tr><tr><td>candidate for dental implants</td><td><strong>#4</strong></td><td>140</td><td><code>/post/what-makes-you-a-good-candidate-for-dental-implants</code></td></tr><tr><td>hamilton dentistry</td><td><strong>#6</strong></td><td>3600</td><td><code>/</code></td></tr><tr><td>hamilton family dental</td><td><strong>#6</strong></td><td>2900</td><td><code>/about</code></td></tr><tr><td>hamilton family dentist</td><td><strong>#7</strong></td><td>2900</td><td><code>/about</code></td></tr><tr><td>dentist baltimore md</td><td><strong>#7</strong></td><td>260</td><td><code>/</code></td></tr><tr><td>dentist harford rd</td><td><strong>#7</strong></td><td>140</td><td><code>/</code></td></tr><tr><td>wolfson dental</td><td><strong>#8</strong></td><td>210</td><td><code>/</code></td></tr><tr><td>dentists in baltimore md</td><td><strong>#9</strong></td><td>2900</td><td><code>/</code></td></tr><tr><td>hamilton family dental reviews</td><td><strong>#9</strong></td><td>210</td><td><code>/</code></td></tr><tr><td>dentist office baltimore md</td><td><strong>#10</strong></td><td>170</td><td><code>/</code></td></tr></tbody>
+    </table>
+    </div>
+  </div>
+</div>
+
+<div class="section collapsed">
+  <div class="container">
+    <h2><span class="num">11</span>Expert Strategic Insights<span class="chev">&#9660;</span></h2>
+    <div class="section-sub">Seven cross-referenced findings connecting data points.</div>
+    <div class="section-body">
+    <div class="finding-grid">
+      <div class="finding">
+        <div class="fnum">Insight 01</div>
+        <h4>Five team pages read as non-real identities</h4>
+        <p>Queen Ledner, Raphaelle Kemmer, Ryleigh Altenwerth, Stuart Schuster, and Trent Romaguera have profile pages in the sitemap. The only dentists named on the homepage and about page are Dr. Erin Wolfson and Dr. Sydney Nolan. This pattern matches Faker.js template output. Populate with real staff and Person schema, or noindex and remove. E-E-A-T integrity for a medical practice is non-negotiable.</p>
+      </div>
+      <div class="finding">
+        <div class="fnum">Insight 02</div>
+        <h4>FAQPage schema is the single biggest quick win</h4>
+        <p>Every service page already has FAQ content in plain text. None are wrapped in FAQPage JSON-LD. One ~2 hour dev ticket unlocks rich-result eligibility and increased likelihood of citation across ChatGPT, Perplexity, and Google AI Overviews on question-style queries.</p>
+      </div>
+      <div class="finding">
+        <div class="fnum">Insight 03</div>
+        <h4>Product schema is the wrong @type for a medical practice</h4>
+        <p>On-page content uses Product schema for dental services. The correct entity types are MedicalBusiness for the clinic, MedicalProcedure for each treatment, and Service where generic. Keep the AggregateRating. Swap on the 10 service pages.</p>
+      </div>
+      <div class="finding">
+        <div class="fnum">Insight 04</div>
+        <h4>Striking distance is loaded on emergency keywords</h4>
+        <p>Three of the top 15 striking distance keywords are emergency-related at positions 11-17 (emergency dentist Baltimore city, county, maryland - each 1,600 monthly searches). The landing page already ranks. Fix the Friday-Sunday hours tension and add schema, and page-one is within reach for 4,800+ monthly searches.</p>
+      </div>
+      <div class="finding">
+        <div class="fnum">Insight 05</div>
+        <h4>Neighborhood dominance is a defensible moat</h4>
+        <p>Hamilton ranks #1 in Maps for "family dentist Baltimore MD" and owns the Hamilton-Lauraville hyperlocal query. No competitor is claiming this frame. Neighborhood cluster pages for Hamilton, Lauraville, Parkville, Overlea, Hamilton Hills deepen the moat. Competitors are fighting a broader Baltimore battle with 20-plus practices bidding. The neighborhood frame has a field of one.</p>
+      </div>
+      <div class="finding">
+        <div class="fnum">Insight 06</div>
+        <h4>Author entity signal is missing for both dentists</h4>
+        <p>Both Dr. Wolfson and Dr. Nolan have bios on the about page. Neither has Person schema with sameAs links to LinkedIn, ADA profile, Healthgrades, or other professional registries. Person schema with sameAs is the strongest E-E-A-T author signal for medical content.</p>
+      </div>
+      <div class="finding">
+        <div class="fnum">Insight 07</div>
+        <h4>Specialty invisibility is the revenue story</h4>
+        <p>The site has 2300+ word service pages, 900+ reviews at 4.9 stars, 500+ CME hours, and an advanced GP residency credential. On ChatGPT implants-Baltimore and veneers-Baltimore queries, Hamilton is not cited. The gap is schema plus medical-directory mirror claims. These are $3K-30K cases. Every month of invisibility has a revenue tag.</p>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>
+
+<div class="section collapsed">
+  <div class="container">
+    <h2><span class="num">12</span>Priority Action Plan<span class="chev">&#9660;</span></h2>
+    <div class="section-sub">Where to start, in what order.</div>
+    <div class="section-body">
+    <div class="action-block">
+      <div class="action immediate">
+        <h4>Immediate (this week)</h4>
+        <ol>
+          <li>Add FAQPage JSON-LD to /services/dental-implants, veneers, Invisalign, emergencies. 1-2 hours.</li>
+          <li>Audit the 5 team-profile pages. Either noindex and remove from sitemap, or populate with real staff and Person schema. 1 hour.</li>
+          <li>Swap Product schema to MedicalProcedure or Service on all 10 service pages. Keep AggregateRating. 2 hours.</li>
+          <li>Resolve the Friday-Sunday hours tension on /services/emergencies. On-call line or revise copy. 30 minutes.</li>
+        </ol>
+      </div>
+      <div class="action m1">
+        <h4>Month 1</h4>
+        <ol>
+          <li>Person schema with sameAs (LinkedIn, ADA registry, Healthgrades) for Dr. Wolfson and Dr. Nolan on the about page.</li>
+          <li>Add numeric proof blocks to implants, veneers, Invisalign pages. Implants placed, veneers completed, Invisalign cases.</li>
+          <li>Footer trust badges row (Google, Yelp, Healthgrades, BBB).</li>
+          <li>NAP audit sweep across all directories. Verify consistency.</li>
+        </ol>
+      </div>
+      <div class="action m23">
+        <h4>Months 2-3</h4>
+        <ol>
+          <li>Neighborhood cluster pages: Hamilton, Lauraville, Parkville, Overlea, Hamilton Hills.</li>
+          <li>Long-form anchor content: All-on-4 Guide, Full Mouth Reconstruction Guide, Invisalign vs Veneers.</li>
+          <li>Press and awards pursuit: Baltimore Magazine Top Dentist submission, Business Journal pitch, HARO monthly.</li>
+          <li>Healthgrades review velocity campaign to match the Yelp footprint.</li>
+        </ol>
+      </div>
+      <div class="action ongoing">
+        <h4>Ongoing</h4>
+        <ol>
+          <li>Quarterly re-audit with the full API stack.</li>
+          <li>Monthly HARO and local press pitch.</li>
+          <li>Monitor the competitor citation pattern for Dr. Ed Lazer and Cosmetic &amp; Advanced Dentistry, who currently win on implants and veneers.</li>
+          <li>Content refresh on high-volume service pages.</li>
+        </ol>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="cta-section">
+    <h2>Next step: 30-minute strategy call</h2>
+    <p>Walk through the priority action plan, scope a 90-day AI ranking sprint, and decide which of the quick wins ships first. All AI references are probabilistic: increased likelihood of citation, not guaranteed AI rankings.</p>
+    <a class="cta-btn" href="https://calendly.com/info-yg4/strategy-call" target="_blank" rel="noopener">Book a strategy call</a>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="oo">Online Optimisers</div>
+    <div>Full AI and SEO Audit &bull; Prepared by Tomas &bull; 2026-04-16</div>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('.section h2').forEach(function(h){
+  h.addEventListener('click', function(){
+    var sec = h.closest('.section');
+    sec.classList.toggle('collapsed');
+    var body = sec.querySelector('.section-body');
+    if (sec.classList.contains('collapsed')) {
+      body.style.maxHeight = '0px';
+    } else {
+      body.style.maxHeight = 'none';
+    }
+  });
+});
+// Initial: collapsed sections have max-height:0
+document.querySelectorAll('.section.collapsed .section-body').forEach(function(b){ b.style.maxHeight = '0px'; });
+</script>
+
+</body>
+</html>
