@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Ranking Deep Audit - Movely LLC | Online Optimisers</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#060f1e; --bg2:#0d1b2e; --card:#111f35; --card-border:#1a2d4a;
+  --primary:#01a2f9; --dark-blue:#0052cc; --mid-blue:#1870d4; --light-blue:#8cc7f3;
+  --text:#e8edf4; --text-dim:#7a90aa; --text-bright:#ffffff;
+  --red:#ef4444; --yellow:#f59e0b; --green:#22c55e; --orange:#f97316;
+  --chatgpt:#7CB89E; --perplexity:#8B7EC2; --google:#4285F4;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Manrope',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.65;padding-bottom:80px;}
+.container{max-width:1040px;margin:0 auto;padding:0 24px;}
+a{color:var(--primary);text-decoration:none;}
+a:hover{text-decoration:underline;}
+
+.top-strip{background:rgba(1,162,249,.08);border-bottom:1px solid rgba(1,162,249,.2);padding:12px 0;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--primary);font-weight:800;}
+.top-strip .container{display:flex;justify-content:space-between;align-items:center;}
+.top-strip .right{color:var(--text-dim);letter-spacing:1px;font-weight:600;}
+
+.header{background:radial-gradient(ellipse at 70% 30%,rgba(1,162,249,.12) 0%,transparent 60%),radial-gradient(ellipse at 20% 80%,rgba(0,82,204,.08) 0%,transparent 50%),linear-gradient(135deg,#060f1e 0%,#0d1b2e 100%);padding:56px 0 48px;border-bottom:2px solid var(--primary);}
+.header .eyebrow{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--primary);font-weight:800;margin-bottom:10px;}
+.header h1{font-size:clamp(30px,4.2vw,44px);font-weight:900;line-height:1.1;letter-spacing:-.5px;color:var(--text-bright);margin-bottom:8px;}
+.header .subtitle{color:var(--text-dim);font-size:14px;margin-bottom:18px;}
+.header .meta-row{display:flex;gap:22px;flex-wrap:wrap;font-size:12px;color:var(--text-dim);margin-bottom:28px;}
+.header .meta-row span{display:flex;align-items:center;gap:6px;}
+
+.score-section{display:flex;align-items:center;gap:36px;flex-wrap:wrap;margin-top:8px;}
+.score-ring{position:relative;width:150px;height:150px;flex-shrink:0;}
+.score-ring svg{transform:rotate(-90deg);}
+.score-ring .score-text{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;}
+.score-ring .score-num{font-size:2.6rem;font-weight:900;color:var(--text-bright);line-height:1;}
+.score-ring .score-label{font-size:.6rem;text-transform:uppercase;letter-spacing:2px;color:var(--text-dim);margin-top:4px;}
+.score-ring .score-band{font-size:.75rem;font-weight:800;color:var(--red);margin-top:4px;letter-spacing:1px;}
+.score-side{flex:1;min-width:260px;}
+.score-side h2{font-size:22px;font-weight:800;color:var(--text-bright);margin-bottom:6px;}
+.score-side p{font-size:14px;color:rgba(255,255,255,.65);}
+
+.hero-metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:24px;}
+.hero-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:18px 14px;text-align:center;}
+.hero-card .h-val{font-size:1.7rem;font-weight:900;line-height:1;}
+.hero-card .h-sub{font-size:.7rem;color:var(--text-dim);margin-top:4px;}
+.hero-card .h-label{font-size:.62rem;text-transform:uppercase;letter-spacing:1.2px;color:rgba(255,255,255,.4);margin-top:10px;font-weight:700;}
+.h-val.mint{color:var(--chatgpt);} .h-val.blue{color:var(--perplexity);} .h-val.gold{color:var(--google);} .h-val.red{color:var(--red);}
+
+.section{padding:44px 0;border-bottom:1px solid var(--card-border);}
+.section h2{font-size:26px;font-weight:800;color:var(--text-bright);margin-bottom:6px;letter-spacing:-.3px;}
+.section h2 .num{color:var(--primary);font-weight:900;margin-right:10px;}
+.section .section-sub{color:var(--text-dim);font-size:13px;margin-bottom:24px;}
+.section h3{font-size:16px;font-weight:700;color:var(--text-bright);margin:22px 0 10px;letter-spacing:-.1px;}
+.section p{font-size:14.5px;color:rgba(255,255,255,.78);margin-bottom:12px;}
+.section ul,.section ol{padding-left:22px;margin-bottom:12px;}
+.section li{font-size:14.5px;color:rgba(255,255,255,.78);margin-bottom:6px;}
+
+table{width:100%;border-collapse:collapse;margin:14px 0 10px;background:var(--card);border:1px solid var(--card-border);border-radius:10px;overflow:hidden;font-size:13.5px;}
+th,td{padding:11px 14px;text-align:left;border-bottom:1px solid var(--card-border);vertical-align:top;}
+th{background:rgba(1,162,249,.08);color:var(--text-bright);font-weight:700;font-size:12.5px;text-transform:uppercase;letter-spacing:.6px;}
+tr:last-child td{border-bottom:none;}
+td strong{color:var(--text-bright);}
+
+.finding-grid{display:grid;grid-template-columns:1fr;gap:14px;margin:18px 0;}
+.finding{background:var(--card);border:1px solid var(--card-border);border-left:4px solid var(--red);border-radius:8px;padding:18px 20px;}
+.finding .fnum{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--red);font-weight:800;margin-bottom:6px;}
+.finding h4{font-size:16px;font-weight:800;color:var(--text-bright);margin-bottom:6px;}
+.finding p{font-size:13.5px;color:rgba(255,255,255,.72);margin-bottom:0;}
+
+.why-box{background:linear-gradient(135deg,rgba(239,68,68,.06),rgba(245,158,11,.04));border:1px solid rgba(239,68,68,.2);border-radius:10px;padding:20px 22px;margin:16px 0 0;}
+.why-box h3{color:var(--yellow);margin-top:0;margin-bottom:10px;font-size:15px;letter-spacing:.5px;text-transform:uppercase;}
+.why-box p{font-size:14px;color:rgba(255,255,255,.85);margin-bottom:0;}
+
+.score-bars{display:flex;flex-direction:column;gap:12px;margin:16px 0;}
+.score-bar{display:grid;grid-template-columns:190px 1fr 60px;align-items:center;gap:14px;font-size:13px;}
+.score-bar .sb-label{color:var(--text-dim);font-weight:600;}
+.score-bar .sb-track{height:10px;background:var(--card);border:1px solid var(--card-border);border-radius:5px;overflow:hidden;position:relative;}
+.score-bar .sb-fill{height:100%;border-radius:5px;}
+.score-bar .sb-fill.low{background:linear-gradient(90deg,var(--red),#f97316);}
+.score-bar .sb-fill.mid{background:linear-gradient(90deg,var(--yellow),#facc15);}
+.score-bar .sb-fill.high{background:linear-gradient(90deg,var(--green),#4ade80);}
+.score-bar .sb-val{color:var(--text-bright);font-weight:800;text-align:right;}
+
+.platform-badge{display:inline-block;padding:3px 8px;border-radius:4px;font-size:10px;font-weight:800;letter-spacing:.8px;}
+.pb-chatgpt{background:rgba(124,184,158,.15);color:var(--chatgpt);border:1px solid rgba(124,184,158,.3);}
+.pb-perplexity{background:rgba(139,126,194,.15);color:var(--perplexity);border:1px solid rgba(139,126,194,.3);}
+.pb-google{background:rgba(66,133,244,.15);color:var(--google);border:1px solid rgba(66,133,244,.3);}
+
+.tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700;letter-spacing:.5px;}
+.tag-miss{background:rgba(239,68,68,.15);color:var(--red);border:1px solid rgba(239,68,68,.3);}
+.tag-exist{background:rgba(34,197,94,.15);color:var(--green);border:1px solid rgba(34,197,94,.3);}
+.tag-warn{background:rgba(245,158,11,.15);color:var(--yellow);border:1px solid rgba(245,158,11,.3);}
+
+.action-block{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin:16px 0;}
+.action{background:var(--card);border:1px solid var(--card-border);border-radius:10px;padding:16px 18px;border-top:3px solid var(--primary);}
+.action.immediate{border-top-color:var(--red);}
+.action.m1{border-top-color:var(--yellow);}
+.action.m23{border-top-color:var(--primary);}
+.action.ongoing{border-top-color:var(--green);}
+.action h4{font-size:13px;text-transform:uppercase;letter-spacing:1.2px;color:var(--text-bright);margin-bottom:10px;font-weight:800;}
+.action ol{padding-left:20px;margin:0;}
+.action li{font-size:13px;color:rgba(255,255,255,.78);margin-bottom:6px;line-height:1.5;}
+
+.cta-section{background:linear-gradient(135deg,rgba(1,162,249,.1),rgba(0,82,204,.05));border:1px solid rgba(1,162,249,.3);border-radius:14px;padding:40px 36px;text-align:center;margin:48px 0 16px;}
+.cta-section h2{font-size:26px;color:var(--text-bright);margin-bottom:8px;font-weight:800;letter-spacing:-.3px;}
+.cta-section p{font-size:15px;color:rgba(255,255,255,.78);margin-bottom:22px;max-width:620px;margin-left:auto;margin-right:auto;}
+.cta-btn{display:inline-block;padding:14px 32px;background:var(--primary);color:#fff;font-weight:800;font-size:15px;border-radius:10px;text-decoration:none;letter-spacing:.5px;transition:all .2s;box-shadow:0 0 30px rgba(1,162,249,.3);}
+.cta-btn:hover{opacity:.9;transform:translateY(-1px);text-decoration:none;}
+
+footer{padding:32px 0 0;color:var(--text-dim);font-size:12px;text-align:center;}
+footer .oo{color:var(--primary);font-weight:800;letter-spacing:2px;text-transform:uppercase;}
+
+@media (max-width:760px){
+  .hero-metrics{grid-template-columns:repeat(2,1fr);}
+  .action-block{grid-template-columns:1fr;}
+  .score-bar{grid-template-columns:130px 1fr 48px;}
+}
+</style>
+</head>
+<body>
+
+<div class="top-strip">
+  <div class="container">
+    <div class="left">Online Optimisers / AI Ranking Deep Audit</div>
+    <div class="right">Prepared by Tomas</div>
+  </div>
+</div>
+
+<header class="header">
+  <div class="container">
+    <div class="eyebrow">AI Ranking Deep Audit</div>
+    <h1>Movely LLC</h1>
+    <div class="subtitle">hiremovely.com &bull; Denver, CO &bull; Moving company + junk removal &bull; 2026-04-16</div>
+    <div class="meta-row">
+      <span>Auditor: Online Optimisers</span>
+      <span>APIs: Firecrawl, OpenAI gpt-4o-search-preview, Perplexity sonar-pro, DataForSEO SERP + AIO + Maps + Backlinks, WebFetch</span>
+      <span>Runtime: ~12 min</span>
+    </div>
+
+    <div class="score-section">
+      <div class="score-ring">
+        <svg width="150" height="150" viewBox="0 0 150 150">
+          <circle cx="75" cy="75" r="65" fill="none" stroke="#1a2d4a" stroke-width="12"></circle>
+          <circle cx="75" cy="75" r="65" fill="none" stroke="#ef4444" stroke-width="12" stroke-linecap="round"
+                  stroke-dasharray="93.9 408.4"></circle>
+        </svg>
+        <div class="score-text">
+          <div class="score-num">23</div>
+          <div class="score-label">/ 100</div>
+          <div class="score-band">POOR</div>
+        </div>
+      </div>
+      <div class="score-side">
+        <h2>Invisible in AI on every commercial query</h2>
+        <p>Cited in only 5 of 60 query-platform slots (8.3%), and 4 of those are branded lookups. On head-of-market queries like "best movers in Denver", AI recommends competitors with 500 to 11,000 reviews instead. Fixable with schema, directories, and entity work.</p>
+      </div>
+    </div>
+
+    <div class="hero-metrics">
+      <div class="hero-card">
+        <div class="h-val mint">2/20</div>
+        <div class="h-sub">ChatGPT visible</div>
+        <div class="h-label">GPT-4O Search</div>
+      </div>
+      <div class="hero-card">
+        <div class="h-val blue">2/20</div>
+        <div class="h-sub">Perplexity visible</div>
+        <div class="h-label">Sonar Pro</div>
+      </div>
+      <div class="hero-card">
+        <div class="h-val gold">1/8</div>
+        <div class="h-sub">AIO visible</div>
+        <div class="h-label">Google AI Overviews</div>
+      </div>
+      <div class="hero-card">
+        <div class="h-val red">0/5</div>
+        <div class="h-sub">Maps Pack top 20</div>
+        <div class="h-label">Google Maps</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="section">
+  <div class="container">
+    <h2><span class="num">01</span>Executive Summary</h2>
+    <div class="section-sub">The top-line diagnostic. What's true, what's broken, what it means.</div>
+
+    <table>
+      <thead><tr><th>Metric</th><th>Result</th></tr></thead>
+      <tbody>
+        <tr><td>AI Ranking Score</td><td><strong>23 / 100</strong> - Poor band</td></tr>
+        <tr><td>AI Citations across 60 query-platform slots</td><td><strong>5 / 60</strong> (8.3%)</td></tr>
+        <tr><td>Maps Pack visibility (top 20)</td><td><strong>0 / 5</strong> commercial queries</td></tr>
+        <tr><td>Google AI Overview visibility</td><td><strong>1 / 8</strong> AIO-triggering queries</td></tr>
+        <tr><td>Trust List status</td><td><strong>Partial</strong> (cited on 3 of 6 niche gateways)</td></tr>
+        <tr><td>Entity Linker readiness</td><td><strong>Weak</strong> (one corroborated claim: "since 2020")</td></tr>
+        <tr><td>Knowledge Graph entity status</td><td><strong>Missing / Unconfirmed</strong> (no Wikidata, no BBB, KG panel blocked)</td></tr>
+        <tr><td>JSON-LD schema blocks sitewide</td><td><strong>0 / 25</strong> points</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Top 3 Critical Findings</h3>
+    <div class="finding-grid">
+      <div class="finding">
+        <div class="fnum">Finding 01</div>
+        <h4>Absent from every commercial AI query</h4>
+        <p>Across 60 query-platform slots, Movely was cited only on 2 branded / reputation queries. On every non-brand query (best movers, junk removal, long distance, last minute, piano, commercial, Aurora) all three platforms cite competitors with 500+ to 11,000+ Google reviews instead.</p>
+      </div>
+      <div class="finding">
+        <div class="fnum">Finding 02</div>
+        <h4>Zero JSON-LD structured data on the entire site</h4>
+        <p>Homepage, moving-services, denver-movers, and about-us pages all return zero schema blocks. LocalBusiness, Organization, Service, FAQ, Person, and AggregateRating are all missing. 15+ visible Q&amp;A on the site are invisible to AI parsers.</p>
+      </div>
+      <div class="finding">
+        <div class="fnum">Finding 03</div>
+        <h4>Thin, spam-skewed backlink profile</h4>
+        <p>42 referring main domains with 9+ clearly low-quality sources. Zero Reddit, Quora, or editorial news mentions. BBB is missing. Reference competitor All My Sons has 1,810 referring domains, a 43x gap.</p>
+      </div>
+    </div>
+
+    <div class="why-box">
+      <h3>Why you're invisible in AI</h3>
+      <p>Movely's content is solid for a local mover's website, but AI systems do not have the machine-readable hooks they need to surface it. No schema tells ChatGPT and Google this is a LocalBusiness in Denver. No FAQ schema wraps the 15+ questions already answered in plain text. Reviews are stranded on HireAHelper (9) and one Yelp listing filed under Westminster (not Denver). The business is not on BBB, has no Reddit mentions, and no editorial press. The sample size of external corroboration is too small for AI retrievers to pick Movely over competitors with thousands of Google reviews.</p>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="container">
+    <h2><span class="num">02</span>Website Intelligence</h2>
+    <div class="section-sub">Phase 1. Site map, page-level scrapes, core identity claims.</div>
+
+    <h3>Site map scan</h3>
+    <ul>
+      <li>Total URLs discovered: <strong>100</strong></li>
+      <li>80+ city-level service-area doorway pages (Denver, Aurora, Boulder, Longmont and surrounds)</li>
+      <li>11 moving / junk-removal service pages</li>
+    </ul>
+
+    <h3>Page-by-page summary</h3>
+    <table>
+      <thead><tr><th>Page</th><th>Words</th><th>JSON-LD</th><th>FAQ on page</th><th>FAQ schema</th></tr></thead>
+      <tbody>
+        <tr><td>Homepage</td><td>4,309 full / ~836 body</td><td><span class="tag tag-miss">0</span></td><td>5 Q&amp;A</td><td><span class="tag tag-miss">No</span></td></tr>
+        <tr><td>Moving Services</td><td>1,172 body</td><td><span class="tag tag-miss">0</span></td><td>7 Q&amp;A</td><td><span class="tag tag-miss">No</span></td></tr>
+        <tr><td>Denver Movers (service area)</td><td>1,865 body</td><td><span class="tag tag-miss">0</span></td><td>10 Q&amp;A</td><td><span class="tag tag-miss">No</span></td></tr>
+        <tr><td>About Us</td><td>~900</td><td><span class="tag tag-miss">0</span></td><td>-</td><td>-</td></tr>
+      </tbody>
+    </table>
+
+    <h3>NAP and core claims</h3>
+    <ul>
+      <li>Title: Premier Movers in Denver, CO | Junk Removal | Movely LLC</li>
+      <li>Phone: +1 720-443-1720</li>
+      <li>Email: brad@hiremovely.com</li>
+      <li>Footer address: Denver, CO (no street address on homepage)</li>
+      <li>Google Maps link: maps.app.goo.gl/CShqPcQ3A3rG3TFn9</li>
+    </ul>
+    <p>Core claims found on site: Denver-based mover + junk removal since 2020, licensed and insured, no hidden fees, partners with SmartMoving software, transparent proratable pricing, financing via Remedy Payments (3/6/12-month), does not move pianos, gun safes, or items over 400 lbs. <strong>Quotable proof blocks found: 2. Unique numeric stats on homepage: 0.</strong></p>
+  </div>
+</div>
+
+<div class="section">
+  <div class="container">
+    <h2><span class="num">03</span>AI Query Set &amp; 3-Platform Visibility</h2>
+    <div class="section-sub">Phases 2 and 3. 20 queries, 3 platforms, 60 slots.</div>
+
+    <h3>Query set</h3>
+    <ul>
+      <li><strong>20 queries generated</strong>, split across 5 Service+Location, 5 Conversational, 4 Problem-Based, 4 Specialty, 2 Branded</li>
+      <li>Every query includes city + state (CO or Colorado)</li>
+      <li>All 20 run on all 3 platforms: ChatGPT, Perplexity, Google AIO</li>
+    </ul>
+
+    <h3>Cross-platform visibility</h3>
+    <table>
+      <thead><tr><th>Platform</th><th>Queries</th><th>Visible in answer</th><th>Sourced only</th><th>Visible query IDs</th></tr></thead>
+      <tbody>
+        <tr><td><span class="platform-badge pb-chatgpt">CHATGPT</span> gpt-4o-search-preview</td><td>20</td><td>2</td><td>2</td><td>19, 20</td></tr>
+        <tr><td><span class="platform-badge pb-perplexity">PERPLEXITY</span> sonar-pro</td><td>20</td><td>2</td><td>1</td><td>19, 20</td></tr>
+        <tr><td><span class="platform-badge pb-google">GOOGLE AIO</span> DataForSEO</td><td>20 (8 with AIO)</td><td>1</td><td>-</td><td>20</td></tr>
+        <tr><td><strong>Total citations / 60 slots</strong></td><td><strong>60</strong></td><td><strong>5</strong></td><td></td><td><strong>8.3%</strong></td></tr>
+      </tbody>
+    </table>
+
+    <h3>Google Maps Pack (Phase 3d)</h3>
+    <ul>
+      <li>Queries run: 5 commercial Service+Location queries</li>
+      <li>Movely in top 5 Maps Pack: <strong>0 / 5</strong></li>
+      <li>Movely in top 20 Maps Pack: <strong>0 / 5</strong></li>
+      <li>Maps pack winners: Denver Door To Door Movers (Lark), Local Moving LLC (1,786 reviews / 4.9), Moving Brothers, The Other Side Moving &amp; Storage, Movemasters Inc., All My Sons, Junk King Denver (6,076 reviews)</li>
+    </ul>
+    <p>Movely is effectively invisible on every commercial head-term query. Only branded / reputation queries (Q19, Q20) retrieve the site. AIO triggered on 8 of 20 queries, but Movely was absent from the AIO citation pool on 7 of those 8.</p>
+  </div>
+</div>
+
+<div class="section">
+  <div class="container">
+    <h2><span class="num">04</span>Schema &amp; Structured Data</h2>
+    <div class="section-sub">Phase 4. The single biggest machine-readable gap.</div>
+
+    <table>
+      <thead><tr><th>Schema Type</th><th>Status</th><th>Points</th></tr></thead>
+      <tbody>
+        <tr><td>LocalBusiness</td><td><span class="tag tag-miss">MISSING</span></td><td>0 / 6</td></tr>
+        <tr><td>Organization</td><td><span class="tag tag-miss">MISSING</span></td><td>0 (covered under LB)</td></tr>
+        <tr><td>Service</td><td><span class="tag tag-miss">MISSING</span></td><td>0 / 3</td></tr>
+        <tr><td>FAQPage <em>(15+ visible Q&amp;A on 3 pages)</em></td><td><span class="tag tag-miss">MISSING</span></td><td>0 / 5</td></tr>
+        <tr><td>Person (founder Brad)</td><td><span class="tag tag-miss">MISSING</span></td><td>0 / 4</td></tr>
+        <tr><td>AggregateRating / Review <em>(only 3rd-party Trustindex widget)</em></td><td><span class="tag tag-miss">MISSING</span></td><td>0 / 3</td></tr>
+        <tr><td>HowTo</td><td><span class="tag tag-miss">MISSING</span></td><td>0 / 2</td></tr>
+        <tr><td>BreadcrumbList</td><td><span class="tag tag-miss">MISSING</span></td><td>0</td></tr>
+        <tr><td><strong>Total JSON-LD blocks site-wide (sampled)</strong></td><td colspan="2"><strong>0</strong></td></tr>
+        <tr><td><strong>Schema score</strong></td><td colspan="2"><strong>0 / 25</strong></td></tr>
+      </tbody>
+    </table>
+    <p>Every question already answered in plain text on the site is invisible to AI parsers because no FAQPage JSON-LD wraps it. This is the cheapest fast win available.</p>
+  </div>
+</div>
+
+<div class="section">
+  <div class="container">
+    <h2><span class="num">05</span>Knowledge Graph &amp; Directory Presence</h2>
+    <div class="section-sub">Phase 5. Entity confirmation and directory footprint.</div>
+
+    <h3>KG entity check</h3>
+    <table>
+      <thead><tr><th>Signal</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td>Google Knowledge Panel</td><td><span class="tag tag-warn">NOT CONFIRMED</span> (live Google SERP CAPTCHA blocked WebFetch)</td></tr>
+        <tr><td>Bing Knowledge Card</td><td><span class="tag tag-warn">NOT CHECKED</span> (gap)</td></tr>
+        <tr><td>Wikidata entity</td><td><span class="tag tag-miss">CONFIRMED MISSING</span> (zero results)</td></tr>
+        <tr><td>Apple Maps listing</td><td><span class="tag tag-warn">NOT CHECKED</span> (gap)</td></tr>
+        <tr><td>Bing Places listing</td><td><span class="tag tag-warn">NOT CHECKED</span> (gap)</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Directory presence</h3>
+    <table>
+      <thead><tr><th>Directory</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td>Google Business Profile</td><td><span class="tag tag-exist">EXISTS</span> (linked in footer) but <strong>NOT</strong> in top-20 Maps pack for 5 commercial queries</td></tr>
+        <tr><td>BBB</td><td><span class="tag tag-miss">CONFIRMED MISSING</span> (Denver search returns zero results)</td></tr>
+        <tr><td>Yelp</td><td><span class="tag tag-warn">EXISTS</span> (m.yelp.com/biz/movely-westminster-3, filed under <strong>Westminster, not Denver</strong>)</td></tr>
+        <tr><td>HireAHelper</td><td><span class="tag tag-exist">EXISTS</span> - 4.9 stars, 9 reviews, "Denver grown company", 50-mile radius</td></tr>
+        <tr><td>Thumbtack</td><td><span class="tag tag-exist">EXISTS</span> (referenced by ChatGPT + AIO, detail retrieval failed via WebFetch)</td></tr>
+        <tr><td>HomeAdvisor / Angi</td><td><span class="tag tag-miss">NOT FOUND</span> in any AI cite or referring domain</td></tr>
+      </tbody>
+    </table>
+    <p><strong>Directory score estimate: 7 / 25.</strong> The Yelp city mismatch (Westminster vs Denver) is a likely reason ChatGPT will not anchor the Denver entity to the Yelp record.</p>
+  </div>
+</div>
+
+<div class="section">
+  <div class="container">
+    <h2><span class="num">06</span>Content Citability</h2>
+    <div class="section-sub">Phase 6. Can AI quote anything specific from the site?</div>
+
+    <table>
+      <thead><tr><th>Factor</th><th>Score</th><th>Note</th></tr></thead>
+      <tbody>
+        <tr><td>Quotable proof blocks</td><td><strong>1 / 5</strong></td><td>Only "since 2020". No completed-moves count, square-feet, review count, or guarantee numerics.</td></tr>
+        <tr><td>FAQ sections</td><td><strong>3 / 5</strong></td><td>5-10 Q&amp;A on 3+ pages with solid answers, but zero FAQ schema wrapping.</td></tr>
+        <tr><td>Unique claims</td><td><strong>2 / 5</strong></td><td>SmartMoving partnership and Remedy Payments financing are differentiators; no named proprietary process.</td></tr>
+        <tr><td>Service page depth</td><td><strong>4 / 5</strong></td><td>Moving-services 1,172 words, Denver-movers 1,865 words. City pages assumed thin (not scraped).</td></tr>
+        <tr><td>Content differentiation</td><td><strong>2 / 5</strong></td><td>3C frame (carefulness, communication, consistency) is distinctive but not echoed on any external platform.</td></tr>
+        <tr><td><strong>Content score</strong></td><td colspan="2"><strong>12 / 25</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <div class="container">
+    <h2><span class="num">07</span>AI-Weighted Backlinks</h2>
+    <div class="section-sub">Phase 7. Not all backlinks matter for AI retrieval.</div>
+
+    <h3>Backlink summary (DataForSEO)</h3>
+    <ul>
+      <li>Domain rank: <strong>80</strong></li>
+      <li>Total backlinks: <strong>62</strong></li>
+      <li>Referring domains: <strong>44</strong></li>
+      <li>Referring main domains: <strong>42</strong></li>
+      <li>Spam score flag: <strong>Moderate.</strong> 9+ of the top 30 referring domains are SEO-spam / web-worth / directory-spam</li>
+    </ul>
+
+    <h3>AI-weight classification</h3>
+    <table>
+      <thead><tr><th>Type</th><th>Count</th><th>Weight</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Editorial / news</td><td>0</td><td>HIGH</td><td>Zero</td></tr>
+        <tr><td>Q&amp;A platforms (Reddit / Quora)</td><td>0</td><td>HIGH</td><td>Zero</td></tr>
+        <tr><td>Review sites</td><td>4</td><td>MEDIUM</td><td>yellowpages.com, n49.com, superpages.com, chamberofcommerce.com</td></tr>
+        <tr><td>Directories</td><td>Medium</td><td>MEDIUM</td><td>Mostly low-tier</td></tr>
+        <tr><td>Spam / PBN</td><td>9+</td><td>NEGATIVE</td><td>Disavow candidates</td></tr>
+      </tbody>
+    </table>
+    <p><strong>Missing trust gateways:</strong> BBB, HomeAdvisor, Angi, Reddit / Quora, local Denver editorial news. <strong>AI-weighted backlink score: 3 / 10.</strong></p>
+
+    <h3>Competitor benchmark</h3>
+    <table>
+      <thead><tr><th>Competitor</th><th>Domain rank</th><th>Backlinks</th><th>Referring domains</th></tr></thead>
+      <tbody>
+        <tr><td>allmysons.com</td><td>377</td><td>68,047</td><td><strong>1,810</strong></td></tr>
+        <tr><td>theothersidemovers.com</td><td>217</td><td>517</td><td>175</td></tr>
+        <tr><td>localmovingdenver.com</td><td>0</td><td>23</td><td>13</td></tr>
+        <tr><td><strong>Movely</strong></td><td><strong>80</strong></td><td><strong>62</strong></td><td><strong>42</strong></td></tr>
+      </tbody>
+    </table>
+    <p>All My Sons has a <strong>43x referring-domain lead</strong> over Movely. Even the mid-tier Other Side has 4x.</p>
+  </div>
+</div>
+
+<div class="section">
+  <div class="container">
+    <h2><span class="num">08</span>Safe URL Trust List</h2>
+    <div class="section-sub">Phase 8. Which domains does each AI platform actually trust in this niche?</div>
+
+    <h3>ChatGPT top source domains (20-query sample)</h3>
+    <table>
+      <thead><tr><th>Domain</th><th>Cites</th><th>Role</th></tr></thead>
+      <tbody>
+        <tr><td>moversforyou.co</td><td>8</td><td>Competitor</td></tr>
+        <tr><td>altitudemoversdenver.com</td><td>6</td><td>Competitor</td></tr>
+        <tr><td>movebuddha.com</td><td>6</td><td>Aggregator</td></tr>
+        <tr><td><strong>hiremovely.com</strong></td><td>6</td><td><strong>Movely (branded queries only)</strong></td></tr>
+        <tr><td>movingbrothers.net</td><td>4</td><td>Competitor</td></tr>
+        <tr><td>rockymovers.com</td><td>4</td><td>Competitor</td></tr>
+        <tr><td>allmysons.com</td><td>4</td><td>Competitor</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Perplexity top source domains</h3>
+    <table>
+      <thead><tr><th>Domain</th><th>Cites</th><th>Role</th></tr></thead>
+      <tbody>
+        <tr><td>thumbtack.com</td><td>8</td><td>Platform</td></tr>
+        <tr><td>extraspace.com</td><td>7</td><td>Aggregator</td></tr>
+        <tr><td><strong>hiremovely.com</strong></td><td>7</td><td><strong>Movely (branded queries only)</strong></td></tr>
+        <tr><td>bbb.org</td><td>6</td><td>Platform</td></tr>
+        <tr><td>denvermovingandstorage.com</td><td>6</td><td>Competitor</td></tr>
+        <tr><td>allmysons.com</td><td>6</td><td>Competitor</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Google AIO top source domains</h3>
+    <table>
+      <thead><tr><th>Domain</th><th>Cites</th></tr></thead>
+      <tbody>
+        <tr><td>reddit.com</td><td>8</td></tr>
+        <tr><td>m.yelp.com</td><td>5</td></tr>
+        <tr><td>youtube.com</td><td>4</td></tr>
+        <tr><td>twomenandatruck.com</td><td>3</td></tr>
+        <tr><td>thumbtack.com</td><td>2</td></tr>
+      </tbody>
+    </table>
+
+    <p><strong>Niche trust gateways identified:</strong> Thumbtack, BBB, Yelp, Reddit, movebuddha.com, HireAHelper. <strong>Movely trust status: Partially trusted.</strong> Cited on 3 of these 6 gateways (Thumbtack, Yelp, HireAHelper). Absent from BBB, Reddit, movebuddha.com. <strong>Trust list score: 3 / 10.</strong></p>
+  </div>
+</div>
+
+<div class="section">
+  <div class="container">
+    <h2><span class="num">09</span>Sourcing vs Display Layer</h2>
+    <div class="section-sub">Phase 9. Is Movely in ChatGPT's data at all?</div>
+
+    <table>
+      <thead><tr><th>Status</th><th>Query IDs</th><th>Count</th><th>% of 20</th></tr></thead>
+      <tbody>
+        <tr><td><span class="tag tag-exist">Visible</span> (in answer + sources)</td><td>19, 20</td><td>2</td><td>10%</td></tr>
+        <tr><td><span class="tag tag-warn">Hidden</span> (in sources, not answer)</td><td>-</td><td>0</td><td>0%</td></tr>
+        <tr><td><span class="tag tag-miss">Absent</span> (neither)</td><td>1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18</td><td>18</td><td>90%</td></tr>
+      </tbody>
+    </table>
+    <p>Movely is effectively absent on all 18 commercial queries. It is only trusted when the brand name or URL is typed directly. The gap is at ChatGPT's retrieval layer. <strong>Fix path: Absent to Hidden first (build trust), then Hidden to Visible (improve content).</strong> Sourcing layer score: 1 / 5.</p>
+  </div>
+</div>
+
+<div class="section">
+  <div class="container">
+    <h2><span class="num">10</span>RAG Trigger Performance</h2>
+    <div class="section-sub">Phase 10. Where the money is and where the gaps are.</div>
+
+    <ul>
+      <li>RAG-trigger queries (YES): <strong>19 of 20</strong></li>
+      <li>RAG-trigger queries (MAYBE): 1</li>
+      <li>Queries where AIO triggered: 8</li>
+      <li>Movely cited on RAG triggers: 5 (branded only)</li>
+    </ul>
+
+    <h3>Priority RAG gaps (high revenue, zero citation)</h3>
+    <ol>
+      <li>Best movers in Denver, CO (Q1)</li>
+      <li>Top rated moving companies Denver Colorado (Q2)</li>
+      <li>Long distance movers in Denver, Colorado (Q4)</li>
+      <li>Residential moving companies Aurora CO (Q5)</li>
+      <li>Commercial office movers Denver Colorado (Q16)</li>
+      <li>House cleanout and junk removal Denver, CO (Q18)</li>
+    </ol>
+    <p>These 6 queries are the #1 content + entity-linker targets.</p>
+  </div>
+</div>
+
+<div class="section">
+  <div class="container">
+    <h2><span class="num">11</span>Entity Linker Readiness</h2>
+    <div class="section-sub">Phase 11. Unique claims corroborated across platforms.</div>
+
+    <h3>Claims on website vs external corroboration</h3>
+    <table>
+      <thead><tr><th>Claim</th><th>On website</th><th>Corroborated externally</th><th>Strength</th></tr></thead>
+      <tbody>
+        <tr><td>Since 2020</td><td>Yes</td><td>HireAHelper "Denver grown company"</td><td><span class="tag tag-warn">WEAK</span></td></tr>
+        <tr><td>Licensed and insured</td><td>Yes</td><td>None</td><td><span class="tag tag-miss">NONE</span></td></tr>
+        <tr><td>No hidden fees / transparent pricing</td><td>Yes</td><td>None</td><td><span class="tag tag-miss">NONE</span></td></tr>
+        <tr><td>3C framework</td><td>Yes</td><td>None</td><td><span class="tag tag-miss">NONE (single-platform)</span></td></tr>
+        <tr><td>SmartMoving software partnership</td><td>Yes</td><td>None on directories</td><td><span class="tag tag-miss">NONE</span></td></tr>
+        <tr><td>Financing via Remedy Payments</td><td>Yes</td><td>None on directories</td><td><span class="tag tag-miss">NONE</span></td></tr>
+      </tbody>
+    </table>
+    <p><strong>Completed moves count: MISSING</strong> (no number of moves, families moved, trucks, square-feet).</p>
+
+    <h3>Competitor entity linkers</h3>
+    <ul>
+      <li>All My Sons Moving &amp; Storage: 11,435 Google reviews (numeric anchor)</li>
+      <li>Local Moving LLC: 1,786 Google reviews</li>
+      <li>The Other Side Moving &amp; Storage: 1,171 reviews + 5.0 rating</li>
+      <li>Junk King Denver: 6,076 reviews</li>
+    </ul>
+
+    <h3>Recommended entity linkers to create + corroborate</h3>
+    <ol>
+      <li><strong>Completed-moves counter.</strong> Publish a specific number on the homepage ("N moves completed in the Denver metro since 2020"). Mirror on GBP, HireAHelper, BBB (once created), and a Reddit r/Denver answer.</li>
+      <li><strong>Named proprietary process.</strong> Productise the 3C framework as "The Movely 3C Move Plan" and repeat in identical language on website + GBP + press.</li>
+      <li><strong>SmartMoving partnership stat.</strong> Quantify how many moves tracked, how it enables transparency. Repeat on website, GBP, Thumbtack bio.</li>
+    </ol>
+    <p><strong>Corroboration plan:</strong> Website first. Then GBP description, new BBB profile, LinkedIn, 1-2 niche directories over 4-6 weeks. Slow, not burst. <strong>Entity linker score: 1 / 10.</strong></p>
+  </div>
+</div>
+
+<div class="section">
+  <div class="container">
+    <h2><span class="num">12</span>Competitor AI Landscape</h2>
+    <div class="section-sub">Phase 12. Who AI recommends instead.</div>
+
+    <h3>Who AI recommends instead</h3>
+    <ul>
+      <li><strong>ChatGPT top competitors:</strong> moversforyou.co, altitudemoversdenver.com, movebuddha.com (aggregator), movingbrothers.net, rockymovers.com, cowboymoving.com, All My Sons, movingcompanydenver.com</li>
+      <li><strong>Perplexity top competitors:</strong> thumbtack.com, extraspace.com, denvermovingandstorage.com, All My Sons, Move 4 Less, bestmovingservice.net, cowboymoving.com</li>
+      <li><strong>Maps top competitors:</strong> Denver Door To Door Movers (Lark), Local Moving LLC (1,786 reviews 4.9), Moving Brothers, The Other Side, Movemasters Inc., All My Sons, Junk King Denver (6,076 reviews)</li>
+    </ul>
+
+    <h3>Why they win</h3>
+    <p>Sheer review count plus directory saturation. Movely is competing against 500 to 11,000 Google review counts with an estimated sub-50 review count (HireAHelper shows 9). <strong>The review-count gap alone explains the majority of the AI invisibility.</strong></p>
+
+    <h3>Client position</h3>
+    <ul>
+      <li>In AI + Organic: no (branded only)</li>
+      <li>In AI only: no</li>
+      <li>In Organic only: partial (via 80+ city service-area pages)</li>
+      <li><strong>Bottom line: traditional SEO only, vulnerable to AI disruption.</strong></li>
+    </ul>
+  </div>
+</div>
+
+<div class="section">
+  <div class="container">
+    <h2><span class="num">13</span>GBP &amp; Review Position</h2>
+    <div class="section-sub">Phase 13. The single biggest competitive lever.</div>
+
+    <ul>
+      <li>GBP URL linked: maps.app.goo.gl/CShqPcQ3A3rG3TFn9</li>
+      <li>GBP visible in Maps Pack top 20: <strong>NO</strong> across 5 commercial queries</li>
+      <li>GBP direct scrape: <strong>NOT PERFORMED</strong> (Firecrawl not run on Google Maps for this business)</li>
+      <li>Indirect review evidence: HireAHelper 9 reviews (4.9 stars). Thumbtack count not retrieved. Google count not retrieved.</li>
+      <li><strong>Competitor review benchmark: 500 to 11,435 reviews.</strong> Movely is likely 2+ orders of magnitude behind.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="section">
+  <div class="container">
+    <h2><span class="num">14</span>Fan-Out Query Verification</h2>
+    <div class="section-sub">Phase 14. Not run.</div>
+    <p><strong>Status: NOT RUN.</strong> Requires manual browser DevTools network inspection per the skill spec. Flagged as a gap, noted for the next live-session audit. This step reveals the actual sub-queries ChatGPT runs (often different from the surface query) and whether it is hitting the knowledge graph directly vs web search.</p>
+  </div>
+</div>
+
+<div class="section">
+  <div class="container">
+    <h2><span class="num">15</span>AI Ranking Score Breakdown</h2>
+    <div class="section-sub">The final scorecard. 23 / 100.</div>
+
+    <div class="score-bars">
+      <div class="score-bar"><div class="sb-label">KG / Directory</div><div class="sb-track"><div class="sb-fill low" style="width:26.7%"></div></div><div class="sb-val">4/15</div></div>
+      <div class="score-bar"><div class="sb-label">Schema Markup</div><div class="sb-track"><div class="sb-fill low" style="width:0%"></div></div><div class="sb-val">0/15</div></div>
+      <div class="score-bar"><div class="sb-label">Content Citability</div><div class="sb-track"><div class="sb-fill mid" style="width:46.7%"></div></div><div class="sb-val">7/15</div></div>
+      <div class="score-bar"><div class="sb-label">AI-Weighted Backlinks</div><div class="sb-track"><div class="sb-fill low" style="width:30%"></div></div><div class="sb-val">3/10</div></div>
+      <div class="score-bar"><div class="sb-label">AI Platform Citations</div><div class="sb-track"><div class="sb-fill low" style="width:6.7%"></div></div><div class="sb-val">1/15</div></div>
+      <div class="score-bar"><div class="sb-label">Trust List Position</div><div class="sb-track"><div class="sb-fill low" style="width:30%"></div></div><div class="sb-val">3/10</div></div>
+      <div class="score-bar"><div class="sb-label">Entity Linker Strength</div><div class="sb-track"><div class="sb-fill low" style="width:10%"></div></div><div class="sb-val">1/10</div></div>
+      <div class="score-bar"><div class="sb-label">Sourcing Layer Presence</div><div class="sb-track"><div class="sb-fill low" style="width:20%"></div></div><div class="sb-val">1/5</div></div>
+      <div class="score-bar"><div class="sb-label">Geographic Accuracy</div><div class="sb-track"><div class="sb-fill mid" style="width:60%"></div></div><div class="sb-val">3/5</div></div>
+    </div>
+    <p style="margin-top:18px;"><strong>Band: Poor (21-40).</strong> Major gaps in knowledge graph, schema, and trust signals.</p>
+  </div>
+</div>
+
+<div class="section">
+  <div class="container">
+    <h2><span class="num">16</span>Priority Action Plan</h2>
+    <div class="section-sub">Where to start, in what order.</div>
+
+    <div class="action-block">
+      <div class="action immediate">
+        <h4>Immediate (this week)</h4>
+        <ol>
+          <li>Ship JSON-LD schema sitewide: LocalBusiness + Organization on homepage, Service on each service page, FAQPage on every page with Q&amp;A, Person for Brad, BreadcrumbList on service-area pages.</li>
+          <li>Fix the Yelp city mismatch. Claim Westminster listing and update to Denver, or add a Denver Yelp record matching GBP and website exactly.</li>
+          <li>Submit to BBB (Denver). Single biggest directory gap for this niche.</li>
+        </ol>
+      </div>
+      <div class="action m1">
+        <h4>Month 1</h4>
+        <ol>
+          <li>Add quantified proof blocks to homepage: completed-moves count, years in business, review-count numeric, guarantee numeric.</li>
+          <li>Wrap all existing FAQ copy (15+ Qs on 3 pages) in FAQPage schema.</li>
+          <li>Claim + optimise Thumbtack listing. Mirror website identity claims exactly.</li>
+          <li>Review-collection campaign targeting Google. 50 reviews in 60 days.</li>
+          <li>Seed 3-5 honest Reddit r/Denver answers mentioning Movely.</li>
+        </ol>
+      </div>
+      <div class="action m23">
+        <h4>Months 2-3</h4>
+        <ol>
+          <li>Entity linker rollout: "Movely 3C Move Plan" in identical language on website + GBP + Thumbtack + BBB + LinkedIn.</li>
+          <li>AI-weighted backlink campaign: 5-10 editorial placements, 1-2 podcast mentions, evidence page targeting movebuddha.com inclusion.</li>
+          <li>Disavow the 9+ SEO-spam referring domains.</li>
+          <li>Commission content directly answering the 6 priority RAG-trigger queries.</li>
+        </ol>
+      </div>
+      <div class="action ongoing">
+        <h4>Ongoing</h4>
+        <ol>
+          <li>Monthly re-audit of the 6 priority RAG queries + top 10 brand-adjacent queries.</li>
+          <li>Quarterly KG maintenance: Google Knowledge Panel claim, Wikidata entity creation, Bing Places + Apple Maps confirmation.</li>
+          <li>Content refresh on city-level service-area pages to pass the "thin page" bar.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="container">
+    <h2><span class="num">17</span>Data Gaps</h2>
+    <div class="section-sub">What this audit did not cover (honest disclosure).</div>
+    <ul>
+      <li>Google Knowledge Panel confirmation (blocked by CAPTCHA for WebFetch)</li>
+      <li>Yelp direct scrape (403 for WebFetch; referenced via AIO only)</li>
+      <li>Thumbtack direct scrape (empty response for WebFetch)</li>
+      <li>Apple Maps and Bing Places listings not checked</li>
+      <li>GBP direct scrape (review count, categories, posts, photos) not performed</li>
+      <li>Competitor schema + homepage scrapes not performed for top-3 AI-cited competitors</li>
+      <li>DataForSEO Ranked Keywords not pulled for prospect or competitors</li>
+      <li>Manual browser DevTools (ChatGPT fan-out, entity_id confirmation) not run</li>
+    </ul>
+    <p>Each gap has a clear next-step plan. All resolvable in a follow-up session.</p>
+  </div>
+</div>
+
+<div class="container">
+  <div class="cta-section">
+    <h2>Next step: 30-minute strategy call</h2>
+    <p>Walk through the priority action plan, scope a 90-day AI ranking sprint, and decide which of the quick wins gets shipped first. Probabilistic AI claims throughout: increased likelihood of citation, not guaranteed rankings.</p>
+    <a class="cta-btn" href="https://calendly.com/info-yg4/strategy-call" target="_blank" rel="noopener">Book a strategy call</a>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="oo">Online Optimisers</div>
+    <div>AI Ranking Deep Audit &bull; Prepared by Tomas &bull; 2026-04-16</div>
+  </div>
+</footer>
+
+</body>
+</html>
