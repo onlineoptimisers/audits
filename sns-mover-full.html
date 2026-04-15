@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Full AI & SEO Audit - S and S Moving | Online Optimisers</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#060f1e; --bg2:#0d1b2e; --card:#111f35; --card-border:#1a2d4a;
+  --primary:#01a2f9; --dark-blue:#0052cc; --mid-blue:#1870d4; --light-blue:#8cc7f3;
+  --text:#e8edf4; --text-dim:#7a90aa; --text-bright:#ffffff;
+  --red:#ef4444; --yellow:#f59e0b; --green:#22c55e; --orange:#f97316;
+  --chatgpt:#7CB89E; --perplexity:#8B7EC2; --google:#4285F4;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Manrope',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.65;padding-bottom:80px;}
+.container{max-width:1040px;margin:0 auto;padding:0 24px;}
+a{color:var(--primary);text-decoration:none;}
+a:hover{text-decoration:underline;}
+
+.top-strip{background:rgba(1,162,249,.08);border-bottom:1px solid rgba(1,162,249,.2);padding:12px 0;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--primary);font-weight:800;}
+.top-strip .container{display:flex;justify-content:space-between;align-items:center;}
+.top-strip .right{color:var(--text-dim);letter-spacing:1px;font-weight:600;}
+
+.header{background:radial-gradient(ellipse at 70% 30%,rgba(1,162,249,.12) 0%,transparent 60%),radial-gradient(ellipse at 20% 80%,rgba(0,82,204,.08) 0%,transparent 50%),linear-gradient(135deg,#060f1e 0%,#0d1b2e 100%);padding:56px 0 48px;border-bottom:2px solid var(--primary);}
+.header .eyebrow{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--primary);font-weight:800;margin-bottom:10px;}
+.header h1{font-size:clamp(30px,4.2vw,44px);font-weight:900;line-height:1.1;letter-spacing:-.5px;color:var(--text-bright);margin-bottom:8px;}
+.header .subtitle{color:var(--text-dim);font-size:14px;margin-bottom:18px;}
+.header .meta-row{display:flex;gap:22px;flex-wrap:wrap;font-size:12px;color:var(--text-dim);margin-bottom:28px;}
+.header .meta-row span{display:flex;align-items:center;gap:6px;}
+
+.score-section{display:flex;align-items:center;gap:36px;flex-wrap:wrap;margin-top:8px;}
+.score-ring{position:relative;width:150px;height:150px;flex-shrink:0;}
+.score-ring svg{transform:rotate(-90deg);}
+.score-ring .score-text{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;}
+.score-ring .score-num{font-size:2.6rem;font-weight:900;color:var(--text-bright);line-height:1;}
+.score-ring .score-label{font-size:.6rem;text-transform:uppercase;letter-spacing:2px;color:var(--text-dim);margin-top:4px;}
+.score-ring .score-band{font-size:.75rem;font-weight:800;margin-top:4px;letter-spacing:1px;color:#f59e0b;}
+.score-side{flex:1;min-width:260px;}
+.score-side h2{font-size:22px;font-weight:800;color:var(--text-bright);margin-bottom:6px;}
+.score-side p{font-size:14px;color:rgba(255,255,255,.65);}
+
+.hero-metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:24px;}
+.hero-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:18px 14px;text-align:center;}
+.hero-card .h-val{font-size:1.7rem;font-weight:900;line-height:1;}
+.hero-card .h-sub{font-size:.7rem;color:var(--text-dim);margin-top:4px;}
+.hero-card .h-label{font-size:.62rem;text-transform:uppercase;letter-spacing:1.2px;color:rgba(255,255,255,.4);margin-top:10px;font-weight:700;}
+.h-val.mint{color:var(--chatgpt);} .h-val.blue{color:var(--perplexity);} .h-val.gold{color:var(--google);} .h-val.red{color:var(--red);} .h-val.green{color:var(--green);}
+
+.section{padding:44px 0;border-bottom:1px solid var(--card-border);}
+.section-header{display:flex;align-items:center;gap:14px;cursor:pointer;user-select:none;}
+.section-header:hover .section-chev{color:var(--primary);}
+.section-header h2{font-size:26px;font-weight:800;color:var(--text-bright);letter-spacing:-.3px;margin:0;flex:1;}
+.section-header .sec-num{display:inline-block;background:rgba(1,162,249,.12);color:var(--primary);font-weight:900;padding:4px 12px;border-radius:8px;font-size:12px;letter-spacing:1.5px;}
+.section-header .section-chev{color:var(--text-dim);font-size:22px;font-weight:700;transition:transform .2s,color .2s;}
+.section-header.open .section-chev{transform:rotate(180deg);}
+.section-body{overflow:hidden;transition:max-height .35s ease;max-height:none;}
+.section-body.collapsed{max-height:0;}
+.section .section-sub{color:var(--text-dim);font-size:13px;margin:10px 0 24px;}
+.section h3{font-size:16px;font-weight:700;color:var(--text-bright);margin:22px 0 10px;letter-spacing:-.1px;}
+.section p{font-size:14.5px;color:rgba(255,255,255,.78);margin-bottom:12px;}
+.section ul,.section ol{padding-left:22px;margin-bottom:12px;}
+.section li{font-size:14.5px;color:rgba(255,255,255,.78);margin-bottom:6px;}
+
+table{width:100%;border-collapse:collapse;margin:14px 0 10px;background:var(--card);border:1px solid var(--card-border);border-radius:10px;overflow:hidden;font-size:13.5px;}
+th,td{padding:11px 14px;text-align:left;border-bottom:1px solid var(--card-border);vertical-align:top;}
+th{background:rgba(1,162,249,.08);color:var(--text-bright);font-weight:700;font-size:12.5px;text-transform:uppercase;letter-spacing:.6px;}
+tr:last-child td{border-bottom:none;}
+td strong{color:var(--text-bright);}
+
+.finding-grid{display:grid;grid-template-columns:1fr;gap:14px;margin:18px 0;}
+.finding{background:var(--card);border:1px solid var(--card-border);border-left:4px solid var(--red);border-radius:8px;padding:18px 20px;}
+.finding .fnum{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--red);font-weight:800;margin-bottom:6px;}
+.finding h4{font-size:16px;font-weight:800;color:var(--text-bright);margin-bottom:6px;}
+.finding p{font-size:13.5px;color:rgba(255,255,255,.72);margin-bottom:0;}
+
+.why-box{background:linear-gradient(135deg,rgba(239,68,68,.06),rgba(245,158,11,.04));border:1px solid rgba(239,68,68,.2);border-radius:10px;padding:20px 22px;margin:16px 0 0;}
+.why-box h3{color:var(--yellow);margin-top:0;margin-bottom:10px;font-size:15px;letter-spacing:.5px;text-transform:uppercase;}
+.why-box p{font-size:14px;color:rgba(255,255,255,.85);margin-bottom:0;}
+
+.score-bars{display:flex;flex-direction:column;gap:12px;margin:16px 0;}
+.score-bar{display:grid;grid-template-columns:220px 1fr 60px;align-items:center;gap:14px;font-size:13px;}
+.score-bar .sb-label{color:var(--text-dim);font-weight:600;}
+.score-bar .sb-track{height:10px;background:var(--card);border:1px solid var(--card-border);border-radius:5px;overflow:hidden;position:relative;}
+.score-bar .sb-fill{height:100%;border-radius:5px;}
+.score-bar .sb-fill.low{background:linear-gradient(90deg,var(--red),#f97316);}
+.score-bar .sb-fill.mid{background:linear-gradient(90deg,var(--yellow),#facc15);}
+.score-bar .sb-fill.high{background:linear-gradient(90deg,var(--green),#4ade80);}
+.score-bar .sb-val{color:var(--text-bright);font-weight:800;text-align:right;}
+
+.tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700;letter-spacing:.5px;}
+.tag-miss{background:rgba(239,68,68,.15);color:var(--red);border:1px solid rgba(239,68,68,.3);}
+.tag-exist{background:rgba(34,197,94,.15);color:var(--green);border:1px solid rgba(34,197,94,.3);}
+.tag-warn{background:rgba(245,158,11,.15);color:var(--yellow);border:1px solid rgba(245,158,11,.3);}
+
+.action-block{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin:16px 0;}
+.action{background:var(--card);border:1px solid var(--card-border);border-radius:10px;padding:16px 18px;border-top:3px solid var(--primary);}
+.action.immediate{border-top-color:var(--red);}
+.action.m1{border-top-color:var(--yellow);}
+.action.m23{border-top-color:var(--primary);}
+.action.ongoing{border-top-color:var(--green);}
+.action h4{font-size:13px;text-transform:uppercase;letter-spacing:1.2px;color:var(--text-bright);margin-bottom:10px;font-weight:800;}
+.action ol{padding-left:20px;margin:0;}
+.action li{font-size:13px;color:rgba(255,255,255,.78);margin-bottom:6px;line-height:1.5;}
+
+.cta-section{background:linear-gradient(135deg,rgba(1,162,249,.1),rgba(0,82,204,.05));border:1px solid rgba(1,162,249,.3);border-radius:14px;padding:40px 36px;text-align:center;margin:48px 0 16px;}
+.cta-section h2{font-size:26px;color:var(--text-bright);margin-bottom:8px;font-weight:800;letter-spacing:-.3px;}
+.cta-section p{font-size:15px;color:rgba(255,255,255,.78);margin-bottom:22px;max-width:620px;margin-left:auto;margin-right:auto;}
+.cta-btn{display:inline-block;padding:14px 32px;background:var(--primary);color:#fff;font-weight:800;font-size:15px;border-radius:10px;text-decoration:none;letter-spacing:.5px;transition:all .2s;box-shadow:0 0 30px rgba(1,162,249,.3);}
+.cta-btn:hover{opacity:.9;transform:translateY(-1px);text-decoration:none;}
+
+footer{padding:32px 0 0;color:var(--text-dim);font-size:12px;text-align:center;}
+footer .oo{color:var(--primary);font-weight:800;letter-spacing:2px;text-transform:uppercase;}
+
+@media (max-width:760px){
+  .hero-metrics{grid-template-columns:repeat(2,1fr);}
+  .action-block{grid-template-columns:1fr;}
+  .score-bar{grid-template-columns:130px 1fr 48px;}
+}
+</style>
+</head>
+<body>
+
+<div class="top-strip">
+  <div class="container">
+    <div class="left">Online Optimisers / Full AI &amp; SEO Audit</div>
+    <div class="right">Prepared for Shay Underwood</div>
+  </div>
+</div>
+
+<header class="header">
+  <div class="container">
+    <div class="eyebrow">Full AI &amp; SEO Audit v2</div>
+    <h1>S and S Moving</h1>
+    <div class="subtitle">snsmover.com &bull; Hooper, UT &bull; Moving company &bull; 2026-04-16</div>
+    <div class="meta-row">
+      <span>Auditor: Online Optimisers, presented by Tomas</span>
+      <span>APIs: Firecrawl, OpenAI gpt-4o-search-preview, Perplexity sonar-pro, DataForSEO SERP + AIO + Maps + Backlinks + On-Page + Labs</span>
+    </div>
+
+    <div class="score-section">
+      <div class="score-ring">
+        <svg width="150" height="150" viewBox="0 0 150 150">
+          <circle cx="75" cy="75" r="65" fill="none" stroke="#1a2d4a" stroke-width="12"></circle>
+          <circle cx="75" cy="75" r="65" fill="none" stroke="#f59e0b" stroke-width="12" stroke-linecap="round"
+                  stroke-dasharray="285.9 408.4"></circle>
+        </svg>
+        <div class="score-text">
+          <div class="score-num">70</div>
+          <div class="score-label">/ 100</div>
+          <div class="score-band">FAIR</div>
+        </div>
+      </div>
+      <div class="score-side">
+        <h2>Strong Maps and local rankings. Weak in AI-answer citations.</h2>
+        <p>S and S wins Google Maps at position 1 for the core Hooper and residential queries and ranks top-10 organically for most city-level searches. But the site is invisible in 16 of 20 ChatGPT queries and missing from 8 of 11 Google AI Overviews. FAQ content, schema upgrades, and a NAP fix close most of that gap.</p>
+      </div>
+    </div>
+
+    <div class="hero-metrics">
+      <div class="hero-card">
+        <div class="h-val mint">4/20</div>
+        <div class="h-sub">ChatGPT cited</div>
+        <div class="h-label">gpt-4o-search-preview</div>
+      </div>
+      <div class="hero-card">
+        <div class="h-val blue">9/20</div>
+        <div class="h-sub">Perplexity cited</div>
+        <div class="h-label">sonar-pro</div>
+      </div>
+      <div class="hero-card">
+        <div class="h-val gold">3/11</div>
+        <div class="h-sub">Google AIO cited</div>
+        <div class="h-label">of 11 that triggered</div>
+      </div>
+      <div class="hero-card">
+        <div class="h-val green">4/5</div>
+        <div class="h-sub">Maps top 20</div>
+        <div class="h-label">5 commercial queries</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="section">
+  <div class="container">
+    <div class="section-header open" onclick="toggleSection(this)">
+      <span class="sec-num">01</span>
+      <h2>Executive Summary</h2>
+      <span class="section-chev">&#9662;</span>
+    </div>
+    <div class="section-body">
+      <div class="section-sub">The numbers, the band, and the three findings that matter most.</div>
+
+      <table>
+        <thead><tr><th>Metric</th><th>Result</th></tr></thead>
+        <tbody>
+          <tr><td>AI Visibility Score</td><td><strong>70 / 100</strong> - Fair band</td></tr>
+<tr><td>Technical Health</td><td>Grade <strong>B</strong> (70.8% checklist pass)</td></tr>
+<tr><td>SEO Foundation</td><td>DR <strong>63</strong>, 110 referring domains</td></tr>
+<tr><td>Ranked Keywords (any position)</td><td><strong>35</strong></td></tr>
+<tr><td>Top-10 rankings</td><td><strong>15</strong> (3 in top-3)</td></tr>
+<tr><td>Striking distance (pos 11-20)</td><td><strong>6</strong></td></tr>
+<tr><td>Estimated organic traffic value</td><td><strong>$219/mo</strong></td></tr>
+<tr><td>AI Citations across 60 slots</td><td><strong>16 / 60</strong></td></tr>
+<tr><td>ChatGPT visibility (gpt-4o-search-preview)</td><td>4 / 20</td></tr>
+<tr><td>Perplexity visibility (sonar-pro)</td><td>9 / 20</td></tr>
+<tr><td>Google AI Overviews triggered</td><td>11 / 20</td></tr>
+<tr><td>Google AI Overviews citations</td><td>3 / 11</td></tr>
+<tr><td>Maps Pack (top 20) on 5 commercial queries</td><td><strong>4</strong> / 5</td></tr>
+<tr><td>Google reviews</td><td><strong>4.9</strong> stars, 113 reviews</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Top 3 Critical Findings</h3>
+      <div class="finding-grid">
+        <div class="finding">
+          <div class="fnum">Finding 01</div>
+          <h4>NAP mismatch between BBB and website is damaging entity trust</h4>
+          <p>BBB shows Ogden 84404. Website and JSON-LD schema show Hooper 84315. Same business, same phone, two different cities and zip codes. AI entity linkers need one authoritative listing. Right now they get two. Maps SERP already places S and S at position 1 for the core Hooper queries, and that signal is being undercut by the conflicting BBB record.</p>
+        </div>
+        <div class="finding">
+          <div class="fnum">Finding 02</div>
+          <h4>Zero FAQ schema sitewide while 11 of 20 queries trigger Google AI Overviews</h4>
+          <p>11 of 20 audited queries triggered a Google AI Overview. S and S was cited in only 3 of those 11. The entire conversational category (how much do movers cost, what should I look for, trusted movers near me, are movers worth it) triggered AIOs on every query and S and S earned zero. FAQPage schema with directly answered questions is the single highest-leverage fix on the site.</p>
+        </div>
+        <div class="finding">
+          <div class="fnum">Finding 03</div>
+          <h4>No analytics currently firing on the homepage</h4>
+          <p>Our fresh crawl of snsmover.com did not surface GTM, GA4, or any Universal Analytics tag in the rendered HTML. Google Search Console verification meta tag is present, but measurement is broken. Shay has no reliable traffic or conversion visibility. GA4 plus a confirmed GTM container needs to be installed and verified via Tag Assistant this week.</p>
+        </div>
+      </div>
+
+      <div class="why-box">
+        <h3>Why this matters</h3>
+        <p>S and S has genuinely strong local fundamentals. 4.9 stars with 113 Google reviews, BBB accredited A+, USDOT 3540875, 8 Person schema entries already declaring the named team, and Maps position 1 for Hooper. The weakness is in AI-answer content, not in the business itself. That makes the upside high and the fixes specific.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="container">
+    <div class="section-header open" onclick="toggleSection(this)">
+      <span class="sec-num">02</span>
+      <h2>AI Visibility Score Breakdown</h2>
+      <span class="section-chev">&#9662;</span>
+    </div>
+    <div class="section-body">
+      <div class="section-sub">Four pillars, 25 points each, 100 max.</div>
+
+      <div class="score-bars">
+        <div class="score-bar">
+          <div class="sb-label">Knowledge Graph / Directories</div>
+          <div class="sb-track"><div class="sb-fill high" style="width:100%"></div></div>
+          <div class="sb-val">25/25</div>
+        </div>
+        <div class="score-bar">
+          <div class="sb-label">Schema Markup</div>
+          <div class="sb-track"><div class="sb-fill mid" style="width:72%"></div></div>
+          <div class="sb-val">18/25</div>
+        </div>
+        <div class="score-bar">
+          <div class="sb-label">Content Citability</div>
+          <div class="sb-track"><div class="sb-fill low" style="width:48%"></div></div>
+          <div class="sb-val">12/25</div>
+        </div>
+        <div class="score-bar">
+          <div class="sb-label">AI-Weighted Backlinks</div>
+          <div class="sb-track"><div class="sb-fill low" style="width:60%"></div></div>
+          <div class="sb-val">15/25</div>
+        </div>
+      </div>
+
+      <p><strong>Knowledge Graph is the strongest pillar.</strong> Google Business Profile is at Maps position 1 for Hooper, BBB is accredited, Yelp, HomeAdvisor, Angi, and MoveBuddha all have listings. <strong>Schema is mid-tier</strong> because LocalBusiness, MovingCompany, Person, AggregateRating, and BreadcrumbList are all present but FAQPage, HowTo, and standalone Service schema are missing. <strong>Content citability is weak</strong> because there is zero FAQ anywhere on the site. <strong>AI-weighted backlinks are weak</strong> because the backlink profile is polluted by Telegram-channel spam anchors and the top referring domains are low-rank directory spam.</p>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="container">
+    <div class="section-header open" onclick="toggleSection(this)">
+      <span class="sec-num">03</span>
+      <h2>Technical SEO Audit</h2>
+      <span class="section-chev">&#9662;</span>
+    </div>
+    <div class="section-body">
+      <div class="section-sub">On-page data from the DataForSEO instant_pages endpoint plus raw HTML inspection.</div>
+
+      <h3>On-page vitals</h3>
+      <table>
+        <thead><tr><th>Metric</th><th>Value</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>Status code</td><td>200</td><td><span class="tag tag-exist">OK</span></td></tr>
+          <tr><td>Largest Contentful Paint</td><td>1948 ms</td><td><span class="tag tag-exist">OK</span></td></tr>
+          <tr><td>Time to Interactive</td><td>1624 ms</td><td><span class="tag tag-exist">OK</span></td></tr>
+          <tr><td>DOM Complete</td><td>1805 ms</td><td><span class="tag tag-exist">OK</span></td></tr>
+          <tr><td>H1 count</td><td>2</td><td><span class="tag tag-miss">DUPLICATE</span></td></tr>
+          <tr><td>Meta title</td><td>Best Moving Company | Utah Movers | S and S Moving (50 chars)</td><td><span class="tag tag-exist">OK</span></td></tr>
+          <tr><td>Meta description length</td><td>249 chars</td><td><span class="tag tag-warn">LONG</span></td></tr>
+          <tr><td>Canonical</td><td>https://snsmover.com/</td><td><span class="tag tag-exist">OK</span></td></tr>
+          <tr><td>Render-blocking scripts</td><td>0</td><td><span class="tag tag-exist">OK</span></td></tr>
+          <tr><td>Internal links</td><td>17</td><td><span class="tag tag-exist">OK</span></td></tr>
+          <tr><td>Image alt tags</td><td>Missing on some images</td><td><span class="tag tag-miss">FLAG</span></td></tr>
+          <tr><td>GTM tag</td><td>Not detected</td><td><span class="tag tag-miss">FLAG</span></td></tr>
+          <tr><td>GA4 tag</td><td>Not detected</td><td><span class="tag tag-miss">FLAG</span></td></tr>
+          <tr><td>GSC verification meta</td><td>Yes</td><td><span class="tag tag-exist">OK</span></td></tr>
+        </tbody>
+      </table>
+
+      <h3>Duplicate H1 detected</h3>
+      <p>The on-page crawl returned two H1 tags: &quot;Get moving today&quot; and &quot;Our Company&quot;. Google strongly prefers a single H1 per page. Demote &quot;Our Company&quot; to H2 inside Elementor.</p>
+
+      <h3>Full technical checklist (70.8% pass, Grade B)</h3>
+      <table>
+        <thead><tr><th>Check</th><th>Status</th></tr></thead>
+        <tbody>
+        <tr><td>HTTPS</td><td><span class="tag tag-exist">PASS</span></td></tr><tr><td>Canonical tag present</td><td><span class="tag tag-exist">PASS</span></td></tr><tr><td>Single H1 per page</td><td><span class="tag tag-miss">FAIL</span></td></tr><tr><td>No noindex</td><td><span class="tag tag-exist">PASS</span></td></tr><tr><td>Meta title present</td><td><span class="tag tag-exist">PASS</span></td></tr><tr><td>Meta description present</td><td><span class="tag tag-exist">PASS</span></td></tr><tr><td>Meta title length 50-60 chars</td><td><span class="tag tag-exist">PASS</span></td></tr><tr><td>Meta description length reasonable</td><td><span class="tag tag-miss">FAIL</span></td></tr><tr><td>Fast LCP (&lt;2.5s)</td><td><span class="tag tag-exist">PASS</span></td></tr><tr><td>Fast TTI (&lt;3s)</td><td><span class="tag tag-exist">PASS</span></td></tr><tr><td>No render-blocking scripts</td><td><span class="tag tag-exist">PASS</span></td></tr><tr><td>Low render-blocking stylesheets</td><td><span class="tag tag-exist">PASS</span></td></tr><tr><td>GTM installed</td><td><span class="tag tag-miss">FAIL</span></td></tr><tr><td>GA4 installed</td><td><span class="tag tag-miss">FAIL</span></td></tr><tr><td>Image alt tags present</td><td><span class="tag tag-miss">FAIL</span></td></tr><tr><td>SEO-friendly URL structure</td><td><span class="tag tag-exist">PASS</span></td></tr><tr><td>No duplicate H1s</td><td><span class="tag tag-exist">PASS</span></td></tr><tr><td>Status 200</td><td><span class="tag tag-exist">PASS</span></td></tr><tr><td>Schema markup present</td><td><span class="tag tag-exist">PASS</span></td></tr><tr><td>FAQ schema present</td><td><span class="tag tag-miss">FAIL</span></td></tr><tr><td>Person schema present</td><td><span class="tag tag-exist">PASS</span></td></tr><tr><td>HowTo schema present</td><td><span class="tag tag-miss">FAIL</span></td></tr><tr><td>No broken links (internal)</td><td><span class="tag tag-exist">PASS</span></td></tr><tr><td>No broken resources</td><td><span class="tag tag-exist">PASS</span></td></tr>
+        </tbody>
+      </table>
+
+      <h3>Site architecture</h3>
+      <p>Firecrawl mapped <strong>121 URLs</strong> across snsmover.com. Clean URL pattern (/moving-services-[city]-ut/), confirmed city pages for Hooper, Roy, Clearfield, Syracuse, Layton, Ogden, Kaysville, and Hill AFB. Blog present with a red-flags-when-hiring-movers post that is the only non-city-page asset winning in AI answers.</p>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="container">
+    <div class="section-header" onclick="toggleSection(this)">
+      <span class="sec-num">04</span>
+      <h2>SEO Foundation &amp; Backlinks</h2>
+      <span class="section-chev">&#9662;</span>
+    </div>
+    <div class="section-body collapsed">
+      <div class="section-sub">Domain authority, keyword footprint, and anchor health from DataForSEO.</div>
+
+      <h3>Domain authority</h3>
+      <table>
+        <thead><tr><th>Metric</th><th>Value</th></tr></thead>
+        <tbody>
+          <tr><td>Domain Rank (DataForSEO, 0-1000)</td><td><strong>63</strong></td></tr>
+          <tr><td>Total backlinks</td><td>167</td></tr>
+          <tr><td>Referring domains</td><td>110</td></tr>
+          <tr><td>Referring main domains</td><td>107</td></tr>
+          <tr><td>Spam score</td><td>30/100</td></tr>
+          <tr><td>First seen</td><td>2022-01-16 03:35:55 +00:00</td></tr>
+          <tr><td>Broken backlinks</td><td>0</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Anchor text health</h3>
+      <table>
+        <thead><tr><th>Anchor type</th><th>Backlinks</th><th>% of tracked</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>Branded (snsmover / S and S)</td><td>110</td><td>66.7%</td><td><span class="tag tag-exist">OK</span></td></tr>
+          <tr><td>Naked URL</td><td>21</td><td>12.7%</td><td><span class="tag tag-exist">OK</span></td></tr>
+        </tbody>
+      </table>
+
+      <h3>Top anchors</h3>
+      <table>
+        <thead><tr><th>Anchor</th><th>Backlinks</th><th>Referring domains</th></tr></thead>
+        <tbody>
+        <tr><td>snsmover</td><td>42</td><td>36</td></tr><tr><td>snsmover.com</td><td>41</td><td>38</td></tr><tr><td>Visit Site</td><td>23</td><td>1</td></tr><tr><td>OUR TELEGRAM CHANEL https://t.me/s/quarterlinks25</td><td>8</td><td>8</td></tr><tr><td>S &amp; S Moving &amp; Landscaping</td><td>8</td><td>2</td></tr><tr><td>https://snsmover.com/?utm_source=fbAdLSEO&amp;utm_medium=traffic</td><td>7</td><td>1</td></tr><tr><td>-</td><td>6</td><td>4</td></tr><tr><td>https://snsmover.com/services/?utm_source=fbAdLSEO&amp;utm_medium=traffic</td><td>5</td><td>1</td></tr><tr><td>JOIN OUR TELEGRAM https://t.me/s/darksidelinks</td><td>4</td><td>4</td></tr><tr><td>https://snsmover.com/</td><td>3</td><td>2</td></tr>
+        </tbody>
+      </table>
+      <p><strong>Red flag.</strong> Two of the top 10 anchors are Telegram-channel spam (&quot;OUR TELEGRAM CHANEL ...&quot;, &quot;JOIN OUR TELEGRAM ...&quot;). These are low-quality directory links contributing to the spam score. Recommend a disavow file on all Telegram-anchor referring domains.</p>
+
+      <h3>Top referring domains</h3>
+      <table>
+        <thead><tr><th>Domain</th><th>Rank</th><th>Backlinks</th></tr></thead>
+        <tbody>
+        <tr><td>bunity.com</td><td>19</td><td>2</td></tr><tr><td>transplo.com</td><td>15</td><td>13</td></tr><tr><td>sergechel.info</td><td>0</td><td>1</td></tr><tr><td>worldbusinesspromote.com</td><td>0</td><td>1</td></tr><tr><td>enterprisedirectoryhub.com</td><td>0</td><td>1</td></tr><tr><td>torun-stolarz.pl</td><td>0</td><td>1</td></tr><tr><td>ododuorpremium.com</td><td>0</td><td>1</td></tr><tr><td>ycm.info</td><td>0</td><td>1</td></tr><tr><td>pagesearch.net</td><td>0</td><td>1</td></tr><tr><td>primecompanydirectory.com</td><td>0</td><td>1</td></tr>
+        </tbody>
+      </table>
+      <p>The top referring domains are mostly low-rank directories (bunity.com, transplo.com, worldbusinesspromote.com). Minimal high-authority editorial linking. Building 5-10 moving-niche editorial citations (Move.org, Unpakt, Updater, regional press) is the way to strengthen this pillar.</p>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="container">
+    <div class="section-header" onclick="toggleSection(this)">
+      <span class="sec-num">05</span>
+      <h2>Ranked Keywords (Current Google Wins)</h2>
+      <span class="section-chev">&#9662;</span>
+    </div>
+    <div class="section-body collapsed">
+      <div class="section-sub">35 keywords ranked, 3 in top-3, 15 in top-10, 6 in striking distance.</div>
+
+      <h3>Top 15 ranked keywords by volume</h3>
+      <table>
+        <thead><tr><th>Keyword</th><th>Position</th><th>Volume</th><th>CPC</th><th>Landing URL</th></tr></thead>
+        <tbody>
+        <tr><td>movers in utah</td><td><strong>#6</strong></td><td>1000</td><td>$24.92</td><td>/</td></tr><tr><td>moving company in utah</td><td><strong>#6</strong></td><td>1000</td><td>$24.92</td><td>/</td></tr><tr><td>moving service utah</td><td><strong>#8</strong></td><td>1000</td><td>$24.92</td><td>/</td></tr><tr><td>utah movers</td><td><strong>#7</strong></td><td>1000</td><td>$24.92</td><td>/</td></tr><tr><td>movers ogden</td><td><strong>#5</strong></td><td>480</td><td>$28.19</td><td>/moving-services-ogden-ut/</td></tr><tr><td>movers ogden utah</td><td><strong>#6</strong></td><td>480</td><td>$28.19</td><td>/moving-services-ogden-ut/</td></tr><tr><td>moving companies ogden</td><td><strong>#11</strong></td><td>480</td><td>$28.19</td><td>/moving-services-ogden-ut/</td></tr><tr><td>moving companies ogden utah</td><td><strong>#15</strong></td><td>480</td><td>$28.19</td><td>/moving-services-ogden-ut/</td></tr><tr><td>movers layton utah</td><td><strong>#6</strong></td><td>390</td><td>$41.59</td><td>/moving-services-layton-ut/</td></tr><tr><td>moving companies layton utah</td><td><strong>#6</strong></td><td>390</td><td>$41.59</td><td>/moving-services-layton-ut/</td></tr><tr><td>s&amp;d moving company</td><td><strong>#28</strong></td><td>170</td><td>$8.10</td><td>/</td></tr><tr><td>mountain states moving and storage</td><td><strong>#58</strong></td><td>140</td><td>$18.37</td><td>/</td></tr><tr><td>movers south jordan</td><td><strong>#64</strong></td><td>90</td><td>$37.87</td><td>/</td></tr><tr><td>moving companies south jordan</td><td><strong>#60</strong></td><td>90</td><td>$37.87</td><td>/</td></tr><tr><td>s &amp; s moving</td><td><strong>#3</strong></td><td>90</td><td>$9.91</td><td>/</td></tr>
+        </tbody>
+      </table>
+
+      <p>S and S owns genuine position-6 rankings for the four head terms &quot;movers in utah&quot;, &quot;moving company in utah&quot;, &quot;utah movers&quot;, and &quot;moving service utah&quot; (all 1,000/mo volume each). The Ogden and Layton city pages hold positions 5-6 with 480 and 390 monthly volume respectively. This is a real foundation.</p>
+
+      <p><strong>Estimated organic traffic value:</strong> $219/month based on current rankings and SERP CTR curve.</p>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="container">
+    <div class="section-header" onclick="toggleSection(this)">
+      <span class="sec-num">06</span>
+      <h2>AI Platform Results (20 queries, 3 platforms)</h2>
+      <span class="section-chev">&#9662;</span>
+    </div>
+    <div class="section-body collapsed">
+      <div class="section-sub">60 query-platform slots total. All queries run on ChatGPT gpt-4o-search-preview, Perplexity sonar-pro, and Google SERP with AIO expansion.</div>
+
+      <h3>All 20 queries</h3>
+      <table>
+        <thead><tr><th>#</th><th>Query</th><th>Category</th><th>ChatGPT</th><th>Perplexity</th><th>Google AIO</th><th>Maps</th></tr></thead>
+        <tbody>
+        <tr><td>1</td><td>best movers Hooper UT</td><td>service location</td><td><span class="tag tag-miss">no</span></td><td><span class="tag tag-exist">cited</span></td><td><span class="tag tag-warn">no AIO</span></td><td>#1</td></tr><tr><td>2</td><td>best moving company Ogden UT</td><td>service location</td><td><span class="tag tag-miss">no</span></td><td><span class="tag tag-exist">cited</span></td><td><span class="tag tag-warn">no AIO</span></td><td>#4</td></tr><tr><td>3</td><td>residential movers Hooper UT</td><td>service location</td><td><span class="tag tag-exist">cited</span></td><td><span class="tag tag-exist">cited</span></td><td><span class="tag tag-warn">no AIO</span></td><td>#1</td></tr><tr><td>4</td><td>affordable movers Layton UT</td><td>service location</td><td><span class="tag tag-miss">no</span></td><td><span class="tag tag-miss">no</span></td><td><span class="tag tag-warn">no AIO</span></td><td>not in top 20</td></tr><tr><td>5</td><td>commercial moving company Ogden UT</td><td>service location</td><td><span class="tag tag-miss">no</span></td><td><span class="tag tag-exist">cited</span></td><td><span class="tag tag-warn">no AIO</span></td><td>#5</td></tr><tr><td>6</td><td>who are the best movers in Ogden Utah</td><td>conversational</td><td><span class="tag tag-miss">no</span></td><td><span class="tag tag-miss">no</span></td><td><span class="tag tag-miss">no</span></td><td>not tested</td></tr><tr><td>7</td><td>how much do movers cost in Utah</td><td>conversational</td><td><span class="tag tag-miss">no</span></td><td><span class="tag tag-miss">no</span></td><td><span class="tag tag-miss">no</span></td><td>not tested</td></tr><tr><td>8</td><td>what should I look for when hiring movers in Utah</td><td>conversational</td><td><span class="tag tag-miss">no</span></td><td><span class="tag tag-miss">no</span></td><td><span class="tag tag-miss">no</span></td><td>not tested</td></tr><tr><td>9</td><td>trusted movers Syracuse UT near me</td><td>conversational</td><td><span class="tag tag-miss">no</span></td><td><span class="tag tag-miss">no</span></td><td><span class="tag tag-miss">no</span></td><td>not tested</td></tr><tr><td>10</td><td>are movers worth it for a local move in Utah</td><td>conversational</td><td><span class="tag tag-miss">no</span></td><td><span class="tag tag-miss">no</span></td><td><span class="tag tag-miss">no</span></td><td>not tested</td></tr><tr><td>11</td><td>how to avoid moving scams Utah</td><td>problem</td><td><span class="tag tag-miss">no</span></td><td><span class="tag tag-miss">no</span></td><td><span class="tag tag-miss">no</span></td><td>not tested</td></tr><tr><td>12</td><td>last minute movers Salt Lake City UT</td><td>problem</td><td><span class="tag tag-miss">no</span></td><td><span class="tag tag-miss">no</span></td><td><span class="tag tag-warn">no AIO</span></td><td>not tested</td></tr><tr><td>13</td><td>family owned moving company Hooper UT</td><td>problem</td><td><span class="tag tag-exist">cited</span></td><td><span class="tag tag-exist">cited</span></td><td><span class="tag tag-exist">cited</span></td><td>not tested</td></tr><tr><td>14</td><td>movers with insurance Utah damage protection</td><td>problem</td><td><span class="tag tag-miss">no</span></td><td><span class="tag tag-miss">no</span></td><td><span class="tag tag-miss">no</span></td><td>not tested</td></tr><tr><td>15</td><td>piano movers northern Utah</td><td>specialty</td><td><span class="tag tag-miss">no</span></td><td><span class="tag tag-miss">no</span></td><td><span class="tag tag-warn">no AIO</span></td><td>not tested</td></tr><tr><td>16</td><td>Hill AFB military movers Utah</td><td>specialty</td><td><span class="tag tag-miss">no</span></td><td><span class="tag tag-miss">no</span></td><td><span class="tag tag-warn">no AIO</span></td><td>not tested</td></tr><tr><td>17</td><td>furniture disassembly moving company Layton UT</td><td>specialty</td><td><span class="tag tag-miss">no</span></td><td><span class="tag tag-exist">cited</span></td><td><span class="tag tag-exist">cited</span></td><td>not tested</td></tr><tr><td>18</td><td>packing services moving company Clearfield UT</td><td>specialty</td><td><span class="tag tag-miss">no</span></td><td><span class="tag tag-exist">cited</span></td><td><span class="tag tag-miss">no</span></td><td>not tested</td></tr><tr><td>19</td><td>S and S Moving Hooper UT reviews</td><td>branded</td><td><span class="tag tag-exist">cited</span></td><td><span class="tag tag-exist">cited</span></td><td><span class="tag tag-warn">no AIO</span></td><td>not tested</td></tr><tr><td>20</td><td>snsmover.com moving services Utah</td><td>branded</td><td><span class="tag tag-exist">cited</span></td><td><span class="tag tag-exist">cited</span></td><td><span class="tag tag-exist">cited</span></td><td>not tested</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Category breakdown</h3>
+      <table>
+        <thead><tr><th>Category</th><th>Queries</th><th>ChatGPT</th><th>Perplexity</th><th>AIO triggered</th><th>AIO cited</th></tr></thead>
+        <tbody>
+        <tr><td>Service Location</td><td>5</td><td>1/5</td><td>4/5</td><td>0/5</td><td>0/5</td></tr><tr><td>Conversational</td><td>5</td><td>0/5</td><td>0/5</td><td>5/5</td><td>0/5</td></tr><tr><td>Problem</td><td>4</td><td>1/4</td><td>1/4</td><td>3/4</td><td>1/4</td></tr><tr><td>Specialty</td><td>4</td><td>0/4</td><td>2/4</td><td>2/4</td><td>1/4</td></tr><tr><td>Branded</td><td>2</td><td>2/2</td><td>2/2</td><td>1/2</td><td>1/2</td></tr><tr style='background:rgba(1,162,249,.08);font-weight:700;'><td>TOTAL</td><td>20</td><td>4/20</td><td>9/20</td><td>11/20</td><td>3/20</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Google Maps Pack detail (5 commercial queries)</h3>
+      <table>
+        <thead><tr><th>Query</th><th>S and S position</th><th>Top 3 Maps results</th></tr></thead>
+        <tbody>
+        <tr><td>best movers Hooper UT</td><td><strong>#1</strong></td><td>S and S Moving; Pioneer Moving and Storage - Best Moving Company in Salt Lake City, UT; Best of Utah Moving Company</td></tr><tr><td>best moving company Ogden UT</td><td><strong>#4</strong></td><td>All My Sons Moving &amp; Storage; Two Men and a Truck Moving; Pioneer Moving and Storage - Best Moving Company in Salt Lake City, UT</td></tr><tr><td>residential movers Hooper UT</td><td><strong>#1</strong></td><td>S and S Moving</td></tr><tr><td>affordable movers Layton UT</td><td>not in top 20</td><td>Cheapest Movers In Utah LLC; Affordable Moving Utah; Uinta Moving Company - Kaysville, UT</td></tr><tr><td>commercial moving company Ogden UT</td><td><strong>#5</strong></td><td>All My Sons Moving &amp; Storage; Alpha Moving-N-Storage; Smooth Movers Moving &amp; Storage Of Ogden</td></tr>
+        </tbody>
+      </table>
+      <p><strong>Maps is the strongest surface.</strong> Position 1 for &quot;best movers Hooper UT&quot; and &quot;residential movers Hooper UT&quot;. Position 4 for Ogden and position 5 for commercial Ogden. Only &quot;affordable movers Layton UT&quot; fell outside the top 20.</p>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="container">
+    <div class="section-header" onclick="toggleSection(this)">
+      <span class="sec-num">07</span>
+      <h2>Schema &amp; Entity Audit</h2>
+      <span class="section-chev">&#9662;</span>
+    </div>
+    <div class="section-body collapsed">
+      <div class="section-sub">What JSON-LD structured data is present, what is missing, and what it costs in AI citation eligibility.</div>
+
+      <h3>Schema scorecard</h3>
+      <table>
+        <thead><tr><th>Schema type</th><th>Status</th><th>Points</th></tr></thead>
+        <tbody>
+        <tr><td>LocalBusiness</td><td><span class="tag tag-exist">FOUND</span></td><td>6</td></tr><tr><td>Person</td><td><span class="tag tag-exist">FOUND</span></td><td>4</td></tr><tr><td>FAQPage</td><td><span class="tag tag-miss">MISSING</span></td><td>0</td></tr><tr><td>Service</td><td><span class="tag tag-exist">FOUND</span></td><td>3</td></tr><tr><td>HowTo</td><td><span class="tag tag-miss">MISSING</span></td><td>0</td></tr><tr><td>AggregateRating</td><td><span class="tag tag-exist">FOUND</span></td><td>3</td></tr><tr><td>Organization</td><td><span class="tag tag-exist">FOUND</span></td><td>2</td></tr>
+        <tr style='background:rgba(1,162,249,.08);font-weight:700;'><td>Total</td><td>-</td><td>18 / 25</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Schema types detected on the homepage</h3>
+      <ul>
+        <li>AggregateRating</li><li>BreadcrumbList</li><li>LocalBusiness</li><li>MovingCompany</li><li>OfferCatalog</li><li>Organization</li><li>Person</li><li>Service</li><li>WebPage</li><li>WebSite</li>
+      </ul>
+
+      <h3>Directory presence</h3>
+      <table>
+        <thead><tr><th>Platform</th><th>Status</th><th>Rating / notes</th></tr></thead>
+        <tbody>
+          <tr><td>Google Business Profile</td><td><span class="tag tag-exist">FOUND</span></td><td>4.9 stars, 113 reviews, Maps position 1 for Hooper</td></tr>
+          <tr><td>BBB</td><td><span class="tag tag-exist">FOUND</span></td><td>Accredited A+ (May 2025)</td></tr>
+          <tr><td>Yelp</td><td><span class="tag tag-exist">FOUND</span></td><td>Low review volume</td></tr>
+          <tr><td>HomeAdvisor / Angi</td><td><span class="tag tag-exist">FOUND</span></td><td>5.0 (as &quot;S &amp; S Moving and Yard Maintenance&quot;)</td></tr>
+          <tr><td>MoveBuddha</td><td><span class="tag tag-exist">FOUND</span></td><td>3.88-5.0 range</td></tr>
+          <tr><td>Facebook</td><td><span class="tag tag-exist">FOUND</span></td><td>@SandSmovingandlandscaping</td></tr>
+          <tr><td>Instagram</td><td><span class="tag tag-exist">FOUND</span></td><td>@s_and_s_moving</td></tr>
+          <tr><td>Thumbtack</td><td><span class="tag tag-miss">NOT CONFIRMED</span></td><td>Worth claiming</td></tr>
+        </tbody>
+      </table>
+
+      <div class="why-box">
+        <h3>NAP inconsistency (critical)</h3>
+        <p>Website and JSON-LD schema declare 4457 W 5750 S, Hooper, UT 84315. BBB record shows Ogden, UT 84404-9256. Same phone number on both. AI entity linkers require one authoritative location. Fix the BBB record to Hooper 84315, or declare Ogden as a verified second location on both GBP and website.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="container">
+    <div class="section-header" onclick="toggleSection(this)">
+      <span class="sec-num">08</span>
+      <h2>Competitive Landscape</h2>
+      <span class="section-chev">&#9662;</span>
+    </div>
+    <div class="section-body collapsed">
+      <div class="section-sub">Who AI recommends instead, and why.</div>
+
+      <h3>Who AI recommends instead (aggregated across ChatGPT + Perplexity)</h3>
+      <table>
+        <thead><tr><th>Competitor</th><th>Total AI citations across 20 queries</th></tr></thead>
+        <tbody>
+        <tr><td>Moving Connections</td><td><strong>12</strong></td></tr><tr><td>All My Sons</td><td><strong>10</strong></td></tr><tr><td>Alpha Moving</td><td><strong>8</strong></td></tr><tr><td>Wasatch Moving</td><td><strong>6</strong></td></tr><tr><td>Able Movers</td><td><strong>3</strong></td></tr><tr><td>A-1 Pioneer</td><td><strong>3</strong></td></tr>
+        </tbody>
+      </table>
+      <p><strong>Moving Connections</strong> (457 Google reviews, 30-year history, BBB A+, heavy FAQ content) and <strong>All My Sons</strong> (national brand, 448 reviews, deep per-city pages) are the two competitors AI consistently selects over S and S. Wasatch Moving and Alpha Moving are second tier.</p>
+
+      <h3>Algorithmic competitors (shared keyword footprint)</h3>
+      <table>
+        <thead><tr><th>Competitor domain</th><th>Shared keywords</th><th>Avg position</th><th>Est. traffic value</th></tr></thead>
+        <tbody>
+        <tr><td>snsmover.com</td><td>35</td><td>27.6</td><td>$219</td></tr><tr><td>yelp.com</td><td>35</td><td>5.8</td><td>$219</td></tr><tr><td>bbb.org</td><td>29</td><td>35.5</td><td>$151</td></tr><tr><td>allmysons.com</td><td>27</td><td>16.5</td><td>$206</td></tr><tr><td>facebook.com</td><td>27</td><td>11.0</td><td>$82</td></tr><tr><td>hireahelper.com</td><td>25</td><td>19.9</td><td>$217</td></tr><tr><td>mapquest.com</td><td>25</td><td>19.4</td><td>$64</td></tr><tr><td>movebuddha.com</td><td>23</td><td>28.3</td><td>$196</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="container">
+    <div class="section-header" onclick="toggleSection(this)">
+      <span class="sec-num">09</span>
+      <h2>Striking Distance Keywords (Page 2 ready for Page 1)</h2>
+      <span class="section-chev">&#9662;</span>
+    </div>
+    <div class="section-body collapsed">
+      <div class="section-sub">Keywords currently sitting at positions 11-20 that can be pushed onto page 1 with specific fixes.</div>
+
+      <table>
+        <thead><tr><th>Keyword</th><th>Pos</th><th>Volume</th><th>CPC</th><th>Landing URL</th><th>Quick fix</th></tr></thead>
+        <tbody>
+        <tr><td>moving companies ogden</td><td>#11</td><td>480</td><td>$28.19</td><td>/moving-services-ogden-ut/</td><td>FAQ schema + city in H1</td></tr><tr><td>moving companies ogden utah</td><td>#15</td><td>480</td><td>$28.19</td><td>/moving-services-ogden-ut/</td><td>FAQ schema + city in H1</td></tr><tr><td>moving companies ogden ut</td><td>#12</td><td>50</td><td>$64.73</td><td>/moving-services-ogden-ut/</td><td>FAQ schema + city in H1</td></tr><tr><td>s and s company</td><td>#17</td><td>50</td><td>$0.00</td><td>/</td><td>FAQ + named-team proof block</td></tr><tr><td>movers layton</td><td>#16</td><td>30</td><td>$10.93</td><td>/moving-services-layton-ut/</td><td>FAQ schema + city in H1</td></tr><tr><td>ogden movers</td><td>#12</td><td>30</td><td>$32.81</td><td>/moving-services-ogden-ut/</td><td>FAQ schema + city in H1</td></tr>
+        </tbody>
+      </table>
+      <p>6 keywords in striking distance. Combined monthly volume in this set is a meaningful compound-interest play: every keyword moved from position 11-20 to position 8-10 captures 3-5x more clicks at the same effort as writing a new page.</p>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="container">
+    <div class="section-header" onclick="toggleSection(this)">
+      <span class="sec-num">10</span>
+      <h2>People Also Ask (Content Gold)</h2>
+      <span class="section-chev">&#9662;</span>
+    </div>
+    <div class="section-body collapsed">
+      <div class="section-sub">62 unique PAA questions harvested across the 20 SERPs. These are the exact questions Google is surfacing to Utah movers' audiences. Each one is a FAQ entry or blog post brief.</div>
+
+      <ul>
+      <li>Are movers liable for damage?</li>
+<li>Are piano movers worth it?</li>
+<li>Can a piano be tuned after 50 years?</li>
+<li>Can a scammer do anything with your address?</li>
+<li>Do movers disassemble IKEA furniture?</li>
+<li>Do moving companies assemble and disassemble furniture?</li>
+<li>Does homeowners insurance cover damage during moving?</li>
+<li>How can I avoid being scammed by a moving company?</li>
+<li>How do two men and a truck calculate cost?</li>
+<li>How much do movers charge for local moves?</li>
+<li>How much do movers cost in Utah?</li>
+<li>How much does it cost to hire packers?</li>
+<li>How much does it cost to move a 1500 sq ft house?</li>
+<li>How much does it cost to move a piano in Utah?</li>
+<li>How much does it cost to move from California to Utah?</li>
+<li>How much should I budget for a move?</li>
+<li>How much to pay 1 move for 3 hours?</li>
+<li>How to move on a low budget?</li>
+<li>How to not get scammed by movers?</li>
+<li>How to relocate with little to no money?</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="container">
+    <div class="section-header" onclick="toggleSection(this)">
+      <span class="sec-num">11</span>
+      <h2>Expert Strategic Insights</h2>
+      <span class="section-chev">&#9662;</span>
+    </div>
+    <div class="section-body collapsed">
+      <div class="section-sub">Cross-referenced insights connecting the data across every prior section.</div>
+
+      <ol>
+        <li><strong>FAQ schema is the single biggest lever.</strong> 11 of 20 queries triggered a Google AI Overview. S and S was cited in only 3 of those 11. The conversational category triggered AIOs on all 5 queries and S and S earned zero citations. A 4-6 hour job adding FAQPage schema to homepage plus 5 city pages with 6-10 directly answered questions each has high upside.</li>
+        <li><strong>NAP split between BBB and website is a real signal-damage event.</strong> Fix this before anything else. Same business, same phone, two different authoritative listings.</li>
+        <li><strong>H1 duplication on the homepage.</strong> Crawl returned two H1s (&quot;Get moving today&quot; and &quot;Our Company&quot;). Demote the second to H2. 10-minute Elementor fix.</li>
+        <li><strong>Named-team Person schema is a competitive moat.</strong> The site already declares 8 Person entities. Strengthen with sameAs links to LinkedIn and Facebook profiles. No national competitor (All My Sons, TWO MEN AND A TRUCK) can match named humans.</li>
+        <li><strong>Backlink profile is polluted by Telegram-channel spam anchors.</strong> Spam score 30/100 with &quot;OUR TELEGRAM CHANEL&quot; anchors in the top 10. 2-hour disavow pass lifts signal-to-noise.</li>
+        <li><strong>Ranked-keyword base is genuine.</strong> 35 keywords ranked, 15 in top 10, including &quot;movers in utah&quot; at position 6 (1,000/mo volume). The opportunity is converting top-10 organic positions into AI citations via schema and FAQ.</li>
+        <li><strong>Moving Connections is the benchmark.</strong> Every AI platform weights them highest. 30-year history, 457 reviews, BBB A+, heavy FAQ content. Match their FAQ volume and close the review gap, and the AI citation gap closes with it.</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="container">
+    <div class="section-header" onclick="toggleSection(this)">
+      <span class="sec-num">12</span>
+      <h2>Quick Win Priority Matrix</h2>
+      <span class="section-chev">&#9662;</span>
+    </div>
+    <div class="section-body collapsed">
+      <div class="section-sub">Every recommendation sorted by impact and effort.</div>
+
+      <div class="action-block">
+        <div class="action immediate">
+          <h4>High Impact, Low Effort (this week)</h4>
+          <ol>
+            <li>Fix NAP mismatch on BBB (update to Hooper 84315 OR claim Ogden as verified second location). 30 min.</li>
+            <li>Demote duplicate H1 (&quot;Our Company&quot;) to H2 in Elementor. 10 min.</li>
+            <li>Install GA4 and verify GTM firing via Tag Assistant. 1 hour.</li>
+            <li>Add FAQPage schema plus 6-10 Q&amp;As to homepage. 2 hours.</li>
+            <li>Add single hero stat to homepage (e.g. &quot;800+ Utah moves since 2017&quot; if verifiable). 30 min.</li>
+          </ol>
+        </div>
+        <div class="action m1">
+          <h4>High Impact, Medium Effort (week 1-2)</h4>
+          <ol>
+            <li>Add FAQPage schema to 5 city pages (Hooper, Roy, Clearfield, Syracuse, Layton). 4-5 hours.</li>
+            <li>Enhance Person schema with sameAs to team LinkedIn and Facebook. 2 hours.</li>
+            <li>Add HowTo schema to red-flags blog post, rewrite as citation-optimised Q&amp;A. 2 hours.</li>
+            <li>Telegram-spam disavow file submission. 1 hour.</li>
+            <li>Claim / confirm Thumbtack and Nextdoor listings. 30 min each.</li>
+          </ol>
+        </div>
+        <div class="action m23">
+          <h4>High Impact, Higher Effort (month 1-3)</h4>
+          <ol>
+            <li>Post-move SMS review request pipeline, target 10+ new reviews/month. 4 hours setup.</li>
+            <li>6-12 blog posts targeting the 20 highest-value PAA questions from this audit. 30-40 hours.</li>
+            <li>City-specific proof blocks on every city page (&quot;X moves completed in [city] since 2020&quot;). 6 hours.</li>
+            <li>Acquire 5-10 moving-niche editorial citations (Move.org, Unpakt, Updater, regional press). 8-12 hours.</li>
+          </ol>
+        </div>
+        <div class="action ongoing">
+          <h4>Lower Priority / Ongoing</h4>
+          <ol>
+            <li>Image alt tag audit across site. 2 hours.</li>
+            <li>Per-testimonial Review schema (currently only AggregateRating). 3 hours.</li>
+            <li>Monthly review target: 10+ new Google reviews.</li>
+            <li>Quarterly re-audit against same 20 queries to track AI visibility lift.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="container">
+    <div class="section-header" onclick="toggleSection(this)">
+      <span class="sec-num">13</span>
+      <h2>Probabilistic Framing</h2>
+      <span class="section-chev">&#9662;</span>
+    </div>
+    <div class="section-body collapsed">
+      <div class="section-sub">Honest disclosure on what AI ranking work can and cannot guarantee.</div>
+      <p>Every recommendation in this audit is designed to increase the likelihood of citation of S and S Moving by ChatGPT, Perplexity, and Google AI Overviews for moving-related queries in Northern Utah. AI ranking is probabilistic, not deterministic. No guarantee of a specific citation or ranking position is claimed.</p>
+      <p>What is highly likely: fixing the NAP mismatch, adding FAQ schema, and closing the review gap will shift citation rates on the 14 queries where S and S is currently absent. The size of the lift depends on how quickly the competitor set reacts, the volume of new content published, and whether review velocity accelerates.</p>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="cta-section">
+    <h2>Next step: 30-minute strategy call</h2>
+    <p>Walk through the priority action plan with Tomas, scope a 90-day AI ranking sprint, and decide which of the quick wins gets shipped first week. Every recommendation is probabilistic (increased likelihood of citation), not guaranteed rankings.</p>
+    <a class="cta-btn" href="https://calendly.com/info-yg4/strategy-call" target="_blank" rel="noopener">Book a strategy call</a>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="oo">Online Optimisers</div>
+    <div>Full AI &amp; SEO Audit v2 &bull; Presented by Tomas &bull; 2026-04-16</div>
+  </div>
+</footer>
+
+<script>
+function toggleSection(el) {
+  el.classList.toggle('open');
+  var body = el.nextElementSibling;
+  if (body && body.classList.contains('section-body')) {
+    body.classList.toggle('collapsed');
+  }
+}
+</script>
+
+</body>
+</html>
