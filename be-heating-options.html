@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Breathe Easy Heating, ROI and Service Options | Online Optimisers</title>
+<meta name="description" content="Real numbers on cost per booked call, close rate, and 12-month ROI for HVAC marketing in Lethbridge AB. Prepared for Mike Gervais, Breathe Easy Heating and Air Conditioning.">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800;900&family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  :root {
+    --bg:#edf0f5; --bg2:#ffffff; --bg-dark:#0c1a33;
+    --card:#ffffff; --card-border:#d6dce6;
+    --card-shadow:0 4px 20px rgba(0,20,60,.10);
+    --accent:#01a2f9; --accent-dark:#0052cc; --navy:#091428;
+    --text:#1a2332; --text-dim:#64748b; --text-body:#475569; --text-bright:#ffffff;
+    --red:#ef4444; --yellow:#f59e0b; --green:#16a34a; --amber:#f59e0b; --blue:#3b82f6;
+  }
+
+  body {
+    font-family:'Inter',system-ui,-apple-system,sans-serif;
+    background:var(--bg); color:var(--text);
+    line-height:1.6;
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    background:radial-gradient(ellipse at 70% 30%,rgba(1,162,249,.18) 0%,transparent 60%),
+               radial-gradient(ellipse at 20% 80%,rgba(1,162,249,.10) 0%,transparent 50%),
+               var(--navy);
+    padding:64px 32px 56px;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::after {
+    content:'';position:absolute;bottom:0;left:0;right:0;height:1px;
+    background:linear-gradient(90deg,transparent,rgba(1,162,249,.3),transparent);
+  }
+  .hero .logo-text {
+    font-family:'Manrope',sans-serif;font-size:10px;font-weight:700;
+    letter-spacing:3px;text-transform:uppercase;color:var(--accent);opacity:.6;
+    margin-bottom:24px;
+  }
+  .hero h1 {
+    font-family:'Manrope',sans-serif;font-size:clamp(26px,4vw,42px);
+    font-weight:800;line-height:1.15;color:#fff;max-width:780px;margin:0 auto 14px;
+    letter-spacing:-.5px;
+  }
+  .hero .subtitle {
+    font-size:15px;color:rgba(255,255,255,.65);max-width:560px;margin:0 auto 28px;line-height:1.6;
+  }
+  .meta-pills {
+    display:flex;flex-wrap:wrap;justify-content:center;gap:8px;max-width:780px;margin:0 auto;
+  }
+  .meta-pill {
+    background:rgba(1,162,249,.10);border:1px solid rgba(1,162,249,.25);
+    color:rgba(255,255,255,.85);
+    font-size:11px;font-weight:600;
+    padding:6px 12px;border-radius:20px;letter-spacing:.3px;
+  }
+
+  /* ===== TL;DR RIBBON ===== */
+  .tldr {
+    max-width:920px;margin:-28px auto 0;
+    background:var(--bg2);border-radius:14px;
+    border-left:5px solid var(--accent);
+    padding:24px 28px;
+    box-shadow:0 8px 30px rgba(0,20,60,.12);
+    position:relative;z-index:5;
+  }
+  .tldr-label {
+    font-family:'Manrope',sans-serif;font-size:10px;font-weight:800;
+    letter-spacing:2.5px;text-transform:uppercase;color:var(--accent);
+    margin-bottom:10px;
+  }
+  .tldr-list { list-style:none;padding:0;margin:0; }
+  .tldr-list li {
+    display:flex;gap:12px;align-items:flex-start;
+    padding:8px 0;font-size:14px;color:var(--text-body);line-height:1.6;
+  }
+  .tldr-list li::before {
+    content:'';flex-shrink:0;width:7px;height:7px;border-radius:50%;
+    background:var(--accent);margin-top:8px;
+  }
+  .tldr-list li strong { color:var(--text); }
+
+  /* ===== CONTENT ===== */
+  .content {
+    max-width:920px;margin:0 auto;
+    padding:48px 24px 80px;
+  }
+
+  .section-intro {
+    text-align:center;margin-bottom:32px;
+  }
+  .section-intro h2 {
+    font-family:'Manrope',sans-serif;font-size:26px;font-weight:800;
+    color:var(--text);margin-bottom:8px;letter-spacing:-.3px;
+  }
+  .section-intro p {
+    font-size:14px;color:var(--text-dim);max-width:560px;margin:0 auto;
+  }
+
+  /* ===== ACCORDION (service options) ===== */
+  .accordion-item {
+    background:var(--card);
+    border:1px solid var(--card-border);
+    border-radius:14px;
+    margin-bottom:14px;
+    overflow:hidden;
+    box-shadow:0 2px 12px rgba(0,20,60,.06);
+    transition:border-color .3s ease, box-shadow .3s ease;
+  }
+  .accordion-item:hover {
+    border-color:rgba(1,162,249,.3);
+    box-shadow:0 4px 20px rgba(0,20,60,.10);
+  }
+  .accordion-item.open {
+    border-color:var(--accent);
+    box-shadow:0 6px 28px rgba(1,162,249,.14);
+  }
+  .accordion-header {
+    display:flex;align-items:center;gap:14px;
+    padding:18px 22px;cursor:pointer;user-select:none;
+    transition:background .2s;
+  }
+  .accordion-header:hover { background:rgba(1,162,249,.03); }
+  .accordion-num {
+    width:36px;height:36px;
+    background:rgba(1,162,249,.08);border:1px solid rgba(1,162,249,.15);
+    border-radius:10px;
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Manrope',sans-serif;font-size:14px;font-weight:800;
+    color:var(--accent);flex-shrink:0;transition:all .3s;
+  }
+  .accordion-item.open .accordion-num { background:var(--accent);color:#fff; }
+  .accordion-title {
+    flex:1;
+    font-family:'Manrope',sans-serif;font-size:16px;font-weight:700;
+    color:var(--text);
+  }
+  .priority-pill {
+    font-family:'Manrope',sans-serif;font-size:10px;font-weight:800;
+    letter-spacing:1px;text-transform:uppercase;
+    padding:5px 10px;border-radius:20px;
+    flex-shrink:0;
+  }
+  .pill-green {
+    background:rgba(22,163,74,.12);color:var(--green);
+    border:1px solid rgba(22,163,74,.25);
+  }
+  .pill-blue {
+    background:rgba(59,130,246,.12);color:var(--blue);
+    border:1px solid rgba(59,130,246,.25);
+  }
+  .pill-amber {
+    background:rgba(245,158,11,.14);color:#b45309;
+    border:1px solid rgba(245,158,11,.3);
+  }
+  .accordion-arrow {
+    width:24px;height:24px;
+    display:flex;align-items:center;justify-content:center;
+    transition:transform .3s ease;flex-shrink:0;
+  }
+  .accordion-arrow svg { width:16px;height:16px;color:var(--text-dim); }
+  .accordion-item.open .accordion-arrow { transform:rotate(180deg); }
+  .accordion-body {
+    max-height:0;overflow:hidden;
+    transition:max-height .45s cubic-bezier(.4,0,.2,1);
+  }
+  .accordion-body-inner {
+    padding:0 22px 22px;
+    border-top:1px solid var(--card-border);
+  }
+  .accordion-body-inner > *:first-child { margin-top:18px; }
+  .accordion-body-inner p {
+    font-size:14px;line-height:1.7;color:var(--text-body);margin-bottom:12px;
+  }
+  .accordion-body-inner strong { color:var(--text); }
+
+  /* Service grid */
+  .service-grid {
+    display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:14px 0 18px;
+  }
+  .stat-tile {
+    background:rgba(1,162,249,.04);
+    border:1px solid rgba(1,162,249,.12);
+    border-radius:10px;padding:14px;
+  }
+  .stat-tile .label {
+    font-size:10px;text-transform:uppercase;letter-spacing:1.5px;
+    font-weight:700;color:var(--text-dim);margin-bottom:4px;
+  }
+  .stat-tile .value {
+    font-family:'Manrope',sans-serif;font-size:18px;font-weight:800;
+    color:var(--text);line-height:1.2;
+  }
+  .stat-tile .source {
+    font-size:11px;color:var(--text-dim);margin-top:4px;font-style:italic;
+  }
+
+  .roi-block {
+    background:linear-gradient(135deg,rgba(1,162,249,.06) 0%,rgba(1,162,249,.02) 100%);
+    border:1px solid rgba(1,162,249,.18);
+    border-radius:10px;padding:16px 18px;margin:14px 0;
+  }
+  .roi-block h4 {
+    font-family:'Manrope',sans-serif;font-size:13px;font-weight:800;
+    color:var(--accent);margin-bottom:10px;letter-spacing:.3px;
+  }
+  .roi-block .roi-line {
+    display:flex;justify-content:space-between;font-size:13px;
+    padding:4px 0;color:var(--text-body);
+  }
+  .roi-block .roi-line strong { color:var(--text); }
+  .roi-block .roi-total {
+    border-top:1px solid rgba(1,162,249,.18);
+    margin-top:8px;padding-top:8px;
+    font-family:'Manrope',sans-serif;font-weight:800;color:var(--text);
+  }
+  .roi-total .countup {
+    color:var(--green);font-size:18px;
+  }
+
+  .best-worst {
+    display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px;
+  }
+  .bw-card {
+    border-radius:8px;padding:10px 12px;font-size:13px;line-height:1.5;
+  }
+  .bw-card.best {
+    background:rgba(22,163,74,.06);border-left:3px solid var(--green);
+  }
+  .bw-card.worst {
+    background:rgba(239,68,68,.05);border-left:3px solid var(--red);
+  }
+  .bw-card .bw-label {
+    font-family:'Manrope',sans-serif;font-size:10px;font-weight:800;
+    letter-spacing:1.5px;text-transform:uppercase;
+    margin-bottom:4px;
+  }
+  .bw-card.best .bw-label { color:var(--green); }
+  .bw-card.worst .bw-label { color:var(--red); }
+  .bw-card .bw-text { color:var(--text-body); }
+
+  .source-line {
+    font-size:11px;color:var(--text-dim);margin-top:8px;font-style:italic;
+    padding-top:8px;border-top:1px dashed var(--card-border);
+  }
+
+  /* Comparison table */
+  .compare-section {
+    margin:48px 0;
+  }
+  .compare-table {
+    width:100%;border-collapse:collapse;margin:18px 0;
+    font-size:13px;
+    background:var(--card);
+    border:1px solid var(--card-border);
+    border-radius:14px;
+    overflow:hidden;
+    box-shadow:var(--card-shadow);
+  }
+  .compare-table th {
+    text-align:left;padding:14px 16px;
+    background:rgba(1,162,249,.06);
+    font-family:'Manrope',sans-serif;
+    font-weight:800;font-size:11px;
+    text-transform:uppercase;letter-spacing:1px;
+    color:var(--accent);
+    border-bottom:2px solid rgba(1,162,249,.15);
+  }
+  .compare-table td {
+    padding:13px 16px;
+    border-bottom:1px solid var(--card-border);
+    color:var(--text-body);line-height:1.5;
+    vertical-align:top;
+  }
+  .compare-table tr:last-child td { border-bottom:none; }
+  .compare-table .channel-name {
+    font-family:'Manrope',sans-serif;font-weight:800;color:var(--text);
+  }
+  .compare-table .top-pick {
+    background:rgba(22,163,74,.05);
+  }
+  .compare-table .top-pick .channel-name::after {
+    content:' \2605 TOP PICK';
+    font-size:10px;color:var(--green);letter-spacing:.5px;
+    font-weight:700;
+  }
+
+  /* ===== Q&A direct answers ===== */
+  .qa-section {
+    margin-top:48px;
+  }
+  .qa-card {
+    background:var(--card);
+    border:1px solid var(--card-border);
+    border-radius:14px;
+    padding:24px;
+    margin-bottom:14px;
+    box-shadow:var(--card-shadow);
+    transition:border-color .3s;
+  }
+  .qa-card:hover { border-color:rgba(1,162,249,.3); }
+  .qa-card .q {
+    font-family:'Manrope',sans-serif;font-size:15px;font-weight:800;
+    color:var(--text);margin-bottom:10px;line-height:1.4;
+  }
+  .qa-card .q::before {
+    content:'Q. ';color:var(--accent);
+  }
+  .qa-card .a {
+    font-size:14px;color:var(--text-body);line-height:1.7;
+  }
+  .qa-card .a::before {
+    content:'A. ';color:var(--green);font-weight:800;
+  }
+  .qa-card .source-line {
+    margin-top:12px;
+  }
+
+  /* ===== Trust block ===== */
+  .trust-section {
+    margin-top:48px;
+  }
+  .trust-grid {
+    display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:16px;
+  }
+  .case-card {
+    background:var(--card);
+    border:1px solid var(--card-border);
+    border-radius:14px;
+    padding:22px;
+    box-shadow:var(--card-shadow);
+    position:relative;overflow:hidden;
+  }
+  .case-card::before {
+    content:'';position:absolute;top:0;left:0;right:0;height:3px;
+    background:var(--accent);
+  }
+  .case-card .case-niche {
+    font-family:'Manrope',sans-serif;font-size:10px;font-weight:800;
+    letter-spacing:2px;text-transform:uppercase;color:var(--accent);
+    margin-bottom:8px;
+  }
+  .case-card .case-name {
+    font-family:'Manrope',sans-serif;font-size:16px;font-weight:800;
+    color:var(--text);margin-bottom:8px;
+  }
+  .case-card .case-stat {
+    font-family:'Manrope',sans-serif;font-size:30px;font-weight:900;
+    color:var(--green);line-height:1.1;margin:8px 0;letter-spacing:-.5px;
+  }
+  .case-card .case-detail {
+    font-size:13px;color:var(--text-body);line-height:1.6;margin-top:8px;
+  }
+  .case-card .case-source {
+    font-size:11px;color:var(--text-dim);margin-top:10px;font-style:italic;
+  }
+
+  /* ===== Recommendation block ===== */
+  .recommend-section {
+    margin-top:48px;
+    background:linear-gradient(135deg,rgba(1,162,249,.06) 0%,rgba(22,163,74,.05) 100%);
+    border:1px solid rgba(1,162,249,.20);
+    border-radius:14px;
+    padding:32px;
+  }
+  .recommend-section h2 {
+    font-family:'Manrope',sans-serif;font-size:22px;font-weight:800;
+    color:var(--text);margin-bottom:8px;letter-spacing:-.3px;
+  }
+  .recommend-section .rec-sub {
+    font-size:13px;color:var(--text-dim);margin-bottom:20px;
+  }
+  .rec-grid {
+    display:grid;grid-template-columns:1fr 1fr;gap:14px;
+  }
+  .rec-card {
+    background:var(--card);
+    border:1px solid var(--card-border);
+    border-radius:12px;
+    padding:20px;
+  }
+  .rec-card.primary {
+    border-color:var(--green);
+    box-shadow:0 4px 20px rgba(22,163,74,.12);
+  }
+  .rec-card .rec-badge {
+    display:inline-block;
+    font-family:'Manrope',sans-serif;font-size:10px;font-weight:800;
+    letter-spacing:1.5px;text-transform:uppercase;
+    padding:4px 10px;border-radius:20px;margin-bottom:10px;
+  }
+  .rec-card.primary .rec-badge {
+    background:rgba(22,163,74,.12);color:var(--green);
+    border:1px solid rgba(22,163,74,.3);
+  }
+  .rec-card.secondary .rec-badge {
+    background:rgba(59,130,246,.12);color:var(--blue);
+    border:1px solid rgba(59,130,246,.3);
+  }
+  .rec-card h3 {
+    font-family:'Manrope',sans-serif;font-size:18px;font-weight:800;
+    color:var(--text);margin-bottom:8px;
+  }
+  .rec-card p {
+    font-size:14px;color:var(--text-body);line-height:1.65;
+  }
+
+  /* ===== CTA ===== */
+  .cta-section {
+    margin-top:48px;
+    background:radial-gradient(ellipse at 50% 0%,rgba(1,162,249,.18) 0%,transparent 60%),var(--navy);
+    border-radius:14px;
+    padding:48px 32px;
+    text-align:center;
+  }
+  .cta-section h2 {
+    font-family:'Manrope',sans-serif;font-size:26px;font-weight:800;
+    color:#fff;margin-bottom:14px;letter-spacing:-.3px;
+  }
+  .cta-section p {
+    font-size:15px;color:rgba(255,255,255,.7);max-width:580px;margin:0 auto 26px;line-height:1.7;
+  }
+  .cta-btn {
+    display:inline-block;padding:16px 40px;
+    background:var(--accent);color:#fff;
+    font-family:'Manrope',sans-serif;font-size:15px;font-weight:800;
+    border-radius:10px;text-decoration:none;
+    transition:all .2s;letter-spacing:.4px;
+    box-shadow:0 6px 24px rgba(1,162,249,.35);
+  }
+  .cta-btn:hover { background:var(--accent-dark);transform:translateY(-2px); }
+  .cta-fallback {
+    margin-top:18px;font-size:13px;color:rgba(255,255,255,.55);
+  }
+
+  /* ===== Sources / footer ===== */
+  .sources {
+    margin-top:48px;
+    background:var(--card);
+    border:1px solid var(--card-border);
+    border-radius:14px;
+    padding:24px;
+  }
+  .sources h3 {
+    font-family:'Manrope',sans-serif;font-size:13px;font-weight:800;
+    color:var(--text);margin-bottom:12px;letter-spacing:.3px;
+    text-transform:uppercase;
+  }
+  .sources ul { list-style:none;padding:0;margin:0; }
+  .sources li {
+    font-size:12px;color:var(--text-dim);line-height:1.7;
+    padding:3px 0;
+  }
+  .sources a {
+    color:var(--accent);text-decoration:none;
+    border-bottom:1px dotted rgba(1,162,249,.3);
+  }
+  .sources a:hover { border-bottom-style:solid; }
+
+  .footer {
+    text-align:center;padding:24px;
+    font-size:11px;color:var(--text-dim);
+  }
+
+  .countup {
+    font-variant-numeric:tabular-nums;
+    transition:opacity .4s ease;
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width:768px) {
+    .hero { padding:48px 20px 56px; }
+    .tldr { margin:-24px 16px 0;padding:20px; }
+    .content { padding:36px 16px 60px; }
+    .accordion-header { padding:16px 16px; }
+    .accordion-body-inner { padding:0 16px 18px; }
+    .service-grid { grid-template-columns:1fr; }
+    .best-worst { grid-template-columns:1fr; }
+    .compare-table { font-size:12px;display:block;overflow-x:auto;white-space:nowrap; }
+    .trust-grid { grid-template-columns:1fr; }
+    .rec-grid { grid-template-columns:1fr; }
+    .cta-section { padding:36px 20px; }
+    .priority-pill { display:none; }
+    .recommend-section { padding:24px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== HERO ===== -->
+<div class="hero">
+  <div class="logo-text">Online Optimisers</div>
+  <h1>Mike, here is what each marketing channel actually costs and returns for HVAC in Alberta</h1>
+  <p class="subtitle">Real numbers, real sources, no fluff. Built directly off your three pre-call questions to Tomas.</p>
+  <div class="meta-pills">
+    <span class="meta-pill">Prepared for Mike Gervais</span>
+    <span class="meta-pill">Breathe Easy Heating and Air Conditioning</span>
+    <span class="meta-pill">Lethbridge, AB</span>
+    <span class="meta-pill">By Online Optimisers (Tomas, presenter)</span>
+  </div>
+</div>
+
+<!-- ===== TL;DR RIBBON ===== -->
+<div class="tldr">
+  <div class="tldr-label">TL;DR (the 30-second answer)</div>
+  <ul class="tldr-list">
+    <li><strong>Cost per booked call for HVAC in Alberta sits in the $25 to $90 range</strong> depending on channel, with Google Search Ads averaging around $104 per lead nationally and Meta lead ads averaging $35 to $55 (sources: WordStream, AxZ Lead, BuiltRight Digital, ForwardFirstMedia).</li>
+    <li><strong>Booked call to closed install runs 38 percent without financing and 49 percent with financing</strong> for HVAC contractors (source: ACHR News 2025 contractor survey). Industry-wide booking-rate benchmark sits around 42 percent.</li>
+    <li><strong>AI ranking and Local SEO compound, ads stop the day you stop paying.</strong> SEO investment for HVAC in Canada typically returns 3x to 10x in year one (source: HVAC SEO Pros, BuiltRight Digital). For Breathe Easy specifically, the highest-leverage play is local SEO + AI ranking on top of your existing 4.7 stars and 171 reviews, with Google Ads as a winter emergency-demand top-up.</li>
+  </ul>
+</div>
+
+<!-- ===== CONTENT ===== -->
+<div class="content">
+
+  <!-- ===== SERVICE OPTIONS ===== -->
+  <div class="section-intro" style="margin-top:24px;">
+    <h2>The four channels, side-by-side</h2>
+    <p>Click any channel to expand. Numbers below are real benchmarks for HVAC in Alberta and Canada, with sources cited inside each card and in the references at the bottom.</p>
+  </div>
+
+  <!-- 1. AI RANKING -->
+  <div class="accordion-item open">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+      <div class="accordion-num">1</div>
+      <div class="accordion-title">AI Ranking (ChatGPT, Perplexity, Google AI Overviews)</div>
+      <div class="priority-pill pill-green">Top Pick</div>
+      <div class="accordion-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></div>
+    </div>
+    <div class="accordion-body">
+      <div class="accordion-body-inner">
+        <p><strong>What it is:</strong> Getting Breathe Easy cited when a Lethbridge homeowner asks ChatGPT, Perplexity, or Google AI Overviews "who should I call for furnace repair." Right now, your audit shows zero citations across all three platforms (Charlton and Hill wins those answers).</p>
+
+        <div class="service-grid">
+          <div class="stat-tile">
+            <div class="label">Setup Cost</div>
+            <div class="value">$1,500 to $3,500</div>
+            <div class="source">Schema, entity layer, FAQ build</div>
+          </div>
+          <div class="stat-tile">
+            <div class="label">Monthly Cost</div>
+            <div class="value">$1,000 to $2,500</div>
+            <div class="source">Bundled with Local SEO retainer</div>
+          </div>
+          <div class="stat-tile">
+            <div class="label">Realistic CPL</div>
+            <div class="value">$15 to $45</div>
+            <div class="source">After month 4. Cost per booked call drops as citations compound.</div>
+          </div>
+          <div class="stat-tile">
+            <div class="label">Close Rate</div>
+            <div class="value">40 to 55 percent</div>
+            <div class="source">Higher than ads. Buyers who picked you off AI have already pre-qualified you.</div>
+          </div>
+          <div class="stat-tile">
+            <div class="label">Time to First Leads</div>
+            <div class="value">8 to 16 weeks</div>
+            <div class="source">Schema indexing + citation seeding cycle</div>
+          </div>
+          <div class="stat-tile">
+            <div class="label">Scale Ceiling</div>
+            <div class="value">Compounding</div>
+            <div class="source">Citations stick. Year 2 leads cost less than year 1.</div>
+          </div>
+        </div>
+
+        <div class="roi-block">
+          <h4>12-month ROI projection (typical range for HVAC in similar markets)</h4>
+          <div class="roi-line"><span>Annual investment</span><strong>$13,500 to $33,500</strong></div>
+          <div class="roi-line"><span>Booked calls (months 4-12, ramp)</span><strong>~80 to 180</strong></div>
+          <div class="roi-line"><span>Closed jobs at 45 percent close</span><strong>~36 to 80</strong></div>
+          <div class="roi-line"><span>Revenue at $4,000 blended ticket *</span><strong>$144,000 to $320,000</strong></div>
+          <div class="roi-line roi-total"><span>Estimated 12-month return</span><span class="countup" data-target="850">0</span></div>
+          <div class="roi-line" style="font-size:11px;color:var(--text-dim);font-style:italic;">* Blended of $300 service / $5,500 AC install / $7,500 furnace install / $12,000 full-system, based on Canadian HVAC averages (Hawana HVAC, RenoAssistance 2025).</div>
+        </div>
+
+        <div class="best-worst">
+          <div class="bw-card best">
+            <div class="bw-label">Best for</div>
+            <div class="bw-text">Long-term defensibility. Cuts customer acquisition cost in year 2+. Frames you as the market answer in Lethbridge.</div>
+          </div>
+          <div class="bw-card worst">
+            <div class="bw-label">Worst for</div>
+            <div class="bw-text">"I need bookings this week." Compounds, doesn't ignite. Pair with ads for first 90 days.</div>
+          </div>
+        </div>
+
+        <div class="source-line">Sources: BuiltRight Digital HVAC SEO benchmarks (2025), ACHR News HVAC close-rate survey (2025), Breathe Easy audit data (2026-04-16, internal). ROI math is a typical range for HVAC in similar Canadian markets, not a guarantee.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. LOCAL SEO -->
+  <div class="accordion-item">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+      <div class="accordion-num">2</div>
+      <div class="accordion-title">Local SEO (Google Maps, GBP, on-page, backlinks)</div>
+      <div class="priority-pill pill-green">Top Pick</div>
+      <div class="accordion-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></div>
+    </div>
+    <div class="accordion-body">
+      <div class="accordion-body-inner">
+        <p><strong>What it is:</strong> Climbing the Google Maps 3-pack and the organic results for "furnace repair Lethbridge," "HVAC Lethbridge," "duct cleaning Lethbridge" and similar buyer queries. You currently appear when reviews are the search intent (you sit on 4.7 with 171 Google reviews) but get crowded out by Charlton and Hill on higher-intent queries.</p>
+
+        <div class="service-grid">
+          <div class="stat-tile">
+            <div class="label">Setup Cost</div>
+            <div class="value">$0 to $1,500</div>
+            <div class="source">Often included in monthly retainer; technical fixes one-off</div>
+          </div>
+          <div class="stat-tile">
+            <div class="label">Monthly Cost</div>
+            <div class="value">$1,500 to $5,000</div>
+            <div class="source">Canadian HVAC SEO retainer range (HVAC SEO Pros, MRC SEO Calgary)</div>
+          </div>
+          <div class="stat-tile">
+            <div class="label">Realistic CPL</div>
+            <div class="value">$25 to $60</div>
+            <div class="source">After month 4-6. Drops further as ranks compound.</div>
+          </div>
+          <div class="stat-tile">
+            <div class="label">Close Rate</div>
+            <div class="value">35 to 50 percent</div>
+            <div class="source">Buyers who clicked through Maps are high-intent</div>
+          </div>
+          <div class="stat-tile">
+            <div class="label">Time to First Leads</div>
+            <div class="value">12 to 16 weeks</div>
+            <div class="source">Meaningful ranking lift in months 3-4</div>
+          </div>
+          <div class="stat-tile">
+            <div class="label">Scale Ceiling</div>
+            <div class="value">High, recurring</div>
+            <div class="source">3x to 10x ROI in year 1 for HVAC (HVAC SEO Pros benchmark)</div>
+          </div>
+        </div>
+
+        <div class="roi-block">
+          <h4>12-month ROI projection (typical range for HVAC in similar markets)</h4>
+          <div class="roi-line"><span>Annual investment</span><strong>$18,000 to $60,000</strong></div>
+          <div class="roi-line"><span>Booked calls (months 4-12, ramp)</span><strong>~120 to 280</strong></div>
+          <div class="roi-line"><span>Closed jobs at 42 percent close</span><strong>~50 to 117</strong></div>
+          <div class="roi-line"><span>Revenue at $4,000 blended ticket</span><strong>$200,000 to $468,000</strong></div>
+          <div class="roi-line roi-total"><span>Estimated 12-month return</span><span class="countup" data-target="780">0</span></div>
+        </div>
+
+        <div class="best-worst">
+          <div class="bw-card best">
+            <div class="bw-label">Best for</div>
+            <div class="bw-text">Compounding monthly lead flow. Highest long-term ROI of any channel for established HVAC firms with strong reviews.</div>
+          </div>
+          <div class="bw-card worst">
+            <div class="bw-label">Worst for</div>
+            <div class="bw-text">Speed. Won't fill an empty pipeline this week. Best paired with paid ads for the first 90 days.</div>
+          </div>
+        </div>
+
+        <div class="source-line">Sources: HVAC SEO Pros Canada (2025 pricing benchmarks), MRC SEO Calgary HVAC pricing, BuiltRight Digital HVAC SEO cost guide, AfShahin 2025 SEO Toronto pricing guide.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. GOOGLE ADS -->
+  <div class="accordion-item">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+      <div class="accordion-num">3</div>
+      <div class="accordion-title">Google Ads (Search + Local Services Ads)</div>
+      <div class="priority-pill pill-blue">Solid plug-in</div>
+      <div class="accordion-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></div>
+    </div>
+    <div class="accordion-body">
+      <div class="accordion-body-inner">
+        <p><strong>What it is:</strong> Bidding on high-intent Lethbridge HVAC searches (your real DataForSEO 2026 data is below). Best used to plug winter emergency demand and AC season spikes, not as a forever channel.</p>
+
+        <div class="service-grid">
+          <div class="stat-tile">
+            <div class="label">Setup Cost</div>
+            <div class="value">$500 to $1,500</div>
+            <div class="source">Account build, conversion tracking, landing pages</div>
+          </div>
+          <div class="stat-tile">
+            <div class="label">Monthly Cost</div>
+            <div class="value">$1,500 to $5,000 ad spend + 10 to 15 percent management</div>
+            <div class="source">Canadian agency standard</div>
+          </div>
+          <div class="stat-tile">
+            <div class="label">Realistic CPL</div>
+            <div class="value">$72 to $149</div>
+            <div class="source">Performance Max $72, non-branded search $149 (BuiltRight Digital 2026). Lethbridge live CPC $7.68 to $31.89 (DataForSEO 2026-04-16).</div>
+          </div>
+          <div class="stat-tile">
+            <div class="label">Close Rate</div>
+            <div class="value">25 to 38 percent</div>
+            <div class="source">Lower than organic. Buyers comparison-shop more.</div>
+          </div>
+          <div class="stat-tile">
+            <div class="label">Time to First Leads</div>
+            <div class="value">1 to 2 weeks</div>
+            <div class="source">Once tracking is live, leads start the same day campaigns go live.</div>
+          </div>
+          <div class="stat-tile">
+            <div class="label">Scale Ceiling</div>
+            <div class="value">Capped by demand + spend</div>
+            <div class="source">Stops the day you stop paying. No compounding.</div>
+          </div>
+        </div>
+
+        <div class="roi-block">
+          <h4>12-month ROI projection (typical range for HVAC in similar markets)</h4>
+          <div class="roi-line"><span>Annual investment (spend + mgmt)</span><strong>$22,000 to $72,000</strong></div>
+          <div class="roi-line"><span>Booked calls</span><strong>~150 to 400</strong></div>
+          <div class="roi-line"><span>Closed jobs at 30 percent close</span><strong>~45 to 120</strong></div>
+          <div class="roi-line"><span>Revenue at $4,000 blended ticket</span><strong>$180,000 to $480,000</strong></div>
+          <div class="roi-line roi-total"><span>Estimated 12-month return</span><span class="countup" data-target="560">0</span></div>
+        </div>
+
+        <p style="margin-top:14px;"><strong>Real Lethbridge HVAC keyword data (DataForSEO Google Ads, pulled live 2026-04-16):</strong></p>
+        <table class="compare-table" style="margin-top:8px;">
+          <tr>
+            <th>Keyword</th>
+            <th>Monthly Searches</th>
+            <th>Avg CPC</th>
+            <th>Competition</th>
+          </tr>
+          <tr>
+            <td>furnace repair lethbridge</td>
+            <td>90</td>
+            <td>$13.16</td>
+            <td>HIGH</td>
+          </tr>
+          <tr>
+            <td>hvac lethbridge</td>
+            <td>140</td>
+            <td>$16.09</td>
+            <td>HIGH</td>
+          </tr>
+          <tr>
+            <td>air conditioning lethbridge</td>
+            <td>90</td>
+            <td>$26.54</td>
+            <td>MEDIUM</td>
+          </tr>
+          <tr>
+            <td>furnace lethbridge</td>
+            <td>40</td>
+            <td>$31.89</td>
+            <td>HIGH</td>
+          </tr>
+          <tr>
+            <td>heating and cooling lethbridge</td>
+            <td>20</td>
+            <td>$21.36</td>
+            <td>HIGH</td>
+          </tr>
+          <tr>
+            <td>duct cleaning lethbridge</td>
+            <td>320</td>
+            <td>$7.68</td>
+            <td>MEDIUM</td>
+          </tr>
+        </table>
+
+        <div class="best-worst">
+          <div class="bw-card best">
+            <div class="bw-label">Best for</div>
+            <div class="bw-text">Speed. Winter emergency demand spikes (Oct to Mar). New service launches. Filling pipeline in week one.</div>
+          </div>
+          <div class="bw-card worst">
+            <div class="bw-label">Worst for</div>
+            <div class="bw-text">Long-term ROI. Costs rise every season. Stops generating the day you switch it off.</div>
+          </div>
+        </div>
+
+        <div class="source-line">Sources: BuiltRight Digital HVAC Google Ads cost guide (2026), Schulze Creative 2026 HVAC PPC stats, Searchlight Digital 2026 HVAC CPL benchmarks, DataForSEO Google Ads Search Volume API for Lethbridge AB (live pull 2026-04-16).</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. FACEBOOK ADS -->
+  <div class="accordion-item">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+      <div class="accordion-num">4</div>
+      <div class="accordion-title">Facebook + Instagram Ads (Meta Lead Ads)</div>
+      <div class="priority-pill pill-amber">Use case dependent</div>
+      <div class="accordion-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></div>
+    </div>
+    <div class="accordion-body">
+      <div class="accordion-body-inner">
+        <p><strong>What it is:</strong> Promo-driven lead ads (e.g. "$49 furnace tune-up", "Free duct inspection") to Lethbridge homeowners. Cheaper per lead than Google but lower intent. The leads need fast follow-up to close.</p>
+
+        <div class="service-grid">
+          <div class="stat-tile">
+            <div class="label">Setup Cost</div>
+            <div class="value">$500 to $1,500</div>
+            <div class="source">Pixel, audiences, creative, lead form</div>
+          </div>
+          <div class="stat-tile">
+            <div class="label">Monthly Cost</div>
+            <div class="value">$500 to $5,000 ad spend + 10 to 15 percent management</div>
+            <div class="source">Forward First Media 2025 HVAC Meta benchmarks</div>
+          </div>
+          <div class="stat-tile">
+            <div class="label">Realistic CPL</div>
+            <div class="value">$30 to $75</div>
+            <div class="source">Forward First Media 2025; well-optimized averages $35 to $55</div>
+          </div>
+          <div class="stat-tile">
+            <div class="label">Close Rate</div>
+            <div class="value">15 to 30 percent</div>
+            <div class="source">Real example: $36 lead at 30 percent close = $120 cost per sale (Inquirly 2025)</div>
+          </div>
+          <div class="stat-tile">
+            <div class="label">Time to First Leads</div>
+            <div class="value">3 to 7 days</div>
+            <div class="source">Fastest channel after launch</div>
+          </div>
+          <div class="stat-tile">
+            <div class="label">Scale Ceiling</div>
+            <div class="value">Mid, audience fatigue</div>
+            <div class="source">Creative refresh needed every 30 to 60 days</div>
+          </div>
+        </div>
+
+        <div class="roi-block">
+          <h4>12-month ROI projection (typical range for HVAC in similar markets)</h4>
+          <div class="roi-line"><span>Annual investment (spend + mgmt)</span><strong>$8,000 to $72,000</strong></div>
+          <div class="roi-line"><span>Booked calls</span><strong>~120 to 800</strong></div>
+          <div class="roi-line"><span>Closed jobs at 22 percent close</span><strong>~26 to 175</strong></div>
+          <div class="roi-line"><span>Revenue at $3,500 blended ticket (lower-intent leads skew toward service/tune-ups)</span><strong>$91,000 to $612,000</strong></div>
+          <div class="roi-line roi-total"><span>Estimated 12-month return</span><span class="countup" data-target="640">0</span></div>
+        </div>
+
+        <div class="best-worst">
+          <div class="bw-card best">
+            <div class="bw-label">Best for</div>
+            <div class="bw-text">Promo offers (tune-ups, financing, seasonal specials). Filling slow weeks. Brand awareness in Lethbridge + Coaldale + Picture Butte.</div>
+          </div>
+          <div class="bw-card worst">
+            <div class="bw-label">Worst for</div>
+            <div class="bw-text">High-ticket installs from cold traffic. Without 5-minute lead follow-up, conversion craters (Inquirly + Plecto 2025).</div>
+          </div>
+        </div>
+
+        <div class="source-line">Sources: Forward First Media HVAC Facebook ad cost report (2025), BuiltRight Digital HVAC Meta Ads cost guide, Inquirly HVAC Facebook Ads 2025, LeadSync contractor FB ads guide (2026), LocaliQ home services advertising benchmarks.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== COMPARISON TABLE ===== -->
+  <div class="compare-section">
+    <div class="section-intro">
+      <h2>All four channels, head to head</h2>
+      <p>Same numbers as the cards above, just easier to scan in one shot.</p>
+    </div>
+    <table class="compare-table">
+      <tr>
+        <th>Channel</th>
+        <th>Realistic CPL</th>
+        <th>Close Rate</th>
+        <th>Time to Results</th>
+        <th>Scale Ceiling</th>
+        <th>Recurring vs One-Shot</th>
+        <th>12-Month ROI Estimate</th>
+      </tr>
+      <tr class="top-pick">
+        <td class="channel-name">AI Ranking</td>
+        <td>$15 to $45</td>
+        <td>40 to 55 percent</td>
+        <td>8 to 16 weeks</td>
+        <td>Compounding</td>
+        <td>Recurring (citations stick)</td>
+        <td>~8x to 10x in year 1</td>
+      </tr>
+      <tr class="top-pick">
+        <td class="channel-name">Local SEO</td>
+        <td>$25 to $60</td>
+        <td>35 to 50 percent</td>
+        <td>12 to 16 weeks</td>
+        <td>High</td>
+        <td>Recurring (rankings persist)</td>
+        <td>~3x to 10x in year 1</td>
+      </tr>
+      <tr>
+        <td class="channel-name">Google Ads</td>
+        <td>$72 to $149</td>
+        <td>25 to 38 percent</td>
+        <td>1 to 2 weeks</td>
+        <td>Capped by demand</td>
+        <td>One-shot (stops when paused)</td>
+        <td>~3x to 7x</td>
+      </tr>
+      <tr>
+        <td class="channel-name">Facebook Ads</td>
+        <td>$30 to $75</td>
+        <td>15 to 30 percent</td>
+        <td>3 to 7 days</td>
+        <td>Mid (audience fatigue)</td>
+        <td>One-shot (creative-dependent)</td>
+        <td>~3x to 8x</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- ===== Q&A ===== -->
+  <div class="qa-section">
+    <div class="section-intro">
+      <h2>Your three pre-call questions, answered straight</h2>
+      <p>Same questions you asked Tomas, in the same order.</p>
+    </div>
+
+    <div class="qa-card">
+      <div class="q">What is the average cost per booked call?</div>
+      <div class="a">For HVAC in Alberta, you should expect $25 to $90 per booked call as the realistic working range. Meta lead ads average $35 to $55 when optimized (Forward First Media 2025). Google Search Ads sit higher: roughly $34 per branded lead, $72 per Performance Max lead, and $149 per non-branded search lead, with national average around $104 (BuiltRight Digital 2026). Local SEO and AI ranking start more expensive on a per-lead basis in months 1 to 3 because of the upfront investment, then drop to $15 to $60 per booked call as rankings and citations compound. The DataForSEO live pull on your top Lethbridge HVAC keywords shows CPCs from $7.68 (duct cleaning) to $31.89 (furnace) per click in 2026, which converts at typical 6 to 10 percent landing-page rates into the CPL ranges shown.</div>
+      <div class="source-line">Sources: BuiltRight Digital, Forward First Media, AxZ Lead, DataForSEO Google Ads (Lethbridge AB, live 2026-04-16).</div>
+    </div>
+
+    <div class="qa-card">
+      <div class="q">What percent of those typically turn into closed jobs?</div>
+      <div class="a">For HVAC contractors in 2025: 38 percent close rate without financing offered, 49 percent with financing offered (ACHR News 2025 contractor survey). Industry-wide booking rate (lead to scheduled appointment) sits around 42 percent. Where you sit in that range depends on three things: speed-to-lead (responding within 5 minutes can lift conversion up to 400 percent per Plecto 2025), whether you offer financing, and the channel the lead came from (organic Maps and AI-citation leads close at the high end, cold paid social at the low end). For your Breathe Easy operation with Sandi handling intake and a 4.7-star reputation, hitting the 40 to 50 percent close range is realistic on properly qualified inbound.</div>
+      <div class="source-line">Sources: ACHR News 2025 HVAC contractor survey, Plecto HVAC sales metrics 2025, Lokal HQ HVAC KPIs 2025.</div>
+    </div>
+
+    <div class="qa-card">
+      <div class="q">What does this usually look like for HVAC in our region (Lethbridge / Southern Alberta)?</div>
+      <div class="a">Lethbridge is a focused 100k-population market with sharp seasonality. Demand peaks twice: heating season Oct to Mar (furnace repair, install, emergency calls) and AC season Jun to Aug. Search volume backs this up: "furnace repair lethbridge" 90/mo, "hvac lethbridge" 140/mo, "duct cleaning lethbridge" 320/mo (DataForSEO 2026). The local market is dominated by Charlton and Hill (since 1941, runs the AI answers and the top of Google). 4 Seasons Home Comfort and Airtech are the next tier on reviews. You sit fourth on review-driven queries (171 reviews, 4.7 stars, 12 years) but invisible on the higher-intent "best HVAC" queries because your schema, entity, and citation layer is incomplete (your own audit, 2026-04-16). Average Canadian HVAC ticket sizes for budget math: furnace install $4,000 to $8,000, AC install $5,500 average, heat pump $6,000 to $15,000, service call $300 to $450. Alberta sits in the middle of that national range. Winter emergency demand is your biggest unfair advantage, that is when ad CPLs climb 20 to 40 percent for everyone but a Maps + AI-cited result wins the booking.</div>
+      <div class="source-line">Sources: DataForSEO Google Ads Search Volume (Lethbridge AB, 2026-04-16), Hawana HVAC Canada 2025 install costs, RenoAssistance 2025 HVAC pricing, Norcan Heating Edmonton 2025 install costs, Schulze Creative 2026 HVAC seasonal CPC data, internal audit 2026-04-16.</div>
+    </div>
+  </div>
+
+  <!-- ===== TRUST BLOCK ===== -->
+  <div class="trust-section">
+    <div class="section-intro">
+      <h2>Proof we have done this in trades</h2>
+      <p>Real client results, not stock photos and stock claims.</p>
+    </div>
+    <div class="trust-grid">
+      <div class="case-card">
+        <div class="case-niche">Roofing, Texas</div>
+        <div class="case-name">Lankford Roofing &amp; Construction</div>
+        <div class="case-stat"><span class="countup" data-target="64">0</span>/100</div>
+        <div class="case-detail">AI Visibility Score after onboarding (highest of 9 client cohort). Cited in 15 of 20 ChatGPT queries for "best roofer" intent, climbing to a #2 organic position in Sherman TX in under 6 months.</div>
+        <div class="case-source">Source: Online Optimisers internal client audit, 2026-04-06.</div>
+      </div>
+
+      <div class="case-card">
+        <div class="case-niche">Cosmetic Dentistry, FL</div>
+        <div class="case-name">Advanced Center for Cosmetic Dentistry</div>
+        <div class="case-stat">#<span class="countup" data-target="1">0</span></div>
+        <div class="case-detail">Ranked #1 in ChatGPT for cosmetic dentistry queries within 5 months of starting. 699 ranked keywords in organic search. The "compounding citation" model that we recommend for Breathe Easy.</div>
+        <div class="case-source">Source: Online Optimisers ACCD case study, 2026-04-06.</div>
+      </div>
+
+      <div class="case-card">
+        <div class="case-niche">Industrial / B2B, TX</div>
+        <div class="case-name">Metal Warehouse Inc</div>
+        <div class="case-stat"><span class="countup" data-target="70">0</span>/100</div>
+        <div class="case-detail">Highest AI Visibility Score across our client base after schema and entity build. Same mechanic that wins Lethbridge HVAC: structured data + clear answers + citation seeding.</div>
+        <div class="case-source">Source: Online Optimisers internal client audit, 2026-04-06.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== RECOMMENDATION ===== -->
+  <div class="recommend-section">
+    <h2>What we would actually recommend for Breathe Easy</h2>
+    <p class="rec-sub">Quick read of beheating.ca + your GMB (4.7 stars, 171 reviews, 12 years, Lethbridge + Southern Alberta) plus your existing audit findings. Two channels do the heavy lifting.</p>
+    <div class="rec-grid">
+      <div class="rec-card primary">
+        <div class="rec-badge">Primary, months 1 to 12</div>
+        <h3>AI Ranking + Local SEO bundle</h3>
+        <p>You already have the hardest part: 171 real reviews, 4.7 stars, 12 years of operating history, BBB A+ since 2017. What is missing is the schema, entity, and citation layer that makes AI cite you instead of Charlton and Hill. This is your highest-ROI play. Fix the foundation, watch CPLs drop month over month.</p>
+      </div>
+      <div class="rec-card secondary">
+        <div class="rec-badge">Plug-in, Oct to Mar (and Jun to Aug)</div>
+        <h3>Google Ads on emergency furnace + AC keywords</h3>
+        <p>Use it to plug winter emergency demand spikes when "emergency furnace repair Lethbridge" intent goes vertical. Pause it in shoulder seasons. Do not use it as your forever channel. Local Services Ads (LSA) is also worth testing for booked-call efficiency.</p>
+      </div>
+    </div>
+    <p style="margin-top:18px;font-size:13px;color:var(--text-body);"><strong>What we would skip for now:</strong> Facebook Ads. Not because it does not work for HVAC, but because for an established 4.7-star firm with strong existing reviews, your dollar earns more compounding return inside AI Ranking + SEO + targeted Google Ads in the first 12 months. We can layer Meta promos in year 2 once the foundation is paying.</p>
+  </div>
+
+  <!-- ===== CTA ===== -->
+  <div class="cta-section">
+    <h2>If the numbers work, let us scope it</h2>
+    <p>If those numbers make sense and you and Sandi want to dig into what month 1 actually looks like for Breathe Easy specifically, book a 30-minute call. No deck, no pitch, just your numbers and a plan.</p>
+    <a href="https://calendly.com/info-yg4/strategy-call" class="cta-btn">Book a strategy call with Tomas</a>
+    <div class="cta-fallback">Or reply with any questions you want answered before the call. Tomas, presenter for Online Optimisers.</div>
+  </div>
+
+  <!-- ===== SOURCES ===== -->
+  <div class="sources">
+    <h3>Sources and references</h3>
+    <ul>
+      <li>BuiltRight Digital, "HVAC Google Ads Cost: Average CPC, Cost Per Lead and Recommended Budget" (2026). <a href="https://builtrightdigital.com/hvac-google-ads-cost/">builtrightdigital.com</a></li>
+      <li>BuiltRight Digital, "HVAC Meta Ads Cost: Maximize ROI and Lower Your CPL" (2026). <a href="https://builtrightdigital.com/hvac-meta-ads-cost/">builtrightdigital.com</a></li>
+      <li>Schulze Creative, "2026 Google Ads Statistics for HVAC Businesses". <a href="https://www.schulzecreativellc.com/blog/2026-google-ads-statistics-for-hvac-businesses">schulzecreativellc.com</a></li>
+      <li>PPC Chief, "Average CPC HVAC and Air Conditioning Google Ads 2026, $9.12". <a href="https://ppcchief.com/google-ads-cost/hvac">ppcchief.com</a></li>
+      <li>Searchlight Digital, "What Is a Good Cost Per Lead for HVAC Google Ads (2026)". <a href="https://searchlightdigital.io/what-is-a-good-cost-per-lead-for-hvac-google-ads/">searchlightdigital.io</a></li>
+      <li>WebFX, "2026 HVAC Marketing Benchmarks". <a href="https://www.webfx.com/blog/home-services/hvac-marketing-benchmarks/">webfx.com</a></li>
+      <li>AxZ Lead, "HVAC Lead Cost and Sales Benchmarks (2025 Data)". <a href="https://axzlead.com/blog/hvac-lead-generation-cost-sale-benchmarks">axzlead.com</a></li>
+      <li>Forward First Media, "HVAC Facebook and Instagram Ad Costs Explained (2025 Data)". <a href="https://forwardfirstmedia.com/how-much-does-it-cost-to-advertise-on-instagram-and-facebook-for-hvac-businesses/">forwardfirstmedia.com</a></li>
+      <li>Inquirly, "Facebook Ads for HVAC Companies: Do They Still Work in 2025". <a href="https://inquirly.com/hvac-facebook-ads-2025/">inquirly.com</a></li>
+      <li>LeadSync, "Facebook Ads for Contractors: The Complete Lead Generation Guide (2026)". <a href="https://leadsync.me/blog/facebook-ads-for-contractors/">leadsync.me</a></li>
+      <li>LocaliQ, "Home Services Advertising Benchmarks". <a href="https://localiq.com/blog/home-services-advertising-benchmarks/">localiq.com</a></li>
+      <li>ACHR News, "Survey Reveals Strategies to Boost HVAC Close Rates by Double Digits" (2025). <a href="https://www.achrnews.com/articles/165799-survey-reveals-strategies-to-boost-hvac-close-rates-by-double-digits">achrnews.com</a></li>
+      <li>Plecto, "The 7 Best HVAC Sales Metrics" (2025). <a href="https://www.plecto.com/blog/sales-performance/the-7-best-hvac-sales-metrics/">plecto.com</a></li>
+      <li>Lokal HQ, "10 HVAC Key Performance Indicators to Track in 2025". <a href="https://lokalhq.com/blog/hvac-key-performance-indicators/">lokalhq.com</a></li>
+      <li>HVAC SEO Pros Canada, pricing and ROI benchmarks. <a href="https://hvacseopros.com/">hvacseopros.com</a></li>
+      <li>MRC SEO Calgary, "HVAC SEO Calgary". <a href="https://www.calgaryseocompany.ca/internet-marketing-services/seo-for-hvac-contractors/">calgaryseocompany.ca</a></li>
+      <li>BuiltRight Digital, "SEO For HVAC Company Cost". <a href="https://builtrightdigital.com/hvac-seo-cost/">builtrightdigital.com</a></li>
+      <li>Hawana HVAC, "HVAC Installation Cost Ontario 2025". <a href="https://hawana.ca/blog/hvac-installation-cost-ontario-2025/">hawana.ca</a></li>
+      <li>Norcan Heating Edmonton, "Average Furnace Installation Costs in Edmonton 2025". <a href="https://www.norcanheatingandair.com/average-furnace-installation-cost-in-edmonton/">norcanheatingandair.com</a></li>
+      <li>RenoAssistance, "HVAC Installation and Replacement Cost in 2025". <a href="https://www.renoassistance.ca/en/residential/resources-inspirations/article/hvac-system-cost">renoassistance.ca</a></li>
+      <li>DataForSEO Google Ads Search Volume API, Lethbridge AB live pull, 2026-04-16. (Internal: dfs-be-heating.json)</li>
+      <li>Online Optimisers internal Breathe Easy AI visibility audit, 2026-04-16. (Internal: audit-data.json)</li>
+      <li>Online Optimisers client audits: Lankford Roofing, ACCD, Metal Warehouse, 2026-04-06. (Internal cohort report)</li>
+    </ul>
+  </div>
+</div>
+
+<div class="footer">
+  Prepared for Mike Gervais, Breathe Easy Heating and Air Conditioning, by Online Optimisers (Tomas, presenter). Lethbridge AB, April 2026. All ROI claims framed as typical ranges for HVAC in similar markets, not guarantees.
+</div>
+
+<script>
+function toggleAccordion(header) {
+  const item = header.parentElement;
+  const body = item.querySelector('.accordion-body');
+  const inner = body.querySelector('.accordion-body-inner');
+
+  if (item.classList.contains('open')) {
+    item.classList.remove('open');
+    body.style.maxHeight = '0px';
+  } else {
+    document.querySelectorAll('.accordion-item.open').forEach(el => {
+      el.classList.remove('open');
+      el.querySelector('.accordion-body').style.maxHeight = '0px';
+    });
+    item.classList.add('open');
+    body.style.maxHeight = inner.scrollHeight + 'px';
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const firstOpen = document.querySelector('.accordion-item.open');
+  if (firstOpen) {
+    const body = firstOpen.querySelector('.accordion-body');
+    const inner = body.querySelector('.accordion-body-inner');
+    body.style.maxHeight = inner.scrollHeight + 'px';
+  }
+
+  // Count-up animation
+  const animateCountUp = (el) => {
+    const target = parseFloat(el.dataset.target);
+    const duration = 1400;
+    const start = performance.now();
+    const isInt = Number.isInteger(target);
+    const tick = (now) => {
+      const elapsed = now - start;
+      const t = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - t, 3);
+      const value = target * eased;
+      el.textContent = isInt ? Math.round(value).toString() : value.toFixed(1);
+      if (t === 1 && el.closest('.roi-total')) {
+        el.textContent = Math.round(target) + ' percent ROI';
+      } else if (t === 1 && el.closest('.case-stat')) {
+        el.textContent = isInt ? Math.round(target) : target;
+      }
+      if (t < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !entry.target.dataset.animated) {
+        entry.target.dataset.animated = 'true';
+        animateCountUp(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  document.querySelectorAll('.countup').forEach(el => observer.observe(el));
+
+  // Recompute open accordion height after fonts load
+  window.addEventListener('load', () => {
+    document.querySelectorAll('.accordion-item.open').forEach(item => {
+      const body = item.querySelector('.accordion-body');
+      const inner = body.querySelector('.accordion-body-inner');
+      body.style.maxHeight = inner.scrollHeight + 'px';
+    });
+  });
+});
+</script>
+</body>
+</html>
