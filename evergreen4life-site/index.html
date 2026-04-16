@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Home & Energy Solutions of Florida - Solar, Roofing, Battery & EV</title>
+<meta name="description" content="Florida's trusted partner for whole-home energy efficiency. Tesla Certified. Solar, roofing, battery storage, and EV charging across Orlando and Central FL.">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--blue:#089edb;--dark:#086cb3;--navy:#0a3d5f;--ink:#1a1a1a;--mute:#5a6470;--bg:#f5f9fc;--gold:#f5a623}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;color:var(--ink);line-height:1.6;background:#fff}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+
+header{background:#fff;border-bottom:1px solid #e8eef3;position:sticky;top:0;z-index:50;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:18px 24px;max-width:1200px;margin:0 auto}
+.logo{display:flex;align-items:center;gap:12px;font-weight:800;font-size:20px;color:var(--navy)}
+.logo-mark{width:44px;height:44px;background:linear-gradient(135deg,var(--blue),var(--dark));border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900;font-size:18px}
+.logo-text small{display:block;font-size:11px;color:var(--mute);font-weight:500;letter-spacing:.5px;text-transform:uppercase}
+.nav-cta{background:var(--blue);color:#fff;padding:12px 22px;border-radius:8px;text-decoration:none;font-weight:600;font-size:15px;transition:all .2s}
+.nav-cta:hover{background:var(--dark);transform:translateY(-1px)}
+
+.hero{background:linear-gradient(135deg,#0a3d5f 0%,#086cb3 50%,#089edb 100%);color:#fff;padding:90px 0 110px;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;top:-50%;right:-20%;width:800px;height:800px;background:radial-gradient(circle,rgba(245,166,35,.15) 0%,transparent 70%);pointer-events:none}
+.hero-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:60px;align-items:center;position:relative;z-index:2}
+.badge{display:inline-block;background:rgba(255,255,255,.15);backdrop-filter:blur(10px);padding:8px 16px;border-radius:100px;font-size:13px;font-weight:600;letter-spacing:.5px;margin-bottom:24px;border:1px solid rgba(255,255,255,.2)}
+.hero h1{font-size:54px;line-height:1.1;font-weight:800;margin-bottom:24px;letter-spacing:-.02em}
+.hero h1 span{color:var(--gold)}
+.hero p.sub{font-size:20px;opacity:.92;margin-bottom:36px;max-width:560px}
+.cta-row{display:flex;gap:14px;flex-wrap:wrap}
+.btn{padding:16px 30px;border-radius:10px;font-weight:700;text-decoration:none;font-size:16px;display:inline-flex;align-items:center;gap:8px;transition:all .2s;border:2px solid transparent}
+.btn-primary{background:var(--gold);color:#1a1a1a}
+.btn-primary:hover{background:#ffb940;transform:translateY(-2px);box-shadow:0 10px 24px rgba(245,166,35,.4)}
+.btn-ghost{background:rgba(255,255,255,.1);color:#fff;border-color:rgba(255,255,255,.3)}
+.btn-ghost:hover{background:rgba(255,255,255,.2)}
+
+.hero-card{background:#fff;color:var(--ink);border-radius:16px;padding:32px;box-shadow:0 30px 60px rgba(0,0,0,.3)}
+.hero-card h3{font-size:22px;color:var(--navy);margin-bottom:8px}
+.hero-card p.ccx{color:var(--mute);font-size:14px;margin-bottom:22px}
+.form-row{display:flex;flex-direction:column;gap:12px;margin-bottom:14px}
+.form-row input, .form-row select{padding:14px 16px;border:1.5px solid #dde5ec;border-radius:8px;font-size:15px;font-family:inherit;transition:border .15s}
+.form-row input:focus, .form-row select:focus{outline:none;border-color:var(--blue)}
+.form-submit{background:var(--blue);color:#fff;border:none;padding:15px;border-radius:8px;font-weight:700;font-size:16px;cursor:pointer;transition:all .2s;width:100%}
+.form-submit:hover{background:var(--dark)}
+.form-micro{text-align:center;font-size:12px;color:var(--mute);margin-top:12px}
+
+.trust-strip{background:#fff;padding:36px 0;border-bottom:1px solid #e8eef3}
+.trust-grid{display:flex;justify-content:space-around;align-items:center;flex-wrap:wrap;gap:30px}
+.trust-item{display:flex;align-items:center;gap:12px;color:var(--mute);font-weight:600;font-size:15px}
+.trust-item .ico{width:36px;height:36px;background:var(--bg);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--blue);font-size:18px}
+
+section{padding:90px 0}
+.eyebrow{color:var(--blue);font-weight:700;font-size:14px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:14px}
+h2{font-size:42px;color:var(--navy);line-height:1.15;margin-bottom:20px;letter-spacing:-.01em;font-weight:800}
+.section-intro{max-width:720px;margin:0 auto 56px;text-align:center}
+.section-intro p{color:var(--mute);font-size:18px}
+
+.services{background:var(--bg)}
+.service-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px}
+.service{background:#fff;padding:36px 28px;border-radius:14px;border:1px solid #e8eef3;transition:all .25s;position:relative;overflow:hidden}
+.service:hover{transform:translateY(-6px);box-shadow:0 20px 40px rgba(8,158,219,.15);border-color:var(--blue)}
+.service-icon{width:60px;height:60px;background:linear-gradient(135deg,var(--blue),var(--dark));border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:28px;margin-bottom:20px;color:#fff}
+.service h3{font-size:22px;color:var(--navy);margin-bottom:10px;font-weight:700}
+.service p{color:var(--mute);font-size:15px}
+
+.why{background:#fff}
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.why-list{list-style:none}
+.why-list li{display:flex;gap:18px;margin-bottom:26px}
+.why-list .check{flex-shrink:0;width:32px;height:32px;background:var(--blue);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700}
+.why-list h4{color:var(--navy);font-size:18px;margin-bottom:4px;font-weight:700}
+.why-list p{color:var(--mute);font-size:15px}
+.why-visual{background:linear-gradient(135deg,var(--navy),var(--dark));border-radius:20px;padding:48px;color:#fff;position:relative;overflow:hidden}
+.why-visual::before{content:"";position:absolute;top:-100px;right:-100px;width:300px;height:300px;background:radial-gradient(circle,rgba(245,166,35,.2),transparent 70%)}
+.stat{margin-bottom:30px;position:relative;z-index:2}
+.stat:last-child{margin-bottom:0}
+.stat .num{font-size:48px;font-weight:800;color:var(--gold);line-height:1}
+.stat .lbl{font-size:15px;opacity:.9;margin-top:6px}
+
+.process{background:var(--bg)}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;position:relative}
+.step{background:#fff;padding:32px 24px;border-radius:14px;text-align:center;position:relative;border:1px solid #e8eef3}
+.step-num{width:44px;height:44px;background:var(--blue);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:18px;margin:0 auto 16px}
+.step h4{color:var(--navy);font-size:17px;margin-bottom:8px;font-weight:700}
+.step p{color:var(--mute);font-size:14px}
+
+.cta-section{background:linear-gradient(135deg,#086cb3,#089edb);color:#fff;text-align:center}
+.cta-section h2{color:#fff;margin-bottom:18px}
+.cta-section p{font-size:19px;opacity:.95;margin-bottom:32px;max-width:600px;margin-left:auto;margin-right:auto}
+.cta-section .btn-primary{font-size:18px;padding:20px 42px}
+.cta-contact{display:flex;justify-content:center;gap:40px;margin-top:40px;flex-wrap:wrap;font-size:16px}
+.cta-contact a{color:#fff;text-decoration:none;display:flex;align-items:center;gap:10px;font-weight:600}
+.cta-contact a:hover{color:var(--gold)}
+
+footer{background:#0a3d5f;color:#a8c0d4;padding:40px 0 28px}
+.foot-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:40px;margin-bottom:28px}
+.foot-col h5{color:#fff;font-size:16px;margin-bottom:14px;font-weight:700}
+.foot-col p, .foot-col a{color:#a8c0d4;font-size:14px;text-decoration:none;display:block;margin-bottom:8px;line-height:1.7}
+.foot-col a:hover{color:var(--blue)}
+.foot-bar{border-top:1px solid rgba(255,255,255,.1);padding-top:20px;text-align:center;font-size:13px;color:#7a95ac}
+
+@media(max-width:900px){
+  .hero{padding:60px 0 80px}
+  .hero-grid, .why-grid{grid-template-columns:1fr;gap:40px}
+  .hero h1{font-size:38px}
+  h2{font-size:32px}
+  .steps{grid-template-columns:repeat(2,1fr)}
+  section{padding:60px 0}
+  .foot-grid{grid-template-columns:1fr}
+  .nav-cta{padding:10px 16px;font-size:14px}
+}
+@media(max-width:500px){
+  .steps{grid-template-columns:1fr}
+  .hero h1{font-size:32px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="logo">
+      <div class="logo-mark">HES</div>
+      <div class="logo-text">
+        Home & Energy Solutions
+        <small>of Florida</small>
+      </div>
+    </div>
+    <a href="#quote" class="nav-cta">Get Free Quote</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <span class="badge">TESLA CERTIFIED INSTALLER</span>
+        <h1>Florida's Whole-Home <span>Energy Experts</span></h1>
+        <p class="sub">Solar, roofing, battery storage, and EV charging - engineered together to cut your power bill and add real value to your home. Serving Central Florida since day one.</p>
+        <div class="cta-row">
+          <a href="#quote" class="btn btn-primary">Get My Free Quote →</a>
+          <a href="tel:+13219999202" class="btn btn-ghost">Call (321) 999-9202</a>
+        </div>
+      </div>
+      <div class="hero-card">
+        <h3>See Your Savings in 60 Seconds</h3>
+        <p class="ccx">Free home energy evaluation. No pressure, no obligation.</p>
+        <form id="quote" onsubmit="event.preventDefault();this.innerHTML='<h3 style=color:#086cb3>Thanks!</h3><p style=color:#5a6470>We will be in touch within one business day.</p>';">
+          <div class="form-row">
+            <input type="text" placeholder="Full Name" required>
+          </div>
+          <div class="form-row">
+            <input type="tel" placeholder="Phone Number" required>
+          </div>
+          <div class="form-row">
+            <input type="email" placeholder="Email Address" required>
+          </div>
+          <div class="form-row">
+            <select required>
+              <option value="">I'm interested in...</option>
+              <option>Solar Panel Installation</option>
+              <option>Roofing</option>
+              <option>Battery Storage</option>
+              <option>EV Charging</option>
+              <option>Full Energy Audit</option>
+            </select>
+          </div>
+          <button type="submit" class="form-submit">Get My Free Quote</button>
+          <p class="form-micro">We'll call you within 1 business day.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="trust-strip">
+  <div class="wrap">
+    <div class="trust-grid">
+      <div class="trust-item"><span class="ico">✓</span>Tesla Certified</div>
+      <div class="trust-item"><span class="ico">✓</span>Maxeon Partner</div>
+      <div class="trust-item"><span class="ico">✓</span>Q CELLS Premium</div>
+      <div class="trust-item"><span class="ico">✓</span>Licensed & Insured FL</div>
+      <div class="trust-item"><span class="ico">✓</span>100% Financing Available</div>
+    </div>
+  </div>
+</div>
+
+<section class="services">
+  <div class="wrap">
+    <div class="section-intro">
+      <div class="eyebrow">What We Do</div>
+      <h2>Complete Energy Solutions, One Trusted Team</h2>
+      <p>Most installers only sell panels. We start with your whole home and design a system that actually pays off.</p>
+    </div>
+    <div class="service-grid">
+      <div class="service">
+        <div class="service-icon">☀</div>
+        <h3>Solar Installation</h3>
+        <p>Premium Maxeon and Q CELLS panels, engineered for Florida sun and hurricane zones.</p>
+      </div>
+      <div class="service">
+        <div class="service-icon">🏠</div>
+        <h3>Roofing</h3>
+        <p>New roofs and repairs built to outlast your panels. One crew, one warranty.</p>
+      </div>
+      <div class="service">
+        <div class="service-icon">🔋</div>
+        <h3>Battery Storage</h3>
+        <p>Tesla Powerwall and equivalent battery systems - keep the lights on when the grid goes down.</p>
+      </div>
+      <div class="service">
+        <div class="service-icon">⚡</div>
+        <h3>EV Charging</h3>
+        <p>Level 2 home chargers installed clean. Tesla or universal, we handle permits and wiring.</p>
+      </div>
+      <div class="service">
+        <div class="service-icon">🏡</div>
+        <h3>Whole-Home Audit</h3>
+        <p>Free evaluation that finds savings before we ever talk about solar. Transparent numbers, no fluff.</p>
+      </div>
+      <div class="service">
+        <div class="service-icon">🏢</div>
+        <h3>Commercial Solar</h3>
+        <p>Business-grade solar designed around your demand profile and tax incentives.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="why">
+  <div class="wrap">
+    <div class="why-grid">
+      <div>
+        <div class="eyebrow">Why Choose Us</div>
+        <h2>Transparent. Affordable. Built to last.</h2>
+        <ul class="why-list">
+          <li>
+            <span class="check">✓</span>
+            <div>
+              <h4>Whole-Home Approach</h4>
+              <p>We find efficiency wins first, then size the solar system right. Never oversold, never undersized.</p>
+            </div>
+          </li>
+          <li>
+            <span class="check">✓</span>
+            <div>
+              <h4>Tier-1 Equipment Only</h4>
+              <p>Tesla-certified. Maxeon and Q CELLS panels. No bargain-bin hardware that fails in year 7.</p>
+            </div>
+          </li>
+          <li>
+            <span class="check">✓</span>
+            <div>
+              <h4>Florida-Proven Installs</h4>
+              <p>Hurricane-rated mounting. Local crews. Permits and inspections handled end-to-end.</p>
+            </div>
+          </li>
+          <li>
+            <span class="check">✓</span>
+            <div>
+              <h4>Straight Pricing</h4>
+              <p>Itemized quotes. Federal tax credits explained. Financing options that make the math work.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="why-visual">
+        <div class="stat"><div class="num">30%</div><div class="lbl">Federal tax credit on solar + battery installs</div></div>
+        <div class="stat"><div class="num">25 yr</div><div class="lbl">Panel performance warranty</div></div>
+        <div class="stat"><div class="num">$0</div><div class="lbl">Down options available with approved credit</div></div>
+        <div class="stat"><div class="num">100%</div><div class="lbl">Licensed, bonded and insured in Florida</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="process">
+  <div class="wrap">
+    <div class="section-intro">
+      <div class="eyebrow">The Process</div>
+      <h2>From First Call to Power On</h2>
+      <p>Four steps. No surprises. Most customers are generating power within 6-8 weeks.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h4>Free Consultation</h4>
+        <p>We look at your bills, roof, and goals. You get real numbers - not a sales pitch.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h4>Custom Design</h4>
+        <p>Engineers map your system, run the production model, and lock in financing options.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h4>Permits & Install</h4>
+        <p>We pull every permit, handle HOA, and install in 1-2 days with minimal disruption.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <h4>Power On</h4>
+        <p>Utility inspection, PTO, and you start saving. Full monitoring from day one.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="wrap">
+    <h2>Ready to See What Your Home Can Save?</h2>
+    <p>Free energy evaluation. Transparent quote. Zero pressure. Find out in under a week whether solar is the right move for your home.</p>
+    <a href="#quote" class="btn btn-primary">Book My Free Evaluation →</a>
+    <div class="cta-contact">
+      <a href="tel:+13219999202">📞 (321) 999-9202</a>
+      <a href="mailto:info@homeenergysolutionsflorida.com">✉ info@homeenergysolutionsflorida.com</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-col">
+        <h5>Home & Energy Solutions of Florida</h5>
+        <p>Florida's trusted partner for whole-home energy efficiency. Solar, roofing, battery storage, and EV charging - designed as one system.</p>
+        <p style="margin-top:14px;font-size:12px;opacity:.7">Formerly Evergreen Solar Solutions</p>
+      </div>
+      <div class="foot-col">
+        <h5>Contact</h5>
+        <a href="tel:+13219999202">(321) 999-9202</a>
+        <a href="tel:+13217324346">(321) 732-4346</a>
+        <a href="mailto:info@homeenergysolutionsflorida.com">info@homeenergysolutionsflorida.com</a>
+      </div>
+      <div class="foot-col">
+        <h5>Location</h5>
+        <p>8803 Vistana Centre Drive<br>Suite 205<br>Orlando, FL 32821</p>
+      </div>
+    </div>
+    <div class="foot-bar">© 2026 Home & Energy Solutions of Florida. Licensed & Insured. All rights reserved.</div>
+  </div>
+</footer>
+
+</body>
+</html>

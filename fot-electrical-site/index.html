@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Frank O'Toole Electrical - ESB Trained Electrician, Clifden & Connemara</title>
+<meta name="description" content="ESB trained electrician with 20+ years experience. New builds, refurbishments, extensions, rewires, lighting & sockets. Serving Clifden, Connemara & Co. Galway.">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--navy:#0d1f3c;--navy-2:#1a3561;--amber:#f4b820;--amber-2:#f5c847;--ink:#111827;--mute:#5a6470;--bg:#f7f9fc;--line:#e4eaf0;--green:#1a7a4a}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;color:var(--ink);line-height:1.6;background:#fff}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+
+header{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:16px 24px;max-width:1200px;margin:0 auto}
+.logo{display:flex;align-items:center;gap:12px;font-weight:800;font-size:19px;color:var(--navy)}
+.logo-mark{width:46px;height:46px;background:var(--navy);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--amber);font-weight:900;font-size:20px;letter-spacing:-.5px}
+.logo-text small{display:block;font-size:11px;color:var(--mute);font-weight:500;letter-spacing:.5px;text-transform:uppercase}
+.nav-right{display:flex;align-items:center;gap:16px}
+.nav-phone{color:var(--navy);text-decoration:none;font-weight:700;font-size:15px;display:flex;align-items:center;gap:6px}
+.nav-cta{background:var(--amber);color:var(--navy);padding:12px 22px;border-radius:8px;text-decoration:none;font-weight:700;font-size:15px;transition:all .2s}
+.nav-cta:hover{background:var(--amber-2);transform:translateY(-1px)}
+
+.hero{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-2) 100%);color:#fff;padding:90px 0 110px;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;top:-30%;right:-15%;width:700px;height:700px;background:radial-gradient(circle,rgba(244,184,32,.18) 0%,transparent 65%);pointer-events:none}
+.hero::after{content:"";position:absolute;bottom:0;left:0;width:100%;height:6px;background:linear-gradient(90deg,var(--amber),var(--amber-2),var(--amber))}
+.hero-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:60px;align-items:center;position:relative;z-index:2}
+.badge{display:inline-flex;align-items:center;gap:8px;background:rgba(244,184,32,.15);color:var(--amber-2);padding:8px 16px;border-radius:100px;font-size:13px;font-weight:700;letter-spacing:.5px;margin-bottom:24px;border:1px solid rgba(244,184,32,.3)}
+.hero h1{font-size:54px;line-height:1.08;font-weight:800;margin-bottom:22px;letter-spacing:-.02em}
+.hero h1 span{color:var(--amber)}
+.hero p.sub{font-size:19px;opacity:.9;margin-bottom:34px;max-width:560px}
+.cta-row{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:34px}
+.btn{padding:16px 30px;border-radius:10px;font-weight:700;text-decoration:none;font-size:16px;display:inline-flex;align-items:center;gap:8px;transition:all .2s;border:2px solid transparent;cursor:pointer}
+.btn-primary{background:var(--amber);color:var(--navy)}
+.btn-primary:hover{background:var(--amber-2);transform:translateY(-2px);box-shadow:0 10px 24px rgba(244,184,32,.35)}
+.btn-ghost{background:rgba(255,255,255,.08);color:#fff;border-color:rgba(255,255,255,.3)}
+.btn-ghost:hover{background:rgba(255,255,255,.18)}
+.hero-trust{display:flex;gap:24px;flex-wrap:wrap;font-size:14px;opacity:.85}
+.hero-trust span{display:flex;align-items:center;gap:6px}
+
+.hero-card{background:#fff;color:var(--ink);border-radius:16px;padding:32px;box-shadow:0 30px 60px rgba(0,0,0,.35)}
+.hero-card h3{font-size:22px;color:var(--navy);margin-bottom:6px}
+.hero-card p.ccx{color:var(--mute);font-size:14px;margin-bottom:22px}
+.form-row{display:flex;flex-direction:column;gap:12px;margin-bottom:14px}
+.form-row input, .form-row select, .form-row textarea{padding:13px 15px;border:1.5px solid var(--line);border-radius:8px;font-size:15px;font-family:inherit;transition:border .15s}
+.form-row textarea{min-height:80px;resize:vertical}
+.form-row input:focus, .form-row select:focus, .form-row textarea:focus{outline:none;border-color:var(--amber)}
+.form-submit{background:var(--navy);color:#fff;border:none;padding:15px;border-radius:8px;font-weight:700;font-size:16px;cursor:pointer;transition:all .2s;width:100%}
+.form-submit:hover{background:var(--navy-2)}
+.form-micro{text-align:center;font-size:12px;color:var(--mute);margin-top:12px}
+
+.trust-strip{background:#fff;padding:34px 0;border-bottom:1px solid var(--line)}
+.trust-grid{display:flex;justify-content:space-around;align-items:center;flex-wrap:wrap;gap:24px}
+.trust-item{display:flex;align-items:center;gap:12px;color:var(--navy);font-weight:700;font-size:15px}
+.trust-item .ico{width:38px;height:38px;background:var(--bg);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--amber);font-size:18px;border:2px solid var(--amber)}
+
+section{padding:90px 0}
+.eyebrow{color:var(--amber);font-weight:800;font-size:13px;letter-spacing:2px;text-transform:uppercase;margin-bottom:14px}
+.why .eyebrow, .process .eyebrow{color:#b88806}
+h2{font-size:42px;color:var(--navy);line-height:1.15;margin-bottom:18px;letter-spacing:-.01em;font-weight:800}
+.section-intro{max-width:720px;margin:0 auto 56px;text-align:center}
+.section-intro p{color:var(--mute);font-size:18px}
+
+.services{background:var(--bg)}
+.service-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px}
+.service{background:#fff;padding:32px 26px;border-radius:14px;border:1px solid var(--line);transition:all .25s;position:relative;overflow:hidden}
+.service::before{content:"";position:absolute;top:0;left:0;width:4px;height:0;background:var(--amber);transition:height .3s}
+.service:hover{transform:translateY(-4px);box-shadow:0 16px 32px rgba(13,31,60,.12);border-color:var(--navy)}
+.service:hover::before{height:100%}
+.service-icon{width:56px;height:56px;background:var(--navy);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:26px;margin-bottom:18px;color:var(--amber)}
+.service h3{font-size:20px;color:var(--navy);margin-bottom:8px;font-weight:700}
+.service p{color:var(--mute);font-size:15px}
+
+.why{background:#fff}
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.why-list{list-style:none}
+.why-list li{display:flex;gap:18px;margin-bottom:24px}
+.why-list .check{flex-shrink:0;width:34px;height:34px;background:var(--amber);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--navy);font-weight:800}
+.why-list h4{color:var(--navy);font-size:18px;margin-bottom:4px;font-weight:700}
+.why-list p{color:var(--mute);font-size:15px}
+.why-visual{background:var(--navy);border-radius:20px;padding:46px;color:#fff;position:relative;overflow:hidden}
+.why-visual::before{content:"";position:absolute;top:-80px;right:-80px;width:280px;height:280px;background:radial-gradient(circle,rgba(244,184,32,.25),transparent 70%)}
+.stat{margin-bottom:28px;position:relative;z-index:2}
+.stat:last-child{margin-bottom:0}
+.stat .num{font-size:48px;font-weight:800;color:var(--amber);line-height:1}
+.stat .lbl{font-size:15px;opacity:.9;margin-top:6px}
+
+.process{background:var(--bg)}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.step{background:#fff;padding:30px 22px;border-radius:14px;text-align:center;border:1px solid var(--line);position:relative}
+.step-num{width:46px;height:46px;background:var(--amber);color:var(--navy);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:18px;margin:0 auto 16px}
+.step h4{color:var(--navy);font-size:17px;margin-bottom:8px;font-weight:700}
+.step p{color:var(--mute);font-size:14px}
+
+.area{background:#fff;padding:80px 0;border-top:1px solid var(--line)}
+.area-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.area h2{margin-bottom:16px}
+.area p.desc{color:var(--mute);font-size:17px;margin-bottom:24px}
+.area-tags{display:flex;flex-wrap:wrap;gap:10px}
+.area-tag{background:var(--bg);color:var(--navy);padding:8px 16px;border-radius:100px;font-size:14px;font-weight:600;border:1px solid var(--line)}
+.map-block{background:linear-gradient(135deg,#1a3561,#0d1f3c);border-radius:16px;padding:50px 40px;color:#fff;text-align:center}
+.map-block h3{font-size:26px;margin-bottom:12px;color:var(--amber)}
+.map-block p{opacity:.9;margin-bottom:20px}
+.map-block .addr{font-size:17px;font-weight:600;line-height:1.7}
+
+.cta-section{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-2) 100%);color:#fff;text-align:center;position:relative;overflow:hidden}
+.cta-section::before{content:"";position:absolute;top:0;left:0;width:100%;height:4px;background:var(--amber)}
+.cta-section h2{color:#fff;margin-bottom:18px}
+.cta-section p{font-size:19px;opacity:.9;margin-bottom:32px;max-width:600px;margin-left:auto;margin-right:auto}
+.cta-section .btn-primary{font-size:18px;padding:20px 42px}
+.cta-contact{display:flex;justify-content:center;gap:36px;margin-top:36px;flex-wrap:wrap;font-size:16px}
+.cta-contact a{color:#fff;text-decoration:none;display:flex;align-items:center;gap:10px;font-weight:600}
+.cta-contact a:hover{color:var(--amber)}
+
+footer{background:#08152b;color:#8fa3bd;padding:40px 0 26px}
+.foot-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:40px;margin-bottom:24px}
+.foot-col h5{color:#fff;font-size:15px;margin-bottom:14px;font-weight:700}
+.foot-col p, .foot-col a{color:#8fa3bd;font-size:14px;text-decoration:none;display:block;margin-bottom:8px;line-height:1.7}
+.foot-col a:hover{color:var(--amber)}
+.foot-bar{border-top:1px solid rgba(255,255,255,.08);padding-top:20px;text-align:center;font-size:13px;color:#607892}
+
+@media(max-width:900px){
+  .hero{padding:60px 0 80px}
+  .hero-grid, .why-grid, .area-grid{grid-template-columns:1fr;gap:40px}
+  .hero h1{font-size:38px}
+  h2{font-size:30px}
+  .steps{grid-template-columns:repeat(2,1fr)}
+  section{padding:60px 0}
+  .foot-grid{grid-template-columns:1fr}
+  .nav-cta{padding:10px 14px;font-size:14px}
+  .nav-phone{display:none}
+}
+@media(max-width:500px){
+  .steps{grid-template-columns:1fr}
+  .hero h1{font-size:30px}
+  h2{font-size:26px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="logo">
+      <div class="logo-mark">FOT</div>
+      <div class="logo-text">
+        Frank O'Toole
+        <small>Electrical - Clifden</small>
+      </div>
+    </div>
+    <div class="nav-right">
+      <a href="tel:+353862339588" class="nav-phone">📞 086 233 9588</a>
+      <a href="#quote" class="nav-cta">Get a Quote</a>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <span class="badge">⚡ ESB TRAINED · 20+ YEARS EXPERIENCE</span>
+        <h1>Clifden's Trusted <span>Electrician</span> for Over 20 Years</h1>
+        <p class="sub">From a new socket to a full house rewire - straight pricing, clean work, and shown up on the day. Serving Clifden, Connemara & all of Co. Galway.</p>
+        <div class="cta-row">
+          <a href="#quote" class="btn btn-primary">Get a Free Quote →</a>
+          <a href="tel:+353862339588" class="btn btn-ghost">📞 Call 086 233 9588</a>
+        </div>
+        <div class="hero-trust">
+          <span>✓ Fully Insured</span>
+          <span>✓ ESB Trained</span>
+          <span>✓ Residential & Commercial</span>
+          <span>✓ Free Quotes</span>
+        </div>
+      </div>
+      <div class="hero-card">
+        <h3>Request a Free Quote</h3>
+        <p class="ccx">Quick reply - usually within a few hours.</p>
+        <form id="quote" onsubmit="event.preventDefault();this.innerHTML='<h3 style=color:#0d1f3c>Thanks - message received.</h3><p style=color:#5a6470>Frank will be in touch shortly. For urgent jobs call 086 233 9588.</p>';">
+          <div class="form-row">
+            <input type="text" placeholder="Your Name" required>
+          </div>
+          <div class="form-row">
+            <input type="tel" placeholder="Phone Number" required>
+          </div>
+          <div class="form-row">
+            <input type="email" placeholder="Email Address">
+          </div>
+          <div class="form-row">
+            <select required>
+              <option value="">Type of Job...</option>
+              <option>New Build</option>
+              <option>Refurbishment / Rewire</option>
+              <option>Extension</option>
+              <option>Attic Conversion</option>
+              <option>Lighting Installation</option>
+              <option>Sockets / Small Job</option>
+              <option>Fault Finding / Repair</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <textarea placeholder="Brief description of the job (optional)"></textarea>
+          </div>
+          <button type="submit" class="form-submit">Send Request</button>
+          <p class="form-micro">No call centres. Frank gets the message directly.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="trust-strip">
+  <div class="wrap">
+    <div class="trust-grid">
+      <div class="trust-item"><span class="ico">⚡</span>ESB Trained</div>
+      <div class="trust-item"><span class="ico">🛡</span>Fully Insured</div>
+      <div class="trust-item"><span class="ico">📅</span>20+ Years</div>
+      <div class="trust-item"><span class="ico">🏠</span>Residential & Commercial</div>
+      <div class="trust-item"><span class="ico">⭐</span>Local to Connemara</div>
+    </div>
+  </div>
+</div>
+
+<section class="services">
+  <div class="wrap">
+    <div class="section-intro">
+      <div class="eyebrow">Our Services</div>
+      <h2>Every Electrical Job, Done Properly</h2>
+      <p>From small domestic jobs to full new-build wiring, Frank has done it all across Connemara for over two decades.</p>
+    </div>
+    <div class="service-grid">
+      <div class="service">
+        <div class="service-icon">🏗</div>
+        <h3>New Builds</h3>
+        <p>Full first-fix and second-fix wiring for new houses. Compliance certs sorted, inspections handled.</p>
+      </div>
+      <div class="service">
+        <div class="service-icon">🔧</div>
+        <h3>Refurbishments & Rewires</h3>
+        <p>Older homes brought up to modern standard. Minimal mess, clean finishes, safe for another 30 years.</p>
+      </div>
+      <div class="service">
+        <div class="service-icon">🏠</div>
+        <h3>Extensions</h3>
+        <p>Extension wiring tied cleanly into existing circuits. Sockets, lighting, and consumer unit upgrades.</p>
+      </div>
+      <div class="service">
+        <div class="service-icon">🪜</div>
+        <h3>Attic Conversions</h3>
+        <p>Full electrical fit-out for attic conversions - lighting, sockets, smoke alarms, and heating controls.</p>
+      </div>
+      <div class="service">
+        <div class="service-icon">💡</div>
+        <h3>Lighting Installations</h3>
+        <p>Indoor, outdoor, and feature lighting. LED upgrades, dimmers, security lights, garden and deck lighting.</p>
+      </div>
+      <div class="service">
+        <div class="service-icon">🔌</div>
+        <h3>Sockets & Small Jobs</h3>
+        <p>Extra sockets, USB outlets, outdoor points, EV charger prep. Small jobs taken seriously.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="why">
+  <div class="wrap">
+    <div class="why-grid">
+      <div>
+        <div class="eyebrow">Why Frank</div>
+        <h2>A local sparks who turns up and does the job right.</h2>
+        <ul class="why-list">
+          <li>
+            <span class="check">✓</span>
+            <div>
+              <h4>ESB Trained Credentials</h4>
+              <p>Formally trained through ESB. Every job wired to Irish regulation standards, not guesswork.</p>
+            </div>
+          </li>
+          <li>
+            <span class="check">✓</span>
+            <div>
+              <h4>20+ Years on the Tools</h4>
+              <p>From tiny cottages in Roundstone to full new builds around Clifden - there isn't much Frank hasn't seen.</p>
+            </div>
+          </li>
+          <li>
+            <span class="check">✓</span>
+            <div>
+              <h4>Straight Answers, Straight Prices</h4>
+              <p>Free quotes, honest timeframes. No surprises on the invoice, no "discovered extras" mid-job.</p>
+            </div>
+          </li>
+          <li>
+            <span class="check">✓</span>
+            <div>
+              <h4>Shows Up When He Says</h4>
+              <p>The rarest trait in the trade. If we book you in for Tuesday, we're there on Tuesday.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="why-visual">
+        <div class="stat"><div class="num">20+</div><div class="lbl">Years working across Connemara</div></div>
+        <div class="stat"><div class="num">ESB</div><div class="lbl">Formally trained through ESB</div></div>
+        <div class="stat"><div class="num">100%</div><div class="lbl">Fully insured, residential & commercial</div></div>
+        <div class="stat"><div class="num">Free</div><div class="lbl">No-obligation quotes for any job</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="process">
+  <div class="wrap">
+    <div class="section-intro">
+      <div class="eyebrow">How It Works</div>
+      <h2>From First Call to Job Done</h2>
+      <p>Simple, predictable, no messing around.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h4>Call or Message</h4>
+        <p>Tell us what you need. Frank or the office will reply within a few hours.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h4>Free Quote</h4>
+        <p>Site visit if needed. Fixed written quote - no pressure, no obligation.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h4>Booked In</h4>
+        <p>We agree a date that suits. You get a reminder, we show up on the day.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <h4>Job Done</h4>
+        <p>Clean finish, certs where needed, and you can call us back anytime.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="area">
+  <div class="wrap">
+    <div class="area-grid">
+      <div>
+        <div class="eyebrow">Service Area</div>
+        <h2>Based in Clifden, Working Across Connemara</h2>
+        <p class="desc">If it's within a reasonable drive of Clifden, we'll come to you. Fully covered across West Galway.</p>
+        <div class="area-tags">
+          <span class="area-tag">Clifden</span>
+          <span class="area-tag">Streamstown</span>
+          <span class="area-tag">Roundstone</span>
+          <span class="area-tag">Letterfrack</span>
+          <span class="area-tag">Cleggan</span>
+          <span class="area-tag">Ballyconneely</span>
+          <span class="area-tag">Kylemore</span>
+          <span class="area-tag">Renvyle</span>
+          <span class="area-tag">Moyard</span>
+          <span class="area-tag">Connemara</span>
+          <span class="area-tag">Co. Galway</span>
+        </div>
+      </div>
+      <div class="map-block">
+        <h3>Where to Find Us</h3>
+        <p>Based locally - no call-out from Galway city.</p>
+        <div class="addr">
+          Frank O'Toole Electrical<br>
+          Streamstown, Clifden<br>
+          Co. Galway, Ireland
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="wrap">
+    <h2>Got a Job? Let's Have a Chat.</h2>
+    <p>Whether it's a single socket or a new house to wire, ring Frank directly or drop a message. Free quotes, no pressure.</p>
+    <a href="#quote" class="btn btn-primary">Request a Free Quote →</a>
+    <div class="cta-contact">
+      <a href="tel:+353862339588">📞 086 233 9588</a>
+      <a href="mailto:fotelectrical@gmail.com">✉ fotelectrical@gmail.com</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-col">
+        <h5>Frank O'Toole Electrical</h5>
+        <p>ESB trained electrician with over 20 years' experience. Serving Clifden, Connemara and Co. Galway with honest, reliable electrical work.</p>
+      </div>
+      <div class="foot-col">
+        <h5>Contact</h5>
+        <a href="tel:+353862339588">086 233 9588</a>
+        <a href="mailto:fotelectrical@gmail.com">fotelectrical@gmail.com</a>
+      </div>
+      <div class="foot-col">
+        <h5>Location</h5>
+        <p>Streamstown, Clifden<br>Co. Galway<br>Ireland</p>
+      </div>
+    </div>
+    <div class="foot-bar">© 2026 Frank O'Toole Electrical. Fully insured. ESB trained. All rights reserved.</div>
+  </div>
+</footer>
+
+</body>
+</html>
