@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Home &amp; Energy Solutions of Florida AI Visibility Audit | Online Optimisers</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  :root {
+    --bg:#060f1e; --bg2:#0d1b2e; --card:#111f35; --card-border:#1a2d4a;
+    --primary:#01a2f9; --dark-blue:#0052cc; --mid-blue:#1870d4; --light-blue:#8cc7f3;
+    --text:#e8edf4; --text-dim:#7a90aa; --text-bright:#ffffff;
+    --red:#ef4444; --yellow:#f59e0b; --green:#22c55e;
+    --chatgpt:#7CB89E; --perplexity:#8B7EC2; --google:#4285F4;
+  }
+  body { font-family:'Manrope',system-ui,-apple-system,sans-serif; background:var(--bg); color:var(--text); overflow:hidden; height:100vh; }
+  .deck { width:100vw; height:100vh; position:relative; z-index:1; }
+  .slide { display:none; width:100%; height:100%; padding:48px 64px 56px; position:absolute; top:0; left:0; flex-direction:column; justify-content:center; overflow-y:auto; }
+  .slide.active { display:flex; }
+  .bg-cover { background:radial-gradient(ellipse at 70% 30%,rgba(1,162,249,.12) 0%,transparent 60%),radial-gradient(ellipse at 20% 80%,rgba(0,82,204,.08) 0%,transparent 50%),var(--bg); }
+  .bg-dark { background:var(--bg); }
+  .bg-mid { background:var(--bg2); }
+  .bg-warm { background:linear-gradient(135deg,#060f1e 0%,#0d1b2e 100%); }
+  .bg-proof { background:linear-gradient(135deg,#060f1e 0%,#0d1a2e 100%); }
+  .bg-close { background:radial-gradient(ellipse at 50% 0%,rgba(1,162,249,.15) 0%,transparent 60%),var(--bg); }
+  .logo { position:fixed;top:20px;left:28px;font-size:12px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:rgba(1,162,249,.7);z-index:100; }
+  .hint { position:fixed;top:18px;right:22px;font-size:10px;color:rgba(255,255,255,.15);z-index:100; }
+  .slide-cta { position:fixed;top:14px;right:120px;z-index:100;display:none; }
+  .slide-cta a { display:inline-block;padding:12px 28px;background:var(--primary);color:#ffffff;font-weight:800;font-size:14px;border-radius:10px;text-decoration:none;letter-spacing:.5px;transition:all .2s;box-shadow:0 0 20px rgba(1,162,249,.3); }
+  .slide-cta a:hover { opacity:.9; }
+  .progress-bar { position:fixed;top:0;left:0;height:3px;background:var(--primary);transition:width .35s ease;z-index:200; }
+  .nav { position:fixed;bottom:18px;left:50%;transform:translateX(-50%); display:flex;align-items:center;gap:16px; background:rgba(1,162,249,.12);border:1px solid rgba(1,162,249,.3); border-radius:40px;padding:10px 28px;z-index:100; backdrop-filter:blur(10px); }
+  .nav button { background:none;border:none;color:#ffffff;font-size:20px;cursor:pointer;opacity:.7;transition:all .2s;padding:4px 12px; }
+  .nav button:hover { opacity:1; }
+  .nav button:disabled { opacity:.2;cursor:default; }
+  #sc { font-size:13px;font-weight:700;color:#ffffff;min-width:56px;text-align:center;letter-spacing:1px; }
+  .eyebrow { font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--primary);margin-bottom:12px;font-weight:700; }
+  h1 { font-family:'Manrope',sans-serif;font-size:clamp(32px,4.2vw,48px);font-weight:800;line-height:1.08;letter-spacing:-.5px;color:#ffffff; }
+  h2 { font-family:'Manrope',sans-serif;font-size:clamp(24px,3.2vw,36px);font-weight:800;line-height:1.1;letter-spacing:-.3px;color:#ffffff; }
+  h3 { font-size:17px;font-weight:700;color:var(--text-bright); }
+  p { font-size:14px;line-height:1.65;color:rgba(255,255,255,.7); }
+  strong { color:#fff; }
+  .accent { color:var(--primary); }
+  .divline { width:50px;height:3px;background:var(--primary);border-radius:2px;margin:12px 0; }
+  .cols { display:grid;gap:16px;margin-top:20px; }
+  .c2 { grid-template-columns:1fr 1fr; }
+  .c3 { grid-template-columns:1fr 1fr 1fr; }
+  .c4 { grid-template-columns:1fr 1fr 1fr 1fr; }
+  .c21 { grid-template-columns:2fr 1fr; }
+  .card { background:var(--card); border:1px solid var(--card-border);border-radius:14px;padding:20px; position:relative;overflow:hidden;transition:border-color .3s ease; }
+  .card::before { content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--primary);opacity:1; }
+  .card:hover { border-color:var(--primary); }
+  .card.glow-cyan { border-color:rgba(1,162,249,.3);background:rgba(1,162,249,.04); }
+  .card.glow-green { border-color:rgba(34,197,94,.3);background:rgba(34,197,94,.04); }
+  .card.glow-red { border-color:rgba(239,68,68,.3);background:rgba(239,68,68,.04); }
+  .card.glow-amber { border-color:rgba(245,158,11,.3);background:rgba(245,158,11,.04); }
+  .card.accent-red::before { background:var(--red); }
+  .card.accent-amber::before { background:var(--yellow); }
+  .card.accent-green::before { background:var(--green); }
+  .card.accent-cyan::before { background:var(--primary); }
+  .ai-chat { background:var(--card); border:1px solid var(--card-border);border-radius:14px; padding:16px 18px;font-family:'Manrope',monospace; transition:border-color .3s;position:relative; }
+  .ai-chat::before { content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--primary); }
+  .ai-chat:hover { border-color:var(--primary); }
+  .ai-chat .query { font-size:12px;color:rgba(255,255,255,.45);margin-bottom:10px;padding-bottom:10px;border-bottom:1px solid rgba(1,162,249,.1); }
+  .ai-chat .query span { color:rgba(255,255,255,.8);font-style:italic; }
+  .ai-chat .platform-badge { display:inline-block;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;letter-spacing:1px;margin-bottom:8px; }
+  .chatgpt-badge { background:rgba(124,184,158,.12);color:var(--chatgpt);border:1px solid rgba(124,184,158,.3); }
+  .perplexity-badge { background:rgba(139,126,194,.12);color:var(--perplexity);border:1px solid rgba(139,126,194,.3); }
+  .google-badge { background:rgba(66,133,244,.12);color:var(--google);border:1px solid rgba(66,133,244,.3); }
+  .ai-chat .answer { font-size:12px;line-height:1.65;color:rgba(255,255,255,.7); }
+  .ai-chat .cited { color:var(--primary);font-weight:600; }
+  .ai-chat .not-cited { color:var(--red);font-weight:600; }
+  .ai-chat .result-tag { display:inline-block;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;letter-spacing:.5px;margin-top:8px; }
+  .tag-found { background:rgba(34,197,94,.12);color:var(--green);border:1px solid rgba(34,197,94,.25); }
+  .tag-missing { background:rgba(239,68,68,.12);color:var(--red);border:1px solid rgba(239,68,68,.2); }
+  .badge { display:inline-block;padding:3px 10px;border-radius:99px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px; }
+  .b-red { background:rgba(239,68,68,.12);color:var(--red);border:1px solid rgba(239,68,68,.2); }
+  .b-green { background:rgba(34,197,94,.1);color:var(--green);border:1px solid rgba(34,197,94,.2); }
+  .b-amber { background:rgba(245,158,11,.12);color:var(--yellow);border:1px solid rgba(245,158,11,.2); }
+  .hook-box { border-left:3px solid var(--primary);padding:12px 18px;margin:16px 0;font-size:17px;font-weight:700;line-height:1.45;color:rgba(255,255,255,.95);position:relative;background:rgba(1,162,249,.03);border-radius:0 8px 8px 0; }
+  .pain-list { list-style:none;margin-top:16px;display:flex;flex-direction:column;gap:12px; }
+  .pain-list li { display:flex;align-items:flex-start;gap:12px;font-size:14px;color:rgba(255,255,255,.8); }
+  .pain-icon { width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0; }
+  .schema-row { display:flex;justify-content:space-between;align-items:center;font-size:13px;padding:8px 0;border-bottom:1px solid rgba(1,162,249,.06); }
+  .schema-row:last-child { border-bottom:none; }
+  .comp-card { background:var(--card);border:1px solid var(--card-border);border-radius:14px;padding:18px;position:relative;overflow:hidden;transition:border-color .3s; }
+  .comp-card:hover { border-color:var(--primary); }
+  .comp-card.is-you { border-color:rgba(239,68,68,.3);opacity:.85; }
+  .comp-card.is-you::before { content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--red); }
+  .comp-card.is-leader::before { content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--green); }
+  .comp-label { font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim);margin-bottom:4px; }
+  .comp-name { font-size:15px;font-weight:800;color:var(--text-bright);margin-bottom:2px; }
+  .comp-domain { font-size:11px;color:var(--primary);margin-bottom:12px; }
+  .comp-stats { display:grid;grid-template-columns:1fr 1fr;gap:8px; }
+  .comp-stat-n { font-size:20px;font-weight:900;letter-spacing:-1px; }
+  .comp-stat-l { font-size:9px;text-transform:uppercase;letter-spacing:.5px;color:var(--text-dim); }
+  .obj { background:var(--card);border:1px solid var(--card-border);border-radius:12px;padding:16px 18px;display:flex;gap:12px;align-items:flex-start;transition:border-color .3s; }
+  .obj:hover { border-color:var(--primary); }
+  .obj .q { font-size:16px;font-weight:800;color:rgba(255,255,255,.95);margin-bottom:4px; }
+  .obj .a { font-size:12.5px;color:rgba(255,255,255,.55);line-height:1.5; }
+  .obj-icon { width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0; }
+  .cs-card { background:var(--card);border:1px solid rgba(1,162,249,.2);border-radius:16px;padding:24px;color:var(--text); }
+  .cs-name { font-size:18px;font-weight:800;color:var(--text-bright); }
+  .cs-biz { font-size:12px;font-weight:600;margin-top:2px; }
+  .cs-divider { border:none;border-top:1px solid rgba(1,162,249,.1);margin:14px 0; }
+  .cs-stats { display:flex;gap:24px; }
+  .cs-stat .n { font-size:32px;font-weight:900;line-height:1;letter-spacing:-1px; }
+  .cs-stat .l { font-size:10px;text-transform:uppercase;letter-spacing:.5px;color:var(--text-dim);margin-top:3px; }
+  .cta-btn { display:inline-block;padding:14px 36px;border-radius:8px;font-size:16px;font-weight:700;background:var(--primary);color:#060f1e;text-decoration:none;margin-top:16px;transition:all .3s;border:none;cursor:pointer; }
+  .cta-btn:hover { opacity:.9; }
+  .kw-table { width:100%;border-collapse:collapse;font-size:12px;margin-top:12px; }
+  .kw-table th { text-align:left;padding:6px 8px;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--text-dim);border-bottom:1px solid rgba(1,162,249,.1); }
+  .kw-table td { padding:5px 8px;border-bottom:1px solid rgba(255,255,255,.03); }
+  .kw-table tr:hover { background:rgba(1,162,249,.03); }
+  .kw-row-miss { color:rgba(255,255,255,.4); }
+  @media (max-width:900px) { .slide { padding:36px 24px 68px; } .c2,.c3,.c4 { grid-template-columns:1fr; } h1 { font-size:28px; } h2 { font-size:22px; } .cs-stats { flex-wrap:wrap; } .comp-stats { grid-template-columns:1fr; } }
+  @media (max-width:600px) { .slide { padding:24px 16px 68px; } h1 { font-size:22px; } h2 { font-size:18px; } .nav { padding:6px 16px;gap:10px; } .cols { gap:10px; } .card { padding:14px; } }
+</style>
+</head>
+<body>
+<div class="slide-cta" id="slideCta"><a href="https://calendly.com/info-yg4/strategy-call" target="_blank">Book a Call</a></div>
+<div class="logo">Online Optimisers</div>
+<div class="hint">&larr; &rarr; arrow keys</div>
+<div class="progress-bar" id="pb"></div>
+<div class="deck">
+
+  <div class="slide bg-cover active" id="slide-1" style="justify-content:center;align-items:center;text-align:center">
+    <div style="max-width:720px">
+      <div style="margin-bottom:32px"><svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/><line x1="4.93" y1="4.93" x2="7.05" y2="7.05"/><line x1="16.95" y1="16.95" x2="19.07" y2="19.07"/><line x1="4.93" y1="19.07" x2="7.05" y2="16.95"/><line x1="16.95" y1="7.05" x2="19.07" y2="4.93"/></svg></div>
+      <div style="font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--primary);font-weight:700;margin-bottom:18px">AI Visibility Audit</div>
+      <h1 style="font-size:clamp(34px,4.6vw,52px);line-height:1.1;margin-bottom:20px">Home &amp; Energy Solutions of Florida</h1>
+      <div style="width:60px;height:2px;background:var(--primary);margin:0 auto 24px"></div>
+      <p style="font-size:17px;color:var(--text-dim);max-width:560px;margin:0 auto;line-height:1.6">How visible is your business when Florida homeowners ask AI for solar, battery, and Tesla Powerwall recommendations in Orlando?</p>
+      <div style="margin-top:40px;display:flex;gap:20px;justify-content:center;flex-wrap:wrap">
+        <div style="font-size:12px;color:var(--text-dim)"><span style="color:var(--primary);font-weight:700">Prepared by</span> Online Optimisers</div>
+        <div style="font-size:12px;color:var(--text-dim)">&bull;</div>
+        <div style="font-size:12px;color:var(--text-dim)">April 2026</div>
+        <div style="font-size:12px;color:var(--text-dim)">&bull;</div>
+        <div style="font-size:12px;color:var(--text-dim)">Orlando, FL</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide bg-mid" id="slide-2">
+    <div class="eyebrow">Audit Overview</div>
+    <h2>Key Findings at a Glance</h2>
+    <div class="divline"></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:22px;flex:1">
+      <div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+          <div class="card" style="text-align:center;padding:24px"><div style="font-size:48px;font-weight:900;color:var(--red)">22<span style="font-size:22px;color:var(--text-dim)">/100</span></div><div style="font-size:11px;color:var(--text-dim);text-transform:uppercase;letter-spacing:1.5px;margin-top:6px">AI Visibility Score</div></div>
+          <div class="card" style="text-align:center;padding:24px"><div style="font-size:48px;font-weight:900;color:var(--red)">0<span style="font-size:22px;color:var(--text-dim)">/5</span></div><div style="font-size:11px;color:var(--text-dim);text-transform:uppercase;letter-spacing:1.5px;margin-top:6px">AI Queries Cited</div></div>
+          <div class="card" style="text-align:center;padding:24px"><div style="font-size:48px;font-weight:900;color:var(--yellow)">20+</div><div style="font-size:11px;color:var(--text-dim);text-transform:uppercase;letter-spacing:1.5px;margin-top:6px">Competitors Cited</div></div>
+          <div class="card" style="text-align:center;padding:24px"><div style="font-size:42px;font-weight:900;color:var(--red)">$400K+</div><div style="font-size:11px;color:var(--text-dim);text-transform:uppercase;letter-spacing:1.5px;margin-top:6px">Est. Lost Rev / Year</div></div>
+        </div>
+        <div class="card" style="margin-top:12px;padding:14px 18px;border-left:3px solid var(--red)">
+          <div style="font-size:13px;color:rgba(255,255,255,.8);line-height:1.5"><strong style="color:var(--red)">Critical finding:</strong> Your rebrand from <em>Evergreen Solar Solutions</em> to <em>Home &amp; Energy Solutions of Florida</em> left every review site, directory, and third-party citation stuck on the old brand. AI engines pull trust signals from those sources. The new domain has inherited almost none.</div>
+        </div>
+      </div>
+      <div class="card" style="padding:24px;display:flex;flex-direction:column;justify-content:center">
+        <h3 style="font-size:16px;margin-bottom:18px;color:var(--text-bright)">What This Audit Covers</h3>
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text)"><span style="width:24px;height:24px;border-radius:6px;background:rgba(1,162,249,.1);border:1px solid rgba(1,162,249,.3);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:var(--primary);flex-shrink:0">1</span><span><strong style="color:#fff">Market Landscape</strong> - why AI search changes everything</span></div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text)"><span style="width:24px;height:24px;border-radius:6px;background:rgba(124,184,158,.1);border:1px solid rgba(124,184,158,.3);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:var(--chatgpt);flex-shrink:0">2</span><span><strong style="color:#fff">ChatGPT Results</strong> - who AI recommends instead of you</span></div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text)"><span style="width:24px;height:24px;border-radius:6px;background:rgba(139,126,194,.1);border:1px solid rgba(139,126,194,.3);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:var(--perplexity);flex-shrink:0">3</span><span><strong style="color:#fff">Perplexity Results</strong> - second AI platform check</span></div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text)"><span style="width:24px;height:24px;border-radius:6px;background:rgba(66,133,244,.1);border:1px solid rgba(66,133,244,.3);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:var(--google);flex-shrink:0">4</span><span><strong style="color:#fff">Google + AI Overviews</strong> - organic + AI answer visibility</span></div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text)"><span style="width:24px;height:24px;border-radius:6px;background:rgba(1,162,249,.1);border:1px solid rgba(1,162,249,.3);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:var(--primary);flex-shrink:0">5</span><span><strong style="color:#fff">Competitor Analysis</strong> - who is winning and why</span></div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text)"><span style="width:24px;height:24px;border-radius:6px;background:rgba(1,162,249,.1);border:1px solid rgba(1,162,249,.3);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:var(--primary);flex-shrink:0">6</span><span><strong style="color:#fff">Rebrand Diagnostic</strong> - the authority leak</span></div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text)"><span style="width:24px;height:24px;border-radius:6px;background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.3);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:var(--green);flex-shrink:0">7</span><span><strong style="color:#fff">Roadmap</strong> - the path to visibility</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide bg-mid" id="slide-3">
+    <div class="eyebrow">The Search Landscape Is Changing</div>
+    <h2>The Shift Is Happening</h2>
+    <div class="divline"></div>
+    <div class="cols c2" style="margin-top:16px;align-items:start">
+      <div class="card" style="text-align:center;padding:24px">
+        <h3 style="font-size:14px;margin-bottom:16px">Search Market Share Today</h3>
+        <div style="position:relative;width:200px;height:200px;margin:0 auto">
+          <svg viewBox="0 0 36 36" style="width:200px;height:200px;transform:rotate(-90deg)">
+            <circle cx="18" cy="18" r="15.9" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="3.5"/>
+            <circle cx="18" cy="18" r="15.9" fill="none" stroke="#4285F4" stroke-width="3.5" stroke-dasharray="88 12" stroke-dashoffset="0" stroke-linecap="round"/>
+            <circle cx="18" cy="18" r="15.9" fill="none" stroke="#10B981" stroke-width="3.5" stroke-dasharray="3 97" stroke-dashoffset="-88" stroke-linecap="round"/>
+            <circle cx="18" cy="18" r="15.9" fill="none" stroke="#FF6D00" stroke-width="3.5" stroke-dasharray="4 96" stroke-dashoffset="-91" stroke-linecap="round"/>
+            <circle cx="18" cy="18" r="15.9" fill="none" stroke="#A855F7" stroke-width="3.5" stroke-dasharray="1.5 98.5" stroke-dashoffset="-95" stroke-linecap="round"/>
+          </svg>
+          <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center"><div style="font-size:28px;font-weight:900;color:#4285F4">88%</div><div style="font-size:9px;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px">Google</div></div>
+        </div>
+        <div style="display:flex;gap:12px;justify-content:center;margin-top:14px;flex-wrap:wrap">
+          <div style="display:flex;align-items:center;gap:4px;font-size:10px;color:rgba(255,255,255,.6)"><span style="width:8px;height:8px;border-radius:50%;background:#4285F4;display:inline-block"></span> Google 88%</div>
+          <div style="display:flex;align-items:center;gap:4px;font-size:10px;color:rgba(255,255,255,.6)"><span style="width:8px;height:8px;border-radius:50%;background:#FF6D00;display:inline-block"></span> Bing 4%</div>
+          <div style="display:flex;align-items:center;gap:4px;font-size:10px;color:rgba(255,255,255,.6)"><span style="width:8px;height:8px;border-radius:50%;background:#10B981;display:inline-block"></span> ChatGPT 3%</div>
+          <div style="display:flex;align-items:center;gap:4px;font-size:10px;color:rgba(255,255,255,.6)"><span style="width:8px;height:8px;border-radius:50%;background:#A855F7;display:inline-block"></span> Perplexity 1.5%</div>
+        </div>
+      </div>
+      <div class="card" style="padding:24px">
+        <h3 style="font-size:14px;margin-bottom:16px">Projected: Where Search Is Heading</h3>
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <div><div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text-dim);margin-bottom:4px;text-transform:uppercase;letter-spacing:1px"><span>2026 (Now)</span><span>Google: 88%</span></div><div style="height:28px;background:rgba(255,255,255,.04);border-radius:6px;overflow:hidden;position:relative"><div style="height:100%;width:88%;background:linear-gradient(90deg,#4285F4,#5B9CF6);border-radius:6px;display:flex;align-items:center;padding-left:10px;font-size:11px;font-weight:700;color:#fff">Google</div><div style="position:absolute;right:0;top:0;height:100%;width:5%;background:linear-gradient(90deg,var(--green),var(--primary));border-radius:0 6px 6px 0"></div></div></div>
+          <div><div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text-dim);margin-bottom:4px;text-transform:uppercase;letter-spacing:1px"><span>2028</span><span>Google: ~75%</span></div><div style="height:28px;background:rgba(255,255,255,.04);border-radius:6px;overflow:hidden;position:relative"><div style="height:100%;width:75%;background:linear-gradient(90deg,#4285F4,#5B9CF6);border-radius:6px 0 0 6px;display:flex;align-items:center;padding-left:10px;font-size:11px;font-weight:700;color:#fff">Google</div><div style="position:absolute;right:0;top:0;height:100%;width:18%;background:linear-gradient(90deg,var(--green),var(--primary));border-radius:0 6px 6px 0;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff">AI Search</div></div></div>
+          <div><div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text-dim);margin-bottom:4px;text-transform:uppercase;letter-spacing:1px"><span>2031</span><span>Google: ~60%</span></div><div style="height:28px;background:rgba(255,255,255,.04);border-radius:6px;overflow:hidden;position:relative"><div style="height:100%;width:60%;background:linear-gradient(90deg,#4285F4,#5B9CF6);border-radius:6px 0 0 6px;display:flex;align-items:center;padding-left:10px;font-size:11px;font-weight:700;color:#fff">Google</div><div style="position:absolute;right:0;top:0;height:100%;width:35%;background:linear-gradient(90deg,var(--green),var(--primary));border-radius:0 6px 6px 0;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff">AI Search 35%</div></div></div>
+        </div>
+        <div style="margin-top:16px;padding:10px 14px;background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.15);border-radius:8px;font-size:12px;color:rgba(255,255,255,.65);line-height:1.5"><strong style="color:var(--red)">Solar buyers research hard.</strong> A $30K+ install is not an impulse purchase. They ask AI. They cross-check reviews. They shortlist 3 installers before they take a call.</div>
+      </div>
+    </div>
+    <div class="hook-box" style="margin-top:14px;font-size:14px">Florida homeowners are asking AI: "who should install my solar panels?" If you are not in that answer, your competitors are taking the consult.</div>
+  </div>
+
+  <div class="slide bg-mid" id="slide-4">
+    <div class="eyebrow">ChatGPT-Class Results &bull; Live &bull; April 2026</div>
+    <h2>What <span style="color:var(--chatgpt)">ChatGPT</span> Says When an Orlando Homeowner Asks for Solar</h2>
+    <div class="divline"></div>
+    <div class="cols c3" style="margin-top:14px">
+      <div class="ai-chat"><div class="platform-badge chatgpt-badge">CHATGPT</div><div class="query">Query: <span>"best residential solar installers in Orlando Florida"</span></div><div class="answer"><strong>1. <span class="cited">Solar Kingdom Inc</span></strong> - 5.0-star local specialist<br><strong>2. <span class="cited">SunVena Solar</span></strong> - highest-rated Central FL<br><strong>3. <span class="cited">SunPower by esaSolar</span></strong> - NABCEP PV &amp; thermal certified<br><strong>4. <span class="cited">3 Guys Solar</span></strong> - 1,000+ FL projects<br><strong>5. <span class="cited">Sunlight Solar</span></strong> - #265 nationally<br><strong>6. <span class="cited">WindMar Group</span></strong> - 20,000+ homes since 2002<br><strong>7. <span class="cited">3D Solar</span></strong> - top-14 FL contractor<br><br><span class="not-cited">Home &amp; Energy Solutions of Florida - not mentioned.</span></div><div class="result-tag tag-missing" style="margin-top:8px">&#10007; NOT FOUND</div></div>
+      <div class="ai-chat"><div class="platform-badge chatgpt-badge">CHATGPT</div><div class="query">Query: <span>"top solar battery installation Orlando FL recommendations"</span></div><div class="answer"><strong>1. <span class="cited">SunVena Solar</span></strong> - Tesla Powerwall + Enphase<br><strong>2. <span class="cited">Solaria Solar &amp; Roofing</span></strong> - zero-down battery<br><strong>3. <span class="cited">Solar Source</span></strong> - est. 1984, 60K+ installs<br><strong>4. <span class="cited">Solar Optimum</span></strong> - EnergySage top pick<br><strong>5. <span class="cited">3 Guys Solar</span></strong> - Enphase + Tesla Powerwall<br><br><span class="not-cited">Home &amp; Energy Solutions of Florida - not mentioned.</span><br><span style="font-size:11px;color:rgba(255,255,255,.35)">(You install battery storage. AI does not know this.)</span></div><div class="result-tag tag-missing" style="margin-top:8px">&#10007; NOT FOUND</div></div>
+      <div class="ai-chat"><div class="platform-badge chatgpt-badge">CHATGPT</div><div class="query">Query: <span>"Tesla certified solar installer Orlando Florida homeowners"</span></div><div class="answer"><strong>1. <span class="cited">3 Guys Solar</span></strong> - Tesla Powerwall specialist<br><strong>2. <span class="cited">Go Solar Power</span></strong> - Tesla <em>Premier</em> Certified<br><strong>3. <span class="cited">PES Solar</span></strong> - Certified Powerwall installer<br><strong>4. <span class="cited">Dynasty Building Solutions</span></strong> - Tesla Solar Roof<br><strong>5. <span class="cited">Coastal Energy</span></strong> - Tesla Certified partner<br><strong>6. <span class="cited">SunVena</span></strong> - 1,000+ Tesla systems<br><br><span class="not-cited">Home &amp; Energy Solutions of Florida - not mentioned.</span><br><span style="font-size:11px;color:rgba(255,255,255,.35)">(Your site states Tesla Certified. AI named 6 others and missed you.)</span></div><div class="result-tag tag-missing" style="margin-top:8px">&#10007; NOT FOUND</div></div>
+    </div>
+    <p style="margin-top:14px;font-size:12px;color:rgba(255,255,255,.25);text-align:center">AI-citation sources pulled April 17, 2026. HESF / Evergreen was not recommended in any search.</p>
+  </div>
+
+  <div class="slide bg-dark" id="slide-5">
+    <div class="eyebrow">Perplexity-Class Results &bull; Live &bull; April 2026</div>
+    <h2>What <span style="color:var(--perplexity)">Perplexity</span> Recommends - Your Competitors, Not You</h2>
+    <div class="divline"></div>
+    <div class="cols c3" style="margin-top:14px">
+      <div class="ai-chat"><div class="platform-badge perplexity-badge">PERPLEXITY</div><div class="query">Query: <span>"who are the best solar companies near Orlando FL"</span></div><div class="answer"><strong>1. <span class="cited">SunVena Solar</span></strong> - HomeAdvisor top-rated<br><strong>2. <span class="cited">Solaria Solar &amp; Roofing</span></strong> - best in Central FL<br><strong>3. <span class="cited">Solar Source</span></strong> - 75,000+ clients<br><strong>4. <span class="cited">PRIME Green Solutions</span></strong> - EnergySage top 5<br><strong>5. <span class="cited">Goldin Solar</span></strong> - EnergySage top 5<br><strong>6. <span class="cited">Lunex Power Inc</span></strong> - EnergySage top 5<br><br><span class="not-cited">Home &amp; Energy Solutions of Florida - not mentioned.</span></div><div class="result-tag tag-missing" style="margin-top:8px">&#10007; NOT CITED</div></div>
+      <div class="ai-chat"><div class="platform-badge perplexity-badge">PERPLEXITY</div><div class="query">Query: <span>"top rated Tesla Powerwall installer Orlando FL"</span></div><div class="answer"><strong>1. <span class="cited">Go Solar Power</span></strong> - Tesla Premier Certified<br><strong>2. <span class="cited">3 Guys Solar</span></strong> - specialist installer<br><strong>3. <span class="cited">PES Solar</span></strong> - Longwood + Orlando<br><strong>4. <span class="cited">Dynasty Building Solutions</span></strong> - Tesla Solar Roof<br><strong>5. <span class="cited">SunVena</span></strong> - Tesla Premier<br><strong>6. <span class="cited">Coastal Energy</span></strong> - Tesla Solar Roof<br><strong>7. <span class="cited">Advance Solar</span></strong> - FL Powerwall coverage<br><br><span class="not-cited">Home &amp; Energy Solutions of Florida - not mentioned.</span></div><div class="result-tag tag-missing" style="margin-top:8px">&#10007; NOT CITED</div></div>
+      <div class="ai-chat"><div class="platform-badge perplexity-badge">PERPLEXITY</div><div class="query">Query: <span>"solar company with whole-home energy solutions Florida"</span></div><div class="answer">Perplexity cites EnergySage, SolarReviews, EcoWatch, Expertise.com, BuildSolar.org as primary sources.<br><br><strong><span class="cited">SunVena</span></strong>, <strong><span class="cited">Solaria</span></strong>, <strong><span class="cited">Solar Source</span></strong>, <strong><span class="cited">3 Guys Solar</span></strong>, <strong><span class="cited">Lunex Power</span></strong> repeatedly named across these sources.<br><br><span class="not-cited">Home &amp; Energy Solutions of Florida - not cited in any source.</span><br><span style="font-size:11px;color:rgba(255,255,255,.35)">(Your positioning IS whole-home energy. AI does not associate you with it.)</span></div><div class="result-tag tag-missing" style="margin-top:8px">&#10007; NOT CITED</div></div>
+    </div>
+    <p style="margin-top:14px;font-size:12px;color:rgba(255,255,255,.25);text-align:center">Perplexity pulls from EnergySage, SolarReviews, EcoWatch, Expertise.com, Angi. HESF is absent from all of them.</p>
+  </div>
+
+  <div class="slide bg-warm" id="slide-6">
+    <div class="eyebrow">Google + The Rebrand Problem &bull; Live &bull; April 2026</div>
+    <h2>What <span style="color:var(--google)">Google</span> Shows - and the Authority You Just Left Behind</h2>
+    <div class="divline"></div>
+    <div class="cols c3" style="margin-top:14px">
+      <div class="ai-chat" style="border-color:rgba(239,68,68,.15)"><div class="platform-badge google-badge">GOOGLE</div><div class="query">Query: <span>"best residential solar installers Orlando Florida"</span></div><div class="answer"><span class="badge b-red" style="margin-bottom:8px;display:inline-block">NOT IN TOP 10</span><br>Top 10 is dominated by directory sites (EnergySage, EcoWatch, SolarReviews, Expertise, BuildSolar) and competitor homepages (3 Guys Solar, Solaria, SunVena, Angi).<br><br><span style="color:var(--red);font-weight:600">Neither homeenergysolutionsflorida.com nor evergreen4life.com appears.</span></div><div class="result-tag tag-missing" style="margin-top:8px">&#10007; NOT RANKED</div></div>
+      <div class="ai-chat" style="border-color:rgba(245,158,11,.2)"><div class="platform-badge google-badge">GOOGLE</div><div class="query">Query: <span>"Evergreen Solar Solutions Orlando Florida"</span></div><div class="answer"><span class="badge b-amber" style="margin-bottom:8px;display:inline-block">BRANDED SEARCH</span><br>Old brand listings DO appear on: <span class="cited">Yelp</span>, <span class="cited">SolarReviews</span>, <span class="cited">ConsumerAffairs</span>, <span class="cited">Facebook</span>, <span class="cited">Wheree.com</span>.<br><br><span style="color:var(--yellow);font-weight:600">All five still say "Evergreen Solar Solutions" - not your new brand.</span></div><div class="result-tag tag-missing" style="margin-top:8px">&#8635; STUCK ON OLD BRAND</div></div>
+      <div class="ai-chat" style="border-color:rgba(239,68,68,.15)"><div class="platform-badge google-badge">GOOGLE</div><div class="query">Query: <span>"Home &amp; Energy Solutions of Florida reviews"</span></div><div class="answer"><span class="badge b-red" style="margin-bottom:8px;display:inline-block">BRAND CONFUSION</span><br>Returns unrelated FL companies: <span class="cited">Florida Energy Solutions</span> (insulation), <span class="cited">Efficient Home Services</span>, <span class="cited">Florida Home Energy Solutions Inc</span>, <span class="cited">FL Energy / LowerTheWatts</span>.<br><br><span style="color:var(--red);font-weight:600">Your new name is already being confused with 4+ similarly-named FL home energy companies.</span></div><div class="result-tag tag-missing" style="margin-top:8px">&#10007; BRAND LOST IN NOISE</div></div>
+    </div>
+    <p style="margin-top:14px;font-size:12px;color:rgba(255,255,255,.25);text-align:center">Google searches run April 17, 2026. The rebrand fractured your authority across two domains and four confusingly similar competitor names.</p>
+  </div>
+
+  <div class="slide bg-warm" id="slide-7">
+    <div class="eyebrow">Full AI Search Tracker &bull; 5 Queries &bull; 3 Platforms</div>
+    <h2>Full Visibility Tracker</h2>
+    <p style="font-size:16px;color:rgba(255,255,255,.45);margin-top:4px;font-weight:600">5 queries tested across ChatGPT, Perplexity, Google. 0 citations for HESF. 5+ stale listings still on the old Evergreen brand.</p>
+    <div class="divline"></div>
+    <div style="margin-top:10px;overflow-x:auto">
+      <table class="kw-table" style="min-width:700px">
+        <tr><th style="width:40%">Query</th><th style="width:15%">Est. Value</th><th style="width:15%;color:var(--chatgpt)">ChatGPT</th><th style="width:15%;color:var(--perplexity)">Perplexity</th><th style="width:15%;color:var(--google)">Google</th></tr>
+        <tr class="kw-row-miss"><td>best residential solar installers in Orlando</td><td style="color:var(--yellow);font-size:10px">$25K-45K avg job</td><td style="color:var(--red)">&#10007; Not Found</td><td style="color:var(--red)">&#10007; Not Found</td><td style="color:var(--red)">&#10007; Not Top 10</td></tr>
+        <tr class="kw-row-miss"><td>top solar battery installation Orlando FL</td><td style="color:var(--yellow);font-size:10px">$15K-25K add-on</td><td style="color:var(--red)">&#10007; Not Found</td><td style="color:var(--red)">&#10007; Not Found</td><td style="color:var(--red)">&#10007; Not Top 10</td></tr>
+        <tr class="kw-row-miss"><td>Tesla certified solar installer Orlando</td><td style="color:var(--yellow);font-size:10px">$30K-50K avg job</td><td style="color:var(--red)">&#10007; Not Found</td><td style="color:var(--red)">&#10007; Not Found</td><td style="color:var(--red)">&#10007; Not Top 10</td></tr>
+        <tr class="kw-row-miss"><td>solar company whole-home energy FL</td><td style="color:var(--yellow);font-size:10px">$30K-60K avg job</td><td style="color:var(--text-dim);font-size:10px">N/A</td><td style="color:var(--red)">&#10007; Not Found</td><td style="color:var(--red)">&#10007; Not Top 10</td></tr>
+        <tr style="color:rgba(245,158,11,.7)"><td>Evergreen Solar Solutions Orlando (old brand)</td><td style="color:var(--yellow);font-size:10px">Branded</td><td style="color:var(--text-dim);font-size:10px">N/A</td><td style="color:var(--yellow)">Stale citations</td><td style="color:var(--yellow)">Yelp / SolarReviews</td></tr>
+      </table>
+    </div>
+    <div style="margin-top:16px;display:flex;gap:12px;flex-wrap:wrap">
+      <div class="card accent-red" style="flex:1;text-align:center;padding:10px;min-width:120px"><div style="font-size:24px;font-weight:900;color:var(--red)">0/3</div><div style="font-size:9px;color:var(--chatgpt);text-transform:uppercase;letter-spacing:1px;margin-top:2px">ChatGPT</div></div>
+      <div class="card accent-red" style="flex:1;text-align:center;padding:10px;min-width:120px"><div style="font-size:24px;font-weight:900;color:var(--red)">0/3</div><div style="font-size:9px;color:var(--perplexity);text-transform:uppercase;letter-spacing:1px;margin-top:2px">Perplexity</div></div>
+      <div class="card accent-red" style="flex:1;text-align:center;padding:10px;min-width:120px"><div style="font-size:24px;font-weight:900;color:var(--red)">0/4</div><div style="font-size:9px;color:var(--google);text-transform:uppercase;letter-spacing:1px;margin-top:2px">Google Top 10</div></div>
+      <div class="card accent-amber" style="flex:1;text-align:center;padding:10px;min-width:120px"><div style="font-size:24px;font-weight:900;color:var(--yellow)">5+</div><div style="font-size:9px;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px;margin-top:2px">Stale Old-Brand Listings</div></div>
+    </div>
+  </div>
+
+  <div class="slide bg-dark" id="slide-8">
+    <div class="eyebrow">Competitor Comparison</div>
+    <h2>Who AI Is Recommending Instead of You</h2>
+    <div class="divline"></div>
+    <div class="cols c4" style="margin-top:14px">
+      <div class="comp-card is-leader"><div class="comp-label" style="color:var(--green)">Most Cited (ChatGPT)</div><div class="comp-name">SunVena Solar</div><div class="comp-domain">sunvena.com</div><div class="comp-stats"><div><div class="comp-stat-n" style="color:var(--green)">4/5</div><div class="comp-stat-l">AI Citations</div></div><div><div class="comp-stat-n">1,000+</div><div class="comp-stat-l">Tesla Installs</div></div></div><div style="margin-top:8px;font-size:10px;color:rgba(255,255,255,.4)">Tesla Premier Certified. Cited across ChatGPT, Perplexity, HomeAdvisor.</div></div>
+      <div class="comp-card"><div class="comp-label">Perplexity Leader</div><div class="comp-name">3 Guys Solar</div><div class="comp-domain">3guyssolar.com</div><div class="comp-stats"><div><div class="comp-stat-n" style="color:var(--primary)">3/5</div><div class="comp-stat-l">AI Citations</div></div><div><div class="comp-stat-n">1,000+</div><div class="comp-stat-l">FL Projects</div></div></div><div style="margin-top:8px;font-size:10px;color:rgba(255,255,255,.4)">Tesla Powerwall specialist. Central FL coverage including Orlando.</div></div>
+      <div class="comp-card"><div class="comp-label">Directory Favourite</div><div class="comp-name">Solar Source</div><div class="comp-domain">solarsource.com</div><div class="comp-stats"><div><div class="comp-stat-n" style="color:var(--dark-blue)">2/5</div><div class="comp-stat-l">AI Citations</div></div><div><div class="comp-stat-n">75K+</div><div class="comp-stat-l">Clients Since 1984</div></div></div><div style="margin-top:8px;font-size:10px;color:rgba(255,255,255,.4)">Longest operating history. Strongest trust signal in AI answers.</div></div>
+      <div class="comp-card is-you"><div class="comp-label" style="color:var(--red)">You</div><div class="comp-name">Home &amp; Energy Solutions of Florida</div><div class="comp-domain">homeenergysolutionsflorida.com</div><div class="comp-stats"><div><div class="comp-stat-n" style="color:var(--red)">0/5</div><div class="comp-stat-l">AI Citations</div></div><div><div class="comp-stat-n" style="color:var(--red)">Split</div><div class="comp-stat-l">Brand Authority</div></div></div><div style="margin-top:8px;font-size:10px;color:var(--yellow)">Tesla Certified. Maxeon + Q CELLS partner. 25-yr warranty. AI cannot see any of it.</div></div>
+    </div>
+    <p style="margin-top:14px;font-size:12px;color:var(--text-dim)">You are a Tesla Certified Installer. So are 3 Guys Solar, Go Solar Power, PES Solar, Dynasty, Coastal Energy, and SunVena. The difference is not credentials. It is how AI engines read the web.</p>
+  </div>
+
+  <div class="slide bg-mid" id="slide-9">
+    <div class="cols c21" style="margin-top:0;align-items:center;height:100%">
+      <div>
+        <div class="eyebrow">What This Is Costing You</div>
+        <h2>Your Rebrand Cut Your Authority in Half</h2>
+        <div class="divline"></div>
+        <ul class="pain-list">
+          <li><div class="pain-icon" style="background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.2)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="1.5"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg></div><span><strong style="color:var(--red)">Old-brand reviews are trapped on the old domain.</strong> Yelp, SolarReviews, ConsumerAffairs, Facebook all still carry "Evergreen Solar Solutions" listings. Every five-star review you have earned is pointing at a brand you no longer use.</span></li>
+          <li><div class="pain-icon" style="background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.2)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--yellow)" stroke-width="1.5"><polyline points="23 18 13.5 8.5 8.5 13.5 1 6"/></svg></div><span><strong style="color:var(--yellow)">Tesla Certified is a category-defining credential AI cannot read.</strong> ChatGPT named 6 other Tesla-certified installers in Orlando in a single query. Yours was not one of them, even though your own site features the certification prominently.</span></li>
+          <li><div class="pain-icon" style="background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.2)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div><span><strong style="color:var(--green)">Whole-home is your wedge - if AI can find it.</strong> Solar + battery + EV + roofing + 25-yr warranty is a meaningful combo. Perplexity asks "solar company with whole-home energy solutions FL" and returns 5 other names, never yours.</span></li>
+          <li><div class="pain-icon" style="background:rgba(1,162,249,.12);border:1px solid rgba(1,162,249,.2)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><span><strong style="color:var(--primary)">One missed install per month = $30K gone.</strong> Solar buyers shortlist 3 installers. If AI never names you, you are not on the shortlist. Miss one per month and that is $360K+ in annual installed revenue walking to SunVena, 3 Guys, or Solar Source.</span></li>
+        </ul>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div class="card glow-red" style="text-align:center;padding:18px"><div style="font-size:38px;font-weight:900;color:var(--red)">$25K-45K</div><div style="font-size:10px;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.4);margin-top:4px">Avg Installed Solar Job</div></div>
+        <div class="card glow-amber" style="text-align:center;padding:18px"><div style="font-size:34px;font-weight:900;color:var(--yellow)">$400K+</div><div style="font-size:10px;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.4);margin-top:4px">Est. Annual Revenue Gap</div></div>
+        <div class="card glow-cyan" style="text-align:center;padding:14px"><div style="font-size:13px;font-weight:700;color:var(--primary)">Tesla Certified &bull; Maxeon &bull; Q CELLS</div><div style="font-size:11px;color:rgba(255,255,255,.4);margin-top:4px">Credentials no competitor bundle matches - and AI names none of them.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide bg-dark" id="slide-10">
+    <div class="eyebrow">Why AI Cannot Find You</div>
+    <h2>The Rebrand Diagnostic - The Authority Leak</h2>
+    <div class="divline"></div>
+    <div class="cols c2" style="margin-top:18px">
+      <div class="card accent-red">
+        <h3 style="margin-bottom:14px">Authority Stuck on the Old Brand</h3>
+        <p style="font-size:12px;margin-bottom:14px;color:rgba(255,255,255,.5)">Third-party sites AI pulls from still list "Evergreen Solar Solutions" - not HESF:</p>
+        <div class="schema-row"><span>Yelp listing</span><span style="color:var(--yellow);font-weight:700">Old brand</span></div>
+        <div class="schema-row"><span>SolarReviews profile</span><span style="color:var(--yellow);font-weight:700">Old brand</span></div>
+        <div class="schema-row"><span>ConsumerAffairs</span><span style="color:var(--yellow);font-weight:700">Old brand</span></div>
+        <div class="schema-row"><span>Facebook page</span><span style="color:var(--yellow);font-weight:700">evergreen4life.FL</span></div>
+        <div class="schema-row"><span>Wheree.com directory</span><span style="color:var(--yellow);font-weight:700">Old brand</span></div>
+        <div class="schema-row"><span>Google Business Profile</span><span style="color:var(--red);font-weight:700">Likely unupdated</span></div>
+        <div style="margin-top:12px;padding:10px 14px;background:rgba(239,68,68,.06);border-radius:8px;border:1px solid rgba(239,68,68,.15)"><p style="font-size:12px;color:var(--red)"><strong>Every review, rating, and directory citation you have earned is still telling AI about a brand you retired.</strong></p></div>
+      </div>
+      <div>
+        <div class="card accent-red" style="margin-bottom:14px">
+          <h3 style="margin-bottom:10px">Schema &amp; Entity Signals - Likely Missing</h3>
+          <p style="font-size:13px;line-height:1.6">The pattern of AI total-absence suggests the new domain is missing:</p>
+          <ul style="list-style:none;margin-top:10px;display:flex;flex-direction:column;gap:6px">
+            <li style="font-size:12px;color:rgba(255,255,255,.7)">&#10007; LocalBusiness schema pointing at the new domain</li>
+            <li style="font-size:12px;color:rgba(255,255,255,.7)">&#10007; Service schema for solar / battery / EV / roofing</li>
+            <li style="font-size:12px;color:rgba(255,255,255,.7)">&#10007; FAQ schema (AI loves these for citations)</li>
+            <li style="font-size:12px;color:rgba(255,255,255,.7)">&#10007; Review / AggregateRating schema bringing old reviews forward</li>
+            <li style="font-size:12px;color:rgba(255,255,255,.7)">&#10007; sameAs links tying old brand &rarr; new brand</li>
+          </ul>
+        </div>
+        <div class="card accent-amber">
+          <h3 style="margin-bottom:10px">Other Likely Issues</h3>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:6px">
+            <li style="font-size:12px;color:rgba(255,255,255,.6)">&#9888; 301 from evergreen4life.com passes some SEO, but not third-party citations</li>
+            <li style="font-size:12px;color:rgba(255,255,255,.6)">&#9888; New brand name collides with 4+ FL companies with near-identical names</li>
+            <li style="font-size:12px;color:rgba(255,255,255,.6)">&#9888; No inbound links yet to the new domain from EnergySage / SolarReviews / Angi</li>
+            <li style="font-size:12px;color:rgba(255,255,255,.6)">&#9888; NAP "8803 Vistana Centre Dr" likely still on old-brand listings only</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide bg-proof" id="slide-11">
+    <div class="eyebrow">Proof - Same System, Different Industry</div>
+    <h2>Our Client Ranks <span style="color:var(--green)">#1 in ChatGPT</span></h2>
+    <div class="divline"></div>
+    <div class="cols c2" style="margin-top:14px;align-items:start">
+      <div style="position:relative;border-radius:14px;overflow:hidden;border:1px solid rgba(1,162,249,.2);background:var(--card);padding:24px"><div class="badge b-green" style="position:absolute;top:12px;left:12px;font-size:11px;padding:4px 12px;z-index:2">#1 RESULT</div><div style="margin-top:24px;padding:16px;background:rgba(34,197,94,.06);border:1px solid rgba(34,197,94,.2);border-radius:10px"><div style="font-size:10px;color:var(--chatgpt);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:8px">ChatGPT answer</div><div style="font-size:13px;line-height:1.65;color:rgba(255,255,255,.85)"><strong style="color:var(--green)">1. Advanced Center for Cosmetic Dentistry</strong> - Dr. Jason Olitsky's St. Petersburg practice is widely cited as one of the top cosmetic dentistry destinations in Florida&hellip;</div></div><div style="margin-top:12px;font-size:10px;color:rgba(255,255,255,.35);text-align:center">Real ChatGPT citation. Same framework. Different industry.</div></div>
+      <div>
+        <div class="cs-card" style="border-color:rgba(1,162,249,.25)"><div class="cs-name" style="color:var(--primary)">Advanced Center for Cosmetic Dentistry</div><div class="cs-biz">St. Petersburg, FL - Cosmetic &amp; Restorative Dentistry</div><hr class="cs-divider"><div class="cs-stats"><div class="cs-stat"><div class="n" style="color:var(--primary)">#1</div><div class="l">ChatGPT Ranking</div></div><div class="cs-stat"><div class="n" style="color:var(--green)">193%</div><div class="l">Traffic Increase</div></div><div class="cs-stat"><div class="n" style="color:var(--primary)">5</div><div class="l">Months</div></div></div></div>
+        <div class="card" style="margin-top:12px"><h3 style="font-size:14px;color:var(--primary);margin-bottom:10px">What we built for them</h3><ul style="list-style:none;display:flex;flex-direction:column;gap:8px;font-size:12px;color:rgba(255,255,255,.6)"><li style="display:flex;align-items:center;gap:8px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Entity signal consolidation across every directory</li><li style="display:flex;align-items:center;gap:8px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> FAQ + Service schema on every service page</li><li style="display:flex;align-items:center;gap:8px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> AI-trusted citation building</li><li style="display:flex;align-items:center;gap:8px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Location-specific content targeting</li><li style="display:flex;align-items:center;gap:8px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Google Maps optimization + ongoing monthly work</li></ul></div>
+        <div style="margin-top:10px;padding:10px 14px;background:rgba(245,158,11,.06);border:1px solid rgba(245,158,11,.15);border-radius:8px;font-size:12px;color:rgba(255,255,255,.7)"><strong style="color:var(--yellow)">HESF's advantage:</strong> Tesla Certification, Maxeon and Q CELLS partnerships, 25-year full warranty. Once AI can actually read the new domain - and your old-brand reviews migrate forward - these become unbeatable trust signals for Orlando solar.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide bg-mid" id="slide-12">
+    <div class="eyebrow">Case Study: Methodology Proof</div>
+    <h2>The Framework Works Across Industries</h2>
+    <div class="divline"></div>
+    <div class="cols c2" style="margin-top:14px;align-items:start">
+      <div class="cs-card" style="border-color:rgba(34,197,94,.25)"><div class="cs-name">3 Clients Now Ranking #1 in ChatGPT</div><div class="cs-biz" style="color:var(--green)">Dentist, Moving Co, Moving Co - different industries, same framework</div><hr class="cs-divider"><div class="cs-stats"><div class="cs-stat"><div class="n" style="color:var(--green)">3</div><div class="l">Clients at #1</div></div><div class="cs-stat"><div class="n" style="color:var(--green)">100%</div><div class="l">Success Rate</div></div><div class="cs-stat"><div class="n" style="color:var(--primary)">3-5</div><div class="l">Months to #1</div></div></div><div style="font-size:12px;color:rgba(255,255,255,.55);margin-top:14px;line-height:1.55;border-left:2px solid var(--green);padding-left:12px">Different markets, different industries, same 5-step framework producing the same outcome. Residential solar in Orlando is the same problem with different verbs.</div></div>
+      <div class="card"><h3 style="margin-bottom:14px">The 5-Step Framework</h3><div style="display:flex;flex-direction:column;gap:8px"><div style="display:flex;gap:10px;font-size:13px;color:rgba(255,255,255,.7);align-items:center"><span style="width:24px;height:24px;border-radius:6px;background:rgba(1,162,249,.1);border:1px solid rgba(1,162,249,.2);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--primary);flex-shrink:0">1</span><span><strong>AI Visibility Audit</strong> - find the gaps (this deck)</span></div><div style="display:flex;gap:10px;font-size:13px;color:rgba(255,255,255,.7);align-items:center"><span style="width:24px;height:24px;border-radius:6px;background:rgba(1,162,249,.1);border:1px solid rgba(1,162,249,.2);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--primary);flex-shrink:0">2</span><span><strong>Entity &amp; Schema Foundation</strong> - make AI understand you</span></div><div style="display:flex;gap:10px;font-size:13px;color:rgba(255,255,255,.7);align-items:center"><span style="width:24px;height:24px;border-radius:6px;background:rgba(1,162,249,.1);border:1px solid rgba(1,162,249,.2);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--primary);flex-shrink:0">3</span><span><strong>Content Optimization</strong> - give AI something to cite</span></div><div style="display:flex;gap:10px;font-size:13px;color:rgba(255,255,255,.7);align-items:center"><span style="width:24px;height:24px;border-radius:6px;background:rgba(1,162,249,.1);border:1px solid rgba(1,162,249,.2);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--primary);flex-shrink:0">4</span><span><strong>Citation Building</strong> - appear in AI's trusted sources</span></div><div style="display:flex;gap:10px;font-size:13px;color:rgba(255,255,255,.7);align-items:center"><span style="width:24px;height:24px;border-radius:6px;background:rgba(1,162,249,.1);border:1px solid rgba(1,162,249,.2);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--primary);flex-shrink:0">5</span><span><strong>Monitoring &amp; Optimization</strong> - stay ahead of competitors</span></div></div><div style="margin-top:14px;padding:10px 14px;background:rgba(34,197,94,.04);border:1px solid rgba(34,197,94,.12);border-radius:8px;font-size:12px;color:rgba(255,255,255,.6)">3 clients ranking #1 in ChatGPT across different industries. The methodology is proven and repeatable.</div></div>
+    </div>
+  </div>
+
+  <div class="slide bg-dark" id="slide-13">
+    <div class="eyebrow">Your Roadmap</div>
+    <h2>From Invisible to Recommended in 3 Phases</h2>
+    <div class="divline"></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:24px">
+      <div><div style="display:flex;align-items:center;gap:10px;margin-bottom:12px"><div style="width:14px;height:14px;border-radius:50%;background:var(--primary);box-shadow:0 0 12px rgba(1,162,249,.4);flex-shrink:0"></div><div style="font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-dim)">Month 1 - Rebrand Recovery</div></div><div class="card" style="padding:18px;height:calc(100% - 36px)"><h3 style="font-size:14px;color:var(--primary);margin-bottom:10px">Stop the Authority Leak</h3><ul style="list-style:none;display:flex;flex-direction:column;gap:7px;font-size:12px;color:rgba(255,255,255,.6)"><li style="display:flex;align-items:center;gap:6px"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="3"><circle cx="12" cy="12" r="10"/><path d="M12 9v4M12 17h.01"/></svg> Claim &amp; rename Yelp, SolarReviews, ConsumerAffairs, BBB, Angi</li><li style="display:flex;align-items:center;gap:6px"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Update Google Business Profile (new name + new domain)</li><li style="display:flex;align-items:center;gap:6px"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Deploy LocalBusiness + Service + FAQ schema</li><li style="display:flex;align-items:center;gap:6px"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Add sameAs links tying evergreen4life &rarr; HESF</li><li style="display:flex;align-items:center;gap:6px"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Submit rebrand notice to EnergySage + SolarReviews</li></ul></div></div>
+      <div><div style="display:flex;align-items:center;gap:10px;margin-bottom:12px"><div style="width:14px;height:14px;border-radius:50%;background:var(--dark-blue);box-shadow:0 0 12px rgba(0,82,204,.4);flex-shrink:0"></div><div style="font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-dim)">Month 2-3 - Content &amp; Citations</div></div><div class="card" style="padding:18px;height:calc(100% - 36px)"><h3 style="font-size:14px;color:var(--mid-blue);margin-bottom:10px">Build AI-Ready Signals</h3><ul style="list-style:none;display:flex;flex-direction:column;gap:7px;font-size:12px;color:rgba(255,255,255,.6)"><li style="display:flex;align-items:center;gap:6px"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--mid-blue)" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> FAQ page targeting solar + battery buyer questions</li><li style="display:flex;align-items:center;gap:6px"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--mid-blue)" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Service pages for each Orlando-area city</li><li style="display:flex;align-items:center;gap:6px"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--mid-blue)" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Dedicated "Tesla Certified Installer" page with schema</li><li style="display:flex;align-items:center;gap:6px"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--mid-blue)" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Project case studies with real install photos + stats</li><li style="display:flex;align-items:center;gap:6px"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--mid-blue)" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Review velocity campaign under the new brand</li></ul></div></div>
+      <div><div style="display:flex;align-items:center;gap:10px;margin-bottom:12px"><div style="width:14px;height:14px;border-radius:50%;background:var(--green);box-shadow:0 0 12px rgba(34,197,94,.4);flex-shrink:0"></div><div style="font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-dim)">Ongoing - Authority Compound</div></div><div class="card" style="padding:18px;height:calc(100% - 36px)"><h3 style="font-size:14px;color:var(--green);margin-bottom:10px">Become the Default Answer</h3><ul style="list-style:none;display:flex;flex-direction:column;gap:7px;font-size:12px;color:rgba(255,255,255,.6)"><li style="display:flex;align-items:center;gap:6px"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Quarterly AI re-audits (ChatGPT, Perplexity, Google AI)</li><li style="display:flex;align-items:center;gap:6px"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Monitor competitor AI citations monthly</li><li style="display:flex;align-items:center;gap:6px"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Ongoing review building to 100+ under new brand</li><li style="display:flex;align-items:center;gap:6px"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> AI-weighted backlink building (EnergySage, EcoWatch)</li><li style="display:flex;align-items:center;gap:6px"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Quarterly FL solar market content / PR</li></ul></div></div>
+    </div>
+    <div class="hook-box" style="margin-top:18px;font-size:14px">Rebrand recovery alone can produce measurable citation lift within 30-45 days. Full AI recommendation within 90-120 days given your Tesla + Maxeon + Q CELLS credential stack.</div>
+  </div>
+
+  <div class="slide bg-dark" id="slide-14">
+    <div class="eyebrow">Common Questions</div>
+    <h2>What You Might Be Thinking</h2>
+    <div class="divline"></div>
+    <div class="cols c2" style="margin-top:14px">
+      <div class="obj" style="border-left:3px solid var(--red)"><div class="obj-icon" style="background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.2)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div><div><div class="q">"How is this different from SEO?"</div><div class="a">Traditional SEO optimizes for Google's blue links. AI ranking optimizes for the answer layer - ChatGPT, Perplexity, Google AI Overviews. They are complementary. Solar buyers use both.</div></div></div>
+      <div class="obj" style="border-left:3px solid var(--yellow)"><div class="obj-icon" style="background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.2)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--yellow)" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div><div class="q">"Can you guarantee #1 in ChatGPT?"</div><div class="a">AI citation is probabilistic - we frame as "increased likelihood of citation," not guaranteed #1. What we CAN commit to: stopping the authority leak your rebrand created, and giving AI the signals it needs to associate your Tesla / Maxeon credentials with the new brand.</div></div></div>
+      <div class="obj" style="border-left:3px solid var(--primary)"><div class="obj-icon" style="background:rgba(1,162,249,.1);border:1px solid rgba(1,162,249,.2)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div><div class="q">"How long does this take?"</div><div class="a">Directory renames + schema deployment in weeks 1-2. First AI citations typically appear at 60-90 days. Your competitors already have the head start - every month of delay compounds.</div></div></div>
+      <div class="obj" style="border-left:3px solid var(--green)"><div class="obj-icon" style="background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.2)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><div><div class="q">"We get leads from referrals &amp; paid ads."</div><div class="a">Great - keep both. Every referral and every PPC click still Googles you before booking. Right now the search results AI returns for your new brand point to four other companies. That is the single biggest conversion leak you can fix this month.</div></div></div>
+    </div>
+  </div>
+
+  <div class="slide bg-close" id="slide-15" style="justify-content:center">
+    <div style="max-width:620px;margin:0 auto;text-align:center">
+      <div class="eyebrow">Next Steps</div>
+      <h2>You Built the Credentials. Let's Make AI See Them.</h2>
+      <div class="divline" style="margin:12px auto"></div>
+      <p style="font-size:17px;color:rgba(255,255,255,.65);max-width:540px;margin:20px auto;line-height:1.6">Tesla Certified Installer. Maxeon + Q CELLS partner. 25-year warranty. Whole-home energy positioning. AI should be recommending you for every solar query in Orlando.</p>
+      <p style="font-size:17px;color:#ffffff;font-weight:700;max-width:540px;margin:8px auto 24px">Right now, the rebrand silently handed every one of those leads to SunVena, 3 Guys, Solar Source, Go Solar Power, and Coastal Energy.</p>
+      <div style="margin-top:24px"><a href="https://calendly.com/info-yg4/strategy-call" target="_blank" class="cta-btn" style="font-size:18px;padding:16px 48px">Schedule a Call with Tomas</a></div>
+      <div style="margin-top:32px;font-size:11px;color:rgba(255,255,255,.2)">Prepared by Online Optimisers &bull; AI Visibility Specialists &bull; April 2026</div>
+    </div>
+  </div>
+
+</div>
+
+<div class="nav"><button id="prev" onclick="go(-1)">&#8592;</button><span id="sc">1 / 15</span><button id="next" onclick="go(1)">&#8594;</button></div>
+
+<script>
+let c=0;const S=document.querySelectorAll('.slide'),T=S.length;
+function show(){S.forEach((s,i)=>{s.classList.toggle('active',i===c)});document.getElementById('sc').textContent=(c+1)+' / '+T;document.getElementById('prev').disabled=c===0;document.getElementById('next').disabled=c===T-1;document.getElementById('pb').style.width=((c+1)/T*100)+'%';document.getElementById('slideCta').style.display=c>=1?'block':'none';}
+function go(d){c=Math.max(0,Math.min(T-1,c+d));show();}
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key===' ')go(1);if(e.key==='ArrowLeft')go(-1);});
+go(0);
+</script>
+</body>
+</html>
