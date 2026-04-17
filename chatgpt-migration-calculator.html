@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ChatGPT to Claude Migration Calculator | Online Optimisers</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #0a0e17;
+  --card: #111827;
+  --card-border: rgba(0, 230, 200, 0.1);
+  --accent: #00e6c8;
+  --accent-glow: rgba(0, 230, 200, 0.15);
+  --accent-hover: #00ffdd;
+  --text: #e2e8f0;
+  --muted: #94a3b8;
+  --input-bg: #1a2235;
+  --input-border: #2d3a50;
+  --success: #22c55e;
+  --mono: 'JetBrains Mono', monospace;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Header */
+.header {
+  text-align: center;
+  padding: 60px 20px 40px;
+}
+
+.header-badge {
+  display: inline-block;
+  background: var(--accent-glow);
+  color: var(--accent);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 6px 16px;
+  border-radius: 100px;
+  border: 1px solid var(--card-border);
+  margin-bottom: 24px;
+}
+
+.header h1 {
+  font-size: clamp(1.8rem, 5vw, 2.8rem);
+  font-weight: 800;
+  line-height: 1.15;
+  margin-bottom: 16px;
+}
+
+.header h1 .arrow {
+  color: var(--accent);
+  display: inline-block;
+  margin: 0 6px;
+}
+
+.header .subtitle {
+  font-size: clamp(1rem, 2.5vw, 1.15rem);
+  color: var(--muted);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Card */
+.card {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 36px;
+  margin-bottom: 28px;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.card-desc {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin-bottom: 28px;
+}
+
+/* Form */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group.full-width {
+  grid-column: 1 / -1;
+}
+
+.form-group label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: var(--text);
+}
+
+.form-group input,
+.form-group select {
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  padding: 12px 14px;
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
+  border-radius: 10px;
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-group input::placeholder { color: var(--muted); }
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+.form-group select { cursor: pointer; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='%2394a3b8'%3E%3Cpath d='M1 1l5 5 5-5'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px; }
+.form-group select option { background: var(--card); color: var(--text); }
+
+/* Generate Button */
+.generate-wrap { text-align: center; margin-top: 32px; }
+
+.btn-generate {
+  font-family: var(--sans);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--bg);
+  background: var(--accent);
+  border: none;
+  border-radius: 12px;
+  padding: 16px 48px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+  box-shadow: 0 0 24px var(--accent-glow);
+}
+
+.btn-generate:hover {
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 0 36px rgba(0,230,200,0.25);
+}
+
+.btn-generate:active { transform: translateY(0); }
+
+/* Output */
+#output-section {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  pointer-events: none;
+}
+
+#output-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: all;
+}
+
+.prompt-card { position: relative; }
+
+.prompt-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16px;
+  gap: 12px;
+}
+
+.prompt-number {
+  display: inline-block;
+  background: var(--accent-glow);
+  color: var(--accent);
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 6px;
+  margin-bottom: 8px;
+}
+
+.prompt-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.prompt-subtitle {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+.btn-copy {
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--accent);
+  background: var(--accent-glow);
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  padding: 8px 18px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s, color 0.2s;
+  flex-shrink: 0;
+}
+
+.btn-copy:hover { background: rgba(0,230,200,0.2); }
+.btn-copy.copied { background: var(--success); color: #fff; border-color: var(--success); }
+
+.prompt-text {
+  font-family: var(--mono);
+  font-size: 0.82rem;
+  line-height: 1.7;
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
+  border-radius: 10px;
+  padding: 24px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  max-height: 500px;
+  overflow-y: auto;
+  color: #c8d6e5;
+}
+
+.prompt-text::-webkit-scrollbar { width: 6px; }
+.prompt-text::-webkit-scrollbar-track { background: transparent; }
+.prompt-text::-webkit-scrollbar-thumb { background: var(--input-border); border-radius: 3px; }
+
+/* How to Use */
+.how-card h2 {
+  font-size: 1.3rem;
+  font-weight: 800;
+  margin-bottom: 4px;
+}
+
+.how-card .how-sub {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin-bottom: 28px;
+}
+
+.day-block {
+  margin-bottom: 28px;
+}
+
+.day-block:last-of-type { margin-bottom: 16px; }
+
+.day-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+
+.day-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.day-block ol {
+  padding-left: 20px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.day-block ol li {
+  margin-bottom: 6px;
+  line-height: 1.5;
+}
+
+.day-block ol li code {
+  font-family: var(--mono);
+  font-size: 0.82rem;
+  background: var(--input-bg);
+  padding: 2px 7px;
+  border-radius: 4px;
+  color: var(--accent);
+}
+
+.callout {
+  background: var(--accent-glow);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 10px 10px 0;
+  padding: 18px 22px;
+  font-size: 0.9rem;
+  color: var(--text);
+  margin-top: 24px;
+  line-height: 1.6;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 48px 20px 60px;
+  color: var(--muted);
+  font-size: 0.85rem;
+  line-height: 1.8;
+}
+
+.footer a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer a:hover { color: var(--accent-hover); }
+
+.footer .series-title {
+  font-weight: 600;
+  color: var(--text);
+  margin-top: 16px;
+  margin-bottom: 4px;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .card { padding: 24px 18px; }
+  .form-grid { grid-template-columns: 1fr; }
+  .header { padding: 40px 16px 28px; }
+  .prompt-text { padding: 16px; font-size: 0.78rem; max-height: 400px; }
+  .btn-generate { width: 100%; padding: 16px 24px; }
+  .prompt-header { flex-direction: column; }
+  .btn-copy { align-self: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="header">
+  <div class="header-badge">Free Migration Tool</div>
+  <h1>ChatGPT <span class="arrow">&rarr;</span> Claude<br>Migration Calculator</h1>
+  <p class="subtitle">Turn 3 years of ChatGPT history into a Claude-ready business context document</p>
+</header>
+
+<main class="container">
+
+  <!-- Input Card -->
+  <div class="card">
+    <h2 class="card-title">Tell us about you</h2>
+    <p class="card-desc">5 fields. 30 seconds. Two massive customised prompts.</p>
+
+    <div class="form-grid">
+      <div class="form-group">
+        <label for="role">Your Role</label>
+        <select id="role">
+          <option value="">Select your role...</option>
+          <option value="Business Owner">Business Owner</option>
+          <option value="Freelancer">Freelancer</option>
+          <option value="Agency Owner">Agency Owner</option>
+          <option value="Marketing Manager">Marketing Manager</option>
+          <option value="Developer">Developer</option>
+          <option value="Content Creator">Content Creator</option>
+          <option value="Consultant">Consultant</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="business">Business or Project Name</label>
+        <input type="text" id="business" placeholder="e.g. Acme Digital">
+      </div>
+
+      <div class="form-group full-width">
+        <label for="whatyoudo">What you do</label>
+        <input type="text" id="whatyoudo" placeholder="e.g. Local SEO for US service businesses">
+      </div>
+
+      <div class="form-group">
+        <label for="team">Team Size</label>
+        <select id="team">
+          <option value="">Select team size...</option>
+          <option value="just me (solo)">Just me</option>
+          <option value="2-5 people">2-5</option>
+          <option value="6-15 people">6-15</option>
+          <option value="16-50 people">16-50</option>
+          <option value="50+ people">50+</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="goal">Main Goal Right Now</label>
+        <select id="goal">
+          <option value="">Select your main goal...</option>
+          <option value="Grow revenue">Grow revenue</option>
+          <option value="Improve operations">Improve operations</option>
+          <option value="Launch a new service">Launch new service</option>
+          <option value="Automate repetitive work">Automate repetitive work</option>
+          <option value="Build AI workflows">Build AI workflows</option>
+          <option value="Scale the team">Scale the team</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="generate-wrap">
+      <button class="btn-generate" id="btn-generate" onclick="generatePrompts()">Generate Your Migration Prompts</button>
+    </div>
+  </div>
+
+  <!-- Output Section -->
+  <div id="output-section">
+
+    <!-- Prompt 1 -->
+    <div class="card prompt-card">
+      <div class="prompt-header">
+        <div>
+          <span class="prompt-number">PROMPT 1</span>
+          <div class="prompt-title">Mine Your ChatGPT History</div>
+          <div class="prompt-subtitle">Paste this into ChatGPT to extract everything it knows about you</div>
+        </div>
+        <button class="btn-copy" onclick="copyPrompt('prompt1-text', this)">Copy Prompt</button>
+      </div>
+      <div class="prompt-text" id="prompt1-text"></div>
+    </div>
+
+    <!-- Prompt 2 -->
+    <div class="card prompt-card">
+      <div class="prompt-header">
+        <div>
+          <span class="prompt-number">PROMPT 2</span>
+          <div class="prompt-title">Structure for Claude</div>
+          <div class="prompt-subtitle">Run this in the same ChatGPT conversation to get 3 ready-to-use documents</div>
+        </div>
+        <button class="btn-copy" onclick="copyPrompt('prompt2-text', this)">Copy Prompt</button>
+      </div>
+      <div class="prompt-text" id="prompt2-text"></div>
+    </div>
+
+    <!-- How to Use -->
+    <div class="card how-card">
+      <h2>Your Migration Journey</h2>
+      <p class="how-sub">Plan 2-3 days. Do it properly. The payoff is enormous.</p>
+
+      <div class="day-block">
+        <div class="day-label">Day 1</div>
+        <div class="day-title">Mine your ChatGPT history</div>
+        <ol>
+          <li>Copy Prompt 1 above and paste it into ChatGPT</li>
+          <li>READ every single word of the output &mdash; don't skim</li>
+          <li>Edit it: add what ChatGPT missed, delete anything wrong</li>
+          <li>Save to a Google Doc &mdash; this is your master context document</li>
+        </ol>
+      </div>
+
+      <div class="day-block">
+        <div class="day-label">Day 2</div>
+        <div class="day-title">Set up Claude.ai</div>
+        <ol>
+          <li>Copy Prompt 2 and paste it into ChatGPT (same conversation)</li>
+          <li>Take the "Claude.ai Quick Memory" output and paste it into Claude.ai Settings &rarr; Memory</li>
+          <li>Test it: open Claude.ai and ask <em>"What do you know about my business?"</em></li>
+          <li>Fix what's wrong. Add more. Test again.</li>
+        </ol>
+      </div>
+
+      <div class="day-block">
+        <div class="day-label">Day 3</div>
+        <div class="day-title">Set up Claude Code</div>
+        <ol>
+          <li>Take the CLAUDE.md output and save as <code>CLAUDE.md</code> in your workspace root</li>
+          <li>Open Claude Code and paste the 10 memory seeds one by one</li>
+          <li>Test: ask Claude to draft something real for your business</li>
+          <li>Is it good? If it feels generic, add more context. Iterate.</li>
+        </ol>
+      </div>
+
+      <div class="callout">
+        The difference between mediocre AI answers and spectacular ones is 2-3 days of proper context setup. Don't rush this.
+      </div>
+    </div>
+
+  </div><!-- /output-section -->
+
+</main>
+
+<!-- Footer -->
+<footer class="footer">
+  <div>Written by Donal Lynch &nbsp;|&nbsp; Online Optimisers &nbsp;|&nbsp; <a href="https://onlineoptimisers.com" target="_blank">onlineoptimisers.com</a></div>
+  <div class="series-title">Part of the Claude Code Guide Series:</div>
+  <div>
+    <a href="claude-code-startup-guide.html">From Zero to Dangerous (Startup Guide)</a> &nbsp;&rarr;&nbsp;
+    <a href="claude-code-advanced-guide.html">Full Stack Playbook (Advanced Guide)</a>
+  </div>
+</footer>
+
+<script>
+function generatePrompts() {
+  const role = document.getElementById('role').value;
+  const business = document.getElementById('business').value.trim();
+  const whatyoudo = document.getElementById('whatyoudo').value.trim();
+  const team = document.getElementById('team').value;
+  const goal = document.getElementById('goal').value;
+
+  if (!role || !business || !whatyoudo || !team || !goal) {
+    const btn = document.getElementById('btn-generate');
+    btn.textContent = 'Please fill in all 5 fields';
+    btn.style.background = '#ef4444';
+    setTimeout(() => { btn.textContent = 'Generate Your Migration Prompts'; btn.style.background = ''; }, 2000);
+    return;
+  }
+
+  // Build Prompt 1
+  const p1 = `I've been using you as my AI assistant for the past few years. I'm migrating to a new AI system called Claude, and I need you to write a comprehensive handover document about me and my work.
+
+I am a ${role} running ${business}. We ${whatyoudo}. My team is ${team}. My main priority right now is: ${goal}.
+
+Based on EVERYTHING from our past conversations, write a detailed document covering ALL of the following sections. Be specific and concrete — don't summarise or generalise. If you don't have information on a section, say "[NOT DISCUSSED — fill in manually]" so I know to add it.
+
+---
+
+## 1. ABOUT ME
+- My full name and role
+- My professional background and experience
+- My personality traits and communication style
+- How I make decisions (gut feel, data-driven, consultative?)
+- What motivates me
+- What frustrates me
+- My strengths and weaknesses as I've described them
+- My timezone and location
+- Languages I work in
+
+## 2. MY BUSINESS
+- Official business name and structure
+- What the business does — core services/products
+- How long it's been operating
+- Current revenue and revenue model (recurring, project-based, mixed?)
+- Number of active clients/customers
+- Average deal size or contract value
+- Key differentiators — what makes us different from competitors
+- Business stage (startup, growth, mature, pivot?)
+
+## 3. MY CLIENTS / CUSTOMERS
+- Who we serve (industry, size, geography)
+- Ideal customer profile
+- Typical client pain points we solve
+- How clients find us
+- Client retention — how long they typically stay
+- Any named clients or segments discussed
+
+## 4. MY TEAM
+- Team structure and size
+- Key people and their roles
+- External partners, contractors, or agencies
+- Who I work with most closely
+- Team strengths and gaps
+- Hiring plans or team changes discussed
+
+## 5. CURRENT OPERATIONS
+- How work gets done day-to-day
+- Typical workflow from start to finish
+- Who handles what
+- Biggest operational bottlenecks
+- Quality control processes
+- What takes too long
+- What breaks most often
+
+## 6. TOOLS AND TECHNOLOGY
+- Every tool, platform, and software mentioned
+- How each tool is used
+- Integrations between tools
+- Tools I've considered or evaluated
+- Tech stack for delivery
+- CRM, project management, communication tools
+
+## 7. SALES AND MARKETING
+- How I find new clients (outbound, inbound, referrals)
+- Sales process from first touch to close
+- Marketing channels active
+- What's working and what isn't
+- Conversion rates or metrics discussed
+- Outreach tools and sequences
+- Content marketing approach
+
+## 8. GOALS AND STRATEGY
+- Revenue target (next 6-12 months)
+- Strategic priorities right now
+- New services or offers being planned
+- Markets I want to enter
+- Long-term vision for the business
+- Key decisions I'm weighing
+
+## 9. CONTENT AND BRAND
+- Tone of voice and brand personality
+- Content I create or want to create
+- Platforms I publish on
+- Brand guidelines or preferences
+- How I want to be perceived
+
+## 10. WORKING STYLE
+- How I prefer to receive information (bullet points, detailed, visual?)
+- How I communicate (brief, detailed, casual, formal?)
+- When I work and my schedule
+- How I prioritise tasks
+- Decision-making speed and style
+- What makes a good output for me
+
+## 11. KNOWLEDGE AND LEARNING
+- Courses, programs, or certifications mentioned
+- Books or frameworks I follow
+- Industry experts or thought leaders I reference
+- Areas I'm actively learning
+- Communities or networks I'm part of
+
+## 12. PAIN POINTS AND FRUSTRATIONS
+- Top 5 things that waste my time
+- Recurring problems that never fully get solved
+- Things I wish I could automate or delegate
+- What keeps me up at night (professionally)
+- Where I feel most bottlenecked
+
+## 13. AI USAGE
+- How I currently use AI tools
+- What I've built or automated with AI
+- AI goals — what I want AI to do for me
+- AI skills level (beginner, intermediate, advanced?)
+- Specific AI tools mentioned
+
+---
+
+Be exhaustive. This document will be used to set up a new AI assistant that needs to know everything about me from day one. Accuracy matters more than brevity.`;
+
+  // Build Prompt 2
+  const p2 = `Excellent work. Now I need you to take that entire summary and restructure it into THREE documents:
+
+**Document 1: CLAUDE.md** — This is the permanent operating manual that Claude reads at the start of every conversation. It should be concise but comprehensive — around 500-800 words.
+
+Use this exact structure:
+
+---
+
+# CLAUDE.md — ${business}
+
+## Who I Am
+[2-3 sentences: name, role, what I do]
+
+## My Business
+[Business name, what it does, how it makes money, current scale — 3-4 sentences]
+
+## Working Style
+[How I like AI to communicate with me. Output preferences: format, length, tone. Decision style.]
+
+## Current Focus
+[The 2-3 things I'm actively working on RIGHT NOW]
+
+## Team
+[Who's on the team, brief roles]
+
+## Clients / Customers
+[Who we serve, typical profile, current count]
+
+## Tools I Use
+[Bullet list of all platforms and tools — Claude needs to know what's connected]
+
+## Goals (Next 6 Months)
+[Where the business is heading]
+
+## What I Need Help With Most
+[Top 3-5 areas where Claude adds the most value]
+
+## Presentation Style
+[How I want outputs formatted: bullet points vs prose, formal vs casual, British vs American English, max/min lengths]
+
+## Rules for Claude
+- [Always do X]
+- [Never do Y]
+- [Preferred formats]
+- [Tone rules]
+- [Things that waste my time — avoid]
+
+## Things I've Learned the Hard Way
+[3-5 hard-won lessons that should inform Claude's suggestions]
+
+---
+
+**Document 2: Memory Seeds** — These are the 10 most important facts about me that Claude should save to its persistent memory. Format each as:
+
+1. "Save to memory: [fact about me — my name, role, and professional background]"
+2. "Save to memory: [fact about my business — what ${business} does and its current scale]"
+3. "Save to memory: [fact about my working style — how I like to receive information and communicate]"
+4. "Save to memory: [fact about my goals — my #1 priority for the next 6 months]"
+5. "Save to memory: [fact about my team — size, structure, key people]"
+6. "Save to memory: [fact about my clients — who we serve and our ideal customer profile]"
+7. "Save to memory: [fact about my tools — the core platforms and tech stack I use daily]"
+8. "Save to memory: [fact about my pain points — what wastes my time or blocks my progress]"
+9. "Save to memory: [fact about my decision-making — how I evaluate options and make choices]"
+10. "Save to memory: [fact about my preferences — tone, format, communication style rules]"
+
+---
+
+**Document 3: Claude.ai Quick Memory** — A condensed 300-word version of CLAUDE.md specifically for Claude.ai's browser memory system. Same information, just shorter. Prioritise: who I am, what my business does, my working style, and my current focus.
+
+---
+
+Make all three documents specific to me — use real details from the summary above, not placeholders. I'll edit them before using.`;
+
+  document.getElementById('prompt1-text').textContent = p1;
+  document.getElementById('prompt2-text').textContent = p2;
+
+  const output = document.getElementById('output-section');
+  output.classList.add('visible');
+
+  setTimeout(() => {
+    output.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 100);
+}
+
+function copyPrompt(id, btn) {
+  const text = document.getElementById(id).textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = 'Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = 'Copy Prompt';
+      btn.classList.remove('copied');
+    }, 2000);
+  }).catch(() => {
+    // Fallback
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    btn.textContent = 'Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = 'Copy Prompt';
+      btn.classList.remove('copied');
+    }, 2000);
+  });
+}
+</script>
+
+</body>
+</html>
