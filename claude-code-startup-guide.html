@@ -460,6 +460,40 @@
     }
 
     /* -- CTA BLOCK -- */
+    /* ── MID-PAGE CTA BANNERS ── */
+    .mid-cta {
+      background: linear-gradient(135deg, #dbeafe, #eff6ff);
+      border: 1px solid #bfdbfe;
+      border-radius: 10px;
+      padding: 20px 28px;
+      margin: 40px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .mid-cta p {
+      margin: 0;
+      color: var(--navy);
+      font-weight: 500;
+      font-size: 14px;
+      flex: 1;
+    }
+    .mid-cta a {
+      display: inline-block;
+      background: var(--blue);
+      color: #fff;
+      padding: 8px 20px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: background 0.15s;
+    }
+    .mid-cta a:hover { background: var(--navy); }
+
     .cta-block {
       background: linear-gradient(135deg, #072F60 0%, #005DE0 100%);
       border-radius: 12px;
@@ -599,7 +633,7 @@
   <div class="cover-badge">Startup Guide v4</div>
   <h1>Claude Code<br/>From Zero to Dangerous</h1>
   <p class="subtitle">The accelerated setup guide for non-coders who want AI leverage</p>
-  <p class="cover-meta"><strong>Online Optimisers</strong> &middot; Version 4 &middot; April 2026<br/>Total time: ~2 hours &middot; 9 modules + Foundation Week &middot; No coding experience required</p>
+  <p class="cover-meta">Written by <strong>Donal Lynch</strong> &middot; <a href="https://onlineoptimisers.com" style="color:var(--blue);text-decoration:none;">Online Optimisers</a> &middot; <a href="https://www.linkedin.com/company/online-optimisers" style="color:var(--blue);text-decoration:none;">LinkedIn</a><br/>Version 4 &middot; April 2026 &middot; ~2 hours &middot; 9 modules + Foundation Week &middot; No coding experience required</p>
 </div>
 
 <!-- STAT CARDS -->
@@ -681,6 +715,18 @@ Be specific and concrete under each heading.</div>
     <div class="callout-label">Read. Edit. Don't Just Paste.</div>
     Save to Google Doc first. Then read every word. ChatGPT will get some things wrong and miss others. Add what it missed. Correct what it got wrong. Remove anything outdated. This document feeds everything: CLAUDE.md, Claude.ai memory, and Claude Code memory. Garbage in, garbage out.
   </div>
+
+  <details>
+    <summary>Want even bigger, personalised mega-prompts? Try the Migration Calculator</summary>
+    <div class="detail-body">
+      <p>The prompts above are a great start. For a <strong>much deeper extraction</strong> (13 business categories, 3 output documents), use our interactive calculator &mdash; it generates massive personalised prompts based on your role and business.</p>
+      <div style="background:#f0f4ff;border:1px solid var(--border);border-radius:8px;padding:20px;margin:12px 0;text-align:center;">
+        <p style="margin:0 0 12px;font-weight:600;color:var(--navy);">ChatGPT &rarr; Claude Migration Calculator</p>
+        <p style="margin:0 0 16px;font-size:13px;color:var(--muted);">5 inputs &rarr; 2 mega-prompts &rarr; 3 ready-to-use documents</p>
+        <a href="chatgpt-migration-calculator.html" style="display:inline-block;background:var(--blue);color:#fff;padding:10px 28px;border-radius:6px;font-weight:600;text-decoration:none;font-size:14px;">Open the Calculator &rarr;</a>
+      </div>
+    </div>
+  </details>
 
   <!-- DAY 2 -->
   <h3 id="fw-day2">Day 2: Feed Into Claude &mdash; Then Test</h3>
@@ -1090,6 +1136,11 @@ wrangler pages deploy ./my-site</div>
 <!-- ================================================================ -->
 <!-- MODULE 4                                                         -->
 <!-- ================================================================ -->
+<div class="mid-cta no-print">
+  <p>Enjoying this guide? The <strong>Advanced Claude Code Guide</strong> picks up where this leaves off &mdash; agents, automation, and scaling your AI operations.</p>
+  <a href="claude-code-advanced-guide.html">Preview the Advanced Guide &rarr;</a>
+</div>
+
 <h2 id="m4"><span class="module-num">Module 4</span>Claude Code &mdash; Install, Auth, Permissions</h2>
 
 <p>Claude Code is the bridge between Claude's brain and your workspace. It reads your files, writes code, runs commands, and remembers context &mdash; all from inside VS Code.</p>
@@ -1669,6 +1720,11 @@ STRIPE_SECRET_KEY=sk_live_your-key</div>
 <!-- ================================================================ -->
 <!-- MODULE 7                                                         -->
 <!-- ================================================================ -->
+<div class="mid-cta no-print">
+  <p>You're past the halfway mark. Once you finish here, the <strong>Full Stack Playbook</strong> shows you multi-agent orchestration, deployment pipelines, and autonomous workflows.</p>
+  <a href="claude-code-advanced-guide.html">See what's next &rarr;</a>
+</div>
+
 <h2 id="m7"><span class="module-num">Module 7</span>Prompting That Actually Works</h2>
 
 <p>Most people prompt like they are texting a friend. Vague. Incomplete. Then they wonder why the output is mediocre. Good prompting is about giving Claude the right context, constraints, and format &mdash; not about magic words.</p>
@@ -2024,11 +2080,12 @@ Save to content/weekly-posts-[date].md</div>
 
 
 <!-- CTA BLOCK -->
-<div class="cta-block">
-  <h3>Ready to Go Deeper?</h3>
-  <p>This guide got you from zero to dangerous. The next two resources take you from dangerous to lethal.</p>
-  <a href="claude-code-advanced-guide.html" class="cta-btn">Claude Code: Full Stack Playbook</a>
-  <a href="chatgpt-migration-calculator.html" class="cta-btn secondary">ChatGPT Migration Calculator</a>
+<div class="cta-block" style="padding:56px 32px;">
+  <h3 style="font-size:28px;margin-bottom:12px;">You're Dangerous Now. Ready to Be Lethal?</h3>
+  <p style="font-size:16px;max-width:560px;margin:0 auto 28px;">The Advanced Guide covers multi-agent orchestration, custom MCPs, deployment pipelines, autonomous workflows, and how to turn all of this into money.</p>
+  <a href="claude-code-advanced-guide.html" class="cta-btn" style="font-size:17px;padding:16px 40px;margin-bottom:12px;">Open the Full Stack Playbook &rarr;</a>
+  <br/>
+  <a href="chatgpt-migration-calculator.html" class="cta-btn secondary" style="margin-top:8px;">ChatGPT Migration Calculator</a>
 </div>
 
 
