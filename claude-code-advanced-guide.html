@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Claude Code Advanced Guide — The Full Stack Playbook v5</title>
+  <title>Claude Code Advanced Guide — The Full Stack Playbook v6</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <style>
     @page { size: A4; margin: 2cm; }
@@ -294,7 +294,7 @@
     .code-block .copy-btn.copied { color: var(--green); border-color: var(--green); }
     .code-block.has-copy .label { right: 80px; }
 
-    /* ── TABLES ── */
+    /* ── TABLES ���─ */
     table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
     th {
       background: var(--surface-2); font-weight: 700; text-align: left;
@@ -639,6 +639,186 @@
     table { display: block; overflow-x: auto; }
     @media (min-width: 700px) { table { display: table; } }
     .code-block { overflow-x: auto; }
+
+    /* ══════════════════════════════════════════════════════════════ */
+    /* INFOGRAPHIC: Agent Architecture                               */
+    /* ═══════════════════��═══════════════════════════════════��══════ */
+    .infographic.agent-arch {
+      background: #111827;
+      border: 1px solid rgba(0,230,200,0.2);
+      border-radius: 12px;
+      padding: 32px;
+      margin: 24px 0;
+    }
+    .arch-orchestrator {
+      text-align: center;
+      background: var(--surface);
+      border: 2px solid var(--cyan);
+      border-radius: 10px;
+      padding: 20px 24px;
+      max-width: 280px;
+      margin: 0 auto 24px;
+    }
+    .arch-orchestrator .arch-label {
+      font-weight: 800;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+    .arch-orchestrator .arch-desc {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 6px;
+    }
+    .arch-arrows {
+      display: flex;
+      justify-content: space-around;
+      max-width: 500px;
+      margin: 0 auto 16px;
+      padding: 0 40px;
+    }
+    .arch-arrows span {
+      display: block;
+      width: 2px;
+      height: 32px;
+      background: var(--cyan);
+      position: relative;
+    }
+    .arch-arrows span::after {
+      content: "\25BC";
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: var(--cyan);
+      font-size: 10px;
+    }
+    .arch-agents {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+    }
+    .arch-agent {
+      flex: 1;
+      max-width: 180px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      text-align: center;
+    }
+    .arch-agent .arch-label {
+      font-weight: 700;
+      font-size: 13px;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+    .arch-agent .arch-role {
+      font-size: 11px;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+    .arch-model {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 4px;
+      color: #fff;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .arch-model.haiku { background: #059669; }
+    .arch-model.sonnet { background: #005DE0; }
+    .arch-model.opus { background: #7c3aed; }
+    @media (max-width: 600px) {
+      .arch-agents { flex-direction: column; align-items: center; }
+      .arch-agent { max-width: 100%; width: 100%; }
+      .arch-arrows { padding: 0 20px; }
+    }
+
+    /* ═════���══════════════════���══════════════════════════��══════════ */
+    /* INFOGRAPHIC: Pattern Cards                                    */
+    /* ══════════════════════���══════════════════════════════════��════ */
+    .infographic.pattern-cards {
+      display: flex;
+      gap: 16px;
+      margin: 24px 0;
+    }
+    .pattern-card {
+      flex: 1;
+      background: #111827;
+      border-top: 3px solid var(--cyan);
+      border-radius: 8px;
+      padding: 24px;
+      text-align: center;
+    }
+    .pattern-icon { font-size: 32px; margin-bottom: 8px; }
+    .pattern-title { font-size: 18px; font-weight: 700; color: var(--cyan); margin-bottom: 8px; }
+    .pattern-desc { font-size: 13px; color: var(--text-muted); margin-bottom: 12px; }
+    .pattern-example { font-size: 12px; color: var(--text-muted); font-style: italic; border-top: 1px solid var(--border); padding-top: 8px; }
+    @media (max-width: 600px) {
+      .infographic.pattern-cards { flex-direction: column; }
+    }
+
+    /* ═══════════════════════════════════════════════════���══════════ */
+    /* INFOGRAPHIC: Memory Compare                                   */
+    /* ═══════════���══════════════════════════════════════════════════ */
+    .infographic.memory-compare {
+      display: flex;
+      gap: 16px;
+      margin: 24px 0;
+    }
+    .mem-card {
+      flex: 1;
+      background: #111827;
+      border-radius: 8px;
+      padding: 24px;
+      text-align: center;
+    }
+    .mem-card.mem-permanent { border-top: 3px solid #072F60; }
+    .mem-card.mem-evolving { border-top: 3px solid #005DE0; }
+    .mem-card.mem-temporary { border-top: 3px solid #60a5fa; }
+    .mem-icon { font-size: 28px; margin-bottom: 8px; }
+    .mem-title { font-weight: 700; font-size: 16px; color: #fff; margin-bottom: 4px; }
+    .mem-type { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--cyan); margin-bottom: 8px; }
+    .mem-desc { font-size: 13px; color: var(--text-muted); margin: 8px 0; }
+    .mem-location { font-size: 11px; color: var(--text-muted); font-family: 'JetBrains Mono', monospace; }
+    @media (max-width: 600px) {
+      .infographic.memory-compare { flex-direction: column; }
+    }
+
+    /* ════════��═══════════════════════��═════════════════════════════ */
+    /* INFOGRAPHIC: Deploy Flow                                      */
+    /* ══════════��═════════════════════════════���═════════════════════ */
+    .infographic.deploy-flow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin: 32px 0;
+      flex-wrap: wrap;
+    }
+    .deploy-step { text-align: center; min-width: 80px; }
+    .deploy-circle {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      margin: 0 auto 8px;
+      color: #fff;
+    }
+    .deploy-label { font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; color: #fff; }
+    .deploy-tool { font-size: 11px; color: var(--text-muted); }
+    .deploy-arrow { font-size: 24px; color: var(--cyan); font-weight: 700; }
+    @media (max-width: 600px) {
+      .deploy-arrow { transform: rotate(90deg); display: block; margin: 4px auto; }
+      .infographic.deploy-flow { flex-direction: column; }
+    }
   </style>
 </head>
 <body>
@@ -651,7 +831,7 @@
 
 <!-- ── SIDEBAR ── -->
 <nav class="sidebar no-print" id="sidebar">
-  <h3>Advanced Guide v5</h3>
+  <h3>Advanced Guide v6</h3>
 
   <a href="#top" class="s-module">Cover</a>
 
@@ -721,10 +901,10 @@
 
 <!-- ── COVER ── -->
 <div class="cover" id="top">
-  <div class="cover-badge">Advanced Guide &mdash; v5</div>
+  <div class="cover-badge">Advanced Guide &mdash; v6</div>
   <h1>Claude Code<br/><span class="accent">Full Stack Playbook</span></h1>
   <p class="subtitle">30+ APIs, parallel agents, autonomous workflows, and the architecture behind an AI-native business</p>
-  <p class="cover-meta"><strong>Donal Lynch</strong> &middot; <strong>Online Optimisers</strong> &middot; Version 5 &middot; April 2026<br/>Prerequisite: <a href="claude-code-startup-guide.html" style="color: var(--cyan);">Startup Guide</a> completed &middot; 18 sections &middot; ~170 min<br/><a href="https://www.linkedin.com/in/donal-lynch-b293a882/" style="color: var(--cyan);">LinkedIn</a></p>
+  <p class="cover-meta"><strong>Donal Lynch</strong> &middot; <strong>Online Optimisers</strong> &middot; Version 6 &middot; April 2026<br/>Prerequisite: <a href="claude-code-startup-guide.html" style="color: var(--cyan);">Startup Guide</a> completed &middot; 18 sections &middot; ~170 min<br/><a href="https://www.linkedin.com/in/donal-lynch-b293a882/" style="color: var(--cyan);">LinkedIn</a></p>
 </div>
 
 <!-- stats -->
@@ -957,6 +1137,37 @@ VERCEL_TOKEN=...</div>
   <tr><td><strong>Worktree agent</strong></td><td>An agent working on an isolated git branch. No file conflicts with other agents.</td></tr>
 </table>
 
+<p>Here is how the pieces fit together visually. You talk to the orchestrator. The orchestrator delegates to specialised agents, each running the right model for the job:</p>
+
+<!-- INFOGRAPHIC: Agent Architecture -->
+<div class="infographic agent-arch">
+  <div class="arch-orchestrator">
+    <div class="arch-label">ORCHESTRATOR</div>
+    <div class="arch-model sonnet">Sonnet</div>
+    <div class="arch-desc">You talk to this one</div>
+  </div>
+  <div class="arch-arrows">
+    <span></span><span></span><span></span>
+  </div>
+  <div class="arch-agents">
+    <div class="arch-agent">
+      <div class="arch-label">Agent A</div>
+      <div class="arch-role">Research</div>
+      <div class="arch-model haiku">Haiku</div>
+    </div>
+    <div class="arch-agent">
+      <div class="arch-label">Agent B</div>
+      <div class="arch-role">Build</div>
+      <div class="arch-model sonnet">Sonnet</div>
+    </div>
+    <div class="arch-agent">
+      <div class="arch-label">Agent C</div>
+      <div class="arch-role">Deploy</div>
+      <div class="arch-model haiku">Haiku</div>
+    </div>
+  </div>
+</div>
+
 <h3 id="m2-patterns">3 Orchestration Patterns</h3>
 
 <h4>Pattern 1: Fan-Out / Fan-In</h4>
@@ -1161,6 +1372,8 @@ When invoked with /weekly-report [client-name]:
 
 <h3>Model Routing in Skills</h3>
 
+<p>The model in the frontmatter determines which Claude runs the skill at execution time. Match the model to the task complexity:</p>
+
 <table>
   <tr><th>Skill Type</th><th>Model</th><th>Why</th></tr>
   <tr><td>Data extraction, formatting, cleanup</td><td>Haiku</td><td>Fast, cheap, no judgment needed</td></tr>
@@ -1238,6 +1451,32 @@ When invoked with /weekly-report [client-name]:
 <h2 id="m4"><span class="module-num">Module 04</span>Autonomous Mode &mdash; Loops, Events, Background Agents</h2>
 
 <p>This is where Claude goes from "tool you use" to "system that runs." Autonomous workflows execute without you watching, report back when done, and can trigger from real-world events.</p>
+
+<h3>3 Autonomous Patterns</h3>
+
+<p>There are three core patterns for autonomous work. Each fits a different kind of task:</p>
+
+<!-- INFOGRAPHIC: 3 Autonomous Patterns -->
+<div class="infographic pattern-cards">
+  <div class="pattern-card">
+    <div class="pattern-icon">&#128260;</div>
+    <div class="pattern-title">Loop</div>
+    <div class="pattern-desc">Claude repeats a task on a schedule. Self-pacing &mdash; shorter intervals when active, longer when idle.</div>
+    <div class="pattern-example">Example: "Check build status every 2 minutes until it passes"</div>
+  </div>
+  <div class="pattern-card">
+    <div class="pattern-icon">&#9889;</div>
+    <div class="pattern-title">Background Agent</div>
+    <div class="pattern-desc">Runs independently while you keep working. You get notified when it is done.</div>
+    <div class="pattern-example">Example: "Build the pitch deck in the background"</div>
+  </div>
+  <div class="pattern-card">
+    <div class="pattern-icon">&#127919;</div>
+    <div class="pattern-title">Event-Driven</div>
+    <div class="pattern-desc">Something happens &mdash; Claude responds automatically. Webhook, new file, email, payment.</div>
+    <div class="pattern-example">Example: "New lead in CRM &rarr; run audit &rarr; draft outreach"</div>
+  </div>
+</div>
 
 <h3>Loops</h3>
 
@@ -1346,6 +1585,33 @@ Claude: [continues working with you on the master plan]
   <tr><td><strong>Reference</strong></td><td>Where to find things in external systems</td><td>"Pipeline bugs tracked in Linear project INGEST" &middot; "All API keys listed in reference_apis.md"</td></tr>
 </table>
 
+<p>These four types cover different scopes. Here is how they relate to the three layers of context Claude actually uses:</p>
+
+<!-- INFOGRAPHIC: Memory Compare -->
+<div class="infographic memory-compare">
+  <div class="mem-card mem-permanent">
+    <div class="mem-icon">&#128196;</div>
+    <div class="mem-title">CLAUDE.md</div>
+    <div class="mem-type">Permanent</div>
+    <div class="mem-desc">Loads every session. Who you are, how Claude should work with you.</div>
+    <div class="mem-location">Lives in: workspace root</div>
+  </div>
+  <div class="mem-card mem-evolving">
+    <div class="mem-icon">&#129504;</div>
+    <div class="mem-title">Memory Files</div>
+    <div class="mem-type">Evolving</div>
+    <div class="mem-desc">Saved across sessions. What you are working on, decisions made, project state.</div>
+    <div class="mem-location">Lives in: ~/.claude/projects/memory/</div>
+  </div>
+  <div class="mem-card mem-temporary">
+    <div class="mem-icon">&#128172;</div>
+    <div class="mem-title">Conversation</div>
+    <div class="mem-type">Temporary</div>
+    <div class="mem-desc">Current session only. Compresses over time. Gone when you close.</div>
+    <div class="mem-location">Lives in: the chat window</div>
+  </div>
+</div>
+
 <h3>MEMORY.md &mdash; The Index</h3>
 
 <p><code>MEMORY.md</code> is loaded into every conversation. It is an index, not content &mdash; each entry links to a detailed file. Keep it under 200 lines (anything beyond gets truncated by the context loader).</p>
@@ -1395,7 +1661,6 @@ Claude: [continues working with you on the master plan]
     <li>You understand collaboration zones for multi-person setups</li>
   </ul>
 </div>
-
 
 <!-- ================================================================ -->
 <!-- MODULE 6 — SMART PERSONAS                                       -->
@@ -1630,6 +1895,8 @@ server.tool("update_lead_status", async ({ id, status }) => {
 
 <h3 id="m-llm-tools">3 Ways to Run Local Models</h3>
 
+<p>Each tool has a different sweet spot. Pick based on whether you prefer the terminal, a visual interface, or the lightest possible footprint:</p>
+
 <table>
   <tr><th>Tool</th><th>RAM Needed</th><th>GPU</th><th>Best For</th></tr>
   <tr><td><strong>Ollama</strong></td><td>8GB+</td><td>Optional (helps)</td><td>Terminal-first, simple setup, scripting</td></tr>
@@ -1810,6 +2077,41 @@ ollama run llama3.1
 <h2 id="m-deploy"><span class="module-num">Pipeline</span>From Build to Live &mdash; The Deployment Pipeline</h2>
 
 <p>Every piece of work follows the same 5-stage pipeline from code to live URL. Understanding this pipeline means you never wonder "how do I get this in front of someone?" again.</p>
+
+<!-- INFOGRAPHIC: Deploy Flow -->
+<div class="infographic deploy-flow">
+  <div class="deploy-step">
+    <div class="deploy-circle" style="background:#7c3aed;">&#9889;</div>
+    <div class="deploy-label">BUILD</div>
+    <div class="deploy-tool">Claude Code</div>
+  </div>
+  <div class="deploy-arrow">&rarr;</div>
+  <div class="deploy-step">
+    <div class="deploy-circle" style="background:#059669;">&#128230;</div>
+    <div class="deploy-label">VERSION</div>
+    <div class="deploy-tool">Git</div>
+  </div>
+  <div class="deploy-arrow">&rarr;</div>
+  <div class="deploy-step">
+    <div class="deploy-circle" style="background:#005DE0;">&#128640;</div>
+    <div class="deploy-label">DEPLOY</div>
+    <div class="deploy-tool">CF / GH Pages</div>
+  </div>
+  <div class="deploy-arrow">&rarr;</div>
+  <div class="deploy-step">
+    <div class="deploy-circle" style="background:#d97706;">&#10003;</div>
+    <div class="deploy-label">VERIFY</div>
+    <div class="deploy-tool">curl &rarr; 200</div>
+  </div>
+  <div class="deploy-arrow">&rarr;</div>
+  <div class="deploy-step">
+    <div class="deploy-circle" style="background:#00e6c8;">&#128279;</div>
+    <div class="deploy-label">SHARE</div>
+    <div class="deploy-tool">Live URL</div>
+  </div>
+</div>
+
+<p>The same pipeline applies whether you are shipping a client site, an internal dashboard, an HTML report, or a presentation deck. Here is the detail on each stage:</p>
 
 <table>
   <tr><th>Stage</th><th>Tool</th><th>What Happens</th></tr>
@@ -2415,9 +2717,9 @@ result = audit_agent.run(
 
 <p>The people who win with AI are not the ones who learn the most tools. They are the ones who apply the right tool to a real problem, fast, and get paid for it. Everything in this guide exists to make that cycle &mdash; identify problem, build solution, deliver result, collect payment &mdash; as short as possible.</p>
 
-<!-- ════════════════════════════════════════════════════════════════ -->
+<!-- ═════════���═══════════════════════════════���══════════════════════ -->
 <!-- CTA BLOCK                                                       -->
-<!-- ════════════════════════════════════════════════════════════════ -->
+<!-- ════��═════════════════════��═════════════════════════════════════ -->
 <div class="cta-block">
   <h3>Want a Custom AI Implementation Plan?</h3>
   <p>Book a call with Donal. In 30 minutes, you will get a personalised roadmap for integrating Claude Code into your specific business &mdash; including which APIs to connect, which skills to build first, and how to hit ROI in your first month.</p>
@@ -2433,7 +2735,7 @@ result = audit_agent.run(
 <!-- ── FOOTER ── -->
 <div class="footer">
   <p><strong>Written by Donal Lynch</strong> &middot; <strong>Online Optimisers</strong> &middot; <a href="https://onlineoptimisers.com" style="color: var(--cyan);">onlineoptimisers.com</a> &middot; <a href="https://www.linkedin.com/in/donal-lynch-b293a882/" style="color: var(--cyan);">LinkedIn</a></p>
-  <p>Claude Code: Full Stack Playbook &mdash; Advanced Guide &mdash; v5 &mdash; April 2026</p>
+  <p>Claude Code: Full Stack Playbook &mdash; Advanced Guide &mdash; v6 &mdash; April 2026</p>
   <p style="margin-top: 8px; color: var(--muted);">Prerequisite: <a href="claude-code-startup-guide.html" style="color: var(--cyan);">From Zero to Dangerous</a> (Startup Guide)</p>
 </div>
 
@@ -2442,7 +2744,7 @@ result = audit_agent.run(
 
 <!-- ════════════════════════════════════════════════════════════════ -->
 <!-- JAVASCRIPT                                                      -->
-<!-- ════════════════════════════════════════════════════════════════ -->
+<!-- ═════════════════════════���═════════════════════════════���════════ -->
 <script>
 (function() {
   'use strict';
@@ -2618,7 +2920,7 @@ result = audit_agent.run(
     var revealObs = new IntersectionObserver(function(entries) {
       entries.forEach(function(e) { if (e.isIntersecting) { e.target.classList.add('in'); revealObs.unobserve(e.target); } });
     }, { threshold: 0.1 });
-    document.querySelectorAll('h2, .callout, .checkpoint, .cta-block, .stat-cards, .showcase, .calc-card').forEach(function(el) {
+    document.querySelectorAll('h2, .callout, .checkpoint, .cta-block, .stat-cards, .showcase, .calc-card, .infographic').forEach(function(el) {
       el.classList.add('reveal');
       revealObs.observe(el);
     });
