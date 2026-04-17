@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Claude Code Advanced Guide — The Full Stack Playbook v3</title>
+  <title>Claude Code Advanced Guide — The Full Stack Playbook v4</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <style>
     @page { size: A4; margin: 2cm; }
@@ -492,6 +492,53 @@
     .back-to-top:hover { background: var(--surface-2); border-color: var(--cyan); text-decoration: none; }
     .back-to-top.visible { display: flex; }
 
+    /* ── CTA BLOCK ── */
+    .cta-block {
+      background: linear-gradient(135deg, #1a3a5c 0%, #0d2137 50%, #162940 100%);
+      border: 1px solid var(--cyan);
+      border-radius: 12px;
+      padding: 40px 32px;
+      text-align: center;
+      margin: 40px 0;
+    }
+    .cta-block h3 {
+      color: #fff;
+      font-size: 22px;
+      font-weight: 800;
+      margin-top: 0;
+      margin-bottom: 8px;
+    }
+    .cta-block p {
+      color: rgba(255,255,255,0.8);
+      font-size: 15px;
+      margin-bottom: 24px;
+    }
+    .cta-block .cta-btn {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--cyan), var(--blue));
+      color: var(--bg);
+      font-size: 16px;
+      font-weight: 700;
+      padding: 14px 36px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: all 0.2s;
+      letter-spacing: 0.3px;
+    }
+    .cta-block .cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 212, 255, 0.3);
+      text-decoration: none;
+    }
+    .cta-block .cta-secondary {
+      margin-top: 20px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.6);
+    }
+    .cta-block .cta-secondary a {
+      color: var(--cyan);
+    }
+
     /* ── FOOTER ── */
     .footer {
       margin-top: 64px; padding: 32px 0;
@@ -510,7 +557,7 @@
 
 <!-- ── SIDEBAR ── -->
 <nav class="sidebar no-print" id="sidebar">
-  <h3>Advanced Guide v3</h3>
+  <h3>Advanced Guide v4</h3>
 
   <a href="#top" class="s-module">Cover</a>
 
@@ -529,6 +576,7 @@
   <a href="#m3-hooks" data-section="m3">Hooks</a>
 
   <a href="#m4" class="s-module" data-section="m4">04 Autonomous Mode <span class="s-time">12 min</span></a>
+  <a href="#m4-bg" data-section="m4">Background agents</a>
   <a href="#m4-event" data-section="m4">Event-driven</a>
   <a href="#m4-monitor" data-section="m4">Monitoring</a>
 
@@ -543,9 +591,22 @@
   <a href="#m7" class="s-module" data-section="m7">07 MCP Ecosystem <span class="s-time">10 min</span></a>
   <a href="#m7-stack" data-section="m7">MCP stack</a>
   <a href="#m7-config" data-section="m7">Configuration</a>
+  <a href="#m7-build" data-section="m7">Build your own</a>
 
   <a href="#m8" class="s-module" data-section="m8">08 Terminal <span class="s-time">8 min</span></a>
   <a href="#m8-shortcuts" data-section="m8">Power shortcuts</a>
+
+  <a href="#m-cf" class="s-module" data-section="m-cf">Cloudflare <span class="s-time">10 min</span></a>
+  <a href="#m-cf-pages" data-section="m-cf">Pages</a>
+  <a href="#m-cf-workers" data-section="m-cf">Workers</a>
+
+  <a href="#m-deploy" class="s-module" data-section="m-deploy">Deploy Pipeline <span class="s-time">8 min</span></a>
+
+  <a href="#m-context" class="s-module" data-section="m-context">Context Window <span class="s-time">6 min</span></a>
+
+  <a href="#m-parallel" class="s-module" data-section="m-parallel">Multi-Chat <span class="s-time">6 min</span></a>
+
+  <a href="#m-prompts" class="s-module" data-section="m-prompts">Prompt Patterns <span class="s-time">8 min</span></a>
 
   <a href="#m9" class="s-module" data-section="m9">09 Showcases <span class="s-time">12 min</span></a>
 
@@ -554,14 +615,16 @@
   <a href="#m10" class="s-module" data-section="m10">10 The Frontier <span class="s-time">10 min</span></a>
   <a href="#m10-swarm" data-section="m10">Swarm flow</a>
   <a href="#m10-vision" data-section="m10">The vision</a>
+
+  <a href="#m-edge" class="s-module" data-section="m-edge">Finding Your Edge <span class="s-time">8 min</span></a>
 </nav>
 
 <!-- ── COVER ── -->
 <div class="cover" id="top">
-  <div class="cover-badge">Advanced Guide &mdash; v3</div>
+  <div class="cover-badge">Advanced Guide &mdash; v4</div>
   <h1>Claude Code<br/><span class="accent">Full Stack Playbook</span></h1>
   <p class="subtitle">30+ APIs, parallel agents, autonomous workflows, and the architecture behind an AI-native agency</p>
-  <p class="cover-meta"><strong>Online Optimisers</strong> &middot; Version 3 &middot; April 2026<br/>Prerequisite: <a href="claude-code-startup-guide.html" style="color: var(--cyan);">Startup Guide</a> completed &middot; 10 modules &middot; ~120 min</p>
+  <p class="cover-meta"><strong>Online Optimisers</strong> &middot; Version 4 &middot; April 2026<br/>Prerequisite: <a href="claude-code-startup-guide.html" style="color: var(--cyan);">Startup Guide</a> completed &middot; 16 sections &middot; ~160 min</p>
 </div>
 
 <!-- stats -->
@@ -583,11 +646,17 @@
     <li><a href="#m4">Autonomous Mode &mdash; Loops, Events, Background Agents</a> <span class="toc-time">12 min</span></li>
     <li><a href="#m5">The Memory Architecture</a> <span class="toc-time">10 min</span></li>
     <li><a href="#m6">Smart Personas &mdash; Your Specialist Team</a> <span class="toc-time">10 min</span></li>
-    <li><a href="#m7">MCP Ecosystem &mdash; Connecting Everything</a> <span class="toc-time">10 min</span></li>
+    <li><a href="#m7">MCP Ecosystem &mdash; Connecting Everything + Building Your Own</a> <span class="toc-time">10 min</span></li>
     <li><a href="#m8">Terminal Dominance</a> <span class="toc-time">8 min</span></li>
+    <li><a href="#m-cf">Cloudflare &mdash; Your Deployment Engine</a> <span class="toc-time">10 min</span></li>
+    <li><a href="#m-deploy">From Build to Live &mdash; The Deployment Pipeline</a> <span class="toc-time">8 min</span></li>
+    <li><a href="#m-context">Managing the Context Window</a> <span class="toc-time">6 min</span></li>
+    <li><a href="#m-parallel">Running 5-6 Parallel Chats</a> <span class="toc-time">6 min</span></li>
+    <li><a href="#m-prompts">Advanced Prompt Patterns</a> <span class="toc-time">8 min</span></li>
     <li><a href="#m9">Showcases &mdash; What This Stack Actually Built</a> <span class="toc-time">12 min</span></li>
     <li><a href="#m-mistakes">Common Mistakes &mdash; What Goes Wrong (And How to Fix It)</a> <span class="toc-time">10 min</span></li>
     <li><a href="#m10">The Frontier &mdash; Agent SDK, Swarms, What's Next</a> <span class="toc-time">10 min</span></li>
+    <li><a href="#m-edge">Finding Your Edge &mdash; Making Your First Money with AI</a> <span class="toc-time">8 min</span></li>
   </ol>
 </div>
 
@@ -991,7 +1060,15 @@ When invoked with /weekly-report [client-name]:
 
 <div class="prompt-example">/loop Monitor the deployed site. When the page returns HTTP 200, notify me and stop.</div>
 
-<h3>Background Agents</h3>
+<h3 id="m4-bg">Background vs Foreground Agents</h3>
+
+<p>Understanding when to use foreground vs background agents is the difference between efficient and wasteful work.</p>
+
+<table>
+  <tr><th>Mode</th><th>Behaviour</th><th>Use When</th></tr>
+  <tr><td><strong>Foreground</strong></td><td>Blocks your chat &mdash; you wait until it finishes</td><td>You need the result before your next step. Sequential dependencies.</td></tr>
+  <tr><td><strong>Background</strong></td><td>Runs independently &mdash; notifies you when done</td><td>You have other work to do in parallel. No dependency on the output right now.</td></tr>
+</table>
 
 <div class="code-block"><span class="label">How it works</span>You: "Build the pitch library in the background while I
       work on the master plan."
@@ -1001,6 +1078,21 @@ Claude: [continues working with you on the master plan]
 ...
 [notification]: Background agent completed.
                Output: docs/pitch-library.md (1,443 lines)</div>
+
+<h4>Background Agent Failure Modes</h4>
+
+<p>Background agents can and do fail. The three most common failure modes:</p>
+
+<ul>
+  <li><strong>Crash:</strong> The agent hits an error and stops mid-task. Output may be partial or missing.</li>
+  <li><strong>Timeout:</strong> Long-running tasks exceed the context window or session limit. Work is lost if not committed.</li>
+  <li><strong>Wrong file:</strong> The agent writes to an unexpected location, or overwrites another agent's work.</li>
+</ul>
+
+<div class="callout important">
+  <div class="callout-label">Hard Rule</div>
+  Always verify output after a background agent notifies completion. Open the output file. Check the content. Confirm it is what you asked for. <strong>Never assume success just because the notification arrived.</strong> The notification means the agent stopped running &mdash; not that it produced correct output.
+</div>
 
 <h3 id="m4-event">Event-Driven Patterns</h3>
 
@@ -1041,6 +1133,8 @@ Claude: [continues working with you on the master plan]
   <div class="checkpoint-header">Module 4 Checkpoint</div>
   <ul>
     <li>You understand /loop for recurring tasks</li>
+    <li>You know the difference between foreground and background agents</li>
+    <li>You know the 3 background agent failure modes and always verify output</li>
     <li>You can spawn background agents for non-blocking work</li>
     <li>You know the 6 event-driven trigger patterns</li>
     <li>You know the safety rules: heartbeat, kill switch, graceful degradation</li>
@@ -1274,6 +1368,48 @@ You are a Research Analyst. Your core traits:
   Only connect MCP servers from verified providers. Anthropic does not audit third-party MCP servers. Review each one before connecting &mdash; treat it like installing software. Never let an MCP server access financial data without explicit approval. If an MCP tool requests permissions that seem excessive, stop and investigate.
 </div>
 
+<h3 id="m7-build">Building Your Own MCP Server</h3>
+
+<p>The built-in MCPs cover about 80% of common use cases. But when you need Claude to talk to a system that does not have an existing MCP &mdash; your CRM, your internal tools, a custom database &mdash; you build your own. An MCP server is just a small program that exposes tools to Claude via a standard protocol.</p>
+
+<div class="code-block has-copy"><button class="copy-btn" data-copy="custom-mcp">Copy</button><span class="label" style="right:80px;">TypeScript &mdash; Custom MCP Server</span>import { Server } from "@modelcontextprotocol/sdk/server";
+
+const server = new Server({ name: "my-crm-mcp" });
+
+server.tool("check_new_leads", async () => {
+  const leads = await fetch(
+    "https://your-crm.com/api/leads?status=new"
+  );
+  return {
+    content: [{
+      type: "text",
+      text: JSON.stringify(await leads.json())
+    }]
+  };
+});
+
+server.tool("update_lead_status", async ({ id, status }) => {
+  const result = await fetch(
+    `https://your-crm.com/api/leads/${id}`,
+    {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ status })
+    }
+  );
+  return {
+    content: [{
+      type: "text",
+      text: `Lead ${id} updated to ${status}`
+    }]
+  };
+});</div>
+
+<div class="callout power">
+  <div class="callout-label">When to Build Custom</div>
+  Built-in MCPs cover 80% of use cases. Build your own when you need Claude to talk to a system that does not have one yet &mdash; your CRM, your proprietary database, an internal API, or a niche SaaS tool. One custom MCP can eliminate an entire manual workflow.
+</div>
+
 <div class="checkpoint">
   <div class="checkpoint-header">Module 7 Checkpoint</div>
   <ul>
@@ -1281,6 +1417,7 @@ You are a Research Analyst. Your core traits:
     <li>You know the 7 core MCP servers and what each does</li>
     <li>You can configure MCP servers via settings.json</li>
     <li>You understand MCP security considerations</li>
+    <li>You know when and how to build a custom MCP server</li>
   </ul>
 </div>
 
@@ -1324,6 +1461,375 @@ You are a Research Analyst. Your core traits:
     <li>You understand the single-terminal workflow advantage</li>
     <li>You know the key power shortcuts for your OS</li>
     <li>You have tried voice dictation into Claude Code at least once</li>
+  </ul>
+</div>
+
+
+<!-- ================================================================ -->
+<!-- CLOUDFLARE — YOUR DEPLOYMENT ENGINE                              -->
+<!-- ================================================================ -->
+<h2 id="m-cf"><span class="module-num">Cloudflare</span>Your Deployment Engine</h2>
+
+<p>Cloudflare is the infrastructure layer that makes everything you build accessible to the world. Five services handle 90% of what you need &mdash; and they all work from the terminal via <code>wrangler</code>, Cloudflare's CLI tool.</p>
+
+<h3 id="m-cf-pages">Pages &mdash; Deploy Any Static Site</h3>
+
+<p>Cloudflare Pages hosts static sites globally with automatic HTTPS, custom domains, and instant cache invalidation. One command deploys your site to 300+ edge locations worldwide.</p>
+
+<div class="code-block has-copy"><button class="copy-btn" data-copy="cf-pages">Copy</button><span class="label" style="right:80px;">Deploy to Cloudflare Pages</span>wrangler pages deploy ./my-site --project-name my-project</div>
+
+<p>That is it. Your site is live. Pages auto-detects the build output, uploads it, assigns a <code>.pages.dev</code> URL, and you can attach a custom domain in the Cloudflare dashboard or via the API.</p>
+
+<ul>
+  <li><strong>Use for:</strong> landing pages, client audit decks, HTML presentations, marketing sites, documentation, any static asset</li>
+  <li><strong>Cost:</strong> Free tier covers most use cases. 500 deploys/month, unlimited bandwidth.</li>
+  <li><strong>Auto-deploy:</strong> Connect a GitHub repo and every push to <code>main</code> triggers a new deploy automatically.</li>
+</ul>
+
+<h3 id="m-cf-workers">Workers &mdash; Serverless Functions at the Edge</h3>
+
+<p>Workers run JavaScript/TypeScript at the edge &mdash; no servers to manage, no cold starts worth worrying about. Perfect for webhook receivers, API proxies, cron triggers, and lightweight backends.</p>
+
+<div class="code-block has-copy"><button class="copy-btn" data-copy="cf-worker">Copy</button><span class="label" style="right:80px;">Simple Worker &mdash; Webhook Receiver</span>export default {
+  async fetch(request) {
+    const url = new URL(request.url);
+    if (url.pathname === "/webhook") {
+      const data = await request.json();
+      // Process incoming webhook
+      return new Response("OK", { status: 200 });
+    }
+    return new Response("Not found", { status: 404 });
+  }
+}</div>
+
+<ul>
+  <li><strong>Use for:</strong> Webhook receivers (Stripe, CRM events), API proxies, cron jobs, form handlers, redirect engines</li>
+  <li><strong>Cost:</strong> Free tier = 100k requests/day. Paid = $5/month for 10M requests.</li>
+</ul>
+
+<h3>R2 &mdash; Object Storage</h3>
+
+<p>R2 is Cloudflare's answer to S3 &mdash; with zero egress fees. Store images, voice clones, large files, client assets, backup data. Access via Workers or direct URL.</p>
+
+<ul>
+  <li><strong>Use for:</strong> Image hosting, voice clone files, large PDF storage, media assets, backup archives</li>
+  <li><strong>Cost:</strong> Free tier = 10GB storage, 10M reads/month. Zero egress fees ever.</li>
+  <li><strong>Key advantage:</strong> No surprise bandwidth bills. Upload once, serve globally, pay only for storage.</li>
+</ul>
+
+<h3>DNS &mdash; Manage Domains from Terminal</h3>
+
+<p>Cloudflare DNS is the fastest authoritative DNS on the internet. Once your domains are on Cloudflare, you can manage records from the terminal, automate subdomain creation, and get automatic HTTPS on everything.</p>
+
+<ul>
+  <li><strong>Use for:</strong> Domain management, subdomain routing, custom domains for Pages sites</li>
+  <li><strong>Cost:</strong> Free for all domains.</li>
+</ul>
+
+<h3>KV &mdash; Key-Value Store</h3>
+
+<p>KV is a global key-value store accessible from Workers. Use it to store configuration, feature flags, session state, cached API responses, or any small piece of data that needs to be fast and globally available.</p>
+
+<ul>
+  <li><strong>Use for:</strong> Config storage, feature flags, cached API responses, rate limiting counters, A/B test assignments</li>
+  <li><strong>Cost:</strong> Free tier = 100k reads/day, 1k writes/day.</li>
+</ul>
+
+<div class="callout power">
+  <div class="callout-label">The Cloudflare Stack</div>
+  Pages + Workers + R2 + KV gives you a complete deployment and hosting platform for $0-5/month. No AWS bills. No server management. No DevOps hire. Claude Code builds the code, <code>wrangler</code> deploys it, Cloudflare runs it globally. That is the entire infrastructure layer for most AI-native businesses.
+</div>
+
+<div class="checkpoint">
+  <div class="checkpoint-header">Cloudflare Checkpoint</div>
+  <ul>
+    <li>You can deploy a static site with one wrangler command</li>
+    <li>You understand Workers for serverless functions (webhooks, APIs, crons)</li>
+    <li>You know R2 for object storage with zero egress fees</li>
+    <li>You know KV exists for lightweight state and config</li>
+  </ul>
+</div>
+
+
+<!-- ================================================================ -->
+<!-- DEPLOYMENT PIPELINE                                              -->
+<!-- ================================================================ -->
+<h2 id="m-deploy"><span class="module-num">Pipeline</span>From Build to Live &mdash; The Deployment Pipeline</h2>
+
+<p>Every piece of work follows the same 5-stage pipeline from code to live URL. Understanding this pipeline means you never wonder "how do I get this in front of someone?" again.</p>
+
+<table>
+  <tr><th>Stage</th><th>Tool</th><th>What Happens</th></tr>
+  <tr><td><strong>Build</strong></td><td>Claude Code</td><td>Writes the code, HTML, or assets</td></tr>
+  <tr><td><strong>Version</strong></td><td>Git</td><td>Commit + push to repository</td></tr>
+  <tr><td><strong>Deploy</strong></td><td>CF Pages or GH Pages</td><td>Auto-deploy on push or manual <code>wrangler pages deploy</code></td></tr>
+  <tr><td><strong>Verify</strong></td><td>curl</td><td>HTTP 200 check &mdash; not done until confirmed live</td></tr>
+  <tr><td><strong>Share</strong></td><td>Live URL</td><td>Send to client, stakeholder, or publish publicly</td></tr>
+</table>
+
+<div class="callout important">
+  <div class="callout-label">Verification Is Not Optional</div>
+  A site is not "done" until <code>curl</code> returns HTTP 200 on the live URL. Deploying without verifying is how dead links get sent to clients. Build the curl check into every deploy workflow.
+</div>
+
+<h3>Recipe 1 &mdash; GitHub Pages (3 commands)</h3>
+
+<div class="code-block has-copy"><button class="copy-btn" data-copy="gh-recipe">Copy</button><span class="label" style="right:80px;">GitHub Pages Deploy</span># 1. Commit and push
+git add -A && git commit -m "Deploy site update" && git push
+
+# 2. Enable GitHub Pages (first time only)
+gh repo edit --enable-pages --source branch=main --path=/docs
+
+# 3. Verify
+curl -s -o /dev/null -w "%{http_code}" https://yourusername.github.io/repo-name/</div>
+
+<h3>Recipe 2 &mdash; Cloudflare Pages (2 commands)</h3>
+
+<div class="code-block has-copy"><button class="copy-btn" data-copy="cf-recipe">Copy</button><span class="label" style="right:80px;">Cloudflare Pages Deploy</span># 1. Deploy
+wrangler pages deploy ./dist --project-name my-project
+
+# 2. Verify
+curl -s -o /dev/null -w "%{http_code}" https://my-project.pages.dev</div>
+
+<div class="callout tip">
+  <div class="callout-label">Pick One and Master It</div>
+  GitHub Pages is simpler for open-source and documentation. Cloudflare Pages is faster, more flexible, and better for client work. Pick one as your default and only switch when you have a specific reason. For most projects, Cloudflare Pages is the better choice.
+</div>
+
+<div class="checkpoint">
+  <div class="checkpoint-header">Deploy Pipeline Checkpoint</div>
+  <ul>
+    <li>You know the 5-stage pipeline: build, version, deploy, verify, share</li>
+    <li>You can deploy via GitHub Pages or Cloudflare Pages</li>
+    <li>You always verify with curl before sharing a URL</li>
+  </ul>
+</div>
+
+
+<!-- ================================================================ -->
+<!-- CONTEXT WINDOW MANAGEMENT                                       -->
+<!-- ================================================================ -->
+<h2 id="m-context"><span class="module-num">Context</span>Managing the Context Window</h2>
+
+<p>Every Claude Code conversation has a context window of approximately <strong>200,000 tokens</strong> (~150,000 words). This is enormous &mdash; but not infinite. Understanding how it works and when it fills up is the difference between a productive 3-hour session and losing your work to compaction.</p>
+
+<h3>How Context Works</h3>
+
+<p>Everything in your conversation takes up context: your messages, Claude's responses, file contents, tool calls, tool results, memory files, CLAUDE.md. As the conversation grows, the oldest messages get compressed or summarised to make room for new ones. This process is called <strong>compaction</strong>.</p>
+
+<h3>Signs Your Context Is Filling Up</h3>
+
+<ul>
+  <li>Claude forgets instructions you gave earlier in the session</li>
+  <li>Claude loses track of which files it already read or modified</li>
+  <li>Claude repeats itself or re-discovers things it already knew</li>
+  <li>Claude asks you to confirm things you already told it</li>
+  <li>Output quality drops noticeably on tasks that were working fine earlier</li>
+</ul>
+
+<h3>6 Strategies to Manage Context</h3>
+
+<h4>1. Break work into focused sessions</h4>
+<p>One task per chat. Do not use one conversation for the morning's SEO audit and the afternoon's pitch deck. Start a new chat for each distinct task. This keeps context fresh and focused.</p>
+
+<h4>2. Use memory files to persist state across sessions</h4>
+<p>Anything that needs to survive between conversations goes in a memory file. When you start a new session, Claude reloads all memory files automatically. The state persists even if the conversation does not.</p>
+
+<h4>3. Front-load critical context</h4>
+<p><code>CLAUDE.md</code> loads first in every conversation. Put your most important rules and identity there. It is the last thing to get compacted. Memory files load next. Structure your system so the most critical context loads earliest.</p>
+
+<h4>4. Use @file references instead of pasting content</h4>
+<p>When Claude reads a file via <code>@file</code>, it processes the content efficiently. When you paste the same content into the chat, it takes up context twice (your message + the content). Always reference files instead of pasting them.</p>
+
+<h4>5. Commit frequently</h4>
+<p>If context compresses and Claude loses track of what it built, the files are still safe on disk (and in git). Frequent commits mean you never lose work, even if the conversation degrades.</p>
+
+<h4>6. Run /reflect before closing</h4>
+<p>Before ending a session, capture the current state: what was done, what is pending, key decisions made, important file paths. Save this as a reflection file in memory. The next session picks up exactly where this one left off.</p>
+
+<div class="callout warning">
+  <div class="callout-label">The Compaction Trap</div>
+  The most common failure: a 3-hour session where you did great work in hour 1, but by hour 3, Claude has forgotten the key decisions from hour 1 because they got compacted. The fix is not longer context &mdash; it is shorter, more focused sessions with state saved to disk between them.
+</div>
+
+<div class="checkpoint">
+  <div class="checkpoint-header">Context Window Checkpoint</div>
+  <ul>
+    <li>You understand the ~200k token context window and compaction</li>
+    <li>You know the 5 signs that context is filling up</li>
+    <li>You use focused sessions, memory files, @file references, and frequent commits</li>
+    <li>You run /reflect before closing important sessions</li>
+  </ul>
+</div>
+
+
+<!-- ================================================================ -->
+<!-- MULTI-CHAT ORCHESTRATION                                        -->
+<!-- ================================================================ -->
+<h2 id="m-parallel"><span class="module-num">Multi-Chat</span>Running 5-6 Parallel Chats</h2>
+
+<p>The real power move is not one Claude conversation &mdash; it is 5-6 running simultaneously, each working on a different piece of the same project. This is how you build in hours what would take days sequentially.</p>
+
+<h3>The Rules of Parallel Chats</h3>
+
+<h4>1. Every chat gets a codename</h4>
+<p>Label each chat for instant identification: Chat-A: Data, Chat-B: Design, Chat-C: Deploy, Chat-D: Content, Chat-E: QA. The codename goes in the first message of each chat so you can identify it from the VS Code tab.</p>
+
+<h4>2. Each chat owns specific files &mdash; NO overlap</h4>
+<p>Before launching parallel chats, assign file ownership. Chat-A writes to <code>output/data/</code>. Chat-B writes to <code>output/design/</code>. Chat-C handles <code>deploy/</code>. No exceptions.</p>
+
+<h4>3. Main chat coordinates and integrates</h4>
+<p>One chat is the orchestrator. It does not produce files directly &mdash; it reviews output from other chats, integrates results, handles shared surfaces (MEMORY.md, master plan, git commits), and resolves conflicts.</p>
+
+<h4>4. Label each chat's first message</h4>
+<p>Start every parallel chat's first message with the codename and description so VS Code tabs are immediately identifiable:</p>
+
+<div class="prompt-example">CHAT-A: DATA EXTRACTION — You are handling all data extraction for this sprint. Your output directory is output/data/. Do not write to any other directory.</div>
+
+<h4>5. Commit per-chat, not per-session</h4>
+<p>Each chat produces its own commits. If Chat-B crashes, Chat-A and Chat-C's work is already committed and safe. Never batch all parallel work into one commit at the end.</p>
+
+<div class="callout important">
+  <div class="callout-label">Hard Rule</div>
+  No two chats write to the same file. File collisions kill parallel work. If you discover two chats need to modify the same file, stop and restructure the ownership. The 5 minutes spent on reassignment saves an hour of debugging merged conflicts.
+</div>
+
+<details>
+  <summary>Example: 3-chat parallel build</summary>
+  <div class="detail-body">
+    <table>
+      <tr><th>Chat</th><th>Codename</th><th>Owns</th><th>Produces</th></tr>
+      <tr><td>A</td><td>DATA</td><td><code>knowledge/</code>, <code>output/data/</code></td><td>Client profiles, extracted metrics, CSV exports</td></tr>
+      <tr><td>B</td><td>DESIGN</td><td><code>output/design/</code>, <code>templates/</code></td><td>HTML templates, CSS, visual assets</td></tr>
+      <tr><td>C</td><td>DEPLOY</td><td><code>deploy/</code>, <code>dist/</code></td><td>Build scripts, wrangler configs, live deploys</td></tr>
+    </table>
+    <p>Main chat (you) reviews each chat's output, runs the integration step, and handles the final commit + deploy.</p>
+  </div>
+</details>
+
+<div class="checkpoint">
+  <div class="checkpoint-header">Multi-Chat Checkpoint</div>
+  <ul>
+    <li>You name each chat with a codename in the first message</li>
+    <li>You assign exclusive file ownership to each chat</li>
+    <li>You use a main chat for coordination and integration</li>
+    <li>You commit per-chat, not per-session</li>
+    <li>You never let two chats write to the same file</li>
+  </ul>
+</div>
+
+
+<!-- ================================================================ -->
+<!-- ADVANCED PROMPT PATTERNS                                        -->
+<!-- ================================================================ -->
+<h2 id="m-prompts"><span class="module-num">Prompts</span>Advanced Prompt Patterns</h2>
+
+<p>Good prompts produce good output. Great prompts produce output you can ship without editing. These 5 patterns are the difference between "close enough" and "exactly right."</p>
+
+<h3>Pattern 1: Compound Prompts</h3>
+
+<p>Stack role + task + constraints + output format into a single structured prompt. Each layer narrows the output space.</p>
+
+<div class="code-block has-copy"><button class="copy-btn" data-copy="prompt-compound">Copy</button><span class="label" style="right:80px;">Compound Prompt</span>You are a senior SEO consultant writing for a
+non-technical business owner.
+
+Task: Analyse this website's local SEO performance
+and write a 1-page summary.
+
+Constraints:
+- No jargon. Explain every technical term.
+- Max 500 words.
+- Focus on the 3 highest-impact fixes only.
+
+Output format:
+## Summary
+[2-3 sentence overview]
+
+## Top 3 Fixes
+1. [Fix] — [Why it matters] — [Effort: Low/Med/High]
+2. ...
+3. ...
+
+## Next Step
+[One clear action the reader should take today]</div>
+
+<h3>Pattern 2: Chain-of-Thought Forcing</h3>
+
+<p>Force Claude to show its reasoning before giving an answer. This catches errors that skip-to-the-answer prompts miss.</p>
+
+<div class="code-block has-copy"><button class="copy-btn" data-copy="prompt-cot">Copy</button><span class="label" style="right:80px;">Chain of Thought</span>Before answering, list your reasoning steps:
+
+1. What do I know about this business?
+2. What data am I missing?
+3. What assumptions am I making?
+4. What are the risks of each option?
+
+Then give your recommendation with confidence level
+(HIGH / MEDIUM / LOW).</div>
+
+<h3>Pattern 3: Self-Critique Loops</h3>
+
+<p>Make Claude write a first draft, critique it against specific criteria, then produce the final version. The critique step catches 80% of quality issues.</p>
+
+<div class="code-block has-copy"><button class="copy-btn" data-copy="prompt-critique">Copy</button><span class="label" style="right:80px;">Self-Critique</span>Write v1 of this proposal email.
+
+Then critique v1 against these criteria:
+- Is the subject line under 60 characters?
+- Does the opening line reference something specific
+  about the prospect?
+- Is there exactly one CTA?
+- Is the tone conversational, not salesy?
+- Is it under 100 words?
+
+Fix every issue found and write the final version.</div>
+
+<h3>Pattern 4: Structured Output</h3>
+
+<p>When you need machine-readable or consistently formatted output, specify the exact structure in the prompt.</p>
+
+<div class="code-block has-copy"><button class="copy-btn" data-copy="prompt-json">Copy</button><span class="label" style="right:80px;">Structured Output</span>Analyse this client call transcript and return as JSON:
+
+{
+  "summary": "2-3 sentence overview",
+  "sentiment": "positive | neutral | negative",
+  "action_items": [
+    {
+      "task": "description",
+      "owner": "name",
+      "deadline": "date or ASAP"
+    }
+  ],
+  "follow_up_needed": true | false,
+  "key_objections": ["objection 1", "objection 2"]
+}</div>
+
+<h3>Pattern 5: Meta-Prompting</h3>
+
+<p>Instead of writing the prompt yourself, ask Claude to write the prompt. This works especially well for complex, multi-step workflows where you know the desired outcome but not the best way to instruct Claude.</p>
+
+<div class="code-block has-copy"><button class="copy-btn" data-copy="prompt-meta">Copy</button><span class="label" style="right:80px;">Meta-Prompt</span>Write me a prompt that would produce a comprehensive
+competitor analysis report for a local service business.
+
+The prompt should:
+- Be usable with any business niche
+- Produce a structured, client-ready output
+- Include specific data points to check
+- Take under 10 minutes for Claude to execute
+- Output as markdown with tables</div>
+
+<div class="callout tip">
+  <div class="callout-label">Stack the Patterns</div>
+  These patterns compose. A compound prompt with chain-of-thought forcing and structured output is more powerful than any single pattern alone. Start with compound prompts, add the others as your needs get more specific.
+</div>
+
+<div class="checkpoint">
+  <div class="checkpoint-header">Prompt Patterns Checkpoint</div>
+  <ul>
+    <li>You can write compound prompts with role + task + constraints + output format</li>
+    <li>You use chain-of-thought forcing for complex reasoning tasks</li>
+    <li>You use self-critique loops for quality-sensitive outputs</li>
+    <li>You specify structured output (JSON, tables) when format matters</li>
+    <li>You know meta-prompting for generating reusable prompt templates</li>
   </ul>
 </div>
 
@@ -1562,6 +2068,22 @@ result = audit_agent.run(
   You do not need the full swarm to get value. Build <strong>one 3-agent pipeline</strong> that handles your most common workflow end-to-end. Most people will never build past 3 connected agents &mdash; and that is enough to 10x their output.
 </div>
 
+<h3>Astro &mdash; The Recommended Framework</h3>
+
+<p>When plain HTML is not enough but Next.js is overkill, Astro is the sweet spot. It is the framework that best fits how Claude Code builds things &mdash; clean, fast, and minimal configuration.</p>
+
+<table>
+  <tr><th>Framework</th><th>Best For</th><th>Claude Code Fit</th></tr>
+  <tr><td><strong>Astro</strong></td><td>Content sites, landing pages, blogs</td><td>Excellent &mdash; clean, fast, simple</td></tr>
+  <tr><td><strong>Next.js</strong></td><td>Complex web apps, dashboards</td><td>Good &mdash; more setup overhead</td></tr>
+  <tr><td><strong>Plain HTML</strong></td><td>One-off pages, audit decks</td><td>Great &mdash; zero dependencies</td></tr>
+</table>
+
+<div class="callout tip">
+  <div class="callout-label">Start With Astro</div>
+  For most projects, start with Astro: <code>npm create astro@latest</code>. It outputs static HTML by default (perfect for Cloudflare Pages), supports components when you need them, and Claude Code generates clean Astro code with minimal hallucination. Use plain HTML for one-offs, Astro for anything you will maintain or expand.
+</div>
+
 <h3 id="m10-vision">The Vision</h3>
 
 <table>
@@ -1591,17 +2113,75 @@ result = audit_agent.run(
   </ul>
 </div>
 
-<div class="callout power" style="margin-top: 32px; text-align: center; padding: 28px;">
-  <div class="callout-label" style="font-size: 13px;">What Comes Next</div>
-  <p style="font-size: 17px; font-weight: 700; margin-bottom: 8px;">This guide showed you what is possible.</p>
-  <p style="font-size: 15px; color: var(--muted); margin-bottom: 0;">To get it built for YOUR business &mdash; that is what we do.</p>
+
+<!-- ================================================================ -->
+<!-- FINDING YOUR EDGE                                                -->
+<!-- ================================================================ -->
+<h2 id="m-edge"><span class="module-num">Your Edge</span>Finding Your Edge &mdash; Making Your First Money with AI</h2>
+
+<p>Everything in this guide is a tool. Tools do not make money. <strong>You</strong> make money by applying tools to problems people will pay to solve. Here is how to find your edge and monetise it.</p>
+
+<h3>Audit What You Already Know</h3>
+
+<p>Your unfair advantage is not Claude Code &mdash; it is your <strong>domain expertise combined with Claude Code</strong>. A pure techie can build the tool. A pure industry expert can identify the problem. You can do both. That combination is rare and valuable.</p>
+
+<ul>
+  <li><strong>Your industry knowledge:</strong> What do you know about your market that a developer does not? What problems do you see every day that could be automated?</li>
+  <li><strong>Your processes:</strong> Which manual workflows eat the most time? Which ones are repetitive and rule-based? Those are automation candidates.</li>
+  <li><strong>Your pain points:</strong> What frustrates you most about your current operations? Chances are, your competitors have the same frustrations.</li>
+</ul>
+
+<h3>Package It as a Service</h3>
+
+<p>Services sell faster than products. Do not build a SaaS on day one. Package your expertise + AI into a done-for-you service first:</p>
+
+<ul>
+  <li><strong>One niche:</strong> Pick one industry you understand deeply. "AI-powered local SEO for roofers" beats "AI services for everyone."</li>
+  <li><strong>One offer:</strong> One clear deliverable with one clear outcome. "We make your business visible in AI search results" is an offer. "We do AI stuff" is not.</li>
+  <li><strong>One workflow:</strong> Build one automated pipeline that delivers the offer. Claude Code + your APIs + your templates = repeatable delivery.</li>
+</ul>
+
+<h3>Price on Value, Not Hours</h3>
+
+<p>If Claude Code lets you deliver in 2 hours what used to take 20, do not charge for 2 hours. Charge based on the value the client receives. A visibility audit that takes you 90 seconds to generate (but would take a consultant a full day) is worth what the consultant charges &mdash; or more, because you deliver faster.</p>
+
+<h3>Build Proof Fast</h3>
+
+<ol>
+  <li><strong>Do 3 projects at cost.</strong> Pick 3 businesses in your target niche. Deliver the service for free or at cost. Focus on producing great results.</li>
+  <li><strong>Collect testimonials.</strong> After delivery, ask for a written or video testimonial. Specific results ("ranked in 3 AI platforms within 2 weeks") beat generic praise.</li>
+  <li><strong>Raise the price.</strong> With 3 case studies in hand, price at full value. The proof does the selling.</li>
+</ol>
+
+<h3>The Unfair Advantage</h3>
+
+<div class="callout power">
+  <div class="callout-label">Your Edge</div>
+  <strong>Your domain expertise + AI tools = something no pure techie can replicate.</strong> A developer can build the automation. But they do not know which problems are worth solving, which clients will pay, or how to position the offer. You do. That knowledge, combined with the execution speed Claude Code gives you, is the moat.
+</div>
+
+<p>The people who win with AI are not the ones who learn the most tools. They are the ones who apply the right tool to a real problem, fast, and get paid for it. Everything in this guide exists to make that cycle &mdash; identify problem, build solution, deliver result, collect payment &mdash; as short as possible.</p>
+
+
+<!-- ════════════════════════════════════════════════════════════════ -->
+<!-- CTA BLOCK                                                       -->
+<!-- ════════════════════════════════════════════════════════════════ -->
+<div class="cta-block">
+  <h3>Want a custom setup plan built around your business?</h3>
+  <p>Book a free strategy call with Donal and get a personalised AI implementation roadmap.</p>
+  <a href="https://calendly.com/info-yg4/donal-strategy-call" class="cta-btn" target="_blank" rel="noopener">Book Your Strategy Call &rarr;</a>
+  <div class="cta-secondary">
+    <p style="margin-bottom: 6px;">Not ready for a call? Start with the free guides:</p>
+    <a href="claude-code-startup-guide.html">From Zero to Dangerous (Startup Guide)</a> &nbsp;&middot;&nbsp;
+    <a href="chatgpt-migration-calculator.html">ChatGPT Migration Calculator</a>
+  </div>
 </div>
 
 
 <!-- ── FOOTER ── -->
 <div class="footer">
-  <p><strong>Claude Code: Full Stack Playbook</strong> &middot; Advanced Guide v3</p>
-  <p>Built with Claude Code &middot; <strong>Online Optimisers</strong> &middot; April 2026</p>
+  <p><strong>Written by Donal Lynch</strong> &middot; <strong>Online Optimisers</strong> &middot; <a href="https://onlineoptimisers.com" style="color: var(--cyan);">onlineoptimisers.com</a></p>
+  <p>Claude Code: Full Stack Playbook &mdash; Advanced Guide &mdash; v4 &mdash; April 2026</p>
   <p style="margin-top: 8px; color: var(--muted);">Prerequisite: <a href="claude-code-startup-guide.html" style="color: var(--cyan);">From Zero to Dangerous</a> (Startup Guide)</p>
 </div>
 
