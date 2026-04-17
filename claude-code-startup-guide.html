@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Claude Code Startup Guide v2 — From Zero to Dangerous</title>
+  <title>Claude Code Startup Guide v3 — From Zero to Dangerous</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <style>
     @page { size: A4; margin: 2cm; }
@@ -263,6 +263,38 @@
     .callout.important .callout-label { color: var(--red); }
     .callout .callout-label { color: var(--blue); }
 
+    /* -- FOUNDATION WEEK -- */
+    .foundation-week {
+      border: 2px solid #d97706;
+      border-left: 6px solid #d97706;
+      background: #fffbeb;
+      border-radius: 8px;
+      padding: 28px 32px;
+      margin: 40px 0;
+    }
+    .foundation-week .fw-heading {
+      font-size: 24px;
+      font-weight: 800;
+      color: #92400e;
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+    .foundation-week .fw-label {
+      display: block;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--amber);
+      margin-bottom: 6px;
+    }
+    .foundation-week h3 {
+      color: #92400e;
+      font-size: 17px;
+      margin-top: 28px;
+      margin-bottom: 10px;
+    }
+
     /* -- CODE -- */
     code {
       font-family: 'JetBrains Mono', monospace; font-size: 13px;
@@ -335,6 +367,11 @@
       content: "[ ] "; font-family: 'JetBrains Mono', monospace;
       font-weight: 700; color: var(--green);
     }
+
+    /* -- GRADUATION TABLE -- */
+    .graduation-table { margin-top: 12px; }
+    .graduation-table td:first-child { font-weight: 600; color: var(--navy); }
+    .graduation-table td:last-child { color: var(--muted); font-size: 13px; }
 
     /* -- DROPDOWNS -- */
     details {
@@ -444,6 +481,11 @@
 
   <a href="#top" class="s-module">Cover</a>
 
+  <a href="#foundation-week" class="s-module">Foundation Week</a>
+  <a href="#fw-day1">Day 1: ChatGPT Migration</a>
+  <a href="#fw-day2">Day 2: Gather Context</a>
+  <a href="#fw-day3">Day 3: Identity Layer</a>
+
   <a href="#m1" class="s-module">1. What You're Building <span class="s-time">10 min</span></a>
   <a href="#m1-outcome">The outcome</a>
   <a href="#m1-pricing">Pricing</a>
@@ -467,16 +509,21 @@
   <a href="#m4-permissions">Permission modes</a>
 
   <a href="#m5" class="s-module">5. Identity Layer <span class="s-time">20 min</span></a>
+  <a href="#m5-which">Claude.ai vs Claude Code</a>
+  <a href="#m5-claudeai-memory">Training Claude.ai Memory</a>
   <a href="#m5-claude-md">CLAUDE.md</a>
   <a href="#m5-memory">Memory system</a>
+  <a href="#m5-prime">Priming Memory Day 1</a>
   <a href="#m5-rules">Rules + skills</a>
   <a href="#m5-first">First conversation</a>
 
   <a href="#m6" class="s-module">6. API Connections <span class="s-time">20 min</span></a>
+  <a href="#m6-top10">Top 10 APIs</a>
   <a href="#m6-social">Social Media stack</a>
   <a href="#m6-seo">SEO stack</a>
   <a href="#m6-marketing">All-in-1 Marketing</a>
   <a href="#m6-personal">Personal Operator</a>
+  <a href="#m6-content">Content Creator</a>
   <a href="#m6-security">Security setup</a>
 
   <a href="#m7" class="s-module">7. Prompting <span class="s-time">15 min</span></a>
@@ -498,10 +545,10 @@
 
 <!-- COVER -->
 <div class="cover" id="top">
-  <div class="cover-badge">Startup Guide v2</div>
+  <div class="cover-badge">Startup Guide v3</div>
   <h1>Claude Code<br/>From Zero to Dangerous</h1>
   <p class="subtitle">The accelerated setup guide for non-coders who want AI leverage</p>
-  <p class="cover-meta"><strong>Online Optimisers</strong> &middot; Version 2 &middot; April 2026<br/>Total time: ~2 hours &middot; 9 modules &middot; No coding experience required</p>
+  <p class="cover-meta"><strong>Online Optimisers</strong> &middot; Version 3 &middot; April 2026<br/>Total time: ~2 hours &middot; 9 modules + Foundation Week &middot; No coding experience required</p>
 </div>
 
 <!-- STAT CARDS -->
@@ -533,11 +580,73 @@
     <li><a href="#m3">Git + GitHub &mdash; Your Safety Net</a> <span class="toc-time">15 min</span></li>
     <li><a href="#m4">Claude Code &mdash; Install, Auth, Permissions</a> <span class="toc-time">10 min</span></li>
     <li><a href="#m5">Your Identity Layer &mdash; CLAUDE.md + Memory</a> <span class="toc-time">20 min</span></li>
-    <li><a href="#m6">API Connections &mdash; 4 Team Stacks</a> <span class="toc-time">20 min</span></li>
+    <li><a href="#m6">API Connections &mdash; Top 10 + 5 Team Stacks</a> <span class="toc-time">20 min</span></li>
     <li><a href="#m7">Prompting That Actually Works</a> <span class="toc-time">15 min</span></li>
     <li><a href="#m8">Local LLMs + Ready-to-Use Prompts</a> <span class="toc-time">15 min</span></li>
     <li><a href="#m9">You're Flying Now</a> <span class="toc-time">5 min</span></li>
   </ol>
+</div>
+
+
+<!-- ================================================================ -->
+<!-- FOUNDATION WEEK                                                   -->
+<!-- ================================================================ -->
+<div class="foundation-week" id="foundation-week">
+  <span class="fw-label">Do This First &mdash; Before You Install Anything</span>
+  <div class="fw-heading">The Foundation Week</div>
+
+  <p>Most people skip straight to installing VS Code. Don't. The single highest-leverage thing you can do in your first week is get your context right. Claude is only as good as what you give it. You've been using ChatGPT for 2-3 years &mdash; that history is a goldmine. Spend 2-3 days mining it before you write a line of code.</p>
+
+  <!-- DAY 1 -->
+  <h3 id="fw-day1">Day 1: ChatGPT Migration</h3>
+
+  <p>Open ChatGPT. Run these three prompts in order. Copy the output into a Google Doc. Edit it &mdash; add what ChatGPT missed, remove anything wrong. This becomes your master context document.</p>
+
+  <div class="code-block"><span class="label">Prompt 1 &mdash; Mine your history</span>Based on all our conversations, write a comprehensive summary of everything you know about me: my work, business, goals, working style, biggest challenges, clients, tools, preferences, and anything else that's come up. Be specific. Don't generalise. This is for a handover document.</div>
+
+  <div class="code-block"><span class="label">Prompt 2 &mdash; Structure it for Claude</span>Take that summary and reformat it as a structured handover document I can paste into a new AI system. Use these exact headings:
+
+Who I Am
+My Business
+My Goals Right Now
+My Working Style
+Key Clients or Projects
+Tools I Use Daily
+What I Need Most Help With
+Things I've Learned the Hard Way
+
+Be specific and concrete under each heading.</div>
+
+  <div class="code-block"><span class="label">Prompt 3 &mdash; Optional: fill the gaps first</span>Before you write the handover document, ask me 10 specific questions about my business, goals, and work style that would help you write a more accurate and useful document. Then use my answers to write the final version.</div>
+
+  <div class="callout tip">
+    <div class="callout-label">Save to Google Doc First</div>
+    Save to Google Doc first. Edit it before pasting into Claude &mdash; add what ChatGPT missed, remove anything wrong. This document feeds everything: CLAUDE.md, Claude.ai memory, and Claude Code memory.
+  </div>
+
+  <!-- DAY 2 -->
+  <h3 id="fw-day2">Day 2: Gather Your Context</h3>
+
+  <p>Gather documents from anywhere you store knowledge. Even 2-3 good files dramatically improve Claude's answers.</p>
+
+  <ul>
+    <li><strong>Google Drive</strong> &mdash; proposals, reports, client docs, SOPs</li>
+    <li><strong>OneDrive / OneNote</strong> &mdash; notes, meeting summaries, planning docs</li>
+    <li><strong>Obsidian</strong> &mdash; second brain, personal knowledge base</li>
+    <li><strong>Email</strong> &mdash; key threads, client onboarding, important decisions</li>
+    <li><strong>Notion</strong> &mdash; project docs, wikis</li>
+    <li><strong>Old business plans, vision docs, brand guidelines</strong></li>
+  </ul>
+
+  <div class="callout">
+    <div class="callout-label">You Don't Need All of These</div>
+    Grab what you have. Consolidate into a single document alongside your ChatGPT handover. The goal: one file that tells Claude everything about your business.
+  </div>
+
+  <!-- DAY 3 -->
+  <h3 id="fw-day3">Day 3: Draft Your Identity Layer</h3>
+
+  <p>Use everything you gathered in Days 1-2 to fill in CLAUDE.md and train your memory systems. Module 5 walks you through exactly how. Come back to it after the technical setup in Modules 1-4.</p>
 </div>
 
 
@@ -921,6 +1030,50 @@ git push</div>
 
 <p>This is the module that separates "using Claude" from "having an AI business partner." Without this, Claude gives generic answers. With it, Claude knows your business, your role, your goals, and your preferences &mdash; every single session.</p>
 
+<!-- Claude.ai vs Claude Code -->
+<h3 id="m5-which">Claude.ai vs Claude Code &mdash; Which Is Which</h3>
+
+<p>Before setting up your identity layer, it helps to understand the two surfaces you will use every day and why each one needs separate context setup.</p>
+
+<table>
+  <tr><th></th><th>Claude.ai (browser)</th><th>Claude Code (VS Code)</th></tr>
+  <tr><td><strong>Access</strong></td><td>claude.ai in any browser</td><td>VS Code extension</td></tr>
+  <tr><td><strong>Reads your files</strong></td><td>No</td><td>Yes &mdash; directly</td></tr>
+  <tr><td><strong>Memory</strong></td><td>Built-in memory + Projects</td><td>CLAUDE.md + memory files</td></tr>
+  <tr><td><strong>Best for</strong></td><td>Quick questions, brainstorming, images</td><td>Building, coding, multi-step projects</td></tr>
+  <tr><td><strong>Terminal access</strong></td><td>No</td><td>Yes &mdash; runs commands</td></tr>
+  <tr><td><strong>Subscription</strong></td><td>Same Claude account</td><td>Same Claude account</td></tr>
+</table>
+
+<div class="callout">
+  <div class="callout-label">Same Account. Two Different Surfaces.</div>
+  Claude.ai is your quick-hit tool &mdash; open it in a browser tab for fast questions. Claude Code is your operating system &mdash; it reads your files, runs commands, and builds things. You will use both daily.
+</div>
+
+<!-- Training Claude.ai Memory -->
+<h3 id="m5-claudeai-memory">Training Claude.ai Memory</h3>
+
+<p>Claude.ai has a built-in memory system. Most people never set it up. Here's how.</p>
+
+<ul>
+  <li><strong>Where to find it:</strong> Settings &rarr; Memory, or create a Project and paste your context into the Project Instructions field</li>
+  <li><strong>What to put in:</strong> condensed version of your ChatGPT handover doc (300-500 words)</li>
+  <li>Use the same answers as CLAUDE.md &mdash; just shorter</li>
+  <li>Update it when your business situation changes significantly</li>
+</ul>
+
+<div class="code-block"><span class="label">Claude.ai &mdash; Memory setup prompt</span>I want to set up your memory so you can give me better answers. Here is a summary of who I am and what I work on:
+
+[paste your ChatGPT handover document here]
+
+Please save the key facts about me so you remember them in future conversations. Confirm what you've saved.</div>
+
+<div class="callout tip">
+  <div class="callout-label">Use the Same Information as CLAUDE.md &mdash; Just Condensed</div>
+  Claude.ai memory is smaller, so prioritise: who you are, what your business does, your working style, and your current focus. 300-500 words is the sweet spot.
+</div>
+
+<!-- CLAUDE.md -->
 <h3 id="m5-claude-md">CLAUDE.md &mdash; Your AI's Operating Manual</h3>
 
 <p><code>CLAUDE.md</code> is a file at the root of your workspace that Claude reads at the start of every conversation. It tells Claude who you are and how to work with you.</p>
@@ -1033,6 +1186,7 @@ Target: 50 students + AI product at $29/mo.
   </div>
 </details>
 
+<!-- Memory -->
 <h3 id="m5-memory">Memory &mdash; Claude Remembers Across Sessions</h3>
 
 <p>Claude Code has a persistent memory system. Important facts about you, your preferences, and your projects are saved as small files that Claude reads at the start of each conversation.</p>
@@ -1056,6 +1210,21 @@ Target: 50 students + AI product at $29/mo.
   <strong>CLAUDE.md</strong> = permanent operating manual. Rarely changes. <strong>Memory</strong> = evolving context. Updates as your projects and preferences change. Use CLAUDE.md for "who I am" and memory for "what I'm working on."
 </div>
 
+<!-- Priming Memory on Day 1 -->
+<h3 id="m5-prime">Priming Your Memory on Day 1</h3>
+
+<p>Once your CLAUDE.md is written, run this prompt. It seeds your memory files with the same context so Claude has it in two places.</p>
+
+<div class="code-block"><span class="label">Day 1 memory priming prompt</span>Read my CLAUDE.md file. Save the most important facts about me, my business, and my working preferences as individual memory entries. Confirm each one as you save it.</div>
+
+<!-- Context Payoff Callout -->
+<div class="callout" style="border-left-color: var(--navy); background: #f0f4ff;">
+  <div class="callout-label" style="color: var(--navy);">Why This Matters</div>
+  <p>When Claude has proper context, the answers become spectacularly better. It stops giving generic advice and starts connecting dots &mdash; <em>"Given your client profile and the fact that you focus on local service businesses, here's exactly how I'd structure this campaign..."</em> That's the difference between a smart tool and a real business partner.</p>
+  <p>The 2-3 days you spend on context setup pays dividends in every single conversation for years.</p>
+</div>
+
+<!-- Rules + Skills -->
 <h3 id="m5-rules">Rules + Skills (Optional, Powerful)</h3>
 
 <p>As you get comfortable, you can add two more layers:</p>
@@ -1088,6 +1257,7 @@ When I say /weekly-report [client name]:
   </div>
 </details>
 
+<!-- First Conversation -->
 <h3 id="m5-first">Your First Conversation &mdash; 5 Steps</h3>
 
 <p>You have Claude Code installed, authenticated, and your CLAUDE.md written. Here is your first real conversation:</p>
@@ -1122,6 +1292,8 @@ When I say /weekly-report [client name]:
   <div class="checkpoint-header">Module 5 Checkpoint</div>
   <ul>
     <li>CLAUDE.md exists in your workspace root with your details filled in</li>
+    <li>Claude.ai memory trained with your condensed context</li>
+    <li>Day 1 memory priming prompt run in Claude Code</li>
     <li>Claude can answer "what do you know about me?" accurately</li>
     <li>You have saved at least one thing to memory</li>
     <li>You have completed the 5-step first conversation walkthrough</li>
@@ -1133,12 +1305,37 @@ When I say /weekly-report [client name]:
 <!-- ================================================================ -->
 <!-- MODULE 6                                                         -->
 <!-- ================================================================ -->
-<h2 id="m6"><span class="module-num">Module 6</span>API Connections &mdash; 4 Team Stacks</h2>
+<h2 id="m6"><span class="module-num">Module 6</span>API Connections &mdash; Top 10 + 5 Team Stacks</h2>
 
 <p>Without APIs, Claude can only read and write files in your workspace. With APIs, Claude becomes an operating system &mdash; reading your emails, updating your spreadsheets, posting to social media, pulling analytics, and managing your calendar. APIs are the difference between "smart notepad" and "AI-powered business."</p>
 
-<p>Below are 4 pre-built stacks. Pick the one closest to your work, then add individual tools from the others as needed.</p>
+<!-- Top 10 -->
+<h3 id="m6-top10">The Top 10 &mdash; Start Here Regardless of What You Do</h3>
 
+<p>These 10 connections work for everyone. Regardless of your niche, business type, or how advanced you are &mdash; these are the foundation.</p>
+
+<table>
+  <tr><th>#</th><th>API / Tool</th><th>What Claude Does With It</th><th>Priority</th></tr>
+  <tr><td>1</td><td><strong>Google Drive (MCP)</strong></td><td>Read/write your docs and files directly</td><td>Start here</td></tr>
+  <tr><td>2</td><td><strong>Google Sheets (MCP)</strong></td><td>Read/update spreadsheets without copy-pasting</td><td>Start here</td></tr>
+  <tr><td>3</td><td><strong>Gmail (MCP)</strong></td><td>Read, draft, and search your emails</td><td>Start here</td></tr>
+  <tr><td>4</td><td><strong>Google Calendar (MCP)</strong></td><td>Check and create events</td><td>Start here</td></tr>
+  <tr><td>5</td><td><strong>OpenAI</strong></td><td>Image generation (DALL-E), GPT as fallback model</td><td>Yes</td></tr>
+  <tr><td>6</td><td><strong>Firecrawl</strong></td><td>Scrape and extract content from any webpage</td><td>Yes</td></tr>
+  <tr><td>7</td><td><strong>Perplexity</strong></td><td>Real-time web research with citations</td><td>Yes</td></tr>
+  <tr><td>8</td><td><strong>Google Search Console</strong></td><td>Keyword data, click performance, indexing</td><td>If doing SEO</td></tr>
+  <tr><td>9</td><td><strong>Slack (MCP)</strong></td><td>Read and send messages to channels</td><td>If using Slack</td></tr>
+  <tr><td>10</td><td><strong>Notion or Obsidian</strong></td><td>Your notes and knowledge base</td><td>If using either</td></tr>
+</table>
+
+<div class="callout tip">
+  <div class="callout-label">Start With Numbers 1&ndash;4 (The Google MCP Suite)</div>
+  They're free, connect in 15 minutes, and Claude immediately becomes 10x more useful &mdash; reading your actual docs instead of asking you to paste everything.
+</div>
+
+<p>Below are 5 pre-built stacks. Pick the one closest to your work, then add individual tools from the others as needed.</p>
+
+<!-- Stack 1 -->
 <h3 id="m6-social">Stack 1: Social Media Team</h3>
 
 <p>For content creators, social media managers, and brand builders.</p>
@@ -1152,6 +1349,7 @@ When I say /weekly-report [client name]:
   <tr><td>5</td><td><strong>Instagram Graph API</strong></td><td>Read insights, manage content</td><td>developers.facebook.com</td></tr>
 </table>
 
+<!-- Stack 2 -->
 <h3 id="m6-seo">Stack 2: SEO Team</h3>
 
 <p>For SEO agencies, consultants, and anyone doing search engine work.</p>
@@ -1166,6 +1364,7 @@ When I say /weekly-report [client name]:
   <tr><td>6</td><td><strong>BrightLocal</strong></td><td>Local citations, review monitoring, rank tracking</td><td>brightlocal.com &rarr; API</td></tr>
 </table>
 
+<!-- Stack 3 -->
 <h3 id="m6-marketing">Stack 3: All-in-1 Marketing Team</h3>
 
 <p>For agencies and marketers who need everything connected.</p>
@@ -1182,6 +1381,7 @@ When I say /weekly-report [client name]:
   <tr><td>8</td><td><strong>Stripe</strong></td><td>Payments, subscriptions, revenue tracking</td><td>dashboard.stripe.com &rarr; API keys</td></tr>
 </table>
 
+<!-- Stack 4 -->
 <h3 id="m6-personal">Stack 4: Personal Operator</h3>
 
 <p>For solo operators, freelancers, and anyone who wants Claude to manage their digital life.</p>
@@ -1195,11 +1395,27 @@ When I say /weekly-report [client name]:
   <tr><td>5</td><td><strong>Notion / Obsidian</strong></td><td>Notes, wikis, second brain</td><td>Notion API or Obsidian local files</td></tr>
 </table>
 
+<!-- Stack 5 -->
+<h4 id="m6-content">Stack 5: Content Creator / Educator (6 APIs)</h4>
+
+<p>For course creators, YouTubers, educators, and anyone building an audience through content.</p>
+
+<table>
+  <tr><th>Tool</th><th>What it does</th><th>Use case</th></tr>
+  <tr><td><strong>OpenAI</strong></td><td>Image generation + GPT</td><td>Visuals + content variations</td></tr>
+  <tr><td><strong>ElevenLabs</strong></td><td>Voice synthesis</td><td>Voiceovers, audio content</td></tr>
+  <tr><td><strong>HeyGen / D-ID</strong></td><td>AI video generation</td><td>Talking head videos at scale</td></tr>
+  <tr><td><strong>YouTube Data API</strong></td><td>Channel analytics + publishing</td><td>Track what works, schedule uploads</td></tr>
+  <tr><td><strong>Canva API</strong></td><td>Design automation</td><td>Batch-create branded graphics</td></tr>
+  <tr><td><strong>Beehiiv / ConvertKit</strong></td><td>Newsletter + email</td><td>Automate broadcast sequences</td></tr>
+</table>
+
 <div class="callout">
   <div class="callout-label">Pick Your Stack</div>
-  You do not need all four stacks. Pick the one closest to your work and set up 2-3 connections from it. You can always add more later. The most universally useful connections are Google Drive + Google Sheets + Gmail. If you only set up three things, make it those.
+  You do not need all five stacks. Pick the one closest to your work and set up 2-3 connections from it. You can always add more later. The most universally useful connections are Google Drive + Google Sheets + Gmail. If you only set up three things, make it those.
 </div>
 
+<!-- Security -->
 <h3 id="m6-security">Security: .env Setup</h3>
 
 <p>API keys are passwords that let Claude talk to external services. They must <strong>never</strong> be committed to git.</p>
@@ -1470,20 +1686,24 @@ Save to content/weekly-posts-[date].md</div>
 
 <div class="checkpoint">
   <div class="checkpoint-header">Graduation Checkpoint &mdash; Everything You Built</div>
-  <ul>
-    <li>VS Code installed and configured as your AI home base</li>
-    <li>Node.js installed for running Claude Code</li>
-    <li>Git and GitHub set up &mdash; every change is tracked and backed up</li>
-    <li>Claude Code installed, authenticated, and set to Accept Edits</li>
-    <li>CLAUDE.md written with your business context &mdash; Claude knows who you are</li>
-    <li>Memory system active &mdash; Claude remembers your preferences across sessions</li>
-    <li>At least one API/MCP connection live &mdash; Claude talks to external services</li>
-    <li>5 prompting rules internalised &mdash; your inputs get better outputs</li>
-    <li>Claude Code syntax mastered &mdash; @files, #symbols, Shift+Enter</li>
-    <li>2 ready-to-use prompts tested &mdash; business audits and content generation</li>
-    <li>Daily 15-minute workflow established &mdash; the habit that compounds</li>
-    <li>(Bonus) Local LLM knowledge &mdash; free, private AI when you need it</li>
-  </ul>
+  <table class="graduation-table">
+    <tr><th>You Have&hellip;</th><th>What This Means</th></tr>
+    <tr><td>VS Code + Claude Code extension</td><td>Your AI workspace is open and ready</td></tr>
+    <tr><td>GitHub repo set up</td><td>Nothing gets lost &mdash; full version history from day one</td></tr>
+    <tr><td>ChatGPT handover document done</td><td>3 years of AI context brought into Claude</td></tr>
+    <tr><td>CLAUDE.md written</td><td>Claude knows who you are before you say a word</td></tr>
+    <tr><td>Claude.ai memory trained</td><td>Quick browser questions get contextual answers too</td></tr>
+    <tr><td>Claude Code memory active</td><td>Claude remembers decisions and preferences across sessions</td></tr>
+    <tr><td>At least one API connected</td><td>Claude can reach outside your files</td></tr>
+    <tr><td>5 prompting rules internalised</td><td>You get useful answers, not generic ones</td></tr>
+    <tr><td>One real workflow tested</td><td>You've done the work, not just read about it</td></tr>
+    <tr><td>Daily 15-minute habit started</td><td>This stops being a tool and starts being a partner</td></tr>
+  </table>
+</div>
+
+<div class="callout tip">
+  <div class="callout-label">Pace Doesn't Matter &mdash; Completion Does</div>
+  Some people complete this in a weekend. Some take two weeks. Pace doesn't matter &mdash; what matters is that each item is real, not skimmed.
 </div>
 
 <p>Here is where to go next:</p>
@@ -1509,7 +1729,7 @@ Save to content/weekly-posts-[date].md</div>
 
 <!-- FOOTER -->
 <div class="footer">
-  <p><strong>Claude Code: From Zero to Dangerous</strong> &middot; Startup Guide v2</p>
+  <p><strong>Claude Code: From Zero to Dangerous</strong> &middot; Startup Guide v3</p>
   <p>Built with Claude Code &middot; <strong>Online Optimisers</strong> &middot; April 2026</p>
   <p style="margin-top:8px;"><a href="#">Advanced Claude Code Guide &rarr;</a></p>
 </div>
@@ -1673,7 +1893,7 @@ Save to content/weekly-posts-[date].md</div>
   }
 
   // Checkbox persistence
-  var STORAGE_KEY = 'oo-startup-v2-checks';
+  var STORAGE_KEY = 'oo-startup-v3-checks';
   var saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
   document.querySelectorAll('.checkpoint input[type="checkbox"]').forEach(function(cb, i) {
     cb.id = cb.id || 'ck' + i;
