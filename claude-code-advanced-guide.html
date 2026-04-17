@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Claude Code Advanced Guide — The Full Stack Playbook v4</title>
+  <title>Claude Code Advanced Guide — The Full Stack Playbook v5</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <style>
     @page { size: A4; margin: 2cm; }
@@ -542,6 +542,88 @@
       color: var(--cyan);
     }
 
+    /* ── CALCULATOR ── */
+    .calc-card {
+      background: var(--surface);
+      border: 1px solid var(--cyan);
+      border-radius: 12px;
+      padding: 32px;
+      margin: 28px 0;
+    }
+    .calc-card h3 {
+      color: var(--cyan);
+      font-size: 20px;
+      font-weight: 800;
+      margin-top: 0;
+      margin-bottom: 4px;
+    }
+    .calc-card .calc-subtitle {
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 24px;
+    }
+    .calc-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    @media (max-width: 600px) {
+      .calc-row { grid-template-columns: 1fr; }
+    }
+    .calc-field label {
+      display: block;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+    }
+    .calc-field select {
+      width: 100%;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      padding: 10px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      appearance: auto;
+    }
+    .calc-field select:focus {
+      outline: none;
+      border-color: var(--cyan);
+    }
+    .calc-output {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px;
+      margin-top: 16px;
+    }
+    .calc-output-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 14px;
+    }
+    .calc-output-row:last-child { border-bottom: none; }
+    .calc-output-row .calc-label { color: var(--muted); }
+    .calc-output-row .calc-value { color: var(--cyan); font-weight: 700; font-family: 'JetBrains Mono', monospace; }
+    .calc-recommendation {
+      margin-top: 16px;
+      padding: 14px 18px;
+      background: rgba(0, 212, 255, 0.06);
+      border-left: 3px solid var(--cyan);
+      border-radius: 0 6px 6px 0;
+      font-size: 13px;
+      color: var(--text);
+    }
+
     /* ── FOOTER ── */
     .footer {
       margin-top: 64px; padding: 32px 0;
@@ -569,7 +651,7 @@
 
 <!-- ── SIDEBAR ── -->
 <nav class="sidebar no-print" id="sidebar">
-  <h3>Advanced Guide v4</h3>
+  <h3>Advanced Guide v5</h3>
 
   <a href="#top" class="s-module">Cover</a>
 
@@ -580,6 +662,7 @@
   <a href="#m2" class="s-module" data-section="m2">02 Multi-Agent Ops <span class="s-time">15 min</span></a>
   <a href="#m2-patterns" data-section="m2">3 patterns</a>
   <a href="#m2-cost" data-section="m2">Cost &amp; routing</a>
+  <a href="#m2-calc" data-section="m2">Cost calculator</a>
   <a href="#m2-plow" data-section="m2">Plow mode</a>
 
   <a href="#m3" class="s-module" data-section="m3">03 Skills Factory <span class="s-time">14 min</span></a>
@@ -604,6 +687,11 @@
   <a href="#m7-stack" data-section="m7">MCP stack</a>
   <a href="#m7-config" data-section="m7">Configuration</a>
   <a href="#m7-build" data-section="m7">Build your own</a>
+
+  <a href="#m-llm" class="s-module" data-section="m-llm">Local LLMs <span class="s-time">8 min</span></a>
+  <a href="#m-llm-when" data-section="m-llm">When to use</a>
+  <a href="#m-llm-tools" data-section="m-llm">3 tools</a>
+  <a href="#m-llm-models" data-section="m-llm">Models</a>
 
   <a href="#m8" class="s-module" data-section="m8">08 Terminal <span class="s-time">8 min</span></a>
   <a href="#m8-shortcuts" data-section="m8">Power shortcuts</a>
@@ -633,10 +721,10 @@
 
 <!-- ── COVER ── -->
 <div class="cover" id="top">
-  <div class="cover-badge">Advanced Guide &mdash; v4</div>
+  <div class="cover-badge">Advanced Guide &mdash; v5</div>
   <h1>Claude Code<br/><span class="accent">Full Stack Playbook</span></h1>
-  <p class="subtitle">30+ APIs, parallel agents, autonomous workflows, and the architecture behind an AI-native agency</p>
-  <p class="cover-meta"><strong>Online Optimisers</strong> &middot; Version 4 &middot; April 2026<br/>Prerequisite: <a href="claude-code-startup-guide.html" style="color: var(--cyan);">Startup Guide</a> completed &middot; 16 sections &middot; ~160 min</p>
+  <p class="subtitle">30+ APIs, parallel agents, autonomous workflows, and the architecture behind an AI-native business</p>
+  <p class="cover-meta"><strong>Donal Lynch</strong> &middot; <strong>Online Optimisers</strong> &middot; Version 5 &middot; April 2026<br/>Prerequisite: <a href="claude-code-startup-guide.html" style="color: var(--cyan);">Startup Guide</a> completed &middot; 18 sections &middot; ~170 min<br/><a href="https://www.linkedin.com/in/donal-lynch-b293a882/" style="color: var(--cyan);">LinkedIn</a></p>
 </div>
 
 <!-- stats -->
@@ -659,6 +747,7 @@
     <li><a href="#m5">The Memory Architecture</a> <span class="toc-time">10 min</span></li>
     <li><a href="#m6">Smart Personas &mdash; Your Specialist Team</a> <span class="toc-time">10 min</span></li>
     <li><a href="#m7">MCP Ecosystem &mdash; Connecting Everything + Building Your Own</a> <span class="toc-time">10 min</span></li>
+    <li><a href="#m-llm">Local LLMs &mdash; When and How to Run Models Locally</a> <span class="toc-time">8 min</span></li>
     <li><a href="#m8">Terminal Dominance</a> <span class="toc-time">8 min</span></li>
     <li><a href="#m-cf">Cloudflare &mdash; Your Deployment Engine</a> <span class="toc-time">10 min</span></li>
     <li><a href="#m-deploy">From Build to Live &mdash; The Deployment Pipeline</a> <span class="toc-time">8 min</span></li>
@@ -685,13 +774,14 @@
     <tr><td><strong>Webhook</strong></td><td>A URL that receives data when an event happens (e.g. new lead → triggers Claude)</td></tr>
     <tr><td><strong>Custom MCP Server</strong></td><td>A plugin you build yourself to give Claude access to any external system</td></tr>
     <tr><td><strong>Context compression</strong></td><td>When your conversation gets long, Claude summarises old messages to free up space</td></tr>
-    <tr><td><strong>Model routing</strong></td><td>Using different AI models for different tasks: Haiku for cheap bulk, Sonnet for judgment, Opus for planning</td></tr>
+    <tr><td><strong>Model routing</strong></td><td>Using different AI models for different tasks: Haiku for cheap bulk, Sonnet grey zone, Opus for planning</td></tr>
     <tr><td><strong>Haiku / Sonnet / Opus</strong></td><td>Claude's 3 tiers: Haiku = fast + cheap, Sonnet = balanced, Opus = most capable + expensive</td></tr>
     <tr><td><strong>Fan-out / Fan-in</strong></td><td>Spawn many agents in parallel (fan-out), then collect all results (fan-in)</td></tr>
     <tr><td><strong>Pipeline</strong></td><td>Agent A's output feeds Agent B, which feeds Agent C — sequential chain</td></tr>
     <tr><td><strong>R2 (Cloudflare)</strong></td><td>Object storage — host images, files, voice clones. Zero egress fees</td></tr>
     <tr><td><strong>Workers (Cloudflare)</strong></td><td>Serverless functions at the edge — webhook receivers, API proxies, cron triggers</td></tr>
     <tr><td><strong>KV Store</strong></td><td>Key-value storage on Cloudflare — fast config and state storage for Workers</td></tr>
+    <tr><td><strong>Local LLM</strong></td><td>An AI model running on your own machine — no internet needed, no API costs, full privacy</td></tr>
   </table>
   </div>
 </details>
@@ -722,7 +812,7 @@
 </div>
 
 <div class="api-stack">
-  <div class="api-stack-header">SEO &amp; Visibility (7 APIs)</div>
+  <div class="api-stack-header">Research &amp; Visibility (7 APIs)</div>
   <div class="api-stack-tagline">"Automated audits at scale &mdash; one prompt, full competitive picture"</div>
   <div class="api-list">
     <span class="api-tag">Search Console</span>
@@ -733,7 +823,7 @@
     <span class="api-tag">Firecrawl</span>
     <span class="api-tag">BrightLocal</span>
   </div>
-  <p style="font-size:13px; color: var(--muted); margin-bottom:0;">Keyword tracking, backlink analysis, site crawls, local citation checks &mdash; wire them together and a full SEO audit takes 90 seconds.</p>
+  <p style="font-size:13px; color: var(--muted); margin-bottom:0;">Keyword tracking, backlink analysis, site crawls, citation checks &mdash; wire them together and a full audit takes 90 seconds.</p>
 </div>
 
 <div class="api-stack">
@@ -789,7 +879,7 @@
 
 <div class="callout tip">
   <div class="callout-label">Your Stack Will Be Different</div>
-  These are our stacks. Yours will reflect your business. A SaaS founder might swap BrightLocal for Stripe Atlas and Calendly for Cal.com. A content studio might drop Apollo and add Descript. The architecture is the same &mdash; pick the APIs that match your workflows, wire them up, and let Claude orchestrate them.
+  These are example stacks. Yours will reflect your business. A YouTube channel manager might swap BrightLocal for TubeBuddy and Calendly for StreamYard. An e-commerce operator might drop Apollo and add Shopify. A web design studio might add Figma and Webflow APIs. The architecture is the same &mdash; pick the APIs that match your workflows, wire them up, and let Claude orchestrate them.
 </div>
 
 <h3 id="m1-env">Your .env File</h3>
@@ -872,12 +962,12 @@ VERCEL_TOKEN=...</div>
 <h4>Pattern 1: Fan-Out / Fan-In</h4>
 <p>Spawn N agents for independent tasks, wait for all to return, integrate results.</p>
 
-<div class="prompt-example">I have 9 client profiles in knowledge/clients/. Spawn one agent per client. Each agent reads the profile and runs a full audit. Save results to deliverables/[slug]/. Go.</div>
+<div class="prompt-example">I have 9 client profiles in knowledge/clients/. Spawn one agent per client. Each agent reads the profile and runs a full performance review. Save results to deliverables/[slug]/. Go.</div>
 
 <h4>Pattern 2: Pipeline</h4>
 <p>Agent A's output feeds Agent B, which feeds Agent C. Sequential but each agent is specialised.</p>
 
-<div class="prompt-example">Agent 1: scrape the prospect's website with Firecrawl. Agent 2: take that data and run the visibility audit. Agent 3: take the audit and build the HTML presentation deck. Pipeline it.</div>
+<div class="prompt-example">Agent 1: scrape the prospect's website with Firecrawl. Agent 2: take that data and run the competitive analysis. Agent 3: take the analysis and build the HTML presentation deck. Pipeline it.</div>
 
 <h4>Pattern 3: Explore / Decide / Execute</h4>
 <p>Fast cheap agents explore options (Haiku), orchestrator decides direction (Sonnet/Opus), execution agents build the thing (Sonnet).</p>
@@ -905,6 +995,67 @@ VERCEL_TOKEN=...</div>
 <div class="callout warning">
   <div class="callout-label">Budget Rule</div>
   Before launching parallel agents, estimate the cost. 13 Opus agents running for 45 minutes each is a very different bill than 13 Haiku agents doing the same. Default to Haiku for exploration, escalate to Sonnet for quality, reserve Opus for decisions that shape the whole project.
+</div>
+
+<!-- ── AI SETUP COST CALCULATOR ── -->
+<h3 id="m2-calc">AI Setup Cost Calculator</h3>
+
+<div class="calc-card">
+  <h3>Estimate Your Monthly AI Cost</h3>
+  <p class="calc-subtitle">Adjust the inputs below to see your estimated spend, recommended plan, and ROI projection.</p>
+
+  <div class="calc-row">
+    <div class="calc-field">
+      <label for="calcHours">Hours per day using Claude</label>
+      <select id="calcHours">
+        <option value="1.5">1-2 hours</option>
+        <option value="3.5" selected>3-4 hours</option>
+        <option value="6.5">5-8 hours</option>
+        <option value="10">8+ hours</option>
+      </select>
+    </div>
+    <div class="calc-field">
+      <label for="calcAgents">Typical agents running</label>
+      <select id="calcAgents">
+        <option value="0.5">0-1 agents</option>
+        <option value="2.5" selected>2-3 agents</option>
+        <option value="5">4-6 agents</option>
+        <option value="8">7+ agents</option>
+      </select>
+    </div>
+    <div class="calc-field">
+      <label for="calcModel">Primary model</label>
+      <select id="calcModel">
+        <option value="haiku">Haiku (cheapest)</option>
+        <option value="sonnet" selected>Sonnet (balanced)</option>
+        <option value="opus">Opus (most capable)</option>
+        <option value="mix">Mix (recommended)</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="calc-output" id="calcOutput">
+    <div class="calc-output-row">
+      <span class="calc-label">Estimated monthly token cost</span>
+      <span class="calc-value" id="calcCost">$100 - $200</span>
+    </div>
+    <div class="calc-output-row">
+      <span class="calc-label">Recommended plan</span>
+      <span class="calc-value" id="calcPlan">Max 5x ($100/mo)</span>
+    </div>
+    <div class="calc-output-row">
+      <span class="calc-label">Estimated hours saved per week</span>
+      <span class="calc-value" id="calcHoursSaved">15 - 20 hrs</span>
+    </div>
+    <div class="calc-output-row">
+      <span class="calc-label">ROI at $75/hr value</span>
+      <span class="calc-value" id="calcROI">45x - 60x</span>
+    </div>
+  </div>
+
+  <div class="calc-recommendation" id="calcRec">
+    At this usage level, the <strong>Max 5x plan ($100/month)</strong> gives you the best value. If Claude saves you 15 hours per week at $75/hour equivalent, your monthly return is $4,500 on a $100 investment &mdash; a 45x ROI.
+  </div>
 </div>
 
 <h3 id="m2-plow">Plow Mode &mdash; Burning Credits Efficiently</h3>
@@ -944,6 +1095,7 @@ VERCEL_TOKEN=...</div>
     <li>You can describe 3 parallel patterns (fan-out, pipeline, explore/decide/execute)</li>
     <li>You know the spawn syntax to trigger multi-agent execution</li>
     <li>You understand model routing for cost control (Haiku/Sonnet/Opus)</li>
+    <li>You have used the cost calculator to estimate your monthly spend</li>
     <li>You know the plow mode rules (unique targets, commit per agent, hand over file lists)</li>
   </ul>
 </div>
@@ -1135,7 +1287,7 @@ Claude: [continues working with you on the master plan]
 
 <table>
   <tr><th>Trigger</th><th>What Claude Does</th><th>Example</th></tr>
-  <tr><td><strong>New lead in CRM</strong></td><td>Run audit, build pitch deck, draft outreach email</td><td>Webhook from HubSpot &rarr; Claude pipeline</td></tr>
+  <tr><td><strong>New lead in CRM</strong></td><td>Run analysis, build pitch deck, draft outreach email</td><td>Webhook from HubSpot &rarr; Claude pipeline</td></tr>
   <tr><td><strong>Client email received</strong></td><td>Summarise, categorise, draft reply</td><td>Gmail watch &rarr; Claude triage skill</td></tr>
   <tr><td><strong>Form submission</strong></td><td>Extract data, update tracker, send confirmation</td><td>Typeform webhook &rarr; Sheets + Gmail</td></tr>
   <tr><td><strong>Scheduled cron (daily 9am)</strong></td><td>Pull yesterday's metrics, flag anomalies, send brief</td><td>Cron &rarr; Claude &rarr; Slack</td></tr>
@@ -1458,13 +1610,79 @@ server.tool("update_lead_status", async ({ id, status }) => {
 
 
 <!-- ================================================================ -->
+<!-- LOCAL LLMs — WHEN AND HOW TO RUN MODELS LOCALLY                 -->
+<!-- ================================================================ -->
+<h2 id="m-llm"><span class="module-num">Local LLMs</span>When and How to Run Models Locally</h2>
+
+<p>Cloud AI (Claude, GPT) is the main engine. But there are scenarios where running a model on your own machine makes sense &mdash; privacy, cost, offline work, or bulk processing where quality is not critical. This section covers when to go local, which tools to use, and which models to start with.</p>
+
+<h3 id="m-llm-when">When to Use Local vs Cloud</h3>
+
+<table>
+  <tr><th>Scenario</th><th>Use Local</th><th>Use Cloud (Claude)</th></tr>
+  <tr><td>Privacy-sensitive data (medical, legal, financial)</td><td><strong>Yes</strong></td><td>No</td></tr>
+  <tr><td>Offline work (flights, remote locations)</td><td><strong>Yes</strong></td><td>No</td></tr>
+  <tr><td>Bulk processing, low cost (thousands of items)</td><td><strong>Yes</strong></td><td>Maybe</td></tr>
+  <tr><td>Complex reasoning and multi-step logic</td><td>No</td><td><strong>Yes</strong></td></tr>
+  <tr><td>Multi-step workflows with tool use</td><td>No</td><td><strong>Yes</strong></td></tr>
+  <tr><td>Quality matters (client-facing, proposals, strategy)</td><td>No</td><td><strong>Yes</strong></td></tr>
+</table>
+
+<h3 id="m-llm-tools">3 Ways to Run Local Models</h3>
+
+<table>
+  <tr><th>Tool</th><th>RAM Needed</th><th>GPU</th><th>Best For</th></tr>
+  <tr><td><strong>Ollama</strong></td><td>8GB+</td><td>Optional (helps)</td><td>Terminal-first, simple setup, scripting</td></tr>
+  <tr><td><strong>LM Studio</strong></td><td>8GB+</td><td>Optional</td><td>GUI, beginner-friendly, model browsing</td></tr>
+  <tr><td><strong>GPT4All</strong></td><td>4GB+</td><td>Not needed</td><td>Lightweight, runs on almost anything</td></tr>
+</table>
+
+<h3 id="m-llm-models">Recommended Models</h3>
+
+<table>
+  <tr><th>Model</th><th>Size</th><th>RAM</th><th>Good For</th></tr>
+  <tr><td><strong>Llama 3.1 8B</strong></td><td>4.7GB</td><td>8GB</td><td>General tasks, summarisation</td></tr>
+  <tr><td><strong>Qwen 2.5 7B</strong></td><td>4.4GB</td><td>8GB</td><td>Coding, structured output</td></tr>
+  <tr><td><strong>Mistral 7B</strong></td><td>4.1GB</td><td>8GB</td><td>Fast inference, chat</td></tr>
+  <tr><td><strong>Phi-3 Mini</strong></td><td>2.3GB</td><td>4GB</td><td>Ultra-lightweight, quick answers</td></tr>
+  <tr><td><strong>Gemma 2 9B</strong></td><td>5.4GB</td><td>12GB</td><td>Best quality at this size</td></tr>
+</table>
+
+<h4>Getting Started with Ollama (2 minutes)</h4>
+
+<div class="code-block has-copy"><button class="copy-btn" data-copy="ollama-example">Copy</button><span class="label" style="right:80px;">Terminal</span># Install Ollama (Mac)
+brew install ollama
+
+# Pull and run a model
+ollama run llama3.1
+
+# You're now chatting with a local LLM — no API key, no cost
+>>> Summarise this document in 3 bullet points...</div>
+
+<div class="callout warning">
+  <div class="callout-label">Local Models Are Supplementary</div>
+  Local models are not replacements for Claude. Use them for bulk processing, privacy-sensitive work, and offline queries. For anything requiring deep reasoning, multi-step workflows, or quality output &mdash; use Claude. A local 7B model is roughly equivalent to a junior intern. Claude is the senior partner. Use each where they shine.
+</div>
+
+<div class="checkpoint">
+  <div class="checkpoint-header">Local LLMs Checkpoint</div>
+  <ul>
+    <li>You know when to use local vs cloud models</li>
+    <li>You understand the 3 tools for running local models (Ollama, LM Studio, GPT4All)</li>
+    <li>You know which models to start with based on your RAM</li>
+    <li>You can install and run Ollama in 2 minutes</li>
+  </ul>
+</div>
+
+
+<!-- ================================================================ -->
 <!-- MODULE 8 — TERMINAL DOMINANCE                                   -->
 <!-- ================================================================ -->
 <h2 id="m8"><span class="module-num">Module 08</span>Terminal Dominance</h2>
 
 <div class="terminal-quote">One terminal. Total control.<span class="tq-secondary">No more 15-tab SaaS switching. Everything runs through one interface.</span></div>
 
-<p>Before Claude Code, a typical agency morning looked like this: open Chrome, log into Google Analytics, switch to Search Console, open Ahrefs, check Slack, open Asana, check email, switch to the CRM, open a spreadsheet, alt-tab 47 times. By 10am you have done zero actual work.</p>
+<p>Before Claude Code, a typical morning looked like this: open Chrome, log into analytics, switch to your ad platform, open the project tracker, check Slack, open email, switch to the CRM, open a spreadsheet, alt-tab 47 times. By 10am you have done zero actual work.</p>
 
 <p>With Claude Code, the entire stack is accessible from one terminal window. You type natural language, Claude calls the APIs, and results appear where you need them. No tab switching. No context switching. No SaaS dashboards competing for your attention.</p>
 
@@ -1516,7 +1734,7 @@ server.tool("update_lead_status", async ({ id, status }) => {
 <p>That is it. Your site is live. Pages auto-detects the build output, uploads it, assigns a <code>.pages.dev</code> URL, and you can attach a custom domain in the Cloudflare dashboard or via the API.</p>
 
 <ul>
-  <li><strong>Use for:</strong> landing pages, client audit decks, HTML presentations, marketing sites, documentation, any static asset</li>
+  <li><strong>Use for:</strong> landing pages, client presentation decks, HTML reports, marketing sites, documentation, any static asset</li>
   <li><strong>Cost:</strong> Free tier covers most use cases. 500 deploys/month, unlimited bandwidth.</li>
   <li><strong>Auto-deploy:</strong> Connect a GitHub repo and every push to <code>main</code> triggers a new deploy automatically.</li>
 </ul>
@@ -1665,7 +1883,7 @@ curl -s -o /dev/null -w "%{http_code}" https://my-project.pages.dev</div>
 <h3>6 Strategies to Manage Context</h3>
 
 <h4>1. Break work into focused sessions</h4>
-<p>One task per chat. Do not use one conversation for the morning's SEO audit and the afternoon's pitch deck. Start a new chat for each distinct task. This keeps context fresh and focused.</p>
+<p>One task per chat. Do not use one conversation for the morning's ad campaign review and the afternoon's pitch deck. Start a new chat for each distinct task. This keeps context fresh and focused.</p>
 
 <h4>2. Use memory files to persist state across sessions</h4>
 <p>Anything that needs to survive between conversations goes in a memory file. When you start a new session, Claude reloads all memory files automatically. The state persists even if the conversation does not.</p>
@@ -1765,10 +1983,10 @@ curl -s -o /dev/null -w "%{http_code}" https://my-project.pages.dev</div>
 
 <p>Stack role + task + constraints + output format into a single structured prompt. Each layer narrows the output space.</p>
 
-<div class="code-block has-copy"><button class="copy-btn" data-copy="prompt-compound">Copy</button><span class="label" style="right:80px;">Compound Prompt</span>You are a senior SEO consultant writing for a
-non-technical business owner.
+<div class="code-block has-copy"><button class="copy-btn" data-copy="prompt-compound">Copy</button><span class="label" style="right:80px;">Compound Prompt</span>You are a senior business consultant writing for a
+non-technical restaurant owner.
 
-Task: Analyse this website's local SEO performance
+Task: Analyse this restaurant's social media performance
 and write a 1-page summary.
 
 Constraints:
@@ -1877,9 +2095,9 @@ The prompt should:
 <p>Theory is cheap. Here are 6 real patterns we have executed &mdash; genericised but real numbers.</p>
 
 <div class="showcase">
-  <div class="showcase-header">1. Multi-Client Audit Sprint</div>
-  <div class="showcase-meta">9 clients &middot; 4 dimensions &middot; parallel agents &middot; 90+ files produced</div>
-  <p>Audited 9 active clients across visibility, technical health, backlinks, and content in a single sprint. Each client received a full interactive HTML audit deck deployed to a live URL.</p>
+  <div class="showcase-header">1. Multi-Client Performance Sprint</div>
+  <div class="showcase-meta">9 clients &middot; 4 dimensions &middot; parallel agents &middot; 90+ files produced &middot; $15k/month in retained revenue</div>
+  <p>Audited 9 active clients across visibility, technical health, backlinks, and content in a single sprint. Each client received a full interactive HTML report deck deployed to a live URL.</p>
   <ul>
     <li><strong>Pattern:</strong> Fan-out agents (1 per client) &rarr; orchestrator integrates &rarr; deploy pipeline pushes live</li>
     <li><strong>APIs used:</strong> SERP data, AI citation testing, cross-verification, site crawls</li>
@@ -1887,13 +2105,13 @@ The prompt should:
   </ul>
   <div class="showcase-link">
     <span class="showcase-link-label">Pattern in the wild:</span>
-    9 client audit decks, each deployed as a live HTML page with real data &mdash; built in one parallel session across 3 chats.
+    9 client report decks, each deployed as a live HTML page with real data &mdash; built in one parallel session across 3 chats.
   </div>
 </div>
 
 <div class="showcase">
-  <div class="showcase-header">2. Brief-to-Live Site</div>
-  <div class="showcase-meta">1 paragraph brief &rarr; live website &rarr; single prompt</div>
+  <div class="showcase-header">2. Brief-to-Live Website</div>
+  <div class="showcase-meta">1 paragraph brief &rarr; live website &rarr; single prompt &middot; potential value: $8k+ per project</div>
   <p>From a one-paragraph business description to a fully deployed, mobile-responsive website with live URL. No manual HTML. No FTP. No hosting configuration.</p>
   <ul>
     <li><strong>Pattern:</strong> Scrape existing web presence &rarr; generate site &rarr; deploy &rarr; verify HTTP 200</li>
@@ -1907,9 +2125,9 @@ The prompt should:
 </div>
 
 <div class="showcase">
-  <div class="showcase-header">3. Content Pipeline</div>
-  <div class="showcase-meta">Strategy &rarr; drafts &rarr; graphics &rarr; scheduling &middot; 15 min/week</div>
-  <p>Built a complete content pipeline: strategy framework, carousel templates, caption library, posting schedule, and reusable generation skills. Weekly execution takes one prompt.</p>
+  <div class="showcase-header">3. Social Content Pipeline</div>
+  <div class="showcase-meta">Strategy &rarr; drafts &rarr; graphics &rarr; scheduling &middot; 15 min/week &middot; $8k-$15k/month service potential</div>
+  <p>Built a complete content pipeline for a restaurant chain: strategy framework, carousel templates, caption library, posting schedule, and reusable generation skills. Weekly execution takes one prompt.</p>
   <ul>
     <li><strong>Pattern:</strong> Build infrastructure once &rarr; run weekly with one command</li>
     <li><strong>Output:</strong> Multi-slide decks, caption variants per platform, scheduling calendar</li>
@@ -1933,8 +2151,8 @@ The prompt should:
 </div>
 
 <div class="showcase">
-  <div class="showcase-header">5. Automated Outreach</div>
-  <div class="showcase-meta">200+ leads/week &middot; zero manual prospecting</div>
+  <div class="showcase-header">5. Automated Outreach Engine</div>
+  <div class="showcase-meta">200+ leads/week &middot; zero manual prospecting &middot; $20k/month pipeline value</div>
   <p>End-to-end lead generation: prospect identification, email verification, personalised sequence creation, campaign loading, and reply monitoring. Human only intervenes when a lead replies positively.</p>
   <ul>
     <li><strong>Pattern:</strong> Lead scraping &rarr; enrichment &rarr; sequence generation &rarr; campaign load &rarr; reply monitoring</li>
@@ -1944,7 +2162,7 @@ The prompt should:
 </div>
 
 <div class="showcase">
-  <div class="showcase-header">6. Knowledge Ingestion</div>
+  <div class="showcase-header">6. Knowledge Ingestion System</div>
   <div class="showcase-meta">60+ books &middot; 30+ courses &middot; 8 podcasts &rarr; searchable knowledge base</div>
   <p>Bulk-ingested an entire professional library into a structured, searchable knowledge base. Books transcribed, courses extracted, podcast feeds monitored &mdash; all feeding into a tracking system with auto-sync.</p>
   <ul>
@@ -2021,7 +2239,7 @@ The prompt should:
   <div class="detail-body">
     <p><strong>What happens:</strong> The agent says "done." You mark the task complete. Three days later, a colleague tries to access the live URL and gets a 404. Or you send a report that has placeholder text still in it. Or the deployed script has a silent error that only surfaces under real data.</p>
     <p><strong>Fix: "done" means deployed and confirmed working, not "the agent said it finished."</strong> Curl every URL. Grep every file for placeholder text. Check every output against its acceptance criteria before marking the task complete.</p>
-    <p>Build verification into your workflows: add a <code>/qa-site</code> step after every deploy, add a placeholder-check step after every document generation, add an HTTP 200 check after every site launch. The agent finishing is not the finish line &mdash; verified output is.</p>
+    <p>Build verification into your workflows: add a QA step after every deploy, add a placeholder-check step after every document generation, add an HTTP 200 check after every site launch. The agent finishing is not the finish line &mdash; verified output is.</p>
   </div>
 </details>
 
@@ -2071,7 +2289,7 @@ audit_agent = Agent(
 )
 
 result = audit_agent.run(
-    "Audit example-business.com for AI visibility"
+    "Audit example-business.com for online visibility"
 )</div>
 
 <h3 id="m10-swarm">Swarm Flow &mdash; Agents That Feed Each Other</h3>
@@ -2081,7 +2299,7 @@ result = audit_agent.run(
 <div class="swarm-flow">
   <div class="swarm-node">Scraper Agent</div>
   <div class="swarm-arrow"></div>
-  <div class="swarm-node">Audit Agent</div>
+  <div class="swarm-node">Analysis Agent</div>
   <div class="swarm-arrow"></div>
   <div class="swarm-node">Pitch Builder Agent</div>
   <div class="swarm-arrow"></div>
@@ -2111,7 +2329,7 @@ result = audit_agent.run(
   <tr><th>Framework</th><th>Best For</th><th>Claude Code Fit</th></tr>
   <tr><td><strong>Astro</strong></td><td>Content sites, landing pages, blogs</td><td>Excellent &mdash; clean, fast, simple</td></tr>
   <tr><td><strong>Next.js</strong></td><td>Complex web apps, dashboards</td><td>Good &mdash; more setup overhead</td></tr>
-  <tr><td><strong>Plain HTML</strong></td><td>One-off pages, audit decks</td><td>Great &mdash; zero dependencies</td></tr>
+  <tr><td><strong>Plain HTML</strong></td><td>One-off pages, presentation decks</td><td>Great &mdash; zero dependencies</td></tr>
 </table>
 
 <div class="callout tip">
@@ -2171,20 +2389,20 @@ result = audit_agent.run(
 <p>Services sell faster than products. Do not build a SaaS on day one. Package your expertise + AI into a done-for-you service first:</p>
 
 <ul>
-  <li><strong>One niche:</strong> Pick one industry you understand deeply. "AI-powered local SEO for roofers" beats "AI services for everyone."</li>
-  <li><strong>One offer:</strong> One clear deliverable with one clear outcome. "We make your business visible in AI search results" is an offer. "We do AI stuff" is not.</li>
+  <li><strong>One niche:</strong> Pick one industry you understand deeply. "AI-powered Google Ads management for dentists" beats "AI services for everyone."</li>
+  <li><strong>One offer:</strong> One clear deliverable with one clear outcome. "We manage your YouTube channel end-to-end and grow it to 10k subscribers" is an offer. "We do AI stuff" is not.</li>
   <li><strong>One workflow:</strong> Build one automated pipeline that delivers the offer. Claude Code + your APIs + your templates = repeatable delivery.</li>
 </ul>
 
 <h3>Price on Value, Not Hours</h3>
 
-<p>If Claude Code lets you deliver in 2 hours what used to take 20, do not charge for 2 hours. Charge based on the value the client receives. A visibility audit that takes you 90 seconds to generate (but would take a consultant a full day) is worth what the consultant charges &mdash; or more, because you deliver faster.</p>
+<p>If Claude Code lets you deliver in 2 hours what used to take 20, do not charge for 2 hours. Charge based on the value the client receives. A competitive analysis that takes you 90 seconds to generate (but would take a consultant a full day) is worth what the consultant charges &mdash; or more, because you deliver faster.</p>
 
 <h3>Build Proof Fast</h3>
 
 <ol>
   <li><strong>Do 3 projects at cost.</strong> Pick 3 businesses in your target niche. Deliver the service for free or at cost. Focus on producing great results.</li>
-  <li><strong>Collect testimonials.</strong> After delivery, ask for a written or video testimonial. Specific results ("ranked in 3 AI platforms within 2 weeks") beat generic praise.</li>
+  <li><strong>Collect testimonials.</strong> After delivery, ask for a written or video testimonial. Specific results ("doubled our social media engagement in 3 weeks") beat generic praise.</li>
   <li><strong>Raise the price.</strong> With 3 case studies in hand, price at full value. The proof does the selling.</li>
 </ol>
 
@@ -2197,16 +2415,15 @@ result = audit_agent.run(
 
 <p>The people who win with AI are not the ones who learn the most tools. They are the ones who apply the right tool to a real problem, fast, and get paid for it. Everything in this guide exists to make that cycle &mdash; identify problem, build solution, deliver result, collect payment &mdash; as short as possible.</p>
 
-
 <!-- ════════════════════════════════════════════════════════════════ -->
 <!-- CTA BLOCK                                                       -->
 <!-- ════════════════════════════════════════════════════════════════ -->
 <div class="cta-block">
-  <h3>Want a custom setup plan built around your business?</h3>
-  <p>Book a free strategy call with Donal and get a personalised AI implementation roadmap.</p>
-  <a href="https://calendly.com/info-yg4/donal-strategy-call" class="cta-btn" target="_blank" rel="noopener">Book Your Strategy Call &rarr;</a>
+  <h3>Want a Custom AI Implementation Plan?</h3>
+  <p>Book a call with Donal. In 30 minutes, you will get a personalised roadmap for integrating Claude Code into your specific business &mdash; including which APIs to connect, which skills to build first, and how to hit ROI in your first month.</p>
+  <a href="https://calendly.com/info-yg4/donal-strategy-call" class="cta-btn" target="_blank" rel="noopener">Book Your Custom Plan Call &rarr;</a>
   <div class="cta-secondary">
-    <p style="margin-bottom: 6px;">Not ready for a call? Start with the free guides:</p>
+    <p style="margin-bottom: 6px;">Start with the free guides:</p>
     <a href="claude-code-startup-guide.html">From Zero to Dangerous (Startup Guide)</a> &nbsp;&middot;&nbsp;
     <a href="chatgpt-migration-calculator.html">ChatGPT Migration Calculator</a>
   </div>
@@ -2215,8 +2432,8 @@ result = audit_agent.run(
 
 <!-- ── FOOTER ── -->
 <div class="footer">
-  <p><strong>Written by Donal Lynch</strong> &middot; <strong>Online Optimisers</strong> &middot; <a href="https://onlineoptimisers.com" style="color: var(--cyan);">onlineoptimisers.com</a></p>
-  <p>Claude Code: Full Stack Playbook &mdash; Advanced Guide &mdash; v4 &mdash; April 2026</p>
+  <p><strong>Written by Donal Lynch</strong> &middot; <strong>Online Optimisers</strong> &middot; <a href="https://onlineoptimisers.com" style="color: var(--cyan);">onlineoptimisers.com</a> &middot; <a href="https://www.linkedin.com/in/donal-lynch-b293a882/" style="color: var(--cyan);">LinkedIn</a></p>
+  <p>Claude Code: Full Stack Playbook &mdash; Advanced Guide &mdash; v5 &mdash; April 2026</p>
   <p style="margin-top: 8px; color: var(--muted);">Prerequisite: <a href="claude-code-startup-guide.html" style="color: var(--cyan);">From Zero to Dangerous</a> (Startup Guide)</p>
 </div>
 
@@ -2401,10 +2618,88 @@ result = audit_agent.run(
     var revealObs = new IntersectionObserver(function(entries) {
       entries.forEach(function(e) { if (e.isIntersecting) { e.target.classList.add('in'); revealObs.unobserve(e.target); } });
     }, { threshold: 0.1 });
-    document.querySelectorAll('h2, .callout, .checkpoint, .cta-block, .stat-cards, .showcase').forEach(function(el) {
+    document.querySelectorAll('h2, .callout, .checkpoint, .cta-block, .stat-cards, .showcase, .calc-card').forEach(function(el) {
       el.classList.add('reveal');
       revealObs.observe(el);
     });
+  }
+
+  /* ── AI SETUP COST CALCULATOR ── */
+  var calcHours = document.getElementById('calcHours');
+  var calcAgents = document.getElementById('calcAgents');
+  var calcModel = document.getElementById('calcModel');
+  var calcCost = document.getElementById('calcCost');
+  var calcPlan = document.getElementById('calcPlan');
+  var calcHoursSaved = document.getElementById('calcHoursSaved');
+  var calcROI = document.getElementById('calcROI');
+  var calcRec = document.getElementById('calcRec');
+
+  function updateCalculator() {
+    var hours = parseFloat(calcHours.value);
+    var agents = parseFloat(calcAgents.value);
+    var model = calcModel.value;
+
+    // Cost multipliers per model
+    var modelMult = { haiku: 1, sonnet: 4, opus: 15, mix: 5 };
+    var mult = modelMult[model] || 5;
+
+    // Base cost: hours * agent multiplier * model multiplier * base rate
+    var agentMult = 1 + (agents * 0.6);
+    var baseLow = hours * agentMult * mult * 0.8;
+    var baseHigh = hours * agentMult * mult * 1.5;
+
+    // Monthly (22 working days)
+    var monthLow = Math.round(baseLow * 22);
+    var monthHigh = Math.round(baseHigh * 22);
+
+    // Clamp minimums
+    if (monthLow < 20) monthLow = 20;
+    if (monthHigh < monthLow + 20) monthHigh = monthLow + 40;
+
+    calcCost.textContent = '$' + monthLow + ' - $' + monthHigh;
+
+    // Recommended plan
+    var plan = '';
+    if (monthHigh <= 60) {
+      plan = 'Pro ($20/mo)';
+    } else if (monthHigh <= 200) {
+      plan = 'Max 5x ($100/mo)';
+    } else {
+      plan = 'Max 20x ($200/mo)';
+    }
+    calcPlan.textContent = plan;
+
+    // Hours saved estimate
+    var savedLow = Math.round(hours * 2.5 * 5); // per week (5 days)
+    var savedHigh = Math.round(hours * 4 * 5);
+    if (savedLow < 5) savedLow = 5;
+    if (savedHigh < savedLow + 3) savedHigh = savedLow + 5;
+    calcHoursSaved.textContent = savedLow + ' - ' + savedHigh + ' hrs';
+
+    // ROI at $75/hr
+    var hourlyValue = 75;
+    var monthlySavedLow = savedLow * 4 * hourlyValue; // 4 weeks
+    var monthlySavedHigh = savedHigh * 4 * hourlyValue;
+    var avgCost = (monthLow + monthHigh) / 2;
+    var roiLow = Math.round(monthlySavedLow / Math.max(avgCost, 1));
+    var roiHigh = Math.round(monthlySavedHigh / Math.max(avgCost, 1));
+    if (roiLow < 2) roiLow = 2;
+    if (roiHigh < roiLow) roiHigh = roiLow + 5;
+    calcROI.textContent = roiLow + 'x - ' + roiHigh + 'x';
+
+    // Recommendation text
+    var planCost = monthHigh <= 60 ? 20 : (monthHigh <= 200 ? 100 : 200);
+    var savedMid = Math.round((savedLow + savedHigh) / 2);
+    var monthlyReturn = savedMid * 4 * hourlyValue;
+    var roiMid = Math.round(monthlyReturn / Math.max(planCost, 1));
+    calcRec.innerHTML = 'At this usage level, the <strong>' + plan + '</strong> gives you the best value. If Claude saves you ' + savedMid + ' hours per week at $' + hourlyValue + '/hour equivalent, your monthly return is $' + monthlyReturn.toLocaleString() + ' on a $' + planCost + ' investment — a ' + roiMid + 'x ROI.';
+  }
+
+  if (calcHours && calcAgents && calcModel) {
+    calcHours.addEventListener('change', updateCalculator);
+    calcAgents.addEventListener('change', updateCalculator);
+    calcModel.addEventListener('change', updateCalculator);
+    updateCalculator();
   }
 
 })();
