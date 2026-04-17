@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Claude Code Advanced Guide — The Full Stack Playbook v2</title>
+  <title>Claude Code Advanced Guide — The Full Stack Playbook v3</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <style>
     @page { size: A4; margin: 2cm; }
@@ -16,6 +16,7 @@
       --border: #30363d;
       --text: #e6edf3;
       --muted: #8b949e;
+      --text-muted: #8b949e;
       --blue: #58a6ff;
       --cyan: #00d4ff;
       --green: #3fb950;
@@ -375,6 +376,22 @@
     }
     .showcase-meta { font-size: 12px; color: var(--muted); margin-bottom: 12px; }
 
+    /* ── SHOWCASE LINK ── */
+    .showcase-link {
+      background: rgba(0, 230, 200, 0.08);
+      border-left: 3px solid var(--cyan);
+      padding: 10px 16px;
+      margin-top: 12px;
+      border-radius: 0 6px 6px 0;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    .showcase-link-label {
+      font-weight: 700;
+      color: var(--cyan);
+      margin-right: 6px;
+    }
+
     /* ── CHECKPOINT ── */
     .checkpoint {
       background: rgba(63, 185, 80, 0.05); border: 1px solid var(--green);
@@ -493,7 +510,7 @@
 
 <!-- ── SIDEBAR ── -->
 <nav class="sidebar no-print" id="sidebar">
-  <h3>Advanced Guide v2</h3>
+  <h3>Advanced Guide v3</h3>
 
   <a href="#top" class="s-module">Cover</a>
 
@@ -506,12 +523,13 @@
   <a href="#m2-cost" data-section="m2">Cost &amp; routing</a>
   <a href="#m2-plow" data-section="m2">Plow mode</a>
 
-  <a href="#m3" class="s-module" data-section="m3">03 Skills Factory <span class="s-time">12 min</span></a>
+  <a href="#m3" class="s-module" data-section="m3">03 Skills Factory <span class="s-time">14 min</span></a>
   <a href="#m3-anatomy" data-section="m3">Skill anatomy</a>
   <a href="#m3-plan" data-section="m3">Plan mode</a>
+  <a href="#m3-hooks" data-section="m3">Hooks</a>
 
-  <a href="#m4" class="s-module" data-section="m4">04 Autonomous Mode <span class="s-time">10 min</span></a>
-  <a href="#m4-events" data-section="m4">Event-driven</a>
+  <a href="#m4" class="s-module" data-section="m4">04 Autonomous Mode <span class="s-time">12 min</span></a>
+  <a href="#m4-event" data-section="m4">Event-driven</a>
   <a href="#m4-monitor" data-section="m4">Monitoring</a>
 
   <a href="#m5" class="s-module" data-section="m5">05 Memory <span class="s-time">10 min</span></a>
@@ -531,6 +549,8 @@
 
   <a href="#m9" class="s-module" data-section="m9">09 Showcases <span class="s-time">12 min</span></a>
 
+  <a href="#m-mistakes" class="s-module" data-section="m-mistakes">Common Mistakes <span class="s-time">10 min</span></a>
+
   <a href="#m10" class="s-module" data-section="m10">10 The Frontier <span class="s-time">10 min</span></a>
   <a href="#m10-swarm" data-section="m10">Swarm flow</a>
   <a href="#m10-vision" data-section="m10">The vision</a>
@@ -538,10 +558,10 @@
 
 <!-- ── COVER ── -->
 <div class="cover" id="top">
-  <div class="cover-badge">Advanced Guide &mdash; v2</div>
+  <div class="cover-badge">Advanced Guide &mdash; v3</div>
   <h1>Claude Code<br/><span class="accent">Full Stack Playbook</span></h1>
   <p class="subtitle">30+ APIs, parallel agents, autonomous workflows, and the architecture behind an AI-native agency</p>
-  <p class="cover-meta"><strong>Online Optimisers</strong> &middot; Version 2 &middot; April 2026<br/>Prerequisite: <a href="claude-code-startup-guide.html" style="color: var(--cyan);">Startup Guide</a> completed &middot; 10 modules &middot; ~110 min</p>
+  <p class="cover-meta"><strong>Online Optimisers</strong> &middot; Version 3 &middot; April 2026<br/>Prerequisite: <a href="claude-code-startup-guide.html" style="color: var(--cyan);">Startup Guide</a> completed &middot; 10 modules &middot; ~120 min</p>
 </div>
 
 <!-- stats -->
@@ -559,13 +579,14 @@
   <ol>
     <li><a href="#m1">API Arsenal &mdash; 5 Stacks, 30+ APIs</a> <span class="toc-time">12 min</span></li>
     <li><a href="#m2">Multi-Agent Orchestration</a> <span class="toc-time">15 min</span></li>
-    <li><a href="#m3">The Skills Factory</a> <span class="toc-time">12 min</span></li>
-    <li><a href="#m4">Autonomous Mode &mdash; Loops, Events, Background Agents</a> <span class="toc-time">10 min</span></li>
+    <li><a href="#m3">The Skills Factory</a> <span class="toc-time">14 min</span></li>
+    <li><a href="#m4">Autonomous Mode &mdash; Loops, Events, Background Agents</a> <span class="toc-time">12 min</span></li>
     <li><a href="#m5">The Memory Architecture</a> <span class="toc-time">10 min</span></li>
     <li><a href="#m6">Smart Personas &mdash; Your Specialist Team</a> <span class="toc-time">10 min</span></li>
     <li><a href="#m7">MCP Ecosystem &mdash; Connecting Everything</a> <span class="toc-time">10 min</span></li>
     <li><a href="#m8">Terminal Dominance</a> <span class="toc-time">8 min</span></li>
     <li><a href="#m9">Showcases &mdash; What This Stack Actually Built</a> <span class="toc-time">12 min</span></li>
+    <li><a href="#m-mistakes">Common Mistakes &mdash; What Goes Wrong (And How to Fix It)</a> <span class="toc-time">10 min</span></li>
     <li><a href="#m10">The Frontier &mdash; Agent SDK, Swarms, What's Next</a> <span class="toc-time">10 min</span></li>
   </ol>
 </div>
@@ -910,6 +931,39 @@ When invoked with /weekly-report [client-name]:
   Planning is not doing. Keep plan mode proportional to the task. A 5-minute task does not need a 20-minute plan. When the plan is clear, execute.
 </div>
 
+<h3 id="m3-hooks">Hooks &mdash; Run Code Before and After Every Tool Call</h3>
+
+<p>Hooks let you run shell commands or scripts automatically before or after Claude uses any tool. They are configured in <code>.claude/settings.json</code> and execute at the harness level &mdash; meaning they run regardless of which skill or conversation is active.</p>
+
+<table>
+  <tr><th>Hook Type</th><th>When It Runs</th><th>Example Use</th></tr>
+  <tr><td><code>PreToolUse</code></td><td>Before Claude calls any tool</td><td>Log what Claude is about to do</td></tr>
+  <tr><td><code>PostToolUse</code></td><td>After Claude calls any tool</td><td>Auto-commit after every file write</td></tr>
+  <tr><td><code>Stop</code></td><td>When Claude finishes a response</td><td>Send a Slack notification when a task completes</td></tr>
+  <tr><td><code>Notification</code></td><td>When Claude has a background update</td><td>Alert when a long-running agent finishes</td></tr>
+</table>
+
+<div class="code-block has-copy"><button class="copy-btn" data-copy="hooks-example">Copy</button><span class="label" style="right:80px;">.claude/settings.json &mdash; hook example</span>{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo 'File written: ' && git add -A"
+          }
+        ]
+      }
+    ]
+  }
+}</div>
+
+<div class="callout tip">
+  <div class="callout-label">Best Hook for Beginners</div>
+  The most useful hook when starting out: a <code>PostToolUse</code> hook on <code>Write</code> that auto-stages files after Claude writes them. Combine with a periodic commit hook and you never lose work again. Set it up once and it protects every session from that point forward.
+</div>
+
 <div class="checkpoint">
   <div class="checkpoint-header">Module 3 Checkpoint</div>
   <ul>
@@ -917,6 +971,7 @@ When invoked with /weekly-report [client-name]:
     <li>You understand model routing (Haiku for bulk, Sonnet for judgment, Opus for planning)</li>
     <li>You know skills can chain other skills</li>
     <li>You know when to use /plan before building</li>
+    <li>You understand the 4 hook types and how to configure them in settings.json</li>
   </ul>
 </div>
 
@@ -947,17 +1002,24 @@ Claude: [continues working with you on the master plan]
 [notification]: Background agent completed.
                Output: docs/pitch-library.md (1,443 lines)</div>
 
-<h3 id="m4-events">Event-Driven Patterns</h3>
+<h3 id="m4-event">Event-Driven Patterns</h3>
 
-<p>Beyond manual triggers, wire Claude into real-world events:</p>
+<p>The most powerful automations are not scheduled &mdash; they are triggered. Something happens, Claude responds.</p>
 
 <table>
-  <tr><th>Trigger</th><th>What Happens</th><th>Pipeline</th></tr>
-  <tr><td><strong>Webhook fires</strong></td><td>New form submission or lead captured</td><td>n8n receives webhook &rarr; calls audit script &rarr; Claude generates report &rarr; pushes to Sheets</td></tr>
-  <tr><td><strong>New lead added</strong></td><td>Lead appears in CRM/spreadsheet</td><td>Claude detects new row &rarr; enriches with Apollo &rarr; drafts personalised sequence &rarr; loads into outreach tool</td></tr>
-  <tr><td><strong>Client email received</strong></td><td>Client sends a question or request</td><td>Gmail MCP detects email &rarr; Claude drafts reply &rarr; creates Asana task &rarr; notifies via Slack</td></tr>
-  <tr><td><strong>Scheduled cron</strong></td><td>Daily/weekly recurring task</td><td>Cron triggers &rarr; Claude pulls fresh data &rarr; generates report &rarr; emails to stakeholder</td></tr>
+  <tr><th>Trigger</th><th>What Claude Does</th><th>Example</th></tr>
+  <tr><td><strong>New lead in CRM</strong></td><td>Run audit, build pitch deck, draft outreach email</td><td>Webhook from HubSpot &rarr; Claude pipeline</td></tr>
+  <tr><td><strong>Client email received</strong></td><td>Summarise, categorise, draft reply</td><td>Gmail watch &rarr; Claude triage skill</td></tr>
+  <tr><td><strong>Form submission</strong></td><td>Extract data, update tracker, send confirmation</td><td>Typeform webhook &rarr; Sheets + Gmail</td></tr>
+  <tr><td><strong>Scheduled cron (daily 9am)</strong></td><td>Pull yesterday's metrics, flag anomalies, send brief</td><td>Cron &rarr; Claude &rarr; Slack</td></tr>
+  <tr><td><strong>File added to Drive folder</strong></td><td>Process, tag, move to correct location</td><td>Drive watch &rarr; Claude organiser</td></tr>
+  <tr><td><strong>Payment received</strong></td><td>Update client record, trigger onboarding sequence</td><td>Stripe webhook &rarr; Claude &rarr; CRM</td></tr>
 </table>
+
+<div class="callout power">
+  <div class="callout-label">Start With One</div>
+  You do not need to build all of these. Pick the one workflow you do manually every single day and automate that first. One well-built event trigger saves more time than 10 half-built ones.
+</div>
 
 <h3 id="m4-monitor">Monitoring &amp; Safety</h3>
 
@@ -980,7 +1042,7 @@ Claude: [continues working with you on the master plan]
   <ul>
     <li>You understand /loop for recurring tasks</li>
     <li>You can spawn background agents for non-blocking work</li>
-    <li>You know the 4 event-driven trigger patterns</li>
+    <li>You know the 6 event-driven trigger patterns</li>
     <li>You know the safety rules: heartbeat, kill switch, graceful degradation</li>
   </ul>
 </div>
@@ -1282,6 +1344,10 @@ You are a Research Analyst. Your core traits:
     <li><strong>APIs used:</strong> SERP data, AI citation testing, cross-verification, site crawls</li>
     <li><strong>Output:</strong> 9 interactive decks, 4 niche-learnings docs, 3 tracking sheets, 1 strategic brief</li>
   </ul>
+  <div class="showcase-link">
+    <span class="showcase-link-label">Pattern in the wild:</span>
+    9 client audit decks, each deployed as a live HTML page with real data &mdash; built in one parallel session across 3 chats.
+  </div>
 </div>
 
 <div class="showcase">
@@ -1293,6 +1359,10 @@ You are a Research Analyst. Your core traits:
     <li><strong>Verification:</strong> Not "done" until <code>curl</code> returns 200 on the live URL</li>
     <li><strong>Time:</strong> Under 10 minutes from brief to live</li>
   </ul>
+  <div class="showcase-link">
+    <span class="showcase-link-label">Pattern in the wild:</span>
+    Prospect lead sites built from a brief to live URL in under 10 minutes, verified HTTP 200 before being sent.
+  </div>
 </div>
 
 <div class="showcase">
@@ -1304,6 +1374,10 @@ You are a Research Analyst. Your core traits:
     <li><strong>Output:</strong> Multi-slide decks, caption variants per platform, scheduling calendar</li>
     <li><strong>Maintenance:</strong> 15 minutes per week to produce a full week of content</li>
   </ul>
+  <div class="showcase-link">
+    <span class="showcase-link-label">Pattern in the wild:</span>
+    Full social content pipeline &mdash; 9-slide carousel deck, caption library, posting schedule &mdash; built in one session, runs weekly with one prompt.
+  </div>
 </div>
 
 <div class="showcase">
@@ -1336,6 +1410,95 @@ You are a Research Analyst. Your core traits:
     <li><strong>Pattern:</strong> Extract &rarr; transcribe &rarr; structure &rarr; index &rarr; sync to tracker</li>
     <li><strong>Sources:</strong> 60+ business/strategy books, 30+ video courses, 8 podcast feeds</li>
     <li><strong>Output:</strong> Structured markdown files, searchable by topic, linked to source</li>
+  </ul>
+</div>
+
+
+<!-- ================================================================ -->
+<!-- COMMON MISTAKES                                                  -->
+<!-- ================================================================ -->
+<h2 id="m-mistakes"><span class="module-num">Common Mistakes</span>What Goes Wrong (And How to Fix It)</h2>
+
+<p>Everyone hits the same walls. Here are the 7 most common mistakes &mdash; most people discover these the hard way.</p>
+
+<details>
+  <summary>1. Running out of credits mid-task</summary>
+  <div class="detail-body">
+    <p><strong>What happens:</strong> You spawned 5 Opus agents and burned your monthly budget in an afternoon. The agents are running, the work is happening, and then everything stops with nothing committed to disk.</p>
+    <p><strong>Fix: model routing doctrine.</strong> Haiku for bulk tasks, Sonnet for judgment calls, Opus only for deep planning and architecture. Before launching a parallel session, estimate the cost mentally: how many agents, which model, how long each will run.</p>
+    <p>Set a per-session mental budget before spawning agents. If Opus costs 15x more than Haiku, ask whether you actually need that depth of reasoning for this specific task &mdash; most of the time, you do not.</p>
+  </div>
+</details>
+
+<details>
+  <summary>2. Two agents writing the same file</summary>
+  <div class="detail-body">
+    <p><strong>What happens:</strong> Last writer wins. Agent B finishes and writes its output to the same file Agent A was working on. Everything Agent A produced is silently overwritten. You do not notice until you look at the file and wonder where half the content went.</p>
+    <p><strong>Fix: every agent gets a unique output file or directory.</strong> Before launching parallel agents, assign each one an explicit, non-overlapping output path. Agent A writes to <code>output/agent-a/</code>. Agent B writes to <code>output/agent-b/</code>. Never overlap.</p>
+    <p>Main Claude owns all shared surfaces: the memory index, the master plan file, the deliverables index, all git commits. Subagents own only their designated output directories.</p>
+  </div>
+</details>
+
+<details>
+  <summary>3. Skipping the identity layer</summary>
+  <div class="detail-body">
+    <p><strong>What happens:</strong> You open Claude, start typing tasks, and get competent but generic output. Claude is writing for a hypothetical user, not for you and your specific business. Every session starts from zero context.</p>
+    <p><strong>Fix: CLAUDE.md + memory before anything else.</strong> The first hour you invest in setting up your workspace identity &mdash; who you are, what you do, what your constraints are, what your preferences are &mdash; pays back in every single conversation from that point forward.</p>
+    <p>Write your CLAUDE.md. Start your memory files. Capture feedback when Claude gets something right or wrong. Within a week of consistent use, the output quality gap between a configured and unconfigured workspace is stark.</p>
+  </div>
+</details>
+
+<details>
+  <summary>4. Treating Claude Code like ChatGPT</summary>
+  <div class="detail-body">
+    <p><strong>What happens:</strong> You type questions, Claude answers them, you copy the answers out. No files. No memory. No skills. You are using a command-line interface as a slightly faster web browser.</p>
+    <p><strong>Fix: build skills for recurring tasks, use @file references, let Claude read your actual documents.</strong> Claude Code's power is that it lives inside your file system. It can read your client profiles, your templates, your data &mdash; without you pasting anything. It can write files directly to the right folders. It can run scripts.</p>
+    <p>If you find yourself copying and pasting the same instructions into Claude more than twice, that is a skill waiting to be written. If you find yourself pasting document content into the chat, that is an @file reference waiting to be used instead.</p>
+  </div>
+</details>
+
+<details>
+  <summary>5. Not committing work mid-session</summary>
+  <div class="detail-body">
+    <p><strong>What happens:</strong> VS Code crashes. The context window compresses and the agent loses track of what it built. A background agent times out. You close the terminal by accident. If you have not committed, it is gone &mdash; or at best, scattered across unsaved buffers.</p>
+    <p><strong>Fix: commit after every meaningful output.</strong> Small, frequent commits beat one giant commit at the end of a session. After an agent produces a file, commit it. After a key milestone, commit it. After a parallel batch completes, commit each agent's output separately.</p>
+    <p>The rule of thumb: if losing the work since your last commit would make you frustrated, it is time to commit now.</p>
+  </div>
+</details>
+
+<details>
+  <summary>6. Scope creep in agent prompts</summary>
+  <div class="detail-body">
+    <p><strong>What happens:</strong> You give an agent a prompt that tries to do everything: "build the onboarding flow, update the CRM, draft the welcome sequence, create the tracking sheet, and document the process." The agent produces mediocre output across all 10 tasks and great output on none of them.</p>
+    <p><strong>Fix: one clear deliverable per agent.</strong> Narrow the scope, raise the quality. "Build the welcome email sequence for new clients, 3 emails, saved to templates/emails/onboarding/" is a better prompt than "handle all the onboarding stuff."</p>
+    <p>If you have 10 tasks, spawn 10 agents with 10 narrow briefs. You will get better output across all of them than one agent trying to juggle everything at once.</p>
+  </div>
+</details>
+
+<details>
+  <summary>7. Skipping verification</summary>
+  <div class="detail-body">
+    <p><strong>What happens:</strong> The agent says "done." You mark the task complete. Three days later, a colleague tries to access the live URL and gets a 404. Or you send a report that has placeholder text still in it. Or the deployed script has a silent error that only surfaces under real data.</p>
+    <p><strong>Fix: "done" means deployed and confirmed working, not "the agent said it finished."</strong> Curl every URL. Grep every file for placeholder text. Check every output against its acceptance criteria before marking the task complete.</p>
+    <p>Build verification into your workflows: add a <code>/qa-site</code> step after every deploy, add a placeholder-check step after every document generation, add an HTTP 200 check after every site launch. The agent finishing is not the finish line &mdash; verified output is.</p>
+  </div>
+</details>
+
+<div class="callout power">
+  <div class="callout-label">The Pattern</div>
+  Most of these mistakes have the same root: moving fast without guardrails. The solution is not to slow down &mdash; it is to build the right defaults. Model routing, unique output paths, identity setup, skills, frequent commits, narrow briefs, and verification checks. Build these habits in your first two weeks and they protect you for years.
+</div>
+
+<div class="checkpoint">
+  <div class="checkpoint-header">Common Mistakes Checkpoint</div>
+  <ul>
+    <li>You know to route models by task (Haiku/Sonnet/Opus) before spawning agents</li>
+    <li>You always assign unique output paths to parallel agents</li>
+    <li>You have set up CLAUDE.md and at least one memory file</li>
+    <li>You use @file references and skills instead of pasting into chat</li>
+    <li>You commit after every meaningful output, not just at session end</li>
+    <li>You write narrow, single-deliverable prompts for each agent</li>
+    <li>You verify every output before marking a task done</li>
   </ul>
 </div>
 
@@ -1423,6 +1586,8 @@ result = audit_agent.run(
     <li>You have deployed a live deliverable from the terminal</li>
     <li>You have built or planned a 3-agent pipeline</li>
     <li>You understand personas and when to switch between them</li>
+    <li>You have hooks configured to protect your work automatically</li>
+    <li>You know the 7 common mistakes and how to avoid them</li>
   </ul>
 </div>
 
@@ -1435,7 +1600,7 @@ result = audit_agent.run(
 
 <!-- ── FOOTER ── -->
 <div class="footer">
-  <p><strong>Claude Code: Full Stack Playbook</strong> &middot; Advanced Guide v2</p>
+  <p><strong>Claude Code: Full Stack Playbook</strong> &middot; Advanced Guide v3</p>
   <p>Built with Claude Code &middot; <strong>Online Optimisers</strong> &middot; April 2026</p>
   <p style="margin-top: 8px; color: var(--muted);">Prerequisite: <a href="claude-code-startup-guide.html" style="color: var(--cyan);">From Zero to Dangerous</a> (Startup Guide)</p>
 </div>
