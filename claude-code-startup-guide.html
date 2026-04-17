@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Claude Code Startup Guide v3 — From Zero to Dangerous</title>
+  <title>Claude Code Startup Guide v4 — From Zero to Dangerous</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <style>
     @page { size: A4; margin: 2cm; }
@@ -459,6 +459,51 @@
       border-bottom-color: var(--blue);
     }
 
+    /* -- CTA BLOCK -- */
+    .cta-block {
+      background: linear-gradient(135deg, #072F60 0%, #005DE0 100%);
+      border-radius: 12px;
+      padding: 40px 32px;
+      margin: 48px 0;
+      text-align: center;
+      color: #fff;
+    }
+    .cta-block h3 {
+      color: #fff;
+      font-size: 22px;
+      margin-top: 0;
+      margin-bottom: 12px;
+    }
+    .cta-block p {
+      color: rgba(255,255,255,0.85);
+      margin-bottom: 24px;
+      font-size: 15px;
+    }
+    .cta-block a.cta-btn {
+      display: inline-block;
+      background: #fff;
+      color: var(--blue);
+      font-weight: 700;
+      font-size: 15px;
+      padding: 12px 28px;
+      border-radius: 8px;
+      text-decoration: none;
+      margin: 6px 8px;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .cta-block a.cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    .cta-block a.cta-btn.secondary {
+      background: rgba(255,255,255,0.15);
+      color: #fff;
+      border: 2px solid rgba(255,255,255,0.4);
+    }
+    .cta-block a.cta-btn.secondary:hover {
+      background: rgba(255,255,255,0.25);
+    }
+
     /* -- FOOTER -- */
     .footer {
       margin-top: 64px; padding: 32px 0;
@@ -502,22 +547,26 @@
   <a href="#m3-why">Why version control</a>
   <a href="#m3-setup">Setup steps</a>
   <a href="#m3-daily">Daily 3 commands</a>
+  <a href="#m3-deploy">Your first deploy</a>
 
   <a href="#m4" class="s-module">4. Claude Code Install <span class="s-time">10 min</span></a>
   <a href="#m4-install">Install the CLI</a>
   <a href="#m4-vscode">VS Code extension</a>
   <a href="#m4-permissions">Permission modes</a>
+  <a href="#m4-stuck">When you get stuck</a>
 
   <a href="#m5" class="s-module">5. Identity Layer <span class="s-time">20 min</span></a>
   <a href="#m5-which">Claude.ai vs Claude Code</a>
   <a href="#m5-claudeai-memory">Training Claude.ai Memory</a>
   <a href="#m5-claude-md">CLAUDE.md</a>
   <a href="#m5-memory">Memory system</a>
+  <a href="#m5-context-window">Context window</a>
   <a href="#m5-prime">Priming Memory Day 1</a>
   <a href="#m5-rules">Rules + skills</a>
   <a href="#m5-first">First conversation</a>
 
   <a href="#m6" class="s-module">6. API Connections <span class="s-time">20 min</span></a>
+  <a href="#m6-pillars">The 3 pillars</a>
   <a href="#m6-top10">Top 10 APIs</a>
   <a href="#m6-social">Social Media stack</a>
   <a href="#m6-seo">SEO stack</a>
@@ -528,11 +577,13 @@
 
   <a href="#m7" class="s-module">7. Prompting <span class="s-time">15 min</span></a>
   <a href="#m7-rules">The 5 rules</a>
+  <a href="#m7-patterns">4 prompt patterns</a>
   <a href="#m7-syntax">Claude Code syntax</a>
   <a href="#m7-chatgpt">Claude vs ChatGPT</a>
 
   <a href="#m8" class="s-module">8. Local LLMs + Prompts <span class="s-time">15 min</span></a>
   <a href="#m8-local">Local LLMs</a>
+  <a href="#m8-when">When to use local vs cloud</a>
   <a href="#m8-audit">Business audit prompt</a>
   <a href="#m8-content">Content system prompt</a>
   <a href="#m8-daily">Daily workflow</a>
@@ -545,10 +596,10 @@
 
 <!-- COVER -->
 <div class="cover" id="top">
-  <div class="cover-badge">Startup Guide v3</div>
+  <div class="cover-badge">Startup Guide v4</div>
   <h1>Claude Code<br/>From Zero to Dangerous</h1>
   <p class="subtitle">The accelerated setup guide for non-coders who want AI leverage</p>
-  <p class="cover-meta"><strong>Online Optimisers</strong> &middot; Version 3 &middot; April 2026<br/>Total time: ~2 hours &middot; 9 modules + Foundation Week &middot; No coding experience required</p>
+  <p class="cover-meta"><strong>Online Optimisers</strong> &middot; Version 4 &middot; April 2026<br/>Total time: ~2 hours &middot; 9 modules + Foundation Week &middot; No coding experience required</p>
 </div>
 
 <!-- STAT CARDS -->
@@ -597,10 +648,17 @@
 
   <p>Most people skip straight to installing VS Code. Don't. The single highest-leverage thing you can do in your first week is get your context right. Claude is only as good as what you give it. You've been using ChatGPT for 2-3 years &mdash; that history is a goldmine. Spend 2-3 days mining it before you write a line of code.</p>
 
-  <!-- DAY 1 -->
-  <h3 id="fw-day1">Day 1: ChatGPT Migration</h3>
+  <p><strong>This is not a one-shot paste.</strong> Each day is an iterative loop: generate, read every word, edit, test, and improve. The people who get spectacular AI answers are the ones who spent 2-3 days getting their context dialled in. The people who get generic answers are the ones who skipped this section.</p>
 
-  <p>Open ChatGPT. Run these three prompts in order. Copy the output into a Google Doc. Edit it &mdash; add what ChatGPT missed, remove anything wrong. This becomes your master context document.</p>
+  <div class="callout warning">
+    <div class="callout-label">The Context Payoff</div>
+    The difference between someone who gets mediocre AI answers and someone who gets spectacular ones is 2-3 days of proper context setup. Don't rush this. Your future self will thank you.
+  </div>
+
+  <!-- DAY 1 -->
+  <h3 id="fw-day1">Day 1: ChatGPT Migration &mdash; Generate, Read, Edit</h3>
+
+  <p>Open ChatGPT. Run these three prompts in order. Copy the output into a Google Doc. <strong>Then the real work starts:</strong> read every single word. Edit aggressively. Add what ChatGPT missed. Remove anything wrong or outdated. Save to Google Doc.</p>
 
   <div class="code-block"><span class="label">Prompt 1 &mdash; Mine your history</span>Based on all our conversations, write a comprehensive summary of everything you know about me: my work, business, goals, working style, biggest challenges, clients, tools, preferences, and anything else that's come up. Be specific. Don't generalise. This is for a handover document.</div>
 
@@ -620,12 +678,22 @@ Be specific and concrete under each heading.</div>
   <div class="code-block"><span class="label">Prompt 3 &mdash; Optional: fill the gaps first</span>Before you write the handover document, ask me 10 specific questions about my business, goals, and work style that would help you write a more accurate and useful document. Then use my answers to write the final version.</div>
 
   <div class="callout tip">
-    <div class="callout-label">Save to Google Doc First</div>
-    Save to Google Doc first. Edit it before pasting into Claude &mdash; add what ChatGPT missed, remove anything wrong. This document feeds everything: CLAUDE.md, Claude.ai memory, and Claude Code memory.
+    <div class="callout-label">Read. Edit. Don't Just Paste.</div>
+    Save to Google Doc first. Then read every word. ChatGPT will get some things wrong and miss others. Add what it missed. Correct what it got wrong. Remove anything outdated. This document feeds everything: CLAUDE.md, Claude.ai memory, and Claude Code memory. Garbage in, garbage out.
   </div>
 
   <!-- DAY 2 -->
-  <h3 id="fw-day2">Day 2: Gather Your Context</h3>
+  <h3 id="fw-day2">Day 2: Feed Into Claude &mdash; Then Test</h3>
+
+  <p>Take your edited Google Doc from Day 1. Feed it into Claude.ai memory and write your CLAUDE.md file. <strong>Then test it:</strong></p>
+
+  <ol>
+    <li>Open Claude.ai and paste your context into Memory or a Project</li>
+    <li>Ask Claude: <em>"What do you know about me and my business?"</em></li>
+    <li>Read the response. Is it accurate? Is anything missing? Is anything wrong?</li>
+    <li>Fix what is wrong. Add what is missing. Test again.</li>
+    <li>Repeat until Claude gives you an answer that genuinely reflects your situation</li>
+  </ol>
 
   <p>Gather documents from anywhere you store knowledge. Even 2-3 good files dramatically improve Claude's answers.</p>
 
@@ -644,9 +712,22 @@ Be specific and concrete under each heading.</div>
   </div>
 
   <!-- DAY 3 -->
-  <h3 id="fw-day3">Day 3: Draft Your Identity Layer</h3>
+  <h3 id="fw-day3">Day 3: Open Claude Code &mdash; Test With a Real Task</h3>
 
-  <p>Use everything you gathered in Days 1-2 to fill in CLAUDE.md and train your memory systems. Module 5 walks you through exactly how. Come back to it after the technical setup in Modules 1-4.</p>
+  <p>Now open Claude Code in VS Code. Prime your memory using the steps in Module 5. <strong>Then test with a real task:</strong></p>
+
+  <ol>
+    <li>Ask Claude Code: <em>"Draft a cold email for a prospect in [your niche]."</em></li>
+    <li>Read the output. Is it good? Does it sound like it knows your business? Or is it generic?</li>
+    <li>If generic: go back to CLAUDE.md. Add more context about your clients, your tone, your services. Test again.</li>
+    <li>Try another task: <em>"Write a weekly report summary for [a real client]."</em></li>
+    <li>Keep iterating until Claude Code sounds like it genuinely understands your work.</li>
+  </ol>
+
+  <div class="callout warning">
+    <div class="callout-label">Iteration Is the Point</div>
+    Day 3 is not "setup done, move on." It is "test, find gaps, fix gaps, test again." Each iteration makes every future session better. This is the highest-ROI time you will spend with AI.
+  </div>
 </div>
 
 
@@ -663,6 +744,7 @@ Be specific and concrete under each heading.</div>
   <li><strong>Connect APIs</strong> &mdash; Google Drive, Sheets, Gmail, GitHub, and more talk to Claude directly</li>
   <li><strong>Build reusable workflows</strong> &mdash; one prompt does what used to take 30 minutes of manual work</li>
   <li><strong>Version control everything</strong> &mdash; nothing is ever lost, every change is tracked</li>
+  <li><strong>Deploy live websites</strong> &mdash; go from a file on your laptop to a live URL in minutes</li>
   <li><strong>Run local AI models</strong> &mdash; free, private LLMs on your own machine for specific tasks</li>
 </ul>
 
@@ -877,6 +959,7 @@ node --version</div>
   <li><strong>Nothing is ever lost</strong> &mdash; deleted a file by accident? <code>git checkout</code> brings it back.</li>
   <li><strong>Claude uses git automatically</strong> &mdash; Claude Code commits its work so you have a trail of everything it built.</li>
   <li><strong>Collaboration</strong> &mdash; share your workspace with a partner, developer, or another AI tool.</li>
+  <li><strong>Free hosting</strong> &mdash; GitHub Pages gives you free live URLs for any HTML file you push.</li>
 </ul>
 
 <h3 id="m3-setup">Setup Steps</h3>
@@ -949,6 +1032,47 @@ git push</div>
   In most cases, Claude Code will commit and push automatically when you ask it to. You mainly need git for checking status and understanding what happened.
 </div>
 
+<!-- DEPLOY WALKTHROUGH -->
+<h3 id="m3-deploy">Your First Deploy &mdash; Local File to Live URL</h3>
+
+<p>A file on your laptop is not a website. It becomes a website when it has a URL that anyone can visit. Here are two ways to make that happen, both free.</p>
+
+<h4>Path 1 &mdash; GitHub Pages (free, built into GitHub)</h4>
+
+<ol>
+  <li>Push your HTML file to your GitHub repo (you just learned how)</li>
+  <li>Go to your repo on <code>github.com</code></li>
+  <li>Click <strong>Settings</strong> &rarr; <strong>Pages</strong> (left sidebar)</li>
+  <li>Under "Source", select <strong>main</strong> branch and <strong>/ (root)</strong> folder &rarr; click Save</li>
+  <li>Wait 1-2 minutes. Your site is live at <code>https://YOUR-USERNAME.github.io/my-workspace/</code></li>
+</ol>
+
+<h4>Path 2 &mdash; Cloudflare Pages (free, faster, custom domains)</h4>
+
+<div class="code-block"><span class="label">Terminal &mdash; deploy in 30 seconds</span># Install Cloudflare's CLI (one time)
+npm install -g wrangler
+
+# Log in (opens browser)
+wrangler login
+
+# Deploy your folder
+wrangler pages deploy ./my-site</div>
+
+<p>Cloudflare gives you a live URL instantly. You can connect a custom domain later from the Cloudflare dashboard.</p>
+
+<div class="callout tip">
+  <div class="callout-label">Astro for Websites</div>
+  For websites and landing pages, we recommend Astro. It is fast, simple, and Claude Code builds Astro sites beautifully. One command to get started: <code>npm create astro@latest</code>
+</div>
+
+<h4>Verify Your Deploy</h4>
+
+<p>After deploying, always verify. Run this in your terminal:</p>
+
+<div class="code-block"><span class="label">Terminal &mdash; verify deploy</span>curl -s -o /dev/null -w "%{http_code}" https://your-url-here.pages.dev</div>
+
+<p>This should return <code>200</code>. If it returns <code>404</code> or anything else, something went wrong &mdash; check your file paths and redeploy.</p>
+
 <div class="checkpoint">
   <div class="checkpoint-header">Module 3 Checkpoint</div>
   <ul>
@@ -958,6 +1082,7 @@ git push</div>
     <li><code>.gitignore</code> exists with <code>.env</code> listed</li>
     <li><code>git status</code> runs without errors in your terminal</li>
     <li>First commit pushed to GitHub</li>
+    <li>You understand how to deploy to a live URL (GitHub Pages or Cloudflare)</li>
   </ul>
 </div>
 
@@ -1012,6 +1137,33 @@ git push</div>
   </div>
 </details>
 
+<!-- WHEN YOU GET STUCK -->
+<h3 id="m4-stuck">When You Get Stuck &mdash; How to Ask for Help</h3>
+
+<p>You will hit errors. Things will break. That is normal. Here is your troubleshooting playbook:</p>
+
+<h4>1. Screenshot the Error</h4>
+<p>On Mac: <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>4</kbd> to select the area. On Windows: <kbd>Win</kbd>+<kbd>Shift</kbd>+<kbd>S</kbd>. This saves a screenshot to your clipboard or desktop.</p>
+
+<h4>2. Paste It Into Claude</h4>
+<p>Claude Code can read images. Drag a screenshot directly into the Claude Code chat panel and ask: <em>"What is going wrong here?"</em> Claude will read the error message from the image and help you fix it.</p>
+
+<h4>3. Open Claude.ai as a Backup</h4>
+<p>If Claude Code is not responding or you are stuck in a way that needs a fresh perspective, open <code>claude.ai</code> in your browser. Same account, no extra cost. Paste the error text or upload the screenshot and ask for help.</p>
+
+<h4>4. How to Ask Effectively</h4>
+<p>When asking for help, include three things:</p>
+<ol>
+  <li><strong>What you expected to happen</strong> &mdash; "I ran <code>git push</code> and expected it to upload my files."</li>
+  <li><strong>What actually happened</strong> &mdash; "I got an error that says 'remote rejected'."</li>
+  <li><strong>The error message</strong> &mdash; paste the exact text, or drag in a screenshot.</li>
+</ol>
+
+<div class="callout tip">
+  <div class="callout-label">You Are Not Alone</div>
+  Keep Claude.ai open in a browser tab at all times. Think of it as your backup brain. If something goes wrong in VS Code, you always have a second Claude ready to help in the browser. Between the two, you can solve almost anything.
+</div>
+
 <div class="checkpoint">
   <div class="checkpoint-header">Module 4 Checkpoint</div>
   <ul>
@@ -1019,6 +1171,7 @@ git push</div>
     <li>Claude Code panel opens with <kbd>Cmd</kbd>+<kbd>L</kbd> / <kbd>Ctrl</kbd>+<kbd>L</kbd></li>
     <li>You have authenticated (signed in via browser)</li>
     <li>Permission mode is set to "Accept Edits"</li>
+    <li>You know how to screenshot an error and paste it into Claude</li>
   </ul>
 </div>
 
@@ -1210,6 +1363,35 @@ Target: 50 students + AI product at $29/mo.
   <strong>CLAUDE.md</strong> = permanent operating manual. Rarely changes. <strong>Memory</strong> = evolving context. Updates as your projects and preferences change. Use CLAUDE.md for "who I am" and memory for "what I'm working on."
 </div>
 
+<!-- Context Window -->
+<h3 id="m5-context-window">Understanding the Context Window</h3>
+
+<p>Claude can "see" about 200,000 tokens at once &mdash; roughly 150,000 words. Think of it as Claude's short-term memory for the current conversation. Everything you say, everything Claude says, and every file Claude reads during the session takes up space in this window.</p>
+
+<h4>What Happens When the Window Fills Up</h4>
+
+<p>As your conversation grows, older messages get summarised or compressed to make room for new ones. This is automatic and usually seamless, but in very long sessions you may notice:</p>
+
+<ul>
+  <li>Claude forgets instructions you gave earlier in the conversation</li>
+  <li>Claude repeats itself or asks questions you already answered</li>
+  <li>Claude loses track of the plan you agreed on 30 messages ago</li>
+</ul>
+
+<h4>How to Work With It, Not Against It</h4>
+
+<ul>
+  <li><strong>Break long sessions into focused chats</strong> &mdash; one task per conversation works better than a 4-hour marathon</li>
+  <li><strong>Use memory files for persistence</strong> &mdash; anything Claude needs to remember across sessions should be saved to memory, not left in chat</li>
+  <li><strong>Use <code>@file</code> references instead of pasting</strong> &mdash; pointing Claude to a file uses less context than pasting its contents into the chat</li>
+  <li><strong>Start fresh when context gets stale</strong> &mdash; if Claude seems confused, open a new conversation. CLAUDE.md and memory carry over automatically.</li>
+</ul>
+
+<div class="callout">
+  <div class="callout-label">Rule of Thumb</div>
+  If your conversation has gone past ~50 messages or Claude starts forgetting things, it is time for a fresh chat. Your CLAUDE.md and memory files carry over automatically, so you lose nothing important.
+</div>
+
 <!-- Priming Memory on Day 1 -->
 <h3 id="m5-prime">Priming Your Memory on Day 1</h3>
 
@@ -1296,6 +1478,7 @@ When I say /weekly-report [client name]:
     <li>Day 1 memory priming prompt run in Claude Code</li>
     <li>Claude can answer "what do you know about me?" accurately</li>
     <li>You have saved at least one thing to memory</li>
+    <li>You understand the context window and when to start a fresh chat</li>
     <li>You have completed the 5-step first conversation walkthrough</li>
     <li>Claude has created at least one file in your workspace</li>
   </ul>
@@ -1308,6 +1491,31 @@ When I say /weekly-report [client name]:
 <h2 id="m6"><span class="module-num">Module 6</span>API Connections &mdash; Top 10 + 5 Team Stacks</h2>
 
 <p>Without APIs, Claude can only read and write files in your workspace. With APIs, Claude becomes an operating system &mdash; reading your emails, updating your spreadsheets, posting to social media, pulling analytics, and managing your calendar. APIs are the difference between "smart notepad" and "AI-powered business."</p>
+
+<!-- 3 Infrastructure Pillars -->
+<h3 id="m6-pillars">The 3 Infrastructure Pillars</h3>
+
+<p>Before connecting specific APIs, you need to understand the three services that underpin everything. These are not optional extras &mdash; they are infrastructure. Set them up and everything else becomes easier.</p>
+
+<table>
+  <tr><th>Pillar</th><th>What It Is</th><th>Why Essential</th></tr>
+  <tr><td><strong>GitHub</strong></td><td>Version control + free hosting (Pages)</td><td>Nothing gets lost, free live URLs for anything you build</td></tr>
+  <tr><td><strong>Cloudflare</strong></td><td>CDN, DNS, Pages hosting, Workers</td><td>Free hosting, fast globally, custom domains, SSL included</td></tr>
+  <tr><td><strong>Google Workspace</strong></td><td>Drive, Sheets, Gmail, Calendar (MCP)</td><td>Claude reads your actual business data directly</td></tr>
+</table>
+
+<p>You already set up GitHub in Module 3. Google Workspace connects via MCP (covered below). Here is how to set up Cloudflare:</p>
+
+<div class="code-block"><span class="label">Terminal &mdash; Cloudflare setup (3 commands)</span># 1. Install the Cloudflare CLI
+npm install -g wrangler
+
+# 2. Log in (opens browser for authentication)
+wrangler login
+
+# 3. Deploy any folder as a live website
+wrangler pages deploy ./my-site</div>
+
+<p>That is it. Three commands and you can deploy any HTML folder to a live URL. Free tier covers everything a solo operator or small agency needs.</p>
 
 <!-- Top 10 -->
 <h3 id="m6-top10">The Top 10 &mdash; Start Here Regardless of What You Do</h3>
@@ -1449,6 +1657,7 @@ STRIPE_SECRET_KEY=sk_live_your-key</div>
 <div class="checkpoint">
   <div class="checkpoint-header">Module 6 Checkpoint</div>
   <ul>
+    <li>You understand the 3 infrastructure pillars (GitHub, Cloudflare, Google Workspace)</li>
     <li>You have picked your primary stack</li>
     <li>At least one API connection works (Google Drive or Sheets recommended)</li>
     <li><code>.env</code> file exists and is listed in <code>.gitignore</code></li>
@@ -1504,6 +1713,68 @@ STRIPE_SECRET_KEY=sk_live_your-key</div>
   </div>
 </details>
 
+<!-- 4 Prompt Patterns -->
+<h3 id="m7-patterns">4 Prompt Patterns That Work</h3>
+
+<p>These four patterns cover the majority of useful prompting techniques. Learn them and you will get better results from any AI, not just Claude.</p>
+
+<h4>Pattern 1: Role Prompting</h4>
+<p>Tell Claude who to be. This focuses its knowledge and changes its tone.</p>
+
+<div class="code-block"><span class="label">Role prompting example</span>You are a senior SEO analyst with 10 years of experience
+auditing local businesses. Review this website and give me
+your professional assessment: what is working, what is
+broken, and what are the 3 highest-impact fixes.
+
+Website: https://example-dentist.com</div>
+
+<h4>Pattern 2: Chain of Thought</h4>
+<p>Force Claude to think before answering. This dramatically improves accuracy on complex questions.</p>
+
+<div class="code-block"><span class="label">Chain of thought example</span>Think through this step by step before giving your answer.
+
+I have a client doing $4k/month in local SEO. They want to
+add AI ranking services. How should I price the upsell?
+Consider: their current spend, perceived value, delivery
+cost, and competitive positioning.</div>
+
+<h4>Pattern 3: Few-Shot (Give Examples)</h4>
+<p>Show Claude what good looks like. This is the fastest way to get consistent output.</p>
+
+<div class="code-block"><span class="label">Few-shot example</span>Here are 3 examples of good client check-in emails:
+
+Example 1: "Hi Sarah, quick update on your March results.
+Traffic is up 23% and you gained 4 new keywords in the
+top 10. The blog post we published is ranking #7 for
+'emergency plumber Portland.' Next month we're focusing
+on your Google Business Profile. Any questions, let me know."
+
+Example 2: [...]
+Example 3: [...]
+
+Write a check-in email for my client Dr. Martinez using
+the same style, based on the data in
+@knowledge/clients/martinez-dental/profile.md</div>
+
+<h4>Pattern 4: Constraint Setting</h4>
+<p>Set boundaries so Claude does not wander. The more constraints, the more focused the output.</p>
+
+<div class="code-block"><span class="label">Constraint setting example</span>Write a LinkedIn post about why local businesses need
+to think about AI search visibility.
+
+Constraints:
+- Under 200 words
+- Use bullet points for the main section
+- No jargon or marketing speak
+- British English
+- End with a question to drive comments
+- Do not mention any specific tools or brands</div>
+
+<div class="callout tip">
+  <div class="callout-label">Combine Patterns for Best Results</div>
+  These patterns stack. A prompt that uses role + constraints + few-shot will outperform any single pattern alone. Start with one, then layer in more as you get comfortable.
+</div>
+
 <h3>Data Extraction Patterns</h3>
 
 <p>Both Claude and ChatGPT are excellent at extracting, structuring, and transforming data. The key is being explicit about format:</p>
@@ -1550,6 +1821,7 @@ STRIPE_SECRET_KEY=sk_live_your-key</div>
   <div class="checkpoint-header">Module 7 Checkpoint</div>
   <ul>
     <li>You understand the 5 prompting rules</li>
+    <li>You have tried at least one of the 4 prompt patterns</li>
     <li>You have tried the @ file reference syntax in Claude Code</li>
     <li>You know when to use Claude Code vs ChatGPT</li>
     <li>You can write a multi-line prompt using Shift+Enter</li>
@@ -1586,7 +1858,8 @@ STRIPE_SECRET_KEY=sk_live_your-key</div>
   <tr><td><strong>DeepSeek Coder 6.7B</strong></td><td>3.8 GB</td><td>Code generation and debugging</td><td>8 GB</td></tr>
 </table>
 
-<h4>When to Use Local vs Cloud</h4>
+<!-- When to use local vs cloud -->
+<h3 id="m8-when">When to Use Local vs Cloud</h3>
 
 <table>
   <tr><th>Use Local When</th><th>Use Cloud (Claude/ChatGPT) When</th></tr>
@@ -1594,7 +1867,26 @@ STRIPE_SECRET_KEY=sk_live_your-key</div>
   <tr><td>Doing simple tasks (summarise, reformat, translate)</td><td>Working with APIs and external services</td></tr>
   <tr><td>You are offline or want zero cost</td><td>You need the best possible output quality</td></tr>
   <tr><td>Running batch operations on many files</td><td>Client-facing work that must be high quality</td></tr>
+  <tr><td>Experimenting or learning without burning credits</td><td>Anything where accuracy really matters</td></tr>
 </table>
+
+<h4>Concrete Example: Summarising a Document Locally</h4>
+
+<p>Here is what running a local model actually looks like:</p>
+
+<div class="code-block"><span class="label">Terminal &mdash; local AI in action</span># Start Ollama with Llama 3.1
+ollama run llama3.1
+
+# You get a chat prompt. Type your request:
+>>> Summarise this meeting transcript in 5 bullet points:
+[paste your text here]</div>
+
+<p>The model runs entirely on your machine. No API key, no internet, no cost. The output appears in your terminal within seconds.</p>
+
+<div class="callout warning">
+  <div class="callout-label">Local Models Have Limits</div>
+  Local LLMs are less capable than Claude or ChatGPT for complex reasoning, multi-step planning, and nuanced writing. Use them for supporting tasks: summarising, reformatting, translating, extracting data. For anything that needs to be high quality or client-facing, use cloud models.
+</div>
 
 <div class="callout tip">
   <div class="callout-label">Start With Ollama</div>
@@ -1670,6 +1962,7 @@ Save to content/weekly-posts-[date].md</div>
   <div class="checkpoint-header">Module 8 Checkpoint</div>
   <ul>
     <li>You understand the difference between local and cloud AI</li>
+    <li>You know when to use local models vs cloud models</li>
     <li>You have run both ready-to-use prompts in Claude Code</li>
     <li>You have a daily 15-minute AI routine planned</li>
     <li>(Optional) You have installed Ollama and run a local model</li>
@@ -1696,9 +1989,17 @@ Save to content/weekly-posts-[date].md</div>
     <tr><td>Claude Code memory active</td><td>Claude remembers decisions and preferences across sessions</td></tr>
     <tr><td>At least one API connected</td><td>Claude can reach outside your files</td></tr>
     <tr><td>5 prompting rules internalised</td><td>You get useful answers, not generic ones</td></tr>
+    <tr><td>4 prompt patterns learned</td><td>You can shape Claude's output reliably</td></tr>
     <tr><td>One real workflow tested</td><td>You've done the work, not just read about it</td></tr>
     <tr><td>Daily 15-minute habit started</td><td>This stops being a tool and starts being a partner</td></tr>
+    <tr><td>Deploy workflow understood</td><td>You can take a file and make it a live URL</td></tr>
   </table>
+</div>
+
+<!-- Done Means Live -->
+<div class="callout important">
+  <div class="callout-label">Done Means Live</div>
+  A file on your laptop is a draft. A URL that returns 404 is broken. <strong>Done = HTTP 200.</strong> Always verify. If you built something, deploy it. If you deployed it, check it. Run <code>curl -s -o /dev/null -w "%{http_code}" https://your-url</code> and confirm it returns 200. That is when it is done.
 </div>
 
 <div class="callout tip">
@@ -1716,22 +2017,25 @@ Save to content/weekly-posts-[date].md</div>
   <li><strong>Share your workspace</strong> &mdash; invite a business partner to your GitHub repo and both of you use Claude with the same context</li>
 </ul>
 
-<div class="callout tip">
-  <div class="callout-label">Ready for the Advanced Guide?</div>
-  The <strong>Advanced Claude Code Guide</strong> covers: multi-agent orchestration, custom skill development, MCP server creation, deployment pipelines, and scaling your AI operations. It picks up exactly where this guide leaves off.
-</div>
-
 <div class="callout">
   <div class="callout-label">One More Thing</div>
   The biggest mistake people make is trying to learn everything before doing anything. Do not do that. Pick one task you do this week &mdash; a client report, a social post, an email sequence, a competitor audit &mdash; and do it with Claude. Learning happens by doing, not by reading. You have the tools. Go use them.
 </div>
 
 
+<!-- CTA BLOCK -->
+<div class="cta-block">
+  <h3>Ready to Go Deeper?</h3>
+  <p>This guide got you from zero to dangerous. The next two resources take you from dangerous to lethal.</p>
+  <a href="claude-code-advanced-guide.html" class="cta-btn">Claude Code: Full Stack Playbook</a>
+  <a href="chatgpt-migration-calculator.html" class="cta-btn secondary">ChatGPT Migration Calculator</a>
+</div>
+
+
 <!-- FOOTER -->
 <div class="footer">
-  <p><strong>Claude Code: From Zero to Dangerous</strong> &middot; Startup Guide v3</p>
-  <p>Built with Claude Code &middot; <strong>Online Optimisers</strong> &middot; April 2026</p>
-  <p style="margin-top:8px;"><a href="#">Advanced Claude Code Guide &rarr;</a></p>
+  <p>Written by Donal Lynch | <strong>Online Optimisers</strong> | <a href="https://onlineoptimisers.com">onlineoptimisers.com</a></p>
+  <p>Claude Code Startup Guide &mdash; From Zero to Dangerous &mdash; v4 &mdash; April 2026</p>
 </div>
 
 
@@ -1893,7 +2197,7 @@ Save to content/weekly-posts-[date].md</div>
   }
 
   // Checkbox persistence
-  var STORAGE_KEY = 'oo-startup-v3-checks';
+  var STORAGE_KEY = 'oo-startup-v4-checks';
   var saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
   document.querySelectorAll('.checkpoint input[type="checkbox"]').forEach(function(cb, i) {
     cb.id = cb.id || 'ck' + i;
