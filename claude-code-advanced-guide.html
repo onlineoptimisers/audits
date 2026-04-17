@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Claude Code Advanced Guide — The Full Stack Playbook</title>
+  <title>Claude Code Advanced Guide — The Full Stack Playbook v2</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <style>
     @page { size: A4; margin: 2cm; }
@@ -23,7 +23,6 @@
       --red: #f85149;
       --purple: #bc8cff;
       --pink: #f778ba;
-      --navy: #0d1117;
       --code-bg: #0d1117;
       --glow: rgba(0, 212, 255, 0.15);
     }
@@ -85,7 +84,8 @@
         font-weight: 500;
         transition: all 0.15s;
       }
-      .sidebar a:hover { background: var(--surface-2); color: var(--cyan); }
+      .sidebar a:hover, .sidebar a.active { background: var(--surface-2); color: var(--cyan); }
+      .sidebar a.active { border-left: 2px solid var(--cyan); }
       .sidebar .s-module {
         font-weight: 700;
         color: var(--text);
@@ -99,7 +99,49 @@
     }
     @media screen and (max-width: 1099px) {
       .sidebar { display: none; }
+      .sidebar.open { display: block; position: fixed; top: 0; left: 0; width: 280px; height: 100vh; overflow-y: auto; background: var(--surface); border-right: 1px solid var(--border); padding: 24px 16px; font-size: 13px; z-index: 200; }
+      .sidebar.open a { display: block; color: var(--muted); text-decoration: none; padding: 5px 8px; border-radius: 4px; margin-bottom: 2px; font-weight: 500; }
+      .sidebar.open a:hover { background: var(--surface-2); color: var(--cyan); }
+      .sidebar.open .s-module { font-weight: 700; color: var(--text); margin-top: 14px; }
+      .sidebar.open .s-time { color: var(--muted); font-size: 11px; margin-left: 4px; }
+      .sidebar.open h3 { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--cyan); margin-top: 0; margin-bottom: 12px; }
     }
+
+    /* ── HAMBURGER ── */
+    .hamburger {
+      display: none;
+      position: fixed;
+      top: 16px; left: 16px;
+      z-index: 300;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 8px 10px;
+      cursor: pointer;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .hamburger span {
+      display: block;
+      width: 20px; height: 2px;
+      background: var(--cyan);
+      border-radius: 1px;
+      transition: all 0.2s;
+    }
+    @media screen and (max-width: 1099px) {
+      .hamburger { display: flex; }
+    }
+
+    /* ── MOBILE OVERLAY ── */
+    .sidebar-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background: rgba(0,0,0,0.6);
+      z-index: 150;
+    }
+    .sidebar-overlay.show { display: block; }
 
     /* ── COVER ── */
     .cover {
@@ -169,6 +211,7 @@
       content: "0" counter(toc) " ";
       font-weight: 700; color: var(--cyan); font-family: 'JetBrains Mono', monospace; font-size: 13px;
     }
+    .toc > ol > li:nth-child(n+10)::before { content: counter(toc) " "; }
     .toc a { color: var(--text); text-decoration: none; font-weight: 500; }
     .toc a:hover { color: var(--cyan); text-decoration: underline; }
     .toc .toc-time { color: var(--muted); font-size: 13px; margin-left: 8px; }
@@ -236,6 +279,16 @@
       font-size: 10px; text-transform: uppercase;
       letter-spacing: 1px; color: var(--muted); font-weight: 600;
     }
+    .code-block .copy-btn {
+      position: absolute; top: 8px; right: 12px;
+      background: var(--surface-2); border: 1px solid var(--border);
+      color: var(--muted); font-size: 11px; padding: 3px 8px;
+      border-radius: 4px; cursor: pointer; font-family: 'JetBrains Mono', monospace;
+      transition: all 0.15s; z-index: 2;
+    }
+    .code-block .copy-btn:hover { color: var(--cyan); border-color: var(--cyan); }
+    .code-block .copy-btn.copied { color: var(--green); border-color: var(--green); }
+    .code-block.has-copy .label { right: 80px; }
 
     /* ── TABLES ── */
     table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
@@ -287,6 +340,29 @@
       text-transform: uppercase; letter-spacing: 0.5px;
     }
 
+    /* ── API STACK CARDS ── */
+    .api-stack {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 8px; padding: 20px 24px; margin: 16px 0;
+      border-left: 3px solid var(--cyan);
+    }
+    .api-stack-header {
+      font-weight: 700; font-size: 16px; color: var(--cyan);
+      margin-bottom: 4px;
+    }
+    .api-stack-tagline {
+      font-size: 13px; color: var(--muted); font-style: italic;
+      margin-bottom: 12px;
+    }
+    .api-stack .api-list {
+      display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px;
+    }
+    .api-stack .api-tag {
+      background: var(--surface-2); border: 1px solid var(--border);
+      padding: 3px 10px; border-radius: 4px; font-size: 12px;
+      font-family: 'JetBrains Mono', monospace; color: var(--text);
+    }
+
     /* ── SHOWCASE CARD ── */
     .showcase {
       background: var(--surface); border: 1px solid var(--border);
@@ -336,6 +412,69 @@
       font-family: 'JetBrains Mono', monospace;
     }
 
+    /* ── TERMINAL QUOTE ── */
+    .terminal-quote {
+      background: #000; border: 1px solid var(--border);
+      border-radius: 8px; padding: 24px 28px; margin: 24px 0;
+      font-family: 'JetBrains Mono', monospace; font-size: 15px;
+      color: var(--green); position: relative; overflow: hidden;
+    }
+    .terminal-quote::before {
+      content: "$ ";
+      color: var(--cyan); font-weight: 700;
+    }
+    .terminal-quote::after {
+      content: "\2588";
+      color: var(--cyan);
+      animation: blink 1s step-end infinite;
+      margin-left: 2px;
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+    .terminal-quote .tq-secondary {
+      display: block; color: var(--muted); font-size: 13px;
+      margin-top: 8px; padding-left: 18px;
+    }
+
+    /* ── SWARM FLOW ── */
+    .swarm-flow {
+      display: flex; flex-direction: column; align-items: center;
+      gap: 0; margin: 24px 0;
+    }
+    .swarm-node {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 8px; padding: 12px 24px; text-align: center;
+      font-weight: 600; font-size: 14px; color: var(--text);
+      width: 280px; position: relative;
+    }
+    .swarm-node.final {
+      border-color: var(--cyan); color: var(--cyan);
+      background: rgba(0, 212, 255, 0.08);
+    }
+    .swarm-arrow {
+      width: 2px; height: 24px; background: var(--cyan);
+      position: relative;
+    }
+    .swarm-arrow::after {
+      content: "\25BC"; position: absolute; bottom: -8px; left: 50%;
+      transform: translateX(-50%); color: var(--cyan); font-size: 10px;
+    }
+
+    /* ── BACK TO TOP ── */
+    .back-to-top {
+      position: fixed; bottom: 24px; right: 24px;
+      background: var(--surface); border: 1px solid var(--border);
+      color: var(--cyan); width: 40px; height: 40px;
+      border-radius: 50%; display: none; align-items: center;
+      justify-content: center; cursor: pointer; font-size: 18px;
+      z-index: 100; transition: all 0.2s;
+      text-decoration: none;
+    }
+    .back-to-top:hover { background: var(--surface-2); border-color: var(--cyan); text-decoration: none; }
+    .back-to-top.visible { display: flex; }
+
     /* ── FOOTER ── */
     .footer {
       margin-top: 64px; padding: 32px 0;
@@ -346,205 +485,302 @@
 </head>
 <body>
 
+<!-- ── HAMBURGER ── -->
+<button class="hamburger no-print" id="hamburger" aria-label="Toggle navigation">
+  <span></span><span></span><span></span>
+</button>
+<div class="sidebar-overlay no-print" id="sidebarOverlay"></div>
+
 <!-- ── SIDEBAR ── -->
-<nav class="sidebar no-print">
-  <h3>Advanced Guide</h3>
+<nav class="sidebar no-print" id="sidebar">
+  <h3>Advanced Guide v2</h3>
 
   <a href="#top" class="s-module">Cover</a>
 
-  <a href="#m1" class="s-module">01 The Full Stack <span class="s-time">10 min</span></a>
-  <a href="#m1-apis">The API arsenal</a>
-  <a href="#m1-what">What it unlocks</a>
+  <a href="#m1" class="s-module" data-section="m1">01 API Arsenal <span class="s-time">12 min</span></a>
+  <a href="#m1-stacks" data-section="m1">5 API stacks</a>
+  <a href="#m1-env" data-section="m1">Your .env</a>
 
-  <a href="#m2" class="s-module">02 Multi-Agent Ops <span class="s-time">15 min</span></a>
-  <a href="#m2-what">What agents are</a>
-  <a href="#m2-parallel">Parallel orchestration</a>
-  <a href="#m2-plow">Plow mode</a>
+  <a href="#m2" class="s-module" data-section="m2">02 Multi-Agent Ops <span class="s-time">15 min</span></a>
+  <a href="#m2-patterns" data-section="m2">3 patterns</a>
+  <a href="#m2-cost" data-section="m2">Cost &amp; routing</a>
+  <a href="#m2-plow" data-section="m2">Plow mode</a>
 
-  <a href="#m3" class="s-module">03 Skills Factory <span class="s-time">15 min</span></a>
-  <a href="#m3-anatomy">Skill anatomy</a>
-  <a href="#m3-chain">Chaining skills</a>
-  <a href="#m3-model">Model routing</a>
+  <a href="#m3" class="s-module" data-section="m3">03 Skills Factory <span class="s-time">12 min</span></a>
+  <a href="#m3-anatomy" data-section="m3">Skill anatomy</a>
+  <a href="#m3-plan" data-section="m3">Plan mode</a>
 
-  <a href="#m4" class="s-module">04 Autonomous Mode <span class="s-time">10 min</span></a>
-  <a href="#m4-loops">Loops</a>
-  <a href="#m4-background">Background agents</a>
-  <a href="#m4-monitor">Monitoring</a>
+  <a href="#m4" class="s-module" data-section="m4">04 Autonomous Mode <span class="s-time">10 min</span></a>
+  <a href="#m4-events" data-section="m4">Event-driven</a>
+  <a href="#m4-monitor" data-section="m4">Monitoring</a>
 
-  <a href="#m5" class="s-module">05 Memory Architecture <span class="s-time">10 min</span></a>
-  <a href="#m5-layers">The 4 layers</a>
-  <a href="#m5-index">MEMORY.md index</a>
-  <a href="#m5-zones">Collaboration zones</a>
+  <a href="#m5" class="s-module" data-section="m5">05 Memory <span class="s-time">10 min</span></a>
+  <a href="#m5-layers" data-section="m5">4 types</a>
+  <a href="#m5-zones" data-section="m5">Collaboration</a>
 
-  <a href="#m6" class="s-module">06 MCP Ecosystem <span class="s-time">10 min</span></a>
-  <a href="#m6-what">What MCP unlocks</a>
-  <a href="#m6-stack">The full stack</a>
+  <a href="#m6" class="s-module" data-section="m6">06 Smart Personas <span class="s-time">10 min</span></a>
+  <a href="#m6-four" data-section="m6">The 4 personas</a>
+  <a href="#m6-impl" data-section="m6">Implementation</a>
 
-  <a href="#m7" class="s-module">07 Real Showcases <span class="s-time">15 min</span></a>
-  <a href="#m7-audits">Audit factory</a>
-  <a href="#m7-sites">Site builder</a>
-  <a href="#m7-content">Content system</a>
-  <a href="#m7-voice">Voice clone</a>
+  <a href="#m7" class="s-module" data-section="m7">07 MCP Ecosystem <span class="s-time">10 min</span></a>
+  <a href="#m7-stack" data-section="m7">MCP stack</a>
+  <a href="#m7-config" data-section="m7">Configuration</a>
 
-  <a href="#m8" class="s-module">08 The Frontier <span class="s-time">10 min</span></a>
-  <a href="#m8-sdk">Agent SDK</a>
-  <a href="#m8-swarms">Swarms</a>
-  <a href="#m8-vision">The vision</a>
+  <a href="#m8" class="s-module" data-section="m8">08 Terminal <span class="s-time">8 min</span></a>
+  <a href="#m8-shortcuts" data-section="m8">Power shortcuts</a>
+
+  <a href="#m9" class="s-module" data-section="m9">09 Showcases <span class="s-time">12 min</span></a>
+
+  <a href="#m10" class="s-module" data-section="m10">10 The Frontier <span class="s-time">10 min</span></a>
+  <a href="#m10-swarm" data-section="m10">Swarm flow</a>
+  <a href="#m10-vision" data-section="m10">The vision</a>
 </nav>
 
 <!-- ── COVER ── -->
 <div class="cover" id="top">
-  <div class="cover-badge">Advanced Guide</div>
+  <div class="cover-badge">Advanced Guide &mdash; v2</div>
   <h1>Claude Code<br/><span class="accent">Full Stack Playbook</span></h1>
-  <p class="subtitle">20 APIs, parallel agents, autonomous workflows, and what happens when you wire it all together</p>
-  <p class="cover-meta"><strong>Online Optimisers</strong> &middot; Version 1 &middot; April 2026<br/>Prerequisite: <a href="claude-code-startup-guide.html" style="color: var(--cyan);">Startup Guide</a> completed &middot; 8 modules &middot; ~95 min</p>
+  <p class="subtitle">30+ APIs, parallel agents, autonomous workflows, and the architecture behind an AI-native agency</p>
+  <p class="cover-meta"><strong>Online Optimisers</strong> &middot; Version 2 &middot; April 2026<br/>Prerequisite: <a href="claude-code-startup-guide.html" style="color: var(--cyan);">Startup Guide</a> completed &middot; 10 modules &middot; ~110 min</p>
 </div>
 
 <!-- stats -->
 <div class="stat-row">
-  <div class="stat-card"><div class="num">20+</div><div class="label">APIs Connected</div></div>
-  <div class="stat-card"><div class="num">55</div><div class="label">Skills Built</div></div>
-  <div class="stat-card"><div class="num">90+</div><div class="label">Files per Sprint</div></div>
-  <div class="stat-card"><div class="num">13</div><div class="label">Parallel Agents</div></div>
-  <div class="stat-card"><div class="num">6</div><div class="label">Chat Windows</div></div>
+  <div class="stat-card"><div class="num" data-target="30" data-prefix="" data-suffix="+">0</div><div class="label">APIs Connected</div></div>
+  <div class="stat-card"><div class="num" data-target="55" data-prefix="" data-suffix="+">0</div><div class="label">Skills Built</div></div>
+  <div class="stat-card"><div class="num" data-target="13" data-prefix="" data-suffix="">0</div><div class="label">Parallel Agents</div></div>
+  <div class="stat-card"><div class="num" data-target="6" data-prefix="" data-suffix="">0</div><div class="label">Chat Windows</div></div>
+  <div class="stat-card"><div class="num" data-target="0" data-prefix="$" data-suffix="">$0</div><div class="label">Infrastructure Cost</div></div>
 </div>
 
 <!-- ── TOC ── -->
 <div class="toc">
   <h2>Table of Contents</h2>
   <ol>
-    <li><a href="#m1">The Full Stack &mdash; Your API Arsenal</a> <span class="toc-time">10 min</span></li>
+    <li><a href="#m1">API Arsenal &mdash; 5 Stacks, 30+ APIs</a> <span class="toc-time">12 min</span></li>
     <li><a href="#m2">Multi-Agent Orchestration</a> <span class="toc-time">15 min</span></li>
-    <li><a href="#m3">The Skills Factory</a> <span class="toc-time">15 min</span></li>
-    <li><a href="#m4">Autonomous Mode &mdash; Loops, Crons, Background Agents</a> <span class="toc-time">10 min</span></li>
+    <li><a href="#m3">The Skills Factory</a> <span class="toc-time">12 min</span></li>
+    <li><a href="#m4">Autonomous Mode &mdash; Loops, Events, Background Agents</a> <span class="toc-time">10 min</span></li>
     <li><a href="#m5">The Memory Architecture</a> <span class="toc-time">10 min</span></li>
-    <li><a href="#m6">MCP Ecosystem &mdash; Connecting Everything</a> <span class="toc-time">10 min</span></li>
-    <li><a href="#m7">Real-World Showcases</a> <span class="toc-time">15 min</span></li>
-    <li><a href="#m8">The Frontier &mdash; Agent SDK, Swarms, What's Next</a> <span class="toc-time">10 min</span></li>
+    <li><a href="#m6">Smart Personas &mdash; Your Specialist Team</a> <span class="toc-time">10 min</span></li>
+    <li><a href="#m7">MCP Ecosystem &mdash; Connecting Everything</a> <span class="toc-time">10 min</span></li>
+    <li><a href="#m8">Terminal Dominance</a> <span class="toc-time">8 min</span></li>
+    <li><a href="#m9">Showcases &mdash; What This Stack Actually Built</a> <span class="toc-time">12 min</span></li>
+    <li><a href="#m10">The Frontier &mdash; Agent SDK, Swarms, What's Next</a> <span class="toc-time">10 min</span></li>
   </ol>
 </div>
 
 
-<!-- ════════════════════════════════════════════════════════════════ -->
-<!-- MODULE 1                                                       -->
-<!-- ════════════════════════════════════════════════════════════════ -->
-<h2 id="m1"><span class="module-num">Module 01</span>The Full Stack &mdash; Your API Arsenal</h2>
+<!-- ================================================================ -->
+<!-- MODULE 1 — API ARSENAL                                          -->
+<!-- ================================================================ -->
+<h2 id="m1"><span class="module-num">Module 01</span>API Arsenal &mdash; 5 Stacks, 30+ APIs</h2>
 
-<p>The Startup Guide gave you 1-2 API connections. This is what happens when you wire up 20+. Each connection isn't just a feature &mdash; it's a <strong>capability multiplier</strong>. Claude doesn't just answer questions now. It researches, audits, writes, deploys, and reports &mdash; across your entire business stack.</p>
+<p>The Startup Guide gave you 1-2 API connections. This module shows what happens when you wire up 30+. Each connection is not just a feature &mdash; it is a <strong>capability multiplier</strong>. Claude stops being a chatbot and becomes a full operating system for your business.</p>
 
-<h3 id="m1-apis">The API Arsenal</h3>
+<h3 id="m1-stacks">The 5 Stacks</h3>
 
-<table>
-  <tr><th>API</th><th>What It Does</th><th>Example Power Move</th></tr>
-  <tr><td><strong>DataForSEO</strong></td><td>SERP data, backlinks, keywords, ranked pages</td><td>Full competitive audit on any business in 90 seconds</td></tr>
-  <tr><td><strong>OpenAI</strong></td><td>GPT-4o search, embeddings, vision</td><td>Test AI visibility: "Is this business cited in ChatGPT?"</td></tr>
-  <tr><td><strong>Perplexity</strong></td><td>Real-time web search with citations</td><td>Cross-verify AI citations across multiple engines</td></tr>
-  <tr><td><strong>Firecrawl</strong></td><td>Web scraping, site crawling, structured extraction</td><td>Crawl a competitor's entire site in one call</td></tr>
-  <tr><td><strong>Google Sheets</strong></td><td>Read/write spreadsheet data</td><td>Auto-populate a 200-lead tracker from audit results</td></tr>
-  <tr><td><strong>Google Drive</strong></td><td>Read/write docs, slides, files</td><td>"Summarise all client briefs in this folder"</td></tr>
-  <tr><td><strong>Gmail</strong></td><td>Read/draft/send emails</td><td>Auto-draft follow-ups based on call transcripts</td></tr>
-  <tr><td><strong>GitHub</strong></td><td>Code, PRs, issues, deploys</td><td>Build a site and deploy it to GitHub Pages in one prompt</td></tr>
-  <tr><td><strong>Cloudflare</strong></td><td>DNS, Workers, R2 storage, Pages</td><td>Deploy a client dashboard to a custom domain</td></tr>
-  <tr><td><strong>Asana</strong></td><td>Project management, tasks, teams</td><td>"Create tasks for every action item from today's call"</td></tr>
-  <tr><td><strong>Slack</strong></td><td>Team messaging</td><td>Post automated status updates to team channels</td></tr>
-  <tr><td><strong>Airtable</strong></td><td>Structured database with views</td><td>Agent heartbeat monitoring: 255 records, 36 agents tracked</td></tr>
-  <tr><td><strong>Fathom</strong></td><td>Call recording transcripts</td><td>Extract action items from sales calls automatically</td></tr>
-  <tr><td><strong>ElevenLabs</strong></td><td>Voice cloning, text-to-speech</td><td>Clone a voice and generate audio for a landing page</td></tr>
-  <tr><td><strong>HeyGen</strong></td><td>AI video generation</td><td>Personalised video sales outreach at scale</td></tr>
-  <tr><td><strong>Instantly</strong></td><td>Cold email campaigns</td><td>Launch a 3-step sequence to 200 leads</td></tr>
-  <tr><td><strong>Apollo</strong></td><td>Lead data enrichment</td><td>Find decision-maker emails for your target list</td></tr>
-  <tr><td><strong>Hunter</strong></td><td>Email verification</td><td>Clean your lead list before sending</td></tr>
-  <tr><td><strong>n8n</strong></td><td>Workflow automation</td><td>Trigger an audit pipeline from a webhook</td></tr>
-  <tr><td><strong>Anthropic API</strong></td><td>Claude direct (Opus/Sonnet/Haiku)</td><td>Build custom AI tools that call Claude's brain directly</td></tr>
-</table>
+<div class="api-stack">
+  <div class="api-stack-header">Content &amp; Social (8 APIs)</div>
+  <div class="api-stack-tagline">"Content machine &mdash; strategy to scheduled post, no tab switching"</div>
+  <div class="api-list">
+    <span class="api-tag">OpenAI</span>
+    <span class="api-tag">Claude API</span>
+    <span class="api-tag">Buffer</span>
+    <span class="api-tag">Canva</span>
+    <span class="api-tag">Instagram Graph</span>
+    <span class="api-tag">TikTok</span>
+    <span class="api-tag">YouTube Data</span>
+    <span class="api-tag">Hootsuite</span>
+  </div>
+  <p style="font-size:13px; color: var(--muted); margin-bottom:0;">Generate copy, create visuals, schedule across platforms, pull analytics &mdash; all from one terminal prompt.</p>
+</div>
 
-<h3 id="m1-what">What 20 APIs Unlocks</h3>
+<div class="api-stack">
+  <div class="api-stack-header">SEO &amp; Visibility (7 APIs)</div>
+  <div class="api-stack-tagline">"Automated audits at scale &mdash; one prompt, full competitive picture"</div>
+  <div class="api-list">
+    <span class="api-tag">Search Console</span>
+    <span class="api-tag">Ahrefs / SEMrush</span>
+    <span class="api-tag">DataForSEO</span>
+    <span class="api-tag">Screaming Frog</span>
+    <span class="api-tag">Moz</span>
+    <span class="api-tag">Firecrawl</span>
+    <span class="api-tag">BrightLocal</span>
+  </div>
+  <p style="font-size:13px; color: var(--muted); margin-bottom:0;">Keyword tracking, backlink analysis, site crawls, local citation checks &mdash; wire them together and a full SEO audit takes 90 seconds.</p>
+</div>
 
-<p>With 1-2 APIs, Claude is a smart assistant. With 20, Claude becomes an <strong>operating system</strong>:</p>
+<div class="api-stack">
+  <div class="api-stack-header">Sales &amp; Outreach (7 APIs)</div>
+  <div class="api-stack-tagline">"Lead gen to booked call &mdash; fully pipelined"</div>
+  <div class="api-list">
+    <span class="api-tag">Apollo</span>
+    <span class="api-tag">Hunter</span>
+    <span class="api-tag">Instantly / Lemlist</span>
+    <span class="api-tag">HubSpot / Pipedrive</span>
+    <span class="api-tag">LinkedIn</span>
+    <span class="api-tag">Calendly</span>
+    <span class="api-tag">Fathom / Gong</span>
+  </div>
+  <p style="font-size:13px; color: var(--muted); margin-bottom:0;">Find leads, verify emails, send sequences, track deals, book meetings, and extract action items from calls.</p>
+</div>
+
+<div class="api-stack">
+  <div class="api-stack-header">Ops &amp; Automation (7 APIs)</div>
+  <div class="api-stack-tagline">"Back-office autopilot &mdash; tasks, comms, billing, no manual entry"</div>
+  <div class="api-list">
+    <span class="api-tag">Google Workspace</span>
+    <span class="api-tag">Slack</span>
+    <span class="api-tag">Asana / Monday</span>
+    <span class="api-tag">Airtable</span>
+    <span class="api-tag">Stripe</span>
+    <span class="api-tag">n8n / Zapier</span>
+    <span class="api-tag">Twilio</span>
+  </div>
+  <p style="font-size:13px; color: var(--muted); margin-bottom:0;">Project management, team messaging, database tracking, invoicing, workflow triggers, and SMS notifications.</p>
+</div>
+
+<div class="api-stack">
+  <div class="api-stack-header">AI &amp; Infrastructure (8 APIs)</div>
+  <div class="api-stack-tagline">"Custom AI tools, built and deployed from one terminal"</div>
+  <div class="api-list">
+    <span class="api-tag">Anthropic</span>
+    <span class="api-tag">OpenAI</span>
+    <span class="api-tag">Perplexity</span>
+    <span class="api-tag">Replicate</span>
+    <span class="api-tag">Cloudflare</span>
+    <span class="api-tag">Vercel</span>
+    <span class="api-tag">ElevenLabs</span>
+    <span class="api-tag">HeyGen</span>
+  </div>
+  <p style="font-size:13px; color: var(--muted); margin-bottom:0;">Claude as brain, GPT for search/vision, Perplexity for citations, voice cloning, AI video, edge deploys, serverless functions.</p>
+</div>
 
 <div class="callout power">
   <div class="callout-label">The Compound Effect</div>
-  <strong>One API</strong> = one capability. <strong>Twenty APIs</strong> = capabilities that feed each other. DataForSEO finds the keywords &rarr; OpenAI tests AI visibility &rarr; Perplexity cross-verifies &rarr; Google Sheets stores results &rarr; Gmail drafts the pitch &rarr; Instantly sends the campaign. That's not 6 tools &mdash; that's a pipeline.
+  <strong>One API</strong> = one capability. <strong>Thirty APIs</strong> = capabilities that feed each other. DataForSEO finds keywords &rarr; OpenAI tests AI visibility &rarr; Perplexity cross-verifies &rarr; Sheets stores results &rarr; Gmail drafts the pitch &rarr; Instantly sends the campaign. That is not 6 tools &mdash; that is a pipeline.
 </div>
 
+<div class="callout tip">
+  <div class="callout-label">Your Stack Will Be Different</div>
+  These are our stacks. Yours will reflect your business. A SaaS founder might swap BrightLocal for Stripe Atlas and Calendly for Cal.com. A content studio might drop Apollo and add Descript. The architecture is the same &mdash; pick the APIs that match your workflows, wire them up, and let Claude orchestrate them.
+</div>
+
+<h3 id="m1-env">Your .env File</h3>
+
 <details>
-  <summary>How to set up your .env file for all APIs</summary>
+  <summary>Generic .env template (all stacks)</summary>
   <div class="detail-body">
-    <p>Create a <code>.env</code> file in your workspace root (make sure it's in <code>.gitignore</code>):</p>
-<div class="code-block"><span class="label">.env</span># Core AI
+    <p>Create a <code>.env</code> in your workspace root. Make sure it is in <code>.gitignore</code>. Order does not matter &mdash; Claude reads all of them:</p>
+<div class="code-block has-copy"><button class="copy-btn" data-copy="env">Copy</button># ── AI CORE ──
 ANTHROPIC_API_KEY=sk-ant-...
 OPENAI_API_KEY=sk-...
 PERPLEXITY_API_KEY=pplx-...
 
-# Data & Scraping
-DATAFORSEO_LOGIN=your@email.com
-DATAFORSEO_PASSWORD=your-password
+# ── SEO & DATA ──
+DATAFORSEO_LOGIN=...
+DATAFORSEO_PASSWORD=...
 FIRECRAWL_API_KEY=fc-...
+SEARCH_CONSOLE_CREDENTIALS=path/to/sa.json
+BRIGHTLOCAL_API_KEY=...
 
-# Google (via MCP or service account)
-GOOGLE_SHEETS_CREDENTIALS=path/to/credentials.json
-
-# Outreach
-INSTANTLY_API_KEY=...
+# ── OUTREACH ──
 APOLLO_API_KEY=...
 HUNTER_API_KEY=...
+INSTANTLY_API_KEY=...
+CALENDLY_TOKEN=...
 
-# Communication
+# ── SOCIAL ──
+BUFFER_ACCESS_TOKEN=...
+INSTAGRAM_ACCESS_TOKEN=...
+YOUTUBE_API_KEY=...
+
+# ── OPS ──
+GOOGLE_SHEETS_CREDENTIALS=path/to/sa.json
 SLACK_BOT_TOKEN=xoxb-...
-ASANA_API_KEY=...
+ASANA_ACCESS_TOKEN=...
 AIRTABLE_API_KEY=pat...
+STRIPE_SECRET_KEY=sk_live_...
 
-# Media
+# ── MEDIA ──
 ELEVENLABS_API_KEY=...
 HEYGEN_API_KEY=...
 
-# Infra
+# ── INFRASTRUCTURE ──
 CLOUDFLARE_API_TOKEN=...
-GHL_API_KEY=...</div>
-    <p>Then in any Claude Code session: <code>source .env</code> loads everything. Claude can now call any of these.</p>
+VERCEL_TOKEN=...</div>
+    <p>Then in any session: <code>source .env</code> loads everything. Claude can now call any of these.</p>
   </div>
 </details>
 
+<div class="checkpoint">
+  <div class="checkpoint-header">Module 1 Checkpoint</div>
+  <ul>
+    <li>You understand the 5 API stacks and what each unlocks</li>
+    <li>You have a .env template ready to populate with your own keys</li>
+    <li>You understand the compound effect &mdash; APIs feeding each other in pipelines</li>
+  </ul>
+</div>
 
-<!-- ════════════════════════════════════════════════════════════════ -->
-<!-- MODULE 2                                                       -->
-<!-- ════════════════════════════════════════════════════════════════ -->
+
+<!-- ================================================================ -->
+<!-- MODULE 2 — MULTI-AGENT ORCHESTRATION                            -->
+<!-- ================================================================ -->
 <h2 id="m2"><span class="module-num">Module 02</span>Multi-Agent Orchestration</h2>
 
-<p>Single-threaded Claude is powerful. Multi-agent Claude is a <strong>team</strong>. You're not waiting for one task to finish before starting the next &mdash; you're running 5, 10, or 13 agents in parallel, each owning a different piece of the work.</p>
+<p>Single-threaded Claude is powerful. Multi-agent Claude is a <strong>team</strong>. You are not waiting for one task to finish before starting the next &mdash; you are running 5, 10, or 13 agents in parallel, each owning a different piece of the work.</p>
 
-<h3 id="m2-what">What Agents Are</h3>
-
-<p>An agent is a Claude instance that gets its own context, its own task, and runs independently. The main Claude (the one you're talking to) acts as the <strong>orchestrator</strong> &mdash; it decides what agents to spawn, what each one works on, and integrates their outputs when they're done.</p>
+<h3>Orchestrator vs Subagent</h3>
 
 <table>
   <tr><th>Concept</th><th>What It Means</th></tr>
   <tr><td><strong>Orchestrator</strong></td><td>The main Claude you talk to. Plans, delegates, integrates.</td></tr>
   <tr><td><strong>Subagent</strong></td><td>A spawned Claude that works on one specific task. Returns results to orchestrator.</td></tr>
-  <tr><td><strong>Background agent</strong></td><td>A subagent that runs without blocking. You get notified when it's done.</td></tr>
+  <tr><td><strong>Background agent</strong></td><td>A subagent that runs without blocking. You get notified when it is done.</td></tr>
   <tr><td><strong>Foreground agent</strong></td><td>A subagent that blocks until complete. Use when you need results before next step.</td></tr>
-  <tr><td><strong>Worktree agent</strong></td><td>An agent that works on an isolated git branch. No file conflicts.</td></tr>
+  <tr><td><strong>Worktree agent</strong></td><td>An agent working on an isolated git branch. No file conflicts with other agents.</td></tr>
 </table>
 
-<h3 id="m2-parallel">Parallel Orchestration Patterns</h3>
+<h3 id="m2-patterns">3 Orchestration Patterns</h3>
 
 <h4>Pattern 1: Fan-Out / Fan-In</h4>
 <p>Spawn N agents for independent tasks, wait for all to return, integrate results.</p>
 
-<div class="prompt-example">I need 9 client audits done. Spawn one agent per client. Each agent reads the client profile at knowledge/clients/[slug]/profile.md and runs a full SEO + AI visibility check. Save results to deliverables/[slug]/. Go.</div>
+<div class="prompt-example">I have 9 client profiles in knowledge/clients/. Spawn one agent per client. Each agent reads the profile and runs a full audit. Save results to deliverables/[slug]/. Go.</div>
 
 <h4>Pattern 2: Pipeline</h4>
 <p>Agent A's output feeds Agent B, which feeds Agent C. Sequential but each agent is specialised.</p>
 
-<div class="prompt-example">Agent 1: scrape the prospect's website with Firecrawl. Agent 2: take that data and run the AI visibility audit. Agent 3: take the audit and build the HTML presentation deck. Pipeline it.</div>
+<div class="prompt-example">Agent 1: scrape the prospect's website with Firecrawl. Agent 2: take that data and run the visibility audit. Agent 3: take the audit and build the HTML presentation deck. Pipeline it.</div>
 
-<h4>Pattern 3: Explore + Decide + Execute</h4>
-<p>Fast cheap agents explore (Haiku), orchestrator decides (Sonnet/Opus), execution agents build (Sonnet).</p>
+<h4>Pattern 3: Explore / Decide / Execute</h4>
+<p>Fast cheap agents explore options (Haiku), orchestrator decides direction (Sonnet/Opus), execution agents build the thing (Sonnet).</p>
 
-<div class="code-block"><span class="label">Model routing</span>Explore agents  = Haiku    (fast, cheap, 10+ parallel)
-Decide          = Sonnet   (judgment, architecture)
-Execute agents  = Sonnet   (writing, building)
-Plan            = Opus     (deep reasoning, strategy)</div>
+<h4>Spawn Syntax</h4>
+<p>Claude Code responds to natural-language spawn instructions. These are the prompts that trigger multi-agent execution:</p>
+
+<div class="prompt-example">Run this in background: build the pitch library at docs/pitch-library.md while I work on the master plan.</div>
+
+<div class="prompt-example">Spawn 3 agents in parallel. Agent A handles data extraction. Agent B handles formatting. Agent C handles deploy. Each writes to its own output directory.</div>
+
+<div class="prompt-example">Use a worktree for this &mdash; build the new landing page on a separate branch so it does not conflict with what I am working on.</div>
+
+<h3 id="m2-cost">Cost &amp; Model Routing</h3>
+
+<p>Not all tasks deserve the same brain. Route by cost and complexity:</p>
+
+<table>
+  <tr><th>Model</th><th>Cost Tier</th><th>Use For</th><th>Parallel Sweet Spot</th></tr>
+  <tr><td><strong>Haiku</strong></td><td>Lowest</td><td>Bulk transforms, extraction, formatting, data cleanup, summaries</td><td>10+ agents</td></tr>
+  <tr><td><strong>Sonnet</strong></td><td>Medium</td><td>Quality writing, audits, client-facing content, debugging</td><td>3-5 agents</td></tr>
+  <tr><td><strong>Opus</strong></td><td>Highest</td><td>Strategy, architecture, complex planning, multi-step reasoning</td><td>1-2 agents</td></tr>
+</table>
+
+<div class="callout warning">
+  <div class="callout-label">Budget Rule</div>
+  Before launching parallel agents, estimate the cost. 13 Opus agents running for 45 minutes each is a very different bill than 13 Haiku agents doing the same. Default to Haiku for exploration, escalate to Sonnet for quality, reserve Opus for decisions that shape the whole project.
+</div>
 
 <h3 id="m2-plow">Plow Mode &mdash; Burning Credits Efficiently</h3>
 
@@ -555,24 +791,24 @@ Plan            = Opus     (deep reasoning, strategy)</div>
   <ol>
     <li><strong>Each agent gets its own output file or directory.</strong> No two agents write to the same path. Collisions kill throughput.</li>
     <li><strong>Main Claude owns shared surfaces</strong> &mdash; memory files, master plans, git commits, deliverables index.</li>
-    <li><strong>Hand each agent an exhaustive input file list.</strong> Don't make agents grep for files. Give them the exact paths.</li>
-    <li><strong>Set hard time-stops per agent</strong> (45-90 min). Prevents runaway sessions.</li>
-    <li><strong>Commit per agent, not per batch.</strong> Each agent's output gets its own commit.</li>
+    <li><strong>Hand each agent an exhaustive input file list.</strong> Do not make agents search for files. Give them the exact paths.</li>
+    <li><strong>Set hard time-stops per agent</strong> (45-90 min). Prevents runaway sessions that burn credits without output.</li>
+    <li><strong>Commit per agent, not per batch.</strong> Each agent's output gets its own git commit. If one crashes, the others are safe.</li>
   </ol>
 </div>
 
 <details>
-  <summary>Real example: 5 parallel Opus agents, one session</summary>
+  <summary>Example: 5 parallel agents, one session</summary>
   <div class="detail-body">
     <table>
       <tr><th>Agent</th><th>Task</th><th>Output Target</th><th>Result</th></tr>
-      <tr><td>A</td><td>Legal drafts v2</td><td><code>chat-e-output/v2/</code></td><td>Privacy policy (235 lines)</td></tr>
-      <tr><td>B</td><td>Ops runbook</td><td><code>docs/elevare-ops-runbook.md</code></td><td>Crashed mid-flight</td></tr>
-      <tr><td>C</td><td>Pitch library</td><td><code>docs/elevare-pitch-library.md</code></td><td>1,443 lines, 10 sections</td></tr>
-      <tr><td>D</td><td>Content calendar v2</td><td><code>chat-h-output/v2/</code></td><td>Instagram 30-day plan (711 lines)</td></tr>
-      <tr><td>E</td><td>Week 1 script</td><td><code>docs/elevare-week1-script.md</code></td><td>Crashed mid-flight</td></tr>
+      <tr><td>A</td><td>Legal documents v2</td><td><code>output/agent-a/</code></td><td>Privacy policy (235 lines)</td></tr>
+      <tr><td>B</td><td>Operations runbook</td><td><code>docs/ops-runbook.md</code></td><td>Crashed mid-flight</td></tr>
+      <tr><td>C</td><td>Pitch library</td><td><code>docs/pitch-library.md</code></td><td>1,443 lines, 10 sections</td></tr>
+      <tr><td>D</td><td>Content calendar v2</td><td><code>output/agent-d/</code></td><td>30-day plan (711 lines)</td></tr>
+      <tr><td>E</td><td>Week 1 script</td><td><code>docs/week1-script.md</code></td><td>Crashed mid-flight</td></tr>
     </table>
-    <p>3 of 5 produced. 2 crashed due to VS Code crashing. That's the risk of parallel &mdash; and why you commit per agent. The 3 that landed = 2,389 lines of deliverable content in one session.</p>
+    <p>3 of 5 produced clean output. 2 crashed. That is the risk of parallel &mdash; and why you commit per agent. The 3 that landed = 2,389 lines of deliverable content in one session.</p>
   </div>
 </details>
 
@@ -581,77 +817,72 @@ Plan            = Opus     (deep reasoning, strategy)</div>
   <ul>
     <li>You understand orchestrator vs subagent</li>
     <li>You can describe 3 parallel patterns (fan-out, pipeline, explore/decide/execute)</li>
+    <li>You know the spawn syntax to trigger multi-agent execution</li>
+    <li>You understand model routing for cost control (Haiku/Sonnet/Opus)</li>
     <li>You know the plow mode rules (unique targets, commit per agent, hand over file lists)</li>
   </ul>
 </div>
 
 
-<!-- ════════════════════════════════════════════════════════════════ -->
-<!-- MODULE 3                                                       -->
-<!-- ════════════════════════════════════════════════════════════════ -->
+<!-- ================================================================ -->
+<!-- MODULE 3 — SKILLS FACTORY                                       -->
+<!-- ================================================================ -->
 <h2 id="m3"><span class="module-num">Module 03</span>The Skills Factory</h2>
 
-<p>Skills turn repeatable tasks into one-command workflows. Instead of explaining what you want every time, you type <code>/audit</code> or <code>/monthly-report</code> and Claude runs the whole playbook. A mature workspace has 30-55+ skills covering every recurring task.</p>
+<p>Skills turn repeatable tasks into one-command workflows. Instead of explaining what you want every time, you type <code>/weekly-report</code> and Claude runs the whole playbook. A mature workspace has 30-55+ skills covering every recurring task.</p>
 
 <h3 id="m3-anatomy">Skill Anatomy</h3>
 
-<div class="code-block"><span class="label">.claude/skills/quick-audit.md</span>---
-name: quick-audit
-description: Run a prospect AI + SEO visibility audit
+<div class="code-block has-copy"><button class="copy-btn" data-copy="skill-example">Copy</button><span class="label" style="right:80px;">weekly-report.md</span>---
+name: weekly-report
+description: Generate a client weekly performance summary
 model: claude-haiku-4-5-20251001
 ---
 
-# Quick Audit Skill
+# Weekly Report Skill
 
-When invoked with /quick-audit [business-name] [city]:
+When invoked with /weekly-report [client-name]:
 
 ## Step 1: Gather Data
-- Search for the business website
-- Check Google Business Profile (reviews, rating)
-- Test schema markup presence
-- Run DataForSEO ranked keywords check
+- Read the client profile from knowledge/clients/[slug]/profile.md
+- Pull latest metrics from the tracking spreadsheet
+- Check for any flagged issues from the previous week
 
-## Step 2: AI Visibility Test
-- Query ChatGPT: "[service] in [city]" &mdash; is business cited?
-- Query Perplexity: same query &mdash; is business cited?
-- Score: X/6 citation slots filled
+## Step 2: Analyse Performance
+- Compare this week vs last week on core KPIs
+- Highlight improvements and regressions
+- Note any ranking changes or traffic anomalies
 
 ## Step 3: Generate Report
-- Build markdown report at deliverables/[slug]/quick-audit.md
-- Include: top 3 quick wins, competitor comparison, score
+- Build markdown report at deliverables/[slug]/weekly/[date].md
+- Include: summary, KPI table, top 3 wins, top 3 actions
+- Tone: professional, concise, results-focused
 
-## Step 4: Build HTML Deck
-- Use template at templates/presentations/ai-audit-deck-template.html
-- Replace placeholders with real data
-- Save to deliverables/[slug]/lead-audit/quick-audit-v1.html
+## Step 4: Draft Delivery Email
+- Use templates/emails/weekly-update.md as base
+- Personalise with this week's highlights
+- Save draft to deliverables/[slug]/emails/</div>
 
-## Step 5: Deploy
-- Copy to audits/ GitHub Pages repo
-- git add, commit, push
-- Return live URL</div>
-
-<h4>The Frontmatter</h4>
+<h4>Frontmatter Reference</h4>
 <table>
-  <tr><th>Field</th><th>What It Does</th></tr>
-  <tr><td><code>name</code></td><td>The slash command trigger: <code>/quick-audit</code></td></tr>
-  <tr><td><code>description</code></td><td>Shows when browsing available skills with <code>/</code></td></tr>
-  <tr><td><code>model</code></td><td>Which model runs the skill. Haiku = cheap bulk. Sonnet = judgment. Opus = deep reasoning.</td></tr>
+  <tr><th>Field</th><th>What It Does</th><th>Example</th></tr>
+  <tr><td><code>name</code></td><td>The slash command trigger</td><td><code>/weekly-report</code></td></tr>
+  <tr><td><code>description</code></td><td>Shows when browsing available skills with <code>/</code></td><td>"Generate a client weekly performance summary"</td></tr>
+  <tr><td><code>model</code></td><td>Which model runs the skill at execution time</td><td><code>claude-haiku-4-5-20251001</code></td></tr>
 </table>
 
-<h3 id="m3-chain">Chaining Skills</h3>
+<h3>Chaining Skills</h3>
 
 <p>Skills can call other skills. A monthly report skill might internally call the data-pull skill, then the format skill, then the delivery skill:</p>
 
-<div class="code-block"><span class="label">Chained workflow</span>/monthly-report elite-movers
+<div class="code-block"><span class="label">Chained workflow</span>/monthly-report [client]
   &rarr; internally runs: data pull from Sheets
-  &rarr; internally runs: AI visibility recheck
-  &rarr; internally runs: format as Google Slides template
+  &rarr; internally runs: performance analysis
+  &rarr; internally runs: format as presentation
   &rarr; internally runs: draft delivery email
-  &rarr; outputs: report + email + Drive link</div>
+  &rarr; outputs: report + email + shareable link</div>
 
-<h3 id="m3-model">Model Routing in Skills</h3>
-
-<p>Not every skill needs the same brain. Route by cost and complexity:</p>
+<h3>Model Routing in Skills</h3>
 
 <table>
   <tr><th>Skill Type</th><th>Model</th><th>Why</th></tr>
@@ -663,7 +894,20 @@ When invoked with /quick-audit [business-name] [city]:
 
 <div class="callout tip">
   <div class="callout-label">The Orchestrator Paradox</div>
-  The model in the frontmatter is the <strong>execution</strong> model, not the writing model. You always <em>build</em> skills using Sonnet/Opus (you need judgment to write the workflow). But the skill <em>runs</em> on whatever model is in the frontmatter. Write once with the big brain, run many times with the cheap brain.
+  The model in the frontmatter is the <strong>execution</strong> model, not the writing model. You always <em>build</em> skills using Sonnet or Opus (you need judgment to write the workflow). But the skill <em>runs</em> on whatever model is in the frontmatter. Write once with the big brain, run many times with the cheap brain.
+</div>
+
+<h3 id="m3-plan">Plan Mode</h3>
+
+<p>Before building anything complex, use <code>/plan</code> to have Claude draft a structured plan before executing. Plan mode forces Claude to think before acting:</p>
+
+<div class="prompt-example">/plan Build a 3-step onboarding automation: welcome email, task creation in Asana, Slack notification to the team.</div>
+
+<p>Claude will produce a numbered plan with file targets, dependencies, and estimated steps. Review it, approve it, then Claude executes. This prevents wasted compute on wrong-direction builds.</p>
+
+<div class="callout warning">
+  <div class="callout-label">Planning Time-Box</div>
+  Planning is not doing. Keep plan mode proportional to the task. A 5-minute task does not need a 20-minute plan. When the plan is clear, execute.
 </div>
 
 <div class="checkpoint">
@@ -672,30 +916,27 @@ When invoked with /quick-audit [business-name] [city]:
     <li>You can write a skill with frontmatter + multi-step workflow</li>
     <li>You understand model routing (Haiku for bulk, Sonnet for judgment, Opus for planning)</li>
     <li>You know skills can chain other skills</li>
+    <li>You know when to use /plan before building</li>
   </ul>
 </div>
 
 
-<!-- ════════════════════════════════════════════════════════════════ -->
-<!-- MODULE 4                                                       -->
-<!-- ════════════════════════════════════════════════════════════════ -->
-<h2 id="m4"><span class="module-num">Module 04</span>Autonomous Mode &mdash; Loops, Background Agents, Monitoring</h2>
+<!-- ================================================================ -->
+<!-- MODULE 4 — AUTONOMOUS MODE                                      -->
+<!-- ================================================================ -->
+<h2 id="m4"><span class="module-num">Module 04</span>Autonomous Mode &mdash; Loops, Events, Background Agents</h2>
 
-<p>This is where Claude goes from "tool you use" to "system that runs." Autonomous workflows execute without you watching, report back when done, and can run on schedules.</p>
+<p>This is where Claude goes from "tool you use" to "system that runs." Autonomous workflows execute without you watching, report back when done, and can trigger from real-world events.</p>
 
-<h3 id="m4-loops">Loops (/loop)</h3>
+<h3>Loops</h3>
 
-<p>The <code>/loop</code> command tells Claude to repeat a task on a schedule. Claude self-paces: it picks the right delay between iterations based on what it's waiting for.</p>
+<p>The <code>/loop</code> command tells Claude to repeat a task on a schedule. Claude self-paces: it picks the right delay between iterations based on what it is waiting for.</p>
 
 <div class="prompt-example">/loop Check the build status every 2 minutes until it passes, then deploy to production.</div>
 
-<div class="prompt-example">/loop Monitor the audits/ GitHub Pages deploy. When the page returns HTTP 200, notify me and stop.</div>
+<div class="prompt-example">/loop Monitor the deployed site. When the page returns HTTP 200, notify me and stop.</div>
 
-<p>Claude manages its own sleep intervals &mdash; shorter when actively waiting (60-270s to stay in cache), longer when idle (20-30 min).</p>
-
-<h3 id="m4-background">Background Agents</h3>
-
-<p>Background agents run without blocking your main conversation. You kick them off, keep working, and get notified when they finish.</p>
+<h3>Background Agents</h3>
 
 <div class="code-block"><span class="label">How it works</span>You: "Build the pitch library in the background while I
       work on the master plan."
@@ -706,92 +947,201 @@ Claude: [continues working with you on the master plan]
 [notification]: Background agent completed.
                Output: docs/pitch-library.md (1,443 lines)</div>
 
-<h3 id="m4-monitor">Monitoring Patterns</h3>
+<h3 id="m4-events">Event-Driven Patterns</h3>
+
+<p>Beyond manual triggers, wire Claude into real-world events:</p>
+
+<table>
+  <tr><th>Trigger</th><th>What Happens</th><th>Pipeline</th></tr>
+  <tr><td><strong>Webhook fires</strong></td><td>New form submission or lead captured</td><td>n8n receives webhook &rarr; calls audit script &rarr; Claude generates report &rarr; pushes to Sheets</td></tr>
+  <tr><td><strong>New lead added</strong></td><td>Lead appears in CRM/spreadsheet</td><td>Claude detects new row &rarr; enriches with Apollo &rarr; drafts personalised sequence &rarr; loads into outreach tool</td></tr>
+  <tr><td><strong>Client email received</strong></td><td>Client sends a question or request</td><td>Gmail MCP detects email &rarr; Claude drafts reply &rarr; creates Asana task &rarr; notifies via Slack</td></tr>
+  <tr><td><strong>Scheduled cron</strong></td><td>Daily/weekly recurring task</td><td>Cron triggers &rarr; Claude pulls fresh data &rarr; generates report &rarr; emails to stakeholder</td></tr>
+</table>
+
+<h3 id="m4-monitor">Monitoring &amp; Safety</h3>
 
 <h4>Heartbeat Monitoring</h4>
-<p>For agent systems with many components, build a heartbeat monitor:</p>
+<p>For agent systems with many components, build a heartbeat monitor. Every agent writes a timestamp to its tracking record. A monitor checks: if last heartbeat is more than 5 minutes old, alert.</p>
 
-<div class="code-block"><span class="label">heartbeat.py (concept)</span># Every agent writes a timestamp to its Airtable record
-# Monitor checks: if last_heartbeat > 5 min ago, alert
-#
-# Real example: 36 agents, 255 Airtable records,
-# 10/10 guardrails, heartbeat checks every 60s</div>
+<h4>Kill Switch</h4>
+<p>If error rate exceeds a threshold in a time window, pause all automated operations and notify. This prevents runaway costs and cascading failures.</p>
 
-<h4>Self-Healing Patterns</h4>
-<ul>
-  <li><strong>API fallback chains:</strong> If OpenAI is down, fall back to Perplexity. If Perplexity is down, fall back to web search.</li>
-  <li><strong>Kill switches:</strong> If error rate > 10% in 5 minutes, pause all automated operations and notify.</li>
-  <li><strong>Graceful degradation:</strong> If premium data source fails, produce the report with whatever data is available, clearly marking gaps.</li>
-</ul>
+<h4>Graceful Degradation</h4>
+<p>If a premium data source fails, produce the output with whatever data is available. Clearly mark gaps rather than failing the whole task. API fallback chains: if source A is down, try source B, then source C.</p>
 
-<div class="callout warning">
+<div class="callout important">
   <div class="callout-label">Safety Rule</div>
-  No recurring crons or automated scrapes until you've audited the credit cost. All automation starts as <strong>manual-trigger only</strong>. Promote to scheduled only after you've seen the per-run cost.
+  No recurring crons or automated pipelines until you have audited the per-run credit cost. All automation starts as <strong>manual-trigger only</strong>. Promote to scheduled only after you have seen the per-run cost and verified the output quality over at least 5 manual runs.
+</div>
+
+<div class="checkpoint">
+  <div class="checkpoint-header">Module 4 Checkpoint</div>
+  <ul>
+    <li>You understand /loop for recurring tasks</li>
+    <li>You can spawn background agents for non-blocking work</li>
+    <li>You know the 4 event-driven trigger patterns</li>
+    <li>You know the safety rules: heartbeat, kill switch, graceful degradation</li>
+  </ul>
 </div>
 
 
-<!-- ════════════════════════════════════════════════════════════════ -->
-<!-- MODULE 5                                                       -->
-<!-- ════════════════════════════════════════════════════════════════ -->
+<!-- ================================================================ -->
+<!-- MODULE 5 — MEMORY ARCHITECTURE                                  -->
+<!-- ================================================================ -->
 <h2 id="m5"><span class="module-num">Module 05</span>The Memory Architecture</h2>
 
-<p>Memory is what makes Claude feel like a partner, not a tool. Across hundreds of sessions, Claude remembers your preferences, your clients, your decisions, your project state &mdash; all stored as small files that get loaded at the start of every conversation.</p>
+<p>Memory is what makes Claude feel like a partner, not a tool. Across hundreds of sessions, Claude remembers your preferences, your projects, your decisions, your constraints &mdash; all stored as small markdown files that get loaded at the start of every conversation.</p>
 
 <h3 id="m5-layers">The 4 Memory Types</h3>
 
 <table>
   <tr><th>Type</th><th>What It Stores</th><th>Example</th></tr>
-  <tr><td><strong>User</strong></td><td>Who you are, your role, preferences</td><td>"Donal is an agency owner, prefers terse responses, British English"</td></tr>
-  <tr><td><strong>Feedback</strong></td><td>What to do / not do (corrections + confirmations)</td><td>"Never mock the database in integration tests"</td></tr>
-  <tr><td><strong>Project</strong></td><td>Active work, decisions, deadlines</td><td>"Merge freeze starts 2026-03-05 for mobile release"</td></tr>
-  <tr><td><strong>Reference</strong></td><td>Where to find things in external systems</td><td>"Pipeline bugs tracked in Linear project INGEST"</td></tr>
+  <tr><td><strong>User</strong></td><td>Who you are, your role, preferences</td><td>"Senior consultant, prefers terse responses, British English, dislikes jargon"</td></tr>
+  <tr><td><strong>Feedback</strong></td><td>What to do / not do (corrections + confirmations)</td><td>"Never mock the database in integration tests" &middot; "Always use absolute file paths"</td></tr>
+  <tr><td><strong>Project</strong></td><td>Active work, decisions, deadlines</td><td>"Dashboard V1 live, V2 scoped for next sprint" &middot; "Merge freeze until Friday"</td></tr>
+  <tr><td><strong>Reference</strong></td><td>Where to find things in external systems</td><td>"Pipeline bugs tracked in Linear project INGEST" &middot; "All API keys listed in reference_apis.md"</td></tr>
 </table>
 
-<h3 id="m5-index">MEMORY.md &mdash; The Index</h3>
+<h3>MEMORY.md &mdash; The Index</h3>
 
-<p><code>MEMORY.md</code> is loaded into every conversation. It's an index, not content &mdash; each entry links to a detailed file. Keep it under 200 lines (anything after gets truncated).</p>
+<p><code>MEMORY.md</code> is loaded into every conversation. It is an index, not content &mdash; each entry links to a detailed file. Keep it under 200 lines (anything beyond gets truncated by the context loader).</p>
 
-<div class="code-block"><span class="label">MEMORY.md structure</span># Memory Index
+<div class="code-block has-copy"><button class="copy-btn" data-copy="memory-example">Copy</button><span class="label" style="right:80px;">MEMORY.md</span># Memory Index
 
 ## User
-- [user_profile.md](user_profile.md) &mdash; Agency owner, prefers terse, British English
+- [user_profile.md](user_profile.md) - Role, preferences, communication style
 
 ## Feedback
-- [feedback_git.md](feedback_git.md) &mdash; Alex owns all git decisions, never ask Donal
-- [feedback_testing.md](feedback_testing.md) &mdash; Integration tests hit real DB, not mocks
+- [feedback_git.md](feedback_git.md) - Git workflow rules and preferences
+- [feedback_testing.md](feedback_testing.md) - Integration tests hit real DB
 
 ## Project
-- [project_elevare.md](project_elevare.md) &mdash; Tutoring business build, DNS blocked on domain
-- [project_dashboard.md](project_dashboard.md) &mdash; Ops dashboard V1 live on CF Pages
+- [project_dashboard.md](project_dashboard.md) - Ops dashboard V1 live
+- [project_onboarding.md](project_onboarding.md) - Client onboarding automation
 
 ## Reference
-- [reference_apis.md](reference_apis.md) &mdash; All API keys + MCP status tracker</div>
+- [reference_apis.md](reference_apis.md) - All API keys + MCP status</div>
+
+<h3>Memory vs CLAUDE.md vs Plans</h3>
+
+<table>
+  <tr><th>File</th><th>Purpose</th><th>Change Frequency</th></tr>
+  <tr><td><strong>CLAUDE.md</strong></td><td>Permanent workspace identity and rules</td><td>Rarely &mdash; only when business model changes</td></tr>
+  <tr><td><strong>Memory files</strong></td><td>Evolving context, decisions, state</td><td>Weekly &mdash; updated as projects progress</td></tr>
+  <tr><td><strong>Plan files</strong></td><td>Current task execution plan</td><td>Per session &mdash; disposable once task is done</td></tr>
+</table>
+
+<p>Do not save task-specific details to memory &mdash; those belong in the plan. Memory is for things that matter across sessions.</p>
 
 <h3 id="m5-zones">Collaboration Zones</h3>
 
-<p>When working with multiple people or projects, memory gets scoped into zones:</p>
-
 <table>
-  <tr><th>Zone</th><th>Who Sees It</th><th>What's In It</th></tr>
-  <tr><td><strong>Solo</strong></td><td>You + Claude only</td><td>Business strategy, financials, personal goals</td></tr>
-  <tr><td><strong>Partner-shared</strong></td><td>You + specific collaborator</td><td>Shared project state, decisions, deliverables</td></tr>
-  <tr><td><strong>Client-facing</strong></td><td>Anyone who reads the output</td><td>Only professional, scrubbed content</td></tr>
+  <tr><th>Zone</th><th>Who Sees It</th><th>What Goes In</th></tr>
+  <tr><td><strong>Solo</strong></td><td>You + Claude only</td><td>Business strategy, financials, personal goals, sensitive decisions</td></tr>
+  <tr><td><strong>Partner-shared</strong></td><td>You + specific collaborator</td><td>Shared project state, joint decisions, deliverables</td></tr>
+  <tr><td><strong>Client-facing</strong></td><td>Anyone who reads the output</td><td>Only professional, scrubbed content &mdash; no internal notes</td></tr>
 </table>
 
-<div class="callout tip">
-  <div class="callout-label">Memory vs CLAUDE.md vs Plans</div>
-  <strong>CLAUDE.md</strong> = permanent identity (rarely changes). <strong>Memory</strong> = evolving context (updates weekly). <strong>Plans</strong> = current task (changes per session). Don't save task-specific details to memory &mdash; those belong in the plan.
+<div class="checkpoint">
+  <div class="checkpoint-header">Module 5 Checkpoint</div>
+  <ul>
+    <li>You understand the 4 memory types (user, feedback, project, reference)</li>
+    <li>You know how MEMORY.md works as an index</li>
+    <li>You can distinguish memory vs CLAUDE.md vs plans</li>
+    <li>You understand collaboration zones for multi-person setups</li>
+  </ul>
 </div>
 
 
-<!-- ════════════════════════════════════════════════════════════════ -->
-<!-- MODULE 6                                                       -->
-<!-- ════════════════════════════════════════════════════════════════ -->
-<h2 id="m6"><span class="module-num">Module 06</span>MCP Ecosystem &mdash; Connecting Everything</h2>
+<!-- ================================================================ -->
+<!-- MODULE 6 — SMART PERSONAS                                       -->
+<!-- ================================================================ -->
+<h2 id="m6"><span class="module-num">Module 06</span>Smart Personas &mdash; Your Specialist Team</h2>
 
-<p>MCP (Model Context Protocol) is Claude Code's native plugin system. Each MCP server gives Claude a new set of tools &mdash; read Google Sheets, search Drive, send Slack messages, fetch web pages.</p>
+<p>One Claude instance can play many roles. But a Claude instance given a <strong>specific persona</strong> &mdash; with domain expertise, communication style, and decision frameworks baked in &mdash; produces dramatically better output than a generic prompt. Think of it as having a team of specialists, each one tuned for their domain.</p>
 
-<h3 id="m6-what">What MCP Unlocks</h3>
+<div class="terminal-quote">Right persona, right task = 10x output quality<span class="tq-secondary">Same model. Same API. Completely different results.</span></div>
+
+<h3 id="m6-four">The 4 Core Personas</h3>
+
+<div class="api-stack" style="border-left-color: var(--purple);">
+  <div class="api-stack-header" style="color: var(--purple);">Research Analyst</div>
+  <div class="api-stack-tagline">"Data-obsessed, citation-heavy, never speculates without evidence"</div>
+  <p style="font-size:14px; margin-bottom:8px;">Personality: methodical, thorough, slightly sceptical. Presents findings with sources. Flags confidence levels on every claim. Defaults to "here is what the data says" over "here is what I think."</p>
+  <p style="font-size:13px; color: var(--muted); margin-bottom:0;"><strong>Use for:</strong> market research, competitive analysis, data-driven audits, fact-checking, literature reviews, trend analysis.</p>
+</div>
+
+<div class="api-stack" style="border-left-color: var(--pink);">
+  <div class="api-stack-header" style="color: var(--pink);">Copywriter</div>
+  <div class="api-stack-tagline">"Persuasive, concise, reads the room before writing a word"</div>
+  <p style="font-size:14px; margin-bottom:8px;">Personality: punchy, direct, allergic to filler. Writes for the reader, not the writer. Varies tone by context &mdash; formal for proposals, conversational for emails, urgent for CTAs. Every sentence earns its place.</p>
+  <p style="font-size:13px; color: var(--muted); margin-bottom:0;"><strong>Use for:</strong> email sequences, landing pages, proposals, social copy, ad copy, case studies, presentations.</p>
+</div>
+
+<div class="api-stack" style="border-left-color: var(--green);">
+  <div class="api-stack-header" style="color: var(--green);">Technical Architect</div>
+  <div class="api-stack-tagline">"Systems thinker, builds for scale, allergic to technical debt"</div>
+  <p style="font-size:14px; margin-bottom:8px;">Personality: pragmatic, structured, thinks in systems and dependencies. Considers edge cases before building. Prefers simple solutions that scale over clever solutions that break. Documents decisions.</p>
+  <p style="font-size:13px; color: var(--muted); margin-bottom:0;"><strong>Use for:</strong> architecture decisions, API integrations, automation design, database schema, deployment pipelines, code reviews.</p>
+</div>
+
+<div class="api-stack" style="border-left-color: var(--amber);">
+  <div class="api-stack-header" style="color: var(--amber);">Sales Strategist</div>
+  <div class="api-stack-tagline">"Revenue-focused, reads objections before they surface, always closing"</div>
+  <p style="font-size:14px; margin-bottom:8px;">Personality: empathetic but commercial. Thinks in terms of pain points, objections, and decision triggers. Frames everything through the buyer's lens. Never pushy &mdash; but always moving toward a decision.</p>
+  <p style="font-size:13px; color: var(--muted); margin-bottom:0;"><strong>Use for:</strong> proposals, objection handling, pricing strategy, sales emails, discovery call prep, upsell sequences, competitive positioning.</p>
+</div>
+
+<h3 id="m6-impl">Implementation</h3>
+
+<p>Personas are implemented as system prompts inside skills or as standalone persona files:</p>
+
+<div class="code-block has-copy"><button class="copy-btn" data-copy="persona-impl">Copy</button><span class="label" style="right:80px;">persona file</span>---
+name: research-analyst
+description: Deep research with citations and confidence levels
+model: claude-sonnet-4-5-20250514
+---
+
+# Research Analyst Persona
+
+You are a Research Analyst. Your core traits:
+
+- Every claim includes a source or is flagged as inference
+- Confidence levels: HIGH (multiple sources), MEDIUM (single
+  source), LOW (inference from adjacent data)
+- Present findings in structured tables, not paragraphs
+- Flag contradictions in source material explicitly
+- Default output: executive summary + detailed findings +
+  methodology note</div>
+
+<p>You can also switch personas mid-conversation:</p>
+
+<div class="prompt-example">Switch to Sales Strategist mode. Rewrite this proposal focusing on the buyer's objections and decision triggers.</div>
+
+<div class="callout tip">
+  <div class="callout-label">Compound Personas</div>
+  For complex tasks, combine personas in sequence: Research Analyst gathers the data &rarr; Sales Strategist frames it as a pitch &rarr; Copywriter polishes the final output. Each persona brings a different lens to the same material.
+</div>
+
+<div class="checkpoint">
+  <div class="checkpoint-header">Module 6 Checkpoint</div>
+  <ul>
+    <li>You understand the 4 core personas and when to use each</li>
+    <li>You can implement a persona as a skill frontmatter or persona file</li>
+    <li>You know how to chain personas for compound tasks</li>
+  </ul>
+</div>
+
+
+<!-- ================================================================ -->
+<!-- MODULE 7 — MCP ECOSYSTEM                                        -->
+<!-- ================================================================ -->
+<h2 id="m7"><span class="module-num">Module 07</span>MCP Ecosystem &mdash; Connecting Everything</h2>
+
+<p>MCP (Model Context Protocol) is Claude Code's native plugin system. Each MCP server gives Claude a new set of tools &mdash; read Google Sheets, search Drive, send Slack messages, fetch web pages &mdash; without leaving the terminal.</p>
+
+<h3>What MCP Unlocks</h3>
 
 <p>Without MCP, Claude reads and writes files in your workspace. With MCP:</p>
 
@@ -799,14 +1149,15 @@ Claude: [continues working with you on the master plan]
   <li>Claude can <strong>read your Google Sheets</strong> without you pasting data</li>
   <li>Claude can <strong>search your Drive</strong> by filename and read documents</li>
   <li>Claude can <strong>fetch any web page</strong> and extract structured data</li>
-  <li>Claude can <strong>authenticate with OAuth</strong> to services on your behalf</li>
+  <li>Claude can <strong>post to Slack</strong> channels and read message history</li>
+  <li>Claude can <strong>manage GitHub</strong> issues, PRs, and code search via API</li>
 </ul>
 
-<h3 id="m6-stack">The Full MCP Stack</h3>
+<h3 id="m7-stack">The Full MCP Stack</h3>
 
 <table>
   <tr><th>MCP Server</th><th>Provider</th><th>What It Does</th></tr>
-  <tr><td><strong>Google Drive</strong></td><td>Anthropic (built-in)</td><td>Read/search Drive files, Sheets, Docs</td></tr>
+  <tr><td><strong>Google Drive</strong></td><td>Anthropic (built-in)</td><td>Read/search Drive files, Docs, Slides</td></tr>
   <tr><td><strong>Google Sheets</strong></td><td>Anthropic (built-in)</td><td>Read/write spreadsheet cells and ranges</td></tr>
   <tr><td><strong>Web Fetch</strong></td><td>Built-in</td><td>Fetch any URL, extract content</td></tr>
   <tr><td><strong>Web Search</strong></td><td>Built-in</td><td>Search the internet in real-time</td></tr>
@@ -815,107 +1166,188 @@ Claude: [continues working with you on the master plan]
   <tr><td><strong>GitHub</strong></td><td>Community</td><td>Issues, PRs, code search via API</td></tr>
 </table>
 
+<h3 id="m7-config">Configuration</h3>
+
 <details>
-  <summary>Setting up MCP servers</summary>
+  <summary>Generic settings.json example</summary>
   <div class="detail-body">
-    <p>MCP servers are configured in <code>.claude/settings.json</code> or via Claude Code's settings UI. Each server typically needs:</p>
-    <ol>
-      <li>An npm package or local script</li>
-      <li>Authentication (OAuth flow or API key in env var)</li>
-      <li>A one-time approval when Claude first uses it</li>
-    </ol>
-    <p>Ask Claude: <em>"Set up the Google Drive MCP server"</em> and it'll walk you through the process.</p>
+<div class="code-block has-copy"><button class="copy-btn" data-copy="mcp-config">Copy</button><span class="label" style="right:80px;">settings.json</span>{
+  "mcpServers": {
+    "google-drive": {
+      "command": "npx",
+      "args": ["-y", "@anthropic/mcp-google-drive"],
+      "env": {
+        "GOOGLE_CREDENTIALS_PATH": "./credentials.json"
+      }
+    },
+    "google-sheets": {
+      "command": "npx",
+      "args": ["-y", "@anthropic/mcp-google-sheets"],
+      "env": {
+        "GOOGLE_CREDENTIALS_PATH": "./credentials.json"
+      }
+    },
+    "firecrawl": {
+      "command": "npx",
+      "args": ["-y", "@anthropic/mcp-firecrawl"],
+      "env": {
+        "FIRECRAWL_API_KEY": "${FIRECRAWL_API_KEY}"
+      }
+    },
+    "slack": {
+      "command": "npx",
+      "args": ["-y", "@anthropic/mcp-slack"],
+      "env": {
+        "SLACK_BOT_TOKEN": "${SLACK_BOT_TOKEN}"
+      }
+    }
+  }
+}</div>
+    <p>Each MCP server typically needs: an npm package or local script, authentication (OAuth flow or API key), and a one-time approval when Claude first uses it.</p>
   </div>
 </details>
 
 <div class="callout important">
   <div class="callout-label">MCP Security</div>
-  Only connect MCP servers from verified providers. Anthropic does not audit third-party MCP servers. Review each one before connecting &mdash; treat it like installing software. Never let an MCP server access financial data without explicit approval.
+  Only connect MCP servers from verified providers. Anthropic does not audit third-party MCP servers. Review each one before connecting &mdash; treat it like installing software. Never let an MCP server access financial data without explicit approval. If an MCP tool requests permissions that seem excessive, stop and investigate.
 </div>
 
-
-<!-- ════════════════════════════════════════════════════════════════ -->
-<!-- MODULE 7                                                       -->
-<!-- ════════════════════════════════════════════════════════════════ -->
-<h2 id="m7"><span class="module-num">Module 07</span>Real-World Showcases</h2>
-
-<p>Theory is cheap. Here's what this stack actually built &mdash; real projects, real numbers, real timelines.</p>
-
-<h3 id="m7-audits">The Audit Factory</h3>
-
-<div class="showcase">
-  <div class="showcase-header">9-Client Audit Wave</div>
-  <div class="showcase-meta">3 parallel chats &middot; 4 phases &middot; 90+ files produced</div>
-  <p>Audited 9 active SEO clients across AI visibility, schema, backlinks, and content in a single sprint. Each client got a full HTML audit deck deployed to GitHub Pages with live URLs.</p>
+<div class="checkpoint">
+  <div class="checkpoint-header">Module 7 Checkpoint</div>
   <ul>
-    <li><strong>APIs used:</strong> DataForSEO (SERP + backlinks + keywords), OpenAI (AI citation testing), Perplexity (cross-verification), Firecrawl (site crawls)</li>
-    <li><strong>Output:</strong> 9 interactive HTML decks, 4 niche-learnings docs, 3 master tracking sheets, 1 strategic brief</li>
-    <li><strong>Pattern:</strong> Chat 1 = data + client profiles. Chat 2 = design + scaffold. Chat 3 = merge + deploy.</li>
+    <li>You understand what MCP is and what it unlocks</li>
+    <li>You know the 7 core MCP servers and what each does</li>
+    <li>You can configure MCP servers via settings.json</li>
+    <li>You understand MCP security considerations</li>
   </ul>
 </div>
 
-<h3 id="m7-sites">The Site Builder</h3>
 
-<div class="showcase">
-  <div class="showcase-header">Prospect Lead Sites</div>
-  <div class="showcase-meta">From brief to live URL in one prompt</div>
-  <p>Build a complete prospect-facing site or audit deck, deploy it to GitHub Pages, and return a live shareable URL. No manual HTML, no FTP, no hosting config.</p>
+<!-- ================================================================ -->
+<!-- MODULE 8 — TERMINAL DOMINANCE                                   -->
+<!-- ================================================================ -->
+<h2 id="m8"><span class="module-num">Module 08</span>Terminal Dominance</h2>
+
+<div class="terminal-quote">One terminal. Total control.<span class="tq-secondary">No more 15-tab SaaS switching. Everything runs through one interface.</span></div>
+
+<p>Before Claude Code, a typical agency morning looked like this: open Chrome, log into Google Analytics, switch to Search Console, open Ahrefs, check Slack, open Asana, check email, switch to the CRM, open a spreadsheet, alt-tab 47 times. By 10am you have done zero actual work.</p>
+
+<p>With Claude Code, the entire stack is accessible from one terminal window. You type natural language, Claude calls the APIs, and results appear where you need them. No tab switching. No context switching. No SaaS dashboards competing for your attention.</p>
+
+<h3 id="m8-shortcuts">Laptop Power Shortcuts</h3>
+
+<p>These shortcuts make the terminal workflow even faster. Memorise the ones you use most:</p>
+
+<table>
+  <tr><th>Action</th><th>Mac</th><th>Windows</th></tr>
+  <tr><td><strong>Screenshot (full)</strong></td><td><kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>3</kbd></td><td><kbd>Win</kbd>+<kbd>Shift</kbd>+<kbd>S</kbd></td></tr>
+  <tr><td><strong>Screenshot (area)</strong></td><td><kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>4</kbd></td><td><kbd>Win</kbd>+<kbd>Shift</kbd>+<kbd>S</kbd></td></tr>
+  <tr><td><strong>Voice dictation</strong></td><td><kbd>Fn</kbd>+<kbd>Fn</kbd></td><td><kbd>Win</kbd>+<kbd>H</kbd></td></tr>
+  <tr><td><strong>Clipboard history</strong></td><td>Install Maccy or Raycast</td><td><kbd>Win</kbd>+<kbd>V</kbd></td></tr>
+  <tr><td><strong>App launcher</strong></td><td><kbd>Cmd</kbd>+<kbd>Space</kbd></td><td><kbd>Win</kbd>+<kbd>S</kbd></td></tr>
+  <tr><td><strong>Emoji picker</strong></td><td><kbd>Cmd</kbd>+<kbd>Ctrl</kbd>+<kbd>Space</kbd></td><td><kbd>Win</kbd>+<kbd>.</kbd></td></tr>
+  <tr><td><strong>Switch windows</strong></td><td><kbd>Cmd</kbd>+<kbd>Tab</kbd></td><td><kbd>Alt</kbd>+<kbd>Tab</kbd></td></tr>
+  <tr><td><strong>Terminal paste</strong></td><td><kbd>Cmd</kbd>+<kbd>V</kbd></td><td><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>V</kbd></td></tr>
+  <tr><td><strong>Clear terminal</strong></td><td><kbd>Cmd</kbd>+<kbd>K</kbd></td><td><kbd>Ctrl</kbd>+<kbd>L</kbd></td></tr>
+</table>
+
+<div class="callout tip">
+  <div class="callout-label">Voice Dictation + Claude Code</div>
+  The fastest Claude Code workflow is voice dictation into the terminal. Speak your request, let dictation transcribe it, hit Enter. No typing, no context switching. This is especially powerful for long, detailed prompts that would take minutes to type.
+</div>
+
+<div class="checkpoint">
+  <div class="checkpoint-header">Module 8 Checkpoint</div>
   <ul>
-    <li><strong>Workflow:</strong> <code>/quick-lead-site [business]</code> &rarr; scrape their site &rarr; build a customised Astro site &rarr; deploy &rarr; return live URL</li>
-    <li><strong>Verification:</strong> Every site verified with <code>curl -s -o /dev/null -w "%{http_code}"</code> returning 200 before being marked done</li>
-    <li><strong>Rule:</strong> Not "done" until HTTP 200 on the live URL. Pasting a URL without verification = failure.</li>
+    <li>You understand the single-terminal workflow advantage</li>
+    <li>You know the key power shortcuts for your OS</li>
+    <li>You have tried voice dictation into Claude Code at least once</li>
   </ul>
 </div>
 
-<h3 id="m7-content">The Content System</h3>
+
+<!-- ================================================================ -->
+<!-- MODULE 9 — SHOWCASES                                            -->
+<!-- ================================================================ -->
+<h2 id="m9"><span class="module-num">Module 09</span>Showcases &mdash; What This Stack Actually Built</h2>
+
+<p>Theory is cheap. Here are 6 real patterns we have executed &mdash; genericised but real numbers.</p>
 
 <div class="showcase">
-  <div class="showcase-header">Social Media Content Machine</div>
-  <div class="showcase-meta">5 phases &middot; all infrastructure + templates + carousels</div>
-  <p>Built a complete social content pipeline: LinkedIn Setup Guide, carousel templates (1080x1080 HTML slides), caption library, posting schedule, and reusable content skills.</p>
+  <div class="showcase-header">1. Multi-Client Audit Sprint</div>
+  <div class="showcase-meta">9 clients &middot; 4 dimensions &middot; parallel agents &middot; 90+ files produced</div>
+  <p>Audited 9 active clients across visibility, technical health, backlinks, and content in a single sprint. Each client received a full interactive HTML audit deck deployed to a live URL.</p>
   <ul>
-    <li><strong>Output:</strong> 9-slide carousel deck v3, 4 caption variants, posting schedule, Drive links sheet</li>
-    <li><strong>Skills built:</strong> Content brief generator, carousel builder, caption writer</li>
-    <li><strong>Pattern:</strong> Build the infrastructure once, run it weekly with one prompt</li>
+    <li><strong>Pattern:</strong> Fan-out agents (1 per client) &rarr; orchestrator integrates &rarr; deploy pipeline pushes live</li>
+    <li><strong>APIs used:</strong> SERP data, AI citation testing, cross-verification, site crawls</li>
+    <li><strong>Output:</strong> 9 interactive decks, 4 niche-learnings docs, 3 tracking sheets, 1 strategic brief</li>
   </ul>
 </div>
 
-<h3 id="m7-voice">The Voice Clone Pipeline</h3>
-
 <div class="showcase">
-  <div class="showcase-header">Voice-Clone Factory on M5 Mac</div>
-  <div class="showcase-meta">4-engine stack &middot; 50-sec sample &rarr; full voice clone</div>
-  <p>Built a local voice-cloning pipeline: Applio + RVC for voice modelling, XTTS v2 for text-to-speech, Orpheus 3B for streaming, all running on a MacBook M5 Pro with MPS acceleration.</p>
+  <div class="showcase-header">2. Brief-to-Live Site</div>
+  <div class="showcase-meta">1 paragraph brief &rarr; live website &rarr; single prompt</div>
+  <p>From a one-paragraph business description to a fully deployed, mobile-responsive website with live URL. No manual HTML. No FTP. No hosting configuration.</p>
   <ul>
-    <li><strong>Engines:</strong> ElevenLabs Creator (cloud GUI), XTTS v2 (local), RVC + Applio (local training), Orpheus 3B (local streaming)</li>
-    <li><strong>Proof:</strong> 50-second reference audio &rarr; 75-word synthesised speech in 30 seconds</li>
-    <li><strong>Use case:</strong> Landing page voice CTAs, onboarding audio, AI tutor voice</li>
+    <li><strong>Pattern:</strong> Scrape existing web presence &rarr; generate site &rarr; deploy &rarr; verify HTTP 200</li>
+    <li><strong>Verification:</strong> Not "done" until <code>curl</code> returns 200 on the live URL</li>
+    <li><strong>Time:</strong> Under 10 minutes from brief to live</li>
   </ul>
 </div>
 
-<details>
-  <summary>More showcases: Ops Dashboard, Agent System, Intelligence Platform</summary>
-  <div class="detail-body">
-    <h4>Ops Dashboard V1</h4>
-    <p>Internal operations dashboard deployed on Cloudflare Pages. 9 clients, 23 leads, 5 pages, live Google Sheets data. Built across 3 parallel chats in one session.</p>
+<div class="showcase">
+  <div class="showcase-header">3. Content Pipeline</div>
+  <div class="showcase-meta">Strategy &rarr; drafts &rarr; graphics &rarr; scheduling &middot; 15 min/week</div>
+  <p>Built a complete content pipeline: strategy framework, carousel templates, caption library, posting schedule, and reusable generation skills. Weekly execution takes one prompt.</p>
+  <ul>
+    <li><strong>Pattern:</strong> Build infrastructure once &rarr; run weekly with one command</li>
+    <li><strong>Output:</strong> Multi-slide decks, caption variants per platform, scheduling calendar</li>
+    <li><strong>Maintenance:</strong> 15 minutes per week to produce a full week of content</li>
+  </ul>
+</div>
 
-    <h4>36-Agent System</h4>
-    <p>Built 36 specialised AI agents across 3 levels (strategic/tactical/operational). Each agent has a persona, tools, and handoff protocols. Tracked in Airtable with heartbeat monitoring.</p>
+<div class="showcase">
+  <div class="showcase-header">4. Voice Clone Factory</div>
+  <div class="showcase-meta">60-second sample &rarr; brand voice &rarr; runs locally</div>
+  <p>Built a local voice-cloning pipeline with multiple engines. A 60-second audio sample becomes a reusable brand voice for landing pages, onboarding audio, and video narration.</p>
+  <ul>
+    <li><strong>Pattern:</strong> Cloud API for quick clones + local models for unlimited generation</li>
+    <li><strong>Engines:</strong> Cloud TTS for convenience, local RVC for training, local streaming for real-time</li>
+    <li><strong>Cost:</strong> After initial setup, local generation is free</li>
+  </ul>
+</div>
 
-    <h4>Personal Intelligence Platform</h4>
-    <p>31 YouTube channels tracked, 62 books transcribed and ingested, 8 podcast feeds live, all feeding into a Google Sheet tracker with auto-sync. Course material from 6 SEO courses extracted and structured.</p>
-  </div>
-</details>
+<div class="showcase">
+  <div class="showcase-header">5. Automated Outreach</div>
+  <div class="showcase-meta">200+ leads/week &middot; zero manual prospecting</div>
+  <p>End-to-end lead generation: prospect identification, email verification, personalised sequence creation, campaign loading, and reply monitoring. Human only intervenes when a lead replies positively.</p>
+  <ul>
+    <li><strong>Pattern:</strong> Lead scraping &rarr; enrichment &rarr; sequence generation &rarr; campaign load &rarr; reply monitoring</li>
+    <li><strong>Volume:</strong> 200+ personalised leads per week</li>
+    <li><strong>Human time:</strong> Review hot replies and book calls. Everything else is automated.</li>
+  </ul>
+</div>
+
+<div class="showcase">
+  <div class="showcase-header">6. Knowledge Ingestion</div>
+  <div class="showcase-meta">60+ books &middot; 30+ courses &middot; 8 podcasts &rarr; searchable knowledge base</div>
+  <p>Bulk-ingested an entire professional library into a structured, searchable knowledge base. Books transcribed, courses extracted, podcast feeds monitored &mdash; all feeding into a tracking system with auto-sync.</p>
+  <ul>
+    <li><strong>Pattern:</strong> Extract &rarr; transcribe &rarr; structure &rarr; index &rarr; sync to tracker</li>
+    <li><strong>Sources:</strong> 60+ business/strategy books, 30+ video courses, 8 podcast feeds</li>
+    <li><strong>Output:</strong> Structured markdown files, searchable by topic, linked to source</li>
+  </ul>
+</div>
 
 
-<!-- ════════════════════════════════════════════════════════════════ -->
-<!-- MODULE 8                                                       -->
-<!-- ════════════════════════════════════════════════════════════════ -->
-<h2 id="m8"><span class="module-num">Module 08</span>The Frontier &mdash; Agent SDK, Swarms, What's Next</h2>
+<!-- ================================================================ -->
+<!-- MODULE 10 — THE FRONTIER                                        -->
+<!-- ================================================================ -->
+<h2 id="m10"><span class="module-num">Module 10</span>The Frontier &mdash; Agent SDK, Swarms, What's Next</h2>
 
-<p>Everything above is what's working today. Here's what's coming &mdash; and how to position yourself to use it the moment it arrives.</p>
+<p>Everything above is what is working today. Here is what is coming &mdash; and how to position yourself to use it the moment it arrives.</p>
 
-<h3 id="m8-sdk">The Claude Agent SDK</h3>
+<h3>The Claude Agent SDK</h3>
 
 <p>Anthropic's Agent SDK lets you build custom agents that run outside of Claude Code. Think of it as Claude-as-a-library &mdash; you write Python or TypeScript, call Claude's API, and build agents that:</p>
 
@@ -926,49 +1358,48 @@ Claude: [continues working with you on the master plan]
   <li>Hand off to each other (Agent A completes &rarr; triggers Agent B)</li>
 </ul>
 
-<div class="code-block"><span class="label">Agent SDK concept (Python)</span>from anthropic import Agent
+<div class="code-block has-copy"><button class="copy-btn" data-copy="agent-sdk">Copy</button><span class="label" style="right:80px;">Python</span>from anthropic import Agent
 
 audit_agent = Agent(
-    model="claude-sonnet-4-6",
-    tools=[dataforseo_tool, firecrawl_tool, sheets_tool],
-    system_prompt="You are an SEO audit specialist..."
+    model="claude-sonnet-4-5-20250514",
+    tools=[data_tool, crawl_tool, sheets_tool],
+    system_prompt="You are a visibility audit specialist..."
 )
 
 result = audit_agent.run(
     "Audit example-business.com for AI visibility"
 )</div>
 
-<h3 id="m8-swarms">Swarms &mdash; Agents That Feed Each Other</h3>
+<h3 id="m10-swarm">Swarm Flow &mdash; Agents That Feed Each Other</h3>
 
 <p>A swarm is the end state: a network of agents where each agent's output is another agent's input. No human in the loop for routine operations.</p>
 
-<div class="code-block"><span class="label">Swarm architecture (vision)</span>Lead Scraper Agent
-  &darr; finds prospect
-Audit Agent
-  &darr; runs AI visibility check
-Pitch Builder Agent
-  &darr; creates custom deck
-Email Drafter Agent
-  &darr; writes personalised outreach
-Campaign Agent
-  &darr; loads into Instantly
-Follow-Up Agent
-  &darr; monitors replies, escalates hot leads
-Calendar Agent
-  &darr; books the call
-Pre-Call Brief Agent
-  &darr; prepares you for the meeting
-
-You show up. You close.</div>
+<div class="swarm-flow">
+  <div class="swarm-node">Scraper Agent</div>
+  <div class="swarm-arrow"></div>
+  <div class="swarm-node">Audit Agent</div>
+  <div class="swarm-arrow"></div>
+  <div class="swarm-node">Pitch Builder Agent</div>
+  <div class="swarm-arrow"></div>
+  <div class="swarm-node">Email Drafter Agent</div>
+  <div class="swarm-arrow"></div>
+  <div class="swarm-node">Campaign Agent</div>
+  <div class="swarm-arrow"></div>
+  <div class="swarm-node">Follow-Up Agent</div>
+  <div class="swarm-arrow"></div>
+  <div class="swarm-node">Calendar Agent</div>
+  <div class="swarm-arrow"></div>
+  <div class="swarm-node">Pre-Call Brief Agent</div>
+  <div class="swarm-arrow"></div>
+  <div class="swarm-node final">YOU CLOSE</div>
+</div>
 
 <div class="callout power">
   <div class="callout-label">The 80/20 of Swarms</div>
-  You don't need the full swarm to get value. Build <strong>one 3-agent pipeline</strong> that handles your most common workflow end-to-end. Most people will never build past 3 connected agents &mdash; and that's enough to 10x their output.
+  You do not need the full swarm to get value. Build <strong>one 3-agent pipeline</strong> that handles your most common workflow end-to-end. Most people will never build past 3 connected agents &mdash; and that is enough to 10x their output.
 </div>
 
-<h3 id="m8-vision">The Vision</h3>
-
-<p>Here's where this is all going:</p>
+<h3 id="m10-vision">The Vision</h3>
 
 <table>
   <tr><th>Today</th><th>6 Months</th><th>12 Months</th></tr>
@@ -979,28 +1410,214 @@ You show up. You close.</div>
   <tr><td>Memory across sessions</td><td>Shared memory across agent teams</td><td>Organisational knowledge graph</td></tr>
 </table>
 
-<p>The tools exist today. The question isn't "can we build this?" &mdash; it's "how fast can we wire it up?"</p>
+<p>The tools exist today. The question is not "can we build this?" &mdash; it is "how fast can we wire it up?"</p>
 
 <div class="checkpoint">
-  <div class="checkpoint-header">Final Checkpoint &mdash; You're Dangerous. For Real.</div>
+  <div class="checkpoint-header">Final Checkpoint &mdash; AI Agents Running Your Business</div>
   <ul>
-    <li>You have 20+ APIs in your .env</li>
-    <li>You can orchestrate parallel agents</li>
-    <li>You have 10+ reusable skills</li>
-    <li>You've run at least one autonomous loop</li>
-    <li>Your memory system has 50+ files</li>
-    <li>You've deployed a live deliverable via GitHub Pages</li>
-    <li>You've built or planned a 3-agent pipeline</li>
+    <li>You have 30+ APIs in your .env</li>
+    <li>You can orchestrate parallel agents across multiple patterns</li>
+    <li>You have 10+ reusable skills with proper model routing</li>
+    <li>You have run at least one autonomous loop</li>
+    <li>Your memory system has 50+ files across 4 types</li>
+    <li>You have deployed a live deliverable from the terminal</li>
+    <li>You have built or planned a 3-agent pipeline</li>
+    <li>You understand personas and when to switch between them</li>
   </ul>
+</div>
+
+<div class="callout power" style="margin-top: 32px; text-align: center; padding: 28px;">
+  <div class="callout-label" style="font-size: 13px;">What Comes Next</div>
+  <p style="font-size: 17px; font-weight: 700; margin-bottom: 8px;">This guide showed you what is possible.</p>
+  <p style="font-size: 15px; color: var(--muted); margin-bottom: 0;">To get it built for YOUR business &mdash; that is what we do.</p>
 </div>
 
 
 <!-- ── FOOTER ── -->
 <div class="footer">
-  <p><strong>Claude Code: Full Stack Playbook</strong> &middot; Advanced Guide v1</p>
-  <p>Built with Claude Code &middot; Online Optimisers &middot; April 2026</p>
+  <p><strong>Claude Code: Full Stack Playbook</strong> &middot; Advanced Guide v2</p>
+  <p>Built with Claude Code &middot; <strong>Online Optimisers</strong> &middot; April 2026</p>
   <p style="margin-top: 8px; color: var(--muted);">Prerequisite: <a href="claude-code-startup-guide.html" style="color: var(--cyan);">From Zero to Dangerous</a> (Startup Guide)</p>
 </div>
+
+<!-- ── BACK TO TOP ── -->
+<a href="#top" class="back-to-top no-print" id="backToTop" title="Back to top">&uarr;</a>
+
+<!-- ════════════════════════════════════════════════════════════════ -->
+<!-- JAVASCRIPT                                                      -->
+<!-- ════════════════════════════════════════════════════════════════ -->
+<script>
+(function() {
+  'use strict';
+
+  /* ── COPY TO CLIPBOARD ── */
+  document.querySelectorAll('.copy-btn').forEach(function(btn) {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      var block = btn.closest('.code-block');
+      if (!block) return;
+      var text = block.textContent;
+      // Remove the "Copy" / "Copied!" button text from the copied content
+      text = text.replace(/^Copy$|^Copied!$/gm, '').trim();
+      // Remove label text if present
+      var label = block.querySelector('.label');
+      if (label) {
+        text = text.replace(label.textContent, '').trim();
+      }
+      navigator.clipboard.writeText(text).then(function() {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copied');
+        setTimeout(function() {
+          btn.textContent = 'Copy';
+          btn.classList.remove('copied');
+        }, 2000);
+      }).catch(function() {
+        btn.textContent = 'Error';
+        setTimeout(function() { btn.textContent = 'Copy'; }, 2000);
+      });
+    });
+  });
+
+  /* ── SCROLL SPY ── */
+  var sidebarLinks = document.querySelectorAll('.sidebar a[href^="#m"]');
+  var sections = [];
+  sidebarLinks.forEach(function(link) {
+    var href = link.getAttribute('href');
+    if (href && href.startsWith('#')) {
+      var target = document.getElementById(href.substring(1));
+      if (target) {
+        sections.push({ el: target, link: link, id: href.substring(1) });
+      }
+    }
+  });
+
+  function updateScrollSpy() {
+    var scrollPos = window.scrollY + 120;
+    var current = null;
+    for (var i = sections.length - 1; i >= 0; i--) {
+      if (sections[i].el.offsetTop <= scrollPos) {
+        current = sections[i];
+        break;
+      }
+    }
+    sidebarLinks.forEach(function(l) { l.classList.remove('active'); });
+    if (current) {
+      // Activate the current link and its parent module link
+      current.link.classList.add('active');
+      var parentSection = current.link.getAttribute('data-section');
+      if (parentSection) {
+        var moduleLink = document.querySelector('.sidebar a[href="#' + parentSection + '"].s-module');
+        if (moduleLink) moduleLink.classList.add('active');
+      }
+    }
+  }
+
+  var scrollSpyTimer = null;
+  window.addEventListener('scroll', function() {
+    if (scrollSpyTimer) return;
+    scrollSpyTimer = setTimeout(function() {
+      updateScrollSpy();
+      scrollSpyTimer = null;
+    }, 50);
+  });
+  updateScrollSpy();
+
+  /* ── ANIMATED STAT COUNTERS ── */
+  var statNums = document.querySelectorAll('.stat-card .num[data-target]');
+  var statsAnimated = false;
+
+  function animateCounters() {
+    if (statsAnimated) return;
+    var statRow = document.querySelector('.stat-row');
+    if (!statRow) return;
+    var rect = statRow.getBoundingClientRect();
+    if (rect.top > window.innerHeight || rect.bottom < 0) return;
+
+    statsAnimated = true;
+    statNums.forEach(function(numEl) {
+      var target = parseInt(numEl.getAttribute('data-target'), 10);
+      var prefix = numEl.getAttribute('data-prefix') || '';
+      var suffix = numEl.getAttribute('data-suffix') || '';
+      var duration = 1500;
+      var startTime = null;
+
+      if (target === 0) {
+        numEl.textContent = prefix + '0' + suffix;
+        return;
+      }
+
+      function step(timestamp) {
+        if (!startTime) startTime = timestamp;
+        var progress = Math.min((timestamp - startTime) / duration, 1);
+        // Ease out cubic
+        var eased = 1 - Math.pow(1 - progress, 3);
+        var current = Math.round(eased * target);
+        numEl.textContent = prefix + current + suffix;
+        if (progress < 1) {
+          requestAnimationFrame(step);
+        } else {
+          numEl.textContent = prefix + target + suffix;
+        }
+      }
+
+      requestAnimationFrame(step);
+    });
+  }
+
+  window.addEventListener('scroll', animateCounters);
+  animateCounters();
+
+  /* ── BACK TO TOP ── */
+  var backBtn = document.getElementById('backToTop');
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > 600) {
+      backBtn.classList.add('visible');
+    } else {
+      backBtn.classList.remove('visible');
+    }
+  });
+
+  /* ── MOBILE HAMBURGER ── */
+  var hamburger = document.getElementById('hamburger');
+  var sidebar = document.getElementById('sidebar');
+  var overlay = document.getElementById('sidebarOverlay');
+
+  function closeSidebar() {
+    sidebar.classList.remove('open');
+    overlay.classList.remove('show');
+  }
+
+  function openSidebar() {
+    sidebar.classList.add('open');
+    overlay.classList.add('show');
+  }
+
+  if (hamburger) {
+    hamburger.addEventListener('click', function() {
+      if (sidebar.classList.contains('open')) {
+        closeSidebar();
+      } else {
+        openSidebar();
+      }
+    });
+  }
+
+  if (overlay) {
+    overlay.addEventListener('click', closeSidebar);
+  }
+
+  // Close sidebar on link click (mobile)
+  sidebar.querySelectorAll('a').forEach(function(link) {
+    link.addEventListener('click', function() {
+      if (window.innerWidth < 1100) {
+        closeSidebar();
+      }
+    });
+  });
+
+})();
+</script>
 
 </body>
 </html>

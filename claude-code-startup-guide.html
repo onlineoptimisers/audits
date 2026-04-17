@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Claude Code Startup Guide — From Zero to Dangerous</title>
+  <title>Claude Code Startup Guide v2 — From Zero to Dangerous</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <style>
     @page { size: A4; margin: 2cm; }
@@ -37,7 +37,7 @@
       padding: 0 24px;
     }
 
-    /* ── PRINT ── */
+    /* -- PRINT -- */
     @media print {
       body { font-size: 12px; padding: 0; max-width: none; margin: 0; }
       .no-print { display: none !important; }
@@ -45,9 +45,10 @@
       h2 { page-break-before: always; }
       h2:first-of-type { page-break-before: avoid; }
       .callout, .exercise, .code-block, details { break-inside: avoid; }
+      .back-to-top { display: none !important; }
     }
 
-    /* ── SIDEBAR NAV ── */
+    /* -- SIDEBAR NAV -- */
     @media screen and (min-width: 1100px) {
       body { margin-left: 280px; }
       .sidebar {
@@ -78,9 +79,10 @@
         border-radius: 4px;
         margin-bottom: 2px;
         font-weight: 500;
-        transition: background 0.15s;
+        transition: background 0.15s, color 0.15s;
       }
       .sidebar a:hover { background: #e2e8f0; color: var(--blue); }
+      .sidebar a.active { background: #dbeafe; color: var(--blue); font-weight: 700; }
       .sidebar .s-module {
         font-weight: 700;
         color: var(--navy);
@@ -113,14 +115,29 @@
     }
     @media screen and (max-width: 1099px) {
       .sidebar { display: none; }
+      .sidebar.open {
+        display: block; position: fixed; top: 0; left: 0;
+        width: 260px; height: 100vh; overflow-y: auto;
+        background: var(--light); border-right: 1px solid var(--border);
+        padding: 24px 16px; font-size: 13px; z-index: 1000;
+        box-shadow: 4px 0 16px rgba(0,0,0,0.12);
+      }
     }
+    .ham-btn {
+      display: none; position: fixed; top: 14px; left: 14px;
+      z-index: 1001; background: var(--blue); color: #fff;
+      border: none; border-radius: 8px; padding: 7px 11px;
+      font-size: 18px; cursor: pointer; line-height: 1;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+    @media screen and (max-width: 1099px) { .ham-btn { display: block; } }
 
-    /* ── COVER ── */
+    /* -- COVER -- */
     .cover {
       text-align: center;
-      padding: 80px 20px 60px;
+      padding: 80px 20px 40px;
       border-bottom: 3px solid var(--blue);
-      margin-bottom: 48px;
+      margin-bottom: 0;
     }
     .cover-badge {
       display: inline-block;
@@ -150,7 +167,41 @@
     .cover-meta { font-size: 13px; color: var(--muted); }
     .cover-meta strong { color: var(--text); }
 
-    /* ── TOC ── */
+    /* -- STAT CARDS -- */
+    .stat-cards {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      padding: 32px 0;
+      margin-bottom: 48px;
+      border-bottom: 1px solid var(--border);
+    }
+    @media (max-width: 600px) {
+      .stat-cards { grid-template-columns: repeat(2, 1fr); }
+    }
+    .stat-card {
+      text-align: center;
+      padding: 20px 12px;
+      background: var(--light);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+    }
+    .stat-card .stat-number {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--blue);
+      line-height: 1.2;
+    }
+    .stat-card .stat-label {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    /* -- TOC -- */
     .toc {
       background: var(--light);
       border: 1px solid var(--border);
@@ -166,14 +217,14 @@
     .toc ol { list-style: none; counter-reset: toc; }
     .toc > ol > li { counter-increment: toc; margin-bottom: 8px; }
     .toc > ol > li::before {
-      content: "Module " counter(toc) " — ";
+      content: "Module " counter(toc) " -- ";
       font-weight: 700; color: var(--blue);
     }
     .toc a { color: var(--text); text-decoration: none; font-weight: 500; }
     .toc a:hover { color: var(--blue); text-decoration: underline; }
     .toc .toc-time { color: var(--muted); font-size: 13px; margin-left: 8px; }
 
-    /* ── HEADINGS ── */
+    /* -- HEADINGS -- */
     h2 {
       font-size: 26px; font-weight: 800; color: var(--navy);
       margin-top: 64px; margin-bottom: 8px;
@@ -187,13 +238,13 @@
     h3 { font-size: 19px; font-weight: 700; color: var(--text); margin-top: 36px; margin-bottom: 12px; }
     h4 { font-size: 16px; font-weight: 700; color: var(--text); margin-top: 24px; margin-bottom: 8px; }
 
-    /* ── BODY ── */
+    /* -- BODY -- */
     p { margin-bottom: 14px; }
     strong { font-weight: 700; }
     ul, ol { margin-bottom: 14px; padding-left: 24px; }
     li { margin-bottom: 6px; }
 
-    /* ── CALLOUTS ── */
+    /* -- CALLOUTS -- */
     .callout {
       border-left: 4px solid var(--blue);
       background: #f0f4ff;
@@ -212,7 +263,7 @@
     .callout.important .callout-label { color: var(--red); }
     .callout .callout-label { color: var(--blue); }
 
-    /* ── CODE ── */
+    /* -- CODE -- */
     code {
       font-family: 'JetBrains Mono', monospace; font-size: 13px;
       background: #f1f5f9; padding: 2px 6px; border-radius: 3px; color: var(--navy);
@@ -230,7 +281,27 @@
       letter-spacing: 1px; color: #64748b; font-weight: 600;
     }
 
-    /* ── TABLES ── */
+    /* -- COPY BUTTON -- */
+    .copy-btn {
+      position: absolute;
+      top: 8px;
+      right: 12px;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: #94a3b8;
+      font-size: 11px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+      z-index: 2;
+    }
+    .copy-btn:hover { background: rgba(255,255,255,0.2); color: #e2e8f0; }
+    .copy-btn.copied { background: var(--green); color: #fff; border-color: var(--green); }
+
+    /* -- TABLES -- */
     table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
     th {
       background: var(--light); font-weight: 700; text-align: left;
@@ -239,7 +310,7 @@
     }
     td { padding: 10px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
 
-    /* ── EXERCISES ── */
+    /* -- EXERCISES -- */
     .exercise {
       border: 2px solid var(--blue); border-radius: 8px;
       padding: 20px 24px; margin: 24px 0; background: #fafbff;
@@ -250,7 +321,7 @@
       margin-bottom: 12px;
     }
 
-    /* ── CHECKPOINT ── */
+    /* -- CHECKPOINT -- */
     .checkpoint {
       background: #f0fdf4; border: 2px solid var(--green);
       border-radius: 8px; padding: 20px 24px; margin: 28px 0;
@@ -265,7 +336,7 @@
       font-weight: 700; color: var(--green);
     }
 
-    /* ── DROPDOWNS (collapsible deep-dives) ── */
+    /* -- DROPDOWNS -- */
     details {
       margin: 16px 0;
       border: 1px solid var(--border);
@@ -296,7 +367,7 @@
     details .detail-body p { margin-bottom: 10px; }
     details .detail-body p:last-child { margin-bottom: 0; }
 
-    /* ── PROMPT EXAMPLES ── */
+    /* -- PROMPT EXAMPLES -- */
     .prompt-example {
       background: #f0f4ff; border: 1px solid #d0d7ff;
       border-radius: 6px; padding: 14px 18px;
@@ -308,7 +379,7 @@
       font-style: normal; color: var(--blue);
     }
 
-    /* ── KEY SHORTCUT ── */
+    /* -- KEY SHORTCUT -- */
     kbd {
       display: inline-block;
       background: var(--light); border: 1px solid var(--border);
@@ -318,94 +389,164 @@
       box-shadow: 0 1px 0 var(--border);
     }
 
-    /* ── FOOTER ── */
+    /* -- BACK TO TOP -- */
+    .back-to-top {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      width: 44px;
+      height: 44px;
+      background: var(--blue);
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      font-size: 20px;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s, visibility 0.3s;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .back-to-top.visible { opacity: 1; visibility: visible; }
+    .back-to-top:hover { background: var(--navy); }
+
+    /* -- PRICING TABLE -- */
+    .pricing-table { margin: 20px 0; }
+    .pricing-table td:nth-child(2) { font-weight: 700; color: var(--navy); }
+    .pricing-table tr.recommended td {
+      background: #f0f4ff;
+      border-bottom-color: var(--blue);
+    }
+
+    /* -- FOOTER -- */
     .footer {
       margin-top: 64px; padding: 32px 0;
       border-top: 2px solid var(--border);
       text-align: center; color: var(--muted); font-size: 13px;
     }
+    .footer a { color: var(--blue); text-decoration: none; }
+    .footer a:hover { text-decoration: underline; }
   </style>
 </head>
 <body>
 
-<!-- ── SIDEBAR NAV ── -->
-<nav class="sidebar no-print">
+<button class="ham-btn no-print" id="hamBtn" aria-label="Toggle menu">&#9776;</button>
+
+<!-- SIDEBAR NAV -->
+<nav class="sidebar no-print" id="mainSidebar">
   <h3>Startup Guide</h3>
   <div class="progress-bar"><div class="fill" id="progress-fill"></div></div>
-  <div class="progress-label" id="progress-label">0 / 8 modules</div>
+  <div class="progress-label" id="progress-label">0 / 9 modules</div>
 
   <a href="#top" class="s-module">Cover</a>
 
-  <a href="#m1" class="s-module">1. What You're Building <span class="s-time">5 min</span></a>
+  <a href="#m1" class="s-module">1. What You're Building <span class="s-time">10 min</span></a>
   <a href="#m1-outcome">The outcome</a>
+  <a href="#m1-pricing">Pricing</a>
   <a href="#m1-prereqs">Prerequisites</a>
 
   <a href="#m2" class="s-module">2. VS Code Setup <span class="s-time">15 min</span></a>
   <a href="#m2-install">Install + first launch</a>
-  <a href="#m2-extensions">Essential extensions</a>
-  <a href="#m2-shortcuts">Shortcuts that matter</a>
+  <a href="#m2-extensions">Extensions</a>
+  <a href="#m2-shortcuts">VS Code shortcuts</a>
+  <a href="#m2-laptop">Laptop power shortcuts</a>
+  <a href="#m2-workspace">Workspace structure</a>
 
   <a href="#m3" class="s-module">3. Git + GitHub <span class="s-time">15 min</span></a>
   <a href="#m3-why">Why version control</a>
-  <a href="#m3-setup">GitHub account + SSH</a>
-  <a href="#m3-daily">Daily git workflow</a>
+  <a href="#m3-setup">Setup steps</a>
+  <a href="#m3-daily">Daily 3 commands</a>
 
-  <a href="#m4" class="s-module">4. Claude Code <span class="s-time">10 min</span></a>
+  <a href="#m4" class="s-module">4. Claude Code Install <span class="s-time">10 min</span></a>
   <a href="#m4-install">Install the CLI</a>
   <a href="#m4-vscode">VS Code extension</a>
   <a href="#m4-permissions">Permission modes</a>
 
-  <a href="#m5" class="s-module">5. Your Identity Layer <span class="s-time">20 min</span></a>
+  <a href="#m5" class="s-module">5. Identity Layer <span class="s-time">20 min</span></a>
   <a href="#m5-claude-md">CLAUDE.md</a>
   <a href="#m5-memory">Memory system</a>
   <a href="#m5-rules">Rules + skills</a>
+  <a href="#m5-first">First conversation</a>
 
-  <a href="#m6" class="s-module">6. API Connections <span class="s-time">15 min</span></a>
-  <a href="#m6-what">What APIs unlock</a>
-  <a href="#m6-keys">Getting your keys</a>
-  <a href="#m6-mcp">MCP servers</a>
+  <a href="#m6" class="s-module">6. API Connections <span class="s-time">20 min</span></a>
+  <a href="#m6-social">Social Media stack</a>
+  <a href="#m6-seo">SEO stack</a>
+  <a href="#m6-marketing">All-in-1 Marketing</a>
+  <a href="#m6-personal">Personal Operator</a>
+  <a href="#m6-security">Security setup</a>
 
-  <a href="#m7" class="s-module">7. Prompting That Works <span class="s-time">15 min</span></a>
+  <a href="#m7" class="s-module">7. Prompting <span class="s-time">15 min</span></a>
   <a href="#m7-rules">The 5 rules</a>
-  <a href="#m7-extraction">Data extraction</a>
+  <a href="#m7-syntax">Claude Code syntax</a>
   <a href="#m7-chatgpt">Claude vs ChatGPT</a>
 
-  <a href="#m8" class="s-module">8. Ready-to-Use Prompts <span class="s-time">10 min</span></a>
+  <a href="#m8" class="s-module">8. Local LLMs + Prompts <span class="s-time">15 min</span></a>
+  <a href="#m8-local">Local LLMs</a>
   <a href="#m8-audit">Business audit prompt</a>
   <a href="#m8-content">Content system prompt</a>
   <a href="#m8-daily">Daily workflow</a>
+
+  <a href="#m9" class="s-module">9. You're Flying Now <span class="s-time">5 min</span></a>
 </nav>
 
-<!-- ── COVER ── -->
+<!-- BACK TO TOP -->
+<button class="back-to-top no-print" id="back-to-top" title="Back to top">&#8593;</button>
+
+<!-- COVER -->
 <div class="cover" id="top">
-  <div class="cover-badge">Startup Guide</div>
+  <div class="cover-badge">Startup Guide v2</div>
   <h1>Claude Code<br/>From Zero to Dangerous</h1>
   <p class="subtitle">The accelerated setup guide for non-coders who want AI leverage</p>
-  <p class="cover-meta"><strong>Online Optimisers</strong> &middot; Version 1 &middot; April 2026<br/>Total time: ~105 minutes &middot; 8 modules &middot; No coding experience required</p>
+  <p class="cover-meta"><strong>Online Optimisers</strong> &middot; Version 2 &middot; April 2026<br/>Total time: ~2 hours &middot; 9 modules &middot; No coding experience required</p>
 </div>
 
-<!-- ── TOC ── -->
+<!-- STAT CARDS -->
+<div class="stat-cards">
+  <div class="stat-card">
+    <div class="stat-number">9</div>
+    <div class="stat-label">Modules</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-number">~2h</div>
+    <div class="stat-label">Total Time</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-number">Zero</div>
+    <div class="stat-label">Code Required</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-number">&infin;</div>
+    <div class="stat-label">Leverage</div>
+  </div>
+</div>
+
+<!-- TOC -->
 <div class="toc">
   <h2>Table of Contents</h2>
   <ol>
-    <li><a href="#m1">What You're Building</a> <span class="toc-time">5 min</span></li>
+    <li><a href="#m1">What You're Building</a> <span class="toc-time">10 min</span></li>
     <li><a href="#m2">VS Code Setup + Essential Shortcuts</a> <span class="toc-time">15 min</span></li>
     <li><a href="#m3">Git + GitHub &mdash; Your Safety Net</a> <span class="toc-time">15 min</span></li>
     <li><a href="#m4">Claude Code &mdash; Install, Auth, Permissions</a> <span class="toc-time">10 min</span></li>
     <li><a href="#m5">Your Identity Layer &mdash; CLAUDE.md + Memory</a> <span class="toc-time">20 min</span></li>
-    <li><a href="#m6">API Connections &mdash; The Power Layer</a> <span class="toc-time">15 min</span></li>
+    <li><a href="#m6">API Connections &mdash; 4 Team Stacks</a> <span class="toc-time">20 min</span></li>
     <li><a href="#m7">Prompting That Actually Works</a> <span class="toc-time">15 min</span></li>
-    <li><a href="#m8">Ready-to-Use Prompts + Daily Workflow</a> <span class="toc-time">10 min</span></li>
+    <li><a href="#m8">Local LLMs + Ready-to-Use Prompts</a> <span class="toc-time">15 min</span></li>
+    <li><a href="#m9">You're Flying Now</a> <span class="toc-time">5 min</span></li>
   </ol>
 </div>
 
 
-<!-- ════════════════════════════════════════════════════════════════ -->
-<!-- MODULE 1                                                       -->
-<!-- ════════════════════════════════════════════════════════════════ -->
+<!-- ================================================================ -->
+<!-- MODULE 1                                                         -->
+<!-- ================================================================ -->
 <h2 id="m1"><span class="module-num">Module 1</span>What You're Building</h2>
 
-<p>By the end of this guide, you'll have a working AI development environment that lets you:</p>
+<p>By the end of this guide, you will have a working AI development environment that lets you:</p>
 
 <ul>
   <li><strong>Talk to Claude in your code editor</strong> &mdash; not a browser tab, your actual workspace</li>
@@ -413,15 +554,49 @@
   <li><strong>Connect APIs</strong> &mdash; Google Drive, Sheets, Gmail, GitHub, and more talk to Claude directly</li>
   <li><strong>Build reusable workflows</strong> &mdash; one prompt does what used to take 30 minutes of manual work</li>
   <li><strong>Version control everything</strong> &mdash; nothing is ever lost, every change is tracked</li>
+  <li><strong>Run local AI models</strong> &mdash; free, private LLMs on your own machine for specific tasks</li>
 </ul>
 
 <h3 id="m1-outcome">The Outcome</h3>
 
-<p>You'll go from "I use ChatGPT sometimes" to "I have an AI operating system that knows my business." This isn't about coding. It's about leverage.</p>
+<p>You go from "I use ChatGPT sometimes" to "I have an AI operating system that knows my business." This is not about coding. It is about leverage.</p>
 
 <div class="callout tip">
   <div class="callout-label">Who This Is For</div>
-  Marketers, agency owners, consultants, freelancers, tutors, coaches &mdash; anyone who wants AI to do more than answer questions. You don't need to know how to code. You need to be willing to follow setup steps and type commands when told.
+  Marketers, agency owners, consultants, freelancers, tutors, coaches &mdash; anyone who wants AI to do more than answer questions. You do not need to know how to code. You need to be willing to follow setup steps and type commands when told.
+</div>
+
+<h3 id="m1-pricing">Claude Pricing</h3>
+
+<p>Claude Code requires a paid Anthropic subscription. Here are your options:</p>
+
+<table class="pricing-table">
+  <tr><th>Plan</th><th>Price</th><th>What You Get</th><th>Best For</th></tr>
+  <tr><td>Pro</td><td>$20/mo</td><td>Standard usage, Claude Code access, web + API</td><td>Solo operators getting started</td></tr>
+  <tr class="recommended"><td>Max</td><td>$100/mo</td><td>5x usage, priority access, extended thinking, heavy Claude Code use</td><td>Power users and agency operators</td></tr>
+  <tr><td>Team</td><td>$30/user/mo</td><td>Pro features + admin controls, shared billing, team management</td><td>Teams of 2+ people</td></tr>
+</table>
+
+<div class="callout">
+  <div class="callout-label">Recommendation</div>
+  Start with Pro ($20). If you find yourself hitting usage limits within the first week, upgrade to Max. Most people doing serious work end up on Max within a month.
+</div>
+
+<h3>Tool Alternatives</h3>
+
+<p>Claude Code runs inside a code editor. Here are the main options:</p>
+
+<table>
+  <tr><th>Editor</th><th>Price</th><th>Claude Code Support</th><th>Verdict</th></tr>
+  <tr><td><strong>VS Code</strong></td><td>Free</td><td>Full (official extension)</td><td>Pick this one</td></tr>
+  <tr><td>Cursor</td><td>$20/mo</td><td>Works via CLI</td><td>Good, but paid and Claude Code is an add-on</td></tr>
+  <tr><td>Windsurf</td><td>$15/mo</td><td>Works via CLI</td><td>Decent, less mature ecosystem</td></tr>
+  <tr><td>Ghostty</td><td>Free</td><td>Terminal only (no extension)</td><td>For terminal purists only</td></tr>
+</table>
+
+<div class="callout tip">
+  <div class="callout-label">Just Use VS Code</div>
+  VS Code is free, has the best Claude Code integration, the largest extension ecosystem, and the most tutorials online. Every instruction in this guide assumes VS Code. You can always switch later.
 </div>
 
 <h3 id="m1-prereqs">Prerequisites</h3>
@@ -435,20 +610,29 @@
   <tr><td>Node.js installed</td><td>See Module 2</td><td>5 min</td></tr>
 </table>
 
+<div class="checkpoint">
+  <div class="checkpoint-header">Module 1 Checkpoint</div>
+  <ul>
+    <li>You have a Claude account (Pro or Max)</li>
+    <li>You understand what you are building and why</li>
+    <li>You have chosen VS Code as your editor</li>
+  </ul>
+</div>
 
-<!-- ════════════════════════════════════════════════════════════════ -->
-<!-- MODULE 2                                                       -->
-<!-- ════════════════════════════════════════════════════════════════ -->
+
+<!-- ================================================================ -->
+<!-- MODULE 2                                                         -->
+<!-- ================================================================ -->
 <h2 id="m2"><span class="module-num">Module 2</span>VS Code Setup + Essential Shortcuts</h2>
 
-<p>VS Code is your home base. It's where you'll talk to Claude, edit files, run commands, and manage your projects. It's free, runs on everything, and has the best Claude Code integration.</p>
+<p>VS Code is your home base. It is where you will talk to Claude, edit files, run commands, and manage your projects. It is free, runs on everything, and has the best Claude Code integration.</p>
 
 <h3 id="m2-install">Install + First Launch</h3>
 
 <ol>
   <li>Download VS Code from <code>code.visualstudio.com</code></li>
   <li>Install it (drag to Applications on Mac, run the installer on Windows)</li>
-  <li>Open it. You'll see a Welcome tab &mdash; close it.</li>
+  <li>Open it. You will see a Welcome tab &mdash; close it.</li>
   <li><strong>Open a folder</strong>: <kbd>Cmd</kbd>+<kbd>O</kbd> (Mac) or <kbd>Ctrl</kbd>+<kbd>O</kbd> (Windows) &rarr; create a new folder called <code>my-workspace</code> on your Desktop &rarr; open it</li>
 </ol>
 
@@ -490,11 +674,12 @@ node --version</div>
   <tr><td><strong>GitLens</strong></td><td>See who changed what and when</td><td>Recommended</td></tr>
   <tr><td><strong>Markdown Preview Enhanced</strong></td><td>Preview your docs beautifully</td><td>Recommended</td></tr>
   <tr><td><strong>Material Icon Theme</strong></td><td>Makes your file tree look clean</td><td>Nice to have</td></tr>
+  <tr><td><strong>Error Lens</strong></td><td>Shows errors inline as you type</td><td>Nice to have</td></tr>
 </table>
 
-<h3 id="m2-shortcuts">Shortcuts That Matter</h3>
+<h3 id="m2-shortcuts">VS Code Shortcuts That Matter</h3>
 
-<p>You don't need to memorise 200 shortcuts. These 12 cover 90% of daily use:</p>
+<p>You do not need to memorise 200 shortcuts. These 12 cover 90% of daily use:</p>
 
 <table>
   <tr><th>Action</th><th>Mac</th><th>Windows</th></tr>
@@ -514,8 +699,49 @@ node --version</div>
 
 <div class="callout tip">
   <div class="callout-label">The One Shortcut to Remember</div>
-  <kbd>Cmd</kbd>+<kbd>L</kbd> (Mac) or <kbd>Ctrl</kbd>+<kbd>L</kbd> (Windows) opens Claude. That's where 80% of your work happens. Memorise this one, learn the rest as you go.
+  <kbd>Cmd</kbd>+<kbd>L</kbd> (Mac) or <kbd>Ctrl</kbd>+<kbd>L</kbd> (Windows) opens Claude. That is where 80% of your work happens. Memorise this one, learn the rest as you go.
 </div>
+
+<h3 id="m2-laptop">Laptop Power Shortcuts</h3>
+
+<p>These are not VS Code shortcuts &mdash; they are operating system shortcuts that make you faster at everything. Most people never learn them:</p>
+
+<table>
+  <tr><th>Action</th><th>Mac</th><th>Windows</th></tr>
+  <tr><td><strong>Screenshot (full screen)</strong></td><td><kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>3</kbd></td><td><kbd>Win</kbd>+<kbd>Shift</kbd>+<kbd>S</kbd></td></tr>
+  <tr><td><strong>Screenshot (selected area)</strong></td><td><kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>4</kbd></td><td><kbd>Win</kbd>+<kbd>Shift</kbd>+<kbd>S</kbd></td></tr>
+  <tr><td><strong>Voice dictation</strong></td><td><kbd>Fn</kbd>+<kbd>Fn</kbd> (press twice)</td><td><kbd>Win</kbd>+<kbd>H</kbd></td></tr>
+  <tr><td><strong>Clipboard history</strong></td><td>&mdash; (use Maccy app)</td><td><kbd>Win</kbd>+<kbd>V</kbd></td></tr>
+  <tr><td><strong>Spotlight / Search</strong></td><td><kbd>Cmd</kbd>+<kbd>Space</kbd></td><td><kbd>Win</kbd>+<kbd>S</kbd></td></tr>
+  <tr><td><strong>Emoji picker</strong></td><td><kbd>Cmd</kbd>+<kbd>Ctrl</kbd>+<kbd>Space</kbd></td><td><kbd>Win</kbd>+<kbd>.</kbd></td></tr>
+  <tr><td><strong>Switch between apps</strong></td><td><kbd>Cmd</kbd>+<kbd>Tab</kbd></td><td><kbd>Alt</kbd>+<kbd>Tab</kbd></td></tr>
+  <tr><td><strong>Lock screen</strong></td><td><kbd>Cmd</kbd>+<kbd>Ctrl</kbd>+<kbd>Q</kbd></td><td><kbd>Win</kbd>+<kbd>L</kbd></td></tr>
+</table>
+
+<div class="callout tip">
+  <div class="callout-label">Voice Dictation is Underrated</div>
+  On Mac, double-tap <kbd>Fn</kbd> to start dictating. On Windows, <kbd>Win</kbd>+<kbd>H</kbd>. You can dictate prompts to Claude instead of typing them. It is surprisingly fast once you get used to it.
+</div>
+
+<h3 id="m2-workspace">Workspace Folder Structure</h3>
+
+<p>Here is the recommended folder structure for your workspace. You do not need to create all of these right now &mdash; Claude will create them as needed. But understanding the layout helps:</p>
+
+<div class="code-block"><span class="label">Workspace structure</span>my-workspace/
+├── CLAUDE.md              # Your AI's operating manual (Module 5)
+├── .env                   # API keys (never committed to git)
+├── .gitignore             # Tells git which files to ignore
+├── .claude/
+│   ├── rules/             # Domain-specific behaviour files
+│   └── skills/            # Reusable multi-step workflows
+├── knowledge/             # Facts about your business, clients, market
+├── deliverables/          # Finished outputs (reports, audits, content)
+├── content/               # Social posts, articles, email sequences
+├── reports/               # Business audits, analysis docs
+├── templates/             # Reusable document templates
+└── prompts/               # Saved prompt templates</div>
+
+<p><strong>Why this matters:</strong> Claude Code reads and writes files in your workspace. A clean structure means Claude always knows where to find things and where to save outputs. It also means you can find things yourself without digging through chaos.</p>
 
 <div class="checkpoint">
   <div class="checkpoint-header">Module 2 Checkpoint</div>
@@ -524,13 +750,14 @@ node --version</div>
     <li>Node.js is installed (<code>node --version</code> works in the terminal)</li>
     <li>Claude Code extension is installed</li>
     <li>You can open the terminal with <kbd>Ctrl</kbd>+<kbd>`</kbd></li>
+    <li>You know the screenshot and voice dictation shortcuts for your OS</li>
   </ul>
 </div>
 
 
-<!-- ════════════════════════════════════════════════════════════════ -->
-<!-- MODULE 3                                                       -->
-<!-- ════════════════════════════════════════════════════════════════ -->
+<!-- ================================================================ -->
+<!-- MODULE 3                                                         -->
+<!-- ================================================================ -->
 <h2 id="m3"><span class="module-num">Module 3</span>Git + GitHub &mdash; Your Safety Net</h2>
 
 <p>Git tracks every change you make. GitHub stores it in the cloud. Together, they mean you can never lose your work and you can always undo a mistake. Think of it as "unlimited undo for your entire project."</p>
@@ -543,40 +770,61 @@ node --version</div>
   <li><strong>Collaboration</strong> &mdash; share your workspace with a partner, developer, or another AI tool.</li>
 </ul>
 
-<h3 id="m3-setup">GitHub Account + Setup</h3>
+<h3 id="m3-setup">Setup Steps</h3>
 
 <ol>
   <li>Create a free account at <code>github.com</code></li>
-  <li>Create a new repository (green "New" button). Name it <code>my-workspace</code>. Make it <strong>Private</strong>.</li>
+  <li>Install the GitHub CLI (handles authentication cleanly):</li>
+</ol>
+
+<details>
+  <summary>Mac: Install GitHub CLI</summary>
+  <div class="detail-body">
+    <div class="code-block"><span class="label">Terminal</span>brew install gh
+gh auth login</div>
+    <p>Follow the prompts: choose HTTPS, authenticate via browser. If you do not have Homebrew, install it first from <code>brew.sh</code>.</p>
+  </div>
+</details>
+
+<details>
+  <summary>Windows: Install GitHub CLI</summary>
+  <div class="detail-body">
+    <div class="code-block"><span class="label">Terminal</span>winget install GitHub.cli
+gh auth login</div>
+    <p>Follow the prompts: choose HTTPS, authenticate via browser.</p>
+  </div>
+</details>
+
+<ol start="3">
+  <li>Create a new repository on GitHub (green "New" button). Name it <code>my-workspace</code>. Make it <strong>Private</strong>.</li>
   <li>Open VS Code terminal (<kbd>Ctrl</kbd>+<kbd>`</kbd>) and run these commands one at a time:</li>
 </ol>
 
 <div class="code-block"><span class="label">Terminal &mdash; one-time setup</span>git config --global user.name "Your Name"
 git config --global user.email "your@email.com"
 cd ~/Desktop/my-workspace
-git init
-git add .
+git init</div>
+
+<p>Immediately after <code>git init</code>, create your <code>.gitignore</code> file so sensitive files are never tracked:</p>
+
+<div class="code-block"><span class="label">Terminal &mdash; create .gitignore</span>echo -e ".env\nnode_modules/\n*.key\n*.pem\n.DS_Store" > .gitignore</div>
+
+<p>Now make your first commit and push:</p>
+
+<div class="code-block"><span class="label">Terminal &mdash; first commit</span>git add .
 git commit -m "Initial commit"
 git remote add origin https://github.com/YOUR-USERNAME/my-workspace.git
 git branch -M main
 git push -u origin main</div>
 
-<p>GitHub may ask you to authenticate. Click "Allow" and follow the prompts.</p>
-
-<details>
-  <summary>What if I get a "permission denied" or authentication error?</summary>
-  <div class="detail-body">
-    <p>Install the GitHub CLI &mdash; it handles authentication cleanly:</p>
-    <div class="code-block"><span class="label">Terminal</span>npm install -g @github/cli
-gh auth login</div>
-    <p>Follow the prompts (choose HTTPS, authenticate via browser). Then retry the <code>git push</code> command.</p>
-    <p><strong>On Mac</strong>, you may see a keychain popup asking for your Mac password. Enter it and click "Always Allow" to save the credential.</p>
-  </div>
-</details>
+<div class="callout important">
+  <div class="callout-label">Security: .gitignore First</div>
+  Always create <code>.gitignore</code> before your first <code>git add</code>. This prevents API keys (<code>.env</code>), security certificates (<code>*.key</code>, <code>*.pem</code>), and system files (<code>.DS_Store</code>) from ever being tracked by git. Once a file is committed, removing it from history is painful.
+</div>
 
 <h3 id="m3-daily">Daily Git Workflow (3 Commands)</h3>
 
-<p>You don't need to learn complex git. These 3 commands cover 95% of daily use:</p>
+<p>You do not need to learn complex git. These 3 commands cover 95% of daily use:</p>
 
 <div class="code-block"><span class="label">Daily workflow</span># See what changed
 git status
@@ -596,16 +844,18 @@ git push</div>
   <div class="checkpoint-header">Module 3 Checkpoint</div>
   <ul>
     <li>GitHub account created</li>
+    <li>GitHub CLI installed and authenticated (<code>gh auth status</code> works)</li>
     <li>Repository created and linked</li>
+    <li><code>.gitignore</code> exists with <code>.env</code> listed</li>
     <li><code>git status</code> runs without errors in your terminal</li>
     <li>First commit pushed to GitHub</li>
   </ul>
 </div>
 
 
-<!-- ════════════════════════════════════════════════════════════════ -->
-<!-- MODULE 4                                                       -->
-<!-- ════════════════════════════════════════════════════════════════ -->
+<!-- ================================================================ -->
+<!-- MODULE 4                                                         -->
+<!-- ================================================================ -->
 <h2 id="m4"><span class="module-num">Module 4</span>Claude Code &mdash; Install, Auth, Permissions</h2>
 
 <p>Claude Code is the bridge between Claude's brain and your workspace. It reads your files, writes code, runs commands, and remembers context &mdash; all from inside VS Code.</p>
@@ -618,11 +868,11 @@ git push</div>
 
 <div class="code-block"><span class="label">Terminal</span>claude --version</div>
 
-<p>You should see a version number. If the command isn't found, close and reopen VS Code.</p>
+<p>You should see a version number. If the command is not found, close and reopen VS Code.</p>
 
 <h3 id="m4-vscode">VS Code Extension</h3>
 
-<p>If you installed the Claude Code extension in Module 2, you're already set. Open it with <kbd>Cmd</kbd>+<kbd>L</kbd> (Mac) or <kbd>Ctrl</kbd>+<kbd>L</kbd> (Windows). The extension automatically detects the CLI you just installed.</p>
+<p>If you installed the Claude Code extension in Module 2, you are already set. Open it with <kbd>Cmd</kbd>+<kbd>L</kbd> (Mac) or <kbd>Ctrl</kbd>+<kbd>L</kbd> (Windows). The extension automatically detects the CLI you just installed.</p>
 
 <p>On first launch, Claude will ask you to authenticate. Click the link, sign in with your Claude account, and approve the connection.</p>
 
@@ -633,7 +883,7 @@ git push</div>
 <table>
   <tr><th>Mode</th><th>What Claude Can Do Without Asking</th><th>Best For</th></tr>
   <tr><td><strong>Default</strong></td><td>Read files only</td><td>First-time users, sensitive work</td></tr>
-  <tr><td><strong>Accept Edits</strong></td><td>Read + edit files</td><td>Daily work (recommended)</td></tr>
+  <tr style="background:#f0f4ff;"><td><strong>Accept Edits</strong> (recommended)</td><td>Read + edit files</td><td>Daily work &mdash; the sweet spot</td></tr>
   <tr><td><strong>Auto</strong></td><td>Most things, with safety checks</td><td>Long tasks, experienced users</td></tr>
   <tr><td><strong>Bypass</strong></td><td>Everything (YOLO mode)</td><td>Throwaway environments only</td></tr>
 </table>
@@ -642,7 +892,7 @@ git push</div>
 
 <div class="callout warning">
   <div class="callout-label">Start With Accept Edits</div>
-  "Accept Edits" is the sweet spot for most people. Claude can read and write files freely, but asks before running terminal commands. You stay in control without constant pop-ups.
+  "Accept Edits" is the sweet spot for most people. Claude can read and write files freely, but asks before running terminal commands. You stay in control without constant pop-ups. You can always upgrade to Auto later once you trust the workflow.
 </div>
 
 <details>
@@ -658,15 +908,15 @@ git push</div>
   <ul>
     <li><code>claude --version</code> returns a version number</li>
     <li>Claude Code panel opens with <kbd>Cmd</kbd>+<kbd>L</kbd> / <kbd>Ctrl</kbd>+<kbd>L</kbd></li>
-    <li>You've authenticated (signed in via browser)</li>
+    <li>You have authenticated (signed in via browser)</li>
     <li>Permission mode is set to "Accept Edits"</li>
   </ul>
 </div>
 
 
-<!-- ════════════════════════════════════════════════════════════════ -->
-<!-- MODULE 5                                                       -->
-<!-- ════════════════════════════════════════════════════════════════ -->
+<!-- ================================================================ -->
+<!-- MODULE 5                                                         -->
+<!-- ================================================================ -->
 <h2 id="m5"><span class="module-num">Module 5</span>Your Identity Layer &mdash; CLAUDE.md + Memory</h2>
 
 <p>This is the module that separates "using Claude" from "having an AI business partner." Without this, Claude gives generic answers. With it, Claude knows your business, your role, your goals, and your preferences &mdash; every single session.</p>
@@ -756,7 +1006,7 @@ In-house content and on-page.
 ## Who I Am
 Online English tutor with 4 years' experience.
 Building a tutoring business with AI-powered
-practice tools for students. Based in Thailand.
+practice tools for students. Based in Southeast Asia.
 
 ## The Business
 1-on-1 English lessons via Zoom + an AI practice
@@ -767,7 +1017,7 @@ Target: 50 students + AI product at $29/mo.
 ## My Goals
 ### Near-Term (30 days)
 - Launch landing page for AI practice tool
-- Set up payment processing (Whop or Stripe)
+- Set up payment processing (Stripe)
 - Create 5 lesson templates Claude can personalise
 
 ### Medium-Term (6 months)
@@ -819,141 +1069,197 @@ Target: 50 students + AI product at $29/mo.
   <summary>How to create your first skill</summary>
   <div class="detail-body">
     <p>Create the folder: <code>.claude/skills/</code> in your workspace root.</p>
-    <p>Create a file called <code>quick-audit.md</code> inside it:</p>
-<div class="code-block"><span class="label">.claude/skills/quick-audit.md</span>---
-name: quick-audit
-description: Run a quick visibility audit on a business
+    <p>Create a file called <code>weekly-report.md</code> inside it:</p>
+<div class="code-block"><span class="label">.claude/skills/weekly-report.md</span>---
+name: weekly-report
+description: Generate a weekly performance summary for a client
 ---
 
-# Quick Audit Skill
+# Weekly Report Skill
 
-When I say /quick-audit [business name]:
+When I say /weekly-report [client name]:
 
-1. Search for the business website
-2. Check if they have:
-   - Google Business Profile (GMB)
-   - Schema markup on their site
-   - Reviews on Google (count + average)
-   - Social media presence
-3. Test their visibility in ChatGPT and Perplexity
-4. Output a 1-page summary with 3 quick wins
-5. Save to deliverables/[business-slug]/quick-audit.md</div>
-    <p>Now when you type <code>/quick-audit Bright Smiles Dentistry</code>, Claude runs the whole workflow.</p>
+1. Pull this week's key metrics from the tracking sheet
+2. Summarise: traffic, leads, calls, top ranking keywords
+3. Flag any unusual changes (up or down)
+4. Write 3 observations and 3 recommended next actions
+5. Save to reports/[client-slug]-week-[date].md</div>
+    <p>Now when you type <code>/weekly-report Bright Smiles Dentistry</code>, Claude runs the whole workflow.</p>
   </div>
 </details>
+
+<h3 id="m5-first">Your First Conversation &mdash; 5 Steps</h3>
+
+<p>You have Claude Code installed, authenticated, and your CLAUDE.md written. Here is your first real conversation:</p>
+
+<div class="exercise">
+  <div class="exercise-header">Exercise &mdash; First Conversation Walkthrough</div>
+  <ol>
+    <li><strong>Open Claude Code</strong> &mdash; press <kbd>Cmd</kbd>+<kbd>L</kbd> (Mac) or <kbd>Ctrl</kbd>+<kbd>L</kbd> (Windows)</li>
+    <li><strong>Confirm Claude reads your CLAUDE.md</strong> &mdash; type:
+      <div class="prompt-example">What do you know about me and my business?</div>
+      <p>Claude should respond with details from your CLAUDE.md. If it gives a generic answer, something went wrong &mdash; check that CLAUDE.md is in the root of your open workspace folder.</p>
+    </li>
+    <li><strong>Save a preference to memory</strong> &mdash; type:
+      <div class="prompt-example">Remember that I prefer bullet points over paragraphs, and save all outputs to files.</div>
+    </li>
+    <li><strong>Ask what Claude can do</strong> &mdash; type:
+      <div class="prompt-example">What tools and capabilities do you have access to in this workspace?</div>
+      <p>Claude will list its abilities: reading files, writing files, running terminal commands, searching the web (if MCP is set up), etc.</p>
+    </li>
+    <li><strong>Give it a small task</strong> &mdash; type:
+      <div class="prompt-example">Create a file called test.md in the workspace root with a 3-bullet summary of what we set up today.</div>
+    </li>
+  </ol>
+</div>
+
+<div class="callout tip">
+  <div class="callout-label">Graduation Moment</div>
+  If Claude created that <code>test.md</code> file, you are live. You have an AI that can read your files, remember your preferences, and produce outputs on command. Everything from here builds on this foundation.
+</div>
 
 <div class="checkpoint">
   <div class="checkpoint-header">Module 5 Checkpoint</div>
   <ul>
     <li>CLAUDE.md exists in your workspace root with your details filled in</li>
     <li>Claude can answer "what do you know about me?" accurately</li>
-    <li>You've saved at least one thing to memory</li>
+    <li>You have saved at least one thing to memory</li>
+    <li>You have completed the 5-step first conversation walkthrough</li>
+    <li>Claude has created at least one file in your workspace</li>
   </ul>
 </div>
 
 
-<!-- ════════════════════════════════════════════════════════════════ -->
-<!-- MODULE 6                                                       -->
-<!-- ════════════════════════════════════════════════════════════════ -->
-<h2 id="m6"><span class="module-num">Module 6</span>API Connections &mdash; The Power Layer</h2>
+<!-- ================================================================ -->
+<!-- MODULE 6                                                         -->
+<!-- ================================================================ -->
+<h2 id="m6"><span class="module-num">Module 6</span>API Connections &mdash; 4 Team Stacks</h2>
 
-<p>Without APIs, Claude can only read and write files in your workspace. With APIs, Claude can read your emails, update your spreadsheets, search the web, manage your calendar, and connect to hundreds of services. This is where it goes from "smart assistant" to "operating system."</p>
+<p>Without APIs, Claude can only read and write files in your workspace. With APIs, Claude becomes an operating system &mdash; reading your emails, updating your spreadsheets, posting to social media, pulling analytics, and managing your calendar. APIs are the difference between "smart notepad" and "AI-powered business."</p>
 
-<h3 id="m6-what">What APIs Unlock</h3>
+<p>Below are 4 pre-built stacks. Pick the one closest to your work, then add individual tools from the others as needed.</p>
+
+<h3 id="m6-social">Stack 1: Social Media Team</h3>
+
+<p>For content creators, social media managers, and brand builders.</p>
 
 <table>
-  <tr><th>Connection</th><th>What Claude Can Do</th><th>Example Use</th></tr>
-  <tr><td>Google Drive</td><td>Read/write docs, sheets, slides</td><td>"Summarise my client brief in Drive"</td></tr>
-  <tr><td>Google Sheets</td><td>Read/update spreadsheet data</td><td>"Update the leads sheet with today's calls"</td></tr>
-  <tr><td>Gmail</td><td>Read/draft emails</td><td>"Draft a follow-up to Sarah's last email"</td></tr>
-  <tr><td>GitHub</td><td>Manage code, issues, PRs</td><td>"Create an issue for the homepage bug"</td></tr>
-  <tr><td>Web Search</td><td>Search the internet in real-time</td><td>"Find the top 5 dentists in Portland"</td></tr>
-  <tr><td>Slack</td><td>Send/read messages</td><td>"Post the weekly update to #team"</td></tr>
+  <tr><th>#</th><th>API / Service</th><th>What It Does</th><th>How to Connect</th></tr>
+  <tr><td>1</td><td><strong>Buffer</strong></td><td>Schedule posts across platforms</td><td>buffer.com &rarr; Settings &rarr; API</td></tr>
+  <tr><td>2</td><td><strong>Canva API</strong></td><td>Generate and edit designs programmatically</td><td>canva.com/developers</td></tr>
+  <tr><td>3</td><td><strong>OpenAI</strong></td><td>Image generation (DALL-E), GPT for variation</td><td>platform.openai.com &rarr; API Keys</td></tr>
+  <tr><td>4</td><td><strong>Google Sheets</strong></td><td>Content calendars, analytics tracking</td><td>MCP server (OAuth flow)</td></tr>
+  <tr><td>5</td><td><strong>Instagram Graph API</strong></td><td>Read insights, manage content</td><td>developers.facebook.com</td></tr>
 </table>
 
-<h3 id="m6-keys">Getting Your API Keys</h3>
+<h3 id="m6-seo">Stack 2: SEO Team</h3>
 
-<p>API keys are passwords that let Claude talk to external services. Here's how to get the most useful ones:</p>
+<p>For SEO agencies, consultants, and anyone doing search engine work.</p>
 
-<details>
-  <summary>Google (Drive, Sheets, Gmail) via MCP</summary>
-  <div class="detail-body">
-    <p>The easiest way is through Claude's built-in MCP (Model Context Protocol) servers. In your Claude Code settings, add the Google integrations:</p>
-    <ol>
-      <li>Open Claude Code settings (click the gear icon in the Claude panel)</li>
-      <li>Navigate to "MCP Servers"</li>
-      <li>Add the Google Drive, Google Sheets, and Gmail servers</li>
-      <li>Follow the OAuth flow (sign in with your Google account, approve access)</li>
-    </ol>
-    <p>Once connected, Claude can directly read and write to your Google Workspace.</p>
-  </div>
-</details>
+<table>
+  <tr><th>#</th><th>API / Service</th><th>What It Does</th><th>How to Connect</th></tr>
+  <tr><td>1</td><td><strong>Google Search Console</strong></td><td>Keyword data, indexing, performance</td><td>MCP server (OAuth flow)</td></tr>
+  <tr><td>2</td><td><strong>SEMrush / DataForSEO</strong></td><td>Keyword research, competitor analysis, SERP data</td><td>semrush.com or dataforseo.com API keys</td></tr>
+  <tr><td>3</td><td><strong>Screaming Frog / Firecrawl</strong></td><td>Site audits, crawl data, technical SEO</td><td>Screaming Frog CLI or firecrawl.dev API</td></tr>
+  <tr><td>4</td><td><strong>Google Sheets</strong></td><td>Reporting, keyword tracking, client dashboards</td><td>MCP server (OAuth flow)</td></tr>
+  <tr><td>5</td><td><strong>Ahrefs</strong></td><td>Backlink data, domain authority, content gaps</td><td>ahrefs.com &rarr; API access</td></tr>
+  <tr><td>6</td><td><strong>BrightLocal</strong></td><td>Local citations, review monitoring, rank tracking</td><td>brightlocal.com &rarr; API</td></tr>
+</table>
 
-<details>
-  <summary>OpenAI API (for GPT comparisons or dual-model workflows)</summary>
-  <div class="detail-body">
-    <p>Go to <code>platform.openai.com</code> &rarr; sign in &rarr; API Keys &rarr; Create new key.</p>
-    <p>Save the key in a <code>.env</code> file in your workspace root (never commit this to git):</p>
-    <div class="code-block"><span class="label">.env</span>OPENAI_API_KEY=sk-your-key-here</div>
-    <p>Make sure <code>.env</code> is in your <code>.gitignore</code> file so it's never pushed to GitHub.</p>
-  </div>
-</details>
+<h3 id="m6-marketing">Stack 3: All-in-1 Marketing Team</h3>
 
-<details>
-  <summary>Anthropic API (for building AI tools)</summary>
-  <div class="detail-body">
-    <p>Go to <code>console.anthropic.com</code> &rarr; sign in &rarr; API Keys &rarr; Create Key.</p>
-    <p>Add to your <code>.env</code>:</p>
-    <div class="code-block"><span class="label">.env</span>ANTHROPIC_API_KEY=sk-ant-your-key-here</div>
-    <p>This is useful if you want to build custom AI tools or agents that call Claude's API directly.</p>
-  </div>
-</details>
+<p>For agencies and marketers who need everything connected.</p>
 
-<h3 id="m6-mcp">MCP Servers &mdash; The Native Way</h3>
+<table>
+  <tr><th>#</th><th>API / Service</th><th>What It Does</th><th>How to Connect</th></tr>
+  <tr><td>1</td><td><strong>Claude / OpenAI</strong></td><td>AI generation, analysis, summarisation</td><td>console.anthropic.com / platform.openai.com</td></tr>
+  <tr><td>2</td><td><strong>Google Workspace</strong></td><td>Drive, Sheets, Docs, Gmail, Calendar</td><td>MCP servers (OAuth flow)</td></tr>
+  <tr><td>3</td><td><strong>HubSpot / GoHighLevel</strong></td><td>CRM, pipelines, automations</td><td>HubSpot developer portal / GHL API settings</td></tr>
+  <tr><td>4</td><td><strong>Mailchimp / Instantly</strong></td><td>Email marketing, cold outreach sequences</td><td>mailchimp.com or instantly.ai API keys</td></tr>
+  <tr><td>5</td><td><strong>Google Analytics 4</strong></td><td>Website traffic, conversions, user behaviour</td><td>MCP server or GA4 API</td></tr>
+  <tr><td>6</td><td><strong>Social scheduler</strong></td><td>Buffer, Hootsuite, or Later &mdash; schedule posts</td><td>API keys from chosen platform</td></tr>
+  <tr><td>7</td><td><strong>Firecrawl / Apify</strong></td><td>Web scraping, competitor monitoring</td><td>firecrawl.dev or apify.com API keys</td></tr>
+  <tr><td>8</td><td><strong>Stripe</strong></td><td>Payments, subscriptions, revenue tracking</td><td>dashboard.stripe.com &rarr; API keys</td></tr>
+</table>
 
-<p>MCP (Model Context Protocol) is Claude Code's built-in way to connect to external services. Think of MCP servers as "plugins" that give Claude new abilities.</p>
+<h3 id="m6-personal">Stack 4: Personal Operator</h3>
+
+<p>For solo operators, freelancers, and anyone who wants Claude to manage their digital life.</p>
+
+<table>
+  <tr><th>#</th><th>API / Service</th><th>What It Does</th><th>How to Connect</th></tr>
+  <tr><td>1</td><td><strong>Google Drive</strong></td><td>Read/write docs, find files, organise folders</td><td>MCP server (OAuth flow)</td></tr>
+  <tr><td>2</td><td><strong>Google Sheets</strong></td><td>Track anything &mdash; finances, habits, projects</td><td>MCP server (OAuth flow)</td></tr>
+  <tr><td>3</td><td><strong>Gmail</strong></td><td>Read/draft emails, manage inbox</td><td>MCP server (OAuth flow)</td></tr>
+  <tr><td>4</td><td><strong>Google Calendar</strong></td><td>Read/create events, check availability</td><td>MCP server (OAuth flow)</td></tr>
+  <tr><td>5</td><td><strong>Notion / Obsidian</strong></td><td>Notes, wikis, second brain</td><td>Notion API or Obsidian local files</td></tr>
+</table>
 
 <div class="callout">
-  <div class="callout-label">Setting Up MCP</div>
-  In your workspace, create <code>.claude/settings.json</code> if it doesn't exist. Claude can manage this for you:
+  <div class="callout-label">Pick Your Stack</div>
+  You do not need all four stacks. Pick the one closest to your work and set up 2-3 connections from it. You can always add more later. The most universally useful connections are Google Drive + Google Sheets + Gmail. If you only set up three things, make it those.
 </div>
 
-<div class="prompt-example">Set up the Google Drive MCP server so you can read my Drive files.</div>
+<h3 id="m6-security">Security: .env Setup</h3>
+
+<p>API keys are passwords that let Claude talk to external services. They must <strong>never</strong> be committed to git.</p>
+
+<details>
+  <summary>How to set up your .env file</summary>
+  <div class="detail-body">
+    <p>Create a file called <code>.env</code> in your workspace root:</p>
+<div class="code-block"><span class="label">.env &mdash; example (replace with your real keys)</span># AI APIs
+ANTHROPIC_API_KEY=sk-ant-your-key-here
+OPENAI_API_KEY=sk-your-key-here
+
+# Google (if using API keys instead of MCP OAuth)
+GOOGLE_API_KEY=your-google-key
+
+# Other services
+SEMRUSH_API_KEY=your-key
+STRIPE_SECRET_KEY=sk_live_your-key</div>
+    <p>Confirm <code>.env</code> is in your <code>.gitignore</code> (it should be if you followed Module 3):</p>
+<div class="code-block"><span class="label">Terminal</span>cat .gitignore | grep ".env"</div>
+    <p>You should see <code>.env</code> listed. If not, add it:</p>
+<div class="code-block"><span class="label">Terminal</span>echo ".env" >> .gitignore</div>
+  </div>
+</details>
 
 <div class="callout important">
   <div class="callout-label">Security Rule</div>
-  Never put API keys or passwords directly in any markdown file or code file. Always use <code>.env</code> files (which are git-ignored) or environment variables. If Claude asks you to paste a key somewhere visible, that's wrong &mdash; push back.
+  Never put API keys or passwords directly in any markdown file or code file. Always use <code>.env</code> files (which are git-ignored) or environment variables. If Claude asks you to paste a key somewhere visible, that is wrong &mdash; push back.
 </div>
 
 <div class="checkpoint">
   <div class="checkpoint-header">Module 6 Checkpoint</div>
   <ul>
-    <li>At least one API connection works (Google Drive or GitHub recommended)</li>
+    <li>You have picked your primary stack</li>
+    <li>At least one API connection works (Google Drive or Sheets recommended)</li>
     <li><code>.env</code> file exists and is listed in <code>.gitignore</code></li>
-    <li>You can ask Claude to read a Google Doc or check a GitHub repo</li>
+    <li>You can ask Claude to interact with at least one external service</li>
   </ul>
 </div>
 
 
-<!-- ════════════════════════════════════════════════════════════════ -->
-<!-- MODULE 7                                                       -->
-<!-- ════════════════════════════════════════════════════════════════ -->
+<!-- ================================================================ -->
+<!-- MODULE 7                                                         -->
+<!-- ================================================================ -->
 <h2 id="m7"><span class="module-num">Module 7</span>Prompting That Actually Works</h2>
 
-<p>Most people prompt like they're texting a friend. Vague. Incomplete. Then they wonder why the output is mediocre. Good prompting is about giving Claude the right context, constraints, and format &mdash; not about magic words.</p>
+<p>Most people prompt like they are texting a friend. Vague. Incomplete. Then they wonder why the output is mediocre. Good prompting is about giving Claude the right context, constraints, and format &mdash; not about magic words.</p>
 
 <h3 id="m7-rules">The 5 Rules of Effective Prompting</h3>
 
 <h4>Rule 1: Tell Claude What You Want, Not What You Don't Want</h4>
 <table>
-  <tr><th>Bad</th><th>Good</th></tr>
+  <tr><th>Bad (negative)</th><th>Good (positive)</th></tr>
   <tr><td>"Don't make it too long"</td><td>"Keep it under 200 words"</td></tr>
   <tr><td>"Don't use jargon"</td><td>"Write for a business owner with no tech background"</td></tr>
   <tr><td>"Don't be boring"</td><td>"Use short sentences. Lead with the benefit."</td></tr>
 </table>
 
 <h4>Rule 2: Give Context Before the Ask</h4>
-<div class="prompt-example">I run a local SEO agency serving dentists in the US. I need a cold email for a prospect who has no Google Business Profile but ranks page 2 for "dentist near me" in Portland. Write a 3-sentence email that leads with their specific gap.</div>
+<div class="prompt-example">I run a local marketing agency serving dentists in the US. I need a cold email for a prospect who has no Google Business Profile but ranks page 2 for "dentist near me" in Portland. Write a 3-sentence email that leads with their specific gap.</div>
 
 <p>Compare that to: <em>"Write me a cold email."</em> The first prompt gives Claude your niche, the prospect's situation, the specific gap, the format, and the tone. The output will be 10x better.</p>
 
@@ -963,7 +1269,7 @@ When I say /quick-audit [business name]:
 <div class="prompt-example">Write this as a numbered list. Each item should be one sentence.</div>
 
 <h4>Rule 4: Reference Files, Don't Re-explain</h4>
-<div class="prompt-example">Read my client profile at knowledge/clients/bright-smiles/profile.md and draft a monthly report based on that context.</div>
+<div class="prompt-example">Read the client profile at knowledge/clients/bright-smiles/profile.md and draft a monthly report based on that context.</div>
 
 <p>Claude Code can read files directly. Point it to the file instead of pasting content into the chat. This keeps context clean and uses your source of truth.</p>
 
@@ -978,11 +1284,11 @@ When I say /quick-audit [business name]:
 <details>
   <summary>When to break this rule</summary>
   <div class="detail-body">
-    <p>If you have a well-defined skill or workflow with clear steps, you CAN give Claude the whole thing in one message. The key is: does Claude have enough context to execute every step without asking questions? If yes, one message is fine. If it'll need to ask "what do you mean by X?" halfway through, break it up.</p>
+    <p>If you have a well-defined skill or workflow with clear steps, you CAN give Claude the whole thing in one message. The key is: does Claude have enough context to execute every step without asking questions? If yes, one message is fine. If it will need to ask "what do you mean by X?" halfway through, break it up.</p>
   </div>
 </details>
 
-<h3 id="m7-extraction">Getting Data Out of Claude (and ChatGPT)</h3>
+<h3>Data Extraction Patterns</h3>
 
 <p>Both Claude and ChatGPT are excellent at extracting, structuring, and transforming data. The key is being explicit about format:</p>
 
@@ -994,9 +1300,20 @@ When I say /quick-audit [business name]:
   <tr><td>Rewrite for a different audience</td><td>"Rewrite this for [audience]. Keep the same facts. Change the tone to [tone]. Max [N] words."</td></tr>
 </table>
 
+<h3 id="m7-syntax">Claude Code Syntax</h3>
+
+<p>Claude Code has special syntax that regular Claude (browser) does not. Learn these three:</p>
+
+<table>
+  <tr><th>Syntax</th><th>What It Does</th><th>Example</th></tr>
+  <tr><td><code>@filename</code></td><td>References a specific file so Claude reads it</td><td><code>@knowledge/clients/acme/profile.md</code> &mdash; Claude reads the file</td></tr>
+  <tr><td><code>#symbol</code></td><td>References a code symbol (function, class, variable)</td><td><code>#generateReport</code> &mdash; Claude finds and focuses on that function</td></tr>
+  <tr><td><kbd>Shift</kbd>+<kbd>Enter</kbd></td><td>New line without sending &mdash; write multi-line prompts</td><td>Write a 5-line prompt, then hit <kbd>Enter</kbd> to send it all at once</td></tr>
+</table>
+
 <div class="callout tip">
-  <div class="callout-label">The "Save to File" Habit</div>
-  Whenever Claude produces something useful, say: <strong>"Save that to [path]."</strong> In Claude Code, this writes the output to a file in your workspace. In ChatGPT, copy it manually. Files persist; chat history doesn't.
+  <div class="callout-label">The @ Shortcut is Powerful</div>
+  Instead of saying "read the file at knowledge/clients/acme/profile.md", you can just type <code>@knowledge/clients/acme/profile.md</code> in your message. Claude will automatically read it. This works for any file in your workspace.
 </div>
 
 <h3 id="m7-chatgpt">Claude Code vs ChatGPT &mdash; When to Use Which</h3>
@@ -1006,32 +1323,71 @@ When I say /quick-audit [business name]:
   <tr><td>Quick question / brainstorm</td><td>ChatGPT (browser)</td><td>Fastest for one-off answers</td></tr>
   <tr><td>Working with your files</td><td>Claude Code</td><td>Reads/writes your workspace directly</td></tr>
   <tr><td>Multi-step project work</td><td>Claude Code</td><td>Persistent context, memory, file access</td></tr>
-  <tr><td>Image generation</td><td>ChatGPT (DALL-E)</td><td>Claude doesn't generate images</td></tr>
+  <tr><td>Image generation</td><td>ChatGPT (DALL-E)</td><td>Claude does not generate images</td></tr>
   <tr><td>Web search during a task</td><td>Claude Code + MCP</td><td>Searches without leaving your workflow</td></tr>
   <tr><td>Building a website or tool</td><td>Claude Code</td><td>Writes code, runs it, deploys it</td></tr>
   <tr><td>Writing long-form content</td><td>Either</td><td>Both are excellent; Claude Code saves to file automatically</td></tr>
+  <tr><td>Data analysis on local files</td><td>Claude Code</td><td>Reads CSVs, JSON, spreadsheets directly from disk</td></tr>
 </table>
 
 <div class="checkpoint">
   <div class="checkpoint-header">Module 7 Checkpoint</div>
   <ul>
     <li>You understand the 5 prompting rules</li>
-    <li>You've tried at least one "reference a file" prompt in Claude Code</li>
+    <li>You have tried the @ file reference syntax in Claude Code</li>
     <li>You know when to use Claude Code vs ChatGPT</li>
+    <li>You can write a multi-line prompt using Shift+Enter</li>
   </ul>
 </div>
 
 
-<!-- ════════════════════════════════════════════════════════════════ -->
-<!-- MODULE 8                                                       -->
-<!-- ════════════════════════════════════════════════════════════════ -->
-<h2 id="m8"><span class="module-num">Module 8</span>Ready-to-Use Prompts + Daily Workflow</h2>
+<!-- ================================================================ -->
+<!-- MODULE 8                                                         -->
+<!-- ================================================================ -->
+<h2 id="m8"><span class="module-num">Module 8</span>Local LLMs + Ready-to-Use Prompts</h2>
 
-<p>Here are two prompts you can use immediately, plus a daily workflow to build the habit.</p>
+<h3 id="m8-local">Local LLMs &mdash; Free AI on Your Machine</h3>
+
+<p>Cloud AI (Claude, ChatGPT) is the best for complex work. But sometimes you want AI that is free, private, and runs without an internet connection. That is what local LLMs give you.</p>
+
+<h4>Three Ways to Run Local Models</h4>
+
+<table>
+  <tr><th>Tool</th><th>Best For</th><th>Install</th></tr>
+  <tr><td><strong>Ollama</strong></td><td>Terminal / CLI users. Lightweight. Integrates with Claude Code via tools.</td><td><code>ollama.com</code> &rarr; download &rarr; <code>ollama run llama3.1</code></td></tr>
+  <tr><td><strong>LM Studio</strong></td><td>Visual interface. Download and run models with a GUI. Best for beginners.</td><td><code>lmstudio.ai</code> &rarr; download &rarr; browse models &rarr; click run</td></tr>
+  <tr><td><strong>GPT4All</strong></td><td>Simplest possible setup. One-click install. Good for first-timers.</td><td><code>gpt4all.io</code> &rarr; download &rarr; install &rarr; pick a model</td></tr>
+</table>
+
+<h4>Recommended Models</h4>
+
+<table>
+  <tr><th>Model</th><th>Size</th><th>Good For</th><th>Minimum RAM</th></tr>
+  <tr><td><strong>Llama 3.1 8B</strong></td><td>4.7 GB</td><td>General tasks, writing, summarisation</td><td>8 GB</td></tr>
+  <tr><td><strong>Qwen 2.5 7B</strong></td><td>4.4 GB</td><td>Code, structured output, multilingual</td><td>8 GB</td></tr>
+  <tr><td><strong>Mistral 7B</strong></td><td>4.1 GB</td><td>Fast responses, good reasoning</td><td>8 GB</td></tr>
+  <tr><td><strong>Phi-3 Mini</strong></td><td>2.3 GB</td><td>Lightweight tasks on low-RAM machines</td><td>4 GB</td></tr>
+  <tr><td><strong>DeepSeek Coder 6.7B</strong></td><td>3.8 GB</td><td>Code generation and debugging</td><td>8 GB</td></tr>
+</table>
+
+<h4>When to Use Local vs Cloud</h4>
+
+<table>
+  <tr><th>Use Local When</th><th>Use Cloud (Claude/ChatGPT) When</th></tr>
+  <tr><td>Processing sensitive data you cannot send to a server</td><td>Complex reasoning, planning, or multi-step workflows</td></tr>
+  <tr><td>Doing simple tasks (summarise, reformat, translate)</td><td>Working with APIs and external services</td></tr>
+  <tr><td>You are offline or want zero cost</td><td>You need the best possible output quality</td></tr>
+  <tr><td>Running batch operations on many files</td><td>Client-facing work that must be high quality</td></tr>
+</table>
+
+<div class="callout tip">
+  <div class="callout-label">Start With Ollama</div>
+  If you want to try local AI, install Ollama and run <code>ollama run llama3.1</code>. You will have a free, private AI chatbot in your terminal within 5 minutes. You can always explore LM Studio later for a visual interface.
+</div>
 
 <h3 id="m8-audit">Prompt 1 &mdash; The Business Quick Audit</h3>
 
-<p>Use this to analyse any business in 5 minutes. Works for prospects, competitors, or your own clients.</p>
+<p>Use this to analyse any business in 5 minutes. Works for prospects, competitors, or your own clients. Saves output directly to your workspace.</p>
 
 <div class="code-block"><span class="label">Copy and paste into Claude Code</span>I need a quick visibility audit for [BUSINESS NAME] in [CITY].
 
@@ -1047,7 +1403,7 @@ Check these 6 things and report findings:
    improvements they could make?
 
 Output as a clean markdown report. Save to
-deliverables/[business-slug]/quick-audit.md</div>
+reports/[business-slug]-visibility-check.md</div>
 
 <details>
   <summary>Adapt this for your niche</summary>
@@ -1060,7 +1416,7 @@ deliverables/[business-slug]/quick-audit.md</div>
 
 <h3 id="m8-content">Prompt 2 &mdash; The Content System Starter</h3>
 
-<p>Use this to build a week of content in 10 minutes.</p>
+<p>Use this to build a week of content in 10 minutes. Saves output directly to your workspace.</p>
 
 <div class="code-block"><span class="label">Copy and paste into Claude Code</span>I need 5 social media posts for [PLATFORM] this week.
 
@@ -1080,7 +1436,7 @@ Save to content/weekly-posts-[date].md</div>
 
 <h3 id="m8-daily">Your Daily AI Workflow (15 Minutes)</h3>
 
-<p>Build this habit and you'll be ahead of 95% of people in your industry within a month:</p>
+<p>Build this habit and you will be ahead of 95% of people in your industry within a month:</p>
 
 <table>
   <tr><th>Time</th><th>Action</th><th>Prompt</th></tr>
@@ -1091,47 +1447,246 @@ Save to content/weekly-posts-[date].md</div>
 
 <div class="callout tip">
   <div class="callout-label">The Compound Effect</div>
-  15 minutes a day doesn't sound like much. But in 30 days, you'll have: a fully configured AI workspace, 20+ saved workflows, a library of reusable content, and a system that knows your business. Most people spend months trying to "learn AI." You'll be using it.
+  15 minutes a day does not sound like much. But in 30 days, you will have: a fully configured AI workspace, 20+ saved workflows, a library of reusable content, and a system that knows your business. Most people spend months trying to "learn AI." You will be using it.
 </div>
 
 <div class="checkpoint">
-  <div class="checkpoint-header">Final Checkpoint &mdash; You're Dangerous Now</div>
+  <div class="checkpoint-header">Module 8 Checkpoint</div>
   <ul>
-    <li>VS Code + Claude Code installed and working</li>
-    <li>GitHub repo created and connected</li>
-    <li>CLAUDE.md written with your business context</li>
-    <li>At least one API/MCP connection live</li>
-    <li>Permission mode set to Accept Edits (or higher)</li>
-    <li>You've run both ready-to-use prompts</li>
-    <li>You have a daily 15-minute AI routine</li>
+    <li>You understand the difference between local and cloud AI</li>
+    <li>You have run both ready-to-use prompts in Claude Code</li>
+    <li>You have a daily 15-minute AI routine planned</li>
+    <li>(Optional) You have installed Ollama and run a local model</li>
   </ul>
 </div>
 
 
-<!-- ── WHAT'S NEXT ── -->
-<h2 style="border-top-color: var(--green);"><span class="module-num" style="color: var(--green);">What's Next</span>Level Up From Here</h2>
+<!-- ================================================================ -->
+<!-- MODULE 9                                                         -->
+<!-- ================================================================ -->
+<h2 id="m9"><span class="module-num">Module 9</span>You're Flying Now</h2>
 
-<p>This guide got you from zero to a working AI development environment. Here's where to go next:</p>
+<p>You made it. Here is everything you now have:</p>
+
+<div class="checkpoint">
+  <div class="checkpoint-header">Graduation Checkpoint &mdash; Everything You Built</div>
+  <ul>
+    <li>VS Code installed and configured as your AI home base</li>
+    <li>Node.js installed for running Claude Code</li>
+    <li>Git and GitHub set up &mdash; every change is tracked and backed up</li>
+    <li>Claude Code installed, authenticated, and set to Accept Edits</li>
+    <li>CLAUDE.md written with your business context &mdash; Claude knows who you are</li>
+    <li>Memory system active &mdash; Claude remembers your preferences across sessions</li>
+    <li>At least one API/MCP connection live &mdash; Claude talks to external services</li>
+    <li>5 prompting rules internalised &mdash; your inputs get better outputs</li>
+    <li>Claude Code syntax mastered &mdash; @files, #symbols, Shift+Enter</li>
+    <li>2 ready-to-use prompts tested &mdash; business audits and content generation</li>
+    <li>Daily 15-minute workflow established &mdash; the habit that compounds</li>
+    <li>(Bonus) Local LLM knowledge &mdash; free, private AI when you need it</li>
+  </ul>
+</div>
+
+<p>Here is where to go next:</p>
 
 <ul>
   <li><strong>Build your first skill</strong> &mdash; take a task you do weekly, write it as a skill file, and never do it manually again</li>
   <li><strong>Add more API connections</strong> &mdash; each new MCP server is a new superpower</li>
   <li><strong>Create rules for your domain</strong> &mdash; teach Claude your industry's conventions so every output is on-brand</li>
-  <li><strong>Learn agents</strong> &mdash; when you're ready, Claude can run multiple parallel tasks (like having a team of AI workers)</li>
+  <li><strong>Learn agents</strong> &mdash; when you are ready, Claude can run multiple parallel tasks (like having a team of AI workers)</li>
   <li><strong>Share your workspace</strong> &mdash; invite a business partner to your GitHub repo and both of you use Claude with the same context</li>
 </ul>
 
+<div class="callout tip">
+  <div class="callout-label">Ready for the Advanced Guide?</div>
+  The <strong>Advanced Claude Code Guide</strong> covers: multi-agent orchestration, custom skill development, MCP server creation, deployment pipelines, and scaling your AI operations. It picks up exactly where this guide leaves off.
+</div>
+
 <div class="callout">
   <div class="callout-label">One More Thing</div>
-  The biggest mistake people make is trying to learn everything before doing anything. Don't do that. Pick one task you do this week &mdash; a client report, a social post, an email sequence, a competitor audit &mdash; and do it with Claude. Learning happens by doing, not by reading.
+  The biggest mistake people make is trying to learn everything before doing anything. Do not do that. Pick one task you do this week &mdash; a client report, a social post, an email sequence, a competitor audit &mdash; and do it with Claude. Learning happens by doing, not by reading. You have the tools. Go use them.
 </div>
 
 
-<!-- ── FOOTER ── -->
+<!-- FOOTER -->
 <div class="footer">
-  <p><strong>Claude Code: From Zero to Dangerous</strong> &middot; Startup Guide v1</p>
-  <p>Built with Claude Code &middot; Online Optimisers &middot; April 2026</p>
+  <p><strong>Claude Code: From Zero to Dangerous</strong> &middot; Startup Guide v2</p>
+  <p>Built with Claude Code &middot; <strong>Online Optimisers</strong> &middot; April 2026</p>
+  <p style="margin-top:8px;"><a href="#">Advanced Claude Code Guide &rarr;</a></p>
 </div>
+
+
+<!-- ================================================================ -->
+<!-- JAVASCRIPT                                                       -->
+<!-- ================================================================ -->
+<script>
+(function() {
+  'use strict';
+
+  /* -- COPY BUTTONS ON CODE BLOCKS -- */
+  document.querySelectorAll('.code-block').forEach(function(block) {
+    var label = block.querySelector('.label');
+    var labelText = label ? label.textContent : '';
+    if (label) label.remove();
+
+    var btn = document.createElement('button');
+    btn.className = 'copy-btn';
+    btn.textContent = labelText ? labelText : 'Copy';
+    btn.setAttribute('aria-label', 'Copy code to clipboard');
+
+    btn.addEventListener('click', function() {
+      var code = block.textContent.replace(btn.textContent, '').trim();
+      navigator.clipboard.writeText(code).then(function() {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copied');
+        setTimeout(function() {
+          btn.textContent = labelText ? labelText : 'Copy';
+          btn.classList.remove('copied');
+        }, 2000);
+      }).catch(function() {
+        var textarea = document.createElement('textarea');
+        textarea.value = code;
+        textarea.style.position = 'fixed';
+        textarea.style.opacity = '0';
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+        btn.textContent = 'Copied!';
+        btn.classList.add('copied');
+        setTimeout(function() {
+          btn.textContent = labelText ? labelText : 'Copy';
+          btn.classList.remove('copied');
+        }, 2000);
+      });
+    });
+
+    block.appendChild(btn);
+  });
+
+  /* -- SCROLL-SPY FOR SIDEBAR -- */
+  var sidebarLinks = document.querySelectorAll('.sidebar a[href^="#"]');
+  var sections = [];
+
+  sidebarLinks.forEach(function(link) {
+    var id = link.getAttribute('href').substring(1);
+    var el = document.getElementById(id);
+    if (el) sections.push({ id: id, el: el, link: link });
+  });
+
+  function updateScrollSpy() {
+    var scrollPos = window.scrollY + 120;
+    var current = null;
+
+    for (var i = sections.length - 1; i >= 0; i--) {
+      if (sections[i].el.offsetTop <= scrollPos) {
+        current = sections[i];
+        break;
+      }
+    }
+
+    sidebarLinks.forEach(function(link) {
+      link.classList.remove('active');
+    });
+
+    if (current) {
+      current.link.classList.add('active');
+      var sidebar = document.querySelector('.sidebar');
+      if (sidebar) {
+        var linkTop = current.link.offsetTop;
+        var sidebarHeight = sidebar.clientHeight;
+        if (linkTop > sidebarHeight * 0.7 + sidebar.scrollTop || linkTop < sidebar.scrollTop) {
+          sidebar.scrollTo({ top: linkTop - sidebarHeight * 0.3, behavior: 'smooth' });
+        }
+      }
+    }
+  }
+
+  var scrollSpyTimer = null;
+  window.addEventListener('scroll', function() {
+    if (scrollSpyTimer) cancelAnimationFrame(scrollSpyTimer);
+    scrollSpyTimer = requestAnimationFrame(updateScrollSpy);
+  });
+  updateScrollSpy();
+
+  /* -- PROGRESS BAR -- */
+  var moduleHeadings = document.querySelectorAll('h2[id^="m"]');
+  var progressFill = document.getElementById('progress-fill');
+  var progressLabel = document.getElementById('progress-label');
+  var totalModules = moduleHeadings.length;
+
+  function updateProgress() {
+    var scrollPos = window.scrollY + window.innerHeight * 0.5;
+    var completed = 0;
+
+    moduleHeadings.forEach(function(heading) {
+      var sibling = heading;
+      var moduleEnd = document.body.scrollHeight;
+
+      while (sibling) {
+        sibling = sibling.nextElementSibling;
+        if (sibling && sibling.tagName === 'H2') {
+          moduleEnd = sibling.offsetTop;
+          break;
+        }
+      }
+
+      if (scrollPos >= moduleEnd) {
+        completed++;
+      }
+    });
+
+    if (completed > totalModules) completed = totalModules;
+
+    var pct = totalModules > 0 ? (completed / totalModules) * 100 : 0;
+    if (progressFill) progressFill.style.width = pct + '%';
+    if (progressLabel) progressLabel.textContent = completed + ' / ' + totalModules + ' modules';
+  }
+
+  window.addEventListener('scroll', function() {
+    requestAnimationFrame(updateProgress);
+  });
+  updateProgress();
+
+  /* -- BACK TO TOP BUTTON -- */
+  var backBtn = document.getElementById('back-to-top');
+
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > 600) {
+      backBtn.classList.add('visible');
+    } else {
+      backBtn.classList.remove('visible');
+    }
+  });
+
+  backBtn.addEventListener('click', function() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  // Hamburger menu
+  var hamBtn = document.getElementById('hamBtn');
+  var mainSidebar = document.getElementById('mainSidebar');
+  if (hamBtn && mainSidebar) {
+    hamBtn.addEventListener('click', function() { mainSidebar.classList.toggle('open'); });
+    document.addEventListener('click', function(e) {
+      if (!mainSidebar.contains(e.target) && !hamBtn.contains(e.target)) mainSidebar.classList.remove('open');
+    });
+  }
+
+  // Checkbox persistence
+  var STORAGE_KEY = 'oo-startup-v2-checks';
+  var saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+  document.querySelectorAll('.checkpoint input[type="checkbox"]').forEach(function(cb, i) {
+    cb.id = cb.id || 'ck' + i;
+    if (saved[cb.id]) cb.checked = true;
+    cb.addEventListener('change', function() {
+      var cur = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+      cur[cb.id] = cb.checked;
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(cur));
+    });
+  });
+
+})();
+</script>
 
 </body>
 </html>
