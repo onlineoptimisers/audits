@@ -32,11 +32,11 @@
 
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      font-size: 15px;
+      font-size: 15.5px;
       color: var(--text);
       background: var(--bg);
       line-height: 1.75;
-      max-width: 860px;
+      max-width: 880px;
       margin: 0 auto;
       padding: 0 24px;
     }
@@ -219,9 +219,12 @@
 
     /* ── HEADINGS ── */
     h2 {
-      font-size: 26px; font-weight: 800; color: var(--text);
+      font-size: 26px; font-weight: 800;
       margin-top: 64px; margin-bottom: 8px;
       padding-top: 24px; border-top: 1px solid var(--border);
+      background: linear-gradient(135deg, var(--cyan) 0%, #60a5fa 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
     h2 .module-num {
       display: block; font-size: 12px; font-weight: 700;
@@ -545,6 +548,15 @@
       border-top: 1px solid var(--border);
       text-align: center; color: var(--muted); font-size: 13px;
     }
+    /* ── SCROLL REVEAL ── */
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+
+    /* ── MOBILE TABLE FIX ── */
+    table { display: block; overflow-x: auto; }
+    @media (min-width: 700px) { table { display: table; } }
+    .code-block { overflow-x: auto; }
   </style>
 </head>
 <body>
@@ -660,6 +672,29 @@
   </ol>
 </div>
 
+<details style="margin-bottom:32px;">
+  <summary style="font-weight:700;font-size:16px;cursor:pointer;color:var(--cyan);padding:12px 0;">Glossary &mdash; Advanced Terms (click to expand)</summary>
+  <div style="padding:12px 0;">
+  <table>
+    <tr><th>Term</th><th>Plain English</th></tr>
+    <tr><td><strong>Orchestrator</strong></td><td>The main Claude you talk to — plans, delegates to agents, integrates results</td></tr>
+    <tr><td><strong>Subagent</strong></td><td>A spawned Claude instance that works on one specific task, returns results to the orchestrator</td></tr>
+    <tr><td><strong>Worktree</strong></td><td>An isolated git branch copy — agents can work without file conflicts</td></tr>
+    <tr><td><strong>Hooks</strong></td><td>Shell commands that run automatically before/after Claude uses a tool (pre/post)</td></tr>
+    <tr><td><strong>Cron</strong></td><td>A scheduled task that runs on a timer (e.g. every day at 9am)</td></tr>
+    <tr><td><strong>Webhook</strong></td><td>A URL that receives data when an event happens (e.g. new lead → triggers Claude)</td></tr>
+    <tr><td><strong>Custom MCP Server</strong></td><td>A plugin you build yourself to give Claude access to any external system</td></tr>
+    <tr><td><strong>Context compression</strong></td><td>When your conversation gets long, Claude summarises old messages to free up space</td></tr>
+    <tr><td><strong>Model routing</strong></td><td>Using different AI models for different tasks: Haiku for cheap bulk, Sonnet for judgment, Opus for planning</td></tr>
+    <tr><td><strong>Haiku / Sonnet / Opus</strong></td><td>Claude's 3 tiers: Haiku = fast + cheap, Sonnet = balanced, Opus = most capable + expensive</td></tr>
+    <tr><td><strong>Fan-out / Fan-in</strong></td><td>Spawn many agents in parallel (fan-out), then collect all results (fan-in)</td></tr>
+    <tr><td><strong>Pipeline</strong></td><td>Agent A's output feeds Agent B, which feeds Agent C — sequential chain</td></tr>
+    <tr><td><strong>R2 (Cloudflare)</strong></td><td>Object storage — host images, files, voice clones. Zero egress fees</td></tr>
+    <tr><td><strong>Workers (Cloudflare)</strong></td><td>Serverless functions at the edge — webhook receivers, API proxies, cron triggers</td></tr>
+    <tr><td><strong>KV Store</strong></td><td>Key-value storage on Cloudflare — fast config and state storage for Workers</td></tr>
+  </table>
+  </div>
+</details>
 
 <!-- ================================================================ -->
 <!-- MODULE 1 — API ARSENAL                                          -->
@@ -2360,6 +2395,17 @@ result = audit_agent.run(
       }
     });
   });
+
+  /* -- SCROLL REVEAL -- */
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    var revealObs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) { if (e.isIntersecting) { e.target.classList.add('in'); revealObs.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('h2, .callout, .checkpoint, .cta-block, .stat-cards, .showcase').forEach(function(el) {
+      el.classList.add('reveal');
+      revealObs.observe(el);
+    });
+  }
 
 })();
 </script>

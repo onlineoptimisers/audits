@@ -28,11 +28,11 @@
 
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      font-size: 15px;
+      font-size: 15.5px;
       color: var(--text);
       background: #fff;
       line-height: 1.75;
-      max-width: 820px;
+      max-width: 850px;
       margin: 0 auto;
       padding: 0 24px;
     }
@@ -103,7 +103,7 @@
       .sidebar .progress-bar .fill {
         height: 100%;
         width: 0%;
-        background: var(--green);
+        background: linear-gradient(90deg, var(--green) 0%, var(--blue) 100%);
         border-radius: 2px;
         transition: width 0.5s;
       }
@@ -226,9 +226,12 @@
 
     /* -- HEADINGS -- */
     h2 {
-      font-size: 26px; font-weight: 800; color: var(--navy);
+      font-size: 26px; font-weight: 800;
       margin-top: 64px; margin-bottom: 8px;
       padding-top: 24px; border-top: 2px solid var(--border);
+      background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
     h2 .module-num {
       display: block; font-size: 12px; font-weight: 700;
@@ -460,6 +463,19 @@
     }
 
     /* -- CTA BLOCK -- */
+    /* ── SCROLL REVEAL ── */
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+
+    /* ── SHIMMER CTA BUTTON ── */
+    @keyframes btn-shimmer { 0% { background-position: 0% 50%; } 100% { background-position: 300% 50%; } }
+
+    /* ── MOBILE TABLE FIX ── */
+    table { display: block; overflow-x: auto; white-space: nowrap; }
+    @media (min-width: 700px) { table { display: table; white-space: normal; } }
+    .code-block { overflow-x: auto; }
+
     /* ── MID-PAGE CTA BANNERS ── */
     .mid-cta {
       background: linear-gradient(135deg, #dbeafe, #eff6ff);
@@ -672,6 +688,39 @@
   </ol>
 </div>
 
+<details style="margin-bottom:32px;">
+  <summary style="font-weight:700;font-size:16px;cursor:pointer;color:var(--navy);padding:12px 0;">Glossary &mdash; Quick Reference (click to expand)</summary>
+  <div style="padding:12px 0;">
+  <table>
+    <tr><th>Term</th><th>Plain English</th></tr>
+    <tr><td><strong>CLI</strong></td><td>Command Line Interface — a text-based way to talk to your computer (type commands instead of clicking)</td></tr>
+    <tr><td><strong>Terminal</strong></td><td>The app where you type CLI commands. Built into Mac (Terminal) and Windows (PowerShell)</td></tr>
+    <tr><td><strong>IDE</strong></td><td>Integrated Development Environment — a code editor with extra tools. VS Code is an IDE</td></tr>
+    <tr><td><strong>VS Code</strong></td><td>Visual Studio Code — the free code editor by Microsoft. This is where Claude Code lives</td></tr>
+    <tr><td><strong>Git</strong></td><td>Version control software — tracks every change you make so you can undo mistakes</td></tr>
+    <tr><td><strong>GitHub</strong></td><td>A website that stores your git repos online. Also hosts free websites (GitHub Pages)</td></tr>
+    <tr><td><strong>Repo (Repository)</strong></td><td>A project folder tracked by git. Contains your code, files, and full change history</td></tr>
+    <tr><td><strong>Commit</strong></td><td>A saved checkpoint. Like pressing "save" but with a description of what changed</td></tr>
+    <tr><td><strong>Push / Pull</strong></td><td>Push = upload your commits to GitHub. Pull = download changes from GitHub</td></tr>
+    <tr><td><strong>Branch</strong></td><td>A parallel version of your project. Work on features without affecting the main version</td></tr>
+    <tr><td><strong>API</strong></td><td>Application Programming Interface — a way for software to talk to other software</td></tr>
+    <tr><td><strong>API Key</strong></td><td>A password that lets your code access an API. Keep these secret — never share publicly</td></tr>
+    <tr><td><strong>MCP</strong></td><td>Model Context Protocol — Claude's plugin system for connecting to external services</td></tr>
+    <tr><td><strong>.env file</strong></td><td>A hidden file that stores API keys. Git-ignored so secrets never get uploaded</td></tr>
+    <tr><td><strong>CLAUDE.md</strong></td><td>A file Claude reads at the start of every conversation. Your AI's operating manual</td></tr>
+    <tr><td><strong>Memory</strong></td><td>Claude's persistent knowledge — facts saved across conversations as small files</td></tr>
+    <tr><td><strong>Context window</strong></td><td>How much Claude can "see" at once (~200k tokens). Older messages get compressed</td></tr>
+    <tr><td><strong>Token</strong></td><td>A chunk of text (~4 characters). Claude measures everything in tokens, not words</td></tr>
+    <tr><td><strong>Prompt</strong></td><td>What you type to Claude. Better prompts = better answers</td></tr>
+    <tr><td><strong>Skill</strong></td><td>A reusable multi-step workflow saved as a file. Type /skill-name to run it</td></tr>
+    <tr><td><strong>Local LLM</strong></td><td>An AI model running on your own laptop — free, private, works offline</td></tr>
+    <tr><td><strong>Node.js / npm</strong></td><td>Node.js runs JavaScript outside a browser. npm installs packages (like an app store for code)</td></tr>
+    <tr><td><strong>Cloudflare Pages</strong></td><td>Free website hosting by Cloudflare. Deploy with one command: <code>wrangler pages deploy</code></td></tr>
+    <tr><td><strong>GitHub Pages</strong></td><td>Free website hosting by GitHub. Push your code and it becomes a live website</td></tr>
+    <tr><td><strong>Astro</strong></td><td>A modern website framework. Fast, simple, and Claude builds Astro sites beautifully</td></tr>
+  </table>
+  </div>
+</details>
 
 <!-- ================================================================ -->
 <!-- FOUNDATION WEEK                                                   -->
@@ -2083,7 +2132,7 @@ Save to content/weekly-posts-[date].md</div>
 <div class="cta-block" style="padding:56px 32px;">
   <h3 style="font-size:28px;margin-bottom:12px;">You're Dangerous Now. Ready to Be Lethal?</h3>
   <p style="font-size:16px;max-width:560px;margin:0 auto 28px;">The Advanced Guide covers multi-agent orchestration, custom MCPs, deployment pipelines, autonomous workflows, and how to turn all of this into money.</p>
-  <a href="claude-code-advanced-guide.html" class="cta-btn" style="font-size:17px;padding:16px 40px;margin-bottom:12px;">Open the Full Stack Playbook &rarr;</a>
+  <a href="claude-code-advanced-guide.html" class="cta-btn" style="font-size:17px;padding:16px 40px;margin-bottom:12px;background-image:linear-gradient(90deg,var(--blue) 0%,#1555FC 50%,var(--blue) 100%);background-size:300% 100%;animation:btn-shimmer 8s linear infinite;">Open the Full Stack Playbook &rarr;</a>
   <br/>
   <a href="chatgpt-migration-calculator.html" class="cta-btn secondary" style="margin-top:8px;">ChatGPT Migration Calculator</a>
 </div>
@@ -2265,6 +2314,17 @@ Save to content/weekly-posts-[date].md</div>
       localStorage.setItem(STORAGE_KEY, JSON.stringify(cur));
     });
   });
+
+  /* -- SCROLL REVEAL -- */
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    var revealObs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) { if (e.isIntersecting) { e.target.classList.add('in'); revealObs.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('h2, .callout, .checkpoint, .cta-block, .stat-cards, .mid-cta, .foundation-week').forEach(function(el) {
+      el.classList.add('reveal');
+      revealObs.observe(el);
+    });
+  }
 
 })();
 </script>
