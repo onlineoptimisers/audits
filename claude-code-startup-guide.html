@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Claude Code Startup Guide v5 — From Zero to Dangerous</title>
+  <title>Claude Code Startup Guide v6 — From Zero to Dangerous</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <style>
     @page { size: A4; margin: 2cm; }
@@ -833,10 +833,10 @@
 
 <!-- COVER -->
 <div class="cover" id="top">
-  <div class="cover-badge">Startup Guide v5</div>
+  <div class="cover-badge">Startup Guide v6</div>
   <h1>Claude Code<br/>From Zero to Dangerous</h1>
   <p class="subtitle">The accelerated setup guide for non-coders who want AI leverage</p>
-  <p class="cover-meta">Written by <strong>Donal Lynch</strong> &middot; <a href="https://onlineoptimisers.com" style="color:var(--blue);text-decoration:none;">Online Optimisers</a> &middot; <a href="https://www.linkedin.com/in/donal-lynch-b293a882/" style="color:var(--blue);text-decoration:none;">LinkedIn</a><br/>Version 5 &middot; April 2026 &middot; ~2 hours &middot; 8 modules + Foundation Week &middot; No coding experience required</p>
+  <p class="cover-meta">Written by <strong>Donal Lynch</strong> &middot; <a href="https://onlineoptimisers.com" style="color:var(--blue);text-decoration:none;">Online Optimisers</a> &middot; <a href="https://www.linkedin.com/in/donal-lynch-b293a882/" style="color:var(--blue);text-decoration:none;">LinkedIn</a><br/>Version 6 &middot; April 2026 &middot; ~2 hours &middot; 8 modules + Foundation Week &middot; No coding experience required</p>
 </div>
 
 <!-- TOP CTA -->
@@ -1120,7 +1120,7 @@ Be specific and concrete under each heading.</div>
 
 <h3>Tool Alternatives</h3>
 
-<p>Claude Code runs inside a code editor. Here are the main options:</p>
+<p>Claude Code runs inside a code editor. You have several options, but the choice is straightforward &mdash; pick the one with the best native integration and the lowest barrier to entry.</p>
 
 <table>
   <tr><th>Editor</th><th>Price</th><th>Claude Code Support</th><th>Verdict</th></tr>
@@ -1138,6 +1138,8 @@ Be specific and concrete under each heading.</div>
 </div>
 
 <h3 id="m1-prereqs">Prerequisites</h3>
+
+<p>You only need five things to get started, and you probably already have most of them.</p>
 
 <table>
   <tr><th>You Need</th><th>How to Get It</th><th>Time</th></tr>
@@ -1214,6 +1216,8 @@ node --version</div>
   <tr><td><strong>Material Icon Theme</strong></td><td>Makes your file tree look clean</td><td>Nice to have</td></tr>
   <tr><td><strong>Error Lens</strong></td><td>Shows errors inline as you type</td><td>Nice to have</td></tr>
 </table>
+
+<p>With extensions installed, VS Code transforms from a blank editor into a purpose-built AI workspace. Next, learn the handful of keyboard shortcuts that will save you the most time.</p>
 
 <h3 id="m2-shortcuts">VS Code Shortcuts That Matter</h3>
 
@@ -1961,7 +1965,7 @@ wrangler pages deploy ./my-site</div>
   They're free, connect in 15 minutes, and Claude immediately becomes 10x more useful &mdash; reading your actual docs instead of asking you to paste everything.
 </div>
 
-<p>Below are 5 pre-built stacks. Pick the one closest to your work, then add individual tools from the others as needed.</p>
+<p>Below are 5 pre-built stacks. Pick the one closest to your work, then add individual tools from the others as needed. You do not need all five &mdash; scan the descriptions and choose the one that matches your daily workflow.</p>
 
 <!-- Stack 1 -->
 <h3 id="m6-social">Stack 1: Social Media Team</h3>
@@ -1977,6 +1981,11 @@ wrangler pages deploy ./my-site</div>
   <tr><td>5</td><td><strong>Instagram Graph API</strong></td><td>Read insights, manage content</td><td>developers.facebook.com</td></tr>
 </table>
 
+<div class="callout tip">
+  <div class="callout-label">Quick Win for Social Teams</div>
+  Connect Google Sheets + Buffer first. Claude can draft a full week of posts into a Sheet, and Buffer pulls from it to schedule automatically. That alone saves 2-3 hours per week.
+</div>
+
 <!-- Stack 2 -->
 <h3 id="m6-seo">Stack 2: SEO Team</h3>
 
@@ -1991,6 +2000,8 @@ wrangler pages deploy ./my-site</div>
   <tr><td>5</td><td><strong>Ahrefs</strong></td><td>Backlink data, domain authority, content gaps</td><td>ahrefs.com &rarr; API access</td></tr>
   <tr><td>6</td><td><strong>BrightLocal</strong></td><td>Local citations, review monitoring, rank tracking</td><td>brightlocal.com &rarr; API</td></tr>
 </table>
+
+<p>The SEO stack is data-heavy by nature. The payoff is that Claude can pull keyword data, cross-reference it with competitor backlinks, and draft a content brief &mdash; all in a single prompt.</p>
 
 <!-- Stack 3 -->
 <h3 id="m6-marketing">Stack 3: All-in-1 Marketing Team</h3>
@@ -2009,6 +2020,11 @@ wrangler pages deploy ./my-site</div>
   <tr><td>8</td><td><strong>Stripe</strong></td><td>Payments, subscriptions, revenue tracking</td><td>dashboard.stripe.com &rarr; API keys</td></tr>
 </table>
 
+<div class="callout">
+  <div class="callout-label">Start Small, Expand as Needed</div>
+  The All-in-1 stack looks big, but you do not need all 8 on day one. Start with Google Workspace + your CRM. Add analytics and email once your core workflow is solid.
+</div>
+
 <!-- Stack 4 -->
 <h3 id="m6-personal">Stack 4: Personal Operator</h3>
 
@@ -2022,6 +2038,8 @@ wrangler pages deploy ./my-site</div>
   <tr><td>4</td><td><strong>Google Calendar</strong></td><td>Read/create events, check availability</td><td>MCP server (OAuth flow)</td></tr>
   <tr><td>5</td><td><strong>Notion / Obsidian</strong></td><td>Notes, wikis, second brain</td><td>Notion API or Obsidian local files</td></tr>
 </table>
+
+<p>The Personal Operator stack is the leanest &mdash; five connections and Claude handles your email, calendar, documents, and notes. Most solo operators find this is all they need for the first month.</p>
 
 <!-- Stack 5 -->
 <h4 id="m6-content">Stack 5: Content Creator / Educator (6 APIs)</h4>
@@ -2247,6 +2265,8 @@ Constraints:
   Instead of saying "read the file at knowledge/clients/acme/profile.md", you can just type <code>@knowledge/clients/acme/profile.md</code> in your message. Claude will automatically read it. This works for any file in your workspace.
 </div>
 
+<p>Now that you know how to reference files and write multi-line prompts, the next question is when to use Claude Code versus other tools you already know.</p>
+
 <h3 id="m7-chatgpt">Claude Code vs ChatGPT &mdash; When to Use Which</h3>
 
 <table>
@@ -2279,7 +2299,7 @@ Check these 6 things and report findings:
    improvements they could make?
 
 Output as a clean markdown report. Save to
-reports/[business-slug]-quick-audit.md</div>
+reports/[business-slug]-visibility-check.md</div>
 
 <details>
   <summary>Adapt this for your niche</summary>
@@ -2404,7 +2424,7 @@ Save to content/weekly-posts-[date].md</div>
 <!-- FOOTER -->
 <div class="footer">
   <p>Written by Donal Lynch | <strong>Online Optimisers</strong> | <a href="https://onlineoptimisers.com">onlineoptimisers.com</a></p>
-  <p>Claude Code Startup Guide &mdash; From Zero to Dangerous &mdash; v5 &mdash; April 2026</p>
+  <p>Claude Code Startup Guide &mdash; From Zero to Dangerous &mdash; v6 &mdash; April 2026</p>
 </div>
 
 
@@ -2675,7 +2695,7 @@ Save to content/weekly-posts-[date].md</div>
   }
 
   // Checkbox persistence
-  var STORAGE_KEY = 'oo-startup-v5-checks';
+  var STORAGE_KEY = 'oo-startup-v6-checks';
   var saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
   document.querySelectorAll('.checkpoint input[type="checkbox"]').forEach(function(cb, i) {
     cb.id = cb.id || 'ck' + i;
